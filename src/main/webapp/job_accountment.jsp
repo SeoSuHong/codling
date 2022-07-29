@@ -135,7 +135,6 @@
             <div class="companyInfo">
                 <div class="comLogo"><img src="img/logo.png" alt="회사로고"></div>
                 <dl>
-                <!--dd <%= %>-->
                     <dt>기업형태</dt>
                         <dd>중소기업</dd>                  
                     <dt>업종</dt>
