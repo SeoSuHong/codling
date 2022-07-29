@@ -16,7 +16,7 @@
 <body>
     <header>
         <div id="scroll-header">
-          <div id="scroll-header-box">
+          <div id="scroll-header-box"> 
             <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
             <nav id="menu">
               <ul>
