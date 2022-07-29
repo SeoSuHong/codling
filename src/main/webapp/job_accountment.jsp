@@ -18,7 +18,7 @@
         <ul>
             <li><a href="newcomer.jsp">신입채용</a></li>
             <li><a href="career.jsp">경력채용</a></li>
-            <li><a href="Top100.jsp">Top100</a></li>
+            <li><a href="top100.jsp">Top100</a></li>
         </ul>
         <form class="search_box" id="searbox">
             <input type="text" name="searchbox" placeholder="검색어를 입력하세요.">
