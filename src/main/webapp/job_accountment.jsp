@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,13 +33,16 @@
         <div class="header_Wrap">
                 <div class="logo-default" id="title_box">
                     <div class="title_container">
-                        <span class="title">Backend Engineer 채용</span>
+                        <span class="title">${jobOpening.title}</span>
                         <div class="title_inside">
-                            <span>Codling</span>
-                            <span>인천 구월</span>
-                            <span>경력 3년<span class="normalFont">↑</span></span>
-                            <span>대졸 이상</span>
-                            <span>3000만<span class="normalFont">↑</span></span>
+                            <span>${corporation.corporateName}</span>&ensp;
+                            <span>경력 ${field.career}↑</span>&ensp;
+                            <c:if test="${field.pay == '면접 후 결정'}">
+                            <span>${field.pay}</span>
+                            </c:if>
+                            <c:if test="${field.pay != '면접 후 결정'}">
+                            <span>${field.pay}만↑</span>
+                            </c:if>
                         </div>
                     </div>
                 <div class="apply"><a href="#" onclick="popUp()">지원하기</a></div>
@@ -50,12 +54,15 @@
     <form class="confrm" action="" method="post" name="">
         <div class="top_title_container">
             <div id="top_title_container">
-                <span class="title">Backend Engineer 채용</span><br>
-                <span class="corpName">Codling</span>
-                <span class="corpLocation">인천 구월</span>
-                <span class="corpCarrer">경력 3년<span class="normalFont">↑</span></span>
-                <span class="corpEdu">대졸 이상</span>
-                <span class="corSalery">3000만<span class="normalFont">↑</span></span>
+                <span class="title">${jobOpening.title}</span><br>
+                <span class="corpName">${corporation.corporateName}</span>&ensp;
+                <span class="corpCarrer">경력 ${field.career}↑</span>&ensp;
+                <c:if test="${field.pay == '면접 후 결정'}">
+                <span class="corSalery">${field.pay}</span>
+                </c:if>
+                <c:if test="${field.pay != '면접 후 결정'}">
+                <span class="corSalery">${field.pay}만↑</span>
+                </c:if>
             </div>
             <div id="apply_box">
                 <div class="apply" id="top_apply"><a href="#" onclick="popUp()">지원하기</a></div>
