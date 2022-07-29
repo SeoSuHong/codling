@@ -68,14 +68,14 @@
 </header>
     <section>
       <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col">
-          <a href="job_accountment.jsp" class="cardlink"><div class="card">
+        <div class="col" style="cursor: pointer;" onclick="location='job_accountment.jsp'">
+          <div class="card">
             <img src="img/logo.png" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Codling</h5>
               <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
-          </div></a>
+          </div>
         </div>
       </div>
     </section>

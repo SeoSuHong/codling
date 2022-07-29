@@ -106,7 +106,7 @@
       </article>
       <!-- 일반광고 -->
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
+        <div class="col" style="cursor: pointer;" onclick="location='job_accountment.jsp'">
           <div class="card">
             <img src="img/logo.png" class="card-img-top" alt="...">
             <div class="card-body">

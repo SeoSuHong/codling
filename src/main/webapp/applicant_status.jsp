@@ -51,6 +51,7 @@
                             <dd>신입, 경력 (5년 이상)</dd>
                     </dl>
                 </div>
+            	</div>
             </div>
         </article>
 
