@@ -1,0 +1,74 @@
+@import url(font.css);
+
+* {font-family: 'MapoPeacefull';}
+
+/**/
+body{ margin-top: -5rem; margin: 0; padding: 0; }
+a{text-decoration: none; color: inherit;}
+ul{margin: 0; }
+li{list-style: none; display: inline-block; }
+input[type="button"] {border: none; outline: none; cursor: pointer; }
+
+/*header*/
+header{
+    box-sizing: border-box; box-shadow: #e9e9e9 1px 2px 4px 2px; border-bottom: solid 0.15rem #A5E374;
+    word-break: keep-all; letter-spacing: -0.035rem; line-height: 1.5rem;
+    }
+.logo-default img{width: 253px; height: 56px; }
+.header_Wrap{ margin: 0 auto; padding: 0; width: 1220px;
+    display: flex; align-items: center; justify-items: center; justify-content:space-between; padding: 1rem 0;}
+.header_Wrap ul{ min-width: 23rem; }
+.header_Wrap li{ margin: 0 0.8rem; font-size: large; font-weight: bold; color: #8d8d8d; }
+.header_Wrap li:hover{ color : #a5e374; }
+.search_box{ width: 15rem; display: flex; margin: 0 2rem; padding: 0.15rem; border: solid 0.2rem #a5e374; border-radius: 0.35rem; box-sizing: border-box; box-shadow: #e9e9e9 1px 2px 4px 2px; }
+.search_box input[type=text]{ border: none; outline: none; box-sizing: border-box; font-size: 1rem; width: 14.5rem; line-height: 1.5rem; color: #373F57; }
+.search{ width: 26px; height: 26px; background-image: url(../img/icon01.png); background-size: 24px; background-repeat:no-repeat; 
+    background-color: white;}
+
+/*nav*/
+nav{ position: fixed;  height: 8rem; padding: 1rem 2rem; top:-10rem; width: 100vw; background-color: #fff;
+    transition: top 0.1s ease-in-out; display: flex; justify-content: center; box-sizing: border-box; box-shadow: #e9e9e9 1px 2px 4px 2px;}
+.nav_Wrap {padding: 0.5rem 5rem; width: 1220px;}
+.nav_Wrap p {line-height: 0rem;}
+.nav_Wrap>span {font-size:x-large; font-weight: bold; }
+/*스크롤시 nav class : 지우면 안 됨.*/
+.nav-up{ margin: 0; padding: 0; top:0px; z-index: 10; border-bottom: solid 0.18rem #a5e374; box-shadow:#b3b3b3 1px 1px 10px 2px; }
+
+/*로그인 버튼 -> 김태희님 만든 디자인으로 변경 OK.*/
+#log{width: 80px; border: 3px solid #A5E374; border-radius: 5px; background-color: white;color: #8D8D8D; 
+    font-weight: bold; font-size: 1.05rem; cursor: pointer; }
+#log:hover{background-color: #A5E374;color: white; font-size: 1.05rem;}
+
+/*지원버튼*/
+.clear {float: right; margin-top: -1rem; padding: 1.2rem 2.5rem; font-size:x-large; font-weight: bold;
+    background-color: #a5e374; border-radius: 0.4rem; color: #fff; cursor: pointer;}
+/*채용 진행 여부*/
+.ing{ width: 35rem; font-size: 10pt; padding: 0.1rem 0.75rem; margin-top: 0.5rem; margin-right: 0.5rem;}
+.step1{ border: solid 0.1rem #a5e374; border-radius: 1rem; color: #90c766; }
+.step2{ border: solid 0.1rem gray; border-radius: 1rem; color: gray; }
+.step3{ background-color: #a5e374; color: #fff; border-radius: 1rem;}
+.ing a{ margin-right: 0.5rem;}
+
+/*본문*/
+section{ width: 1220px; margin: 0 auto; margin-top: 1rem; border: solid 0.1rem rgb(207, 207, 207); padding: 0.5rem 0; }
+.contentsWrap{ padding: 1rem; }
+.content_nav{ height: 8rem; padding: 1rem 2rem; top:-10rem; background-color: #fff; justify-content: center; }
+.content_nav p{ line-height: 0rem;}
+.content_nav>span{ font-size:x-large; font-weight: bold; }
+
+.comlogo{ display: inline-block; margin-right: 1rem;}
+.comlogo img{ width: 250px; height: 180px;}
+.companyInfo{ padding: 0 1rem; display: flex; margin-left: 3.5rem; margin-top: 1rem; }
+.companyInfo dl { clear: both; width: 40%; margin-left: 2rem; line-height: 1.8rem; font-size: 11pt;}
+.companyInfo dt { font-weight: bold; float: left; margin-right: 0.5rem; }
+.companyInfo dt dd{ display: flex; flex-wrap: wrap; }
+
+/*본문 상세요강 등 -> width 1200px : padding 값 있어 1150px로 설정*/
+/*본문 상세 요강 등 : 예시를 위한 height (추후 삭제예정)*/
+.content_main{ height: 500px; width: 1150px; border: 0.1rem solid rgb(207, 207, 207); border-top-color:#A5E374; padding: 1rem; }
+
+/*footer*/
+footer{ display: flex; height: 80px; background-color: #F0F0F0; border-top: #dddddd solid 0.1rem;
+    color: #BEBEBE; margin-top: 5vh; font-size: 0.8rem; justify-content: center; align-items: center;}
+    footer a:hover{text-decoration: underline; color: #BEBEBE;}
+    footer img{margin: 0 2rem; }
