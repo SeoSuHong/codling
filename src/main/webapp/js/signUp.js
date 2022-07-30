@@ -53,34 +53,33 @@ function maxLengthCheck(object) {
 }
 
 let inputDataCheck = (id) => {
+	
     if(id) {            
         $("#" + id).removeClass("is-invalid");
     }
+	if($("#id").val() == "ezen"){
+		$("#id").addClass("is-invalid");
+		$("#id").focus();
+		return;
+	}
 }
 
 // ID 중복확인 구현해야함
 function dumpChk(){
  	if($("#id").val() == ""){
-	$("#id").addClass("is-invalid");
-	$("#id").focus();
-	return;
+		$("#id").addClass("is-invalid");
+		$("#id").focus();
+		return;
 	}
 };
 
-//submit 눌렀을때 signUpId_submit 함수 실행
+//submit 눌렀을 때 signUpInd_submit 함수 실행
 function signUpInd_submit(){
 	$("#btn").on("click", function validate1(){
 		$(function validate1() {
 			let vali = /^[a-zA-Z0-9]{4,12}$/ // 아이디가 적합한지 검사할 정규식
 			let vali2 = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/ //비밀번호 정규식
 			var vali3 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; // 이메일이 적합한지 검사할 정규식
-	
-			if(!check(vali, idCom,"아이디는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")){
-			return false;
-			}
-			if(!check(vali2,pwCom,"비밀번호는 최소 8자이상의 문자, 숫자, 특수문자($@$!%*#?&)를 포함해야 합니다.")){
-			return false;
-			}
 	
 			if($("#id").val() == ""){
 				$("#id").addClass("is-invalid");
@@ -127,12 +126,7 @@ function signUpInd_submit(){
 	  			$("#email").focus();
 	  			return;
 			}
-			if($("#phoneInd1").val() == ""){
-	  			$("#phoneInd1").addClass("is-invalid");
-	  			$("#phoneInd1").focus();
-	  			return;
-			}
-			if($("phoneInd2").val() == ""){
+			if($("#phoneInd2").val() == ""){
 	  			$("#phoneInd2").addClass("is-invalid");
 	  			$("#phoneInd2").focus();
 	  			return;
@@ -180,12 +174,12 @@ function signUpCom_submit(){
 		$("#comName").focus();
 		return;
 	}
-	if($("#localNum").val() == ""){
-		$("#localNum").addClass("is-invalid");
-		$("#localNum").focus();
+	if($("#telePhone").val() == ""){
+		$("#telePhone").addClass("is-invalid");
+		$("#telePhone").focus();
 		return;
 	}
-	if($("representative").val() == ""){
+	if($("#representative").val() == ""){
 		$("#representative").addClass("is-invalid");
 		$("#representative").focus();
 		return;
@@ -194,11 +188,6 @@ function signUpCom_submit(){
 		$("#comNum").addClass("is-invalid");
 		$("#comNum").focus();
 		return;
-	}
-	if($("#formFile").val() == ""){
-		$("#formFile").addClass("is-invalid");
-		$("#formFile").focus();
-		alert("1개월 이내 증빙서류 제출 바랍니다.");
 	}
 	if($("#post1Com").val() == ""){
 		$("#post1Com").addClass("is-invalid");
@@ -214,6 +203,9 @@ function signUpCom_submit(){
 		$("#address2Com").addClass("is-invalid");
 		$("#address2Com").focus();
 		return;
+	}
+	if($("#formFile").val() == ""){
+		alert("1개월 이내 증빙서류 제출 바랍니다.");
 	}
 	alert("Welcome🍏");
 	location.href="index.jsp";
@@ -342,14 +334,9 @@ function validate2() {
 	if(!check(vali2,pwCom,"비밀번호는 최소 8자이상의 문자, 숫자, 특수문자($@$!%*#?&)를 포함해야 합니다.")){
 		return false;
 	}
-	if(pwCom.value==cfpwCom.value) {
+	if(pwCom.value!=cfpwCom.value) {
 		alert("비밀번호가 일치하지 않습니다.");
 		cfpw.focus();
-		return false;
-	}
-	if(perIC.value=="") {
-		alert("인사 담당자의 이름을 입력해 주세요");
-		perIC.focus();
 		return false;
 	}
 	if(perICPhone.value=="") {
@@ -422,7 +409,7 @@ window.addEventListener('load', () => {
 	const forms = document.getElementsByClassName('validation-form');
 	Array.prototype.filter.call(forms, (form) => {
 		form.addEventListener('submit', function (event) {
-			if (form.checkValidity() === false) {
+			if (form.checkValidity() == false) {
 				event.preventDefault();
 				event.stopPropagation();
 			}

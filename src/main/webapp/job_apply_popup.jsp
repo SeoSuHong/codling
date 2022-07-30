@@ -2,17 +2,15 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="css/job_apply_popup.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="plugin/slick-1.8.1/slick/slick.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/job_apply_popup.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="plugin/slick-1.8.1/slick/slick.css">
 </head>
-
 <body>
         <div class="container">
                 <img src="img/logo.png" class="logo" alt="">
@@ -28,7 +26,7 @@
                                 </select>
                         </form>
                 </div>
-                <form action="" method="post" name="clFrm">
+                <form action="job_apply_popup" method="post" name="clFrm">
                         <div class="slider-div">
                                 <div class="containerBot">
                                         <p>자기소개서</p>

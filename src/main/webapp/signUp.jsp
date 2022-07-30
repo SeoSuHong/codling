@@ -51,7 +51,7 @@
                                 <div class="col" id="chain">
                                     <input type="text" maxLength=20 onInput="maxLengthCheck(this)" onKeyUp="inputDataCheck(this.id)" name="id" id="id" class="form-control" placeholder="아이디" required/>
                                         <div class="invalid-feedback">
-                                            아이디를 입력하세요
+                                            중복된 아이디입니다.
                                         </div>      
                                  </div>
                             </div>
@@ -78,7 +78,7 @@
                             <div class="row align-items-center mt-4" id="frame">
                                 <div class="col">
                                     <p class="fw-bold">이름</p>
-                                        <input type="text" name="name" id = "name" class="form-control" placeholder="이름"  onKeyUp="inputDataCheck(this.id)" required>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="이름"  onKeyUp="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 이름을 입력하세요.
                                             </div>
@@ -112,8 +112,8 @@
                                     <p class="fw-bold">성별 </p>
                                         <select class="form-select" id="gender" >
                                             <option value="">성별</option>
-                                            <option>여성</option>
-                                            <option>남성</option>
+                                            <option value="남">남성</option>
+                                            <option value="여">여성</option>
                                         </select>
                                             <div class="invalid-feedback">
                                                 성별을 선택하세요.
@@ -133,14 +133,11 @@
                                 <p class="fw-bold">전화번호</p>
                                     <div class="col-4">
                                         <select class="form-select" id="phoneInd1"  onKeyUp="inputDataCheck(this.id)" required>
-                                            <option selected>010</option>
-                                            <option>012</option>
-                                            <option>013</option>
-                                            <option>015</option>
+                                            <option value="010" selected>010</option>
+                                            <option value="012">012</option>
+                                            <option value="013">013</option>
+                                            <option value="015">015</option>
                                             </select>
-                                                <div class="invalid-feedback">
-                                                    식별번호를 선택하세요.
-                                                </div>
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" id="phoneInd2" placeholder="'-'없이 입력"  onKeyUp="inputDataCheck(this.id)" required>
@@ -172,7 +169,7 @@
                             <div  class="row align-items-center mt-4" id="frame">
                                 <p class="fw-bold">아이디</p>
                                 <div class="col" id="chain">
-                                    <input type="text" maxLength=20 onInput="maxLengthCheck(this)" onKeyUp="inputDataCheck(this.id)" name="id" id="Comid" class="form-control" placeholder="아이디"  onKeyUp="inputDataCheck(this.id)" required/>
+                                    <input type="text" maxLength=20 onInput="maxLengthCheck(this)" name="id" id="Comid" class="form-control" placeholder="아이디"  onKeyUp="inputDataCheck(this.id)" required/>
                                         <div class="invalid-feedback">
                                             아이디를 입력하세요
                                         </div>      

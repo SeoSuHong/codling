@@ -13,7 +13,7 @@ import codling.identity.Corporation;
 import codling.identity.Field;
 import codling.identity.JobOpening;
 
-@WebServlet("/Job_accountmentServlet")
+@WebServlet("/job_accountment")
 public class Job_accountmentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CorporationDao corpDao = new CorporationDao();

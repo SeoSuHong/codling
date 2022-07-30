@@ -10,14 +10,11 @@ function popUp(){
 function isSubmit(){
     var isChk = $(".form-select option:selected").val();
     var isChk2 = $('input[name="chk"]:checked').val();
-    if(isChk === "0" || isChk2===undefined){
-        alert("지원할 분야 및 자기소개서를 하나 이상 선택해주세요")
+    if(isChk === "0" || isChk2 === undefined){
+        alert("지원할 분야 및 자기소개서를 하나 이상 선택해 주세요.")
         return false;
-    }
-    else{
-        alert("등록되었습니다.")
-        window.close(this);
-        document.clFrm.submit();
+    } else{
+    	document.clFrm.submit();
     }
 }
 

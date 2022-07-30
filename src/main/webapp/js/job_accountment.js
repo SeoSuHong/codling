@@ -35,3 +35,27 @@ function hasScrolled() {
 
     lastScrollTop = st;
 }
+
+
+// 지도 Library
+$(function(){
+	var container = document.getElementById('map');
+	var address = document.getElementById('area').value;
+	var options = {
+		center: new kakao.maps.LatLng(33.450701, 126.570667),
+		level: 3
+	}
+	
+	var map = new kakao.maps.Map(container, options);
+	var places = new kakao.maps.services.Places();
+	
+	
+	var callback = function(result, status) {
+    	if (status === kakao.maps.services.Status.OK) {
+        console.log(result);
+    	}
+	};
+
+	places.keywordSearch(address, callback);
+});
+
