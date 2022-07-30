@@ -49,7 +49,7 @@
                             <div  class="row align-items-center mt-4" id="frame">
                                 <p class="fw-bold">아이디</p>
                                 <div class="col" id="chain">
-                                    <input type="text" maxLength=20 onInput="maxLengthCheck(this)"onKeyUp="inputDataCheck(this.id)"name="id" id="id" class="form-control" placeholder="아이디" required/>
+                                    <input type="text" maxLength=20 onInput="maxLengthCheck(this)" onKeyUp="inputDataCheck(this.id)" name="id" id="id" class="form-control" placeholder="아이디" required/>
                                         <div class="invalid-feedback">
                                             아이디를 입력하세요
                                         </div>      
@@ -161,7 +161,7 @@
                             <div id="signUp" >
                                 <!-- <button type="submit" value="signUpIndividual" class="btn-xlarge"  style="color: white; background-color: #A5E374;">가입하기</button> -->
                                 <button type="button" id="#btn1" value="signUpIndividual" onClick="signUpInd_submit()" class="btn-xlarge"  style="color: white; background-color: #A5E374;">가입하기</button>
-                            </div> 
+                            </div>
                         </div>
                     </form>
                         <!-- 개인 내용 -->

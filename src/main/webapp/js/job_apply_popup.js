@@ -1,6 +1,6 @@
 // 팝업 띄우기
 function popUp(){
-    var url = "job_apply_popup.html";
+    var url = "job_apply_popup.jsp";
     var name = "popup";
     var option = "width = 1500, height = 700, top = 100, left = 200, status=no,toolbar=no,scrollbars=no,resizable=no";
     window.open(url, name, option);
