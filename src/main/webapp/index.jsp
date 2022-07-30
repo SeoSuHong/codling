@@ -27,7 +27,7 @@
             </nav>
             <form id="searbox"><input type="text" id="search" name="search" class="searchbox" value="" placeholder="검색어를 입력하세요."></form>
             <input type="button" form="searbox" class="btn-search"></input>
-            <a href="logIn.jsp" id="login-btn"><button type="button" id="scroll-log" class="log">Login</button></a>
+            <button type="button" id="scroll-log" class="log" onclick="location='logIn.jsp'">Login</button>
             <div id="profile-box" class="profile-box">
               <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
               <div id="scroll-profile-hover" class="pfhover">
@@ -45,7 +45,7 @@
           <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
           <form id="searbox"><input type="text" id="search" name="search" class="searchbox" value="" placeholder="검색어를 입력하세요." autofocus></form>
           <button type="button" form="searbox" class="btn-search"></button>
-          <a href="logIn.jsp" id="login-btn"><button type="button" id="log" class="log">Login</button></a>
+          <button type="button" id="log" class="log" onclick="location='logIn.jsp'">Login</button>
           <div id="profile-box" class="profile-box">
             <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
             <div id="profile-hover" class="pfhover">
