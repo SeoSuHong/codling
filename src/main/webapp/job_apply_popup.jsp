@@ -14,7 +14,7 @@
 </head>
 <style>
 	label{
-		botton:1vw;
+		top:1vw;
 	}
 </style>
 
