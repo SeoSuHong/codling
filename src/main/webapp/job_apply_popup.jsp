@@ -12,6 +12,12 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="plugin/slick-1.8.1/slick/slick.css">
 </head>
+<style>
+	label{
+		botton:1vw;
+	}
+</style>
+
 
 <body>
         <div class="container">
