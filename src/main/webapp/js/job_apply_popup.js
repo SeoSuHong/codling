@@ -1,6 +1,8 @@
-// 팝업 띄우기
+/**
+ * 
+ */
 function popUp(){
-    var url = "job_apply_popup.html";
+    var url = "job_apply_popup.jsp";
     var name = "popup";
     var option = "width = 1500, height = 700, top = 100, left = 200, status=no,toolbar=no,scrollbars=no,resizable=no";
     window.open(url, name, option);
@@ -24,8 +26,8 @@ function isSubmit(){
 // 슬라이더
 $(function(){
     $(".slider-div").slick({
-        prevArrow : "<button type='button' class='slick-prev'></button>",		
-        nextArrow : "<button type='button' class='slick-next'></button>",	
+        prevArrow : "<button type='button' class='slick-prev'><img src='img/arrow_mini.png'></button>",		
+        nextArrow : "<button type='button' class='slick-next'><img src='img/arrow_mini.png'></button>",	
         slidesToShow: 4,
         slidesToScroll: 1,
     });
