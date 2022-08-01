@@ -442,7 +442,6 @@ location.href="default_page.html";
   // 유효성검사 
   // window.addEventListener('load', () => {
 
-  // // const는 호출 결과를 form 상수에 받아서 활용하는겨. 물론 상수나 변수에 함수를 할당할 수도 있습니당.
   //   const forms = document.getElementsByClassName('validation-form');
   
   //   Array.prototype.filter.call(forms, (form) => {
