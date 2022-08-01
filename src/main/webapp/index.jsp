@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,12 +19,12 @@
     <header>
         <div id="scroll-header">
           <div id="scroll-header-box"> 
-            <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
+            <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
             <nav id="menu">
               <ul>
-                <li><a href="newcomer.jsp" class="menu" id="scroll_newcomer">신입채용</a></li>
-                <li><a href="career.jsp" class="menu" id="scroll_career">경력채용</a></li>
-                <li><a href="top100.jsp" class="menu" id="scroll_Top100">Top100</a></li>
+                <li><a href="newcomer" class="menu" id="scroll_newcomer">신입채용</a></li>
+                <li><a href="career" class="menu" id="scroll_career">경력채용</a></li>
+                <li><a href="top100" class="menu" id="scroll_Top100">Top100</a></li>
               </ul>
             </nav>
             <form id="searbox"><input type="text" id="search" name="search" class="searchbox" value="" placeholder="검색어를 입력하세요."></form>
@@ -42,7 +44,7 @@
         </div>
       <div id="default-header">
         <div id="login_header">
-          <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
+          <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
           <form id="searbox"><input type="text" id="search" name="search" class="searchbox" value="" placeholder="검색어를 입력하세요." autofocus></form>
           <button type="button" form="searbox" class="btn-search"></button>
           <button type="button" id="log" class="log" onclick="location='logIn.jsp'">Login</button>
@@ -59,9 +61,9 @@
         </div>
         <nav id="menu">
             <ul>
-              <li><a href="newcomer.jsp" class="menu" id="newcomer">신입채용</a></li>
-              <li><a href="career.jsp" class="menu" id="career">경력채용</a></li>
-              <li><a href="top100.jsp" class="menu" id="scroll_Top100">Top100</a></li>
+              <li><a href="newcomer" class="menu" id="newcomer">신입채용</a></li>
+              <li><a href="career" class="menu" id="career">경력채용</a></li>
+              <li><a href="top100" class="menu" id="scroll_Top100">Top100</a></li>
             </ul>
         </nav>
       </div>
@@ -105,21 +107,58 @@
         </div>
       </article>
       <!-- 일반광고 -->
+      
+      <c:if test="${not empty announcement}">
       <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col" style="cursor: pointer;" onclick="location='job_accountment.jsp'">
+        <div class="col" style="cursor: pointer;" onclick="location='job_accountment?no=${announcement.no}'">
           <div class="card">
             <img src="img/logo.png" class="card-img-top" alt="...">
-            <div class="card-body">
-            	<p id="corporname">이젠 아카데미</p>
-              <h5 class="card-title">백엔드 개발(서버) 경력 채용합니다. 합니다.</h5>
-              <div class="card-text">
-              	<p class="contents">JAVA · Git · JSP · MySQL · Spring · Spring · Spring</p>
-              	<p class="contents">신입 or 3↑ · <span>급여 3000만원</span></p>
-              </div>
-            </div>
+            <!-- 공고 -->
+            <c:forEach var="anno" items="${announcement}">
+	            <div class="card-body">
+	            	<p id="corporname">${anno.corporateName}</p>
+	              <h5 class="card-title">${anno.title}</h5>
+	              <div class="card-text">
+	              <!-- forTokens -->
+	              	<p class="contents">
+	              	<c:forTokens var="stack" items="${anno.stack}" delims=" / "  varStatus="st">
+		              	<!-- if -->
+		              	<c:if test="${!st.last}">
+		              		${stack} · 
+		              	</c:if>
+		              	<c:if test="${st.last}">
+		              		${stack} 
+		              	</c:if>
+	              	</c:forTokens>
+	              	</p>
+	              	<p class="contents">
+	              	<c:forTokens var="career" items="${anno.career}" delims=" / " varStatus="st">
+		              	<c:if test="${fn:length(anno.career) <= 3}">
+		              		<c:if test="${career == '신입'}">
+		              			${career}
+		              		</c:if>
+		              		<c:if test="${career != '신입'}">
+		              			경력 ${career}년↑
+		              		</c:if>
+		              	</c:if>
+		              	<c:if test="${fn:length(anno.career) > 3}">
+		              		<c:if test="${career == '신입'}">
+		              			${career} or
+		              		</c:if>
+		              		<c:if test="${career != '신입'}">
+		              			${career}년↑
+		              		</c:if>
+		              	</c:if>
+		              	</c:forTokens>
+		              	<span>${anno.pay}만원</span>
+	              	</p>
+	              </div>
+	            </div>
+            </c:forEach>
           </div>
         </div>
       </div>
+      </c:if>
     </section>
     <footer>
       <a href="#up"><img src="img/footerLogo.png"></a>

@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
+import codling.identity.Announcement;
 import codling.identity.Corporation;
 import codling.identity.Field;
 import codling.identity.JobOpening;
@@ -127,4 +129,139 @@ public class CorporationDao {
 		
 		return field;
 	}
+	//index 공고 들고오기
+	public ArrayList<Announcement> indexContents() {
+		ArrayList<Announcement> list = new ArrayList<Announcement>();
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay "
+				+ "FROM field F "
+				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+				+ "JOIN corporation C ON J.corporation_id = C.id "
+				+ "ORDER BY J.count";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String corporateName = rs.getString("corporateName");
+				String title = rs.getString("title");
+				String stack = rs.getString("stack");
+				String career = rs.getString("career");
+				String pay = rs.getString("pay");
+				
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay);
+				list.add(announcement);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("indexContents Error : " + e.getMessage());
+		}
+		
+		return list;
+	}
+	
+	//newcomer 공고 들고오기
+		public ArrayList<Announcement> newcomerContents() {
+			ArrayList<Announcement> list = new ArrayList<Announcement>();
+			String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay "
+					+ "FROM field F "
+					+ "JOIN jobopening J ON F.jobopening_no = J.no "
+					+ "JOIN corporation C ON J.corporation_id = C.id "
+					+ "WHERE F.career like '신입' ORDER BY J.count";
+			
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					String corporateName = rs.getString("corporateName");
+					String title = rs.getString("title");
+					String stack = rs.getString("stack");
+					String career = rs.getString("career");
+					String pay = rs.getString("pay");
+					
+					Announcement announcement = new Announcement(corporateName, title, stack, career, pay);
+					list.add(announcement);
+				}
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch(Exception e) {
+				System.out.println("indexContents Error : " + e.getMessage());
+			}
+			
+			return list;
+		}
+		
+		//career 공고 들고오기
+				public ArrayList<Announcement> careerContents() {
+					ArrayList<Announcement> list = new ArrayList<Announcement>();
+					String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay "
+							+ "FROM field F "
+							+ "JOIN jobopening J ON F.jobopening_no = J.no "
+							+ "JOIN corporation C ON J.corporation_id = C.id "
+							+ "WHERE F.career REGEXP '^[0-9]+$' ORDER BY J.count;";
+					
+					try {
+						conn = getConnection();
+						pstmt = conn.prepareStatement(query);
+						rs = pstmt.executeQuery();
+						
+						while(rs.next()) {
+							String corporateName = rs.getString("corporateName");
+							String title = rs.getString("title");
+							String stack = rs.getString("stack");
+							String career = rs.getString("career");
+							String pay = rs.getString("pay");
+							
+							Announcement announcement = new Announcement(corporateName, title, stack, career, pay);
+							list.add(announcement);
+						}
+						rs.close();
+						pstmt.close();
+						conn.close();
+					} catch(Exception e) {
+						System.out.println("indexContents Error : " + e.getMessage());
+					}
+					
+					return list;
+				}
+				
+				//top100 공고 들고오기
+				public ArrayList<Announcement> top100Contents() {
+					ArrayList<Announcement> list = new ArrayList<Announcement>();
+					String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay "
+							+ "FROM field F "
+							+ "JOIN jobopening J ON F.jobopening_no = J.no "
+							+ "JOIN corporation C ON J.corporation_id = C.id "
+							+ "ORDER BY J.count LIMIT 100";
+					
+					try {
+						conn = getConnection();
+						pstmt = conn.prepareStatement(query);
+						rs = pstmt.executeQuery();
+						
+						while(rs.next()) {
+							String corporateName = rs.getString("corporateName");
+							String title = rs.getString("title");
+							String stack = rs.getString("stack");
+							String career = rs.getString("career");
+							String pay = rs.getString("pay");
+							
+							Announcement announcement = new Announcement(corporateName, title, stack, career, pay);
+							list.add(announcement);
+						}
+						rs.close();
+						pstmt.close();
+						conn.close();
+					} catch(Exception e) {
+						System.out.println("indexContents Error : " + e.getMessage());
+					}
+					
+					return list;
+				}
 }
