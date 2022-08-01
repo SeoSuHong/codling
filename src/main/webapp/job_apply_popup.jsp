@@ -18,6 +18,11 @@
 		top:1vw;
 	}
 </style>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 우진
 <body>
         <div class="container">
                 <img src="img/logo.png" class="logo" alt="">

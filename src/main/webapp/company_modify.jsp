@@ -149,7 +149,7 @@
                             </div>                       
                             <div class="row align-items-center mt-4" id="frame2">
                                 <p class="fw-bold" id="addressCom">주소</p>
-                                    <input type="text" placeholder="우편번호" name="postCode" id="postcode" class="form-control mb-1 " style="display:inline-block;width:100px;"  onkeyup="inputDataCheck(this.id)" required> 
+                                    <input type="text" placeholder="우편번호" name="postCode" id="postCode" class="form-control mb-1 " style="display:inline-block;width:100px;"  onkeyup="inputDataCheck(this.id)" required> 
                                     <input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기" id="search"><br>
                                     <input type="text"  name="address" id="address" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required>
                                     <input type="text" name="detailAddress" id="detailAddress" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
@@ -161,7 +161,7 @@
                         </div>
                     </form>
                         </div>
-                        </div>=-
+                        </div>
             </div>
     </section>    
     <footer>
