@@ -5,12 +5,10 @@ public class Corporation {
 	
 	public Corporation() {}
 
-	public Corporation(String id, String position, String password, String corporateName, String corporatePhone,
+	public Corporation(String id, String corporateName, String corporatePhone,
 			String ceoName, String corporateNumber, String fileName, String address) {
 		super();
 		this.id = id;
-		this.position = position;
-		this.password = password;
 		this.corporateName = corporateName;
 		this.corporatePhone = corporatePhone;
 		this.ceoName = ceoName;
@@ -25,22 +23,6 @@ public class Corporation {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getCorporateName() {

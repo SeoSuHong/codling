@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import codling.identity.Individual;
+
 public class IndividualDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
 	final static String DB_NAME = "codling";
@@ -20,5 +22,33 @@ public class IndividualDao {
 			return conn;
 	}
 	
-	
+	// 개인회원 정보
+	public Individual getIndividual(String id) {
+		Individual individual = null;
+		String query = "SELECT * FROM individual WHERE id = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String name = rs.getString("name");
+				String birth = rs.getString("birth");
+				String gender = rs.getString("gender");
+				String email = rs.getString("email");
+				String phone = rs.getString("phone");
+				String address = rs.getString("address");
+				
+				individual = new Individual(id, name, birth, gender, email, phone, address, "");
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getIndiInfo Error : " + e.getMessage());
+		}
+		return individual;
+	}
 }

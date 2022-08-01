@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import codling.dao.CorporationDao;
+import codling.dao.InformationDao;
 import codling.identity.Corporation;
 import codling.identity.Field;
 import codling.identity.JobOpening;

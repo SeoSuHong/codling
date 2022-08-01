@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이력서작성페이지통합</title>
+    <title>내 정보</title>
     <link rel="stylesheet" href="css/individual_info.css">
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -32,40 +34,42 @@
     </header>
     <section>
         <h2>회원정보</h2>
-        <div id="wrap">
-            <div class="type">
-                <p>아이디</p>
-                <div>tbgkdntm</div>
-            </div>
-            <div class="type">
-                <p>이름</p>
-                <div>서수홍</div>
-            </div>
-            <div class="type">
-                <p>생년월일</p>
-                <div>19970204</div>
-            </div>
-            <div class="type">
-                <p>성별</p>
-                <div>남자</div>
-            </div>
-            <div class="type">
-                <p>이메일</p>
-                <div>tbgkdntm@naver.com</div>
-            </div>
-            <div class="type">
-                <p>전화번호</p>
-                <div>010-3039-2331</div>
-            </div>
-            <div class="type">
-                <p>주소</p>
-                <div>궐동 엔타스빌딩 12층 이젠아카데미</div>
-            </div>
-        </div>
-        <div id="choice">
-            <input type="button" class="modify" value="수 정" onclick="">
-            <input type="button" class="drop" value="탈 퇴" onclick="">
-        </div>
+        <form action="individualInfo" name="indiInfoForm" method="post">
+        	<div id="wrap">
+	            <div class="type">
+	                <p>아이디</p>
+	                <div>${individual.id}</div>
+	            </div>
+	            <div class="type">
+	                <p>이름</p>
+	                <div>${individual.name}</div>
+	            </div>
+	            <div class="type">
+	                <p>생년월일</p>
+	                <div>${individual.birth}</div>
+	            </div>
+	            <div class="type">
+	                <p>성별</p>
+	                <div>${individual.gender}성</div>
+	            </div>
+	            <div class="type">
+	                <p>이메일</p>
+	                <div>${individual.email}</div>
+	            </div>
+	            <div class="type">
+	                <p>전화번호</p>
+	                <div>${fn:substring(individual.phone, 0, 3)}-${fn:substring(individual.phone, 3, 7)}-${fn:substring(individual.phone, 7, 11)}</div>
+	            </div>
+	            <div class="type">
+	                <p>주소</p>
+	                <div>${individual.address}</div>
+	            </div>
+	        </div>
+	        <div id="choice">
+	            <input type="button" class="modify" value="수 정" onclick="">
+	            <input type="button" class="drop" value="탈 퇴" onclick="drop()">
+	        </div>
+	    </form>
     </section>
     <footer>
         <a href="#up"><img src="img/footerLogo.png"></a>

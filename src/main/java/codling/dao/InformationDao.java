@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import codling.identity.Corporation;
+import codling.identity.Individual;
+
 public class InformationDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
 	final static String DB_NAME = "codling";
@@ -25,7 +28,7 @@ public class InformationDao {
 	// 개인회원 ID 중복확인
 	public boolean checkIndiId(String id) {
 		boolean result = false;
-		String query = "SELECT id FROM individual WHERE id=?";
+		String query = "SELECT id FROM individual WHERE id = ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
@@ -46,7 +49,7 @@ public class InformationDao {
 	// 기업회원 ID 중복확인
 	public boolean checkCorpId(String id) {
 		boolean result = false;
-		String query = "SELECT id FROM corporation WHERE id=?";
+		String query = "SELECT id FROM corporation WHERE id = ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
@@ -64,51 +67,53 @@ public class InformationDao {
 		return result;
 	}
 	
-	// 개인회원 ID 중복확인
-		public Map<String, String> getIndiName(String id) {
-			Map<String, String> map = null;
-			String query = "SELECT id, name FROM individual WHERE id=?";
-			try {
-				conn = getConnection();
-				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					map = new HashMap<String, String>();
-					map.put(rs.getString("id"), rs.getString("name"));
-				}
-				
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch(Exception e) {
-				System.out.println("getIndiName Error : " + e.getMessage());
+	// 개인회원 이름
+	public Map<String, String> getIndiName(String id) {
+		Map<String, String> map = null;
+		String query = "SELECT id, name FROM individual WHERE id = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				map = new HashMap<String, String>();
+				map.put(rs.getString("id"), rs.getString("name"));
 			}
-			return map;
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getIndiName Error : " + e.getMessage());
 		}
+		return map;
+	}
 		
-		// 기업회원 ID 중복확인
-		public Map<String, String> getCorpName(String id) {
-			Map<String, String> map = null;
-			String query = "SELECT id, corporateName FROM corporation WHERE id=?";
-			try {
-				conn = getConnection();
-				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					map = new HashMap<String, String>();
-					map.put(rs.getString("id"), rs.getString("corporateName"));
-				}
-				
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch(Exception e) {
-				System.out.println("getCorpName Error : " + e.getMessage());
+	// 기업회원 이름
+	public Map<String, String> getCorpName(String id) {
+		Map<String, String> map = null;
+		String query = "SELECT id, corporateName FROM corporation WHERE id = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				map = new HashMap<String, String>();
+				map.put(rs.getString("id"), rs.getString("corporateName"));
 			}
-			return map;
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getCorpName Error : " + e.getMessage());
 		}
+		return map;
+	}
+
+
 }
