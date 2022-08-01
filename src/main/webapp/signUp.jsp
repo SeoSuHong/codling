@@ -134,9 +134,6 @@
                                     <div class="col-4">
                                         <select class="form-select" id="phoneInd1"  onKeyUp="inputDataCheck(this.id)" required>
                                             <option value="010" selected>010</option>
-                                            <option value="012">012</option>
-                                            <option value="013">013</option>
-                                            <option value="015">015</option>
                                             </select>
                                     </div>
                                     <div class="col">
