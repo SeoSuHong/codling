@@ -229,7 +229,6 @@ section{width: 1220px; margin: 0 auto; }
 
 .title_inside>span {
     display: inline-block;
-    margin-right: 5px;
     font-size: 1rem; 
 }
 
@@ -267,14 +266,13 @@ section{width: 1220px; margin: 0 auto; }
 height: 50px;
 margin-bottom: 13px;
 }
-.confrm {
+.titleWrap {
     display: flex;
     justify-content: center;
 }
 article{width: 1220px; display: flex; justify-content: center;}
 
 .contents {
-    
     margin-top: -30px;
     text-align: left;
     color: #373F57;
@@ -286,6 +284,10 @@ article{width: 1220px; display: flex; justify-content: center;}
     font-weight: 300;
     margin-bottom: 4rem;
     margin-top: 20px;
+}
+
+.content {
+	line-height: 40px;
 }
 
 .corpStacks {
@@ -325,7 +327,7 @@ hr{
 }
 
 /*hr 밑 */
-#comcon{display: flex; justify-content: center;}
+#comcon{display: flex; justify-content: center; margin-top: -20px;}
 #comcon>div{width: 890px;}
 p {
     display: flex;
@@ -342,7 +344,7 @@ p>span {
 
 .comLogo {
     display: inline-block;
-    margin-right: 2rem;
+    margin: 0 40px;
 }
 
 .comLogo img {
@@ -359,22 +361,23 @@ p>span {
 
 .companyInfo {
     width: 900px;
+    height: 150px;
     display: flex;
-    justify-content: center;
     color: #373F57;
 }
 
 .companyInfo dl {
     clear: both;
-    width: 18vw;
-    line-height: 1.8rem;
+    width: 100%;
+    line-height: 2.3rem;
     font-size: 11pt;
 }
 
 .companyInfo dt {
+	width: 60px;
     font-weight: bold;
     float: left;
-    margin-right: 0.5rem;
+    margin: 0 1rem;
 }
 
 .companyInfo dt dd {
@@ -387,16 +390,16 @@ dd > span{
     color: rgba(55, 63, 87,0.6);
 }
 
-#map{
+#mapWrap{
     width: 1220px;
     display: flex;
     justify-content: center;
 }
 
-.map{
-    width: 40rem;
-    height: 20rem;
-    background-color: gray;
+#map{
+    width: 800px;
+    height: 400px;
+    z-index: 0;
 }
 
 dl img{

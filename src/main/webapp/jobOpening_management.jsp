@@ -33,7 +33,7 @@
     <section>
         <article id="resume">
             <h1>공고 관리</h1>
-            <a href="#"><div class="resumemg">
+            <a href="job_accountment"><div class="resumemg">
                 <div class="resumemgbox">
                     <p><span>내가올린 공고</span></p>
                     <button type="button" id="applicant_status" onclick="location.href='applicant_status.jsp'"><span>지원 현황</span></button>
