@@ -116,19 +116,19 @@
                         </tr>
                         <tr>
                             <td>주요업무</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td id="font_medium"><textarea id="textbox" name=""></textarea></td>
                         </tr>
                         <tr>
                             <td>자격요건</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td id="font_medium"><textarea id="textbox" name=""></textarea></td>
                         </tr>
                         <tr>
                             <td>우대사항</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td id="font_medium"><textarea id="textbox" name=""></textarea></td>
                         </tr>
                         <tr>
                             <td>채용절차</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td id="font_medium"><textarea id="textbox" name=""></textarea></td>
                         </tr>
                     </table>
                 </form>
@@ -182,19 +182,19 @@
                         </tr>
                         <tr>
                             <td>주요업무</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td id="font_medium"><textarea id="textbox" name=""></textarea></td>
                         </tr>
                         <tr>
                             <td>자격요건</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td id="font_medium"><textarea id="textbox" name=""></textarea></td>
                         </tr>
                         <tr>
                             <td>우대사항</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td id="font_medium"><textarea id="textbox" name=""></textarea></td>
                         </tr>
                         <tr>
                             <td>채용절차</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td id="font_medium"><textarea id="textbox" name=""></textarea></td>
                         </tr>
                     </form>
                     </table>

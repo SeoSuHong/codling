@@ -35,10 +35,10 @@
             <h3>공고 현황</h3>
             <div class="jobOpeningmg1">
                 <div class="jobbox2">
-                <div class="jobOpeningbox1">
-                    <p><span>내가올린공고</span></p>
-                    <div class="jobOpeningbox2">공고제목</div>
-                </div>
+	                <div class="jobOpeningbox1">
+	                    <p><span>내가올린공고</span></p>
+	                    <div class="jobOpeningbox2">공고제목</div>
+	                </div>
                 <div class="content1">
                     <dl>
                         <dt>마감일자</dt>
@@ -51,6 +51,7 @@
                             <dd>신입, 경력 (5년 이상)</dd>
                     </dl>
                 </div>
+               	</div>
             </div>
         </article>
 
