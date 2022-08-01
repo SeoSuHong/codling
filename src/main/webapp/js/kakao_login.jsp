@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="javascript:kakaoLogin();"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" style="height:60px; width:auto;"></a>
+    <a href="javascript:kakaoLogin()"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" style="height:60px; width:auto;"></a>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
         window.Kakao.init("370fa568d4acbeb9115655e735792c45");
