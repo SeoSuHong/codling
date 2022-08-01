@@ -12,6 +12,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/footers/">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/signUp.js"></script>
     <!-- 다음 지도 -->
@@ -42,7 +43,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-10 col-md-7 col-lg-5 col-xl-4">
-                        <form class="validation-form" novalidate>
+                        <form class="validation-form" novalidate name="perFrm" action="#">
                         <!-- 개인 -->
                         <div id="individual" class="form-action show container-fluid align-items-center">
                         <!-- 개인 시작-->
@@ -110,10 +111,10 @@
                             <div class="row align-items-center mt-4" id="frame">
                                 <div class="col">
                                     <p class="fw-bold">성별 </p>
-                                        <select class="form-select" id="gender" >
+                                        <select class="form-select" id="gender" name="gender" >
                                             <option value="">성별</option>
-                                            <option>여성</option>
-                                            <option>남성</option>
+                                            <option value="male">남성</option>
+                                            <option value="female">여성</option>
                                         </select>
                                             <div class="invalid-feedback">
                                                 성별을 선택하세요.
@@ -134,9 +135,6 @@
                                     <div class="col-4">
                                         <select class="form-select" id="phoneInd1"  onKeyUp="inputDataCheck(this.id)" required>
                                             <option selected>010</option>
-                                            <option>012</option>
-                                            <option>013</option>
-                                            <option>015</option>
                                             </select>
                                                 <div class="invalid-feedback">
                                                     식별번호를 선택하세요.
@@ -149,24 +147,22 @@
                                             </div>
                                     </div>
                             </div>
-                            <div class="row align-items-center mt-4"id="frame2" >
-                                <div class="col">
-                                    <p class="fw-bold" id="adressCom">주소</p>
-                                    <input type="text" placeholder="" name="post1" id="post1" class="form-control mb-1 " value="" style="display:inline-block;width:100px;"  onKeyUp="inputDataCheck(this.id)" required> 
-                                    <button id="search" onclick="sample6_execDaumPostcode()"  style="color: white; background-color: #A5E374;">주소검색</button>
-                                    <input type="text"  name="address1" id="address1" class="form-control  mb-1" value="" placeholder="주소"  onKeyUp="inputDataCheck(this.id)" required>
-                                    <input type="text" name="address2" id="address2" class="form-control mb-3 col-md-7" value="" placeholder="상세주소"  onKeyUp="inputDataCheck(this.id)" required>
-                                </div>       
+                            <div class="row align-items-center mt-4" id="frame2">
+                                <p class="fw-bold" id="addressCom">주소</p>
+                                    <input type="text" placeholder="우편번호" name="postCode" id="postCode" class="form-control mb-1 " style="display:inline-block; width:100px;"  onkeyup="inputDataCheck(this.id)" required> 
+                                    <input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기" id="search"><br>
+                                    <input type="text"  name="address" id="address" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required>
+                                    <input type="text" name="detailAddress" id="detailAddress" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
+                                    <input type="text" name="extraAddress" id="extraAddress" class="form-control mb-3 col-md-7" placeholder="참고항목"  onkeyup="inputDataCheck(this.id)" required>
                             </div>
                             <div id="signUp" >
-                                <!-- <button type="submit" value="signUpIndividual" class="btn-xlarge"  style="color: white; background-color: #A5E374;">가입하기</button> -->
                                 <button type="button" id="#btn1" value="signUpIndividual" onClick="signUpInd_submit()" class="btn-xlarge"  style="color: white; background-color: #A5E374;">가입하기</button>
                             </div> 
                         </div>
                     </form>
                         <!-- 개인 내용 -->
                         <!-- 기업 내용 -->
-                    <form class="validation-form" novalidate>
+                    <form class="validation-form" novalidate name="comFrm" action="#">
                         <div id="company">    
                         <!-- 기업 내용 시작 -->
                             <div  class="row align-items-center mt-4" id="frame">
@@ -210,23 +206,23 @@
                                 <p class="fw-bold">회사 전화번호</p>
                                     <div class="col-4">
                                         <select class="form-select" id="localNum">
-                                            <option value="">02</option>
-                                            <option>031</option>
-                                            <option>032</option>
-                                            <option>033</option>
-                                            <option>041</option>
-                                            <option>042</option>
-                                            <option>043</option>
-                                            <option>044</option>
-                                            <option>051</option>
-                                            <option>052</option>
-                                            <option>053</option>
-                                            <option>054</option>
-                                            <option>055</option>
-                                            <option>061</option>
-                                            <option>062</option>
-                                            <option>063</option>
-                                            <option>064</option>
+                                            <option value="02">02</option>
+                                            <option value="031">031</option>
+                                            <option value="032">032</option>
+                                            <option value="033">033</option>
+                                            <option value="041">041</option>
+                                            <option value="042">042</option>
+                                            <option value="043">043</option>
+                                            <option value="044">044</option>
+                                            <option value="051">051</option>
+                                            <option value="052">052</option>
+                                            <option value="053">053</option>
+                                            <option value="054">054</option>
+                                            <option value="055">055</option>
+                                            <option value="061">061</option>
+                                            <option value="062">062</option>
+                                            <option value="063">063</option>
+                                            <option value="064">064</option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -257,20 +253,17 @@
                                         <input class="form-control" type="file" id="formFile"  required>
                                 </div>
                             </div>                       
-                            <div class="row align-items-center mt-4">
-                                <div class="col">
-                                    <p class="fw-bold" id="adressCom">주소</p>
-                                    <input type="text" placeholder="" name="post1" id="post1Com" class="form-control mb-1 " value="" style="display:inline-block;width:100px;"> 
-                                    <button id="search" onclick="sample6_execDaumPostcode()"  style="color: white; background-color: #A5E374;">주소검색</button>
-                                    <input type="text"  name="address1" id="address1Com" class="form-control  mb-1" value="" placeholder="주소">
-                                    <input type="text" name="address1" id="address2Com" class="form-control mb-3 col-md-7" value="" placeholder="상세주소">
-                                </div>       
+                            <div class="row align-items-center mt-4" id="frame2">
+                                <p class="fw-bold" id="addressCom">주소</p>
+                                    <input type="text" placeholder="우편번호" name="postCode2" id="postCode2" class="form-control mb-1 " style="display:inline-block; width:100px;"  onkeyup="inputDataCheck(this.id)" required> 
+                                    <input type="button" onclick="sample7_execDaumPostcode()" value="주소 찾기" id="search"><br>
+                                    <input type="text"  name="address2" id="address2" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required>
+                                    <input type="text" name="detailAddress2" id="detailAddress2" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
+                                    <input type="text" name="extraAddress2" id="extraAddress2" class="form-control mb-3 col-md-7" placeholder="참고항목"  onkeyup="inputDataCheck(this.id)" required>
                             </div>
                             <div id="signUp" >
-                                <!-- <button type="submit" value="signUpCompany" class="btn-xlarge"  style="color: white; background-color: #A5E374;">가입하기</button> -->
                                 <button type="button" value="signUpCompany" onClick="signUpCom_submit()" class="btn-xlarge"  style="color: white; background-color: #A5E374;">가입하기</button>
-                
-                            </div>   
+                            </div>
                         </div>
                         </form>
                     </div>

@@ -34,7 +34,9 @@ ul {list-style:none;}
        border: 1px solid white; border-radius: 7px;display: inline-block;}
 
 #search {width: 100px; height: 42.5px; color: white;
-       background-color: #62AE26; border: 1px solid white; border-radius: 7px}
+       background-color: #A5E374; border: 1px solid white; border-radius: 7px; margin-left: 1rem;}
+#search:hover{background-color: #62AE26;}
+#signup>#btn1:hover{background-color: #62AE26;}       
 #signUp{display: flex; justify-content: center; margin-top: 20px;}
 #addressCom{margin-top: 15px;}
 #ifUHave {margin-top: 100px; margin-bottom: 100px;}
