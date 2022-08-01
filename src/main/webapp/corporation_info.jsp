@@ -26,7 +26,7 @@
             <ul>
                 <li id="mypage"><a href="individual_info.jsp"><span>내 정보</span></a></li>
                 <li id="resume"><a href="resume_management.jsp"><span>공고 관리</span></a></li>
-                <li id="logout"><a href="index.jsp"><span>로그아웃</span></a></li>
+                <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
             </ul>
         </div>
     </header>
