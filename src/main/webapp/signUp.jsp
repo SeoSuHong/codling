@@ -272,8 +272,10 @@
                 
                             </div>   
                         </div>
+                        </form>
                     </div>
                         <!-- 기업 내용 -->
+                </div>
                 </div>
             <div  id="ifUHave">
                 <p class="text-center mt-3 text-secondary">만약 계정이 있으시다면, <a id="sugg" href="logIn.jsp">로그인</a> 을 해주세요🍏</p>
