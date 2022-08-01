@@ -18,11 +18,7 @@
 		top:1vw;
 	}
 </style>
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 우진
 <body>
         <div class="container">
                 <img src="img/logo.png" class="logo" alt="">
@@ -91,6 +87,5 @@
         <script src="jQuery/jquery-3.6.0.min.js"></script>
         <script src="plugin/slick-1.8.1/slick/slick.min.js"></script>
         <script src="js/job_apply_popup.js"></script>
-        <script src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous"></script>
 </body>
 </html>
