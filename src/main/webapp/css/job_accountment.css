@@ -273,7 +273,6 @@ margin-bottom: 13px;
 article{width: 1220px; display: flex; justify-content: center;}
 
 .contents {
-    
     margin-top: -30px;
     text-align: left;
     color: #373F57;
@@ -400,6 +399,7 @@ dd > span{
 #map{
     width: 800px;
     height: 400px;
+    z-index: 0;
 }
 
 dl img{

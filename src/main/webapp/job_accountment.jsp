@@ -10,8 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
     <link rel="stylesheet" href="css/job_accountment.css">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=370fa568d4acbeb9115655e735792c45&libraries=services"></script>
 </head>
 <body>
     <header>
@@ -41,8 +41,8 @@
                             <span>${corporation.corporateName}</span>&ensp;&ensp;
                             
                             <span>경력 </span>
-                			<c:forTokens var="career" items="${field.career}" delims=" / ">
-                				<c:if test="${fn:length(career) == 1}">
+                			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+                				<c:if test="${fn:length(field.career) <= 5}">
                 					<c:if test="${career == '신입'}">
 			                			<span>${career}</span>&ensp;&ensp;
 			                		</c:if>
@@ -51,8 +51,13 @@
 			                		</c:if>
 			                	</c:if>
 			                
-			                	<c:if test="${fn:length(career) == 2}">
-			                		<span>${career} or</span>
+			                	<c:if test="${fn:length(field.career) > 5}">
+			                		<c:if test="${career == '신입'}">
+			                			<span>${career} or</span>
+			                		</c:if>
+			                		<c:if test="${career != '신입'}">
+			                			<span>${career}년↑</span>&ensp;&ensp;
+			                		</c:if>
 			                	</c:if>
 			                </c:forTokens>
                             
@@ -79,9 +84,9 @@
                 
                 
                 <span>경력 </span>
-                <c:forTokens var="career" items="${field.career}" delims=" / ">
-                	<c:if test="${fn:length(career) == 1}">
-                		<c:if test="${career == '신입'}">
+                <c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+             		<c:if test="${fn:length(field.career) <= 5}">
+             			<c:if test="${career == '신입'}">
                 			<span class="corpCarrer">${career}</span>&ensp;&ensp;
                 		</c:if>
                 		<c:if test="${career != '신입'}">
@@ -89,12 +94,15 @@
                 		</c:if>
                 	</c:if>
                 
-                	<c:if test="${fn:length(career) == 2}">
-                		<span class="corpCarrer">${career} or</span>
+                	<c:if test="${fn:length(field.career) > 5}">
+                		<c:if test="${career == '신입'}">
+                			<span class="corpCarrer">${career} or</span>
+                		</c:if>
+                		<c:if test="${career != '신입'}">
+                			<span class="corpCarrer">${career}년↑</span>&ensp;&ensp;
+                		</c:if>
                 	</c:if>
                 </c:forTokens>
-                
-                
                 
                 <c:if test="${field.pay == '면접 후 결정'}">
                 <span class="corSalery">급여 ${field.pay}</span>
@@ -149,7 +157,7 @@
         <div id="comcon">
             <div>
                 <p><span>모집일</span>${fn:replace(jobOpening.startDate, "-", ".")} - ${fn:replace(jobOpening.endDate, "-", ".")}</p>
-                <p><span>근무지역</span></p>
+                <p><span>근무지역</span>${jobOpening.region}</p>
             </div>
         </div>
         <div id="companyInfo">
@@ -171,6 +179,7 @@
             <hr>
         </div>
 		<input type="hidden" id="area" value="${jobOpening.region}">
+		<input type="hidden" id="corpName" value="${corporation.corporateName}">
 		<div id="mapWrap">
         	<div id="map"></div>
         </div>
@@ -227,5 +236,7 @@
 <script src="jQuery/jquery-3.6.0.min.js"></script>
 <script src="js/job_accountment.js"></script>
 <script src="js/job_apply_popup.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=370fa568d4acbeb9115655e735792c45"></script>
+<script>
+
+</script>
 </html>
