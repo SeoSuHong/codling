@@ -15,6 +15,7 @@ import codling.identity.JobOpening;
 
 @WebServlet("/job_accountmentServlet")
 public class job_accountmentServlet extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CorporationDao corpDao = new CorporationDao();
 		

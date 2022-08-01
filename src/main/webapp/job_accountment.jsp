@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%pageContext.setAttribute("replaceChar", "\n"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +58,7 @@
             <div id="top_title_container">
                 <span class="title">${jobOpening.title}</span><br>
                 <span class="corpName">${coporation.corporateName}</span>&ensp;
+                
                 <span class="corpCarrer">경력 ${field.career}↑</span>&ensp;
                 <c:if test="${field.pay == '면접 후 결정'}">
                 <span class="corSalery">${field.pay}</span>
@@ -74,9 +77,7 @@
         <div class="contents">
             <h2>주요 업무</h2>
                 <div class="inContent">
-                    <p>• 페어라이브 서비스의 다양한 웹 서비스, 웹앱, 백오피스를 개발합니다.</p>
-                    <p>• Javascript web application framework, library 개발 및 운영합니다.</p>
-                    <p>• 플랫폼개발, 메인터넌스, 이커머스솔루션</p>
+                    <p>${fn:replace(field.work, replaceChar, "<br>")}"</p>
                 </div>
             <h2>자격요건</h2>
                 <div class="inContent">
