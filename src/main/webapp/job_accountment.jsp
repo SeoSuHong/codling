@@ -236,7 +236,4 @@
 <script src="jQuery/jquery-3.6.0.min.js"></script>
 <script src="js/job_accountment.js"></script>
 <script src="js/job_apply_popup.js"></script>
-<script>
-
-</script>
 </html>
