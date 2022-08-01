@@ -105,13 +105,17 @@
         </div>
       </article>
       <!-- 일반광고 -->
-      <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
         <div class="col" style="cursor: pointer;" onclick="location='job_accountment.jsp'">
           <div class="card">
             <img src="img/logo.png" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Codling</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            	<p id="corporname">이젠 아카데미</p>
+              <h5 class="card-title">백엔드 개발(서버) 경력 채용합니다. 합니다.</h5>
+              <div class="card-text">
+              	<p class="contents">JAVA · Git · JSP · MySQL · Spring · Spring · Spring</p>
+              	<p class="contents">신입 or 3↑ · <span>급여 3000만원</span></p>
+              </div>
             </div>
           </div>
         </div>

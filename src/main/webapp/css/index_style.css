@@ -80,11 +80,12 @@ section{width: 1220px; margin: 0 auto;}
 /*일반광고*/
 .row{margin-top: 10px;}
 .card{border-top:5px solid #A5E374 ; border-radius: 3px;}
-.card>img{height: 200px;}
-.card-body{height: 138px;overflow: hidden;}
-.card-title{font-weight: bold;}
-.card-text{font-size: 1.2rem;}
+.card>img{height: 150px;}
+.card-body{height: 160px;overflow: hidden;}
+.card-title{font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.contents{font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .cardlink,.cardlink:hover{text-decoration: none; color: #373F57;}
+.card-text>p{margin: 0;}
 /*footer*/
 footer{ display: flex; height: 80px; background-color: #F0F0F0; border-top: #dddddd solid 0.1rem;
     color: #BEBEBE; margin-top: 5vh; font-size: 0.8rem; justify-content: center; align-items: center;}

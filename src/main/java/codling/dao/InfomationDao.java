@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 
-public class infomationDao {
+public class InfomationDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
 	final static String DB_NAME = "codling";
 	final static String DB_PASSWORD ="1234";
@@ -15,7 +15,7 @@ public class infomationDao {
 	static PreparedStatement pstmt;
 	static ResultSet rs;
 	
-	public infomationDao() throws Exception {
+	public InfomationDao() throws Exception {
 		conn = getConnection();
 	}
 	
