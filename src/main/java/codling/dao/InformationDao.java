@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class IndividualDao {
+public class InformationDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
 	final static String DB_NAME = "codling";
 	final static String DB_PASSWORD = "1234";

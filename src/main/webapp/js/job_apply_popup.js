@@ -1,6 +1,8 @@
-// 팝업 띄우기
+/**
+ * 
+ */
 function popUp(){
-    var url = "job_apply_popup.html";
+    var url = "job_apply_popup.jsp";
     var name = "popup";
     var option = "width = 1500, height = 700, top = 100, left = 200, status=no,toolbar=no,scrollbars=no,resizable=no";
     window.open(url, name, option);
@@ -10,22 +12,19 @@ function popUp(){
 function isSubmit(){
     var isChk = $(".form-select option:selected").val();
     var isChk2 = $('input[name="chk"]:checked').val();
-    if(isChk === "0" || isChk2===undefined){
-        alert("지원할 분야 및 자기소개서를 하나 이상 선택해주세요")
+    if(isChk === "0" || isChk2 === undefined){
+        alert("지원할 분야 및 자기소개서를 하나 이상 선택해 주세요.")
         return false;
-    }
-    else{
-        alert("등록되었습니다.")
-        window.close(this);
-        document.clFrm.submit();
+    } else{
+    	document.clFrm.submit();
     }
 }
 
 // 슬라이더
 $(function(){
     $(".slider-div").slick({
-        prevArrow : "<button type='button' class='slick-prev'></button>",		
-        nextArrow : "<button type='button' class='slick-next'></button>",	
+        prevArrow : "<button type='button' class='slick-prev'><img src='img/arrow_mini.png'></button>",		
+        nextArrow : "<button type='button' class='slick-next'><img src='img/arrow_mini.png'></button>",	
         slidesToShow: 4,
         slidesToScroll: 1,
     });

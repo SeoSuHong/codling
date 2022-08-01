@@ -9,20 +9,19 @@ import codling.identity.Corporation;
 import codling.identity.Field;
 import codling.identity.JobOpening;
 
-
 public class CorporationDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
 	final static String DB_NAME = "codling";
-	final static String DB_PASSWORD ="1234";
+	final static String DB_PASSWORD = "1234";
 	
 	static Connection conn;
 	static PreparedStatement pstmt;
 	static ResultSet rs;
 	
-	protected Connection getConnection() throws Exception{
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(DB_URL, DB_NAME, DB_PASSWORD);
-		return conn;
+	protected Connection getConnection() throws Exception {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(DB_URL, DB_NAME, DB_PASSWORD);
+			return conn;
 	}
 	
 	// 기업회원 정보
@@ -47,19 +46,19 @@ public class CorporationDao {
 				String address = rs.getString("address");
 				
 				corporation = new Corporation(id, position, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address);
-			
 			}
+			
 			rs.close();
 			pstmt.close();
 			conn.close();
-		}catch (Exception e) {
+		} catch(Exception e) {
 			System.out.println("getCorporation Error : " + e.getMessage());
 		}
 		
-		return corporation;	
+		return corporation;
 	}
 	
-	//공고 정보
+	// 공고 정보
 	public JobOpening getJobOpening(String id) {
 		JobOpening jobOpening = null;
 		String query = "SELECT * FROM jobOpening WHERE corporation_id=?";
@@ -67,7 +66,7 @@ public class CorporationDao {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1,id);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -85,12 +84,14 @@ public class CorporationDao {
 			rs.close();
 			pstmt.close();
 			conn.close();
-		}catch (Exception e) {
+		} catch(Exception e) {
 			System.out.println("getJobOpening Error : " + e.getMessage());
 		}
+		
 		return jobOpening;
 	}
-	//지원 분야 정보
+	
+	// 지원분야 정보
 	public Field getField(int jobOpening_no) {
 		Field field = null;
 		String query = "SELECT * FROM field WHERE jobOpening_no=?";
@@ -98,7 +99,7 @@ public class CorporationDao {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1,jobOpening_no);
+			pstmt.setInt(1, jobOpening_no);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -120,10 +121,10 @@ public class CorporationDao {
 			rs.close();
 			pstmt.close();
 			conn.close();
-		}catch (Exception e) {
+		} catch(Exception e) {
 			System.out.println("getJobOpening Error : " + e.getMessage());
 		}
+		
 		return field;
 	}
-	
 }
