@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +54,26 @@
 		                            </tr>
 		                            <tr>
 		                                <td>경력여부</td>
-		                                <td>${job.career}</td>
+		                                <td>
+			                                <c:forTokens var="career" items="${job.career}" delims=" / " varStatus="st">
+			                                	<c:if test="${fn:length(job.career) <=3 }">
+			                                		<c:if test="${career == '신입'}">
+			                                			${career}
+			                                		</c:if>
+			                                		<c:if test="${career != '신입'}">
+			                                			경력 (${career}년 이상)
+			                                		</c:if>
+			                                	</c:if>
+			                                	<c:if test="${fn:length(job.career) > 3 }">
+			                                		<c:if test="${career == '신입'}">
+			                                			${career}
+			                                		</c:if>
+			                                		<c:if test="${career != '신입'}">
+			                                			, 경력 (${career}년 이상)
+			                                		</c:if>
+			                                	</c:if>
+			                                </c:forTokens>
+		                                </td>
 		                            </tr>
 		                            <tr>
 		                                <td>직급/직책</td>
