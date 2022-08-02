@@ -31,7 +31,7 @@
             <input type="button" form="searbox" class="btn-search"></input>
             
             <c:if test="${empty indiId && empty corpId}">
-            	<a href="logIn.jsp" id="login-btn"><button type="button" id="scroll-log" class="log">Login</button></a>
+            	<a href="login" id="login-btn"><button type="button" id="scroll-log" class="log">Login</button></a>
             </c:if>
             
             <c:if test="${not empty indiId && empty corpId}">
@@ -69,7 +69,7 @@
           <button type="button" form="searbox" class="btn-search"></button>
 
           <c:if test="${empty indiId && empty corpId}">
-          	<a href="logIn.jsp" id="login-btn"><button type="button" id="log" class="log">Login</button></a>
+          	<a href="login" id="login-btn"><button type="button" id="log" class="log">Login</button></a>
           </c:if>
           
           <c:if test="${not empty indiId && empty corpId}">

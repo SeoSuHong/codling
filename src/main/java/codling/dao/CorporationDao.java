@@ -37,7 +37,7 @@ public class CorporationDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				String corporateName = rs.getString("name");
+				String corporateName = rs.getString("corporateName");
 				String password = rs.getString("password");
 				String corporatePhone = rs.getString("corporatePhone");
 				String ceoName = rs.getString("ceoName");
@@ -52,7 +52,7 @@ public class CorporationDao {
 			pstmt.close();
 			conn.close();
 		} catch(Exception e) {
-			System.out.println("getIndiInfo Error : " + e.getMessage());
+			System.out.println("getCorporation Error : " + e.getMessage());
 		}
 		return corporation;
 	}

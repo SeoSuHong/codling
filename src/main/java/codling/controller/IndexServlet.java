@@ -22,6 +22,6 @@ public class IndexServlet extends HttpServlet{
 		
 		request.setAttribute("announcement", announcement);
 		
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/public/index.jsp").forward(request, response);
 	}
 }

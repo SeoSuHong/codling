@@ -8,20 +8,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import codling.dao.CorporationDao;
 import codling.identity.Announcement;
 
-@WebServlet("/newcomer")
-public class newcomerServlet extends HttpServlet{
+@WebServlet("/career")
+public class CareerServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CorporationDao corpDao = new CorporationDao();
-
-		ArrayList<Announcement> announcement = corpDao.newcomerContents();
+		
+		ArrayList<Announcement> announcement = corpDao.careerContents();
 		
 		request.setAttribute("announcement", announcement);
 		
-		request.getRequestDispatcher("newcomer.jsp").forward(request, response);
+		request.getRequestDispatcher("career.jsp").forward(request, response);
 	}
 }

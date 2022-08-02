@@ -68,7 +68,7 @@
 	        <div id="choice">
 	        	<input type="hidden" name="password" value="${individual.password}">
 	            <input type="button" class="modify" value="수 정" onclick="">
-	            <input type="button" class="drop" value="탈 퇴" onclick="drop()">
+	            <input type="button" class="drop" value="탈 퇴" onclick="deleteChk()">
 	        </div>
 	    </form>
     </section>

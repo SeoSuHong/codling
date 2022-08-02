@@ -48,7 +48,7 @@ public class IndividualDao {
 			pstmt.close();
 			conn.close();
 		} catch(Exception e) {
-			System.out.println("getIndiInfo Error : " + e.getMessage());
+			System.out.println("getIndividual Error : " + e.getMessage());
 		}
 		return individual;
 	}
