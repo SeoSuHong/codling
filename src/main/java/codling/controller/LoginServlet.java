@@ -29,7 +29,6 @@ public class LoginServlet extends HttpServlet {
 		if(indiMap != null) {
 			for(String key : indiMap.keySet()) {
 				if(key.equals(indiId))
-					System.out.println("aaa");
 					session.setAttribute("indiId", indiId);
 			}
 		}
@@ -37,7 +36,6 @@ public class LoginServlet extends HttpServlet {
 		if(corpMap != null) {
 			for(String key : corpMap.keySet()) {
 				if(key.equals(corpMap))
-					System.out.println("aaa");
 					session.setAttribute("corpId", corpId);
 			}
 		}

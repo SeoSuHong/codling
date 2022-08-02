@@ -36,13 +36,14 @@ public class CorporationDao {
 			
 			if(rs.next()) {
 				String corporateName = rs.getString("name");
+				String password = rs.getString("password");
 				String corporatePhone = rs.getString("corporatePhone");
 				String ceoName = rs.getString("ceoName");
 				String corporateNumber = rs.getString("corporateNumber");
 				String fileName = rs.getString("fileName");
 				String address = rs.getString("address");
 				
-				corporation = new Corporation(id, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address);
+				corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address);
 			}
 			
 			rs.close();

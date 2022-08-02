@@ -115,5 +115,39 @@ public class InformationDao {
 		return map;
 	}
 
-
+	public boolean deleteIndividual(String id) {
+		boolean result = false;
+		String query = "DELETE FROM individual WHERE id = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("deleteIndividual Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	public boolean deleteCorporation(String id) {
+		boolean result = false;
+		String query = "DELETE FROM corporation WHERE id = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("deleteCorporation Error : " + e.getMessage());
+		}
+		return result;
+	}
 }

@@ -33,6 +33,7 @@ public class IndividualDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+				String password = rs.getString("password");
 				String name = rs.getString("name");
 				String birth = rs.getString("birth");
 				String gender = rs.getString("gender");
@@ -40,7 +41,7 @@ public class IndividualDao {
 				String phone = rs.getString("phone");
 				String address = rs.getString("address");
 				
-				individual = new Individual(id, name, birth, gender, email, phone, address, "");
+				individual = new Individual(id, password, name, birth, gender, email, phone, address, "");
 			}
 			
 			rs.close();

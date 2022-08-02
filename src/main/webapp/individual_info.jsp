@@ -26,9 +26,9 @@
         </div>
         <div id="profile-hover">
             <ul>
-                <li id="mypage"><a href="individual_info.jsp"><span>내 정보</span></a></li>
+                <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
                 <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
-                <li id="logout"><a href="index.jsp"><span>로그아웃</span></a></li>
+                <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
             </ul>
         </div>
     </header>
@@ -66,6 +66,7 @@
 	            </div>
 	        </div>
 	        <div id="choice">
+	        	<input type="hidden" name="password" value="${individual.password}">
 	            <input type="button" class="modify" value="수 정" onclick="">
 	            <input type="button" class="drop" value="탈 퇴" onclick="drop()">
 	        </div>
