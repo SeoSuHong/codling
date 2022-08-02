@@ -189,11 +189,8 @@ if($("#day").val() == ""){
   return;
 }
 
-<<<<<<< HEAD
-// 성별
-=======
 // 성별 확인
->>>>>>> 우진
+
 let genderChk = $("#gender option:selected").val(); 
 if(genderChk == ""){
   $("#gender").addClass("is-invalid");
