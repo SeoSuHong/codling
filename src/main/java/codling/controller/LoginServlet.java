@@ -39,6 +39,6 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("corpId", corpId);
 			}
 		}
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("index");
 	}
 }
