@@ -133,12 +133,7 @@
                             <div class="row align-items-center mt-4" id="frame">
                                 <p class="fw-bold">전화번호</p>
                                     <div class="col-4">
-                                        <select class="form-select" id="phoneInd1"  onKeyUp="inputDataCheck(this.id)" required>
-                                            <option selected>010</option>
-                                            </select>
-                                                <div class="invalid-feedback">
-                                                    식별번호를 선택하세요.
-                                                </div>
+                                        <input class="form-control" id="010" readonly value="010">
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" id="phoneInd2" placeholder="'-'없이 입력"  onKeyUp="inputDataCheck(this.id)" required>
@@ -228,6 +223,7 @@
                                     <div class="col">
                                         <input type="text" class="form-control" id="telePhone" placeholder="'-'없이 입력" >
                                     </div>
+                                    <div class="invalid-feedback">전화번호를 입력하세요.</div>
                             </div>
                             <div class="row align-items-center mt-4">
                                 <div class="col">
@@ -241,7 +237,7 @@
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">사업자 등록번호</p>
-                                        <input type="text" name="companyNum" id="comNum" class="form-control" placeholder="사업자 등록번호"  onKeyUp="inputDataCheck(this.id)" required>
+                                        <input type="text" name="companyNum" id="comNum" class="form-control" placeholder="000-00-00000"  onKeyUp="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 사업자 등록번호를 입력하세요.
                                             </div>
@@ -262,7 +258,7 @@
                                     <input type="text" name="extraAddress2" id="extraAddress2" class="form-control mb-3 col-md-7" placeholder="참고항목"  onkeyup="inputDataCheck(this.id)" required>
                             </div>
                             <div id="signUp" >
-                                <button type="button" value="signUpCompany" onClick="signUpCom_submit()" class="btn-xlarge"  style="color: white; background-color: #A5E374;">가입하기</button>
+                                <button type="button" value="signUpCompany" onClick="signUpCom_submit()" class="btn-xlarge submit"  style="color: white; background-color: #A5E374;">가입하기</button>
                             </div>
                         </div>
                         </form>

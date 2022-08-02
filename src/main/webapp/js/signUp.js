@@ -60,7 +60,7 @@ let inputDataCheck = (id) => {
     const getIdCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
     const getPwCheck =  RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
     const getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-    const getPhone = RegExp(/\d{4}$/);
+    const getPhone = RegExp( /^[0-9]{8}$/);
 
     // 아이디 공백 확인
     if($("#id").val() == ""){
@@ -154,8 +154,7 @@ if($("#day").val() == ""){
   return;
 }
 
-// 성별
-
+// 성별 확인
 let genderChk = $("#gender option:selected").val(); 
 if(genderChk == ""){
   $("#gender").addClass("is-invalid");
@@ -163,6 +162,11 @@ if(genderChk == ""){
   return;
 }
 
+// 성별 체크 시
+if(genderChk !=""){
+	$("#gender").removeClass("is-invalid");
+  	$("#gender").focus();
+}
 
 // 이메일 공백 확인
 if($("#email").val() == ""){
@@ -219,12 +223,13 @@ if($("#detailAddress").val() == ""){
   	location.href="index.jsp";
 	// perFrm.submit();
   }
- // 고객 회원 유효성 검사
+  
+ // 기업 회원 유효성 검사
 function signUpCom_submit(){
     const getIdCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
     const getPwCheck =  RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
     const getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-    const getPhone = RegExp(/^\d{4}$/);
+    const getPhone = RegExp( /^[0-9]{7,8}$/);
     const getComNum = RegExp(/([0-9]{3})-?([0-9]{2})-?([0-9]{5})/);
     
 	// 아이디 공백 확인
@@ -235,13 +240,13 @@ function signUpCom_submit(){
   }
   
   // 아이디 유효성 검사
-  if(!getPhone.test($("#Comid").val())){
+  if(!getIdCheck.test($("#Comid").val())){
   	alert("영문,숫자를 혼합하여 4자리~12자리 이내로 입력해주세요")
   	$("#Comid").addClass("is-invalid");
   	$("#Comid").focus();
   	$("#Comid").val("");
   	return;
-}
+	}
   
   // 비밀번호 공백 확인
   if($("#pwCom").val() == ""){
@@ -249,7 +254,7 @@ function signUpCom_submit(){
     $("#pwCom").focus();
     $("#pwCom").val("");
     return;
-}
+	}
 
 	// 비밀번호 유효성 검사
 	if(!getPwCheck.test($("#pwCom").val())){
@@ -258,7 +263,6 @@ function signUpCom_submit(){
 	    $("#pwCom").focus();
 	    $("#pwCom").val("");
 	}
-
 
 	// 비밀번호 확인 공백 확인
 	if($("#cfpwCom").val() == ""){
@@ -283,8 +287,24 @@ function signUpCom_submit(){
 	return;
 	}
 	
+	// 전화번호 공백 확인
+	if($("#telePhone").val() == ""){
+	$("#telePhone").addClass("is-invalid");
+	$("#telePhone").focus();
+	return;
+	}
+	
+	// 전화번호 유효성 확인
+	if(!getPhone.test($("#telePhone").val())){
+		alert("유효하지 않은 전화번호입니다.")
+		$("#telePhone").addClass("is-invalid");
+	    $("#telePhone").focus();
+	    $("#telePhone").val("");
+	}
+	
+	
 	// 대표자명 입력 확인
-	if($("representative").val() == ""){
+	if($("#representative").val() == ""){
 	$("#representative").addClass("is-invalid");
 	$("#representative").focus();
 	return;
@@ -299,39 +319,38 @@ function signUpCom_submit(){
 	
 	// 사업자 등록번호 유효성 검사
 	if(!getComNum.test($("#comNum").val())){
-	alert("유효하지 않은 비밀번호 입니다.");
+	alert("유효하지 않은 사업자등록번호 입니다.");
 	$("#comNum").addClass("is-invalid");
     $("#comNum").focus();
     $("#comNum").val("");
+    return;
 	}
 	
 	// 파일 등록 했는지 ? 
 	if($("#formFile").val() == ""){
+	alert("최근 3개월 이내 발급받으신 사업자등록증명원을 첨부해 주시기 바랍니다.");
 	$("#formFile").addClass("is-invalid");
 	$("#formFile").focus();
-	alert("1개월 이내 증빙서류 제출 바랍니다.");
+	return;
 	}
 	
 	// 주소 입력 확인
-if($("#postCode2").val() == ""){
-  $("#postCode2").addClass("is-invalid");
-  $("#postCode2").focus();
-  return;
-}
-if($("#address2").val() == ""){
-  $("#address2").addClass("is-invalid");
-  $("#address2").focus();
-  return;
-}
-if($("#detailAddress2").val() == ""){
-  $("#detailAddress2").addClass("is-invalid");
-  $("#detailAddress2").focus();
-  return;
-}
+	if($("#postCode2").val() == ""){
+	  $("#postCode2").addClass("is-invalid");
+	  $("#postCode2").focus();
+	  return;
+	}
+	if($("#address2").val() == ""){
+	  $("#address2").addClass("is-invalid");
+	  $("#address2").focus();
+	  return;
+	}
+	if($("#detailAddress2").val() == ""){
+	  $("#detailAddress2").addClass("is-invalid");
+	  $("#detailAddress2").focus();
+	  return;
+	}
 	
-	
-	
-
 	alert("Welcome🍏");
 	location.href="index.jsp";
 	// comFrm.submit();
