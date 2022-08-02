@@ -29,35 +29,76 @@
         </nav>
         <form id="searbox"><input type="text" id="search" name="search" class="searchbox" value="" placeholder="검색어를 입력하세요." autofocus></form>
         <input type="button" form="searbox" class="btn-search"></input>
-        <button type="button" id="scroll-log" class="log" onclick="location='logIn.jsp'">Login</button>
-        <div id="profile-box" class="profile-box">
-          <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
-          <div id="scroll-profile-hover" class="pfhover">
-            <ul>
-                <li id="mypage"><a href="#"><span>내 정보</span></a></li>
-                <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
-                <li id="logout"><a href="#"><span>로그아웃</span></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  <div id="default-header">
+        
+        <c:if test="${empty indiId && empty corpId}">
+        	<button type="button" id="scroll-log" class="log" onclick="location='logIn.jsp'">Login</button>
+        </c:if>
+        
+        
+        <c:if test="${not empty indiId && empty corpId}">
+	            <div id="profile-box" class="profile-box">
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	              <div id="scroll-profile-hover" class="pfhover">
+	                <ul>
+	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
+	                    <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
+	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+	                </ul>
+	              </div>
+	            </div>
+            </c:if>
+            
+            <c:if test="${empty indiId && not empty corpId}">
+	            <div id="profile-box" class="profile-box">
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	              <div id="scroll-profile-hover" class="pfhover">
+	                <ul>
+	                    <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
+	                    <li id="resume"><a href="jobOpening_management.jsp"><span>공고 관리</span></a></li>
+	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+	                </ul>
+	              </div>
+	            </div>
+            </c:if>
+            
+      		</div>
+    	</div>
+	<div id="default-header">
     <div id="login_header">
-      <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
-      <form id="searbox"><input type="text" id="search" name="search" class="searchbox" value="" placeholder="검색어를 입력하세요."></form>
-      <button type="button" form="searbox" class="btn-search"></button>
-      <button type="button" id="log" class="log" onclick="location='logIn.jsp'">Login</button>
-      <div id="profile-box" class="profile-box">
-        <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
-        <div id="profile-hover" class="pfhover">
-          <ul>
-              <li id="mypage"><a href="#"><span>회원정보</span></a></li>
-              <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
-              <li id="logout"><a href="#"><span>로그아웃</span></a></li>
-          </ul>
-        </div>
-      </div>
+		<a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
+      		<form id="searbox"><input type="text" id="search" name="search" class="searchbox" value="" placeholder="검색어를 입력하세요." autofocus></form>
+		    <button type="button" form="searbox" class="btn-search"></button>
+      
+      	<c:if test="${empty indiId && empty corpId}">
+			<button type="button" id="log" class="log" onclick="location='logIn.jsp'">Login</button>
+		</c:if>
+		
+		<c:if test="${not empty indiId && empty corpId}">
+	          <div id="profile-box" class="profile-box">
+	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	            <div id="profile-hover" class="pfhover">
+	              <ul>
+	                  <li id="mypage"><a href="individualInfo"><span>회원정보</span></a></li>
+	                  <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
+	                  <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+	              </ul>
+	            </div>
+	          </div>
+          </c:if>
+          
+          <c:if test="${empty indiId && not empty corpId}">
+	          <div id="profile-box" class="profile-box">
+	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	            <div id="profile-hover" class="pfhover">
+	              <ul>
+	                  <li id="mypage"><a href="corporationInfo"><span>회원정보</span></a></li>
+	                  <li id="resume"><a href="jobOpening_management.jsp"><span>공고 관리</span></a></li>
+	                  <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+	              </ul>
+	            </div>
+	          </div>
+          </c:if>
+          
     </div>
     <nav id="menu">
         <ul>

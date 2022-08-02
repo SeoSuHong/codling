@@ -29,8 +29,7 @@ public class CorporationDao {
 	// 기업회원 정보
 	public Corporation getCorporation(String id) {
 		Corporation corporation = null;
-		String query = "SELECT * FROM corporation WHERE id=?";
-		
+		String query = "SELECT * FROM corporation WHERE id = ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
@@ -38,25 +37,23 @@ public class CorporationDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				String position = rs.getString("position");
+				String corporateName = rs.getString("name");
 				String password = rs.getString("password");
-				String corporateName = rs.getString("corporateName");
 				String corporatePhone = rs.getString("corporatePhone");
 				String ceoName = rs.getString("ceoName");
 				String corporateNumber = rs.getString("corporateNumber");
 				String fileName = rs.getString("fileName");
 				String address = rs.getString("address");
 				
-				corporation = new Corporation(id, position, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address);
+				corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address);
 			}
 			
 			rs.close();
 			pstmt.close();
 			conn.close();
 		} catch(Exception e) {
-			System.out.println("getCorporation Error : " + e.getMessage());
+			System.out.println("getIndiInfo Error : " + e.getMessage());
 		}
-		
 		return corporation;
 	}
 	

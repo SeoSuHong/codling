@@ -1,7 +1,7 @@
 package codling.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,18 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import codling.dao.CorporationDao;
-import codling.identity.Announcement;
-
-@WebServlet("/newcomer")
-public class newcomerServlet extends HttpServlet{
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CorporationDao corpDao = new CorporationDao();
-
-		ArrayList<Announcement> announcement = corpDao.newcomerContents();
-		
-		request.setAttribute("announcement", announcement);
-		
-		request.getRequestDispatcher("newcomer.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		session.invalidate();
+		PrintWriter out =  response.getWriter();
+		out.print("<script>");
+		out.print("alert('로그아웃 되었습니다.');");
+		out.print("</script>");
+		response.sendRedirect("index.jsp");
 	}
+
 }
