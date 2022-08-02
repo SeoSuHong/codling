@@ -21,6 +21,6 @@ public class CareerServlet extends HttpServlet{
 		
 		request.setAttribute("announcement", announcement);
 		
-		request.getRequestDispatcher("career.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/public/career.jsp").forward(request, response);
 	}
 }

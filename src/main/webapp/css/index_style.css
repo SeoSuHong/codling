@@ -53,9 +53,8 @@
 ul{list-style: none;}
 /*menu*/
 #menu>ul{ list-style: none; margin-top: 30px; display: flex;}
-.menu{text-decoration-line: none; color: #8D8D8D; display: inline-block; 
-    width: 110px; height: 50px; display: flex; align-items: center; 
-    text-align: center; font-size: 1.1rem; font-weight: bold; }
+.menu{text-decoration-line: none; color: #8D8D8D; margin: 0 20px; height: 50px; display: flex; align-items: center; 
+    font-size: 1.1rem; font-weight: bold; }
 .menu:hover{color: #A5E374 !important;}
 /*scroll-header*/
 #scroll-header-box{display: flex; justify-content: center; width: 100vw; align-items: center; z-index: 2;}

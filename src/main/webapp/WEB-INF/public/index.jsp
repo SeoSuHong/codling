@@ -36,7 +36,7 @@
             
             <c:if test="${not empty indiId && empty corpId}">
 	            <div id="profile-box" class="profile-box">
-	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
@@ -49,7 +49,7 @@
             
             <c:if test="${empty indiId && not empty corpId}">
 	            <div id="profile-box" class="profile-box">
-	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &nbsp;&nbsp;</div>
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
@@ -74,10 +74,10 @@
           
           <c:if test="${not empty indiId && empty corpId}">
 	          <div id="profile-box" class="profile-box">
-	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
 	            <div id="profile-hover" class="pfhover">
 	              <ul>
-	                  <li id="mypage"><a href="individualInfo"><span>회원정보</span></a></li>
+	                  <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
 	                  <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
 	                  <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
 	              </ul>
@@ -87,10 +87,10 @@
           
           <c:if test="${empty indiId && not empty corpId}">
 	          <div id="profile-box" class="profile-box">
-	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &nbsp;&nbsp;</div>
 	            <div id="profile-hover" class="pfhover">
 	              <ul>
-	                  <li id="mypage"><a href="corporationInfo"><span>회원정보</span></a></li>
+	                  <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
 	                  <li id="resume"><a href="jobOpening_management.jsp"><span>공고 관리</span></a></li>
 	                  <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
 	              </ul>
@@ -150,7 +150,7 @@
       <c:if test="${not empty announcement}">
       <c:forEach var="anno" items="${announcement}">
       <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col" style="cursor: pointer;" onclick="location='job_accountment?no=${anno.no}'">
+        <div class="col" style="cursor: pointer;" onclick="location='jobOpening?no=${anno.no}'">
           <div class="card">
             <img src="img/logo.png" class="card-img-top" alt="...">
 	            <div class="card-body">
@@ -173,10 +173,10 @@
 	              	<c:forTokens var="career" items="${anno.career}" delims=" / " varStatus="st">
 		              	<c:if test="${fn:length(anno.career) <= 3}">
 		              		<c:if test="${career == '신입'}">
-		              			${career}
+		              			${career} &emsp;&emsp;&emsp;&emsp;
 		              		</c:if>
 		              		<c:if test="${career != '신입'}">
-		              			경력 ${career}년↑
+		              			경력 ${career}년↑ &emsp;&emsp;&emsp;
 		              		</c:if>
 		              	</c:if>
 		              	<c:if test="${fn:length(anno.career) > 3}">
@@ -184,7 +184,7 @@
 		              			${career} or
 		              		</c:if>
 		              		<c:if test="${career != '신입'}">
-		              			${career}년↑
+		              			${career}년↑ &emsp;&emsp;
 		              		</c:if>
 		              	</c:if>
 		              	</c:forTokens>

@@ -15,7 +15,7 @@ import codling.dao.InformationDao;
 import codling.identity.Corporation;
 
 @WebServlet("/corporationInfo")
-public class corpInfoServlet extends HttpServlet {
+public class CorpInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("corpId");

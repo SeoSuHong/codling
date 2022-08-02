@@ -9,25 +9,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/job_accountment.css">
+    <link rel="stylesheet" href="css/jobOpening.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=370fa568d4acbeb9115655e735792c45&libraries=services"></script>
 </head>
 <body>
-	<header>
-		<div class="logo-default">
-        	<div class="areaWrap"></div>
+    <header>
+    <div class="header_Wrap header_top">
+        <div class="logo-default">
             <a href="index"><img src="img/logo.png"></a>
-        	<button type="button" id="log" onclick="location.href='index'">Login</button>
-    	</div>
-	</header>
-	<div id="downmenu">
-    	<nav id="downupmenu">
-        	<div class="header_Wrap">
+        </div>
+        <ul>
+            <li><a href="newcomer">신입채용</a></li>
+            <li><a href="career">경력채용</a></li>
+            <li><a href="top100">Top100</a></li>
+        </ul>
+        <form class="search_box" id="searbox">
+            <input type="text" name="searchbox" placeholder="검색어를 입력하세요.">
+        </form>
+            <input type="button" form="searbox" class="search">
+            <button type="button" id="log" onclick="location.href='login'">Login</button>
+    </div>
+</header>
+<div id="downmenu">
+    <nav id="downupmenu">
+        <div class="header_Wrap">
                 <div class="logo-default" id="title_box">
                     <div class="title_container">
                         <span class="title">${jobOpening.title}</span>
                         <div class="title_inside">
                             <span>${corporation.corporateName}</span>&ensp;&ensp;
+                            
                             <span>경력 </span>
                 			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
                 				<c:if test="${fn:length(field.career) <= 3}">
@@ -48,18 +59,21 @@
 			                		</c:if>
 			                	</c:if>
 			                </c:forTokens>
-                        	<c:if test="${field.pay == '면접 후 결정'}">
-                        		<span>급여 ${field.pay}</span>
-                        	</c:if>
-                        	<c:if test="${field.pay != '면접 후 결정'}">
-                        		<span>급여 ${field.pay}만↑</span>
-                        	</c:if>
-                    	</div>
-                	</div>
-            	</div>
-        	</div>
-    	</nav>
-	</div>
+                            
+                            
+                            <c:if test="${field.pay == '면접 후 결정'}">
+                            <span>급여 ${field.pay}</span>
+                            </c:if>
+                            <c:if test="${field.pay != '면접 후 결정'}">
+                            <span>급여 ${field.pay}만↑</span>
+                            </c:if>
+                        </div>
+                    </div>
+                <div class="apply"><a onclick="popUp()">지원하기</a></div>
+            </div>
+        </div>
+    </nav>
+</div>
 <section>
     <div class="titleWrap">
         <div class="top_title_container">
@@ -90,11 +104,14 @@
                 </c:forTokens>
                 
                 <c:if test="${field.pay == '면접 후 결정'}">
-                	<span class="corSalery">급여 ${field.pay}</span>
+                <span class="corSalery">급여 ${field.pay}</span>
                 </c:if>
                 <c:if test="${field.pay != '면접 후 결정'}">
-                	<span class="corSalery">급여 ${field.pay}만↑</span>
+                <span class="corSalery">급여 ${field.pay}만↑</span>
                 </c:if>
+            </div>
+            <div id="apply_box">
+                <div class="apply" id="top_apply"><a href="#" onclick="popUp()">지원하기</a></div>
             </div>
         </div>
     </div>
@@ -147,11 +164,11 @@
                 <div class="comLogo"><img src="img/logo.png" alt="회사로고"></div>
                 <dl>
                     <dt>기 업 명</dt>
-                        <dd>${corporation.corporateName}</dd>
-                    <dt>대표자명</dt>
-                        <dd>${corporation.ceoName}</dd>                  
+                        <dd>${corporation.corporateName}</dd>                  
                     <dt>연 락 처</dt>
                         <dd>${fn:substring(corporation.corporatePhone, 0, 3)}-${fn:substring(corporation.corporatePhone, 3, 7)}-${fn:substring(corporation.corporatePhone, 7, 11)}</dd>   
+                    <dt>대표자명</dt>
+                        <dd>${corporation.ceoName}</dd>
                     <dt>주 &ensp;&ensp; 소</dt>
                         <dd>${corporation.address}</dd>
                 </dl>
@@ -167,22 +184,95 @@
         </div>
         
         <hr>
-        <div id="btnWrap">
-	        <div id="btn">
-	        	<button onclick="">수 &emsp;정</button>
-	        	<button onclick="">삭 &emsp;제</button>
-	        </div>
+        <div class="jobs">
+            <dl>
+                <dt><img src="img/logo.png" alt=""></dt>
+                <dd>${jobOpening.title}</dd>
+                <dd>${corporation.corporateName}</dd>
+                <dd>
+                	<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+            			<c:if test="${fn:length(field.career) <= 3}">
+              				<c:if test="${career == '신입'}">
+	                			<span>${career}</span>&ensp;&ensp;
+	                		</c:if>
+	                		<c:if test="${career != '신입'}">
+	                			<span>${career}년↑</span>&ensp;&ensp;
+	                		</c:if>
+	                	</c:if>
+	                
+	                	<c:if test="${fn:length(field.career) > 3}">
+	                		<c:if test="${career == '신입'}">
+	                			<span>${career} or</span>
+	                		</c:if>
+	                		<c:if test="${career != '신입'}">
+	                			<span>${career}년↑</span>&ensp;&ensp;
+	                		</c:if>
+	                	</c:if>
+			        </c:forTokens>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="img/logo.png" alt=""></dt>
+                <dd>${jobOpening.title}</dd>
+                <dd>${corporation.corporateName}</dd>
+                <dd>
+                	<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+            			<c:if test="${fn:length(field.career) <= 3}">
+              				<c:if test="${career == '신입'}">
+	                			<span>${career}</span>&ensp;&ensp;
+	                		</c:if>
+	                		<c:if test="${career != '신입'}">
+	                			<span>${career}년↑</span>&ensp;&ensp;
+	                		</c:if>
+	                	</c:if>
+	                
+	                	<c:if test="${fn:length(field.career) > 3}">
+	                		<c:if test="${career == '신입'}">
+	                			<span>${career} or</span>
+	                		</c:if>
+	                		<c:if test="${career != '신입'}">
+	                			<span>${career}년↑</span>&ensp;&ensp;
+	                		</c:if>
+	                	</c:if>
+			        </c:forTokens>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="img/logo.png" alt=""></dt>
+                <dd>Frontend 개발자 모집</dd>
+                <dd>Codling corp.</dd>
+                <dd>서울 강남</dd>
+            </dl>
+            <dl>
+                <dt><img src="img/logo.png" alt=""></dt>
+                <dd>Backend 개발자 모집</dd>
+                <dd>Codling corp.</dd>
+                <dd>서울 강남</dd>
+            </dl>
+            <dl>
+                <dt><img src="img/logo.png" alt=""></dt>
+                <dd>Backend 개발자 모집</dd>
+                <dd>Codling corp.</dd>
+                <dd>서울 강남</dd>
+            </dl>
+            <dl>
+                <dt><img src="img/logo.png" alt=""></dt>
+                <dd>Backend 개발자 모집</dd>
+                <dd>Codling corp.</dd>
+                <dd>서울 강남</dd>
+            </dl>
         </div>
-</section>
-<footer>
-    <a href="#up"><img src="img/footerLogo.png"></a>
-    <a href="#">전체서비스</a>&ensp;|&ensp; 
-    <a href="#">이용약관</a>&ensp;|&ensp; 
-    <a href="#">개인정보처리방침</a>&ensp;|&ensp;
-    <a href="#">제휴문의</a>&ensp;| 
-    © CODLING Corp.
-</footer>
+	</section>
+	<footer>
+	    <a href="#up"><img src="img/footerLogo.png"></a>
+	    <a href="#">전체서비스</a>&ensp;|&ensp; 
+	    <a href="#">이용약관</a>&ensp;|&ensp; 
+	    <a href="#">개인정보처리방침</a>&ensp;|&ensp;
+	    <a href="#">제휴문의</a>&ensp;| 
+	    © CODLING Corp.
+	</footer>
 </body>
 <script src="jQuery/jquery-3.6.0.min.js"></script>
-<script src="js/job_accountment.js"></script>
+<script src="js/jobOpening.js"></script>
+<script src="js/job_apply_popup.js"></script>
 </html>

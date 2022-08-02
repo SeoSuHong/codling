@@ -57,7 +57,7 @@ public class CorporationDao {
 		return corporation;
 	}
 	
-	// 공고 정보
+	// 공고 정보(ID)
 	public JobOpening getJobOpening(String id) {
 		JobOpening jobOpening = null;
 		String query = "SELECT * FROM jobOpening WHERE corporation_id=?";
@@ -70,6 +70,38 @@ public class CorporationDao {
 			
 			if(rs.next()) {
 				int no = rs.getInt("no");
+				String corporation_id = rs.getString("corporation_id");
+				String title = rs.getString("title");
+				String region = rs.getString("region");
+				String startDate = rs.getString("startDate");
+				String endDate = rs.getString("endDate");
+				int count = rs.getInt("count");
+				
+				jobOpening = new JobOpening(no, corporation_id, title, region, startDate, endDate, count);
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getJobOpening Error : " + e.getMessage());
+		}
+		
+		return jobOpening;
+	}
+	
+	// 공고 정보(no)
+	public JobOpening getJobOpening(int no) {
+		JobOpening jobOpening = null;
+		String query = "SELECT * FROM jobOpening WHERE no=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
 				String corporation_id = rs.getString("corporation_id");
 				String title = rs.getString("title");
 				String region = rs.getString("region");
@@ -126,7 +158,8 @@ public class CorporationDao {
 		
 		return field;
 	}
-	//index 공고 들고오기
+	
+	// index 공고
 	public ArrayList<Announcement> indexContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
@@ -162,111 +195,110 @@ public class CorporationDao {
 		return list;
 	}
 	
-	//newcomer 공고 들고오기
-		public ArrayList<Announcement> newcomerContents() {
-			ArrayList<Announcement> list = new ArrayList<Announcement>();
-			String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
-					+ "FROM field F "
-					+ "JOIN jobopening J ON F.jobopening_no = J.no "
-					+ "JOIN corporation C ON J.corporation_id = C.id "
-					+ "WHERE F.career like '%신입%' ORDER BY J.count";
+	// newcomer 공고
+	public ArrayList<Announcement> newcomerContents() {
+		ArrayList<Announcement> list = new ArrayList<Announcement>();
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+				+ "FROM field F "
+				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+				+ "JOIN corporation C ON J.corporation_id = C.id "
+				+ "WHERE F.career like '%신입%' ORDER BY J.count";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
 			
-			try {
-				conn = getConnection();
-				pstmt = conn.prepareStatement(query);
-				rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String corporateName = rs.getString("corporateName");
+				String title = rs.getString("title");
+				String stack = rs.getString("stack");
+				String career = rs.getString("career");
+				String pay = rs.getString("pay");
+				int no = rs.getInt("no");
+				int count = rs.getInt("count");
 				
-				while(rs.next()) {
-					String corporateName = rs.getString("corporateName");
-					String title = rs.getString("title");
-					String stack = rs.getString("stack");
-					String career = rs.getString("career");
-					String pay = rs.getString("pay");
-					int no = rs.getInt("no");
-					int count = rs.getInt("count");
-					
-					Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
-					list.add(announcement);
-				}
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch(Exception e) {
-				System.out.println("indexContents Error : " + e.getMessage());
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+				list.add(announcement);
 			}
-			
-			return list;
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("indexContents Error : " + e.getMessage());
 		}
 		
-		//career 공고 들고오기
-				public ArrayList<Announcement> careerContents() {
-					ArrayList<Announcement> list = new ArrayList<Announcement>();
-					String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
-							+ "FROM field F "
-							+ "JOIN jobopening J ON F.jobopening_no = J.no "
-							+ "JOIN corporation C ON J.corporation_id = C.id "
-							+ "WHERE F.career REGEXP '[0-9]+' ORDER BY J.count;";
-					
-					try {
-						conn = getConnection();
-						pstmt = conn.prepareStatement(query);
-						rs = pstmt.executeQuery();
-						
-						while(rs.next()) {
-							String corporateName = rs.getString("corporateName");
-							String title = rs.getString("title");
-							String stack = rs.getString("stack");
-							String career = rs.getString("career");
-							String pay = rs.getString("pay");
-							int no = rs.getInt("no");
-							int count = rs.getInt("count");
-							
-							Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
-							list.add(announcement);
-						}
-						rs.close();
-						pstmt.close();
-						conn.close();
-					} catch(Exception e) {
-						System.out.println("indexContents Error : " + e.getMessage());
-					}
-					
-					return list;
-				}
+		return list;
+	}
+		
+	// career 공고
+	public ArrayList<Announcement> careerContents() {
+		ArrayList<Announcement> list = new ArrayList<Announcement>();
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+				+ "FROM field F "
+				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+				+ "JOIN corporation C ON J.corporation_id = C.id "
+				+ "WHERE F.career REGEXP '[0-9]+' ORDER BY J.count;";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String corporateName = rs.getString("corporateName");
+				String title = rs.getString("title");
+				String stack = rs.getString("stack");
+				String career = rs.getString("career");
+				String pay = rs.getString("pay");
+				int no = rs.getInt("no");
+				int count = rs.getInt("count");
 				
-				//top100 공고 들고오기
-				public ArrayList<Announcement> top100Contents() {
-					ArrayList<Announcement> list = new ArrayList<Announcement>();
-					String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
-							+ "FROM field F "
-							+ "JOIN jobopening J ON F.jobopening_no = J.no "
-							+ "JOIN corporation C ON J.corporation_id = C.id "
-							+ "ORDER BY J.count LIMIT 100";
-					
-					try {
-						conn = getConnection();
-						pstmt = conn.prepareStatement(query);
-						rs = pstmt.executeQuery();
-						
-						while(rs.next()) {
-							String corporateName = rs.getString("corporateName");
-							String title = rs.getString("title");
-							String stack = rs.getString("stack");
-							String career = rs.getString("career");
-							String pay = rs.getString("pay");
-							int no = rs.getInt("no");
-							int count = rs.getInt("count");
-							
-							Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
-							list.add(announcement);
-						}
-						rs.close();
-						pstmt.close();
-						conn.close();
-					} catch(Exception e) {
-						System.out.println("indexContents Error : " + e.getMessage());
-					}
-					
-					return list;
-				}
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+				list.add(announcement);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("indexContents Error : " + e.getMessage());
+		}
+		
+		return list;
+	}
+	
+	// Top100 공고
+	public ArrayList<Announcement> top100Contents() {
+		ArrayList<Announcement> list = new ArrayList<Announcement>();
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+				+ "FROM field F "
+				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+				+ "JOIN corporation C ON J.corporation_id = C.id "
+				+ "ORDER BY J.count LIMIT 100";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String corporateName = rs.getString("corporateName");
+				String title = rs.getString("title");
+				String stack = rs.getString("stack");
+				String career = rs.getString("career");
+				String pay = rs.getString("pay");
+				int no = rs.getInt("no");
+				int count = rs.getInt("count");
+				
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+				list.add(announcement);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("indexContents Error : " + e.getMessage());
+		}
+		return list;
+	}
 }
