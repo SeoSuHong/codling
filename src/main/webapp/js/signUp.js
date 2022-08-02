@@ -190,7 +190,6 @@ if($("#day").val() == ""){
 }
 
 // 성별
-
 let genderChk = $("#gender option:selected").val(); 
 if(genderChk == ""){
   $("#gender").addClass("is-invalid");

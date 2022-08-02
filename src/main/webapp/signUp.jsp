@@ -10,15 +10,10 @@
     <link rel="stylesheet" href="css/signUp.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/footers/">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/signUp.js"></script>
-    <!-- 다음 지도 -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="daumApi.js"></script> -->
-    <!-- 다음지도 -->
     <script src="js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -52,7 +47,7 @@
                                 <div class="col" id="chain">
                                     <input type="text" maxLength=20 onInput="maxLengthCheck(this)" onKeyUp="inputDataCheck(this.id)" name="id" id="id" class="form-control" placeholder="아이디" required/>
                                         <div class="invalid-feedback">
-                                            중복된 아이디입니다.
+                                            아이디를 입력해주세요.
                                         </div>      
                                  </div>
                             </div>
@@ -113,13 +108,9 @@
                                     <p class="fw-bold">성별 </p>
                                         <select class="form-select" id="gender" name="gender" >
                                             <option value="">성별</option>
-<<<<<<< HEAD
-                                            <option value="남">남성</option>
-                                            <option value="여">여성</option>
-=======
+
                                             <option value="male">남성</option>
                                             <option value="female">여성</option>
->>>>>>> 우진
                                         </select>
                                             <div class="invalid-feedback">
                                                 성별을 선택하세요.
@@ -139,11 +130,7 @@
                                 <p class="fw-bold">전화번호</p>
                                     <div class="col-4">
                                         <select class="form-select" id="phoneInd1"  onKeyUp="inputDataCheck(this.id)" required>
-<<<<<<< HEAD
-                                            <option value="010" selected>010</option>
-=======
                                             <option selected>010</option>
->>>>>>> 우진
                                             </select>
                                     </div>
                                     <div class="col">
