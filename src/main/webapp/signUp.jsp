@@ -129,13 +129,7 @@
                             <div class="row align-items-center mt-4" id="frame">
                                 <p class="fw-bold">전화번호</p>
                                     <div class="col-4">
-<<<<<<< HEAD
-                                        <select class="form-select" id="phoneInd1"  onKeyUp="inputDataCheck(this.id)" required>
-                                            <option selected>010</option>
-                                            </select>
-=======
                                         <input class="form-control" id="010" readonly value="010">
->>>>>>> 우진
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" id="phoneInd2" placeholder="'-'없이 입력"  onKeyUp="inputDataCheck(this.id)" required>
@@ -239,7 +233,7 @@
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">사업자 등록번호</p>
-                                        <input type="text" name="companyNum" id="comNum" class="form-control" placeholder="000-00-00000"  onKeyUp="inputDataCheck(this.id)" required>
+                                        <input type="text" name="companyNum" id="comNum" class="form-control" placeholder="000-00-00000" maxlength="12" onKeyUp="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 사업자 등록번호를 입력하세요.
                                             </div>
