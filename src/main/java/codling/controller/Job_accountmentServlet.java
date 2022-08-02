@@ -26,7 +26,7 @@ public class Job_accountmentServlet extends HttpServlet {
 		JobOpening jobOpening = corpDao.getJobOpening(id);
 		int no = Integer.parseInt(request.getParameter("no"));
 		Field field = corpDao.getField(no);
-		
+		corpDao.count(no);
 		request.setAttribute("corporation", corporation);
 		request.setAttribute("jobOpening", jobOpening);
 		request.setAttribute("field", field);

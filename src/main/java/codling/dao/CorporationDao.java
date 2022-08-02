@@ -1,5 +1,6 @@
 package codling.dao;
 
+import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -298,9 +299,51 @@ public class CorporationDao {
 							JobOpeningManagement jobOpeningManagement = new JobOpeningManagement(title, startDate, endDate, name, career, position, region, no);
 							list.add(jobOpeningManagement);
 						}
+						rs.close();
+						pstmt.close();
+						conn.close();
 					} catch (Exception e) {
 						System.out.println("jobOpeningManagement Error : " + e.getMessage());
 					}
 					return list;
+				}
+				
+				public int count(int no) {
+					int count= 0;
+					String query = "SELECT count "
+							+ "FROM jobopening "
+							+ "WHERE no=?";
+					try {
+						conn = getConnection();
+						pstmt = conn.prepareStatement(query);
+						pstmt.setInt(1, no);
+						rs = pstmt.executeQuery();
+						if(rs.next()) {
+							count = rs.getInt("count");
+							count++;
+						}
+						rs.close();
+						pstmt.close();
+						conn.close();
+					}catch(Exception e) {
+						System.out.println("count Select Error: " + e.getMessage());
+					}
+					
+					query = "update jobopening "
+							+ "set count = ? "
+							+ "where no = ?";
+					try {
+						conn = getConnection();
+						pstmt = conn.prepareStatement(query);
+						pstmt.setInt(1, count);
+						pstmt.setInt(2, no);
+						pstmt.executeUpdate();
+						rs.close();
+						pstmt.close();
+						conn.close();
+					}catch (Exception e) {
+						System.out.println("count upDate Error: " + e.getMessage());
+					}
+					return count;
 				}
 }
