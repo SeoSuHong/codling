@@ -307,7 +307,7 @@ public class CorporationDao {
 					}
 					return list;
 				}
-				
+				//공고 조회수
 				public int count(int no) {
 					int count= 0;
 					String query = "SELECT count "
