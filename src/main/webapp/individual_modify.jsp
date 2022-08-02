@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>개인 회원 정보 수정</title>
     <link rel="stylesheet" href="css/individual_modify.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/footers/">
@@ -28,7 +28,7 @@
                                 <!-- 아이디 -->
                                 <p class="fw-bold">아이디</p>
                                 <div class="col" id="chain">
-                                    <input type="text" maxlength="20" oninput="maxLengthCheck(this)" onkeyup="inputDataCheck(this.id)" name="id" id="id" class="form-control" placeholder="아이디" required readonly value="고객아이디">
+                                    <input type="text" maxlength="20" oninput="maxLengthCheck(this)" onkeyup="inputDataCheck(this.id)" name="id" id="id" class="form-control" required readonly value="codling123">
                                         <div class="invalid-feedback">
                                             아이디를 입력하세요
                                         </div>      
@@ -91,7 +91,7 @@
                                 <div class="col">
                                     <p class="fw-bold">성별 </p>
                                         <select class="form-select" id="gender" >
-                                            <option value="0">성별</option>
+                                            <option value="">성별</option>
                                             <option value="male">남성</option>
                                             <option value="female">여성</option>
                                         </select>
