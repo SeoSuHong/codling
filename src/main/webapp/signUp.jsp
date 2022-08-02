@@ -239,7 +239,7 @@
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">사업자 등록번호</p>
-                                        <input type="text" name="companyNum" id="comNum" class="form-control" placeholder="000-00-00000"  onKeyUp="inputDataCheck(this.id)" required>
+                                        <input type="text" name="companyNum" id="comNum" class="form-control" placeholder="000-00-00000" maxlength="12" onKeyUp="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 사업자 등록번호를 입력하세요.
                                             </div>

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>기업회원 정보 수정</title>
     <link rel="stylesheet" href="css/individual_modify.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/footers/">
@@ -22,13 +22,13 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-10 col-md-7 col-lg-5 col-xl-4">
-                        <form class="validation-form" novalidate>
+                        <form class="validation-form" novalidate name="comModify" action="#">
                         <div id="individual" class="form-action show container-fluid align-items-center">
                             <div class="row align-items-center mt-4" id="frame">
                                 <!-- 아이디 -->
                                 <p class="fw-bold">아이디</p>
                                 <div class="col" id="chain">
-                                    <input type="text" maxlength="20" oninput="maxLengthCheck(this)" onkeyup="inputDataCheck(this.id)" name="id" id="id" class="form-control" placeholder="아이디" required readonly value="고객아이디">
+                                    <input type="text" maxlength="20" oninput="maxLengthCheck(this)" onkeyup="inputDataCheck(this.id)" name="id" id="id" class="form-control" placeholder="아이디" required readonly value="codling123">
                                         <div class="invalid-feedback">
                                             아이디를 입력하세요
                                         </div>      
@@ -54,36 +54,7 @@
                                             </div>
                                 </div>
                             </div>
-                            <!-- 이름-->
-                            <div class="row align-items-center mt-4 frame" >
-                                <div class="col">
-                                    <p class="fw-bold">인사 담당자 이름</p>
-                                        <input type="text" name="name" id = "name" class="form-control" placeholder="이름"  onkeyup="inputDataCheck(this.id)" required>
-                                            <div class="invalid-feedback">
-                                                이름을 입력하세요.
-                                            </div>
-                                </div>
-                            </div>
-                            <!-- 인사 담당자 전화번호 -->
-                            <div class="row align-items-center mt-4 frame" >
-                                <p class="fw-bold">인사 담당자 번호</p>
-                                    <div class="col-4">
-                                        <select class="form-select" id="phoneInd1" name="tel" onkeyup="inputDataCheck(this.id)" required>
-                                            <option selected value="010">010</option>
-                                            <option value="direct">직접입력</option>
-                                            <input type="text" id="selfBoxDirect" name="selfBoxDirect" class="form-control"/>
-                                            </select>
-                                                <div class="invalid-feedback">
-                                                    식별번호를 선택하세요.
-                                                </div>
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" id="phoneInd2" placeholder="'-'없이 입력"  onkeyup="inputDataCheck(this.id)" required>
-                                            <div class="invalid-feedback">
-                                                전화번호를 입력하세요.
-                                            </div>
-                                    </div>
-                            </div>
+            
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">회사명</p>
@@ -97,23 +68,23 @@
                                 <p class="fw-bold">회사 전화번호</p>
                                     <div class="col-4">
                                         <select class="form-select" id="localNum">
-                                            <option value="">02</option>
-                                            <option>031</option>
-                                            <option>032</option>
-                                            <option>033</option>
-                                            <option>041</option>
-                                            <option>042</option>
-                                            <option>043</option>
-                                            <option>044</option>
-                                            <option>051</option>
-                                            <option>052</option>
-                                            <option>053</option>
-                                            <option>054</option>
-                                            <option>055</option>
-                                            <option>061</option>
-                                            <option>062</option>
-                                            <option>063</option>
-                                            <option>064</option>
+                                            <option value="02">02</option>
+                                            <option value="031">031</option>
+                                            <option value="032">032</option>
+                                            <option value="033">033</option>
+                                            <option value="041">041</option>
+                                            <option value="042">042</option>
+                                            <option value="043">043</option>
+                                            <option value="044">044</option>
+                                            <option value="051">051</option>
+                                            <option value="052">052</option>
+                                            <option value="053">053</option>
+                                            <option value="054">054</option>
+                                            <option value="055">055</option>
+                                            <option value="061">061</option>
+                                            <option value="062">062</option>
+                                            <option value="063">063</option>
+                                            <option value="064">064</option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -132,7 +103,7 @@
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">사업자 등록번호</p>
-                                        <input type="text" name="companyNum" id="comNum" class="form-control" placeholder="사업자 등록번호"  onkeyup="inputDataCheck(this.id)" required>
+                                        <input type="text" name="companyNum" id="comNum" class="form-control" placeholder="000-00-00000"  onkeyup="inputDataCheck(this.id)" required maxlength="12">
                                             <div class="invalid-feedback">
                                                 사업자 등록번호를 입력하세요.
                                             </div>
