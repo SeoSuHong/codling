@@ -14,7 +14,7 @@ import codling.dao.CorporationDao;
 import codling.identity.Announcement;
 
 @WebServlet("/newcomer")
-public class newcomerServlet extends HttpServlet{
+public class NewcomerServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CorporationDao corpDao = new CorporationDao();
 

@@ -27,7 +27,7 @@ ul{list-style: none;}
 section{width: 1220px; margin: 0 auto; margin-top: 150px;}
 #resume>a{text-decoration: none;}
 .resumemg{width: 1220px; height: 270px; background: rgba(165, 227, 116, 0.3); border-radius: 10px;
-    display: flex; padding-left: 20px; padding-top: 20px;}
+    display: flex; padding-left: 20px; padding-top: 20px; margin-bottom: 20px}
 #resume>h1{font-size: 2.1rem; font-weight: bold; color: #373F57;
     margin-bottom: 60px;}
 .resumemgbox{width: 1220px; height: 110px; margin-left: 50px;}
@@ -36,7 +36,8 @@ section{width: 1220px; margin: 0 auto; margin-top: 150px;}
 .resumemgbox2>table{font-weight: bold; font-size: 1rem; color: #373F57; width: 800px;}
 /*지원 현황 button*/
 #applicant_status{background-color: #A5E374; color: white; float: right; margin-top: -50px; margin-right: 10px;
-        width: 80px; height: 40px; border: none; border-radius: 10px; justify-content: flex-end;}
+        width: 80px; height: 40px; border: none; border-radius: 10px; justify-content: flex-end; z-index: 1; 
+        text-decoration: none; display: flex; justify-content: center; align-items: center;}
 #applicant_status:hover {background-color: #8bdf4b;}
 
 /*공고 작성button*/

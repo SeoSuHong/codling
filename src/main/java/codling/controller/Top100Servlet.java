@@ -13,7 +13,7 @@ import codling.dao.CorporationDao;
 import codling.identity.Announcement;
 
 @WebServlet("/top100")
-public class top100Servlet extends HttpServlet{
+public class Top100Servlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CorporationDao corpDao = new CorporationDao();
 		

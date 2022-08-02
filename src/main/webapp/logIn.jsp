@@ -17,7 +17,7 @@
 <body>
     <div id="login">
     <header>
-        <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logo"></a>
+        <a href="index"><img src="img/logo.png" alt="logoimg" id="logo"></a>
     </header>
     <article>
         <p id="suv">서비스를 이용하시려면 로그인을 하세요</p>

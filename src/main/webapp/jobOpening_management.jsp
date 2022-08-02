@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +20,7 @@
             <div></div>
             <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
-                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> 고객이름</span> &nbsp;&nbsp;</div>
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> ${id}</span> &nbsp;&nbsp;</div>
                 </div>
         </div>
         <div id="profile-hover">
@@ -33,41 +34,56 @@
     <section>
         <article id="resume">
             <h1>공고 관리</h1>
-            <div class="resumemg" style="cursor: pointer;" onclick="location='job_accountment'">
-                <div class="resumemgbox">
-                    <p><span>내가올린 공고</span></p>
-                    <button type="button" id="applicant_status" onclick="location.href='applicant_status.jsp'"><span>지원 현황</span></button>
-                    <div class="resumemgbox2">
-                        <p><span>공고 제목</span></p>
-                        <table>
-                            <tr>
-                                <td>마감일자</td>
-                                <td>2022-07-12</td>
-                            </tr>
-                            <tr>
-                                <td>모집분야</td>
-                                <td>백엔드 00명 / 프론트 엔드 00명</td>
-                            </tr>
-                            <tr>
-                                <td>경력여부</td>
-                                <td>신입,경력 (1년이상) / 신입,경력(2년이상)</td>
-                            </tr>
-                            <tr>
-                                <td>직급/직책</td>
-                                <td>연구원 / 연구원, 주임연구원</td>
-                            </tr>
-                            <tr>
-                                <td>근무지 주소</td>
-                                <td>인천광역시 남동구 인주대로 593 엔타스 12층</td>
-                            </tr>
-                        </table>
-                        <div class="chbtn-box">
-                            <input type="button" name="update" id="update" value="수정" src="">
-                            <input type="submit" name="delete" id="delete" value="삭제" />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <c:if test="${not empty jobOpeningManagement}">
+	            <c:forEach var="job" items="${jobOpeningManagement}">
+		            <div class="resumemg" style="cursor: pointer;" onclick="location='job_accountment?no=${job.no}'">
+		                <div class="resumemgbox">
+		                    <p><span>내가올린 공고</span></p>
+		                    <a type="button" id="applicant_status" href='applicant_status.jsp'><span>지원 현황</span></a>
+		                    <div class="resumemgbox2">
+		                        <p><span>${job.title}</span></p>
+		                        <table>
+		                            <tr>
+		                                <td>모집일자</td>
+		                                <td>${job.startDate} ~ ${job.endDate}</td>
+		                            </tr>
+		                            <tr>
+		                                <td>모집분야</td>
+		                                <td>${job.name}</td>
+		                            </tr>
+		                            <tr>
+		                                <td>경력여부</td>
+		                                <td>${job.career}</td>
+		                            </tr>
+		                            <tr>
+		                                <td>직급/직책</td>
+		                                <td>${job.position}</td>
+		                            </tr>
+		                            <tr>
+		                                <td>근무지 주소</td>
+		                                <td>${job.region}</td>
+		                            </tr>
+		                        </table>
+		                        <div class="chbtn-box">
+		                            <input type="button" name="update" id="update" value="수정" src="">
+		                            <input type="submit" name="delete" id="delete" value="삭제" />
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+	            </c:forEach>
+            </c:if>
+            <c:if test="${empty jobOpeningManagement}">
+	            <div class="resumemg" style="cursor: pointer;" onclick="location='jobOpening_writing.jsp'">
+		                <div class="resumemgbox">
+		                    <p><span>내가올린 공고</span></p>
+		                    <div class="resumemgbox2">
+		                        <h2>올린 공고가 없습니다.</h2>
+		                        <p>공고를 작성해주세요</p>
+		                    </div>
+		                </div>
+		            </div>
+				</c:if>
             <div class="btn-res">
                 <a href="jobOpening_writing.jsp"><button action="" id="btn-res"><span class="btn-resspan">공고 작성</span></button></a>
             </div>

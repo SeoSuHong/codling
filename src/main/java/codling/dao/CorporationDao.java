@@ -10,6 +10,7 @@ import codling.identity.Announcement;
 import codling.identity.Corporation;
 import codling.identity.Field;
 import codling.identity.JobOpening;
+import codling.identity.JobOpeningManagement;
 
 public class CorporationDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
@@ -269,6 +270,37 @@ public class CorporationDao {
 					
 					return list;
 				}
-//				
-//				public ArrayList<>
+				
+				//공고관리 공고불러오기
+				public ArrayList<JobOpeningManagement> jobOpeningManagement(String id) {
+					ArrayList<JobOpeningManagement> list = new ArrayList<JobOpeningManagement>();
+					String query = "SELECT J.title, J.startDate, J.endDate, F.name, F.career, F.position, J.region, J.no "
+							+ "FROM field F "
+							+ "JOIN jobopening J ON F.jobopening_no = J.no "
+							+ "WHERE J.corporation_id= ? "
+							+ "ORDER BY J.no";
+					try {
+						conn = getConnection();
+						pstmt = conn.prepareStatement(query);
+						pstmt.setString(1, id);
+						rs = pstmt.executeQuery();
+						
+						while(rs.next()) {
+							
+							String title = rs.getString("title");
+							String startDate = rs.getString("startDate");
+							String endDate = rs.getString("endDate");
+							String name = rs.getString("name");
+							String career = rs.getString("career");
+							String position = rs.getString("position");
+							String region = rs.getString("region");
+							int no = rs.getInt("no");
+							JobOpeningManagement jobOpeningManagement = new JobOpeningManagement(title, startDate, endDate, name, career, position, region, no);
+							list.add(jobOpeningManagement);
+						}
+					} catch (Exception e) {
+						System.out.println("jobOpeningManagement Error : " + e.getMessage());
+					}
+					return list;
+				}
 }
