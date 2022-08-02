@@ -26,6 +26,7 @@ public class Job_accountmentServlet extends HttpServlet {
 		request.setAttribute("corporation", corporation);
 		request.setAttribute("jobOpening", jobOpening);
 		request.setAttribute("field", field);
+		request.setAttribute("replaceChar", "\n"); // 줄바꿈 <br>처리를 위해
 		
 		request.getRequestDispatcher("job_accountment.jsp").forward(request, response);
 	}

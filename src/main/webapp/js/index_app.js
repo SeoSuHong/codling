@@ -129,3 +129,15 @@ $(function(){
             $(this).stop().slideUp();
     });
 });
+
+// hover시 조회수 show
+$(function() {
+    $('.col').hover( function() {
+        if($("#count").css("display") == "none") {
+        $('#count').css('display', 'block');
+        }       
+    },function(){
+        $('#count').css('display', 'none');
+        });
+
+   });

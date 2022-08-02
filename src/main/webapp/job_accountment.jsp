@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<% pageContext.setAttribute("replaceChar", "\n"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,12 +16,12 @@
     <header>
     <div class="header_Wrap header_top">
         <div class="logo-default">
-            <a href="index.jsp"><img src="img/logo.png"></a>
+            <a href="index"><img src="img/logo.png"></a>
         </div>
         <ul>
-            <li><a href="newcomer.jsp">신입채용</a></li>
-            <li><a href="career.jsp">경력채용</a></li>
-            <li><a href="top100.jsp">Top100</a></li>
+            <li><a href="newcomer">신입채용</a></li>
+            <li><a href="career">경력채용</a></li>
+            <li><a href="top100">Top100</a></li>
         </ul>
         <form class="search_box" id="searbox">
             <input type="text" name="searchbox" placeholder="검색어를 입력하세요.">
@@ -42,7 +41,7 @@
                             
                             <span>경력 </span>
                 			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
-                				<c:if test="${fn:length(field.career) <= 5}">
+                				<c:if test="${fn:length(field.career) <= 3}">
                 					<c:if test="${career == '신입'}">
 			                			<span>${career}</span>&ensp;&ensp;
 			                		</c:if>
@@ -51,7 +50,7 @@
 			                		</c:if>
 			                	</c:if>
 			                
-			                	<c:if test="${fn:length(field.career) > 5}">
+			                	<c:if test="${fn:length(field.career) > 3}">
 			                		<c:if test="${career == '신입'}">
 			                			<span>${career} or</span>
 			                		</c:if>
@@ -85,7 +84,7 @@
                 
                 <span>경력 </span>
                 <c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
-             		<c:if test="${fn:length(field.career) <= 5}">
+             		<c:if test="${fn:length(field.career) <= 3}">
              			<c:if test="${career == '신입'}">
                 			<span class="corpCarrer">${career}</span>&ensp;&ensp;
                 		</c:if>
@@ -94,7 +93,7 @@
                 		</c:if>
                 	</c:if>
                 
-                	<c:if test="${fn:length(field.career) > 5}">
+                	<c:if test="${fn:length(field.career) > 3}">
                 		<c:if test="${career == '신입'}">
                 			<span class="corpCarrer">${career} or</span>
                 		</c:if>
@@ -188,15 +187,55 @@
         <div class="jobs">
             <dl>
                 <dt><img src="img/logo.png" alt=""></dt>
-                <dd>Frontend 개발자 모집</dd>
-                <dd>Codling corp.</dd>
-                <dd>서울 강남</dd>
+                <dd>${jobOpening.title}</dd>
+                <dd>${corporation.corporateName}</dd>
+                <dd>
+                	<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+            			<c:if test="${fn:length(field.career) <= 3}">
+              				<c:if test="${career == '신입'}">
+	                			<span>${career}</span>&ensp;&ensp;
+	                		</c:if>
+	                		<c:if test="${career != '신입'}">
+	                			<span>${career}년↑</span>&ensp;&ensp;
+	                		</c:if>
+	                	</c:if>
+	                
+	                	<c:if test="${fn:length(field.career) > 3}">
+	                		<c:if test="${career == '신입'}">
+	                			<span>${career} or</span>
+	                		</c:if>
+	                		<c:if test="${career != '신입'}">
+	                			<span>${career}년↑</span>&ensp;&ensp;
+	                		</c:if>
+	                	</c:if>
+			        </c:forTokens>
+                </dd>
             </dl>
             <dl>
                 <dt><img src="img/logo.png" alt=""></dt>
-                <dd>Frontend 개발자 모집</dd>
-                <dd>Codling corp.</dd>
-                <dd>서울 강남</dd>
+                <dd>${jobOpening.title}</dd>
+                <dd>${corporation.corporateName}</dd>
+                <dd>
+                	<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+            			<c:if test="${fn:length(field.career) <= 3}">
+              				<c:if test="${career == '신입'}">
+	                			<span>${career}</span>&ensp;&ensp;
+	                		</c:if>
+	                		<c:if test="${career != '신입'}">
+	                			<span>${career}년↑</span>&ensp;&ensp;
+	                		</c:if>
+	                	</c:if>
+	                
+	                	<c:if test="${fn:length(field.career) > 3}">
+	                		<c:if test="${career == '신입'}">
+	                			<span>${career} or</span>
+	                		</c:if>
+	                		<c:if test="${career != '신입'}">
+	                			<span>${career}년↑</span>&ensp;&ensp;
+	                		</c:if>
+	                	</c:if>
+			        </c:forTokens>
+                </dd>
             </dl>
             <dl>
                 <dt><img src="img/logo.png" alt=""></dt>
