@@ -64,9 +64,6 @@
                         <div class="chbtn-box">
                             <input type="button" name="update" id="update" value="수정" src="">
                             <input type="submit" name="delete" id="delete" value="삭제" />
-                            <!-- <input type="submit" value="삭제" onclick="delok()" /> -->
-                            <!-- <button name="delete" id="delete" onclick="javascript:btn('공고를 정말로 삭제 하시겠습니까? 삭제를 원하시면 확인버튼을 눌러주세요.' )"> 삭제 </button> -->
-                            <!-- <input type="button" name="delete" id="delete" value="삭제" > -->
                         </div>
                     </div>
                 </div>
@@ -74,7 +71,7 @@
             <div class="btn-res">
                 <a href="jobOpening_writing.jsp"><button action="" id="btn-res"><span class="btn-resspan">공고 작성</span></button></a>
             </div>
-            
+         </article>
     </section>
     <footer>
     </footer>

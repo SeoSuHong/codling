@@ -65,6 +65,7 @@
                                 <option value="초대졸">졸업예정</option>
                                 <option value="대졸">재학</option>
                                 <option value="석사">휴학</option>
+                            </select>
                         </p></td>
                      </tr>
                      <tr>
@@ -83,14 +84,16 @@
                 <table class="edu_level_info">                 
                      <button type="button" class="edu_del" onclick="delForm(this);">삭제</button>
                      <tr>
-                         <td><p>학력 *<select class="edu_select" required>
+                         <td><p>학력 * 
+                            <select class="edu_select" required>
                             <option value="" disabled selected>선택</option>
-                            <option value="대학2년">대학2년</option>
-                            <option value="대학4년">대학4년</option>
-                            <option value="대학(석사)">대학(석사)</option>
-                            <option value="대학(박사)">대학(박사)</option>
-                            <option value="고등학교">고등학교</option>
-                        </select></p></td>
+                            <option value="고졸">고졸</option>
+                            <option value="초대졸">대학2년 > 초대졸</option>
+                            <option value="대졸">대학4년 > 대졸</option>
+                            <option value="석사">석사</option>
+                            <option value="박사">박사</option>
+                            </select>
+                        </p></td>
                      </tr>
                      <tr>
                         <td><p>학교명 *<input name="uni_name" id="uni_name" class="infoForm2" placeholder="학교명을 입력하세요"></p></td>
@@ -103,6 +106,7 @@
                                 <option value="초대졸">졸업예정</option>
                                 <option value="대졸">재학</option>
                                 <option value="석사">휴학</option>
+                            </select>
                         </p></td>
                      </tr>
                      <tr>
@@ -154,24 +158,7 @@
                     </tr>
                     </form>
                 </table> 
-                <!-- <br><br><hr>
-            <div id="project_ex">     
-                <h3>프로젝트 수행 이력</h3>
-                <table>
-                <form action="#">
-                    <tr>
-                        <td><p>프로젝트명 <input name="project_name" id="project_name" class="infoForm6" placeholder=" 프로젝트 이름"></p></td>
-                    </tr>
-                    <tr>
-                        <td><p id="qqq3"><span>수행기간 * </span><input type="date" name="project_start" class="infoForm6">
-                        <span class="qqqtext"> ~ </span><input type="date" name="project_end" class="infoForm6"></p></td>
-                    </tr>
-                    <tr>
-                        <td><p>상세내용<textarea placeholder=" 프로젝트에 대한 설명을 자유롭게 기술하세요" class="project_detail"></textarea></p></td>
-                    </tr>        
-                </form>
-                </table>
-            </div> -->
+        	</div>
         </div>
         <div id="experienced_info" class="list_file_tag"> 
             <div id="experiencebox"> 
@@ -196,24 +183,6 @@
                     </tr>
                     </form>
                 </table> 
-                <!-- <br><br><hr>
-            <div id="project_ex">     
-                <h3>프로젝트 수행 이력</h3>
-                <table>
-                <form action="#">
-                    <tr>
-                        <td><p>프로젝트명 <input name="project_name" id="project_name" class="infoForm6" placeholder=" 프로젝트 이름"></p></td>
-                    </tr>
-                    <tr>
-                        <td><p id="qqq3"><span>수행기간 * </span><input type="date" name="project_start" class="infoForm6">
-                        <span class="qqqtext"> ~ </span><input type="date" name="project_end" class="infoForm6"></p></td>
-                    </tr>
-                    <tr>
-                        <td><p>상세내용</p><textarea placeholder=" 프로젝트에 대한 설명을 자유롭게 기술하세요" class="project_detail"></textarea></td>
-                    </tr>              
-                </form>
-                </table>
-            </div> -->
             </div> 
         </div>
     </section>
@@ -287,21 +256,10 @@
             <div id="portfoliobox"> 
                 <table>
                 <form action="#"><br><br>
-                    <!-- <div class="filebox">
-                        <h3>개인첨부파일</h3>
-                        <label for="ex_filename" id="filename1" class="fileName"></label> 
-                        <input type="text" placeholder="url">
-                        <input type="file" id="ex_filename" class="file_target" value="업로드" name="upFile">
-                    </div> -->
                     <input type="text" class="portfolio_title" placeholder=" 포트폴리오 이름"><br><br>
                     <button type="button" class="filebtn">첨부파일</button>
                     <button type="button" class="urlbtn">url</button><br><br>
                     <input type="text" class="url" placeholder="http://www.naver.com">
-                    <!-- <div class="filebox">
-                        <label for="file">파일찾기</label> 
-                        <input type="file" id="file" onchange="javascript:document.getElementById('fileName').value = this.value">
-                        <input type="text" class="upload_name" value="첨부파일" readonly>       
-                    </div> -->
                 </form>
                 </table>
             </div>
@@ -315,17 +273,6 @@
                     <button type="button" class="filebtn">첨부파일</button>
                     <button type="button" class="urlbtn">url</button><br><br>
                     <input type="text" class="url" placeholder="http://www.naver.com">
-                    <!-- <div class="filebox">
-                        <h3>개인첨부파일</h3>
-                        <label for="ex_filename" id="filename1" class="fileName"></label> 
-                        <input type="text" placeholder="url">
-                        <input type="file" id="ex_filename" class="file_target" value="업로드" name="upFile">
-                    </div> -->
-                    <!-- <div class="filebox">
-                        <label for="file">파일찾기</label> 
-                        <input type="file" id="file" onchange="javascript:document.getElementById('fileName').value = this.value">
-                        <input type="text" class="upload_name" value="첨부파일" readonly>       
-                    </div> -->
                 </form>
                 </table>
             </div>
@@ -339,17 +286,6 @@
                 <input type="file" id="ex_filename" class="filename">
             </div> 
         </div>
-        <!-- <div class="file_box2">
-            <div class="upload-name">
-                <label for="wr_file1" id="fileName1" class="fileName"></label>
-                <input type="file" id="wr_file1" class="file_target" value="업로드" name="upFile" onchange="javascript:document.getElementById('fileName1').value = this.value">
-            </div>
-        </div>
-        <div class="filebox">
-            <input class="upload-name" value="첨부파일" placeholder="첨부파일">
-            <label for="file">파일찾기</label> 
-            <input type="file" id="file">
-        </div> -->
     </section>
     <!--완료버튼-->
     <input type="submit" value="완료" class="resume_submit">
