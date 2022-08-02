@@ -16,12 +16,12 @@
     <header>
     <div class="header_Wrap header_top">
         <div class="logo-default">
-            <a href="index.jsp"><img src="img/logo.png"></a>
+            <a href="index"><img src="img/logo.png"></a>
         </div>
         <ul>
-            <li><a href="newcomer.jsp">신입채용</a></li>
-            <li><a href="career.jsp">경력채용</a></li>
-            <li><a href="top100.jsp">Top100</a></li>
+            <li><a href="newcomer">신입채용</a></li>
+            <li><a href="career">경력채용</a></li>
+            <li><a href="top100">Top100</a></li>
         </ul>
         <form class="search_box" id="searbox">
             <input type="text" name="searchbox" placeholder="검색어를 입력하세요.">
