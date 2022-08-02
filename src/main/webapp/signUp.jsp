@@ -129,13 +129,7 @@
                             <div class="row align-items-center mt-4" id="frame">
                                 <p class="fw-bold">전화번호</p>
                                     <div class="col-4">
-<<<<<<< HEAD
-                                        <select class="form-select" id="phoneInd1"  onKeyUp="inputDataCheck(this.id)" required>
-                                            <option selected>010</option>
-                                            </select>
-=======
                                         <input class="form-control" id="010" readonly value="010">
->>>>>>> 우진
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" id="phoneInd2" placeholder="'-'없이 입력"  onKeyUp="inputDataCheck(this.id)" required>
