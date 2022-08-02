@@ -17,7 +17,7 @@
     <header>
         <div id="menu-bar">
             <div></div>
-            <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
+            <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
                     <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> 고객이름</span> &nbsp;&nbsp;</div>
                 </div>
@@ -33,7 +33,7 @@
     <section>
         <article id="resume">
             <h1>공고 관리</h1>
-            <a href="job_accountment"><div class="resumemg">
+            <div class="resumemg" style="cursor: pointer;" onclick="location='job_accountment'">
                 <div class="resumemgbox">
                     <p><span>내가올린 공고</span></p>
                     <button type="button" id="applicant_status" onclick="location.href='applicant_status.jsp'"><span>지원 현황</span></button>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                 </div>
-            </div></a>
+            </div>
             <div class="btn-res">
                 <a href="jobOpening_writing.jsp"><button action="" id="btn-res"><span class="btn-resspan">공고 작성</span></button></a>
             </div>
