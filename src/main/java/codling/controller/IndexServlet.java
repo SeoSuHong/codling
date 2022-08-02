@@ -14,6 +14,7 @@ import codling.identity.Announcement;
 
 @WebServlet("/index")
 public class IndexServlet extends HttpServlet{
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CorporationDao corpDao = new CorporationDao();
 		

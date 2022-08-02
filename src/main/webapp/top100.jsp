@@ -70,14 +70,13 @@
 </header>
     <section>
       <c:if test="${not empty announcement}">
+      <c:forEach var="anno" items="${announcement}">
       <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col" style="cursor: pointer;" onclick="location='job_accountment'">
+        <div class="col" style="cursor: pointer;" onclick="location='job_accountment?no=${anno.no}'">
           <div class="card">
             <img src="img/logo.png" class="card-img-top" alt="...">
-            <!-- 공고 -->
-            <c:forEach var="anno" items="${announcement}">
 	            <div class="card-body">
-	            	<p id="corporname">${anno.corporateName}</p>
+	            	<p id="corporname">${anno.corporateName}<span id="count"><img src="img/eyes.png">&nbsp; ${anno.count}</span></p>
 	              <h5 class="card-title">${anno.title}</h5>
 	              <div class="card-text">
 	              <!-- forTokens -->
@@ -115,10 +114,10 @@
 	              	</p>
 	              </div>
 	            </div>
-            </c:forEach>
-          </div>
+          	</div>
         </div>
-      </div>
+      	</div>
+      	</c:forEach>
       </c:if>
     </section>
     <footer>

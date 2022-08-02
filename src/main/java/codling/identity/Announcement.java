@@ -6,16 +6,20 @@ public class Announcement {
 	private String stack;
 	private String career;
 	private String pay;
+	private int no;
+	private int count;
 	
 	public Announcement() {}
 
-	public Announcement(String corporateName, String title, String stack, String career, String pay) {
+	public Announcement(String corporateName, String title, String stack, String career, String pay, int no, int count) {
 		super();
 		this.corporateName = corporateName;
 		this.title = title;
 		this.stack = stack;
 		this.career = career;
 		this.pay = pay;
+		this.no = no;
+		this.count = count;
 	}
 
 	public String getCorporateName() {
@@ -57,6 +61,21 @@ public class Announcement {
 	public void setPay(String pay) {
 		this.pay = pay;
 	}
+
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
+	}
 	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
 	
 }
