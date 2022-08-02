@@ -1,15 +1,14 @@
 package codling.identity;
 
 public class Individual {
-	private String id, position, password, name, birth, gender, email, phone, address, resumeTitle;
+	private String id, password, name, birth, gender, email, phone, address, resumeTitle;
 	
 	public Individual() {}
 
-	public Individual(String id, String position, String password, String name, String birth, String gender,
+	public Individual(String id, String password, String name, String birth, String gender,
 			String email, String phone, String address, String resumeTitle) {
 		super();
 		this.id = id;
-		this.position = position;
 		this.password = password;
 		this.name = name;
 		this.birth = birth;
@@ -27,15 +26,7 @@ public class Individual {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
+	
 	public String getPassword() {
 		return password;
 	}

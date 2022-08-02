@@ -23,7 +23,7 @@
 .apply_bar{width: 50px; height: 10px; margin: 10px 10px; background-color: #D9D9D9; border-style: none; border-radius: 5px;}
 /*loginbtn*/
 #login-btn{text-decoration-line: none;}
-.log{width: 80px; display: inline; float: right; display: block;
+.log{width: 80px; display: inline; float: right;
     border: 3px solid #A5E374; border-radius: 5px; background-color: white;color: #8D8D8D; 
     font-weight: bold; font-size: 1.05rem;}
 #log{ margin-left: 179.9px;}
@@ -31,12 +31,12 @@
 .log:hover{background-color: #A5E374;color: white; font-size: 1.05rem;}
 /*login-view*/
 
-.profile-box{display: none !important; margin-top: 10px;}
+.profile-box{margin-top: 10px;}
 #hover-box{margin-left: 128px;}
 #login_header{display: flex; align-items: center; margin-top: 100px;}
 #menu-bar>div{width: 131.5px; height: 5px;}
 #profilelogo{width: 35px; height: 35px; margin: 5px;}
-#profile-box{display: flex; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}
+#profile-box{display: block; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}
 #hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
 .pfhover{border: 1px solid #cecece; width: 150px; height: 160px; float: right;
     border-radius: 10px;  background-color: white; position: relative; top: 10px; right: 0px;

@@ -24,4 +24,30 @@ $(function() {
       $(".com_log").show()
       $(".com_log").prop("display","block")
     })
-    });
+});
+
+// 개인회원 로그인 공백 체크
+function perCheck() {
+	if(document.perLogFrm.perId.value == "") {
+		alert("아이디를 입력해 주세요.");
+		document.perLogFrm.perId.focus();
+	} else if(document.perLogFrm.perPassword.value == "") {
+		alert("패스워드를 입력해 주세요.");
+		document.perLogFrm.perPassword.focus();
+	} else {
+		document.perLogFrm.submit();
+	}
+}
+
+// 기업회원 로그인 공백 체크
+function comCheck() {
+	if(document.comLogFrm.comId.value == "") {
+		alert("아이디를 입력해 주세요.");
+		document.comLogFrm.comId.focus();
+	} else if(document.comLogFrm.comPassword.value == "") {
+		alert("패스워드를 입력해 주세요.");
+		document.comLogFrm.comPassword.focus();
+	} else {
+		document.comLogFrm.submit();
+	}
+}

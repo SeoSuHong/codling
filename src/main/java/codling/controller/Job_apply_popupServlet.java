@@ -20,7 +20,7 @@ public class Job_apply_popupServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.print("<script>");
 		out.print("alert('공고 지원이 완료되었습니다.')");
-		out.print("<script>");
+		out.print("</script>");
 		request.getRequestDispatcher("job_accountment").forward(request, response);
 	}
 
