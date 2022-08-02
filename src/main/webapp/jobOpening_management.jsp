@@ -77,7 +77,16 @@
 		                            </tr>
 		                            <tr>
 		                                <td>직급/직책</td>
-		                                <td>${job.position}</td>
+		                                <td>
+			                                <c:forTokens var="position" items="${job.position}" delims=" / " varStatus="pst">
+			                                	<c:if test="${!pst.last}">
+			                                		${position},&nbsp;
+			                                	</c:if>
+			                                	<c:if test="${pst.last}">
+			                                		${position}
+			                                	</c:if>
+			                                </c:forTokens>
+										</td>
 		                            </tr>
 		                            <tr>
 		                                <td>근무지 주소</td>
