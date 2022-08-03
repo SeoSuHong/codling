@@ -14,11 +14,25 @@
 </head>
 <body>
 	<header>
-		<div class="logo-default">
+		<!-- <div class="logo-default">
         	<div class="areaWrap"></div>
             <a href="index"><img src="img/logo.png"></a>
         	<button type="button" id="log" onclick="location.href='index'">Login</button>
-    	</div>
+    	</div> -->
+    	<div id="menu-bar">
+            <div></div>
+            <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
+                <div id="profile-box">
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span class="name"> ${corporation.corporateName} 님</span>&nbsp;&nbsp;</div>
+                </div>
+        </div>
+        <div id="profile-hover">
+            <ul>
+                <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
+                <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
+                <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+            </ul>
+        </div>
 	</header>
 	<div id="downmenu">
     	<nav id="downupmenu">

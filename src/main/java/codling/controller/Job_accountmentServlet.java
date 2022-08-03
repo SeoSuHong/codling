@@ -33,6 +33,6 @@ public class Job_accountmentServlet extends HttpServlet {
 		request.setAttribute("field", field);
 		request.setAttribute("replaceChar", "\n"); // 줄바꿈 <br>처리를 위해
 		
-		request.getRequestDispatcher("job_accountment.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/corporation/job_accountment.jsp").forward(request, response);
 	}
 }

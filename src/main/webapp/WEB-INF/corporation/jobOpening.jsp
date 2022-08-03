@@ -27,7 +27,46 @@
             <input type="text" name="searchbox" placeholder="검색어를 입력하세요.">
         </form>
             <input type="button" form="searbox" class="search">
-            <button type="button" id="log" onclick="location.href='login'">Login</button>
+            <c:if test="${empty indiId && empty corpId}">
+            	<button type="button" id="log" onclick="location.href='login'">Login</button>
+            </c:if>
+            <c:if test="${not empty indiId && empty corpId}">
+            
+            </c:if>
+            <c:if test="${empty indiId && not empty corpId}">
+            
+            </c:if>
+            
+            <c:if test="${empty indiId && empty corpId}">
+            	<a href="login" id="login-btn"><button type="button" id="scroll-log" class="log">Login</button></a>
+            </c:if>
+            
+            <c:if test="${not empty indiId && empty corpId}">
+	            <div id="profile-box" class="profile-box">
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
+	              <div id="scroll-profile-hover" class="pfhover">
+	                <ul>
+	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
+	                    <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
+	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+	                </ul>
+	              </div>
+	            </div>
+            </c:if>
+            
+            <c:if test="${empty indiId && not empty corpId}">
+	            <div id="profile-box" class="profile-box">
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &nbsp;&nbsp;</div>
+	              <div id="scroll-profile-hover" class="pfhover">
+	                <ul>
+	                    <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
+	                    <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
+	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+	                </ul>
+	              </div>
+	            </div>
+            </c:if>
+            
     </div>
 </header>
 <div id="downmenu">
@@ -69,7 +108,15 @@
                             </c:if>
                         </div>
                     </div>
-                <div class="apply"><a onclick="popUp()">지원하기</a></div>
+                <c:if test="${not empty indiId}">
+                	<div class="apply"><a onclick="popUp()">지원하기</a></div>
+                </c:if>
+                <c:if test="${not empty corpId}">
+                	<div class="apply"></div>
+                </c:if>
+                <c:if test="${empty indiId && empty corpId}">
+                	<div class="apply"><a onclick="alert('공고 지원은 개인회원만 가능합니다.\n로그인 후 이용하시기 바랍니다.'); location.href = 'login'">지원하기</a></div>
+                </c:if>
             </div>
         </div>
     </nav>
@@ -111,7 +158,15 @@
                 </c:if>
             </div>
             <div id="apply_box">
-                <div class="apply" id="top_apply"><a href="#" onclick="popUp()">지원하기</a></div>
+            	<c:if test="${not empty indiId}">
+                	<div class="apply" id="top_apply"><a onclick="popUp()">지원하기</a></div>
+                </c:if>
+                <c:if test="${not empty corpId}">
+                	<div class="apply" id="top_apply"></div>
+                </c:if>
+                <c:if test="${empty indiId && empty corpId}">
+                	<div class="apply" id="top_apply"><a onclick="alert('공고 지원은 개인회원만 가능합니다.\n로그인 후 이용하시기 바랍니다.'); location.href = 'login'">지원하기</a></div>
+                </c:if>
             </div>
         </div>
     </div>

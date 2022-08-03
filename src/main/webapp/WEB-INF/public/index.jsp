@@ -31,7 +31,7 @@
             <input type="button" form="searbox" class="btn-search"></input>
             
             <c:if test="${empty indiId && empty corpId}">
-            	<a href="login" id="login-btn"><button type="button" id="scroll-log" class="log">Login</button></a>
+            	<button type="button" id="scroll-log" class="log" onclick="location.href = 'login'">Login</button>
             </c:if>
             
             <c:if test="${not empty indiId && empty corpId}">
@@ -53,7 +53,7 @@
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
-	                    <li id="resume"><a href="jobOpening_management.jsp"><span>공고 관리</span></a></li>
+	                    <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
 	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
 	                </ul>
 	              </div>
@@ -69,7 +69,7 @@
           <button type="button" form="searbox" class="btn-search"></button>
 
           <c:if test="${empty indiId && empty corpId}">
-          	<a href="login" id="login-btn"><button type="button" id="log" class="log">Login</button></a>
+          	<button type="button" id="log" class="log" onclick="location.href = 'login'">Login</button>
           </c:if>
           
           <c:if test="${not empty indiId && empty corpId}">
@@ -87,11 +87,11 @@
           
           <c:if test="${empty indiId && not empty corpId}">
 	          <div id="profile-box" class="profile-box">
-	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &nbsp;&nbsp;</div>
+	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &ensp;&ensp;</div>
 	            <div id="profile-hover" class="pfhover">
 	              <ul>
 	                  <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
-	                  <li id="resume"><a href="jobOpening_management.jsp"><span>공고 관리</span></a></li>
+	                  <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
 	                  <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
 	              </ul>
 	            </div>

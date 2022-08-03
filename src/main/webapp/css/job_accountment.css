@@ -31,6 +31,8 @@ input[type="button"] {
 }
 
 /*header*/
+header{margin: 0 auto; width: 1220px;}
+#menu-bar{width: 1220px; margin: 0 auto; margin-top: 25px;  display: flex; justify-content: space-between; align-items: center;}
 .logo-default {
 	display: flex;
 	justify-content: space-between;
@@ -39,31 +41,25 @@ input[type="button"] {
 	margin: 0 auto;
 	align-items: center;
 }
-
-.logo-default img {
-    margin-top: 5px;
-    width: 253.32px;
-    height: 56.82px;
-}
-
-.areaWrap {
-	width: 80px;
-}
-
 #downmenu{display: flex; justify-content: center;
     height: 50px;}
-
-.header_Wrap {
-    margin: 0 auto;
-    padding: 0;
-    width: 1220px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    justify-content: center;
-    right: 8vw;
-}
+#menu-bar>div{height: 5px;}
+#logoimg{width: 253.32px; height: 56.82px;}
+#profilelogo{width: 35px; height: 35px; margin: 5px;}
+#profile-box{display: flex; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}
+.name{position: relative; top: -15px;}
+#hover-box{height: 45px;}
+#hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
+#profile-hover{border: 1px solid #cecece; width: 150px; height: 160px; border-radius: 10px; position: fixed; top: 85px; right: 350px;}
+#profile-hover>ul{margin-top: 0px;}
+#profile-hover>ul>li>a{color: #656978; font-size: 1rem;
+    width: 150px; height: 40px; display: flex; align-items: center; margin-left: -40px;
+    margin-top: 10px; font-weight: bold;}
+#profile-hover>ul>li>a>span{ margin-left: 10px;}
+#mypage>a:hover{background-color: #e6e6e6;}
+#resume>a:hover{background-color: #e6e6e6;}
+#logout>a:hover{background-color: #e6e6e6;}
+ul{list-style: none;}
 
 /*nav*/
 nav {
