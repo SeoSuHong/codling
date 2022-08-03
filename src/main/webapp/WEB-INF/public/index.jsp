@@ -147,9 +147,9 @@
         </div>
       </article>
       <!-- 일반광고 -->
-      <c:if test="${not empty announcement}">
-      <c:forEach var="anno" items="${announcement}">
+
       <div class="row row-cols-1 row-cols-md-4 g-4">
+      <c:forEach var="anno" items="${announcement}">
         <div class="col" style="cursor: pointer;" onclick="location='jobOpening?no=${anno.no}'">
           <div class="card">
             <img src="img/logo.png" class="card-img-top" alt="...">
@@ -170,7 +170,7 @@
 	              	</c:forTokens>
 	              	</p>
 	              	<p class="contents">
-	              	<c:forTokens var="career" items="${anno.career}" delims=" / " varStatus="st">
+					<c:forTokens var="career" items="${anno.career}" delims=" / " varStatus="st">
 		              	<c:if test="${fn:length(anno.career) <= 3}">
 		              		<c:if test="${career == '신입'}">
 		              			${career} &emsp;&emsp;&emsp;&emsp;
@@ -187,16 +187,17 @@
 		              			${career}년↑ &emsp;&emsp;
 		              		</c:if>
 		              	</c:if>
-		              	</c:forTokens>
+					</c:forTokens>
 		              	<span>${anno.pay}만원</span>
 	              	</p>
 	              </div>
 	            </div>
           	</div>
         </div>
+        </c:forEach>
       	</div>
-      	</c:forEach>
-      </c:if>
+      	
+
     </section>
     <footer>
       <a href="#up"><img src="img/footerLogo.png"></a>

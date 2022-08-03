@@ -49,8 +49,8 @@ header {
     height: 56.82px;
 }
 
-.logo-default{display: flex; justify-content: center;
-    height: 100px; align-items: center;}
+.logo-default{display: flex;}
+
 #downmenu{display: flex; justify-content: center;
     height: 50px;}
 
@@ -193,6 +193,9 @@ section{width: 1220px; margin: 0 auto; }
     justify-content: center;
 }
 
+#title_box{display: flex; justify-content: space-between;
+    height: 100px; align-items: center;}
+
 .titleWrap {
     display: flex;
     justify-content: center;
@@ -203,22 +206,26 @@ section{width: 1220px; margin: 0 auto; }
 }
 
 .title_container {
-    margin-top: 1rem;
+	width: 580px;
     height: 100px;
     align-items: flex-start;
     color: #373F57;
     margin-top: 45px;
     display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .top_title_container {
+	width: 800px;
     height: 100px;
-    align-items: flex-start;
     color: #373F57;
     margin-top: 15px;
-    display: inline-block;
     display: flex;
+    justify-content: space-between;
 }
 #top_title_container{
+	width: 580px;
     margin-top: 10px;
     float: left;
 }
@@ -247,7 +254,7 @@ section{width: 1220px; margin: 0 auto; }
 }
 
 .apply {
-    width: 200px;
+    width: 170px;
     font-size: 2rem;
     font-weight: bold;
     background-color: #a5e374;
@@ -258,10 +265,6 @@ section{width: 1220px; margin: 0 auto; }
     left: 10rem;
     bottom: 3rem;
     line-height: 4rem;
-    margin-left: 166.3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .apply:hover{
@@ -298,25 +301,20 @@ article{width: 1220px; display: flex; justify-content: center;}
 }
 
 .corpStacks {
-    margin-top: -30px;
     margin-bottom: 50px;
-    display: flex;
+    line-height: 50px;
 }
 
 .stack {
-    flex-wrap: wrap;
-    flex-direction: column;
     margin-top: 2rem;
-    margin-right: 2rem;
-    font-size: 1rem;
-    font-weight: 300;
-    width: 6rem;
+    margin-right: 1rem;
+    padding: 4px 12px;
     height: 2rem;
     background-color: #A5E374;
     text-align: center;
     color: white;
-    font-weight: bold;
     font-size: 1.3rem;
+    font-weight: bold;
     border-radius: 1rem;
 }
 #hr{
