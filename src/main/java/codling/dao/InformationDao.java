@@ -114,7 +114,8 @@ public class InformationDao {
 		}
 		return map;
 	}
-
+	
+	// 개인회원 삭제
 	public boolean deleteIndividual(String id) {
 		boolean result = false;
 		String query = "DELETE FROM individual WHERE id = ?";
@@ -133,6 +134,7 @@ public class InformationDao {
 		return result;
 	}
 	
+	// 기업회원 삭제
 	public boolean deleteCorporation(String id) {
 		boolean result = false;
 		String query = "DELETE FROM corporation WHERE id = ?";

@@ -13,7 +13,7 @@ import codling.dao.CorporationDao;
 import codling.identity.Announcement;
 
 @WebServlet("/career")
-public class careerServlet extends HttpServlet{
+public class CareerServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CorporationDao corpDao = new CorporationDao();
 		
@@ -21,6 +21,6 @@ public class careerServlet extends HttpServlet{
 		
 		request.setAttribute("announcement", announcement);
 		
-		request.getRequestDispatcher("career.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/public/career.jsp").forward(request, response);
 	}
 }

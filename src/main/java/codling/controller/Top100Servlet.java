@@ -21,6 +21,6 @@ public class Top100Servlet extends HttpServlet{
 		
 		request.setAttribute("announcement", announcement);
 		
-		request.getRequestDispatcher("top100.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/public/top100.jsp").forward(request, response);
 	}
 }

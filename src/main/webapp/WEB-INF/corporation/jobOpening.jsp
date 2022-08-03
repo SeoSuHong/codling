@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/job_accountment.css">
+    <link rel="stylesheet" href="css/jobOpening.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=370fa568d4acbeb9115655e735792c45&libraries=services"></script>
 </head>
 <body>
@@ -27,7 +27,46 @@
             <input type="text" name="searchbox" placeholder="검색어를 입력하세요.">
         </form>
             <input type="button" form="searbox" class="search">
-            <a href="logIn.jsp" id="login-btn"><button type="button" id="log">Login</button></a>
+            <c:if test="${empty indiId && empty corpId}">
+            	<button type="button" id="log" onclick="location.href='login'">Login</button>
+            </c:if>
+            <c:if test="${not empty indiId && empty corpId}">
+            
+            </c:if>
+            <c:if test="${empty indiId && not empty corpId}">
+            
+            </c:if>
+            
+            <c:if test="${empty indiId && empty corpId}">
+            	<a href="login" id="login-btn"><button type="button" id="scroll-log" class="log">Login</button></a>
+            </c:if>
+            
+            <c:if test="${not empty indiId && empty corpId}">
+	            <div id="profile-box" class="profile-box">
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
+	              <div id="scroll-profile-hover" class="pfhover">
+	                <ul>
+	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
+	                    <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
+	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+	                </ul>
+	              </div>
+	            </div>
+            </c:if>
+            
+            <c:if test="${empty indiId && not empty corpId}">
+	            <div id="profile-box" class="profile-box">
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &nbsp;&nbsp;</div>
+	              <div id="scroll-profile-hover" class="pfhover">
+	                <ul>
+	                    <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
+	                    <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
+	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+	                </ul>
+	              </div>
+	            </div>
+            </c:if>
+            
     </div>
 </header>
 <div id="downmenu">
@@ -69,7 +108,15 @@
                             </c:if>
                         </div>
                     </div>
-                <div class="apply"><a onclick="popUp()">지원하기</a></div>
+                <c:if test="${not empty indiId}">
+                	<div class="apply"><a onclick="popUp()">지원하기</a></div>
+                </c:if>
+                <c:if test="${not empty corpId}">
+                	<div class="apply"></div>
+                </c:if>
+                <c:if test="${empty indiId && empty corpId}">
+                	<div class="apply"><a onclick="alert('공고 지원은 개인회원만 가능합니다.\n로그인 후 이용하시기 바랍니다.'); location.href = 'login'">지원하기</a></div>
+                </c:if>
             </div>
         </div>
     </nav>
@@ -111,7 +158,15 @@
                 </c:if>
             </div>
             <div id="apply_box">
-                <div class="apply" id="top_apply"><a href="#" onclick="popUp()">지원하기</a></div>
+            	<c:if test="${not empty indiId}">
+                	<div class="apply" id="top_apply"><a onclick="popUp()">지원하기</a></div>
+                </c:if>
+                <c:if test="${not empty corpId}">
+                	<div class="apply" id="top_apply"></div>
+                </c:if>
+                <c:if test="${empty indiId && empty corpId}">
+                	<div class="apply" id="top_apply"><a onclick="alert('공고 지원은 개인회원만 가능합니다.\n로그인 후 이용하시기 바랍니다.'); location.href = 'login'">지원하기</a></div>
+                </c:if>
             </div>
         </div>
     </div>
@@ -166,7 +221,7 @@
                     <dt>기 업 명</dt>
                         <dd>${corporation.corporateName}</dd>                  
                     <dt>연 락 처</dt>
-                        <dd>${corporation.corporatePhone}</dd>   
+                        <dd>${fn:substring(corporation.corporatePhone, 0, 3)}-${fn:substring(corporation.corporatePhone, 3, 7)}-${fn:substring(corporation.corporatePhone, 7, 11)}</dd>   
                     <dt>대표자명</dt>
                         <dd>${corporation.ceoName}</dd>
                     <dt>주 &ensp;&ensp; 소</dt>
@@ -262,17 +317,17 @@
                 <dd>서울 강남</dd>
             </dl>
         </div>
-</section>
-<footer>
-    <a href="#up"><img src="img/footerLogo.png"></a>
-    <a href="#">전체서비스</a>&ensp;|&ensp; 
-    <a href="#">이용약관</a>&ensp;|&ensp; 
-    <a href="#">개인정보처리방침</a>&ensp;|&ensp;
-    <a href="#">제휴문의</a>&ensp;| 
-    © CODLING Corp.
-</footer>
+	</section>
+	<footer>
+	    <a href="#up"><img src="img/footerLogo.png"></a>
+	    <a href="#">전체서비스</a>&ensp;|&ensp; 
+	    <a href="#">이용약관</a>&ensp;|&ensp; 
+	    <a href="#">개인정보처리방침</a>&ensp;|&ensp;
+	    <a href="#">제휴문의</a>&ensp;| 
+	    © CODLING Corp.
+	</footer>
 </body>
 <script src="jQuery/jquery-3.6.0.min.js"></script>
-<script src="js/job_accountment.js"></script>
+<script src="js/jobOpening.js"></script>
 <script src="js/job_apply_popup.js"></script>
 </html>

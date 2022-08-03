@@ -5,14 +5,14 @@
 header{margin: 0 auto; width: 1220px;}
 #menu-bar{width: 1220px; margin: 0 auto; margin-top: 25px;  display: flex; justify-content: space-between; align-items: center;}
 /*header*/
-#menu-bar>div{width: 131.5px; height: 5px;}
+#menu-bar>div{height: 5px;}
 #logoimg{width: 253.32px; height: 56.82px;}
 #profilelogo{width: 35px; height: 35px; margin: 5px;}
 #profile-box{display: flex; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}
 #mename{position: relative; top:0px;}
 #hover-box{height: 45px;}
 #hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
-#profile-hover{border: 1px solid #cecece; width: 150px; height: 160px; float: right; margin-right: 0px;
+#profile-hover{border: 1px solid #cecece; width: 150px; height: 160px; float: right; margin-right: 15px;
     border-radius: 10px;}
 #profile-hover>ul{margin-top: 0px;}
 #profile-hover>ul>li>a{text-decoration: none; color: #656978; font-size: 1rem; display: inline-block;
@@ -29,7 +29,7 @@ section{width: 1220px; margin: 0 auto; margin-top: 150px;}
 .resumemg{width: 1220px; height: 270px; background: rgba(165, 227, 116, 0.3); border-radius: 10px;
     display: flex; padding-left: 20px; padding-top: 20px; margin-bottom: 20px}
 #resume>h1{font-size: 2.1rem; font-weight: bold; color: #373F57;
-    margin-bottom: 60px;}
+    margin-top: -30px; margin-bottom: 60px;}
 .resumemgbox{width: 1220px; height: 110px; margin-left: 50px;}
 .resumemgbox>p>span{font-size: 1.3rem; color: #50B500; font-weight: bold;}
 .resumemgbox2>p>span{font-weight: bold; font-size: 1.5rem; color: #373F57;}
