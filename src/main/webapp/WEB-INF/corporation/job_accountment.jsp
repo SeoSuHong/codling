@@ -134,7 +134,7 @@
             <h2>사용 스택 및 툴</h2>
                 <div class="corpStacks">
                 	<c:forTokens var="stack" items="${field.stack}" delims=" / ">
-                    	<div class="stack">${stack}</div>
+                    	<span class="stack">${stack}</span>
                     </c:forTokens>
                 </div>
             <h2>기업소개</h2>
