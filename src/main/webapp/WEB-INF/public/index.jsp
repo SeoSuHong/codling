@@ -147,14 +147,13 @@
         </div>
       </article>
       <!-- 일반광고 -->
-
       <div class="row row-cols-1 row-cols-md-4 g-4">
       <c:forEach var="anno" items="${announcement}">
-        <div class="col" style="cursor: pointer;" onclick="location='jobOpening?no=${anno.no}'">
-          <div class="card">
+        <div class="col">
+          <div class="card" onmouseover="showCount(${anno.no})" onmouseout="hideCount(${anno.no})" onclick="location='jobOpening?no=${anno.no}'">
             <img src="img/logo.png" class="card-img-top" alt="...">
 	            <div class="card-body">
-	            	<p id="corporname">${anno.corporateName}<span id="count"><img src="img/eyes.png">&nbsp; ${anno.count}</span></p>
+	            	<p id="corporname">${anno.corporateName}<span id="${anno.no}" class="count"><img src="img/eyes.png">&nbsp; ${anno.count}</span></p>
 	              <h5 class="card-title">${anno.title}</h5>
 	              <div class="card-text">
 	              <!-- forTokens -->
@@ -170,13 +169,14 @@
 	              	</c:forTokens>
 	              	</p>
 	              	<p class="contents">
+	              	<span>경력&nbsp;</span>
 					<c:forTokens var="career" items="${anno.career}" delims=" / " varStatus="st">
 		              	<c:if test="${fn:length(anno.career) <= 3}">
 		              		<c:if test="${career == '신입'}">
-		              			${career} &emsp;&emsp;&emsp;&emsp;
+		              			${career}&emsp;
 		              		</c:if>
 		              		<c:if test="${career != '신입'}">
-		              			경력 ${career}년↑ &emsp;&emsp;&emsp;
+		              			${career}년↑&emsp;
 		              		</c:if>
 		              	</c:if>
 		              	<c:if test="${fn:length(anno.career) > 3}">
@@ -184,11 +184,17 @@
 		              			${career} or
 		              		</c:if>
 		              		<c:if test="${career != '신입'}">
-		              			${career}년↑ &emsp;&emsp;
+		              			${career}년↑&emsp;
 		              		</c:if>
 		              	</c:if>
 					</c:forTokens>
-		              	<span>${anno.pay}만원</span>
+					<span>급여&nbsp;</span>
+					<c:if test="${anno.pay == '면접 후 결정'}">
+	              		${anno.pay}</span>
+	              	</c:if>
+	              	<c:if test="${anno.pay != '면접 후 결정'}">
+	              		${anno.pay}만원
+	              	</c:if>
 	              	</p>
 	              </div>
 	            </div>
@@ -196,8 +202,6 @@
         </div>
         </c:forEach>
       	</div>
-      	
-
     </section>
     <footer>
       <a href="#up"><img src="img/footerLogo.png"></a>

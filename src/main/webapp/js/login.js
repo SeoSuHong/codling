@@ -16,13 +16,13 @@ $(function() {
 $(function() {
     $(".com_log").hide()
     $(".a_per").click(function(){
-      $(".per_log").show()
-      $(".com_log").hide()
+      $(".per_log").show();
+      $(".com_log").hide();
     })
     $(".a_com").click(function(){
-      $(".per_log").hide()
-      $(".com_log").show()
-      $(".com_log").prop("display","block")
+      $(".per_log").hide();
+      $(".com_log").show();
+      $(".com_log").prop("display","block");
     })
 });
 

@@ -25,7 +25,7 @@
         <div id="profile-hover">
             <ul>
                 <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
-                <li id="resume"><a href="resume_management.jsp"><span>공고 관리</span></a></li>
+                <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
                 <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
             </ul>
         </div>

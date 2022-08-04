@@ -23,8 +23,8 @@
         <p id="suv">서비스를 이용하시려면 로그인을 하세요</p>
         <p id="suv2">Codling 회원이 아니시면 <a href="signUp.jsp" id="join1">회원가입</a>을 해주세요</p>
         <ul class="tab_member_type">
-            <li class="t_per t_on"><a class="a_per" href="#">개인회원</a></li>
-            <li class="t_com"><a class="a_com"  href="#">기업회원</a></li>
+            <li class="t_per t_on"><a class="a_per">개인회원</a></li>
+            <li class="t_com"><a class="a_com">기업회원</a></li>
         </ul>
         <div class="per_log">
 
@@ -49,10 +49,10 @@
             <form action="login" method="post" id="com_log_frm" name="comLogFrm">
                 <div id="inputchang">
                     <div class="id-input-box focus">
-                        <input type="text" id="com-id" name="comId" class="txt_tool" value="" placeholder="아이디">
+                        <input type="text" id="com-id" name="comId" class="txt_tool" placeholder="아이디">
                     </div>
                     <div class="pw-input-box">
-                        <input type="password" id="com-password" name="comPassword" class="txt_tool" value="" placeholder="비밀번호" maxlength="32">
+                        <input type="password" id="com-password" name="comPassword" class="txt_tool" placeholder="비밀번호" maxlength="32">
                     </div>
                 </div>
                 <button type="button" class="btn-login" onclick="comCheck()">로그인</button>

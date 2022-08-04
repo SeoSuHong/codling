@@ -73,16 +73,16 @@ ul{list-style: none;}
 
 /*section*/
 section{width: 1220px; margin: 0 auto;}
-.row{margin-top: 10px;}
-.card{border-top:5px solid #A5E374 ; border-radius: 3px;}
-.card>img{height: 150px;}
+.col{padding: 5px 15px;}
+.card{border-top:5px solid #A5E374 ; border-radius: 3px; cursor: pointer;}
+.card>img{height: 150px; padding: 10px;}
 .card-body{height: 140px;overflow: hidden;}
 .card-title{font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .contents{font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .cardlink,.cardlink:hover{text-decoration: none; color: #373F57;}
 .card-text>p{margin: 0;}
-#count{float: right; display: none;}
-#count>img{width: 20px; height: 20px;}
+.count{float: right; display: none;}
+.count>img{width: 20px; height: 20px;}
 /*footer*/
 footer{ display: flex; height: 80px; background-color: #F0F0F0; border-top: #dddddd solid 0.1rem;
     color: #BEBEBE; margin-top: 5vh; font-size: 0.8rem; justify-content: center; align-items: center;}
