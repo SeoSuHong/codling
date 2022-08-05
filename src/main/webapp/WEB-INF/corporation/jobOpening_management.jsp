@@ -35,28 +35,29 @@
         <article id="resume">
             <h1>공고 관리</h1>
             
-            <c:forEach var="opening" items="jobOpenings">
+            <c:forEach var="jobOpening" items="${allJobOpening}">
             <a href="job_accountment"><div class="resumemg">
                 <div class="resumemgbox">
                     <p><span>내가올린 공고</span></p>
                     <button type="button" id="applicant_status" onclick="location.href='applicant_status.jsp'"><span>지원 현황</span></button>
                     <div class="resumemgbox2">
-                    	<c:set var="jobOpening" value="${opening.jobOpening}"/>
                         <p><span>${jobOpening.title}</span></p>
                         <table>
                             <tr>
                                 <td>모집일자</td>
-                                <td></td>
+                                <td>${jobOpening.startDate} ~ ${jobOpening.endDate}</td>
                             </tr>
                             <tr>
                                 <td>모집분야</td>
                                 <td>
-								<c:forEach var="field" items="${jobOpening.fields}" varStatus="st">
-									<c:if test="${!st.last}">
-										${field.name} / 
-									</c:if>
-									<c:if test="${st.last}">
-										${field.name}
+								<c:forEach var="field" items="${fields}" varStatus="st">
+									<c:if test="${jobOpening.no == field.jobOpening_no}">
+										<c:if test="${!st.last}">
+											${field.name} / 
+										</c:if>
+										<c:if test="${st.last}">
+											${field.name}
+										</c:if>
 									</c:if>
 								</c:forEach>
 								</td>
@@ -64,17 +65,36 @@
                             <tr>
                                 <td>경력여부</td>
                                 <td>
-                                <c:forEach var="field" items="${jobOpening.fields}" varStatus="st">
-									<c:if test="${!st.last}">
-										${field.career} / 
+                                <c:forEach var="field" items="${fields}" varStatus="st1">
+                                	<c:if test="${jobOpening.no == field.jobOpening_no && !st1.last}">
+                                		<c:forTokens items="${field.career}" delims=" / " varStatus="st2">
+											<c:if test="${!st2.last}">
+												${field.career} or 
+											</c:if>
+											<c:if test="${st2.last}">
+												<c:if test="${field.career == '신입'}">
+													${field.career}
+												</c:if>
+												<c:if test="${field.career != '신입'}">
+													${field.career}년↑
+												</c:if>
+											</c:if>
+										</c:forTokens> / 
 									</c:if>
-									<c:if test="${st.last}">
-										<c:if test="${field.career == '신입'}">
-											${field.career}
-										</c:if>
-										<c:if test="${field.career != '신입'}">
-											${field.career}년↑
-										</c:if>
+									<c:if test="${jobOpening.no == field.jobOpening_no && st1.last}">
+										<c:forTokens items="${field.career}" delims=" / " varStatus="st2">
+											<c:if test="${!st2.last}">
+												${field.career} or 
+											</c:if>
+											<c:if test="${st2.last}">
+												<c:if test="${field.career == '신입'}">
+													${field.career}
+												</c:if>
+												<c:if test="${field.career != '신입'}">
+													${field.career}년↑
+												</c:if>
+											</c:if>
+										</c:forTokens>
 									</c:if>
 								</c:forEach>
                                 </td>
@@ -82,12 +102,14 @@
                             <tr>
                                 <td>직급/직책</td>
                                 <td>
-                                <c:forEach var="field" items="${jobOpening.fields}" varStatus="st">
-									<c:if test="${!st.last}">
-										${field.position} / 
-									</c:if>
-									<c:if test="${st.last}">
-										${field.position}
+                                <c:forEach var="field" items="${fields}" varStatus="st">
+                                	<c:if test="${jobOpening.no == field.jobOpening_no}">
+										<c:if test="${!st.last}">
+											${field.position} / 
+										</c:if>
+										<c:if test="${st.last}">
+											${field.position}
+										</c:if>
 									</c:if>
 								</c:forEach>
                                 </td>

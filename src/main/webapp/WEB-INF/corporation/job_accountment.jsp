@@ -127,17 +127,17 @@
             <div class="inContent">
                 <span class="content">${fn:replace(field.preference, replaceChar, '</br>')}</span>
             </div>
+            <h2>사용 스택 및 툴</h2>
+            <div class="corpStacks">
+            	<c:forTokens var="stack" items="${field.stack}" delims=" / ">
+                	<span class="stack">${stack}</span>
+                </c:forTokens>
+            </div>
             <h2>채용절차 및 기타 지원 유의사항</h2>
             <div class="inContent">
                 <span class="content">${fn:replace(field.process, replaceChar, '</br>')}</span>
             </div>
-            <h2>사용 스택 및 툴</h2>
-                <div class="corpStacks">
-                	<c:forTokens var="stack" items="${field.stack}" delims=" / ">
-                    	<span class="stack">${stack}</span>
-                    </c:forTokens>
-                </div>
-            <h2>기업소개</h2>
+            <!-- <h2>기업소개</h2>
             <div class="inContent">
                 <p>바로티나는 라이브스트리밍 기술에 최적화된 영상엔진 기술과 수년간 쌓아온 다양한 경험을 토대로 온/오프라인이 완벽히 통합되는 새로운 차원의 시도에 거듭 도전합니다.
                    오프라인 위주의 사업군이나 다년간 바뀌지 않았던 영역에서 새로운 Rule에 빨리 적응할 수 있고, 시/공간의 제약을 벗어나 접촉과 접속을 쉽고 편리하게 할 수 있도록 돕겠습니다.
@@ -146,7 +146,7 @@
                    (주)바로티나는 기술력이 있는 스타트업입니다.
                    (주)바로티나의 ‘페어라이브'플랫폼은 기술로 보다 더 가까이, 전시/박람회에 영상을 입혀서 기 존 전시/박람회의 세계를 새롭게 시각화 하여 제시합니다.
                    우리는 전시/박람회의 모든 관계자를 위해 더 나은 내일을 약속합니다. 온/오프라인에서 우리 모 두가 해야 할 역할이 있으며, 잠재력을 최대한 실현할 수 있는 미래와 지속 가능성을 위해 과감하 게 행동하고 단호하게 한 발 더 나아가면, 우리가 함께 할 수 있는 것에는 한계가 없습니다.</p>
-            </div>
+            </div> -->
         </div>
     </article>
     <hr>

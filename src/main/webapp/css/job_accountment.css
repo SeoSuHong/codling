@@ -183,8 +183,12 @@ article{width: 1220px; display: flex; justify-content: center;}
 .inContent {
     font-size: 1.1rem;
     font-weight: 300;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
     margin-top: 20px;
+}
+
+.inContent:last-child{
+	margin-bottom: 0;
 }
 
 .content {
@@ -192,7 +196,7 @@ article{width: 1220px; display: flex; justify-content: center;}
 }
 
 .corpStacks {
-    margin-bottom: 50px;
+    margin-bottom: 5rem;
     line-height: 50px;
 }
 

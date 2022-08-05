@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import codling.identity.AllJobOpening;
 import codling.identity.Announcement;
 import codling.identity.Corporation;
 import codling.identity.Field;
@@ -125,16 +124,14 @@ public class CorporationDao {
 	}
 	
 	// 모든 공고 정보
-	public List<AllJobOpening> getAllJobOpening(String corporation_id) {
-		List<AllJobOpening> jobOpenings = new ArrayList<AllJobOpening>();
-		String query = "SELECT J.*, F.* FROM field F "
-				+ "JOIN jobOpening J ON F.jobOpening_no = J.no "
-				+ "WHERE J.corporation_id = ?";
+	public List<JobOpening> getAllJobOpening (String id) {
+		List<JobOpening> list = new ArrayList<JobOpening>();
+		String query = "SELECT * FROM jobOpening WHERE corporation_id = ?";
 		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, corporation_id);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -144,25 +141,9 @@ public class CorporationDao {
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
-				JobOpening jobOpening = new JobOpening(no, corporation_id, title, region, startDate, endDate, count);
 				
-				int jobOpening_no = rs.getInt("jobOpening_no");
-				String name = rs.getString("name");
-				String career = rs.getString("career");
-				String position = rs.getString("position");
-				String pay = rs.getString("pay");
-				String workDay = rs.getString("workDay");
-				String work = rs.getString("work");
-				String stack = rs.getString("stack");
-				String requirement = rs.getString("requirement");
-				String preference = rs.getString("preference");
-				String process = rs.getString("process");
-				Field field = new Field(no, jobOpening_no, name, career, position, pay, workDay, work, stack, requirement, preference, process);
-				List<Field> fields = new ArrayList<Field>();
-				fields.add(field);
-				
-				AllJobOpening allJobOpening = new AllJobOpening(jobOpening, fields);
-				jobOpenings.add(allJobOpening);
+				JobOpening jobOpening = new JobOpening(no, id, title, region, startDate, endDate, count);
+				list.add(jobOpening);
 			}
 			
 			rs.close();
@@ -171,7 +152,7 @@ public class CorporationDao {
 		} catch(Exception e) {
 			System.out.println("getAllJobOpening Error : " + e.getMessage());
 		}
-		return jobOpenings;
+		return list;
 	}
 	
 	// 지원분야 정보
