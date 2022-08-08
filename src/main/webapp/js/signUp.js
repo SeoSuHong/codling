@@ -254,10 +254,7 @@ if($("#detailAddress").val() == ""){
   $("#detailAddress").focus();
   return;
 }
-
-	alert("Welcome🍏");
-  	location.href="index.jsp";
-	// perFrm.submit();
+	perFrm.submit();
   }
   
  // 기업 회원 유효성 검사
@@ -269,35 +266,35 @@ function signUpCom_submit(){
     const getComNum = RegExp(/([0-9]{3})-?([0-9]{2})-?([0-9]{5})/);
     
 	// 아이디 공백 확인
-  if($("#Comid").val() == ""){
-        $("#Comid").addClass("is-invalid");
-        $("#Comid").focus();
+  if($("#corId").val() == ""){
+        $("#corId").addClass("is-invalid");
+        $("#corId").focus();
         return;
   }
   
   // 아이디 유효성 검사
-  if(!getIdCheck.test($("#Comid").val())){
+  if(!getIdCheck.test($("#corId").val())){
   	alert("영문,숫자를 혼합하여 4자리~12자리 이내로 입력해주세요")
-  	$("#Comid").addClass("is-invalid");
-  	$("#Comid").focus();
-  	$("#Comid").val("");
+  	$("#corId").addClass("is-invalid");
+  	$("#corId").focus();
+  	$("#corId").val("");
   	return;
 	}
   
   // 비밀번호 공백 확인
-  if($("#pwCom").val() == ""){
-    $("#pwCom").addClass("is-invalid");
-    $("#pwCom").focus();
-    $("#pwCom").val("");
+  if($("#corPw").val() == ""){
+    $("#corPw").addClass("is-invalid");
+    $("#corPw").focus();
+    $("#corPw").val("");
     return;
 	}
 
 	// 비밀번호 유효성 검사
-	if(!getPwCheck.test($("#pwCom").val())){
+	if(!getPwCheck.test($("#corPw").val())){
 		alert("영문,숫자, 특수문자를 혼합하여 8자리~20자리 이내로 입력해주세요")
-		$("#pwCom").addClass("is-invalid");
-	    $("#pwCom").focus();
-	    $("#pwCom").val("");
+		$("#corPw").addClass("is-invalid");
+	    $("#corPw").focus();
+	    $("#corPw").val("");
 	}
 
 	// 비밀번호 확인 공백 확인
@@ -308,7 +305,7 @@ function signUpCom_submit(){
 	 }
 	
 	// 비밀번호와 비밀번호 확인이 같은지 확인
-  	if(($("#cfpwCom").val()!=$("#pwCom").val())){
+  	if(($("#cfpwCom").val()!=$("#corPw").val())){
     alert("입력하신 비밀번호가 다릅니다.")
     $("#cfpwCom").addClass("is-invalid");
     $("#cfpwCom").focus();
@@ -387,9 +384,7 @@ function signUpCom_submit(){
 	  return;
 	}
 	
-	alert("Welcome🍏");
-	location.href="index.jsp";
-	// comFrm.submit();
+	comFrm.submit();
   }
   
   
