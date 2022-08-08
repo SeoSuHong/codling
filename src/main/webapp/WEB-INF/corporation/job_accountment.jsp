@@ -20,7 +20,7 @@
         	<button type="button" id="log" onclick="location.href='index'">Login</button>
     	</div> -->
     	<div id="menu-bar">
-            <div></div>
+            <div id="headerbox"></div>
             <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
                     <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span class="name"> ${corporation.corporateName} 님</span>&nbsp;&nbsp;</div>

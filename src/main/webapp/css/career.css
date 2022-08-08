@@ -32,7 +32,7 @@
 /*login-view*/
 
 .profile-box{margin-top: 10px;}
-#hover-box{margin-left: 120px; height: 45px; padding-right: 3px; overflow: hidden;}
+#hover-box{margin-left: 120px; height: 45px; white-space:nowrap;}
 #login_header{display: flex; align-items: center; margin-top: 100px; justify-content: space-between;}
 #menu-bar>div{width: 131.5px; height: 5px;}
 #profilelogo{width: 35px; height: 35px; margin: 5px;}

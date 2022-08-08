@@ -2,6 +2,7 @@ package codling.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,20 @@ import codling.identity.Corporation;
 public class CorpInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("corpId");
+		String indiId = (String)session.getAttribute("indiId");
+		String corpId = (String)session.getAttribute("corpId");
+		String id = corpId;
+		
+		InformationDao infoDao = new InformationDao();
+		if(indiId != null) {
+			Map<String, String> map = infoDao.getIndiName(indiId);
+			String indiName = map.get(indiId);
+			request.setAttribute("indiName", indiName);
+		} else if(corpId != null) {
+			Map<String, String> map = infoDao.getCorpName(corpId);
+			String corpName = map.get(corpId);
+			request.setAttribute("corpName", corpName);
+		}
 		
 		CorporationDao dao = new CorporationDao();
 		Corporation corporation = dao.getCorporation(id);
