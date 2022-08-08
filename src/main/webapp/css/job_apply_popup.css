@@ -114,6 +114,10 @@ input[type="button"]:hover{
     margin-top: 1rem;
 }
 
+.prev{
+    transform: scaleX(-1);
+}
+
 .slick-arrow{
     position: relative;
     width: 50px;
@@ -140,7 +144,7 @@ label{
     cursor: pointer;
     font-size: 1.3rem;
     color: #A5E374;
-    margin-left: 3vw;
+    margin-left: 4vw;
     font-weight: 900;
 }
 
