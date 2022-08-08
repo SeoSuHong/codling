@@ -11,7 +11,7 @@ a{text-decoration: none;}
 #menu-bar{width: 1220px; margin: 0 auto; margin-top: 25px;  display: flex; justify-content: space-between; align-items: center;}
 
 /*header*/
-#menu-bar>div{width: 131.5px; height: 5px;}
+#menu-bar>div{height: 5px;}
 #logoimg{width: 253.32px; height: 56.82px;}
 #profilelogo{width: 35px; height: 35px; margin: 5px;}
 #profile-box{display: flex; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}

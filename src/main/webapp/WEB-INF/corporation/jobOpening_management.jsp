@@ -128,7 +128,7 @@
             </div></a>
             </c:forEach>
             <div class="btn-res">
-                <a href="jobOpening_writing.jsp"><button action="" id="btn-res"><span class="btn-resspan">공고 작성</span></button></a>
+                <a href="jobOpening_writing"><button id="btn-res"><span class="btn-resspan">공고 작성</span></button></a>
             </div>
          </article>
     </section>
