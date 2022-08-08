@@ -92,7 +92,7 @@ let inputDataCheck = (id) => {
 
   // 개인 회원 유효성 검사
   function signUpInd_submit(){
-    const getIdCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
+    const getIdCheck= RegExp(/^[a-z0-9]{4,12}$/);
     const getPwCheck =  RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
     const getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
     const getPhone = RegExp( /^[0-9]{8}$/);
@@ -107,7 +107,7 @@ let inputDataCheck = (id) => {
 
     // 아이디 유효성 검사
     if(!getIdCheck.test($("#id").val())){
-      alert("영문,숫자를 혼합하여 4자리~12자리 이내로 입력해주세요")
+      alert("알파벳 소문자, 숫자를 혼합하여 4자리~12자리 이내로 입력해주세요")
       $("#id").addClass("is-invalid");
       $("#id").focus();
       $("#id").val("");
@@ -259,7 +259,7 @@ if($("#detailAddress").val() == ""){
   
  // 기업 회원 유효성 검사
 function signUpCom_submit(){
-    const getIdCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
+    const getIdCheck= RegExp(/^[a-z0-9]{4,12}$/);
     const getPwCheck =  RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
     const getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
     const getPhone = RegExp( /^[0-9]{7,8}$/);
