@@ -17,14 +17,14 @@
     <header>
         <div id="menu-bar">
             <div></div>
-            <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
+            <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
                     <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo">고객이름 &nbsp;&nbsp;</div>
                 </div>
         </div>
             <div id="profile-hover">
                 <ul>
-                    <li id="mypage"><a href="#"><span>내 정보</span></a></li>
+                    <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
                     <li id="resume"><a href="jobOpening_management.jsp"><span>공고 관리</span></a></li>
                     <li id="logout"><a href="#"><span>로그아웃</span></a></li>
                 </ul>

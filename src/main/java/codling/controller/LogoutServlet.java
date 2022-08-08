@@ -14,12 +14,10 @@ import javax.servlet.http.HttpSession;
 public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.print("<script>alert('로그아웃 되었습니다.'); location.href = 'index';</script>");
 		session.invalidate();
-		PrintWriter out =  response.getWriter();
-		out.print("<script>");
-		out.print("alert('로그아웃 되었습니다.');");
-		out.print("</script>");
-		response.sendRedirect("index.jsp");
 	}
-
 }

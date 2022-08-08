@@ -22,6 +22,6 @@ public class NewcomerServlet extends HttpServlet{
 		
 		request.setAttribute("announcement", announcement);
 		
-		request.getRequestDispatcher("newcomer.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/public/newcomer.jsp").forward(request, response);
 	}
 }

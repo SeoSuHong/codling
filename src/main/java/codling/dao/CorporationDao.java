@@ -59,7 +59,7 @@ public class CorporationDao {
 		return corporation;
 	}
 	
-	// 공고 정보
+	// 공고 정보(ID)
 	public JobOpening getJobOpening(String id) {
 		JobOpening jobOpening = null;
 		String query = "SELECT * FROM jobOpening WHERE corporation_id=?";
@@ -72,6 +72,38 @@ public class CorporationDao {
 			
 			if(rs.next()) {
 				int no = rs.getInt("no");
+				String corporation_id = rs.getString("corporation_id");
+				String title = rs.getString("title");
+				String region = rs.getString("region");
+				String startDate = rs.getString("startDate");
+				String endDate = rs.getString("endDate");
+				int count = rs.getInt("count");
+				
+				jobOpening = new JobOpening(no, corporation_id, title, region, startDate, endDate, count);
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getJobOpening Error : " + e.getMessage());
+		}
+		
+		return jobOpening;
+	}
+	
+	// 공고 정보(no)
+	public JobOpening getJobOpening(int no) {
+		JobOpening jobOpening = null;
+		String query = "SELECT * FROM jobOpening WHERE no=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
 				String corporation_id = rs.getString("corporation_id");
 				String title = rs.getString("title");
 				String region = rs.getString("region");
@@ -307,7 +339,7 @@ public class CorporationDao {
 					}
 					return list;
 				}
-				//공고 조회수
+				// 공고 조회수
 				public int count(int no) {
 					int count= 0;
 					String query = "SELECT count "
@@ -329,9 +361,9 @@ public class CorporationDao {
 						System.out.println("count Select Error: " + e.getMessage());
 					}
 					
-					query = "update jobopening "
-							+ "set count = ? "
-							+ "where no = ?";
+					query = "UPDATE jobopening "
+							+ "SET count = ? "
+							+ "WHERE no = ?";
 					try {
 						conn = getConnection();
 						pstmt = conn.prepareStatement(query);
@@ -342,7 +374,7 @@ public class CorporationDao {
 						pstmt.close();
 						conn.close();
 					}catch (Exception e) {
-						System.out.println("count upDate Error: " + e.getMessage());
+						System.out.println("count Update Error: " + e.getMessage());
 					}
 					return count;
 				}
