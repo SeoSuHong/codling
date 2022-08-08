@@ -67,31 +67,31 @@
                                 <td>
                                 <c:forEach var="field" items="${fields}" varStatus="st1">
                                 	<c:if test="${jobOpening.no == field.jobOpening_no && !st1.last}">
-                                		<c:forTokens items="${field.career}" delims=" / " varStatus="st2">
+                                		<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st2">
 											<c:if test="${!st2.last}">
-												${field.career} or 
+												${career} or 
 											</c:if>
 											<c:if test="${st2.last}">
-												<c:if test="${field.career == '신입'}">
-													${field.career}
+												<c:if test="${career == '신입'}">
+													${career}
 												</c:if>
-												<c:if test="${field.career != '신입'}">
-													${field.career}년↑
+												<c:if test="${career != '신입'}">
+													${career}년↑
 												</c:if>
 											</c:if>
 										</c:forTokens> / 
 									</c:if>
 									<c:if test="${jobOpening.no == field.jobOpening_no && st1.last}">
-										<c:forTokens items="${field.career}" delims=" / " varStatus="st2">
+										<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st2">
 											<c:if test="${!st2.last}">
-												${field.career} or 
+												${career} or 
 											</c:if>
 											<c:if test="${st2.last}">
-												<c:if test="${field.career == '신입'}">
-													${field.career}
+												<c:if test="${career == '신입'}">
+													${career}
 												</c:if>
-												<c:if test="${field.career != '신입'}">
-													${field.career}년↑
+												<c:if test="${career != '신입'}">
+													${career}년↑
 												</c:if>
 											</c:if>
 										</c:forTokens>
