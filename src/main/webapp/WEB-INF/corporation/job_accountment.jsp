@@ -135,7 +135,7 @@
             </div>
             <h2>채용절차 및 기타 지원 유의사항</h2>
             <div class="inContent">
-                <span class="content">${fn:replace(field.process, replaceChar, '</br>')}</span>
+                <span class="content">${fn:replace(jobOpening.process, replaceChar, '</br>')}</span>
             </div>
             <!-- <h2>기업소개</h2>
             <div class="inContent">

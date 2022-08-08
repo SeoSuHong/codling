@@ -43,7 +43,7 @@ public class SignUpServlet extends HttpServlet {
 			String iGender = request.getParameter("gender");
 			String iEmail = request.getParameter("email");
 			String iPhone = request.getParameter("phoneInd1")+request.getParameter("phoneInd2");
-			String iAddress = request.getParameter("address")+request.getParameter("detailAddress")+" "+request.getParameter("extraAddress");
+			String iAddress = request.getParameter("address")+" "+request.getParameter("detailAddress")+" "+request.getParameter("extraAddress");
 			Individual individual = new Individual(iId, iPw, iName, iBirth, iGender, iEmail, iPhone, iAddress,"");
 			
 			IndividualDao dao = new IndividualDao();
@@ -67,7 +67,7 @@ public class SignUpServlet extends HttpServlet {
 			String cCeo = request.getParameter("representative");
 			String cNumber = request.getParameter("companyNum");
 			String fileName = request.getParameter("fileName");
-			String cAddress = request.getParameter("address2")+request.getParameter("detailAddress2")+" "+request.getParameter("extraAddress2");
+			String cAddress = request.getParameter("address2")+" "+request.getParameter("detailAddress2")+" "+request.getParameter("extraAddress2");
 			Corporation corporation = new Corporation(cId, cPw, cName, cPhone, cCeo, cNumber, fileName, cAddress);
 			
 			CorporationDao dao = new CorporationDao();
