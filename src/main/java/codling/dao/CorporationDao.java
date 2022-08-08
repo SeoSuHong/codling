@@ -78,8 +78,9 @@ public class CorporationDao {
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
+				String process = rs.getString("process");
 				
-				jobOpening = new JobOpening(no, corporation_id, title, region, startDate, endDate, count);
+				jobOpening = new JobOpening(no, corporation_id, title, region, startDate, endDate, count, process);
 			}
 			
 			rs.close();
@@ -110,8 +111,9 @@ public class CorporationDao {
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
+				String process = rs.getString("process");
 				
-				jobOpening = new JobOpening(no, corporation_id, title, region, startDate, endDate, count);
+				jobOpening = new JobOpening(no, corporation_id, title, region, startDate, endDate, count, process);
 			}
 			
 			rs.close();
@@ -143,8 +145,9 @@ public class CorporationDao {
 					String startDate = rs.getString("startDate");
 					String endDate = rs.getString("endDate");
 					int count = rs.getInt("count");
+					String process = rs.getString("process");
 					
-					JobOpening jobOpening = new JobOpening(no, id, title, region, startDate, endDate, count);
+					JobOpening jobOpening = new JobOpening(no, id, title, region, startDate, endDate, count, process);
 					list.add(jobOpening);
 				}
 				
@@ -180,9 +183,8 @@ public class CorporationDao {
 				String stack = rs.getString("stack");
 				String requirement = rs.getString("requirement");
 				String preference = rs.getString("preference");
-				String process = rs.getString("process");
 				
-				field = new Field(no, jobOpening_no, name, career, position, pay, workDay, work, stack, requirement, preference, process);
+				field = new Field(no, jobOpening_no, name, career, position, pay, workDay, work, stack, requirement, preference);
 			}
 			
 			rs.close();
@@ -216,9 +218,8 @@ public class CorporationDao {
 					String stack = rs.getString("stack");
 					String requirement = rs.getString("requirement");
 					String preference = rs.getString("preference");
-					String process = rs.getString("process");
 					
-					Field field = new Field(no, jobOpening_no, name, career, position, pay, workDay, work, stack, requirement, preference, process);
+					Field field = new Field(no, jobOpening_no, name, career, position, pay, workDay, work, stack, requirement, preference);
 					fields.add(field);
 				}
 				

@@ -2,12 +2,12 @@ package codling.identity;
 
 public class JobOpening {
 	private int no, count;
-	private String corporation_id, title, region, startDate, endDate;
+	private String corporation_id, title, region, startDate, endDate, process;
 	
 	public JobOpening() {}
 
 	public JobOpening(int no, String corporation_id, String title, String region, String startDate, String endDate,
-			int count) {
+			int count, String process) {
 		super();
 		this.no = no;
 		this.corporation_id = corporation_id;
@@ -16,6 +16,7 @@ public class JobOpening {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.count = count;
+		this.process = process;
 	}
 
 	public int getNo() {
@@ -72,5 +73,13 @@ public class JobOpening {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+	
+	public String getProcess() {
+		return process;
+	}
+
+	public void setProcess(String process) {
+		this.process = process;
 	}
 }

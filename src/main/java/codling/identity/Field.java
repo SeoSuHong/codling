@@ -2,12 +2,12 @@ package codling.identity;
 
 public class Field {
 	private int no, jobOpening_no;
-	private String name, career, position, pay, workDay, work, stack, requirement, preference, process;
+	private String name, career, position, pay, workDay, work, stack, requirement, preference;
 	
 	public Field() {}
 
 	public Field(int no, int jobOpening_no, String name, String career, String position, String pay, String workDay,
-			String work, String stack, String requirement, String preference, String process) {
+			String work, String stack, String requirement, String preference) {
 		super();
 		this.no = no;
 		this.jobOpening_no = jobOpening_no;
@@ -20,7 +20,6 @@ public class Field {
 		this.stack = stack;
 		this.requirement = requirement;
 		this.preference = preference;
-		this.process = process;
 	}
 
 	public int getNo() {
@@ -109,14 +108,6 @@ public class Field {
 
 	public void setPreference(String preference) {
 		this.preference = preference;
-	}
-
-	public String getProcess() {
-		return process;
-	}
-
-	public void setProcess(String process) {
-		this.process = process;
 	}
 
 	
