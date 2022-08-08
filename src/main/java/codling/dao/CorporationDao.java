@@ -371,4 +371,70 @@ public class CorporationDao {
 		}
 		return list;
 	}
+	
+	// 기업회원 회원가입
+	public boolean insertCorporation(Corporation corporation) {
+		boolean result = false;
+	    String query = "INSERT INTO corporation VALUES (?,DEFAULT,?,?,?,?,?,?,?)";
+	    try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, corporation.getId());
+			pstmt.setString(2, corporation.getPassword());
+			pstmt.setString(3, corporation.getCorporateName());
+			pstmt.setString(4, corporation.getCorporatePhone());
+			pstmt.setString(5, corporation.getCeoName());
+			pstmt.setString(6, corporation.getCorporateNumber());
+			pstmt.setString(7, corporation.getFileName());
+			pstmt.setString(8, corporation.getAddress());
+ 
+			if(pstmt.executeUpdate() == 1) result = true;
+ 
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("insertCorporation Error : " + e.getMessage());
+	    }
+	    return result;
+	}
+	
+	// 공고 조회수
+    public int count(int no) {
+       int count= 0;
+       String query = "SELECT count "
+             + "FROM jobopening "
+             + "WHERE no=?";
+       try {
+          conn = getConnection();
+          pstmt = conn.prepareStatement(query);
+          pstmt.setInt(1, no);
+          rs = pstmt.executeQuery();
+          if(rs.next()) {
+             count = rs.getInt("count");
+             count++;
+          }
+          rs.close();
+          pstmt.close();
+          conn.close();
+       }catch(Exception e) {
+          System.out.println("count Select Error: " + e.getMessage());
+       }
+       
+       query = "UPDATE jobopening "
+             + "SET count = ? "
+             + "WHERE no = ?";
+       try {
+          conn = getConnection();
+          pstmt = conn.prepareStatement(query);
+          pstmt.setInt(1, count);
+          pstmt.setInt(2, no);
+          pstmt.executeUpdate();
+          rs.close();
+          pstmt.close();
+          conn.close();
+       }catch (Exception e) {
+          System.out.println("count Update Error: " + e.getMessage());
+       }
+       return count;
+    }
 }
