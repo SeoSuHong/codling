@@ -69,17 +69,17 @@
            	</article>
            	<!-- 모집분야(추가 폼) -->
            	<div name="problem_list" id="problem_list">
-               	<h3>모집분야<button id="add" onclick="addForm();">추가</button></h3>
+               	<h3>모집분야<button id="add" onclick="addForm()">추가</button></h3>
            		<article id="field">
                     <table>
                         <tr>
                             <td>모집분야명*</td>
-                            <td id="font_medium"><input name="" id="" size="60">&emsp;&emsp;<input name="" size="3"placeholder="0"class="num">&nbsp;명 모집</td>
+                            <td id="font_medium"><input name="" id="" size="60"></td>
                         </tr>
                         <tr>
                             <td>경력여부*</td>
-                            <td id="font_medium"> <input name="career_status" value="newcomer"type="checkbox"onclick='checkOnlyOne(this)'><label>&nbsp;신입&emsp;&emsp;</label>
-                                <input name="career_status" value="career"type="checkbox"onclick='checkOnlyOne(this)'><label>&nbsp;경력&emsp;&emsp;</label>
+                            <td id="font_medium"> <input name="career_status" value="newcomer"type="checkbox"><label>&nbsp;신입&emsp;&emsp;</label>
+                                <input name="career_status" value="career"type="checkbox"><label>&nbsp;경력&emsp;&emsp;</label>
                                 <select id="font_medium">
                                     <option selected>선택</option>
                                     <option>1년이하</option>
@@ -137,7 +137,7 @@
                         	<button id="del" onclick="delForm(this);">삭제</button>
                         	<tr>
                             	<td>모집분야명*</td>
-                            	<td id="font_medium"><input name="" id="" size="60">&emsp;&emsp;<input name="" size="3"placeholder="0">&nbsp;명 모집</td>
+                            	<td id="font_medium"><input name="" id="" size="60"></td>
                         	</tr>
                         	<tr>
 	                            <td>경력여부*</td>

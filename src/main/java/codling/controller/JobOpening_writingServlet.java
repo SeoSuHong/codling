@@ -15,7 +15,6 @@ import codling.dao.InformationDao;
 @WebServlet("/jobOpening_writing")
 public class JobOpening_writingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("corpId");
 		
@@ -26,11 +25,4 @@ public class JobOpening_writingServlet extends HttpServlet {
 		request.setAttribute("name", name);
 		request.getRequestDispatcher("/WEB-INF/corporation/jobOpening_writing.jsp").forward(request, response);
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
-	}
-
 }

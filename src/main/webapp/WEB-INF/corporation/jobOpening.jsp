@@ -73,35 +73,28 @@
                         <span class="title">${jobOpening.title}</span>
                         <div class="title_inside">
                             <span>${corporation.corporateName}</span>&ensp;&ensp;
-                            
-                            <span>경력 </span>
-                			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
-                				<c:if test="${fn:length(field.career) <= 3}">
-                					<c:if test="${career == '신입'}">
-			                			<span>${career}</span>&ensp;&ensp;
-			                		</c:if>
-			                		<c:if test="${career != '신입'}">
-			                			<span>${career}년↑</span>&ensp;&ensp;
-			                		</c:if>
-			                	</c:if>
-			                
-			                	<c:if test="${fn:length(field.career) > 3}">
-			                		<c:if test="${career == '신입'}">
-			                			<span>${career} or</span>
-			                		</c:if>
-			                		<c:if test="${career != '신입'}">
-			                			<span>${career}년↑</span>&ensp;&ensp;
-			                		</c:if>
-			                	</c:if>
-			                </c:forTokens>
-                            
-                            
-                            <c:if test="${field.pay == '면접 후 결정'}">
-                            <span>급여 ${field.pay}</span>
-                            </c:if>
-                            <c:if test="${field.pay != '면접 후 결정'}">
-                            <span>급여 ${field.pay}만↑</span>
-                            </c:if>
+	                        <c:forEach var="field" items="${fields}">
+                        		<span>${field.name} | </span>
+	                			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+	                				<c:if test="${fn:length(field.career) <= 3}">
+	                					<c:if test="${career == '신입'}">
+				                			<span>${career}</span>&ensp;&ensp;
+				                		</c:if>
+				                		<c:if test="${career != '신입'}">
+				                			<span>${career}년↑</span>&ensp;&ensp;
+				                		</c:if>
+				                	</c:if>
+				                
+				                	<c:if test="${fn:length(field.career) > 3}">
+				                		<c:if test="${career == '신입'}">
+				                			<span>${career} or</span>
+				                		</c:if>
+				                		<c:if test="${career != '신입'}">
+				                			<span>${career}년↑</span>&ensp;&ensp;
+				                		</c:if>
+				                	</c:if>
+				                </c:forTokens>
+                            </c:forEach>
                         </div>
                     </div>
                 <c:if test="${not empty indiId}">

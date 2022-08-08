@@ -42,7 +42,6 @@
                         <span class="title">${jobOpening.title}</span>
                         <div class="title_inside">
                             <span>${corporation.corporateName}</span>&ensp;&ensp;
-                            <span>경력 </span>
                 			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
                 				<c:if test="${fn:length(field.career) <= 3}">
                 					<c:if test="${career == '신입'}">

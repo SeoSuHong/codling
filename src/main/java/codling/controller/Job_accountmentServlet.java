@@ -1,6 +1,7 @@
 package codling.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import codling.dao.CorporationDao;
-import codling.dao.InformationDao;
 import codling.identity.Corporation;
 import codling.identity.Field;
 import codling.identity.JobOpening;
@@ -25,12 +25,12 @@ public class Job_accountmentServlet extends HttpServlet {
 		
 		Corporation corporation = corpDao.getCorporation(id);
 		JobOpening jobOpening = corpDao.getJobOpening(id);
-		int no = Integer.parseInt(request.getParameter("no"));
-		Field field = corpDao.getField(no);
-		corpDao.count(no);
+		int no = jobOpening.getNo();
+		List<Field> fields = corpDao.getAllField(no);
+		
 		request.setAttribute("corporation", corporation);
 		request.setAttribute("jobOpening", jobOpening);
-		request.setAttribute("field", field);
+		request.setAttribute("fields", fields);
 		request.setAttribute("replaceChar", "\n"); // 줄바꿈 <br>처리를 위해
 		
 		request.getRequestDispatcher("/WEB-INF/corporation/job_accountment.jsp").forward(request, response);

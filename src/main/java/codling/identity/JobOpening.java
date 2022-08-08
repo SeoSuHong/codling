@@ -19,7 +19,6 @@ public class JobOpening {
 		this.count = count;
 	}
 
-
 	public int getNo() {
 		return no;
 	}
@@ -59,7 +58,7 @@ public class JobOpening {
 	public void setProcess(String process) {
 		this.process = process;
 	}
-
+	
 	public String getStartDate() {
 		return startDate;
 	}
