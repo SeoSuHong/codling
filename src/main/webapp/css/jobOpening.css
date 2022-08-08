@@ -21,7 +21,7 @@ body {
     border-radius: 10px;  background-color: white; position: relative; top: 10px; right: 0px;
      display: none; z-index: 1;}
 #scroll-hover-box{margin-left: 25px; display: flex; align-items: center;}
-#name{display: flex; align-items: center; width: 110px}
+#name{display: flex; align-items: center;}
 #scroll-hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
 .pfhover>ul>li>a{text-decoration: none; color: #656978; font-size: 1rem;
     width: 150px; height: 40px; display: flex; align-items: center; margin-left: -40px;

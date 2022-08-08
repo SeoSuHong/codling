@@ -34,10 +34,10 @@
     <section>
         <article id="resume">
             <h1>공고 관리</h1>
-            
+            <c:if test="${not empty allJobOpening}">
             <c:forEach var="jobOpening" items="${allJobOpening}">
-            <a href="job_accountment"><div class="resumemg">
-                <div class="resumemgbox">
+            <div class="resumemg">
+                <div class="resumemgbox" style="cursor: pointer;" onclick="location='job_accountment?no=${jobOpening.getNo()}'">
                     <p><span>내가올린 공고</span></p>
                     <button type="button" id="applicant_status" onclick="location.href='applicant_status.jsp'"><span>지원 현황</span></button>
                     <div class="resumemgbox2">
@@ -125,8 +125,20 @@
                         </div>
                     </div>
                 </div>
-            </div></a>
+            </div>
             </c:forEach>
+            </c:if>
+            <c:if test="${empty allJobOpening}">
+	            <div class="resumemg" style="cursor: pointer;" onclick="location='jobOpening_writing.jsp'">
+		                <div class="resumemgbox">
+		                    <p><span>내가올린 공고</span></p>
+		                    <div class="resumemgbox2">
+		                        <h2>올린 공고가 없습니다.</h2>
+		                        <p>공고를 작성해주세요</p>
+		                    </div>
+		                </div>
+		            </div>
+				</c:if>
             <div class="btn-res">
                 <a href="jobOpening_writing.jsp"><button action="" id="btn-res"><span class="btn-resspan">공고 작성</span></button></a>
             </div>

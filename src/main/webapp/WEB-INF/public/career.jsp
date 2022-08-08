@@ -12,7 +12,7 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/employment_total.js"></script>
-    <script scr="js.index_app.js"></script>
+    <script src="js/index_app.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="css/career.css">
 </head>
@@ -28,7 +28,7 @@
             <li><a href="top100" class="menu" id="scroll_Top100">Top100</a></li>
           </ul>
         </nav>
-        <form id="searbox"><input type="text" id="search" name="search" class="searchbox" value="" placeholder="검색어를 입력하세요." autofocus></form>
+        <form id="searbox"><input type="text" id="search" name="search" class="searchbox" value="" placeholder="검색어를 입력하세요."></form>
         <input type="button" form="searbox" class="btn-search"></input>
         
         <c:if test="${empty indiId && empty corpId}">
@@ -38,7 +38,7 @@
         
         <c:if test="${not empty indiId && empty corpId}">
 	            <div id="profile-box" class="profile-box">
-	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+<%-- 	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div> --%>
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
@@ -51,7 +51,7 @@
             
             <c:if test="${empty indiId && not empty corpId}">
 	            <div id="profile-box" class="profile-box">
-	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &nbsp;&nbsp;</div>
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
@@ -76,7 +76,7 @@
 		
 		<c:if test="${not empty indiId && empty corpId}">
 	          <div id="profile-box" class="profile-box">
-	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
 	            <div id="profile-hover" class="pfhover">
 	              <ul>
 	                  <li id="mypage"><a href="individualInfo"><span>회원정보</span></a></li>
@@ -89,7 +89,7 @@
           
           <c:if test="${empty indiId && not empty corpId}">
 	          <div id="profile-box" class="profile-box">
-	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &nbsp;&nbsp;</div>
 	            <div id="profile-hover" class="pfhover">
 	              <ul>
 	                  <li id="mypage"><a href="corporationInfo"><span>회원정보</span></a></li>
@@ -99,7 +99,6 @@
 	            </div>
 	          </div>
           </c:if>
-          
     </div>
     <nav id="menu">
         <ul>
@@ -111,7 +110,7 @@
   </div>
 </header>
     <section>
-    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
       <c:forEach var="anno" items="${announcement}">
         <div class="col">
           <div class="card" onmouseover="showCount(${anno.no})" onmouseout="hideCount(${anno.no})" onclick="location='jobOpening?no=${anno.no}'">
