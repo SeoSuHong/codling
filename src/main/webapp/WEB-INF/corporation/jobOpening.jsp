@@ -37,10 +37,6 @@
             
             </c:if>
             
-            <c:if test="${empty indiId && empty corpId}">
-            	<a href="login" id="login-btn"><button type="button" id="scroll-log" class="log">Login</button></a>
-            </c:if>
-            
             <c:if test="${not empty indiId && empty corpId}">
 	            <div id="profile-box" class="profile-box">
 	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
@@ -72,7 +68,7 @@
 <div id="downmenu">
     <nav id="downupmenu">
         <div class="header_Wrap">
-                <div class="logo-default" id="title_box">
+                <div id="title_box">
                     <div class="title_container">
                         <span class="title">${jobOpening.title}</span>
                         <div class="title_inside">
@@ -127,7 +123,6 @@
             <div id="top_title_container">
                 <span class="title">${jobOpening.title}</span><br>
                 <span class="corpName">${corporation.corporateName}</span>&ensp;&ensp;
-                
                 
                 <span>경력 </span>
                 <c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
@@ -192,7 +187,7 @@
             <h2>사용 스택 및 툴</h2>
                 <div class="corpStacks">
                 	<c:forTokens var="stack" items="${field.stack}" delims=" / ">
-                    	<div class="stack">${stack}</div>
+                    	<span class="stack">${stack}</span>
                     </c:forTokens>
                 </div>
             <h2>기업소개</h2>

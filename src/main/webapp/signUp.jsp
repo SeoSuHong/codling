@@ -19,7 +19,7 @@
 <body>
     <header>
         <div>
-            <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logo"></a>
+            <a href="index"><img src="img/logo.png" alt="logoimg" id="logo"></a>
         </div>
     </header>
     <section>

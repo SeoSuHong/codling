@@ -131,13 +131,24 @@ $(function(){
 });
 
 // hover시 조회수 show
-$(function() {
-    $('.col').hover( function() {
-        if($("#count").css("display") == "none") {
-        $('#count').css('display', 'block');
+/*$(function() {
+    $('.card').hover( function() {
+        if($(".count").css("display") == "none") {
+        	$('.count').css('display', 'block');
         }       
     },function(){
-        $('#count').css('display', 'none');
-        });
+        $('.count').css('display', 'none');
+    });
+});*/
 
-   });
+function showCount(no) {
+    if($("#" + no).css("display") == "none") {
+    	$("#" + no).css('display', 'block');
+	}
+}
+
+function hideCount(no) {
+    if($("#" + no).css("display") == "block") {
+    	$("#" + no).css('display', 'none');
+	}
+}

@@ -183,8 +183,12 @@ article{width: 1220px; display: flex; justify-content: center;}
 .inContent {
     font-size: 1.1rem;
     font-weight: 300;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
     margin-top: 20px;
+}
+
+.inContent:last-child{
+	margin-bottom: 0;
 }
 
 .content {
@@ -192,27 +196,23 @@ article{width: 1220px; display: flex; justify-content: center;}
 }
 
 .corpStacks {
-    margin-top: -30px;
-    margin-bottom: 50px;
-    display: flex;
+    margin-bottom: 5rem;
+    line-height: 50px;
 }
 
 .stack {
-    flex-wrap: wrap;
-    flex-direction: column;
     margin-top: 2rem;
-    margin-right: 2rem;
-    font-size: 1rem;
-    font-weight: 300;
-    width: 6rem;
+    margin-right: 1rem;
+    padding: 4px 12px;
     height: 2rem;
     background-color: #A5E374;
     text-align: center;
     color: white;
-    font-weight: bold;
     font-size: 1.3rem;
+    font-weight: bold;
     border-radius: 1rem;
 }
+
 #hr{
     width: 1220px;
     display: flex;

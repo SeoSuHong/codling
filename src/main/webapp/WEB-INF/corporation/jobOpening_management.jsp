@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +26,7 @@
         <div id="profile-hover">
             <ul>
                 <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
-                <li id="resume"><a href="resume_management.jsp"><span>공고 관리</span></a></li>
+                <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
                 <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
             </ul>
         </div>
@@ -33,32 +34,89 @@
     <section>
         <article id="resume">
             <h1>공고 관리</h1>
+            
+            <c:forEach var="jobOpening" items="${allJobOpening}">
             <a href="job_accountment"><div class="resumemg">
                 <div class="resumemgbox">
                     <p><span>내가올린 공고</span></p>
                     <button type="button" id="applicant_status" onclick="location.href='applicant_status.jsp'"><span>지원 현황</span></button>
                     <div class="resumemgbox2">
-                        <p><span>공고 제목</span></p>
+                        <p><span>${jobOpening.title}</span></p>
                         <table>
                             <tr>
-                                <td>마감일자</td>
-                                <td>2022-07-12</td>
+                                <td>모집일자</td>
+                                <td>${jobOpening.startDate} ~ ${jobOpening.endDate}</td>
                             </tr>
                             <tr>
                                 <td>모집분야</td>
-                                <td>백엔드 00명 / 프론트 엔드 00명</td>
+                                <td>
+								<c:forEach var="field" items="${fields}" varStatus="st">
+									<c:if test="${jobOpening.no == field.jobOpening_no}">
+										<c:if test="${!st.last}">
+											${field.name} / 
+										</c:if>
+										<c:if test="${st.last}">
+											${field.name}
+										</c:if>
+									</c:if>
+								</c:forEach>
+								</td>
                             </tr>
                             <tr>
                                 <td>경력여부</td>
-                                <td>신입,경력 (1년이상) / 신입,경력(2년이상)</td>
+                                <td>
+                                <c:forEach var="field" items="${fields}" varStatus="st1">
+                                	<c:if test="${jobOpening.no == field.jobOpening_no && !st1.last}">
+                                		<c:forTokens items="${field.career}" delims=" / " varStatus="st2">
+											<c:if test="${!st2.last}">
+												${field.career} or 
+											</c:if>
+											<c:if test="${st2.last}">
+												<c:if test="${field.career == '신입'}">
+													${field.career}
+												</c:if>
+												<c:if test="${field.career != '신입'}">
+													${field.career}년↑
+												</c:if>
+											</c:if>
+										</c:forTokens> / 
+									</c:if>
+									<c:if test="${jobOpening.no == field.jobOpening_no && st1.last}">
+										<c:forTokens items="${field.career}" delims=" / " varStatus="st2">
+											<c:if test="${!st2.last}">
+												${field.career} or 
+											</c:if>
+											<c:if test="${st2.last}">
+												<c:if test="${field.career == '신입'}">
+													${field.career}
+												</c:if>
+												<c:if test="${field.career != '신입'}">
+													${field.career}년↑
+												</c:if>
+											</c:if>
+										</c:forTokens>
+									</c:if>
+								</c:forEach>
+                                </td>
                             </tr>
                             <tr>
                                 <td>직급/직책</td>
-                                <td>연구원 / 연구원, 주임연구원</td>
+                                <td>
+                                <c:forEach var="field" items="${fields}" varStatus="st">
+                                	<c:if test="${jobOpening.no == field.jobOpening_no}">
+										<c:if test="${!st.last}">
+											${field.position} / 
+										</c:if>
+										<c:if test="${st.last}">
+											${field.position}
+										</c:if>
+									</c:if>
+								</c:forEach>
+                                </td>
                             </tr>
                             <tr>
                                 <td>근무지 주소</td>
-                                <td>인천광역시 남동구 인주대로 593 엔타스 12층</td>
+                                <td>${jobOpening.region}</td>
                             </tr>
                         </table>
                         <div class="chbtn-box">
@@ -68,6 +126,7 @@
                     </div>
                 </div>
             </div></a>
+            </c:forEach>
             <div class="btn-res">
                 <a href="jobOpening_writing.jsp"><button action="" id="btn-res"><span class="btn-resspan">공고 작성</span></button></a>
             </div>

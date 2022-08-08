@@ -12,6 +12,7 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/employment_total.js"></script>
+    <script src="js/index_app.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="css/newcomer.css">
 </head>
@@ -109,14 +110,13 @@
   </div>
 </header>
     <section>
-    <c:if test="${not empty announcement}">
-      <c:forEach var="anno" items="${announcement}">
       <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col" style="cursor: pointer;" onclick="location='jobOpening?no=${anno.no}'">
-          <div class="card">
+      <c:forEach var="anno" items="${announcement}">
+        <div class="col">
+          <div class="card" onmouseover="showCount(${anno.no})" onmouseout="hideCount(${anno.no})" onclick="location='jobOpening?no=${anno.no}'">
             <img src="img/logo.png" class="card-img-top" alt="...">
 	            <div class="card-body">
-	            	<p id="corporname">${anno.corporateName}<span id="count"><img src="img/eyes.png">&nbsp; ${anno.count}</span></p>
+	            	<p id="corporname">${anno.corporateName}<span id="${anno.no}" class="count"><img src="img/eyes.png">&nbsp; ${anno.count}</span></p>
 	              <h5 class="card-title">${anno.title}</h5>
 	              <div class="card-text">
 	              <!-- forTokens -->
@@ -132,13 +132,14 @@
 	              	</c:forTokens>
 	              	</p>
 	              	<p class="contents">
-	              	<c:forTokens var="career" items="${anno.career}" delims=" / " varStatus="st">
+	              	<span>경력&nbsp;</span>
+					<c:forTokens var="career" items="${anno.career}" delims=" / " varStatus="st">
 		              	<c:if test="${fn:length(anno.career) <= 3}">
 		              		<c:if test="${career == '신입'}">
-		              			${career}
+		              			${career}&emsp;
 		              		</c:if>
 		              		<c:if test="${career != '신입'}">
-		              			경력 ${career}년↑
+		              			${career}년↑&emsp;
 		              		</c:if>
 		              	</c:if>
 		              	<c:if test="${fn:length(anno.career) > 3}">
@@ -146,19 +147,24 @@
 		              			${career} or
 		              		</c:if>
 		              		<c:if test="${career != '신입'}">
-		              			${career}년↑
+		              			${career}년↑&emsp;
 		              		</c:if>
 		              	</c:if>
-		              	</c:forTokens>
-		              	<span>${anno.pay}만원</span>
+					</c:forTokens>
+					<span>급여&nbsp;</span>
+					<c:if test="${anno.pay == '면접 후 결정'}">
+	              		${anno.pay}</span>
+	              	</c:if>
+	              	<c:if test="${anno.pay != '면접 후 결정'}">
+	              		${anno.pay}만원
+	              	</c:if>
 	              	</p>
 	              </div>
 	            </div>
           	</div>
         </div>
+        </c:forEach>
       	</div>
-      	</c:forEach>
-      </c:if>
     </section>
     <footer>
       <a href="#up"><img src="img/footerLogo.png"></a>
