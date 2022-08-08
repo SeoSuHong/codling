@@ -42,7 +42,6 @@
                         <span class="title">${jobOpening.title}</span>
                         <div class="title_inside">
                             <span>${corporation.corporateName}</span>&ensp;&ensp;
-                            <span>경력 </span>
                 			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
                 				<c:if test="${fn:length(field.career) <= 3}">
                 					<c:if test="${career == '신입'}">
@@ -135,7 +134,7 @@
             </div>
             <h2>채용절차 및 기타 지원 유의사항</h2>
             <div class="inContent">
-                <span class="content">${fn:replace(field.process, replaceChar, '</br>')}</span>
+                <span class="content">${fn:replace(jobOpening.process, replaceChar, '</br>')}</span>
             </div>
             <!-- <h2>기업소개</h2>
             <div class="inContent">
