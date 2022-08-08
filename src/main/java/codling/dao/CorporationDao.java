@@ -328,7 +328,7 @@ public class CorporationDao {
 							String position = rs.getString("position");
 							String region = rs.getString("region");
 							int no = rs.getInt("no");
-							JobOpeningManagement jobOpeningManagement = new JobOpeningManagement(title, startDate, endDate, name, career, position, region, no);
+							jobOpeningManagement jobOpeningManagement = new JobOpeningManagement(title, startDate, endDate, name, career, position, region, no);
 							list.add(jobOpeningManagement);
 						}
 						rs.close();
