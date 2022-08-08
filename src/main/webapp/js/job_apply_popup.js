@@ -17,6 +17,8 @@ function isSubmit(){
         return false;
     } else{
     	document.clFrm.submit();
+    	alert("등록되었습니다.")
+    	window.close(this);
     }
 }
 
