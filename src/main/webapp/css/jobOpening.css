@@ -10,6 +10,30 @@ body {
     overflow-x: hidden;
 }
 
+.profile-box{margin-top: 10px;}
+#hover-box{margin-left: 110px; height: 45px;}
+#login_header{display: flex; align-items: center; margin-top: 100px;}
+#menu-bar>div{width: 131.5px; height: 5px;}
+#profilelogo{width: 35px; height: 35px; margin: 5px;}
+#profile-box{display: block; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}
+#hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
+.pfhover{border: 1px solid #cecece; width: 150px; height: 160px; float: right;
+    border-radius: 10px;  background-color: white; position: relative; top: 10px; right: 0px;
+     display: none; z-index: 1;}
+#scroll-hover-box{margin-left: 25px; display: flex; align-items: center;}
+#name{display: flex; align-items: center; width: 110px}
+#scroll-hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
+.pfhover>ul>li>a{text-decoration: none; color: #656978; font-size: 1rem;
+    width: 150px; height: 40px; display: flex; align-items: center; margin-left: -40px;
+    margin-top: 10px; font-weight: bold;}
+.pfhover>ul{width: 150px}
+.pfhover>ul>li>a>span{ margin-left: 10px;}
+#mypage>a:hover{background-color: #e6e6e6;}
+#resume>a:hover{background-color: #e6e6e6;}
+#logout>a:hover{background-color: #e6e6e6;}
+ul{list-style: none;}
+#searchbox{width: 300px;}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -66,7 +90,7 @@ header {
     right: 8vw;
 }
 
-.header_Wrap ul {
+#header_menu {
     min-width: 23rem;
     display: flex;
     margin-left: -8px;
@@ -83,7 +107,7 @@ header {
 }
 
 .search_box {
-    width: 400px !important;
+    width: 360px !important;
     height: 50px;
     display: flex;
     border: solid 0.2rem #a5e374;

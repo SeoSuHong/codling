@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.util.*;
 
 import codling.identity.Announcement;
 import codling.identity.Corporation;
@@ -124,6 +124,40 @@ public class CorporationDao {
 		return jobOpening;
 	}
 	
+	
+	// 모든 공고 정보
+		public List<JobOpening> getAllJobOpening (String id) {
+			List<JobOpening> list = new ArrayList<JobOpening>();
+			String query = "SELECT * FROM jobOpening WHERE corporation_id = ?";
+			
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					int no = rs.getInt("no");
+					String title = rs.getString("title");
+					String region = rs.getString("region");
+					String startDate = rs.getString("startDate");
+					String endDate = rs.getString("endDate");
+					int count = rs.getInt("count");
+					
+					JobOpening jobOpening = new JobOpening(no, id, title, region, startDate, endDate, count);
+					list.add(jobOpening);
+				}
+				
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch(Exception e) {
+				System.out.println("getAllJobOpening Error : " + e.getMessage());
+			}
+			return list;
+		}
+		
+		
 	// 지원분야 정보
 	public Field getField(int jobOpening_no) {
 		Field field = null;
@@ -160,6 +194,43 @@ public class CorporationDao {
 		
 		return field;
 	}
+	
+	// 모든 지원분야 정보
+		public List<Field> getAllField(int jobOpening_no) {
+			List<Field> fields = new ArrayList<Field>();
+			String query = "SELECT * FROM field WHERE jobopening_no = ?";
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, jobOpening_no);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					int no = rs.getInt("no");
+					String name = rs.getString("name");
+					String career = rs.getString("career");
+					String position = rs.getString("position");
+					String pay = rs.getString("pay");
+					String workDay = rs.getString("workDay");
+					String work = rs.getString("work");
+					String stack = rs.getString("stack");
+					String requirement = rs.getString("requirement");
+					String preference = rs.getString("preference");
+					String process = rs.getString("process");
+					
+					Field field = new Field(no, jobOpening_no, name, career, position, pay, workDay, work, stack, requirement, preference, process);
+					fields.add(field);
+				}
+				
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch(Exception e) {
+				System.out.println("getAllField Error : " + e.getMessage());
+			}
+			return fields;
+		}
+	
 	//index 공고 들고오기
 	public ArrayList<Announcement> indexContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
@@ -328,7 +399,7 @@ public class CorporationDao {
 							String position = rs.getString("position");
 							String region = rs.getString("region");
 							int no = rs.getInt("no");
-							jobOpeningManagement jobOpeningManagement = new JobOpeningManagement(title, startDate, endDate, name, career, position, region, no);
+							JobOpeningManagement jobOpeningManagement = new JobOpeningManagement(title, startDate, endDate, name, career, position, region, no);
 							list.add(jobOpeningManagement);
 						}
 						rs.close();

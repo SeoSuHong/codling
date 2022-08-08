@@ -39,6 +39,7 @@ public class JobOpeningServlet extends HttpServlet {
 		if(!no_.equals("") && no_ != null) no = Integer.parseInt(no_);
 		
 		CorporationDao dao = new CorporationDao();
+		dao.count(no);
 		JobOpening jobOpening = dao.getJobOpening(no);
 		Field field = dao.getField(no);
 		

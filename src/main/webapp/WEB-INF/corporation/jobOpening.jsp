@@ -18,13 +18,13 @@
         <div class="logo-default">
             <a href="index"><img src="img/logo.png"></a>
         </div>
-        <ul>
+        <ul id="header_menu">
             <li><a href="newcomer">신입채용</a></li>
             <li><a href="career">경력채용</a></li>
             <li><a href="top100">Top100</a></li>
         </ul>
         <form class="search_box" id="searbox">
-            <input type="text" name="searchbox" placeholder="검색어를 입력하세요.">
+            <input id="searchbox"type="text" name="searchbox" placeholder="검색어를 입력하세요.">
         </form>
             <input type="button" form="searbox" class="search">
             <c:if test="${empty indiId && empty corpId}">
@@ -39,7 +39,7 @@
             
             <c:if test="${not empty indiId && empty corpId}">
 	            <div id="profile-box" class="profile-box">
-	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> <span id=name>${indiName} 님</span> &nbsp;&nbsp;</div>
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
@@ -52,7 +52,7 @@
             
             <c:if test="${empty indiId && not empty corpId}">
 	            <div id="profile-box" class="profile-box">
-	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &nbsp;&nbsp;</div>
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> <span id=name>${corpName} 님</span> &nbsp;&nbsp;</div>
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
