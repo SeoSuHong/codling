@@ -103,7 +103,7 @@
 	            </c:forEach>
             </c:if>
             <c:if test="${empty jobOpeningManagement}">
-	            <div class="resumemg" style="cursor: pointer;" onclick="location='jobOpening_writing.jsp'">
+	            <div class="resumemg" style="cursor: pointer;" onclick="location='jobOpening_writing'">
 		                <div class="resumemgbox">
 		                    <p><span>내가올린 공고</span></p>
 		                    <div class="resumemgbox2">
@@ -114,7 +114,7 @@
 		            </div>
 				</c:if>
             <div class="btn-res">
-                <a href="jobOpening_writing.jsp"><button action="" id="btn-res"><span class="btn-resspan">공고 작성</span></button></a>
+                <a href="jobOpening_writing"><button action="" id="btn-res"><span class="btn-resspan">공고 작성</span></button></a>
             </div>
          </article>
     </section>
