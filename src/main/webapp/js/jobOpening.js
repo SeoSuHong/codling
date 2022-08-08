@@ -76,3 +76,19 @@ geocoder.addressSearch(address, function(result, status) {
        map.setCenter(coords);
     } 
 });
+
+//top 마이메뉴 다운드롭
+$(function(){
+    $("#scroll-profile-hover").hide();
+
+        $("#scroll-hover-box").hover(function() {
+            $("#scroll-profile-hover").stop().slideDown();
+        },function(){
+            $("#scroll-profile-hover").stop().slideUp();
+        });
+        $("#scroll-profile-hover").hover(function() {
+            $(this).stop().slideDown();
+        },function(){
+            $(this).stop().slideUp();
+    });
+});
