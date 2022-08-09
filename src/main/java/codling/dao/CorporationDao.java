@@ -125,7 +125,7 @@ public class CorporationDao {
 		return jobOpening;
 	}
 	
-	// 모든 공고 정보
+	// 모든 공고 정보(ID)
 	public List<JobOpening> getAllJobOpening (String id) {
 		List<JobOpening> list = new ArrayList<JobOpening>();
 		String query = "SELECT * FROM jobOpening WHERE corporation_id = ?";
@@ -233,10 +233,10 @@ public class CorporationDao {
 	public ArrayList<Announcement> indexContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
-				+ "FROM field F "
-				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+				+ "FROM jobopening J "
+				+ "JOIN field F ON J.no = F.jobOpening_no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
-				+ "ORDER BY J.count DESC";
+				+ "ORDER BY J.no DESC";
 		
 		try {
 			conn = getConnection();

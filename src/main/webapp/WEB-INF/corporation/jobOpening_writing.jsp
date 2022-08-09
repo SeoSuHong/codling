@@ -21,7 +21,7 @@
             <div></div>
             <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
-                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename">${name}</span> &nbsp;&nbsp;</div>
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> ${name} 님</span> &nbsp;&nbsp;</div>
                 </div>
         </div>
         <div id="profile-hover">
@@ -32,8 +32,8 @@
             </ul>
         </div>
     </header>
-       <section>
-       	<form action="" method="post" name="">
+        <section>
+		<form action="jobOpening_writing" method="post" name="jobOpForm">
        		<!-- 회사정보 -->
            	<h3>회사 정보</h3>
            	<article id="companyinfo">
@@ -62,112 +62,90 @@
                     </tr>
                     <tr>
                         <td>시작일*</td>
-                        <td><input id="font_medium" name="" type="date" id="">&emsp;&emsp;&emsp;&emsp;&emsp;마감일*&emsp;&emsp;<input name="" type="date" id=""></input>
+                        <td><input id="font_medium" name="startDate" type="date">&emsp;&emsp;&emsp;&emsp;&emsp;마감일*&emsp;&emsp;<input name="endDate" type="date"></input>
                         
                     </tr>
                 </table>
            	</article>
            	<!-- 모집분야(추가 폼) -->
            	<div name="problem_list" id="problem_list">
-               	<h3>모집분야<button id="add" onclick="addForm()">추가</button></h3>
-           		<article id="field">
+               	<h3>모집분야<input type="button" id="add" onclick="addForm();" value="추가"></h3>
+           		<article class="field">
                     <table>
                         <tr>
-                            <td>모집분야명*</td>
-                            <td id="font_medium"><input name="" id="" size="60"></td>
+                            <td>분야명*</td>
+                            <td id="font_medium"><input name="name" size="60"></td>
                         </tr>
                         <tr>
                             <td>경력여부*</td>
-                            <td id="font_medium"> <input name="career_status" value="newcomer"type="checkbox"><label>&nbsp;신입&emsp;&emsp;</label>
-                                <input name="career_status" value="career"type="checkbox"><label>&nbsp;경력&emsp;&emsp;</label>
-                                <select id="font_medium">
-                                    <option selected>선택</option>
-                                    <option>1년이하</option>
-                                    <option>1년이상</option>
-                                    <option>2년이하</option>
-                                    <option>2년이상</option>
-                                    <option>3년이하</option>
-                                    <option>3년이상</option>
-                                    <option>4년이하</option>
-                                    <option>4년이상</option>
-                                    <option>5년이하</option>
-                                    <option>5년이상</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>직급/직책</td>
-                            <td id="font_medium"><input name="" size="30"></td>
-                        </tr>
-                        <tr>
-                            <td>급여</td>
-                            <td id="font_medium"><input type="text" name="" size="10"id="inputprice"  id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox"><label>&nbsp;면접 후 결정</label></span></td>
-                        </tr>
-                        <tr>
-                            <td>근무요일</td>
                             <td id="font_medium">
-                                <input name="workday" type="radio"><label>&nbsp;주5일(월~금)</label>&emsp;
-                                <input name="workday" type="radio"><label>&nbsp;유연근무제</label>&emsp;
-                                <input name="workday" type="radio"><label>&nbsp;면접 후 결정</label>
+                            	<input name="career_status" value="신입" type="checkbox"><label>&nbsp;신입&emsp;&emsp;</label>
+                                <input name="career_status" class="careerChk" value="career" type="checkbox"><label>&nbsp;경력&emsp;</label>
+                                <input name="career_year" class="career_year" readonly>
                             </td>
                         </tr>
                         <tr>
-                            <td>주요업무</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td>직급/직책*</td>
+                            <td id="font_medium"><input name="position" size="30"></td>
                         </tr>
                         <tr>
-                            <td>자격요건</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td>급여*</td>
+                            <td id="font_medium"><input type="text" name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="payChk"><label>&nbsp;면접 후 결정</label></span></td>
                         </tr>
                         <tr>
-                            <td>우대사항</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td>근무요일*</td>
+                            <td id="font_medium">
+                                <input name="workday" type="radio" value="주5일(월~금)"><label>&nbsp;주5일(월~금)</label>&emsp;
+                                <input name="workday" type="radio" value="유연근무제"><label>&nbsp;유연근무제</label>&emsp;
+                                <input name="workday" type="radio" value="면접 후 결정"><label>&nbsp;면접 후 결정</label>
+                            </td>
                         </tr>
                         <tr>
-                            <td>채용절차</td>
-                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+                            <td>사용스택 및 툴*</td>
+                            <td id="font_medium"><input id="stack" name="stack">
+                        </tr>
+                        <tr>
+                            <td>주요업무*</td>
+                            <td id="font_medium"><textarea id="textbox" name="work"></textarea>
+                        </tr>
+                        <tr>
+                            <td>자격요건*</td>
+                            <td id="font_medium"><textarea id="textbox" name="requirement"></textarea>
+                        </tr>
+                        <tr>
+                            <td>우대사항*</td>
+                            <td id="font_medium"><textarea id="textbox" name="preference"></textarea>
                         </tr>
                     </table>
            		</article>
            	</div>
            		<!-- 모집분야(삭제 폼) -->
-           		<div id="list_file_tag" class="field_del"> 
-           			<article id="field">
+           		<div id="list_file_tag" class="field_del">
+           			<article class="field">
                     	<table>
                         	<button id="del" onclick="delForm(this);">삭제</button>
                         	<tr>
-                            	<td>모집분야명*</td>
+                            	<td>분야명*</td>
                             	<td id="font_medium"><input name="" id="" size="60"></td>
                         	</tr>
                         	<tr>
 	                            <td>경력여부*</td>
-	                            <td id="font_medium"> <input name="career_status" value="newcomer"type="checkbox"onclick='checkOnlyOne(this)'><label>&nbsp;신입&emsp;&emsp;</label>
-	                                <input name="career status" value="career"type="checkbox"onclick='checkOnlyOne(this)'><label>&nbsp;경력&emsp;&emsp;</label>
-	                                <select id="font_medium">
-	                                    <option selected>선택</option>
-	                                    <option>1년이하</option>
-	                                    <option>1년이상</option>
-	                                    <option>2년이하</option>
-	                                    <option>2년이상</option>
-	                                    <option>3년이하</option>
-	                                    <option>3년이상</option>
-	                                    <option>4년이하</option>
-	                                    <option>4년이상</option>
-	                                    <option>5년이하</option>
-	                                    <option>5년이상</option>
-	                                </select>
+	                            <td id="font_medium">
+	                            	<input name="career_status" value="newcomer"type="checkbox"><label>&nbsp;신입&emsp;&emsp;</label>
+	                                <input name="career status" class="careerChk" value="career"type="checkbox"><label>&nbsp;경력&emsp;</label>
+	                                <input name="career_year" class="career_year" readonly> 
 	                            </td>
                         	</tr>
                         	<tr>
-	                            <td>직급/직책</td>
+	                            <td>직급/직책*</td>
 	                            <td id="font_medium"><input name="" size="30"></td>
                         	</tr>
                         	<tr>
-	                            <td>급여</td>
+	                            <td>급여*</td>
 	                            <td id="font_medium"><input name="" size="10">&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox"><label>&nbsp;면접 후 결정</label></span></td>
                         	</tr>
                         	<tr>
-	                            <td>근무요일</td>
+	                            <td>근무요일*</td>
 	                            <td id="font_medium">
 	                                <input name="workday" type="radio"><label>&nbsp;주5일(월~금)</label>&emsp;
 	                                <input name="workday" type="radio"><label>&nbsp;유연근무제</label>&emsp;
@@ -175,46 +153,31 @@
 	                            </td>
                         	</tr>
 	                        <tr>
-	                            <td>주요업무</td>
+	                            <td>주요업무*</td>
 	                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
 	                        </tr>
 	                        <tr>
-	                            <td>자격요건</td>
+	                            <td>자격요건*</td>
 	                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
 	                        </tr>
 	                        <tr>
-	                            <td>우대사항</td>
-	                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
-	                        </tr>
-	                        <tr>
-	                            <td>채용절차</td>
+	                            <td>우대사항*</td>
 	                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
 	                        </tr>
                     	</table>
            			</article>
        			</div>
 	            <!-- 기업소개 -->
-	            <h3>기업소개</h3>
+	            <h3>채용절차</h3>
             <article id="company">
             	<table>
                     <tr>
-                        <td>기업/서비스소개</td>
+                        <td>채용절차 및 기타 지원 유의사항</td>
                     </tr>
                     <tr>
-                        <td id="font_medium"><textarea id="textbox2" name=""></textarea></td>
-                        
+                        <td id="font_medium"><textarea id="textbox" name=""></textarea></td>
                     </tr>
                 </table>
-            </article>
-            <!-- 자사양식 -->
-            <h3>자사양식</h3>
-            <article id="selfFrm">
-                    <!-- <div id=file><input type="file" value="파일첨부"></div> -->
-               <div class="filebox">
-                   <label for="file">파일찾기</label> 
-                   <input type="file" id="file" onchange="javascript:document.getElementById('fileName').value = this.value">
-                   <input type="text" class="upload_name" value="첨부파일" readonly>       
-            	</div>
             </article>
 		    <!-- 등록버튼 -->
 		    <div id="submit">
