@@ -46,7 +46,9 @@ ul {list-style:none;}
 .btn-xlarge:visited {border: white; display: flex; justify-content:center;}
 
 #sugg{text-decoration: none; color: #62AE26;}
-.address>input {width:418px;margin-left:1rem;}
+
+/*주소정렬*/
+.address>input {width:416px;margin-left:0.7rem;}
 
 
 /*footer*/
