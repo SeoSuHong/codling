@@ -146,6 +146,84 @@ $(document).ready(function(){
 	});
 });
 
-function insertJobOpeningChech() {
+function insertJobOpeningCheck() {
+	if(document.jobOpForm.address.value == '') {
+		alert("근무지역을 입력해 주세요.");
+		document.jobOpForm.detailAddress.focus(); return;
+	}
+	if(document.jobOpForm.title.value == '') {
+		alert("공고제목을 입력해 주세요.");
+		document.jobOpForm.title.focus(); return;
+	}
+	if(document.jobOpForm.startDate.value == '') {
+		alert("시작일을 입력해 주세요.");
+		document.jobOpForm.startDate.focus(); return;
+	}
+	if(document.jobOpForm.endDate.value == '') {
+		alert("마감일을 입력해 주세요.");
+		document.jobOpForm.endDate.focus(); return;
+	}
 	
+	var nameList          = document.getElementsByName('name');
+	var career_statusList = document.getElementsByName('career_status');
+	var career_yearList   = document.getElementsByName('career_year');
+	var positionList      = document.getElementsByName('position');
+	var payList           = document.getElementsByName('pay');
+	var workdayList       = document.getElementsByName('workday');
+	var stackList         = document.getElementsByName('stack');
+	var workList          = document.getElementsByName('work');
+	var requirementList   = document.getElementsByName('requirement');
+	var preferenceList    = document.getElementsByName('preference');
+	
+	
+	for(let i = 0; i < nameList.length; i++) {
+			const idx = i;
+			idx2 = idx + (idx - 1);
+			idx3 = idx * 3;
+		if(nameList) {	
+			if(document.jobOpForm.nameList[idx].value == '') {
+				alert("분야명을 입력해 주세요.");
+				document.jobOpForm.nameList[idx].focus(); return;
+			}
+			/*if(document.jobOpForm.career_statusList[idx2].value == '' && document.jobOpForm.career_statusList[idx2 + 1].value == '') {
+				alert("경력여부를 하나 이상 선택해 주세요."); return;
+			}
+			if(document.jobOpForm.career_statusList[idx2 + 1].value != '' && document.jobOpForm.career_yearList[idx].value == '') {
+				alert("경력을 입력해 주세요.");
+				document.jobOpForm.career_yearList[idx].focus(); return;
+			}
+			if(document.jobOpForm.positionList[idx].value == '') {
+				alert("직급/직책을 입력해 주세요.");
+				document.jobOpForm.positionList[idx].focus(); return;
+			}
+			if(document.jobOpForm.payList[idx2].value == '' && document.jobOpForm.payList[idx2 + 1].value == '') {
+				alert("급여를 입력해 주세요.");
+				document.jobOpForm.payList[idx2].focus(); return;
+			}
+			if(document.jobOpForm.workdayList[idx3 - 2].value == '' && document.jobOpForm.workdayList[idx3 - 1].value == '' && document.jobOpForm.workdayList[idx3].value == '') {
+				alert("근무요일을 선택해 주세요."); return;
+			}
+			if(document.jobOpForm.stackList[idx].value == '') {
+				alert("사용스택 및 툴을 입력해 주세요.");
+				document.jobOpForm.stackList[idx].focus(); return;
+			}
+			if(document.jobOpForm.workList[idx].value == '') {
+				alert("주요업무를 작성해 주세요.");
+				document.jobOpForm.workList[idx].focus(); return;
+			}
+			if(document.jobOpForm.requirementList[idx].value == '') {
+				alert("자격요건을 작성해 주세요.");
+				document.jobOpForm.requirementList[idx].focus(); return;
+			}
+			if(document.jobOpForm.preferenceList[idx].value == '') {
+				alert("우대사항을 작성해 주세요.");
+				document.jobOpForm.preferenceList[idx].focus(); return;
+			}*/
+		}
+	}
+	console.log("서브밋 ㄱㄱ");
 }
+
+
+
+

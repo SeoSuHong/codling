@@ -58,7 +58,7 @@
                 <table>
                     <tr>
                         <td>공고제목*</td>
-                        <td td id="font_medium"><input name="title" id="jobopening_title" size="60"></td>
+                        <td id="font_medium"><input name="title" id="jobopening_title" size="60"></td>
                     </tr>
                     <tr>
                         <td>시작일*</td>
@@ -80,7 +80,7 @@
                             <td>경력여부*</td>
                             <td id="font_medium">
                             	<input name="career_status" value="신입" type="checkbox"><label>&nbsp;신입&emsp;&emsp;</label>
-                                <input name="career_status" class="careerChk" value="career" type="checkbox"><label>&nbsp;경력&emsp;</label>
+                                <input name="career_status" class="careerChk" value="경력" type="checkbox"><label>&nbsp;경력&emsp;</label>
                                 <input name="career_year" class="career_year" readonly>
                             </td>
                         </tr>
@@ -90,7 +90,7 @@
                         </tr>
                         <tr>
                             <td>급여*</td>
-                            <td id="font_medium"><input type="text" name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="payChk"><label>&nbsp;면접 후 결정</label></span></td>
+                            <td id="font_medium"><input type="text" name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span></td>
                         </tr>
                         <tr>
                             <td>근무요일*</td>
@@ -126,7 +126,7 @@
                         	<button id="del" onclick="delForm(this);">삭제</button>
                         	<tr>
                             	<td>분야명*</td>
-                            	<td id="font_medium"><input name="" id="" size="60"></td>
+                            	<td id="font_medium"><input name="name" size="60"></td>
                         	</tr>
                         	<tr>
 	                            <td>경력여부*</td>
@@ -138,11 +138,11 @@
                         	</tr>
                         	<tr>
 	                            <td>직급/직책*</td>
-	                            <td id="font_medium"><input name="" size="30"></td>
+	                            <td id="font_medium"><input name="position" size="30"></td>
                         	</tr>
                         	<tr>
 	                            <td>급여*</td>
-	                            <td id="font_medium"><input name="" size="10">&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox"><label>&nbsp;면접 후 결정</label></span></td>
+	                            <td id="font_medium"><input name="pay" size="10">&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" id="payChk"><label>&nbsp;면접 후 결정</label></span></td>
                         	</tr>
                         	<tr>
 	                            <td>근무요일*</td>
@@ -152,17 +152,21 @@
 	                                <input name="workday" type="radio"><label>&nbsp;면접 후 결정</label>
 	                            </td>
                         	</tr>
+                        	<tr>
+	                            <td>사용스택 및 툴*</td>
+	                            <td id="font_medium"><input id="stack" name="stack">
+                        	</tr>
 	                        <tr>
 	                            <td>주요업무*</td>
-	                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+	                            <td id="font_medium"><textarea id="textbox" name="work"></textarea>
 	                        </tr>
 	                        <tr>
 	                            <td>자격요건*</td>
-	                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+	                            <td id="font_medium"><textarea id="textbox" name="requirement"></textarea>
 	                        </tr>
 	                        <tr>
 	                            <td>우대사항*</td>
-	                            <td id="font_medium"><textarea id="textbox" name=""></textarea>
+	                            <td id="font_medium"><textarea id="textbox" name="preference"></textarea>
 	                        </tr>
                     	</table>
            			</article>
@@ -175,13 +179,13 @@
                         <td>채용절차 및 기타 지원 유의사항</td>
                     </tr>
                     <tr>
-                        <td id="font_medium"><textarea id="textbox" name=""></textarea></td>
+                        <td id="font_medium"><textarea id="textbox" name="process"></textarea></td>
                     </tr>
                 </table>
             </article>
 		    <!-- 등록버튼 -->
 		    <div id="submit">
-		        <button onclick="insertJobOpeningChech()">등록</button>
+		        <input type="button" onclick="insertJobOpeningCheck()" value="등록">
 		    </div>
    		</form>
    	</section>
