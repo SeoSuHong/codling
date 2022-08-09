@@ -10,6 +10,8 @@ body {
     overflow-x: hidden;
 }
 
+#headerbox{width: 150px}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -50,7 +52,7 @@ header{margin: 0 auto; width: 1220px;}
 .name{position: relative; top: -15px;}
 #hover-box{height: 45px;}
 #hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
-#profile-hover{border: 1px solid #cecece; width: 150px; height: 160px; border-radius: 10px; position: fixed; top: 85px; right: 350px;}
+#profile-hover{border: 1px solid #cecece; width: 150px; height: 160px; border-radius: 10px; position: fixed; top: 85px; right: 200px;}
 #profile-hover>ul{margin-top: 0px;}
 #profile-hover>ul>li>a{color: #656978; font-size: 1rem;
     width: 150px; height: 40px; display: flex; align-items: center; margin-left: -40px;
@@ -174,10 +176,10 @@ section{width: 1220px; margin: 0 auto; }
 article{width: 1220px; display: flex; justify-content: center;}
 
 .contents {
-    margin-top: -30px;
     text-align: left;
     color: #373F57;
     width: 800px;
+    margin-bottom: -20px;
 }
 
 .inContent {
@@ -188,7 +190,7 @@ article{width: 1220px; display: flex; justify-content: center;}
 }
 
 .inContent:last-child{
-	margin-bottom: 0;
+
 }
 
 .content {
@@ -217,14 +219,13 @@ article{width: 1220px; display: flex; justify-content: center;}
     width: 1220px;
     display: flex;
     justify-content: center;
+    padding: 20px 0;
 }
 
 hr{
     border-top: 1px solid rgba(187, 187, 187,0.2);
-    margin: auto;
+    margin: 30px auto;
     width: 900px;
-    margin-top: 50px;
-    margin-bottom: 50px;
 }
 
 /*hr 밑 */

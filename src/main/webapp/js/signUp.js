@@ -92,7 +92,7 @@ let inputDataCheck = (id) => {
 
   // 개인 회원 유효성 검사
   function signUpInd_submit(){
-    const getIdCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
+    const getIdCheck= RegExp(/^[a-z0-9]{4,12}$/);
     const getPwCheck =  RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
     const getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
     const getPhone = RegExp( /^[0-9]{8}$/);
@@ -107,7 +107,7 @@ let inputDataCheck = (id) => {
 
     // 아이디 유효성 검사
     if(!getIdCheck.test($("#id").val())){
-      alert("영문,숫자를 혼합하여 4자리~12자리 이내로 입력해주세요")
+      alert("알파벳 소문자, 숫자를 혼합하여 4자리~12자리 이내로 입력해주세요")
       $("#id").addClass("is-invalid");
       $("#id").focus();
       $("#id").val("");
@@ -254,50 +254,48 @@ if($("#detailAddress").val() == ""){
   $("#detailAddress").focus();
   return;
 }
-
-	alert("Welcome🍏");
-  	location.href="index.jsp";
-	// perFrm.submit();
+	perFrm.submit();
   }
   
  // 기업 회원 유효성 검사
 function signUpCom_submit(){
-    const getIdCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
+    const getIdCheck= RegExp(/^[a-z0-9]{4,12}$/);
     const getPwCheck =  RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
     const getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
     const getPhone = RegExp( /^[0-9]{7,8}$/);
     const getComNum = RegExp(/([0-9]{3})-?([0-9]{2})-?([0-9]{5})/);
     
 	// 아이디 공백 확인
-  if($("#Comid").val() == ""){
-        $("#Comid").addClass("is-invalid");
-        $("#Comid").focus();
+  if($("#corId").val() == ""){
+        $("#corId").addClass("is-invalid");
+        $("#corId").focus();
         return;
   }
   
   // 아이디 유효성 검사
-  if(!getIdCheck.test($("#Comid").val())){
+  if(!getIdCheck.test($("#corId").val())){
   	alert("영문,숫자를 혼합하여 4자리~12자리 이내로 입력해주세요")
-  	$("#Comid").addClass("is-invalid");
-  	$("#Comid").focus();
-  	$("#Comid").val("");
+  	$("#corId").addClass("is-invalid");
+  	$("#corId").focus();
+  	$("#corId").val("");
   	return;
 	}
   
   // 비밀번호 공백 확인
-  if($("#pwCom").val() == ""){
-    $("#pwCom").addClass("is-invalid");
-    $("#pwCom").focus();
-    $("#pwCom").val("");
+  if($("#corPw").val() == ""){
+    $("#corPw").addClass("is-invalid");
+    $("#corPw").focus();
+    $("#corPw").val("");
     return;
 	}
 
 	// 비밀번호 유효성 검사
-	if(!getPwCheck.test($("#pwCom").val())){
+	if(!getPwCheck.test($("#corPw").val())){
 		alert("영문,숫자, 특수문자를 혼합하여 8자리~20자리 이내로 입력해주세요")
-		$("#pwCom").addClass("is-invalid");
-	    $("#pwCom").focus();
-	    $("#pwCom").val("");
+		$("#corPw").addClass("is-invalid");
+	    $("#corPw").focus();
+	    $("#corPw").val("");
+	    return;
 	}
 
 	// 비밀번호 확인 공백 확인
@@ -308,7 +306,7 @@ function signUpCom_submit(){
 	 }
 	
 	// 비밀번호와 비밀번호 확인이 같은지 확인
-  	if(($("#cfpwCom").val()!=$("#pwCom").val())){
+  	if(($("#cfpwCom").val()!=$("#corPw").val())){
     alert("입력하신 비밀번호가 다릅니다.")
     $("#cfpwCom").addClass("is-invalid");
     $("#cfpwCom").focus();
@@ -387,9 +385,7 @@ function signUpCom_submit(){
 	  return;
 	}
 	
-	alert("Welcome🍏");
-	location.href="index.jsp";
-	// comFrm.submit();
+	comFrm.submit();
   }
   
   
@@ -457,7 +453,7 @@ function sample7_execDaumPostcode() {
           var addr = ''; // 주소 변수
           var extraAddr = ''; // 참고항목 변수
 
-          //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+          // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
           if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
               addr = data.roadAddress;
           } else { // 사용자가 지번 주소를 선택했을 경우(J)

@@ -8,7 +8,7 @@
 /*searchbox*/
 .searchbox{width: 580px; height: 50px; outline: unset; border: none; height: 96%; margin-left: 10px;
     font-size: 1.3rem; }
-#searbox{width: 650px; height: 50px; border: 2px solid #A5E374; display: inline-block; margin-left: 27px;
+#searbox{width: 650px !important; height: 50px; border: 2px solid #A5E374; display: inline-block; margin-left: 27px;
     border: 5px solid #A5E374; box-shadow: 2px 2px 3px -1px rgba(0, 0, 0, 0.25); border-radius: 6px;}
 /*searchlogo*/
 .btn-search {width: 30px; height: 30px; outline: unset; border: none;
@@ -32,8 +32,8 @@
 /*login-view*/
 
 .profile-box{margin-top: 10px;}
-#hover-box{margin-left: 128px;}
-#login_header{display: flex; align-items: center; margin-top: 100px;}
+#hover-box{margin-left: 120px; height: 45px; white-space:nowrap;}
+#login_header{display: flex; align-items: center; margin-top: 100px; justify-content: space-between;}
 #menu-bar>div{width: 131.5px; height: 5px;}
 #profilelogo{width: 35px; height: 35px; margin: 5px;}
 #profile-box{display: block; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}

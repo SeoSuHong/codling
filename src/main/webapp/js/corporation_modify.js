@@ -43,17 +43,36 @@ var pwchk = RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
 const getComNum = RegExp(/([0-9]{3})-?([0-9]{2})-?([0-9]{5})/);
 
 function signUpInd_submit() {
+    const getIdCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
+    const getPwCheck =  RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
+    const getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+    const getPhone = RegExp( /^[0-9]{7,8}$/);
+    const getComNum = RegExp(/([0-9]{3,3})-?([0-9]{2,2})-?([0-9]{5,5})/);
+    
+   // 아이디 공백 확인
   if ($("#id").val() == "") {
     $("#id").addClass("is-invalid");
     $("#id").focus();
     return;
   }
+  
+    // 아이디 유효성 검사
+  if(!getIdCheck.test($("#id").val())){
+  	alert("영문,숫자를 혼합하여 4자리~12자리 이내로 입력해주세요")
+  	$("#id").addClass("is-invalid");
+  	$("#id").focus();
+  	$("#id").val("");
+  	return;
+	}
+  
+  
+  // 비밀번호 공백 확인
   if ($("#pw").val() == "") {
     $("#pw").addClass("is-invalid");
     $("#pw").focus();
     return;
   }
-  
+
   //비밀번호 유효성검사
   if(!pwchk.test($("#pw").val())){
   	$("#pw").addClass("is-invalid");
@@ -71,11 +90,13 @@ function signUpInd_submit() {
   	return;
   }
   
+  // 비밀번호 확인 공백 확인
   if ($("#cfpw").val() == "") {
     $("#cfpw").addClass("is-invalid");
     $("#cfpw").focus();
     return;
   }
+
   //사업자등록번호 유효성검사
   if(!getComNum.test($("#comNum").val())){
   	$("#comNum").addClass("is-invalid");
@@ -89,51 +110,75 @@ function signUpInd_submit() {
     $("#comNum").focus();
     return;
   }
-  
-  
+
   if ($("#name").val() == "") {
     $("#name").addClass("is-invalid");
     $("#name").focus();
     return;
   }
-  if ($("#year").val() == "") {
-    $("#year").addClass("is-invalid");
-    $("#year").focus();
-    return;
+  
+    // 회사명 공백 확인
+  	if ($("#comName").val() == "") {
+	    $("#comName").addClass("is-invalid");
+	    $("#comName").focus();
+	    return;
   }
-
-  if ($("#month").val() == "") {
-    $("#month").addClass("is-invalid");
-    $("#month").focus();
-    return;
-  }
-
-  if ($("#day").val() == "") {
-    $("#day").addClass("is-invalid");
-    $("#day").focus();
-    return;
-  }
-  if ($("#email").val() == "") {
-    $("#email").addClass("is-invalid");
-    $("#email").focus();
-    return;
-  }
-  if ($("#phoneInd1").val() == "") {
-    $("#phoneInd1").addClass("is-invalid");
-    $("#phoneInd1").focus();
-    return;
-  }
-  if ($("phoneInd2").val() == "") {
-    $("#phoneInd2").addClass("is-invalid");
-    $("#phoneInd2").focus();
-    return;
-  }
-  if ($("#postCode").val() == "") {
+  
+  
+  	// 전화번호 공백 확인
+	if($("#telePhone").val() == ""){
+	$("#telePhone").addClass("is-invalid");
+	$("#telePhone").focus();
+	return;
+	}
+	
+	// 파일 등록 했는지 ? 
+	if($("#formFile").val() == ""){
+	alert("최근 3개월 이내 발급받으신 사업자등록증명원을 첨부해 주시기 바랍니다.");
+	$("#formFile").addClass("is-invalid");
+	$("#formFile").focus();
+	return;
+	}
+	
+	// 전화번호 유효성 확인
+	if(!getPhone.test($("#telePhone").val())){
+		alert("유효하지 않은 전화번호입니다.")
+		$("#telePhone").addClass("is-invalid");
+	    $("#telePhone").focus();
+	    $("#telePhone").val("");
+	    return;
+	}
+	
+	// 대표자명 입력 확인
+		if($("#representative").val() == ""){
+		$("#representative").addClass("is-invalid");
+		$("#representative").focus();
+		return;
+	}
+	
+	// 사업자 등록번호 공백 확인
+		if($("#comNum").val() == ""){
+		$("#comNum").addClass("is-invalid");
+		$("#comNum").focus();
+		return;
+	}
+	
+	// 사업자 등록번호 유효성 검사
+	if(!getComNum.test($("#comNum").val())){
+		alert("유효하지 않은 사업자등록번호 입니다.");
+		$("#comNum").addClass("is-invalid");
+	    $("#comNum").focus();
+	    $("#comNum").val("");
+	    return;
+	}
+	
+  // 주소 공백 확인
+  if($("#postCode").val() == "") {
     $("#postCode").addClass("is-invalid");
     $("#postCode").focus();
     return;
   }
-  if ($("#address").val() == "") {
+  if($("#address").val() == "") {
     $("#address").addClass("is-invalid");
     $("#address").focus();
     return;

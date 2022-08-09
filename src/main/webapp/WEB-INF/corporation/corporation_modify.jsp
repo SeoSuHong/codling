@@ -55,8 +55,6 @@
                                             </div>
                                 </div>
                             </div>
-                            
-                            
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">회사명</p>

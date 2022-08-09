@@ -21,7 +21,7 @@
     </header>
     <article>
         <p id="suv">서비스를 이용하시려면 로그인을 하세요</p>
-        <p id="suv2">Codling 회원이 아니시면 <a href="signUp.jsp" id="join1">회원가입</a>을 해주세요</p>
+        <p id="suv2">Codling 회원이 아니시면 <a href="signUp" id="join1">회원가입</a>을 해주세요</p>
         <ul class="tab_member_type">
             <li class="t_per t_on"><a class="a_per">개인회원</a></li>
             <li class="t_com"><a class="a_com">기업회원</a></li>
@@ -60,7 +60,7 @@
             
             
         </div>
-        <p id="join2"><a href="signUp.jsp">회원가입</a><a href="find_account.jsp">아이디/비밀번호 찾기</a></p>
+        <p id="join2"><a href="signUp">회원가입</a><a href="find_account.jsp">아이디/비밀번호 찾기</a></p>
     </article>
     <div id="loginAPI">
         <div>

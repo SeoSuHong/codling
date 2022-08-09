@@ -40,75 +40,169 @@ let inputDataCheck = (id) => {
 
 //submit 눌렀을때 signUpInd_submit 함수 실행
 function signUpInd_submit() {
-  if ($("#id").val() == "") {
-    $("#id").addClass("is-invalid");
-    $("#id").focus();
-    return;
+  const getIdCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
+    const getPwCheck =  RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
+    const getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+    const getPhone = RegExp( /^[0-9]{8}$/);
+
+    // 아이디 공백 확인
+    if($("#id").val() == ""){
+        $("#id").addClass("is-invalid");
+        $("#id").focus();
+        $("#id").val("");
+        return;
+    }
+
+    // 아이디 유효성 검사
+    if(!getIdCheck.test($("#id").val())){
+      alert("영문,숫자를 혼합하여 4자리~12자리 이내로 입력해주세요")
+      $("#id").addClass("is-invalid");
+      $("#id").focus();
+      $("#id").val("");
+      return;
   }
-  if ($("#pw").val() == "") {
+
+  // 비밀번호 공백 확인
+    if($("#pw").val() == ""){
+      $("#pw").addClass("is-invalid");
+      $("#pw").focus();
+      $("#pw").val("");
+      return false;
+  }
+
+  // 비밀번호 유효성 검사
+  if(!getPwCheck.test($("#pw").val())){
+    alert("영문,숫자, 특수문자를 혼합하여 8자리~20자리 이내로 입력해주세요")
     $("#pw").addClass("is-invalid");
     $("#pw").focus();
+    $("#pw").val("");
     return;
-  }
-  if ($("#cfpw").val() == "") {
+}
+
+  // 비밀번호 확인 공백 확인 
+  if($("#cfpw").val() == ""){
     $("#cfpw").addClass("is-invalid");
     $("#cfpw").focus();
+    $("#cfpw").val("");
     return;
-  }
-  if ($("#name").val() == "") {
-    $("#name").addClass("is-invalid");
-    $("#name").focus();
-    return;
-  }
-  if ($("#year").val() == "") {
-    $("#year").addClass("is-invalid");
-    $("#year").focus();
-    return;
-  }
+}
 
-  if ($("#month").val() == "") {
-    $("#month").addClass("is-invalid");
-    $("#month").focus();
+// 비밀번호와 비밀번호 확인이 같은지 확인
+  if(($("#cfpw").val()!=$("#pw").val())){
+    alert("입력하신 비밀번호가 다릅니다.")
+    $("#cfpw").addClass("is-invalid");
+    $("#cfpw").focus();
+    $("#cfpw").val("");
     return;
-  }
+}
 
-  if ($("#day").val() == "") {
-    $("#day").addClass("is-invalid");
-    $("#day").focus();
-    return;
-  }
-  if ($("#email").val() == "") {
-    $("#email").addClass("is-invalid");
-    $("#email").focus();
-    return;
-  }
-  if ($("#phoneInd1").val() == "") {
-    $("#phoneInd1").addClass("is-invalid");
-    $("#phoneInd1").focus();
-    return;
-  }
-  if ($("phoneInd2").val() == "") {
-    $("#phoneInd2").addClass("is-invalid");
-    $("#phoneInd2").focus();
-    return;
-  }
-  if ($("#postCode").val() == "") {
-    $("#postCode").addClass("is-invalid");
-    $("#postCode").focus();
-    return;
-  }
-  if ($("#address").val() == "") {
-    $("#address").addClass("is-invalid");
-    $("#address").focus();
-    return;
-  }
-  if ($("#detailAddress").val() == "") {
-    $("#detailAddress").addClass("is-invalid");
-    $("#detailAddress").focus();
-    return;
-  }
+// 비밀번호 확인 유효성 검사
+if(!getPwCheck.test($("#cfpw").val())){
+  alert("비밀번호가 유효하지 않습니다.")
+  $("#cfpw").addClass("is-invalid");
+  $("#cfpw").focus();
+  $("#cfpw").val("");
+  return;
+}
+
+// 개인 회원 성명 입력했는지?
+if($("#name").val() == ""){
+  $("#name").addClass("is-invalid");
+  $("#name").focus();
+  $("#name").val("");
+  return;
+}
+
+// 연도 입력
+if($("#year").val() == ""){
+  $("#year").addClass("is-invalid");
+  $("#year").focus();
+  $("#year").val("");
+  return;
+}
+
+// 월 입력
+if($("#month").val() == ""){
+  $("#month").addClass("is-invalid");
+  $("#month").focus();
+  $("#month").val("");
+  return;
+}
+
+// 일 입력
+if($("#day").val() == ""){
+  $("#day").addClass("is-invalid");
+  $("#day").focus();
+  $("#day").val("");
+  return;
+}
+
+// 성별 확인
+let genderChk = $("#gender option:selected").val(); 
+if(genderChk == ""){
+  $("#gender").addClass("is-invalid");
+  $("#gender").focus();
+  return;
+}
+
+// 성별 체크 시
+if(genderChk !=""){
+	$("#gender").removeClass("is-invalid");
+  	$("#gender").focus();
+}
+
+// 이메일 공백 확인
+if($("#email").val() == ""){
+  $("#email").addClass("is-invalid");
+  $("#email").focus();
+  $("#email").val("");
+  return;
+}
+
+// 이메일 유효성 검사
+if(!getMail.test($("#email").val())){
+  alert("유효한 이메일 주소가 아닙니다.")
+  $("#email").addClass("is-invalid");
+  $("#email").focus();
+  $("#email").val("");
+  return;
+}
+
+// 전화번호 공백 확인
+if($("phoneInd2").val() === ""){
+  $("#phoneInd2").addClass("is-invalid");
+  $("#phoneInd2").focus();
+  $("#phoneInd2").val("");
+  return;
+}
+
+// 전화번호 유효성 검사
+if(!getPhone.test($("#phoneInd2").val())){
+  alert("유효한 전화번호가 아닙니다.")
+  $("#phoneInd2").addClass("is-invalid");
+  $("#phoneInd2").focus();
+  $("#phoneInd2").val("");
+  return;
+}
+
+// 주소 입력 확인
+if($("#postCode").val() == ""){
+  $("#postCode").addClass("is-invalid");
+  $("#postCode").focus();
+  return;
+}
+if($("#address").val() == ""){
+  $("#address").addClass("is-invalid");
+  $("#address").focus();
+  return;
+}
+if($("#detailAddress").val() == ""){
+  $("#detailAddress").addClass("is-invalid");
+  $("#detailAddress").focus();
+  return;
+}
   alert("수정되었습니다.");
-  location.href = "individual_modify.html";
+  location.href = "individual_modify.jsp";
 }
 
 function sample6_execDaumPostcode() {

@@ -38,7 +38,7 @@
         
         <c:if test="${not empty indiId && empty corpId}">
 	            <div id="profile-box" class="profile-box">
-	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
@@ -51,7 +51,7 @@
             
             <c:if test="${empty indiId && not empty corpId}">
 	            <div id="profile-box" class="profile-box">
-	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &nbsp;&nbsp;</div>
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
@@ -76,7 +76,7 @@
 		
 		<c:if test="${not empty indiId && empty corpId}">
 	          <div id="profile-box" class="profile-box">
-	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
 	            <div id="profile-hover" class="pfhover">
 	              <ul>
 	                  <li id="mypage"><a href="individualInfo"><span>회원정보</span></a></li>
@@ -89,7 +89,7 @@
           
           <c:if test="${empty indiId && not empty corpId}">
 	          <div id="profile-box" class="profile-box">
-	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+	            <div id="hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &nbsp;&nbsp;</div>
 	            <div id="profile-hover" class="pfhover">
 	              <ul>
 	                  <li id="mypage"><a href="corporationInfo"><span>회원정보</span></a></li>

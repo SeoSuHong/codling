@@ -38,7 +38,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-10 col-md-7 col-lg-5 col-xl-4">
-                        <form class="validation-form" novalidate name="perFrm" action="#">
+                        <form class="validation-form" novalidate name="perFrm" action="signUp?num=1" method="post">
                         <!-- 개인 -->
                         <div id="individual" class="form-action show container-fluid align-items-center">
                         <!-- 개인 시작-->
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                   
-                            <div class="row align-items-center mt-4" id="">
+                            <div class="row align-items-center mt-4" id="frame">
                                 <div class="col">
                                     <p class="fw-bold">비밀번호 재확인</p>
                                         <input type="password" name="confirmpassword" id="cfpw" class="form-control" placeholder="비밀번호 재확인"  onKeyUp="inputDataCheck(this.id)" required>
@@ -109,8 +109,8 @@
                                         <select class="form-select" id="gender" name="gender" >
                                             <option value="">성별</option>
 
-                                            <option value="male">남성</option>
-                                            <option value="female">여성</option>
+                                            <option value="남">남성</option>
+                                            <option value="여">여성</option>
                                         </select>
                                             <div class="invalid-feedback">
                                                 성별을 선택하세요.
@@ -129,10 +129,10 @@
                             <div class="row align-items-center mt-4" id="frame">
                                 <p class="fw-bold">전화번호</p>
                                     <div class="col-4">
-                                        <input class="form-control" id="010" readonly value="010">
+                                        <input class="form-control" id="010" readonly value="010" name="phoneInd1">
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" id="phoneInd2" placeholder="'-'없이 입력"  onKeyUp="inputDataCheck(this.id)" required>
+                                        <input type="text" class="form-control" id="phoneInd2" name="phoneInd2" placeholder="'-'없이 입력"  onKeyUp="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 전화번호를 입력하세요.
                                             </div>
@@ -153,13 +153,13 @@
                     </form>
                         <!-- 개인 내용 -->
                         <!-- 기업 내용 -->
-                    <form class="validation-form" novalidate name="comFrm" action="#">
+                    <form class="validation-form" novalidate name="comFrm" action="signUp?num=2" method="post">
                         <div id="company">    
                         <!-- 기업 내용 시작 -->
                             <div  class="row align-items-center mt-4" id="frame">
                                 <p class="fw-bold">아이디</p>
                                 <div class="col" id="chain">
-                                    <input type="text" maxLength=20 onInput="maxLengthCheck(this)" name="id" id="Comid" class="form-control" placeholder="아이디"  onKeyUp="inputDataCheck(this.id)" required/>
+                                    <input type="text" maxLength=20 onInput="maxLengthCheck(this)" name="corId" id="corId" class="form-control" placeholder="아이디"  onKeyUp="inputDataCheck(this.id)" required/>
                                         <div class="invalid-feedback">
                                             아이디를 입력하세요
                                         </div>      
@@ -169,7 +169,7 @@
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">비밀번호</p>
-                                        <input type="password" name="password" id="pwCom" class="form-control" placeholder="비밀번호" onKeyUp="inputDataCheck(this.id)"  required>
+                                        <input type="password" name="corPw" id="corPw" class="form-control" placeholder="비밀번호" onKeyUp="inputDataCheck(this.id)"  required>
                                             <div class="invalid-feedback">
                                                 비밀번호를 입력하세요.
                                             </div>
@@ -196,7 +196,7 @@
                             <div class="row align-items-center mt-4">
                                 <p class="fw-bold">회사 전화번호</p>
                                     <div class="col-4">
-                                        <select class="form-select" id="localNum">
+                                        <select class="form-select" id="localNum" name="localNum">
                                             <option value="02">02</option>
                                             <option value="031">031</option>
                                             <option value="032">032</option>
@@ -217,7 +217,7 @@
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" id="telePhone" placeholder="'-'없이 입력" >
+                                        <input type="text" class="form-control" id="telePhone" name="corptel" placeholder="'-'없이 입력" >
                                     </div>
                                     <div class="invalid-feedback">전화번호를 입력하세요.</div>
                             </div>
@@ -233,7 +233,7 @@
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">사업자 등록번호</p>
-                                        <input type="text" name="companyNum" id="comNum" class="form-control" placeholder="000-00-00000"  onKeyUp="inputDataCheck(this.id)" required>
+                                        <input type="text" name="companyNum" id="comNum" class="form-control" placeholder="000-00-00000" maxlength="12" onKeyUp="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 사업자 등록번호를 입력하세요.
                                             </div>
@@ -242,7 +242,7 @@
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">증빙서류 첨부</p>
-                                        <input class="form-control" type="file" id="formFile"  required>
+                                        <input class="form-control" type="file" id="formFile" name="fileName"  required>
                                 </div>
                             </div>                       
                             <div class="row align-items-left mt-4 address" id="frame2">

@@ -125,7 +125,7 @@ public class CorporationDao {
 		return jobOpening;
 	}
 	
-	// 모든 공고 정보
+	// 모든 공고 정보(ID)
 	public List<JobOpening> getAllJobOpening (String id) {
 		List<JobOpening> list = new ArrayList<JobOpening>();
 		String query = "SELECT * FROM jobOpening WHERE corporation_id = ?";
@@ -215,7 +215,6 @@ public class CorporationDao {
 				String stack = rs.getString("stack");
 				String requirement = rs.getString("requirement");
 				String preference = rs.getString("preference");
-		
 				
 				Field field = new Field(no, jobOpening_no, name, career, position, pay, workDay, work, stack, requirement, preference);
 				fields.add(field);
@@ -234,10 +233,10 @@ public class CorporationDao {
 	public ArrayList<Announcement> indexContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
-				+ "FROM field F "
-				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+				+ "FROM jobopening J "
+				+ "JOIN field F ON J.no = F.jobOpening_no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
-				+ "ORDER BY J.count";
+				+ "ORDER BY J.no DESC";
 		
 		try {
 			conn = getConnection();
@@ -273,7 +272,7 @@ public class CorporationDao {
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
-				+ "WHERE F.career like '%신입%' ORDER BY J.count";
+				+ "WHERE F.career like '%신입%' ORDER BY J.count DESC";
 		
 		try {
 			conn = getConnection();
@@ -309,7 +308,7 @@ public class CorporationDao {
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
-				+ "WHERE F.career REGEXP '[0-9]+' ORDER BY J.count;";
+				+ "WHERE F.career REGEXP '[0-9]+' ORDER BY J.count DESC;";
 		
 		try {
 			conn = getConnection();
@@ -345,7 +344,7 @@ public class CorporationDao {
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
-				+ "ORDER BY J.count LIMIT 100";
+				+ "ORDER BY J.count DESC LIMIT 100";
 		
 		try {
 			conn = getConnection();
@@ -372,4 +371,70 @@ public class CorporationDao {
 		}
 		return list;
 	}
+	
+	// 기업회원 회원가입
+	public boolean insertCorporation(Corporation corporation) {
+		boolean result = false;
+	    String query = "INSERT INTO corporation VALUES (?,DEFAULT,?,?,?,?,?,?,?)";
+	    try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, corporation.getId());
+			pstmt.setString(2, corporation.getPassword());
+			pstmt.setString(3, corporation.getCorporateName());
+			pstmt.setString(4, corporation.getCorporatePhone());
+			pstmt.setString(5, corporation.getCeoName());
+			pstmt.setString(6, corporation.getCorporateNumber());
+			pstmt.setString(7, corporation.getFileName());
+			pstmt.setString(8, corporation.getAddress());
+ 
+			if(pstmt.executeUpdate() == 1) result = true;
+ 
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("insertCorporation Error : " + e.getMessage());
+	    }
+	    return result;
+	}
+	
+	// 공고 조회수
+    public int count(int no) {
+       int count= 0;
+       String query = "SELECT count "
+             + "FROM jobopening "
+             + "WHERE no=?";
+       try {
+          conn = getConnection();
+          pstmt = conn.prepareStatement(query);
+          pstmt.setInt(1, no);
+          rs = pstmt.executeQuery();
+          if(rs.next()) {
+             count = rs.getInt("count");
+             count++;
+          }
+          rs.close();
+          pstmt.close();
+          conn.close();
+       }catch(Exception e) {
+          System.out.println("count Select Error: " + e.getMessage());
+       }
+       
+       query = "UPDATE jobopening "
+             + "SET count = ? "
+             + "WHERE no = ?";
+       try {
+          conn = getConnection();
+          pstmt = conn.prepareStatement(query);
+          pstmt.setInt(1, count);
+          pstmt.setInt(2, no);
+          pstmt.executeUpdate();
+          rs.close();
+          pstmt.close();
+          conn.close();
+       }catch (Exception e) {
+          System.out.println("count Update Error: " + e.getMessage());
+       }
+       return count;
+    }
 }

@@ -18,13 +18,13 @@
         <div class="logo-default">
             <a href="index"><img src="img/logo.png"></a>
         </div>
-        <ul>
+        <ul id="header_menu">
             <li><a href="newcomer">신입채용</a></li>
             <li><a href="career">경력채용</a></li>
             <li><a href="top100">Top100</a></li>
         </ul>
         <form class="search_box" id="searbox">
-            <input type="text" name="searchbox" placeholder="검색어를 입력하세요.">
+            <input id="searchbox"type="text" name="searchbox" placeholder="검색어를 입력하세요.">
         </form>
             <input type="button" form="searbox" class="search">
             <c:if test="${empty indiId && empty corpId}">
@@ -39,7 +39,7 @@
             
             <c:if test="${not empty indiId && empty corpId}">
 	            <div id="profile-box" class="profile-box">
-	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> <span id=name>${indiName} 님</span> &nbsp;&nbsp;</div>
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
@@ -52,7 +52,7 @@
             
             <c:if test="${empty indiId && not empty corpId}">
 	            <div id="profile-box" class="profile-box">
-	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${corpName} 님 &nbsp;&nbsp;</div>
+	              <div id="scroll-hover-box" class="pf-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> <span id=name>${corpName} 님</span> &nbsp;&nbsp;</div>
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
@@ -73,35 +73,28 @@
                         <span class="title">${jobOpening.title}</span>
                         <div class="title_inside">
                             <span>${corporation.corporateName}</span>&ensp;&ensp;
-                            
-                            <span>경력 </span>
-                			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
-                				<c:if test="${fn:length(field.career) <= 3}">
-                					<c:if test="${career == '신입'}">
-			                			<span>${career}</span>&ensp;&ensp;
-			                		</c:if>
-			                		<c:if test="${career != '신입'}">
-			                			<span>${career}년↑</span>&ensp;&ensp;
-			                		</c:if>
-			                	</c:if>
-			                
-			                	<c:if test="${fn:length(field.career) > 3}">
-			                		<c:if test="${career == '신입'}">
-			                			<span>${career} or</span>
-			                		</c:if>
-			                		<c:if test="${career != '신입'}">
-			                			<span>${career}년↑</span>&ensp;&ensp;
-			                		</c:if>
-			                	</c:if>
-			                </c:forTokens>
-                            
-                            
-                            <c:if test="${field.pay == '면접 후 결정'}">
-                            <span>급여 ${field.pay}</span>
-                            </c:if>
-                            <c:if test="${field.pay != '면접 후 결정'}">
-                            <span>급여 ${field.pay}만↑</span>
-                            </c:if>
+	                        <c:forEach var="field" items="${fields}">
+                        		<span>${field.name} | </span>
+	                			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+	                				<c:if test="${fn:length(field.career) <= 3}">
+	                					<c:if test="${career == '신입'}">
+				                			<span>${career}</span>&ensp;&ensp;
+				                		</c:if>
+				                		<c:if test="${career != '신입'}">
+				                			<span>${career}년↑</span>&ensp;&ensp;
+				                		</c:if>
+				                	</c:if>
+				                
+				                	<c:if test="${fn:length(field.career) > 3}">
+				                		<c:if test="${career == '신입'}">
+				                			<span>${career} or</span>
+				                		</c:if>
+				                		<c:if test="${career != '신입'}">
+				                			<span>${career}년↑</span>&ensp;&ensp;
+				                		</c:if>
+				                	</c:if>
+				                </c:forTokens>
+                            </c:forEach>
                         </div>
                     </div>
                 <c:if test="${not empty indiId}">
@@ -123,34 +116,28 @@
             <div id="top_title_container">
                 <span class="title">${jobOpening.title}</span><br>
                 <span class="corpName">${corporation.corporateName}</span>&ensp;&ensp;
-                
-                <span>경력 </span>
-                <c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
-             		<c:if test="${fn:length(field.career) <= 3}">
-             			<c:if test="${career == '신입'}">
-                			<span class="corpCarrer">${career}</span>&ensp;&ensp;
-                		</c:if>
-                		<c:if test="${career != '신입'}">
-                			<span class="corpCarrer">${career}년↑</span>&ensp;&ensp;
-                		</c:if>
-                	</c:if>
-                
-                	<c:if test="${fn:length(field.career) > 3}">
-                		<c:if test="${career == '신입'}">
-                			<span class="corpCarrer">${career} or</span>
-                		</c:if>
-                		<c:if test="${career != '신입'}">
-                			<span class="corpCarrer">${career}년↑</span>&ensp;&ensp;
-                		</c:if>
-                	</c:if>
-                </c:forTokens>
-                
-                <c:if test="${field.pay == '면접 후 결정'}">
-                <span class="corSalery">급여 ${field.pay}</span>
-                </c:if>
-                <c:if test="${field.pay != '면접 후 결정'}">
-                <span class="corSalery">급여 ${field.pay}만↑</span>
-                </c:if>
+				<c:forEach var="field" items="${fields}">
+               		<span>${field.name} | </span>
+	                <c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+	             		<c:if test="${fn:length(field.career) <= 3}">
+	             			<c:if test="${career == '신입'}">
+	                			<span class="corpCarrer">${career}</span>&ensp;&ensp;
+	                		</c:if>
+	                		<c:if test="${career != '신입'}">
+	                			<span class="corpCarrer">${career}년↑</span>&ensp;&ensp;
+	                		</c:if>
+	                	</c:if>
+	                
+	                	<c:if test="${fn:length(field.career) > 3}">
+	                		<c:if test="${career == '신입'}">
+	                			<span class="corpCarrer">${career} or</span>
+	                		</c:if>
+	                		<c:if test="${career != '신입'}">
+	                			<span class="corpCarrer">${career}년↑</span>&ensp;&ensp;
+	                		</c:if>
+	                	</c:if>
+	                </c:forTokens>
+                </c:forEach>
             </div>
             <div id="apply_box">
             	<c:if test="${not empty indiId}">
@@ -165,31 +152,42 @@
             </div>
         </div>
     </div>
-    <hr>
-    <article>
+    <c:forEach var="field" items="${fields}">
+    	<hr>
+        <article>
+        	<div class="contents">
+        		<h2>모집분야</h2>
+	                <div class="inContent">
+	                    <span class="content">${field.name}</span>
+	                </div>
+	            <h2>주요업무</h2>
+	                <div class="inContent">
+	                    <span class="content">${fn:replace(field.work, replaceChar, '</br>')}</span>
+	                </div>
+	            <h2>자격요건</h2>
+	                <div class="inContent">
+	                    <span class="content">${fn:replace(field.requirement, replaceChar, '</br>')}</span>
+	                </div>
+	            <h2>우대사항</h2>
+	            <div class="inContent">
+	                <span class="content">${fn:replace(field.preference, replaceChar, '</br>')}</span>
+	            </div>
+	            <h2>사용스택 및 툴</h2>
+	                <div class="corpStacks">
+	                	<c:forTokens var="stack" items="${field.stack}" delims=" / ">
+	                    	<span class="stack">${stack}</span>
+	                    </c:forTokens>
+	                </div>
+			</div>
+		</article>
+	</c:forEach>
+	<hr>
+	<article>
         <div class="contents">
-            <h2>주요 업무</h2>
-                <div class="inContent">
-                    <span class="content">${fn:replace(field.work, replaceChar, '</br>')}</span>
-                </div>
-            <h2>자격요건</h2>
-                <div class="inContent">
-                    <span class="content">${fn:replace(field.requirement, replaceChar, '</br>')}</span>
-                </div>
-            <h2>우대 사항</h2>
-            <div class="inContent">
-                <span class="content">${fn:replace(field.preference, replaceChar, '</br>')}</span>
-            </div>
             <h2>채용절차 및 기타 지원 유의사항</h2>
             <div class="inContent">
                 <span class="content">${fn:replace(jobOpening.process, replaceChar, '</br>')}</span>
             </div>
-            <h2>사용 스택 및 툴</h2>
-                <div class="corpStacks">
-                	<c:forTokens var="stack" items="${field.stack}" delims=" / ">
-                    	<span class="stack">${stack}</span>
-                    </c:forTokens>
-                </div>
             <h2>기업소개</h2>
             <div class="inContent">
                 <p>바로티나는 라이브스트리밍 기술에 최적화된 영상엔진 기술과 수년간 쌓아온 다양한 경험을 토대로 온/오프라인이 완벽히 통합되는 새로운 차원의 시도에 거듭 도전합니다.
@@ -202,7 +200,9 @@
             </div>
         </div>
     </article>
-    <hr>
+    <div id="hr">   
+        <hr>
+    </div>
         <div id="comcon">
             <div>
                 <p><span>모집일</span>${fn:replace(jobOpening.startDate, "-", ".")} - ${fn:replace(jobOpening.endDate, "-", ".")}</p>
@@ -232,33 +232,37 @@
 		<div id="mapWrap">
         	<div id="map"></div>
         </div>
-        
-        <hr>
+        <div id="hr">   
+            <hr>
+        </div>
         <div class="jobs">
             <dl>
                 <dt><img src="img/logo.png" alt=""></dt>
                 <dd>${jobOpening.title}</dd>
                 <dd>${corporation.corporateName}</dd>
                 <dd>
-                	<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
-            			<c:if test="${fn:length(field.career) <= 3}">
-              				<c:if test="${career == '신입'}">
-	                			<span>${career}</span>&ensp;&ensp;
-	                		</c:if>
-	                		<c:if test="${career != '신입'}">
-	                			<span>${career}년↑</span>&ensp;&ensp;
-	                		</c:if>
-	                	</c:if>
-	                
-	                	<c:if test="${fn:length(field.career) > 3}">
-	                		<c:if test="${career == '신입'}">
-	                			<span>${career} or</span>
-	                		</c:if>
-	                		<c:if test="${career != '신입'}">
-	                			<span>${career}년↑</span>&ensp;&ensp;
-	                		</c:if>
-	                	</c:if>
-			        </c:forTokens>
+                	<c:forEach var="field" items="${fields}">
+                		${field.name} | 
+	                	<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+	            			<c:if test="${fn:length(field.career) <= 3}">
+	              				<c:if test="${career == '신입'}">
+		                			<span>${career}</span>&ensp;&ensp;
+		                		</c:if>
+		                		<c:if test="${career != '신입'}">
+		                			<span>${career}년↑</span>&ensp;&ensp;
+		                		</c:if>
+		                	</c:if>
+		                
+		                	<c:if test="${fn:length(field.career) > 3}">
+		                		<c:if test="${career == '신입'}">
+		                			<span>${career} or</span>
+		                		</c:if>
+		                		<c:if test="${career != '신입'}">
+		                			<span>${career}년↑</span>&ensp;&ensp;
+		                		</c:if>
+		                	</c:if>
+				        </c:forTokens>
+			        </c:forEach>
                 </dd>
             </dl>
             <dl>
