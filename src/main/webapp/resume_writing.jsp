@@ -31,20 +31,20 @@
         </div>
     </header>
     <!--이력서제목-->
+    <form action="Resume_writingServlet" name="resume_Frm" method="post">
     <section>
         <h2><b>이력서 제목</b></h2>
-        <div><input name="title" class="resume_title" placeholder="이력서 제목을 입력하세요"></div>
+        <div><input name="resumetitle" class="resume_title" placeholder="이력서 제목을 입력하세요"></div>
     </section>
     <!--학력사항-->
     <section>
-        <div name="problem_list" id="problem_list">
+        <div id="problem_list">
             <h2><input type="button" class="edu_add" value="추가" onclick="addForm();">학력사항</h2>
             <div id="eduLevelbox"> 
                 <table class="edu_level_info">                 
-                     <br><br>
                      <tr>
                          <td><p>학력 * 
-                            <select class="edu_select" required>
+                            <select name="education" class="edu_select" required>
                             <option value="" disabled selected>선택</option>
                             <option value="고졸">고졸</option>
                             <option value="초대졸">대학2년 > 초대졸</option>
@@ -81,8 +81,8 @@
         </div>
         <div id="edu_level_info" class="list_file_tag"> 
             <div id="eduLevelbox"> 
-                <table class="edu_level_info">                 
-                     <button type="button" class="edu_del" onclick="delForm(this);">삭제</button>
+            <button type="button" class="edu_del" onclick="delForm(this);">삭제</button>
+                <table class="edu_level_info">
                      <tr>
                          <td><p>학력 * 
                             <select class="edu_select" required>
@@ -126,73 +126,66 @@
         <div><h2>보유기술스택</h2></div>
         <article id="stackbox">
         <div id="stack_box">
-            <form action="#">
-                <h3>기술스택</h3>
-                <p><input type="text" name="stack" class="stackinput" placeholder="C, C++, JAVA, HTML, CSS"></p>
-            </form>
+            <h3>기술스택</h3>
+            <p><input type="text" name="stack" class="stackinput" placeholder="C, C++, JAVA, HTML, CSS"></p>
         </div>
         </article>
     </section>
     <!--경력사항-->
     <section>
-        <div name="problem_list2" id="problem_list2">
+        <div id="problem_list2">
             <h2>경력사항<input type="button" class="ex_add" value="추가" onclick="addForm2();"></h2>
-            <div id="experiencebox"> 
-                <table id= "ex_info_box">       
-                    <form action="#"><br><br>
-                    <tr>
-                        <td><p> 회사 명 * <input name="company_name" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
-                    </tr>
-                    <tr>
-                        <td><p id="qqq"><span>재직기간 *</span><input type="date" name="company_enter" class="infoForm4">
-                            <span class="qqqtext"> ~ </span><input type="date" name="retire" class="infoForm4"></p></td>
-                    </tr>
-                    <tr>
-                        <td> <p>직급/직책 *<input name="position" id="position" class="infoForm4" placeholder=" 근무했던 직책명을 입력하세요"></p></td>
-                    </tr>
-                    <tr>
-                        <td><p>근무 부서 <input name="department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요"></p></td>
-                    </tr>
-                    <tr>
-                        <td><p>주요업무<textarea placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail"></textarea></p></td>
-                    </tr>
-                    </form>
-                </table> 
+            <div id="experiencebox"><br><br>
+                <table id= "ex_info_box">
+	                <tr>
+	                    <td><p> 회사 명 * <input name="company_name" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
+	                </tr>
+	                <tr>
+	                    <td><p id="qqq"><span>재직기간 *</span><input type="date" name="company_enter" class="infoForm4">
+	                        <span class="qqqtext"> ~ </span><input type="date" name="retire" class="infoForm4"></p></td>
+	                </tr>
+	                <tr>
+	                    <td> <p>직급/직책 *<input name="position" id="position" class="infoForm4" placeholder=" 근무했던 직책명을 입력하세요"></p></td>
+	                </tr>
+	                <tr>
+	                    <td><p>근무 부서 <input name="department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요"></p></td>
+	                </tr>
+	                <tr>
+	                    <td><p>주요업무<textarea placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail"></textarea></p></td>
+	                </tr>
+            	</table> 
         	</div>
         </div>
         <div id="experienced_info" class="list_file_tag"> 
-            <div id="experiencebox"> 
-                <table id= "ex_info_box">       
-                    <form action="#">          
-                    <button type="button" class="ex_del" onclick="delForm2(this);">삭제</button>
+            <div id="experiencebox">
+				<button type="button" class="ex_del" onclick="delForm2(this);">삭제</button>
+                <table id= "ex_info_box">        
+	                <tr>
+	                    <td><p>회사 명 * <input name="company_name" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
+	                </tr>
+	                <tr>
+	                    <td><p id="qqq"><span>재직 기간 *</span><input type="date" name="company_enter" class="infoForm4">
+	                        <span class="qqqtext"> ~ </span><input type="date" name="retire" class="infoForm4"></p></td>
+	                </tr>
+	                <tr>
+	                    <td> <p>직급/직책 *<input name="position" id="position" class="infoForm4" placeholder=" 근무했던 직책명을 입력하세요"></p></td>
+	                </tr>
                     <tr>
-                        <td><p>회사 명 * <input name="company_name" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
-                    </tr>
-                    <tr>
-                        <td><p id="qqq"><span>재직 기간 *</span><input type="date" name="company_enter" class="infoForm4">
-                            <span class="qqqtext"> ~ </span><input type="date" name="retire" class="infoForm4"></p></td>
-                    </tr>
-                    <tr>
-                        <td> <p>직급/직책 *<input name="position" id="position" class="infoForm4" placeholder=" 근무했던 직책명을 입력하세요"></p></td>
-                    </tr>
-                    <tr>
-                        <td><p>근무 부서 <input name="department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요"></p></td>
-                    </tr>
-                    <tr>
-                        <td><p>주요 업무<textarea placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail"></textarea></p></td>
-                    </tr>
-                    </form>
-                </table> 
+	                    <td><p>근무 부서 <input name="department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요"></p></td>
+	                </tr>
+	                <tr>
+	                    <td><p>주요 업무<textarea placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail"></textarea></p></td>
+	                </tr>
+	           	</table>
             </div> 
         </div>
     </section>
     <!--자격증-->
     <section>
-        <div name="problem_list3" id="problem_list3">
+        <div id="problem_list3">
             <h2>자격증 내역<input type="button" class="license_add" value="추가" onclick="addForm3();"></h2>
             <div id="licensebox"> 
-                <table>
-                    <form action="#"><br><br>
+                    <table><br><br>
                         <tr>
                             <td><p>자격증명<input name="license_name" class="infoForm3" placeholder="자격증명을 입력하세요"></p></td>
                         </tr>
@@ -214,84 +207,78 @@
                         <tr>
                             <td><p>취득일<input type="date" name="pass_date" id="passday" class="infoForm3"></p></td>
                         </tr>
-                    </form>
-                </table>
+                    </table>
             </div>
         </div>
         <div id="license_info" class="list_file_tag"> 
-            <div id="licensebox"> 
+            <div id="licensebox">
+            	<button type="button" class="license_del" onclick="delForm3(this);">삭제</button>
                 <table>
-                    <form action="#">
-                        <button type="button" class="license_del" onclick="delForm3(this);">삭제</button>
-                        <tr>
-                            <td><p>자격증명<input name="license_name" class="infoForm3" placeholder="자격증명을 입력하세요"></p></td>
-                        </tr>
-                        <tr>
-                            <td><p>발행처/기관<input name="organ_name" class="infoForm3" placeholder="발행기관명을 입력하세요"></p></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>합격구분 <select class="license_select">
-                                    <option value="" disabled selected>선택</option>
-                                    <option value="1차합격">1차합격</option>
-                                    <option value="2차합격">2차합격</option>
-                                    <option value="필기합격">필기합격</option>
-                                    <option value="실기합격">실기합격</option>
-                                    <option value="최종합격">최종합격</option>
-                                </select></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><p>취득일<input type="date" name="pass_date" id="passday" class="infoForm3"></p></td>
-                        </tr>
-                    </form>
+                    <tr>
+                        <td><p>자격증명<input name="license_name" class="infoForm3" placeholder="자격증명을 입력하세요"></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>발행처/기관<input name="organ_name" class="infoForm3" placeholder="발행기관명을 입력하세요"></p></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>합격구분 <select class="license_select">
+                                <option value="" disabled selected>선택</option>
+                                <option value="1차합격">1차합격</option>
+                                <option value="2차합격">2차합격</option>
+                                <option value="필기합격">필기합격</option>
+                                <option value="실기합격">실기합격</option>
+                                <option value="최종합격">최종합격</option>
+                            </select></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p>취득일<input type="date" name="pass_date" id="passday" class="infoForm3"></p></td>
+                    </tr>
                 </table>
             </div>
         </div>
     </section>
     <!--포트폴리오-->
     <section>
-        <div name="problem_list4" id="problem_list4">
+        <div id="problem_list4">
             <h2>포트폴리오 제출<input type="button" class="portfolio_add" value="추가" onclick="addForm4();"></h2>
-            <div id="portfoliobox"> 
-                <table>
-                <form action="#"><br><br>
-                    <input type="text" class="portfolio_title" placeholder=" 포트폴리오 이름"><br><br>
-                    <button type="button" class="filebtn">첨부파일</button>
-                    <button type="button" class="urlbtn">url</button><br><br>
-                    <input type="text" class="url" placeholder="http://www.naver.com">
-                </form>
-                </table>
+            <div id="portfoliobox"><br><br>
+                <input type="text" class="portfolio_title" placeholder=" GitHub"><br><br>
+                <button type="button" class="urlbtn">url</button>
+                <button type="button" class="filebtn">첨부파일</button>
+                <div class="url_box">
+                    <input type="text" class="url" placeholder="https://github.com">
+                </div>
+                <div class="file_box">
+                    <label class="choose_file" for="ex_filename"><span>파일선택</span></label>
+                    <input type="file" id="ex_filename" class="filename">
+                </div>
+                <textarea name="deepcontents" id="deepcontents" placeholder="상세내용"></textarea>
             </div>
         </div>
+        
         <div id="portfolio_info" class="list_file_tag"> 
-            <div id="portfoliobox"> 
-                <table>
-                <form action="#">
-                    <button type="button" class="portfolio_del" onclick="delForm4(this);">삭제</button>
-                    <input type="text" class="portfolio_title" placeholder=" 포트폴리오 이름"><br><br>
-                    <button type="button" class="filebtn">첨부파일</button>
-                    <button type="button" class="urlbtn">url</button><br><br>
-                    <input type="text" class="url" placeholder="http://www.naver.com">
-                </form>
-                </table>
+            <div id="portfoliobox">
+	            <button type="button" class="portfolio_del" onclick="delForm4(this);">삭제</button>
+	            <input type="text" class="portfolio_title" placeholder=" GitHub"><br><br>
+                <button type="button" class="urlbtn">url</button>
+                <button type="button" class="filebtn">첨부파일</button>
+                <div class="url_box">
+                    <input type="text" class="url" placeholder="https://github.com">
+                </div>
+                <div class="file_box">
+                    <label class="choose_file" for="ex_filename"><span>파일선택</span></label>
+                    <input type="file" id="ex_filename" class="filename">
+                </div>
+                <textarea name="deepcontents" id="deepcontents" placeholder="상세내용"></textarea>
             </div>
-        </div>
-        <div id="portfoliobox2"> 
-            <div class="filebox2">
-                <h3>개인첨부파일</h3>
-                <button type="button" class="filebtn2">첨부파일</button>
-                <button type="button" class="urlbtn2">url</button><br><br>
-                <label for="ex_filename" class="ex_filename"><div class="choose_file">파일선택</div></label>
-                <input type="file" id="ex_filename" class="filename">
-            </div> 
         </div>
     </section>
     <!--완료버튼-->
-    <input type="submit" value="완료" class="resume_submit">
-    <!--footer-->
-    <footer>
-        <div id="footerbox">footer</div>
-    </footer>
+    <div id="submit">
+    	<input type="button" value="등 록" class="resume_submit" onclick="check()">
+    </div>
+    </form>
 </body>
 </html>

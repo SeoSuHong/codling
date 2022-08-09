@@ -126,7 +126,7 @@ function delForm4(obj){
 //       $("#company").show()
 //       $("#company").prop("display","block")
 //     })
-//     });
+// });
 //첨부파일명 가져오기
 // $(document).ready(function(){
 //     $('input[type=file]').on('change',function(){
@@ -158,4 +158,84 @@ $(document).ready(function(){
    $("#file").on('change',function(){
     var fileName = $("#file").val();
     $(".upload_name").val(fileName);
-  });
+});
+  
+
+$(document).ready(function() {
+	let urlBtn = $('.urlbtn');
+	let fileBtn = $('.filebtn');
+	let urlBox = $('.url_box');
+	let filebox = $('.file_box');
+	
+	for(var i = 0; i < urlBtn.length; i++) {
+		const idx = i;
+		urlBtn[idx].addEventListener('click', function() {
+			$(urlBtn[idx]).css({"background-color": "#A5E374", "color": "white"});
+	        $(fileBtn[idx]).css({"background-color": "#d6d6d6", "color": "#858585"});
+	        $(urlBox[idx]).css('display', 'block');
+	        $(filebox[idx]).css('display', 'none');
+		});
+		fileBtn[idx].addEventListener('click', function() {
+			$(urlBtn[idx]).css({"background-color": "#d6d6d6", "color": "#858585"});
+	        $(fileBtn[idx]).css({"background-color": "#A5E374", "color": "white"});
+	        $(urlBox[idx]).css('display', 'none');
+	        $(filebox[idx]).css('display', 'block');
+		});
+	}
+	
+	$('.portfolio_add').click(function() {
+		let urlBtn = $('.urlbtn');
+		let fileBtn = $('.filebtn');
+		let urlBox = $('.url_box');
+		let filebox = $('.file_box');
+		
+		for(var i = 0; i < urlBtn.length; i++) {
+			const idx = i;
+			urlBtn[idx].addEventListener('click', function() {
+				$(urlBtn[idx]).css({"background-color": "#A5E374", "color": "white"});
+		        $(fileBtn[idx]).css({"background-color": "#d6d6d6", "color": "#858585"});
+		        $(urlBox[idx]).css('display', 'block');
+		        $(filebox[idx]).css('display', 'none');
+			});
+			fileBtn[idx].addEventListener('click', function() {
+				$(urlBtn[idx]).css({"background-color": "#d6d6d6", "color": "#858585"});
+		        $(fileBtn[idx]).css({"background-color": "#A5E374", "color": "white"});
+		        $(urlBox[idx]).css('display', 'none');
+		        $(filebox[idx]).css('display', 'block');
+			});
+		}
+	});
+});
+
+function check(){
+	
+	$(document).ready(function(){
+	let education = $('input[name="education"]');
+	
+		if(document.resume_Frm.resumetitle.value == ""){
+			alert("이력서 제목을 입력해주세요.")
+			document.resume_Frm.resumetitle.focus();
+			return;
+		}
+	
+	for(var i = 0; i< education.length; i++){
+		const idx = i;
+		
+		if(document.resume_Frm.education[i].value == ""){
+			alert("학력을 선택해주세요.")
+			document.resume_Frm.education[i].focus();
+			return;
+			}
+		}
+		
+		if(document.resume_Frm.resumetitle.value == ""){
+			alert("이력서 제목을 입력해주세요.")
+			document.resume_Frm.resumetitle.focus();
+			return;
+		}
+	
+	});
+}
+
+
+  

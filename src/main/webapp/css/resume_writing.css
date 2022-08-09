@@ -1,8 +1,9 @@
 @import url(font.css);
 
-* {font-family: 'MapoPeacefull'; color: #373F57;}
+* {font-family: 'MapoPeacefull'; color: #373F57; box-shadow: none !important;}
 
 /* body */
+::-webkit-scrollbar { display: none;}
  header{margin: 0 auto; width: 1220px;}
  a{text-decoration: none;}
  #menu-bar{width: 1220px; margin: 0 auto; margin-top: 25px;  display: flex; justify-content: space-between; align-items: center;}
@@ -12,7 +13,7 @@
 #profilelogo{width: 35px; height: 35px; margin: 5px;}
 #profile-box{display: flex; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}
 #mename{position: relative; top:-15px;}
-#hover-box{height: 45px;}
+#hover-box{height: 45px; white-space:nowrap;}
 #hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
 #profile-hover{border: 1px solid #cecece; width: 150px; height: 160px; float: right; margin-right: -10px;
     border-radius: 10px;}
@@ -30,14 +31,14 @@ ul{list-style: none;}
  /* section>h1{font-weight: bold; color: #373F57; margin-top: 30px;} */
 
  /*이력서 제목 작성란*/
- .resume_title {width: 1220px; height: 80px; outline: unset; border: 2px solid #A5E374; font-size: x-large; border-radius: 10px;}
+ .resume_title {width: 1220px; height: 50px; outline: unset; border: 2px solid #A5E374; font-size: x-large; border-radius: 10px;}
  /* inputbox */
  #inputbox{width: 350px; margin-left: 50px; margin-top: 20px;}
  .infoForm{float: right; width: 250px; height:22px; outline: unset;}
 
 
  /* 학력사항 */
- #eduLevelbox{width: 1220px; height: 470px; background-color: #F8F8F8; margin-bottom: 50px; border-radius: 10px;}
+ #eduLevelbox{width: 1220px; height: 410px; background-color: #F8F8F8; margin-bottom: 50px; border-radius: 10px;}
  #eduLevelbox p {font-size: 17px; font-weight: bold; margin-left: 10%;}
  #problem_list a {text-decoration: none;}
  .edu_level_info{width: 680px; margin-left: 100px; padding-top: 5px;}
@@ -71,6 +72,7 @@ ul{list-style: none;}
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
+    display: none;
     }
  /* 학력정보 추가 버튼 */
  .edu_add {background-color: #A5E374; color: white;
@@ -123,6 +125,7 @@ ul{list-style: none;}
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
+    display: none;
     }
     .ex_detail {width: 900px; height: 200px; margin-top: 23px; font-size: 15px; color: #373F57;}
 /* 경력사항 추가 버튼 */
@@ -183,30 +186,33 @@ ul{list-style: none;}
     cursor: pointer;}
 
  /* 포트폴리오 */
- #portfoliobox{width: 1220px; height: 270px; background-color: #F8F8F8; margin-bottom: 50px; border-radius: 10px;}
+ #portfoliobox{width: 1220px; height: 310px; background-color: #F8F8F8; margin-bottom: 50px; border-radius: 10px;}
  .portfolio_title {width: 200px; height: 35px; border: none; border-radius: 5px; font-size: 15px; margin-left: 40px; color: #373F57;}
  .infoForm5{float: right; width: 250px; height:22px; outline: unset; border: none;}
  .filebox{margin-left: 100px;}
  .filebtn{background-color: #D6D6D6; color: #858585; border: none; width: 80px; height: 30px; border-radius: 10px;
-        margin-left: 40px;}
+        margin-left: 10px; cursor: pointer;}
  .urlbtn{background-color: #A5E374; color: white; border: none; width: 80px; height: 30px; border-radius: 10px;
-        margin-left: 10px;}
+        margin-left: 40px; cursor: pointer;}
  .url{width: 290px; height: 35px; border: none; border-radius: 5px; font-size: 15px; margin-left: 40px; color: #373F57;}
  .filebtn2{background-color: #A5E374; color: white; border: none; width: 80px; height: 30px; border-radius: 10px;
     margin-left: 40px;}
 .urlbtn2{background-color: #D6D6D6; color: #858585; border: none; width: 80px; height: 30px; border-radius: 10px;
     margin-left: 10px;}
-
+.url{margin-top: 10px; margin-left: 20px;}
+.choose_file>span{position: relative; top: -3px; color: white;}
+#deepcontents{margin-left: 40px; border:none; width: 1140px; height: 90px;
+	 margin-top: 10px; font-size: 1.1rem}
   /* 개인첨부파일 */
-  #portfoliobox2 {width: 1220px; height: 270px; background-color: #F8F8F8; margin-bottom: 50px; border-radius: 10px;}
+  #portfoliobox2 {width: 1220px; height: 310px; background-color: #F8F8F8; margin-bottom: 50px; border-radius: 10px;}
   #portfoliobox2 h3 {padding: 20px;}
   #portfoliobox2 label {margin-left: 40px;}
-  .choose_file {background-color: #A5E374; width: 65px; height: 25px; border-radius: 10px;
-             padding-top: 10px; padding-left: 10px;  padding-bottom: 3px; 
-             color: white; margin-left: 40px; margin-top: -20px; margin-bottom: 10px; font-size: 14px;}
+  .choose_file {background-color: #A5E374; width: 65px; border-radius: 10px;
+             padding-top: 10px; padding-left: 10px; padding-right: 10px;  padding-bottom: 3px;
+             color: white; margin-left: 40px; margin-top: -5px; margin-bottom: 10px; font-size: 14px;}
   .filename::file-selector-button {display: none;}
-  .filename {background-color: white; border-radius: 10px; padding: 5px 10px; margin-left: 40px; color: #656978;}
-
+  .filename {background-color: white; border-radius: 10px; padding: 5px 10px; margin-left: 5px; color: #656978;
+  	position: relative; top: -3px}
   /* 포트폴리오 추가 버튼 */
 .portfolio_add {background-color: #A5E374; color: white;
     -webkit-appearance: none; -moz-appearance: none; appearance: none; 
@@ -230,12 +236,14 @@ ul{list-style: none;}
 /*이력서 완료(제출) 버튼*/
  .resume_submit {-webkit-appearance: none; -moz-appearance: none; appearance: none; margin: 0; padding: 0.5rem 1rem;
     font-family: 'Gosanja'; font-size: 1.5rem; font-weight: 500; text-align: center;
-         text-decoration: none; display: inline-block; width: 200px; height:80px; border: none; border-radius: 10px;
-         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-         cursor: pointer; background-color: #A5E374; color: white; margin-left: 42%; margin-top: 30px;}
+         text-decoration: none; display: inline-block; width: 150px; height:60px; border: none; border-radius: 10px;
+         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); margin-bottom: 10vh;
+         cursor: pointer; background-color: #A5E374; color: white; margin-top: 30px;}
  .resume_submit:active {box-shadow: none; background-color: #D6D6D6;}
  .resume_submit:hover { color: 858585;}
+#submit{display: flex; justify-content: center;}
 
- /* footer */
- footer{width: auto; height: 240px; background-color: #A5E374; justify-content: center;
-     color: white; font-size: 3rem; margin-top: 150px; display: flex; align-items: center;}
+/*file*/
+.file_box{ display: none; margin-top: 20px}
+.url_box{margin-left: 20px; display: block;}
+
