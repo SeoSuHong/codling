@@ -244,7 +244,7 @@
         <div id="problem_list4">
             <h2>포트폴리오 제출<input type="button" class="portfolio_add" value="추가" onclick="addForm4();"></h2>
             <div id="portfoliobox"><br><br>
-                <input type="text" class="portfolio_title" placeholder=" GitHub"><br><br>
+                <input type="text" class="portfolio_title" placeholder="GitHub"><br><br>
                 <button type="button" class="urlbtn">url</button>
                 <button type="button" class="filebtn">첨부파일</button>
                 <div class="url_box">
@@ -261,7 +261,7 @@
         <div id="portfolio_info" class="list_file_tag"> 
             <div id="portfoliobox">
 	            <button type="button" class="portfolio_del" onclick="delForm4(this);">삭제</button>
-	            <input type="text" class="portfolio_title" placeholder=" GitHub"><br><br>
+	            <input type="text" class="portfolio_title" placeholder="개인첨부 파일"><br><br>
                 <button type="button" class="urlbtn">url</button>
                 <button type="button" class="filebtn">첨부파일</button>
                 <div class="url_box">

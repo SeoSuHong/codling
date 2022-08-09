@@ -207,7 +207,7 @@ ul{list-style: none;}
   #portfoliobox2 {width: 1220px; height: 310px; background-color: #F8F8F8; margin-bottom: 50px; border-radius: 10px;}
   #portfoliobox2 h3 {padding: 20px;}
   #portfoliobox2 label {margin-left: 40px;}
-  .choose_file {background-color: #A5E374; width: 65px; border-radius: 10px;
+  .choose_file {background-color: #A5E374; width: 65px; border-radius: 10px; cursor: pointer;
              padding-top: 10px; padding-left: 10px; padding-right: 10px;  padding-bottom: 3px;
              color: white; margin-left: 40px; margin-top: -5px; margin-bottom: 10px; font-size: 14px;}
   .filename::file-selector-button {display: none;}
