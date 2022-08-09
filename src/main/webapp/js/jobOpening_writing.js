@@ -31,6 +31,7 @@ $(function(){
 })
 
 /*추가 삭제버튼*/
+
 function addForm() {
     $('#problem_list').append($('#list_file_tag').html());
 }
@@ -109,4 +110,42 @@ function commas(t) {
     }
 }
 
-// 경력체크시 alert창 띄우기
+// 경력 체크 시 경력 input readonly 해제
+$(document).ready(function(){
+	let checkList = $(".careerChk");
+	let careerList = $(".career_year");
+	
+	for(let i = 0; i < checkList.length; i++) {
+		const idx = i;
+		checkList[idx].addEventListener('change', function() {
+			if($(checkList[idx]).is(":checked")) {
+				$(careerList[idx]).attr('readonly', false);
+				$(careerList[idx]).focus();
+			} else {
+				$(careerList[idx]).val('');
+				$(careerList[idx]).attr('readonly', true);
+			}
+		});
+	}
+	$("#add").click(function() {
+		let checkList = $(".careerChk");
+		let careerList = $(".career_year");
+		
+		for(let i = 0; i < checkList.length; i++) {
+			const idx = i;
+			checkList[idx].addEventListener('change', function() {
+				if($(checkList[idx]).is(":checked")) {
+					$(careerList[idx]).attr('readonly', false);
+					$(careerList[idx]).focus();
+				} else {
+					$(careerList[idx]).val('');
+					$(careerList[idx]).attr('readonly', true);
+				}
+			});
+		}
+	});
+});
+
+function insertJobOpeningChech() {
+	
+}

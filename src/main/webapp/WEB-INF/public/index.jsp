@@ -169,14 +169,14 @@
 	              	</c:forTokens>
 	              	</p>
 	              	<p class="contents">
-	              	<span>경력&nbsp;</span>
+	              	<span>경력 | </span>
 					<c:forTokens var="career" items="${anno.career}" delims=" / " varStatus="st">
 		              	<c:if test="${fn:length(anno.career) <= 3}">
 		              		<c:if test="${career == '신입'}">
-		              			${career}&emsp;
+		              			${career}&emsp;&emsp;
 		              		</c:if>
 		              		<c:if test="${career != '신입'}">
-		              			${career}년↑&emsp;
+		              			${career}년↑&emsp;&emsp;
 		              		</c:if>
 		              	</c:if>
 		              	<c:if test="${fn:length(anno.career) > 3}">
@@ -184,11 +184,11 @@
 		              			${career} or
 		              		</c:if>
 		              		<c:if test="${career != '신입'}">
-		              			${career}년↑&emsp;
+		              			${career}년↑&emsp;&emsp;
 		              		</c:if>
 		              	</c:if>
 					</c:forTokens>
-					<span>급여&nbsp;</span>
+					<span>급여 | </span>
 					<c:if test="${anno.pay == '면접 후 결정'}">
 	              		${anno.pay}</span>
 	              	</c:if>

@@ -44,7 +44,7 @@
 #scroll-hover-box{margin-left: 25px;}
 #scroll-hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
 .pfhover>ul>li>a{text-decoration: none; color: #656978; font-size: 1rem; display: inline-block;
-    width: 148px; height: 40px; display: flex; align-items: center; margin-left: -32px;
+    width: 148.5px; height: 40px; display: flex; align-items: center; margin-left: -32px;
     margin-top: 10px; font-weight: bold;}
 .pfhover>ul>li>a>span{ margin-left: 10px;}
 #mypage>a:hover{background-color: #e6e6e6;}

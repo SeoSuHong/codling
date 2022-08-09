@@ -129,12 +129,12 @@
             </c:forEach>
             </c:if>
             <c:if test="${empty allJobOpening}">
-	            <div class="resumemg" style="cursor: pointer;" onclick="location='jobOpening_writing'">
+	            <div class="resumemg" style="cursor: pointer; height: 165px;" onclick="location='jobOpening_writing'">
 		                <div class="resumemgbox">
 		                    <p><span>내가올린 공고</span></p>
 		                    <div class="resumemgbox2">
-		                        <h2>올린 공고가 없습니다.</h2>
-		                        <p>공고를 작성해주세요</p>
+		                        <h2>작성한 공고가 없습니다.</h2>
+		                        <p>공고를 작성해주세요.</p>
 		                    </div>
 		                </div>
 		            </div>
