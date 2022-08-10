@@ -40,11 +40,12 @@
     <section>
         <div id="problem_list">
             <h2><input type="button" class="edu_add" value="추가" onclick="addForm();">학력사항</h2>
-            <div id="eduLevelbox"> 
+            <div class="eduLevelbox">
+            <br><br>
                 <table class="edu_level_info">                 
                      <tr>
                          <td><p>학력 * 
-                            <select name="school" class="edu_select" required>
+                            <select name="school" onchange="schoolchange()" class="edu_select" required>
                             <option value="" disabled selected>선택</option>
                             <option value="고등학교">고등학교</option>
                             <option value="대학교(2년)">대학교(2년)</option>
@@ -72,20 +73,21 @@
                         <td><p>학과명<input name="department" id="major" class="infoForm2" placeholder=" 학과명을 입력하세요"></p></td>
                      </tr>
                      <tr>
-                        <td><p id="grade"><span>학점</span><input type="text" name="score" id="insertgrade" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
+                        <td><p id="grade" class="grade"><span>학점</span><input type="text" name="score" id="insertgrade" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
                             <span class="gradetext">/</span><input type="text" class="infoForm2" placeholder=" 4.5" readonly></p>
                      </td>
                     </tr>
-                </table> 
+                </table>
+                 <p id="description">※ 재학 휴학 졸업예정 이라면 졸업년도에 현재 날자를 입력해 주세요.</p>
             </div> 
         </div>
         <div id="edu_level_info" class="list_file_tag"> 
-            <div id="eduLevelbox"> 
+            <div class="eduLevelbox"> 
             <button type="button" class="edu_del" onclick="delForm(this);">삭제</button>
                 <table class="edu_level_info">
                      <tr>
                          <td><p>학력 * 
-                            <select name="school" name="school" class="edu_select" required>
+                            <select name="school" onchange="schoolchange()" class="edu_select" required>
                             <option value="" disabled selected>선택</option>
                             <option value="고등학교">고등학교</option>
                             <option value="대학교(2년)">대학교(2년)</option>
@@ -106,18 +108,19 @@
                                 <option value="졸업예정">졸업예정</option>
                                 <option value="재학">재학</option>
                                 <option value="휴학">휴학</option>
-                            </select>
-                        </p></td>
-                     </tr>
-                     <tr>
+                            </select></p>
+                        </td>
+                    </tr>
+                    <tr>
                         <td><p>학과명<input name="department" id="major" class="infoForm2" placeholder="학과명을 입력하세요"></p></td>
-                     </tr>
-                     <tr>
-                        <td><p id="grade"><span>학점</span><input type="text" name="score" id="insertgrade" placeholder="본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
+                    </tr>
+                    <tr>
+                        <td><p id="grade" class="grade"><span>학점</span><input type="text" name="score" id="insertgrade" placeholder="본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
                             <span class="gradetext">/</span><input type="text" class="infoForm2" value="4.5" readonly></p>
-                     </td>
+                     	</td>
                     </tr>
                 </table> 
+                <p id="description">※ 재학 휴학 졸업예정 이라면 졸업년도에 현재 날자를 입력해 주세요.</p>
             </div> 
         </div>
     </section>

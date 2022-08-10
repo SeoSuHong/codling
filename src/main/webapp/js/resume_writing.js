@@ -31,7 +31,7 @@ $(function(){
 /*학력추가 삭제버튼*/
 function addForm() {
     $('#problem_list').append($('#edu_level_info').html());
-    check_click();
+    
 }
 function delForm(obj){
     var div = $(obj).parent();
@@ -160,7 +160,7 @@ $(document).ready(function(){
     $(".upload_name").val(fileName);
 });
   
-
+//포트폴리오 첨부파일 url 변경
 $(document).ready(function() {
 	let urlBtn = $('.urlbtn');
 	let fileBtn = $('.filebtn');
@@ -207,10 +207,11 @@ $(document).ready(function() {
 	});
 });
 
+//유효성검사
 function check(){
 	
 		if(document.resume_Frm.resumetitle.value == ""){
-			alert("이력서 제목을 입력해주세요.")
+			alert("이력서 제목을 입력해주세요.");
 			document.resume_Frm.resumetitle.focus();
 			return;
 		}
@@ -226,43 +227,68 @@ function check(){
 	for(var i = 0; i< schoollist.length-1; i++){
 		
 		if(schoollist[i].value == ""){
-			alert("학력을 선택해주세요.")
+			alert("학력을 선택해주세요.");
 			schoollist[i].focus();
 			return;
 			}
 			
 		if(schoolNamelist[i].value == ""){
-			alert("학교명을 입력해주세요.")
+			alert("학교명을 입력해주세요.");
 			schoolNamelist[i].focus();
 			return;
 			}
 			
 		if(startDatelist[i].value == ""){
-			alert("입학 일자를 입력해 주세요.")
+			alert("입학 일자를 입력해 주세요.");
 			startDatelist[i].focus();
 			return;
 			}	
 		
 		if(endDatelist[i].value == ""){
-			alert("졸업 일자를 입력해주세요\n재학 휴학 졸업예정 이라면 현재 날자를 입력해 주세요.")
+			alert("졸업 일자를 입력해주세요\n재학 휴학 졸업예정 이라면 현재 날자를 입력해 주세요.");
 			endDatelist[i].focus();
 			return;
 			}
 			
 		if(statuslist[i].value == ""){
-			alert("졸업 상태를 입력 해주세요.")
+			alert("졸업 상태를 입력 해주세요.");
 			statuslist[i].focus();
 			return;
 			}	
 			
 		if(departmentlist[i].value == ""){
-			alert("학과명을 입력해 주세요.")
+			alert("학과명을 입력해 주세요.");
 			departmentlist[i].focus();
 			return;
 			}			
 			
 		}
 		
+		if(document.resume_Frm.stack.value == ""){
+			alert("보유하신 기술스택을 입력해주세요.");
+			document.resume_Frm.stack.focus();
+			return;
+		}
+		
+}
+
+//학력이 고등학교이면 학점 hidden
+function schoolchange(){
+	
+	var schoollist = document.getElementsByName('school');
+	let grade = $('.grade');
+	let eduLevelbox = $('.eduLevelbox');
+	
+	for(var i = 0; i < schoollist.length; i++){
+		const idx = i;
+		if(schoollist[i].value == '고등학교'){
+			$(grade[idx]).css({"visibility": "hidden"});
+			$(eduLevelbox[idx]).css({"height": "310px"});
+		}else{
+			$(grade[idx]).css({"visibility": "visible"});
+			$(eduLevelbox[idx]).css({"height": "385px"});
+		}
+	}
 }
 
 
