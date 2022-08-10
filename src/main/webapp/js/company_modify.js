@@ -130,6 +130,7 @@ function signUpInd_submit() {
 		$("#telePhone").addClass("is-invalid");
 	    $("#telePhone").focus();
 	    $("#telePhone").val("");
+	    return;
 	}
 	
 	// 대표자명 입력 확인

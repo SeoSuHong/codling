@@ -176,10 +176,10 @@ section{width: 1220px; margin: 0 auto; }
 article{width: 1220px; display: flex; justify-content: center;}
 
 .contents {
-    margin-top: -30px;
     text-align: left;
     color: #373F57;
     width: 800px;
+    margin-bottom: -20px;
 }
 
 .inContent {
@@ -190,7 +190,7 @@ article{width: 1220px; display: flex; justify-content: center;}
 }
 
 .inContent:last-child{
-	margin-bottom: 0;
+
 }
 
 .content {
@@ -219,14 +219,13 @@ article{width: 1220px; display: flex; justify-content: center;}
     width: 1220px;
     display: flex;
     justify-content: center;
+    padding: 20px 0;
 }
 
 hr{
     border-top: 1px solid rgba(187, 187, 187,0.2);
-    margin: auto;
+    margin: 30px auto;
     width: 900px;
-    margin-top: 50px;
-    margin-bottom: 50px;
 }
 
 /*hr 밑 */

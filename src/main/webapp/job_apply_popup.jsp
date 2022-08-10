@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/sql" prefix= "sql"  %>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,11 +10,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>PopUp</title>
         <link rel="stylesheet" href="css/job_apply_popup.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="plugin/slick-1.8.1/slick/slick.css">
-        
+        <sql:setDataSource var="conn" driver="jdbc:mysql://localhost:3306/codling" user="codling" password="1234"/>
 </head>
 <style>
 	label{
@@ -38,47 +41,53 @@
                         <div class="slider-div">
                                 <div class="containerBot">
                                         <p>자기소개서</p>
-                                        <label><input type="radio" id="chk1" name="chk" value="1">선택하기</label>
-                                        <p class="clTitle">자기소개서 제목1</p>
-                                        <p class="clContent">자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용
-                                                자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용</p>
+                                        <c:choose>
+                                        	<c:when test="${coverletter.no eq 1}">
+		                                        <label><input type="radio" id="chk1" name="chk" value="1">선택하기</label>
+		                                        <p class="clTitle">${coverletter.title}</p>
+		                                        <p class="clContent">${coverletter.content}</p>
+	                                        </c:when>
+                                        </c:choose>
                                 </div>
                                 <div class="containerBot">
                                         <p>자기소개서</p>
-                                        <label><input type="radio" id="chk2" name="chk" value="2">선택하기</label>
-                                        <p class="clTitle">자기소개서 제목2</p>
-                                        <p class="clContent">자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용
-                                                자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용</p>
+                                        <c:if test="${coverletter.no eq 2}">
+                                        <label><input type="radio" id="chk${coverletter.co == 2}" name="chk" value="2">선택하기</label>
+                                        <p class="clTitle">${coverleter.title}</p>
+                                        <p class="clContent">${coverleter.content}</p>
+                                        </c:if>
                                 </div>
                                 <div class="containerBot">
                                         <p>자기소개서</p>
-                                        <label><input type="radio" id="chk3" name="chk" value="3">선택하기</label>
-                                        <p class="clTitle">자기소개서 제목3</p>
-                                        <p class="clContent">자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용
-                                                자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용</p>
-                                        
+                                        <c:if test="${coverletter.no eq 3}">
+                                        <label><input type="radio" id="chk${coverletter.co == 3}" name="chk" value="3">선택하기</label>
+                                        <p class="clTitle">${coverleter.title}</p>
+                                        <p class="clContent">${coverleter.content}</p>
+                                        </c:if>
                                 </div>
                                 <div class="containerBot">
                                         <p>자기소개서</p>
-                                        <label><input type="radio" id="chk4" name="chk" value="4">선택하기</label>
-                                        <p class="clTitle">자기소개서 제목4</p>
-                                        <p class="clContent">자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용
-                                                자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용</p>
-                                        
+                                        <c:if test="${coverletter.no eq 4}">
+                                        <label><input type="radio" id="chk${coverletter.co == 4}" name="chk" value="4">선택하기</label>
+                                        <p class="clTitle">${coverleter.title}</p>
+                                        <p class="clContent">${coverleter.content}</p>
+                                        </c:if>
                                 </div>
                                 <div class="containerBot">
                                         <p>자기소개서</p>
-                                        <p class="clTitle">자기소개서 제목5</p>
-                                        <label><input type="radio" id="chk5" name="chk" value="5">선택하기</label>
-                                        <p class="clContent">자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용
-                                                자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용</p>
+                                        <c:if test="${coverletter.no eq 5}">
+	                                        <p class="clTitle">${coverletter.co == 5}</p>
+	                                        <label><input type="radio" id="chk${coverletter.co == 5}" name="chk" value="5">선택하기</label>
+	                                        <p class="clContent">${coverleter.content}</p>
+                                        </c:if>
                                 </div>
                                 <div class="containerBot">
                                         <p>자기소개서</p>
-                                        <p class="clTitle">자기소개서 제목6</p>
-                                        <label><input type="radio" id="chk6" name="chk" value="6">선택하기</label>
-                                        <p class="clContent">자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용
-                                                자기소개서 앞부분내용 자기소개서 앞부분내용 자기소개서 앞부분내용</p>
+                                        <c:if test="${coverletter.no eq 5}">
+                                        <p class="clTitle">${coverletter.co == 6}</p>
+                                        <label><input type="radio" id="chk${coverletter.co == 6}" name="chk" value="6">선택하기</label>
+                                        <p class="clContent">${coverleter.content}</p>
+                                        </c:if>
                                 </div>
                         </div>
                         <input type="button" value="등록" onclick="isSubmit()">

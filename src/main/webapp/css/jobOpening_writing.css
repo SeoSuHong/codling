@@ -15,7 +15,7 @@ a{text-decoration: none;}
 #logoimg{width: 253.32px; height: 56.82px;}
 #profilelogo{width: 35px; height: 35px; margin: 5px;}
 #profile-box{display: flex; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}
-#mename{position: relative; top:-15px;}
+#mename{position: relative; top:-13px;}
 #hover-box{height: 45px;}
 #hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
 #profile-hover{border: 1px solid #cecece; width: 150px; height: 160px; float: right; margin-right: 0px;
@@ -46,8 +46,9 @@ td{font-weight:bold;color:#373F57;}
 #title{width: 1220px; height: 200px; background: #F8F8F8; border-radius: 10px;display: flex; justify-content: left; align-items: center;margin-top: 25px;}
 
 /* 모집분야 */
-#field{width: 1220px; height: 1100px; background: #F8F8F8; border-radius: 10px;
-display: flex; justify-content: left; align-items: center;margin-top: 25px;}
+.field{width: 1220px; height: 1060px; background: #F8F8F8; border-radius: 10px; align-items: center; margin-top: 25px; padding-top: 40px;}
+.field:not(:first-of-type){padding-top: 0px;}
+.career_year{width: 40px; padding-top: 25px; line-height: 80px;}
 #btn{display: flex; justify-content: space-between;}
 /* 추가버튼 */
 #add{ background-color: #A5E374; color: white;appearance: none; margin-bottom: 2px; float: right; margin-right: 10px; padding: 7px;font-size:medium; font-weight: 400; text-align: center;
@@ -55,34 +56,25 @@ text-decoration: none; display: block; width: 80px; height: 40px; border: none; 
 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);cursor: pointer;}
 /* #add:active {box-shadow: none;}
 #add:hover {background-color: #A5E374; color: white;} */
-#textbox{ width:900px;height:120px;margin-top: 20px; line-height: 20px;}
+#stack{width: 900px; height: 40px;}
+#textbox{width:900px; height:120px; margin-top: 20px; line-height: 20px;}
 label{position:relative;top:-7px;}
 /* 삭제버튼 */
 #del{  font-family: 'Gosanja';  -webkit-appearance: none; -moz-appearance: none; appearance: none; font-size: medium;text-decoration: none;font-weight: 400;text-align: center; display: inline-block;width: 80px;height: 40px;
 border: none;border-radius: 10px;box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
-cursor: pointer;background-color:#D6D6D6; border:0;color: #858585;position: relative; top:-47%; left:92.5%}
+cursor: pointer;background-color:#D6D6D6; border:0;color: #858585;position: relative; top: 15px; left: 1125px;}
 td{line-height: 50px; padding-left: 30px;}
 table{margin-left: 50px;}
 .field_del{position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0, 0, 0, 0);border: 0;}
 
 /* 기업소개 */
-#company{width: 1220px; height: 800px; background: #F8F8F8; border-radius: 10px;
-display: flex; justify-content: left; align-items: center;margin-top: 25px;}
-#company table{margin-top: -60px;}
-#textbox2{width: 1000px;height: 600px; line-height: 20px;}
+#company{width: 1220px; height: 270px; background: #F8F8F8; border-radius: 10px;
+display: flex; justify-content: left; align-items: center; margin-top: 25px;}
 
-/* 자사양식 */
-#selfFrm{width: 1220px; height: 150px; background: #F8F8F8; border-radius: 10px;
-display: flex; justify-content: left; align-items: center;margin-top: 25px;}
 #submit{text-align: center; margin: 50px;font-weight: bold; font-size: 23px;}
-#submit button{    appearance: none;background-color: #A5E374;color:#FFFFFF; margin: 0; padding: 0.5rem 1rem;font-size: 1.5rem;
+#submit button{appearance: none;background-color: #A5E374;color:#FFFFFF; margin: 0; padding: 0.5rem 1rem;font-size: 1.5rem;
 font-weight: 500;text-align: center;text-decoration: none;display: inline-block;width: 200px;height: 80px;
 border: none;border-radius: 10px;box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);cursor: pointer;} 
-.filebox .upload_name {display: inline-block;height: 40px;padding: 0 10px;vertical-align: middle;
-border: 1px solid #dddddd;width: 80px;color: #999999;border-radius: 4px;}
-.filebox label {display: inline-block;padding: 10px 20px;color: #fff;vertical-align:-5px;background-color: #A5E374;cursor: pointer;
-height: 40px;margin-left: 50px;border-radius: 10px;}
-.filebox input[type="file"] {position: absolute;width: 0;height: 0;padding: 0;overflow: hidden;border: 0;}
 
 
 #font_medium{font-weight:normal;}
