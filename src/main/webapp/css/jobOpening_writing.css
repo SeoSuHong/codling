@@ -48,7 +48,7 @@ td{font-weight:bold;color:#373F57;}
 /* 모집분야 */
 .field{width: 1220px; height: 1060px; background: #F8F8F8; border-radius: 10px; align-items: center; margin-top: 25px; padding-top: 40px;}
 .field:not(:first-of-type){padding-top: 0px;}
-.career_year{width: 40px; padding-top: 25px; line-height: 80px;}
+.career_year{width: 40px; line-height: 80px; position: relative; top: -13px;}
 #btn{display: flex; justify-content: space-between;}
 /* 추가버튼 */
 #add{ background-color: #A5E374; color: white;appearance: none; margin-bottom: 2px; float: right; margin-right: 10px; padding: 7px;font-size:medium; font-weight: 400; text-align: center;
