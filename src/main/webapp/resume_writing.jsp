@@ -44,36 +44,36 @@
                 <table class="edu_level_info">                 
                      <tr>
                          <td><p>학력 * 
-                            <select name="education" class="edu_select" required>
+                            <select name="school" class="edu_select" required>
                             <option value="" disabled selected>선택</option>
-                            <option value="고졸">고졸</option>
-                            <option value="초대졸">대학2년 > 초대졸</option>
-                            <option value="대졸">대학4년 > 대졸</option>
-                            <option value="석사">석사</option>
-                            <option value="박사">박사</option>
+                            <option value="고등학교">고등학교</option>
+                            <option value="대학교(2년)">대학교(2년)</option>
+                            <option value="대학교(4년)">대학교(4년)</option>
+                            <option value="대학원(석사)">대학원(석사)</option>
+                            <option value="대학원(박사)">대학원(박사)</option>
                             </select>
                         </p></td>
                      </tr>
                      <tr>
-                        <td><p>학교명 *<input name="uni_name" id="uni_name" class="infoForm2" placeholder=" 학교명을 입력하세요"></p></td>
+                        <td><p>학교명 *<input name="schoolName" id="uni_name" class="infoForm2" placeholder=" 학교명을 입력하세요"></p></td>
                      </tr>
                      <tr>
-                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="start" id="start"><span class="qqqtext"> ~ </span><input type="date" name="end" class="infoForm2">
-                            <select class="edu_select2" required>
+                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="startDate" id="start"><span class="qqqtext"> ~ </span><input type="date" name="endDate" class="infoForm2">
+                            <select name="status" class="edu_select2" required>
                                 <option value="" disabled selected>선택</option>
-                                <option value="고졸">졸업</option>
-                                <option value="초대졸">졸업예정</option>
-                                <option value="대졸">재학</option>
-                                <option value="석사">휴학</option>
+                                <option value="졸업">졸업</option>
+                                <option value="졸업예정">졸업예정</option>
+                                <option value="재학">재학</option>
+                                <option value="휴학">휴학</option>
                             </select>
                         </p></td>
                      </tr>
                      <tr>
-                        <td><p>학과명<input name="major" id="major" class="infoForm2" placeholder=" 전공을 입력하세요"></p></td>
+                        <td><p>학과명<input name="department" id="major" class="infoForm2" placeholder=" 학과명을 입력하세요"></p></td>
                      </tr>
                      <tr>
-                        <td><p id="grade"><span>학점</span><input type="text" name="grade" id="insertgrade" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
-                            <span class="gradetext">/</span><input type="text" name="grade" class="infoForm2" placeholder=" 4.5" readonly></p>
+                        <td><p id="grade"><span>학점</span><input type="text" name="score" id="insertgrade" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
+                            <span class="gradetext">/</span><input type="text" class="infoForm2" placeholder=" 4.5" readonly></p>
                      </td>
                     </tr>
                 </table> 
@@ -85,36 +85,36 @@
                 <table class="edu_level_info">
                      <tr>
                          <td><p>학력 * 
-                            <select class="edu_select" required>
+                            <select name="school" name="school" class="edu_select" required>
                             <option value="" disabled selected>선택</option>
-                            <option value="고졸">고졸</option>
-                            <option value="초대졸">대학2년 > 초대졸</option>
-                            <option value="대졸">대학4년 > 대졸</option>
-                            <option value="석사">석사</option>
-                            <option value="박사">박사</option>
+                            <option value="고등학교">고등학교</option>
+                            <option value="대학교(2년)">대학교(2년)</option>
+                            <option value="대학교(4년)">대학교(4년)</option>
+                            <option value="대학원(석사)">대학원(석사)</option>
+                            <option value="대학원(박사)">대학원(박사)</option>
                             </select>
                         </p></td>
                      </tr>
                      <tr>
-                        <td><p>학교명 *<input name="uni_name" id="uni_name" class="infoForm2" placeholder="학교명을 입력하세요"></p></td>
+                        <td><p>학교명 *<input name="schoolName" id="uni_name" class="infoForm2" placeholder="학교명을 입력하세요"></p></td>
                      </tr>
                      <tr>
-                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="start" id="start"><span class="qqqtext"> ~ </span><input type="date" name="end" class="infoForm2">
-                            <select class="edu_select2" required>
+                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="startDate" id="start"><span class="qqqtext"> ~ </span><input type="date" name="endDate" class="infoForm2">
+                            <select name="status" class="edu_select2" required>
                                 <option value="" disabled selected>선택</option>
-                                <option value="고졸">졸업</option>
-                                <option value="초대졸">졸업예정</option>
-                                <option value="대졸">재학</option>
-                                <option value="석사">휴학</option>
+                                <option value="졸업">졸업</option>
+                                <option value="졸업예정">졸업예정</option>
+                                <option value="재학">재학</option>
+                                <option value="휴학">휴학</option>
                             </select>
                         </p></td>
                      </tr>
                      <tr>
-                        <td><p>학과명<input name="major" id="major" class="infoForm2" placeholder="전공을 입력하세요"></p></td>
+                        <td><p>학과명<input name="department" id="major" class="infoForm2" placeholder="학과명을 입력하세요"></p></td>
                      </tr>
                      <tr>
-                        <td><p id="grade"><span>학점</span><input type="text" name="grade" id="insertgrade" placeholder="본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
-                            <span class="gradetext">/</span><input type="text" name="grade" class="infoForm2" value="4.5" readonly></p>
+                        <td><p id="grade"><span>학점</span><input type="text" name="score" id="insertgrade" placeholder="본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
+                            <span class="gradetext">/</span><input type="text" class="infoForm2" value="4.5" readonly></p>
                      </td>
                     </tr>
                 </table> 
@@ -138,20 +138,20 @@
             <div id="experiencebox"><br><br>
                 <table id= "ex_info_box">
 	                <tr>
-	                    <td><p> 회사 명 * <input name="company_name" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
+	                    <td><p> 회사 명 * <input name="perv_company" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
 	                </tr>
 	                <tr>
-	                    <td><p id="qqq"><span>재직기간 *</span><input type="date" name="company_enter" class="infoForm4">
-	                        <span class="qqqtext"> ~ </span><input type="date" name="retire" class="infoForm4"></p></td>
+	                    <td><p id="qqq"><span>재직기간 *</span><input type="date" name="tenureStart" class="infoForm4">
+	                        <span class="qqqtext"> ~ </span><input type="date" name="tenureEnd" class="infoForm4"></p></td>
 	                </tr>
 	                <tr>
 	                    <td> <p>직급/직책 *<input name="position" id="position" class="infoForm4" placeholder=" 근무했던 직책명을 입력하세요"></p></td>
 	                </tr>
 	                <tr>
-	                    <td><p>근무 부서 <input name="department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요"></p></td>
+	                    <td><p>근무 부서 <input name="company_department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요"></p></td>
 	                </tr>
 	                <tr>
-	                    <td><p>주요업무<textarea placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail"></textarea></p></td>
+	                    <td><p>주요업무<textarea name="work_content" placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail"></textarea></p></td>
 	                </tr>
             	</table> 
         	</div>
@@ -164,17 +164,17 @@
 	                    <td><p>회사 명 * <input name="company_name" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
 	                </tr>
 	                <tr>
-	                    <td><p id="qqq"><span>재직 기간 *</span><input type="date" name="company_enter" class="infoForm4">
-	                        <span class="qqqtext"> ~ </span><input type="date" name="retire" class="infoForm4"></p></td>
+	                    <td><p id="qqq"><span>재직 기간 *</span><input type="date" name="tenureStart" class="infoForm4">
+	                        <span class="qqqtext"> ~ </span><input type="date" name="tenureEnd" class="infoForm4"></p></td>
 	                </tr>
 	                <tr>
 	                    <td> <p>직급/직책 *<input name="position" id="position" class="infoForm4" placeholder=" 근무했던 직책명을 입력하세요"></p></td>
 	                </tr>
                     <tr>
-	                    <td><p>근무 부서 <input name="department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요"></p></td>
+	                    <td><p>근무 부서 <input name="company_department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요"></p></td>
 	                </tr>
 	                <tr>
-	                    <td><p>주요 업무<textarea placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail"></textarea></p></td>
+	                    <td><p>주요 업무<textarea name="work_content" placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail"></textarea></p></td>
 	                </tr>
 	           	</table>
             </div> 

@@ -2,6 +2,7 @@ package codling.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import codling.dao.CorporationDao;
 import codling.dao.InformationDao;
 import codling.identity.Announcement;
+import codling.identity.Education;
 
 @WebServlet("/newcomer")
 public class NewcomerServlet extends HttpServlet{
@@ -41,4 +43,5 @@ public class NewcomerServlet extends HttpServlet{
 		
 		request.getRequestDispatcher("/WEB-INF/public/newcomer.jsp").forward(request, response);
 	}
+	
 }

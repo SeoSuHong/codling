@@ -209,32 +209,60 @@ $(document).ready(function() {
 
 function check(){
 	
-	$(document).ready(function(){
-	let education = $('input[name="education"]');
-	
 		if(document.resume_Frm.resumetitle.value == ""){
 			alert("이력서 제목을 입력해주세요.")
 			document.resume_Frm.resumetitle.focus();
 			return;
 		}
 	
-	for(var i = 0; i< education.length; i++){
-		const idx = i;
+	var schoollist = document.getElementsByName('school');
+	var schoolNamelist = document.getElementsByName('schoolName');
+	var startDatelist = document.getElementsByName('startDate');
+	var endDatelist = document.getElementsByName('endDate');
+	var statuslist = document.getElementsByName('status');
+	var departmentlist = document.getElementsByName('department');
+	var scorelist = document.getElementsByName('score');
+	
+	for(var i = 0; i< schoollist.length-1; i++){
 		
-		if(document.resume_Frm.education[i].value == ""){
+		if(schoollist[i].value == ""){
 			alert("학력을 선택해주세요.")
-			document.resume_Frm.education[i].focus();
+			schoollist[i].focus();
 			return;
 			}
+			
+		if(schoolNamelist[i].value == ""){
+			alert("학교명을 입력해주세요.")
+			schoolNamelist[i].focus();
+			return;
+			}
+			
+		if(startDatelist[i].value == ""){
+			alert("입학 일자를 입력해 주세요.")
+			startDatelist[i].focus();
+			return;
+			}	
+		
+		if(endDatelist[i].value == ""){
+			alert("졸업 일자를 입력해주세요\n재학 휴학 졸업예정 이라면 현재 날자를 입력해 주세요.")
+			endDatelist[i].focus();
+			return;
+			}
+			
+		if(statuslist[i].value == ""){
+			alert("졸업 상태를 입력 해주세요.")
+			statuslist[i].focus();
+			return;
+			}	
+			
+		if(departmentlist[i].value == ""){
+			alert("학과명을 입력해 주세요.")
+			departmentlist[i].focus();
+			return;
+			}			
+			
 		}
 		
-		if(document.resume_Frm.resumetitle.value == ""){
-			alert("이력서 제목을 입력해주세요.")
-			document.resume_Frm.resumetitle.focus();
-			return;
-		}
-	
-	});
 }
 
 
