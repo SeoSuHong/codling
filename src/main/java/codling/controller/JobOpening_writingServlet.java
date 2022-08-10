@@ -25,4 +25,9 @@ public class JobOpening_writingServlet extends HttpServlet {
 		request.setAttribute("name", name);
 		request.getRequestDispatcher("/WEB-INF/corporation/jobOpening_writing.jsp").forward(request, response);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
 }
