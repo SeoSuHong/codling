@@ -80,8 +80,9 @@
                             <td>경력여부*</td>
                             <td id="font_medium">
                             	<input name="career_status" value="신입" type="checkbox"><label>&nbsp;신입&emsp;&emsp;</label>
-                                <input name="career_status" class="careerChk" type="checkbox"><label>&nbsp;경력&emsp;</label>
-                                <input name="career_year" class="career_year" readonly>
+                                <input name="career_status" value="경력" class="careerChk" type="checkbox"><label>&nbsp;경력&emsp;</label>
+                                <input name="career_year" class="career_year" readonly> ※숫자(연차)만 입력
+                                <input name="career" type="hidden">
                             </td>
                         </tr>
                         <tr>
@@ -131,9 +132,10 @@
                         	<tr>
 	                            <td>경력여부*</td>
 	                            <td id="font_medium">
-	                            	<input name="career_status" value="newcomer" type="checkbox"><label>&nbsp;신입&emsp;&emsp;</label>
-	                                <input name="career_status" class="careerChk" type="checkbox"><label>&nbsp;경력&emsp;</label>
-	                                <input name="career_year" class="career_year" readonly> 
+	                            	<input name="career_status" value="신입" type="checkbox"><label>&nbsp;신입&emsp;&emsp;</label>
+	                                <input name="career_status" value="경력" class="careerChk" type="checkbox"><label>&nbsp;경력&emsp;</label>
+	                                <input name="career_year" class="career_year" readonly> ※숫자(연차)만 입력
+	                                <input name="career" type="hidden">
 	                            </td>
                         	</tr>
                         	<tr>
@@ -142,14 +144,14 @@
                         	</tr>
                         	<tr>
 	                            <td>급여*</td>
-	                            <td id="font_medium"><input name="pay" id="comma" onkeyup="commas(this)" size="10">&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="pay"><label>&nbsp;면접 후 결정</label></span></td>
+	                            <td id="font_medium"><input name="pay" id="comma" onkeyup="commas(this)" size="10">&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span></td>
                         	</tr>
                         	<tr>
 	                            <td>근무요일*</td>
 	                            <td id="font_medium">
-	                                <input name="workday" type="checkbox"><label>&nbsp;주5일(월~금)</label>&emsp;
-	                                <input name="workday" type="checkbox"><label>&nbsp;유연근무제</label>&emsp;
-	                                <input name="workday" type="checkbox"><label>&nbsp;면접 후 결정</label>
+	                                <input name="workday" type="checkbox" value="주5일(월~금)"><label>&nbsp;주5일(월~금)</label>&emsp;
+	                                <input name="workday" type="checkbox" value="유연근무제"><label>&nbsp;유연근무제</label>&emsp;
+	                                <input name="workday" type="checkbox" value="면접 후 결정"><label>&nbsp;면접 후 결정</label>
 	                            </td>
                         	</tr>
                         	<tr>

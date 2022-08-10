@@ -253,6 +253,7 @@ function insertJobOpeningCheck() {
 	var nameList          = document.getElementsByName('name');
 	var career_statusList = document.getElementsByName('career_status');
 	var career_yearList   = document.getElementsByName('career_year');
+	var careerList        = document.getElementsByName('career');
 	var positionList      = document.getElementsByName('position');
 	var payList           = document.getElementsByName('pay');
 	var workdayList       = document.getElementsByName('workday');
@@ -304,6 +305,11 @@ function insertJobOpeningCheck() {
 			alert("우대사항을 작성해 주세요.");
 			preferenceList[i].focus(); return;
 		}
+		if(career_statusList[i2].checked && !career_statusList[i2 + 1].checked) 
+			careerList[i].value = career_statusList[i2].value;
+		else if(!career_statusList[i2].checked && career_statusList[i2 + 1].checked)
+			careerList[i].value = career_yearList[i].value;
+		else careerList[i].value = career_statusList[i2].value + " / " + career_yearList[i].value;
 	}
 	if(document.jobOpForm.process.value == '') {
 		alert("채용절차를 입력해 주세요.");
@@ -311,7 +317,3 @@ function insertJobOpeningCheck() {
 	}
 	document.jobOpForm.submit();
 }
-
-
-
-

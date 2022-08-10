@@ -158,10 +158,31 @@ public class CorporationDao {
 		return list;
 	}
 	
+	// 가장 최근 공고no (ID)
+	public int getRecentJobOpeningNo(String corporation_id) {
+		int no = 0;
+		String query = "SELECT MAX(no) AS no FROM jobOpening WHERE corporation_id = " + corporation_id;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) no = rs.getInt("no");
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getRecentJobOpeningNo Error : " + e.getMessage());
+		}
+		return no;
+	}
+	
 	// 지원분야 정보
 	public Field getField(int jobOpening_no) {
 		Field field = null;
-		String query = "SELECT * FROM field WHERE jobOpening_no=?";
+		String query = "SELECT * FROM field WHERE jobOpening_no = ?";
 		
 		try {
 			conn = getConnection();
@@ -227,6 +248,67 @@ public class CorporationDao {
 			System.out.println("getAllField Error : " + e.getMessage());
 		}
 		return fields;
+	}
+	
+	// 공고 작성
+	public boolean insertJobOpening(JobOpening jobOpening) {
+		boolean result = false;
+		String query = "INSERT INTO jobOpening "
+				+ "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, 0)";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, jobOpening.getCorporation_id());
+			pstmt.setString(2, jobOpening.getTitle());
+			pstmt.setString(3, jobOpening.getRegion());
+			pstmt.setString(4, jobOpening.getProcess());
+			pstmt.setString(5, jobOpening.getStartDate());
+			pstmt.setString(6, jobOpening.getEndDate());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("insertJobOpening Error : " + e.getMessage());
+		}
+		
+		return result;
+	}
+	
+	// 지원분야 작성
+	public boolean insertField(List<Field> fields) {
+		int count = 0;
+		boolean result = false;
+		String query = "INSERT INTO field "
+				+ "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		try {
+			for(int i = 0; i < fields.size(); i++) {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				Field field = fields.get(i);
+				pstmt.setInt(1, field.getJobOpening_no());
+				pstmt.setString(2, field.getName());
+				pstmt.setString(3, field.getCareer());
+				pstmt.setString(4, field.getPosition());
+				pstmt.setString(5, field.getPay());
+				pstmt.setString(6, field.getWorkDay());
+				pstmt.setString(7, field.getWork());
+				pstmt.setString(8, field.getStack());
+				pstmt.setString(9, field.getRequirement());
+				pstmt.setString(10, field.getPreference());
+				
+				if(pstmt.executeUpdate() == 1) count++;
+				
+				pstmt.close();
+				conn.close();
+			}
+			if(count == fields.size()) result = true;
+		} catch(Exception e) {
+			System.out.println("insertJobOpening Error : " + e.getMessage());
+		}
+		
+		return result;
 	}
 	
 	// index 공고
