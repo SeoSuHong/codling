@@ -146,6 +146,174 @@ $(document).ready(function(){
 	});
 });
 
-function insertJobOpeningChech() {
+// 급여 숫자 or 면접 후 결정 체크 제어
+$(function() {
+	var payList = document.getElementsByName('pay');
 	
+	for(var idx = 0; idx < payList.length; idx += 2) {
+		const i = idx;
+		
+		$(payList[i]).on('keypress', function() {
+			$(payList[i + 1]).prop('checked', false);
+		});
+		payList[i + 1].addEventListener('click', function() {
+			$(payList[i]).val('');
+		});
+	}
+	
+	$("#add").click(function() {
+		var payList = document.getElementsByName('pay');
+	
+		for(var idx = 0; idx < payList.length; idx += 2) {
+			const i = idx;
+			
+			$(payList[i]).on('keypress', function() {
+				$(payList[i + 1]).prop('checked', false);
+			});
+			payList[i + 1].addEventListener('click', function() {
+				$(payList[i]).val('');
+			});
+		}
+	});
+});
+
+// 근무요일 checkbox 중복 체크 제어
+$(function() {
+	var workdayList = document.getElementsByName('workday');
+	
+	for(var idx = 0; idx < workdayList.length; idx += 3) {
+		const i = idx;
+		
+		workdayList[i].addEventListener('click', function() {
+			if($(workdayList[i]).is(":checked")) {
+				$(workdayList[i + 1]).prop('checked', false);
+				$(workdayList[i + 2]).prop('checked', false);
+			}
+		});
+		workdayList[i + 1].addEventListener('click', function() {	
+			if($(workdayList[i + 1]).is(":checked")) {
+				$(workdayList[i]).prop('checked', false);
+				$(workdayList[i + 2]).prop('checked', false);
+			}
+		});
+		workdayList[i + 2].addEventListener('click', function() {	
+			if($(workdayList[i + 2]).is(":checked")) {
+				$(workdayList[i]).prop('checked', false);
+				$(workdayList[i + 1]).prop('checked', false);
+			}
+		});
+	}
+	
+	$("#add").click(function() {
+		var workdayList = document.getElementsByName('workday');
+		
+		for(var idx = 0; idx < workdayList.length; idx += 3) {
+			 const i = idx;
+			workdayList[i].addEventListener('click', function() {
+				if($(workdayList[i]).is(":checked")) {
+					$(workdayList[i + 1]).prop('checked', false);
+					$(workdayList[i + 2]).prop('checked', false);
+				}
+			});
+			workdayList[i + 1].addEventListener('click', function() {	
+				if($(workdayList[i + 1]).is(":checked")) {
+					$(workdayList[i]).prop('checked', false);
+					$(workdayList[i + 2]).prop('checked', false);
+				}
+			});
+			workdayList[i + 2].addEventListener('click', function() {	
+				if($(workdayList[i + 2]).is(":checked")) {
+					$(workdayList[i]).prop('checked', false);
+					$(workdayList[i + 1]).prop('checked', false);
+				}
+			});
+		}
+	});
+});
+
+// null값 검사 후 submit
+function insertJobOpeningCheck() {
+	if(document.jobOpForm.address.value == '') {
+		alert("근무지역을 입력해 주세요.");
+		document.jobOpForm.detailAddress.focus(); return;
+	}
+	if(document.jobOpForm.title.value == '') {
+		alert("공고제목을 입력해 주세요.");
+		document.jobOpForm.title.focus(); return;
+	}
+	if(document.jobOpForm.startDate.value == '') {
+		alert("시작일을 입력해 주세요.");
+		document.jobOpForm.startDate.focus(); return;
+	}
+	if(document.jobOpForm.endDate.value == '') {
+		alert("마감일을 입력해 주세요.");
+		document.jobOpForm.endDate.focus(); return;
+	}
+	
+	var nameList          = document.getElementsByName('name');
+	var career_statusList = document.getElementsByName('career_status');
+	var career_yearList   = document.getElementsByName('career_year');
+	var careerList        = document.getElementsByName('career');
+	var positionList      = document.getElementsByName('position');
+	var payList           = document.getElementsByName('pay');
+	var workdayList       = document.getElementsByName('workday');
+	var stackList         = document.getElementsByName('stack');
+	var workList          = document.getElementsByName('work');
+	var requirementList   = document.getElementsByName('requirement');
+	var preferenceList    = document.getElementsByName('preference');
+	
+	
+	for(let i = 0; i < nameList.length - 1; i++) {
+		let i2 = i * 2;
+		let i3 = i * 3;
+
+		if(nameList[i].value == '') {
+			alert("분야명을 입력해 주세요.");
+			nameList[i].focus(); return;
+		}
+		if(!career_statusList[i2].checked && !career_statusList[i2 + 1].checked) {
+			alert("경력여부를 하나 이상 선택해 주세요."); return;
+		}
+		if(career_statusList[i2 + 1].checked && career_yearList[i].value == '') {
+			alert("경력을 입력해 주세요.");
+			career_yearList[i].focus(); return;
+		}
+		if(positionList[i].value == '') {
+			alert("직급/직책을 입력해 주세요.");
+			positionList[i].focus(); return;
+		}
+		if(payList[i2].value == '' && !payList[i2 + 1].checked) {
+			alert("급여를 입력해 주세요.");
+			payList[i2].focus(); return;
+		}
+		if(!workdayList[i3].checked && !workdayList[i3 + 1].checked && !workdayList[i3 + 2].checked) {
+			alert("근무요일을 선택해 주세요."); return;
+		}
+		if(stackList[i].value == '') {
+			alert("사용스택 및 툴을 입력해 주세요.");
+			stackList[i].focus(); return;
+		}
+		if(workList[i].value == '') {
+			alert("주요업무를 작성해 주세요.");
+			workList[i].focus(); return;
+		}
+		if(requirementList[i].value == '') {
+			alert("자격요건을 작성해 주세요.");
+			requirementList[i].focus(); return;
+		}
+		if(preferenceList[i].value == '') {
+			alert("우대사항을 작성해 주세요.");
+			preferenceList[i].focus(); return;
+		}
+		if(career_statusList[i2].checked && !career_statusList[i2 + 1].checked) 
+			careerList[i].value = career_statusList[i2].value;
+		else if(!career_statusList[i2].checked && career_statusList[i2 + 1].checked)
+			careerList[i].value = career_yearList[i].value;
+		else careerList[i].value = career_statusList[i2].value + " / " + career_yearList[i].value;
+	}
+	if(document.jobOpForm.process.value == '') {
+		alert("채용절차를 입력해 주세요.");
+		document.jobOpForm.process.focus(); return;
+	}
+	document.jobOpForm.submit();
 }
