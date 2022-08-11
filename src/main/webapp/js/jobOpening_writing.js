@@ -156,11 +156,11 @@ $(function() {
 		$(payList[i]).on('keypress', function() {
 			$(payList[i + 1]).prop('checked', false);
 		});
-		payList[i + 1].addEventListener('click', function() {
+		$(payList[i + 1]).change(function() {
 			$(payList[i]).val('');
 		});
 	}
-	
+
 	$("#add").click(function() {
 		var payList = document.getElementsByName('pay');
 	
@@ -170,7 +170,7 @@ $(function() {
 			$(payList[i]).on('keypress', function() {
 				$(payList[i + 1]).prop('checked', false);
 			});
-			payList[i + 1].addEventListener('click', function() {
+			$(payList[i + 1]).change(function() {
 				$(payList[i]).val('');
 			});
 		}

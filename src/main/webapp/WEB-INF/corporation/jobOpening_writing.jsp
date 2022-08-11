@@ -91,7 +91,10 @@
                         </tr>
                         <tr>
                             <td>급여*</td>
-                            <td id="font_medium"><input type="text" name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span></td>
+                            <td id="font_medium">
+	                            <input type="text" name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
+	                            <input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span>
+                            </td>
                         </tr>
                         <tr>
                             <td>근무요일*</td>
