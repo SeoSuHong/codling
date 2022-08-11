@@ -20,11 +20,7 @@ body{
 
 /*로고 이미지*/
 .logo{
-<<<<<<< HEAD
-    margin-left: 35.5vw;
-=======
     margin-left: 35vw;
->>>>>>> 우진
     width: 253px;
     height: 56px; 
     object-fit: contain;
@@ -132,14 +128,14 @@ input[type="button"]:hover{
 
 .slick-prev{
     transform: scaleX(-1);
-    right: 1vw;
+    right: 2.5vw;
     bottom: -10rem;
     
 }
 
 .slick-next{
     position: relative;
-    margin-left: 10rem;
+    margin-left: 82rem;
     bottom: 10rem;
 }
 
@@ -148,11 +144,7 @@ label{
     cursor: pointer;
     font-size: 1.3rem;
     color: #A5E374;
-<<<<<<< HEAD
     margin-left: 4vw;
-=======
-    margin-left: 3vw;
->>>>>>> 우진
     font-weight: 900;
 }
 

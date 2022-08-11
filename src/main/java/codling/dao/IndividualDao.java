@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import codling.identity.CoverLetter;
 import codling.identity.Individual;
 
 public class IndividualDao {
@@ -78,5 +79,31 @@ public class IndividualDao {
 			System.out.println("insertIndividual Error : " + e.getMessage());
 		}
 		return result;
+	}
+	
+	// 개인회원 자기소개서 가져오기
+	public CoverLetter getCoverletter(CoverLetter coverLetter) {
+		CoverLetter coverletter = null;
+		String query = "select * from coverletter";
+		try {
+			conn= getConnection();
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int no = rs.getInt("no");
+				String individual_id = rs.getString("individual_id");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				
+				coverletter = new CoverLetter(no, individual_id, title, content);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch(Exception e) {
+			System.out.println("getCoverletter errors : "+e.getMessage());
+		}
+		return coverletter;
 	}
 }

@@ -295,6 +295,7 @@ function signUpCom_submit(){
 		$("#corPw").addClass("is-invalid");
 	    $("#corPw").focus();
 	    $("#corPw").val("");
+	    return;
 	}
 
 	// 비밀번호 확인 공백 확인
