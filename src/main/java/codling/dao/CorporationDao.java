@@ -161,7 +161,7 @@ public class CorporationDao {
 	// 가장 최근 공고no (ID)
 	public int getRecentJobOpeningNo(String corporation_id) {
 		int no = 0;
-		String query = "SELECT MAX(no) AS no FROM jobOpening WHERE corporation_id = " + corporation_id;
+		String query = "SELECT MAX(no) AS no FROM jobOpening WHERE corporation_id = '" + corporation_id + "'";
 		
 		try {
 			conn = getConnection();
@@ -305,7 +305,7 @@ public class CorporationDao {
 			}
 			if(count == fields.size()) result = true;
 		} catch(Exception e) {
-			System.out.println("insertJobOpening Error : " + e.getMessage());
+			System.out.println("insertField Error : " + e.getMessage());
 		}
 		
 		return result;
