@@ -2,6 +2,7 @@ package codling.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,9 +20,17 @@ public class IndiInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("indiId");
+		String indiId = id;
 		
 		IndividualDao dao = new IndividualDao();
 		Individual individual = dao.getIndividual(id);
+		InformationDao infoDao = new InformationDao();
+		
+		if(indiId != null) {
+			Map<String, String> map = infoDao.getIndiName(indiId);
+			String indiName = map.get(indiId);
+			request.setAttribute("indiName", indiName);
+		}
 		
 		request.setAttribute("individual", individual);
 		request.getRequestDispatcher("/WEB-INF/individual/individual_info.jsp").forward(request, response);

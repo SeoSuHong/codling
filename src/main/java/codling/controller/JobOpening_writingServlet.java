@@ -63,7 +63,6 @@ public class JobOpening_writingServlet extends HttpServlet {
 		
 		List<Field> fields = new ArrayList<Field>();
 		int no = corpDao.getRecentJobOpeningNo(id);
-		System.out.println(no);
 		for(int i = 0; i < nameList.length - 1; i++) {
 			Field field = new Field(0, no, nameList[i], careerList[i], positionList[i], payList[i], workDayList[i], workList[i], stackList[i], requirementList[i], preferenceList[i]);
 			fields.add(field);

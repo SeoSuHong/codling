@@ -4,9 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import codling.identity.CoverLetter;
+import codling.identity.Education;
 import codling.identity.Individual;
+import codling.identity.JobOpening;
 
 public class IndividualDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
@@ -105,5 +109,40 @@ public class IndividualDao {
 			System.out.println("getCoverletter errors : "+e.getMessage());
 		}
 		return coverletter;
+	}
+	
+	//이력서 이력서 title stack
+	
+	//이력서 학력 insert
+	public boolean setEducation(List<Education> educationList) {
+		boolean result = false;
+		int count = 0;
+		String query = "INSERT INTO education VALUES(DEFAULT,?,?,?,?,?,?,?,?)";
+		
+		try {
+			for(int i = 0; i < educationList.size(); i++) {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				Education education = educationList.get(i);
+				pstmt.setString(1, education.getIndividual_id());
+				pstmt.setString(2, education.getSchool());
+				pstmt.setString(3, education.getSchoolName());
+				pstmt.setString(4, education.getSchoolDateStart());
+				pstmt.setString(5, education.getSchoolDateEnd());
+				pstmt.setString(6, education.getStatus());
+				pstmt.setString(7, education.getDepartment());
+				pstmt.setString(8, education.getScore());
+				
+				if(pstmt.executeUpdate() == 1) count++;
+				
+				pstmt.close();
+				conn.close();
+			}
+			
+			if(count == educationList.size()) result = true;
+		}catch (Exception e) {
+			System.out.println("setEducation errors : "+e.getMessage());
+		}
+		return result;
 	}
 }

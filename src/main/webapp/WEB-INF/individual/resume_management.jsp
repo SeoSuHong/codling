@@ -19,14 +19,14 @@
             <div></div>
             <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
-                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
                 </div>
         </div>
             <div id="profile-hover">
                 <ul>
-                    <li id="mypage"><a href="#"><span>내 정보</span></a></li>
-                    <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
-                    <li id="logout"><a href="#"><span>로그아웃</span></a></li>
+                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
+                    <li id="resume"><a href="resume_management"><span>이력서 관리</span></a></li>
+                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
                 </ul>
             </div>
     </header>
@@ -49,8 +49,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                                 <div class="app">
@@ -63,8 +63,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                                 <div class="app">
@@ -77,8 +77,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                                 <div class="app">
@@ -91,8 +91,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                             </li>
@@ -107,8 +107,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                                 <div class="app">
@@ -121,8 +121,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                                 <div class="app">
@@ -135,8 +135,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                                 <div class="app">
@@ -149,8 +149,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                             </li>
@@ -165,8 +165,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                                 <div class="app">
@@ -179,8 +179,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                                 <div class="app">
@@ -193,8 +193,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                                 <div class="app">
@@ -207,8 +207,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                             </li>
@@ -223,8 +223,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                                 <div class="app">
@@ -237,8 +237,8 @@
                                         <b>마감일자 : 2022-08-19</b><br>
                                     </div>
                                     <div class="viewInfo">
-                                        <a href="job_accountment.jsp">공고보기</a>
-                                        <a href="resume_writing.jsp">이력서 보기</a>
+                                        <a href="job_accountment">공고보기</a>
+                                        <a href="resume_writing">이력서 보기</a>
                                     </div>
                                 </div>
                             </li>
@@ -248,39 +248,38 @@
                 <button class="rightArrow"><img src="img/rightArrow.png"></button>
             </div>
             <div id="btn_bar">
-                <button class="apply_bar">
-                <button class="apply_bar">
-                <button class="apply_bar">
-                <button class="apply_bar">
+                <button class="apply_bar"></button>
+                <button class="apply_bar"></button>
+                <button class="apply_bar"></button>
+                <button class="apply_bar"></button>
             </div>
         </article>
         <article id="resume">
             <h1>이력서 관리</h1>
-            <a href="#"><div class="resumemg">
+            <div class="resumemg" style="cursor: pointer;" onclick="location.href='resume_writing'">
                 <div class="resumemgbox">
                     <p><span>이력서</span></p>
                     <div class="resumemgbox2">이력서가 없습니다. 이력서를 작성해 주세요</div>
                 </div>
-            </div></a>
+            </div>
             <div class="btn-res">
-                <a href="resume_writing.jsp"><button action="" id="btn-res">이력서 작성</button></a>
+                <a href="resume_writing"><button id="btn-res">이력서 작성</button></a>
             </div>
         </article>
         <article id="self">
             <h1>자기소개서 관리</h1>
-            <a href="#"><div class="self_box">
+            <div class="self_box" style="cursor: pointer;" onclick="selfintro()">
                     <div id="self_introduction">
                         <p><span>자기소개서</span></p>
                             <div class="self_introductionbox">자기소개서가 없습니다. 자기소개서를 작성해주세요</div>
                     </div>
-                </div>
-            </a>
+            </div>
             <div class="chbtn-box">
                 <input type="button" name="update" id="update" value="수정" src="">
                 <input type="button" name="delete" id="delete" value="삭제" >
             </div>
             <div class="btn-sel">
-                <input type="button" id="btn-sel" value="자기소개서 작성"></input>
+                <input type="button" id="btn-sel" value="자기소개서 작성" onclick="selfintro()"></input>
             </div>
         </article>
         <div id="self_inbox">

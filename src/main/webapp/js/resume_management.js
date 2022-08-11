@@ -57,6 +57,7 @@ $(function(){
     });
 });
 
+
 // 공고 지원 현황 화살표 클릭
 $(function() {
     var idx = 1;
@@ -122,19 +123,19 @@ function self_check() {
     document.selfFrm.submit();
 }
 
-$(function() {
-
-$("#btn-sel").click(function() {
-    if($("#self_inbox").css("display") === "block"){
-        alert("이미 자기소개서를 작성 중입니다.");
-    }else{
-        $("#self_inbox").css({"display":"block"});
-    }
-})   
-$("#btn-self-back").click(function() {
-    $("#self_inbox").css({"display":"none"});
-})
-});
+function selfintro(){	
+	if($("#self_inbox").css("display") === "block"){
+		alert("이미 자기소개서를 작성 중입니다.");
+	}else{
+		$("#self_inbox").css({"display":"block"});
+	}
+		    
+	$("#btn-self-back").click(function() {
+	    $("#self_inbox").css({"display":"none"});
+	    $("#input_title").val("");
+	    $("#input_contents").val("");
+	})
+}
 
 $(function() {
     $('.btn').click( function() {

@@ -218,8 +218,8 @@ function check(){
 	
 	var schoollist = document.getElementsByName('school');
 	var schoolNamelist = document.getElementsByName('schoolName');
-	var startDatelist = document.getElementsByName('startDate');
-	var endDatelist = document.getElementsByName('endDate');
+	var startDatelist = document.getElementsByName('schoolDateStart');
+	var endDatelist = document.getElementsByName('schoolDateEnd');
 	var statuslist = document.getElementsByName('status');
 	var departmentlist = document.getElementsByName('department');
 	var scorelist = document.getElementsByName('score');
@@ -270,6 +270,7 @@ function check(){
 			return;
 		}
 		
+		document.resume_Frm.submit();
 }
 
 //학력이 고등학교이면 학점 hidden

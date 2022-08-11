@@ -21,13 +21,13 @@
             <div></div>
             <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
-                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> 고객이름</span> &nbsp;&nbsp;</div>
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> ${indiName} 님</span> &nbsp;&nbsp;</div>
                 </div>
         </div>
         <div id="profile-hover">
             <ul>
                 <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
-                <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
+                <li id="resume"><a href="resume_management"><span>이력서 관리</span></a></li>
                 <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
             </ul>
         </div>
