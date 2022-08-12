@@ -193,11 +193,11 @@
                             <td><p>자격증명<input name="license_name" class="infoForm3" placeholder="자격증명을 입력하세요"></p></td>
                         </tr>
                         <tr>
-                            <td><p>발행처/기관<input name="organ_name" class="infoForm3" placeholder="발행기관명을 입력하세요"></p></td>
+                            <td><p>발행처/기관<input name="agency" class="infoForm3" placeholder="발행기관명을 입력하세요"></p></td>
                         </tr>
                         <tr>
                             <td>
-                                <p>합격구분 <select class="license_select">
+                                <p>합격구분 <select name="pass" class="license_select">
                                     <option value="" disabled selected>선택</option>
                                     <option value="1차합격">1차합격</option>
                                     <option value="2차합격">2차합격</option>
@@ -208,7 +208,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><p>취득일<input type="date" name="pass_date" id="passday" class="infoForm3"></p></td>
+                            <td><p>취득일<input type="date" name="acquireDate" id="passday" class="infoForm3"></p></td>
                         </tr>
                     </table>
             </div>
@@ -221,11 +221,11 @@
                         <td><p>자격증명<input name="license_name" class="infoForm3" placeholder="자격증명을 입력하세요"></p></td>
                     </tr>
                     <tr>
-                        <td><p>발행처/기관<input name="organ_name" class="infoForm3" placeholder="발행기관명을 입력하세요"></p></td>
+                        <td><p>발행처/기관<input name="agency" class="infoForm3" placeholder="발행기관명을 입력하세요"></p></td>
                     </tr>
                     <tr>
                         <td>
-                            <p>합격구분 <select class="license_select">
+                            <p>합격구분 <select name="pass" class="license_select">
                                 <option value="" disabled selected>선택</option>
                                 <option value="1차합격">1차합격</option>
                                 <option value="2차합격">2차합격</option>
@@ -236,7 +236,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><p>취득일<input type="date" name="pass_date" id="passday" class="infoForm3"></p></td>
+                        <td><p>취득일<input type="date" name="acquireDate" id="passday" class="infoForm3"></p></td>
                     </tr>
                 </table>
             </div>
@@ -247,34 +247,34 @@
         <div id="problem_list4">
             <h2>포트폴리오 제출<input type="button" class="portfolio_add" value="추가" onclick="addForm4();"></h2>
             <div id="portfoliobox"><br><br>
-                <input type="text" class="portfolio_title" placeholder="GitHub"><br><br>
+                <input type="text" name="portfolio_name" class="portfolio_title" placeholder="GitHub"><br><br>
                 <button type="button" class="urlbtn">url</button>
                 <button type="button" class="filebtn">첨부파일</button>
                 <div class="url_box">
-                    <input type="text" class="url" placeholder="https://github.com">
+                    <input type="text" name="url" class="url" placeholder="https://github.com">
                 </div>
                 <div class="file_box">
                     <label class="choose_file" for="ex_filename"><span>파일선택</span></label>
-                    <input type="file" id="ex_filename" class="filename">
+                    <input type="file" name="fileName" id="ex_filename" class="filename">
                 </div>
-                <textarea name="deepcontents" id="deepcontents" placeholder="상세내용"></textarea>
+                <textarea name="detail" id="deepcontents" placeholder="상세내용"></textarea>
             </div>
         </div>
         
         <div id="portfolio_info" class="list_file_tag"> 
             <div id="portfoliobox">
 	            <button type="button" class="portfolio_del" onclick="delForm4(this);">삭제</button>
-	            <input type="text" class="portfolio_title" placeholder="개인첨부 파일"><br><br>
+	            <input type="text" name="portfolio_name" class="portfolio_title" placeholder="개인첨부 파일"><br><br>
                 <button type="button" class="urlbtn">url</button>
                 <button type="button" class="filebtn">첨부파일</button>
                 <div class="url_box">
-                    <input type="text" class="url" placeholder="https://github.com">
+                    <input type="text" name="url" class="url" placeholder="https://github.com">
                 </div>
                 <div class="file_box">
                     <label class="choose_file" for="ex_filename"><span>파일선택</span></label>
-                    <input type="file" id="ex_filename" class="filename">
+                    <input type="file" name="fileName" id="ex_filename" class="filename">
                 </div>
-                <textarea name="deepcontents" id="deepcontents" placeholder="상세내용"></textarea>
+                <textarea name="detail" id="deepcontents" placeholder="상세내용"></textarea>
             </div>
         </div>
     </section>

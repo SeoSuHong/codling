@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import codling.identity.Career;
 import codling.identity.CoverLetter;
 import codling.identity.Education;
 import codling.identity.Individual;
@@ -125,6 +126,8 @@ public class IndividualDao {
 				pstmt.setString(2, stack);
 				pstmt.setString(3, indiId);
 				if(pstmt.executeUpdate() == 1) result = true;
+				pstmt.close();
+				conn.close();
 			}
 		}catch (Exception e) {
 			System.out.println("setResumeTitleStack errors : " + e.getMessage());
@@ -160,6 +163,36 @@ public class IndividualDao {
 			if(count == educationList.size()) result = true;
 		}catch (Exception e) {
 			System.out.println("setEducation errors : "+e.getMessage());
+		}
+		return result;
+	}
+	//이력서 경력사항
+	public boolean setCareer(List<Career> careerList) {
+		boolean result = false;
+		int count = 0;
+		String query = "INSERT INTO career VALUES(DEFAULT,?,?,?,?,?,?,?)";
+		
+		try {
+			for(int i = 0; i < careerList.size(); i++) {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				Career career = careerList.get(i);
+				pstmt.setString(1, career.getIndividual_id());
+				pstmt.setString(2, career.getPrev_company());
+				pstmt.setString(3, career.getTenureStart());
+				pstmt.setString(4, career.getTenureEnd());
+				pstmt.setString(5, career.getPosition());
+				pstmt.setString(6, career.getDepartment());
+				pstmt.setString(7, career.getWork_content());
+				
+				if(pstmt.executeUpdate() == 1) count++;
+				
+				pstmt.close();
+				conn.close();
+			}
+			if(count == careerList.size()) result = true;
+		}catch (Exception e) {
+			System.out.println("setCareer errors :" + e.getMessage());
 		}
 		return result;
 	}

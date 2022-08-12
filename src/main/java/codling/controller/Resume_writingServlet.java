@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
+import codling.identity.Career;
 import codling.identity.Education;
 
 @WebServlet("/resume_writing")
@@ -62,10 +63,26 @@ public class Resume_writingServlet extends HttpServlet {
 		String stack = request.getParameter("stack");
 		boolean resumeTitleStack = dao.upDateResumeTitleStack(resumetitle, stack, indiId);
 		
+		//경력사항
+		List<Career> careerList = new ArrayList<Career>();
+		String[] perv_company = request.getParameterValues("perv_company");
+		String[] tenureStart = request.getParameterValues("tenureStart");
+		String[] tenureEnd = request.getParameterValues("tenureEnd");
+		String[] position = request.getParameterValues("position");
+		String[] company_department = request.getParameterValues("company_department");
+		String[] work_content = request.getParameterValues("work_content");
+		
+		for(int i = 0; i < perv_company.length; i++) {
+			Career career = new Career(0, indiId, perv_company[i], tenureStart[i], tenureEnd[i], position[i], company_department[i], work_content[i]);
+			careerList.add(career);
+		}
+		
+		boolean careerResult = dao.setCareer(careerList);
+		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if(educationResult && resumeTitleStack)
+		if(educationResult && resumeTitleStack && careerResult)
 			out.print("<script>alert('이력서 등록에 성공하였습니다.'); location.href = 'resume_management';</script>");
 		else
 			out.print("<script>alert('이력서 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
