@@ -40,7 +40,7 @@ public class Resume_writingServlet extends HttpServlet {
 		String indiId = (String)session.getAttribute("indiId");
 		
 		List<Education> educationList = new ArrayList<Education>();
-		
+		//학력정보
 		String[] school = request.getParameterValues("school");
 		String[] schoolName = request.getParameterValues("schoolName");
 		String[] schoolDateStart = request.getParameterValues("schoolDateStart");
@@ -50,26 +50,24 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] score = request.getParameterValues("score");
 		
 		for(int i = 0; i < school.length; i++) {
-			System.out.println(indiId);
-			System.out.println(school[i]);
-			System.out.println(schoolName[i]);
-			System.out.println(schoolDateStart[i]);
-			System.out.println(schoolDateEnd[i]);
-			System.out.println(status[i]);
-			System.out.println(department[i]);
-			System.out.println(score[i]);
 			Education education = new Education(0, indiId, school[i], schoolName[i], schoolDateStart[i], schoolDateEnd[i], status[i], department[i], score[i]);
 			educationList.add(education);
 		}
 		
 		IndividualDao dao = new IndividualDao();
 		boolean educationResult = dao.setEducation(educationList);
+		
+		//resumetitle stack update
+		String resumetitle = request.getParameter("resumetitle");
+		String stack = request.getParameter("stack");
+		boolean resumeTitleStack = dao.upDateResumeTitleStack(resumetitle, stack, indiId);
+		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if(educationResult)
-			out.print("<script>alert('성공 싯팔!'); location.href = 'resume_management';</script>");
+		if(educationResult && resumeTitleStack)
+			out.print("<script>alert('이력서 등록에 성공하였습니다.'); location.href = 'resume_management';</script>");
 		else
-			out.print("<script>alert('실패 시ㅅ팧'); location.href = 'resume_writing';</script>");
+			out.print("<script>alert('이력서 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
 	}
 }

@@ -37,7 +37,7 @@
             <c:if test="${not empty allJobOpening}">
             <c:forEach var="jobOpening" items="${allJobOpening}">
             <div class="resumemg">
-                <div class="resumemgbox" style="cursor: pointer;" onclick="location='job_accountment?no=${jobOpening.getNo()}'">
+                <div class="resumemgbox" style="cursor: pointer;" onclick="location='job_accountment?no=${jobOpening.no}'">
                     <p><span>내가올린 공고</span></p>
                     <button type="button" id="applicant_status" onclick="location.href='applicant_status.jsp'"><span>지원 현황</span></button>
                     <div class="resumemgbox2">

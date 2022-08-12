@@ -62,7 +62,7 @@ public class IndividualDao {
 	// 개인회원 회원가입
 	public boolean insertIndividual(Individual individual) {
 		boolean result = false;
-		String query = "INSERT INTO individual VALUES (?,DEFAULT,?,?,?,?,?,?,?,'')";
+		String query = "INSERT INTO individual VALUES (?,DEFAULT,?,?,?,?,?,?,?,DEFAULT,DEFAULT)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
@@ -112,7 +112,25 @@ public class IndividualDao {
 	}
 	
 	//이력서 이력서 title stack
-	
+	public boolean upDateResumeTitleStack(String title, String stack, String indiId) {
+		boolean result = false;
+		String query ="UPDATE individual "
+				+ "SET resumeTitle = ?, stack = ? "
+				+ "WHERE id = ?";
+		try {
+			if(!title.equals("") && !stack.equals("") && !indiId.equals("")) {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, title);
+				pstmt.setString(2, stack);
+				pstmt.setString(3, indiId);
+				if(pstmt.executeUpdate() == 1) result = true;
+			}
+		}catch (Exception e) {
+			System.out.println("setResumeTitleStack errors : " + e.getMessage());
+		}
+		return result;
+	}
 	//이력서 학력 insert
 	public boolean setEducation(List<Education> educationList) {
 		boolean result = false;
