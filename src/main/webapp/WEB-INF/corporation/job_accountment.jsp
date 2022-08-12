@@ -63,13 +63,12 @@
 				                		</c:if>
 				                	</c:if>
 				                </c:forTokens>
-								<span>연봉(</span>
 	                			<c:if test="${field.pay == '면접 후 결정'}">
-	                				<span>${field.pay})</span>&ensp;&ensp;
+	                				<span>(급여)${field.pay}</span>&ensp;&ensp;
 	                			</c:if>
 				                <c:if test="${field.pay != '면접 후 결정'}">
-				                	<span>${field.pay}만↑)</span>&ensp;&ensp;
-				                </c:if><span></span>
+				                	<span>(급여)${field.pay}만↑</span>&ensp;&ensp;
+				                </c:if>
 				            </c:forEach>
                     	</div>
                 	</div>
@@ -104,14 +103,12 @@
 	                		</c:if>
 	                	</c:if>
 	                </c:forTokens>
-	                <span>(연봉)</span>
 	                <c:if test="${field.pay == '면접 후 결정'}">
-	                	<span>${field.pay}</span>
+	                	<span>(급여)${field.pay}</span>&ensp;&ensp;
 	                </c:if>
 	                <c:if test="${field.pay != '면접 후 결정'}">
-	                	<span>${field.pay}만↑</span>
+	                	<span>(급여)${field.pay}만↑</span>&ensp;&ensp;
 	                </c:if>
-	                <span>(연봉)</span>&ensp;&ensp;
 				</c:forEach>
             </div>
         </div>
@@ -201,8 +198,8 @@
     	</div>
         <div id="btnWrap">
 	        <div id="btn">
-	        	<button onclick="">수 &emsp;정</button>
-	        	<button onclick="delChk()">삭 &emsp;제</button><form action="jobOpening_management?no=${jobOpening.no}" method="post" name="delForm"></form>
+	        	<button onclick="updateChk(${jobOpening.no})">수 &emsp;정</button>
+	        	<button onclick="deleteChk()">삭 &emsp;제</button><form action="jobOpening_management?no=${jobOpening.no}" method="post" name="delForm"></form>
 	        </div>
         </div>
 </section>

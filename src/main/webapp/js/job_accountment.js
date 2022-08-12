@@ -94,8 +94,15 @@ function hasScrolled() {
     lastScrollTop = st;
 }
 
-function delChk() {
-	var check = confirm('정말 공고를 삭제하시겠습니까?');
+/* 공고 수정 */
+function updateChk(no) {
+	var check = confirm('공고를 수정하시겠습니까?');
+	if(check) location.href = 'jobOpening_update?no=' + no;
+}
+
+/* 공고 삭제 */
+function deleteChk() {
+	var check = confirm('공고를 삭제하시겠습니까?');
 	if(check) document.delForm.submit();
 }
 

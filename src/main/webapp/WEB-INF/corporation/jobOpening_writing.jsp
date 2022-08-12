@@ -178,7 +178,7 @@
        			</div>
 	            <!-- 기업소개 -->
 	            <h3>채용절차</h3>
-            <article id="company">
+            <article id="process">
             	<table>
                     <tr>
                         <td>채용절차 및 기타 지원 유의사항</td>

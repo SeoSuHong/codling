@@ -64,14 +64,17 @@ function status(event) {
 }
 
 /* 공고 수정 */
-function updateBtn(event) {
+function updateChk(event, no) {
 	event.stopPropagation();
+	
+	var check = confirm('공고를 수정하시겠습니까?');
+	if(check) location.href = 'jobOpening_update?no=' + no;
 }
 
 /* 공고 삭제 */
-function delChk(event) {
+function deleteChk(event) {
 	event.stopPropagation();
 	
-	var check = confirm('정말 공고를 삭제하시겠습니까?');
+	var check = confirm('공고를 삭제하시겠습니까?');
 	if(check) document.delForm.submit();
 }
