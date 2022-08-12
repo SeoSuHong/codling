@@ -47,10 +47,10 @@
 	                			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
 	                				<c:if test="${fn:length(field.career) <= 3}">
 	                					<c:if test="${career == '신입'}">
-				                			<span>${career}</span>&ensp;&ensp;
+				                			<span>${career} | </span>
 				                		</c:if>
 				                		<c:if test="${career != '신입'}">
-				                			<span>${career}년↑</span>&ensp;&ensp;
+				                			<span>${career}년↑ | </span>
 				                		</c:if>
 				                	</c:if>
 				                
@@ -59,10 +59,17 @@
 				                			<span>${career} or</span>
 				                		</c:if>
 				                		<c:if test="${career != '신입'}">
-				                			<span>${career}년↑</span>&ensp;&ensp;
+				                			<span>${career}년↑ | </span>
 				                		</c:if>
 				                	</c:if>
 				                </c:forTokens>
+								<span>연봉(</span>
+	                			<c:if test="${field.pay == '면접 후 결정'}">
+	                				<span>${field.pay})</span>&ensp;&ensp;
+	                			</c:if>
+				                <c:if test="${field.pay != '면접 후 결정'}">
+				                	<span>${field.pay}만↑)</span>&ensp;&ensp;
+				                </c:if><span></span>
 				            </c:forEach>
                     	</div>
                 	</div>
@@ -81,10 +88,10 @@
 	                <c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
 	             		<c:if test="${fn:length(field.career) <= 3}">
 	             			<c:if test="${career == '신입'}">
-	                			<span class="corpCarrer">${career}</span>&ensp;&ensp;
+	                			<span class="corpCarrer">${career} | </span>
 	                		</c:if>
 	                		<c:if test="${career != '신입'}">
-	                			<span class="corpCarrer">${career}년↑</span>&ensp;&ensp;
+	                			<span class="corpCarrer">${career}년↑ | </span>
 	                		</c:if>
 	                	</c:if>
 	                
@@ -93,10 +100,18 @@
 	                			<span class="corpCarrer">${career} or</span>
 	                		</c:if>
 	                		<c:if test="${career != '신입'}">
-	                			<span class="corpCarrer">${career}년↑</span>&ensp;&ensp;
+	                			<span class="corpCarrer">${career}년↑ | </span>
 	                		</c:if>
 	                	</c:if>
 	                </c:forTokens>
+	                <span>(연봉)</span>
+	                <c:if test="${field.pay == '면접 후 결정'}">
+	                	<span>${field.pay}</span>
+	                </c:if>
+	                <c:if test="${field.pay != '면접 후 결정'}">
+	                	<span>${field.pay}만↑</span>
+	                </c:if>
+	                <span>(연봉)</span>&ensp;&ensp;
 				</c:forEach>
             </div>
         </div>
@@ -105,7 +120,11 @@
 	    <hr>
 	    <article>
 	        <div class="contents">
-	            <h2>주요 업무</h2>
+	        	<h2>모집분야</h2>
+	                <div class="inContent">
+	                    <span class="content">${field.name}</span>
+	                </div>
+	            <h2>주요업무</h2>
 	                <div class="inContent">
 	                    <span class="content">${fn:replace(field.work, replaceChar, '</br>')}</span>
 	                </div>
@@ -113,11 +132,11 @@
 	                <div class="inContent">
 	                    <span class="content">${fn:replace(field.requirement, replaceChar, '</br>')}</span>
 	                </div>
-	            <h2>우대 사항</h2>
+	            <h2>우대사항</h2>
 	            <div class="inContent">
 	                <span class="content">${fn:replace(field.preference, replaceChar, '</br>')}</span>
 	            </div>
-	            <h2>사용 스택 및 툴</h2>
+	            <h2>사용스택 및 툴</h2>
 	            <div class="corpStacks">
 	            	<c:forTokens var="stack" items="${field.stack}" delims=" / ">
 	                	<span class="stack">${stack}</span>
@@ -183,7 +202,7 @@
         <div id="btnWrap">
 	        <div id="btn">
 	        	<button onclick="">수 &emsp;정</button>
-	        	<button onclick="">삭 &emsp;제</button>
+	        	<button onclick="delChk()">삭 &emsp;제</button><form action="jobOpening_management?no=${jobOpening.no}" method="post" name="delForm"></form>
 	        </div>
         </div>
 </section>

@@ -94,6 +94,10 @@ function hasScrolled() {
     lastScrollTop = st;
 }
 
+function delChk() {
+	var check = confirm('정말 공고를 삭제하시겠습니까?');
+	if(check) document.delForm.submit();
+}
 
 // 지도 Library
 var address = document.getElementById('area').value; // 회사 주소

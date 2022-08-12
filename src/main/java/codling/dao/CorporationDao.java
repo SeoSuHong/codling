@@ -311,6 +311,36 @@ public class CorporationDao {
 		return result;
 	}
 	
+	// 공고 삭제
+	public boolean deleteJobOpening(int no) {
+		boolean result = false;
+		String query = "DELETE FROM jobOpening WHERE no = " + no;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+		} catch(Exception e) {
+			System.out.println("deleteJobOpening Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 지원분야 삭제
+	public boolean deleteField(int jobOpening_no) {
+		boolean result = false;
+		String query = "DELETE FROM field WHERE jobOpening_no = " + jobOpening_no;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			
+			if(pstmt.executeUpdate() >= 1) result = true;
+		} catch(Exception e) {
+			System.out.println("deleteField Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
 	// index 공고
 	public ArrayList<Announcement> indexContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
