@@ -12,6 +12,7 @@ import codling.identity.CoverLetter;
 import codling.identity.Education;
 import codling.identity.Individual;
 import codling.identity.JobOpening;
+import codling.identity.License;
 
 public class IndividualDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
@@ -195,5 +196,34 @@ public class IndividualDao {
 			System.out.println("setCareer errors :" + e.getMessage());
 		}
 		return result;
+	}
+	
+	public boolean setLicense(List<License> licenseList) {
+		boolean result = false;
+		int count = 0;
+		String query = "INSERT INTO license VALUES(DEFAULT,?,?,?,?,?)";
+		
+		try {
+			for(int i = 0; i < licenseList.size(); i++) {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				License license = licenseList.get(i);
+				pstmt.setString(1, license.getIndividual_id());
+				pstmt.setString(2, license.getName());
+				pstmt.setString(3, license.getAgency());
+				pstmt.setString(4, license.getPass());
+				pstmt.setString(5, license.getAcquireDate());
+				
+				if(pstmt.executeUpdate() == 1) count++;
+				
+				pstmt.close();
+				conn.close();
+			}
+			if(count == licenseList.size()) result = true;
+		}catch (Exception e) {
+			System.out.println("setLicense error : " + e.getMessage());
+		}
+		return result;
+		
 	}
 }

@@ -7,17 +7,26 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
 import codling.identity.Career;
 import codling.identity.Education;
+import codling.identity.License;
+import codling.identity.Portfolio;
 
+@MultipartConfig(
+	fileSizeThreshold = 1024*1024,
+	maxFileSize = 1024*1024*50,
+	maxRequestSize = 1024*1024*50*5 
+)
 @WebServlet("/resume_writing")
 public class Resume_writingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -79,10 +88,42 @@ public class Resume_writingServlet extends HttpServlet {
 		
 		boolean careerResult = dao.setCareer(careerList);
 		
+		//자격증내역
+		List<License> licenseList = new ArrayList<License>();
+		String[] license_name = request.getParameterValues("license_name");
+		String[] agency = request.getParameterValues("agency");
+		String[] pass = request.getParameterValues("pass");
+		String[] acquireDate = request.getParameterValues("acquireDate");
+		
+		for(int i = 0; i < license_name.length; i++) {
+			License license = new License(0, indiId, license_name[i], agency[i], pass[i], acquireDate[i]);
+			licenseList.add(license);
+		}
+		
+		boolean licenseResult = dao.setLicense(licenseList);
+		
+		//포트폴리오
+		List<Portfolio> portfolioList = new ArrayList<Portfolio>();
+		String[] portfolio_name = request.getParameterValues("portfolio_name");
+		String[] detail = request.getParameterValues("detail");
+		String[] url = request.getParameterValues("url");
+		String[] fileName = request.getParameterValues("fileName");
+		
+		Part filePart = request.getPart("fileName");
+		filePart.getInputStream();
+		
+		String realPath = request.getServletContext().getRealPath("/upload");
+		System.out.println(realPath);
+		
+		for(int i = 0; i < portfolioList.size(); i++) {
+			Portfolio portfolio = new Portfolio(0, indiId, portfolio_name, detail, url, fileName, fileSize);
+			portfolioList.add(portfolio);
+		}
+		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if(educationResult && resumeTitleStack && careerResult)
+		if(educationResult && resumeTitleStack && careerResult && licenseResult)
 			out.print("<script>alert('이력서 등록에 성공하였습니다.'); location.href = 'resume_management';</script>");
 		else
 			out.print("<script>alert('이력서 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
