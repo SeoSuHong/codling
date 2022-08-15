@@ -76,5 +76,7 @@ function deleteChk(event) {
 	event.stopPropagation();
 	
 	var check = confirm('공고를 삭제하시겠습니까?');
-	if(check) document.delForm.submit();
+	if(check) {
+		$(".delForm").submit();
+	}
 }

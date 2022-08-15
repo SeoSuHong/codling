@@ -119,12 +119,11 @@
                                 <td>${jobOpening.region}</td>
                             </tr>
                         </table>
-                        <form action="jobOpening_management?no=${jobOpening.no}" method="post" name="delForm">
-	                        <div class="chbtn-box">
-	                            <input type="button" onclick="updateChk(event, ${jobOpening.no})" name="update" id="update" value="수정">
-                            	<input type="button" onclick="deleteChk(event)" name="delete" id="delete" value="삭제"/>
-                        	</div>
-                        </form>
+                        <div class="chbtn-box">
+                            <input type="button" onclick="updateChk(event, ${jobOpening.no})" name="update" id="update" value="수정">
+                           	<input type="button" onclick="deleteChk(event)" name="delete" id="delete" value="삭제"/>
+                       	</div>
+                       	<form action="jobOpening_management?no=${jobOpening.no}" method="post" class="delForm"></form>
                     </div>
                 </div>
             </div>

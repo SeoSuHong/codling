@@ -549,4 +549,28 @@ public class CorporationDao {
        }
        return count;
     }
+    
+    public List<String> getAllStack(String keyWord) {
+    	List<String> list = new ArrayList<String>();
+    	String query = "SELECT name FROM field WHERE name LIKE ?";
+    	
+    	try {
+    		conn = getConnection();
+    		pstmt = conn.prepareStatement(query);
+    		pstmt.setString(1, "%" + keyWord + "%");
+    		rs = pstmt.executeQuery();
+    		
+    		while(rs.next()) {
+    			list.add(rs.getString(1));
+    		}
+    		
+    		rs.close();
+    		pstmt.close();
+    		conn.close();
+    	} catch (Exception e) {
+    		System.out.println("getAllStack Error : " + e.getMessage());
+    	}
+    	
+    	return list;
+    }
 }
