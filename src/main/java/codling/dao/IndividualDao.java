@@ -13,6 +13,7 @@ import codling.identity.Education;
 import codling.identity.Individual;
 import codling.identity.JobOpening;
 import codling.identity.License;
+import codling.identity.Portfolio;
 
 public class IndividualDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
@@ -113,7 +114,7 @@ public class IndividualDao {
 		return coverletter;
 	}
 	
-	//이력서 이력서 title stack
+	//이력서 이력서 title stack update
 	public boolean upDateResumeTitleStack(String title, String stack, String indiId) {
 		boolean result = false;
 		String query ="UPDATE individual "
@@ -167,7 +168,7 @@ public class IndividualDao {
 		}
 		return result;
 	}
-	//이력서 경력사항
+	//이력서 경력사항 insert
 	public boolean setCareer(List<Career> careerList) {
 		boolean result = false;
 		int count = 0;
@@ -197,7 +198,7 @@ public class IndividualDao {
 		}
 		return result;
 	}
-	
+	//이력서 자격증 insert
 	public boolean setLicense(List<License> licenseList) {
 		boolean result = false;
 		int count = 0;
@@ -225,5 +226,34 @@ public class IndividualDao {
 		}
 		return result;
 		
+	}
+	//이력서 포트폴리오 insert
+	public boolean setportfolio(List<Portfolio> portfolioList) {
+		boolean result = false;
+		int count = 0;
+		String query = "INSERT INTO portfolio VALUES(DEFAULT,?,?,?,?,?,?)";
+		
+		try {
+			for(int i = 0; i < portfolioList.size(); i++) {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				Portfolio portfolio = portfolioList.get(i);
+				pstmt.setString(1, portfolio.getIndividual_id());
+				pstmt.setString(2, portfolio.getName());
+				pstmt.setString(3, portfolio.getDetail());
+				pstmt.setString(4, portfolio.getUrl());
+				pstmt.setString(5, portfolio.getFileName());
+				pstmt.setInt(6, portfolio.getFileSize());
+				
+				if(pstmt.executeUpdate() == 1) count++;
+				
+				pstmt.close();
+				conn.close();
+			}
+			if(count == portfolioList.size()) result = true;
+		}catch (Exception e) {
+			System.out.println("setportfolio errors : " + e.getMessage());
+		}
+		return result;	
 	}
 }

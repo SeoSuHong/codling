@@ -1,10 +1,14 @@
 package codling.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -94,36 +98,76 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] agency = request.getParameterValues("agency");
 		String[] pass = request.getParameterValues("pass");
 		String[] acquireDate = request.getParameterValues("acquireDate");
-		
-		for(int i = 0; i < license_name.length; i++) {
-			License license = new License(0, indiId, license_name[i], agency[i], pass[i], acquireDate[i]);
-			licenseList.add(license);
+		int cut = 0;
+		if(license_name.length != 0) {
+			cut = -1;
+			for(int i = 0; i < license_name.length + cut; i++) {
+				License license = new License(0, indiId, license_name[i], agency[i], pass[i], acquireDate[i]);
+				licenseList.add(license);
+			}
 		}
 		
 		boolean licenseResult = dao.setLicense(licenseList);
 		
 		//포트폴리오
 		List<Portfolio> portfolioList = new ArrayList<Portfolio>();
+		
 		String[] portfolio_name = request.getParameterValues("portfolio_name");
 		String[] detail = request.getParameterValues("detail");
 		String[] url = request.getParameterValues("url");
-		String[] fileName = request.getParameterValues("fileName");
+		String[] fileName = null;
+		int[] fileSize = null;
 		
-		Part filePart = request.getPart("fileName");
-		filePart.getInputStream();
+		Collection<Part> parts = request.getParts(); //파일 열러개 검사
 		
-		String realPath = request.getServletContext().getRealPath("/upload");
-		System.out.println(realPath);
+		for(Part p : parts) { //파일 여러개 가지고오기
+			int i = 0;
+			if(!p.getName().equals("fileName")) continue;
+			if(p.getSize() == 0) continue;
+			
+			Part filePart = p; // 업로드한 파일 가지고오기
+			String fileName_ = filePart.getSubmittedFileName(); //파일명 읽어오기
+			InputStream fis = filePart.getInputStream();
+			
+			String realPath = request.getServletContext().getRealPath("/upload");
+			System.out.println(realPath);
+			System.out.println(fileName_);
+			System.out.println(p.getSize());
+			
+			File path = new File(realPath);
+			if(!path.exists())
+				path.mkdirs();
+			
+			
+			String filePath = realPath + File.separator + fileName;
+			FileOutputStream fos = new FileOutputStream(filePath);
+			
+			byte[] buf = new byte[1024];
+			int fileSize_;
+			while((fileSize_ = fis.read(buf)) != -1)
+				fos.write(buf,0,fileSize_);
+			
+			fileName[i] = fileName_;
+			fileSize[i] = (int) p.getSize();
+			
+			fos.close();
+			fis.close();
+			
+			i++;
+		}
+		
 		
 		for(int i = 0; i < portfolioList.size(); i++) {
-			Portfolio portfolio = new Portfolio(0, indiId, portfolio_name, detail, url, fileName, fileSize);
+			Portfolio portfolio = new Portfolio(0, indiId, portfolio_name[i], detail[i], url[i], fileName[i], fileSize[i]);
 			portfolioList.add(portfolio);
 		}
+		
+		boolean portfolioResult = dao.setportfolio(portfolioList);
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if(educationResult && resumeTitleStack && careerResult && licenseResult)
+		if(educationResult && resumeTitleStack && careerResult && licenseResult && portfolioResult)
 			out.print("<script>alert('이력서 등록에 성공하였습니다.'); location.href = 'resume_management';</script>");
 		else
 			out.print("<script>alert('이력서 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");

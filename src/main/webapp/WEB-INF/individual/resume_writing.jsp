@@ -31,7 +31,7 @@
         </div>
     </header>
     <!--이력서제목-->
-    <form action="resume_writing" name="resume_Frm" method="post">
+    <form action="resume_writing" name="resume_Frm" method="post" enctype="multipart/form-data">
     <section>
         <h2><b>이력서 제목</b></h2>
         <div><input name="resumetitle" class="resume_title" placeholder="이력서 제목을 입력하세요"></div>
