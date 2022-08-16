@@ -256,6 +256,7 @@
                 <div class="file_box">
                     <label class="choose_file" for="ex_filename"><span>파일선택</span></label>
                     <input type="file" name="fileName" id="ex_filename" class="filename">
+                    <input type="hidden" name="filelength" value="">
                 </div>
                 <textarea name="detail" id="deepcontents" placeholder="상세내용"></textarea>
             </div>
@@ -273,6 +274,7 @@
                 <div class="file_box">
                     <label class="choose_file" for="ex_filename"><span>파일선택</span></label>
                     <input type="file" name="fileName" id="ex_filename" class="filename">
+                    <input type="hidden" name="filelength" value="">
                 </div>
                 <textarea name="detail" id="deepcontents" placeholder="상세내용"></textarea>
             </div>

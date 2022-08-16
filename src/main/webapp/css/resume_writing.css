@@ -194,6 +194,7 @@ ul{list-style: none;}
 .choose_file>span{position: relative; top: -3px; color: white;}
 #deepcontents{margin-left: 40px; border:none; width: 1140px; height: 90px;
 	 margin-top: 10px; font-size: 1.1rem}
+#portfolio_info{display: none !important;}
   /* 개인첨부파일 */
   #portfoliobox2 {width: 1220px; height: 310px; background-color: #F8F8F8; margin-bottom: 50px; border-radius: 10px;}
   #portfoliobox2 h3 {padding: 20px;}

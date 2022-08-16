@@ -85,14 +85,14 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] company_department = request.getParameterValues("company_department");
 		String[] work_content = request.getParameterValues("work_content");
 		
-		for(int i = 0; i < perv_company.length; i++) {
-			Career career = new Career(0, indiId, perv_company[i], tenureStart[i], tenureEnd[i], position[i], company_department[i], work_content[i]);
-			careerList.add(career);
+		int careerResult = 0;
+		if(!perv_company[0].equals("")) {
+			for(int i = 0; i < perv_company.length; i++) {
+				Career career = new Career(0, indiId, perv_company[i], tenureStart[i], tenureEnd[i], position[i], company_department[i], work_content[i]);
+				careerList.add(career);
+				careerResult = dao.setCareer(careerList);
+			}
 		}
-		boolean careerResult = false;
-		int careercount = dao.setCareer(careerList);
-		if(careercount == careerList.size())
-			careerResult = true;
 		
 		//자격증내역
 		List<License> licenseList = new ArrayList<License>();
@@ -100,19 +100,15 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] agency = request.getParameterValues("agency");
 		String[] pass = request.getParameterValues("pass");
 		String[] acquireDate = request.getParameterValues("acquireDate");
-		int cut = 0;
-		if(license_name.length != 0) {
-			cut = -1;
-			for(int i = 0; i < license_name.length + cut; i++) {
+		
+		int licenseResult = 0;
+		if(!license_name[0].equals("")) {
+			for(int i = 0; i < license_name.length-1; i++) {
 				License license = new License(0, indiId, license_name[i], agency[i], pass[i], acquireDate[i]);
 				licenseList.add(license);
+				licenseResult = dao.setLicense(licenseList);
 			}
 		}
-		
-		boolean licenseResult = false;
-		int licensecount = dao.setLicense(licenseList);
-		if(licensecount == licenseList.size())
-			licenseResult = true;
 		
 		//포트폴리오
 		List<Portfolio> portfolioList = new ArrayList<Portfolio>();
@@ -120,13 +116,13 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] portfolio_name = request.getParameterValues("portfolio_name");
 		String[] detail = request.getParameterValues("detail");
 		String[] url = request.getParameterValues("url");
-		String[] fileName = null;
-		int[] fileSize = null;
-		
+		String[] fileName = request.getParameterValues("filelength");
+		String[] _fileSize = request.getParameterValues("filelength");
+		int[] fileSize = new int[_fileSize.length];
+		int index = 0;
 		Collection<Part> parts = request.getParts(); //파일 열러개 검사
-		
 		for(Part p : parts) { //파일 여러개 가지고오기
-			int i = 0;
+				
 			if(!p.getName().equals("fileName")) continue;
 			if(p.getSize() == 0) continue;
 			
@@ -135,16 +131,12 @@ public class Resume_writingServlet extends HttpServlet {
 			InputStream fis = filePart.getInputStream();
 			
 			String realPath = request.getServletContext().getRealPath("/upload");
-			System.out.println(realPath);
-			System.out.println(fileName_);
-			System.out.println(p.getSize());
 			
 			File path = new File(realPath);
 			if(!path.exists())
 				path.mkdirs();
 			
-			
-			String filePath = realPath + File.separator + fileName;
+			String filePath = realPath + File.separator + fileName_;
 			FileOutputStream fos = new FileOutputStream(filePath);
 			
 			byte[] buf = new byte[1024];
@@ -152,44 +144,41 @@ public class Resume_writingServlet extends HttpServlet {
 			while((fileSize_ = fis.read(buf)) != -1)
 				fos.write(buf,0,fileSize_);
 			
-			fileName[i] = fileName_;
-			fileSize[i] = (int) p.getSize();
+			fileName[index] = fileName_;
+			fileSize[index] = (int) p.getSize();
+
+			index++;
 			
 			fos.close();
 			fis.close();
 			
-			i++;
 		}
 		
-		
-		for(int i = 0; i < portfolioList.size(); i++) {
-			Portfolio portfolio = new Portfolio(0, indiId, portfolio_name[i], detail[i], url[i], fileName[i], fileSize[i]);
-			portfolioList.add(portfolio);
+		for(int j = 0; j < fileName.length-1; j++) {
+			System.out.println(fileName.length-1);
+			System.out.println(fileName[j]+"j:"+j);
+			System.out.println(fileSize[j]+"j:"+j);
 		}
-		boolean portfolioResult = false;
-		int portfoliocount = dao.setportfolio(portfolioList);
-		if(portfoliocount == portfolioList.size())
-			portfolioResult = true;
+		
+		int portfolioResult = 0;
+		if(!portfolio_name[0].equals("")) {
+			for(int j = 0; j < portfolio_name.length-1; j++) {
+				if(fileName[j].equals("") || fileName[j] == "") fileSize[j] = 0;
+				Portfolio portfolio = new Portfolio(0, indiId, portfolio_name[j], detail[j], url[j], fileName[j], fileSize[j]);
+				portfolioList.add(portfolio);
+				portfolioResult = dao.setportfolio(portfolioList);
+			}
+		}
+		
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		if(careercount == 0)
-			out.print("<script>alert('경력사항을 등록 하지않았습니다\n경력이 있다면 경력을 등록해 주세요.'); location.href = 'resume_writing';</script>");
-		else
-			out.print("<script>alert('경력사항 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
-		if(licensecount == 0)
-			out.print("<script>alert('자격증 내역을 등록 하지않았습니다\n자격증 내역이 있다면 자격증 내역을 등록해 주세요.'); location.href = 'resume_writing';</script>");
-		else
-			out.print("<script>alert('자격증 내역 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
-		if(careercount == 0)
-			out.print("<script>alert('포트폴리오를 등록 하지않았습니다\n포트폴리오가 있다면 포트폴리오를 등록해 주세요.'); location.href = 'resume_writing';</script>");
-		else
-			out.print("<script>alert('포트폴리오 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
-		if(educationResult && resumeTitleStack && careerResult && licenseResult && portfolioResult)
+		if(educationResult && resumeTitleStack)
 			out.print("<script>alert('이력서 등록에 성공하였습니다.'); location.href = 'resume_management';</script>");
 		else
 			out.print("<script>alert('이력서 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
 	}
+
 }
