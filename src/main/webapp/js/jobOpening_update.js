@@ -232,7 +232,7 @@ $(function() {
 });
 
 // null값 검사 후 submit
-function insertJobOpeningCheck() {
+function updateJobOpeningCheck() {
 	if(document.jobOpForm.address.value == '') {
 		alert("근무지역을 입력해 주세요.");
 		document.jobOpForm.detailAddress.focus(); return;

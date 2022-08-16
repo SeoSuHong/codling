@@ -66,7 +66,7 @@
 	        </div>
 	        <div id="choice">
 	        	<input type="hidden" name="password" value="${corporation.password}">
-	            <input type="button" class="modify" value="수 정" onclick="">
+	            <input type="button" class="modify" value="수 정" onclick="updateChk()">
 	            <input type="button" class="drop" value="탈 퇴" onclick="deleteChk()">
 	        </div>
         </form>

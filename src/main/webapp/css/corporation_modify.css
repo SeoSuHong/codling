@@ -92,12 +92,14 @@ ul {
 }
 
 #search {
-    width: 100px;
-    height: 42.5px;
+     width: 100px;
+    height: 35px;
     color: white;
+    margin-bottom: 8px;
     background-color: #A5E374;
     border: 1px solid white;
-    border-radius: 7px
+    border-radius: 7px;
+    margin-left: 1rem;
 }
 
 #modify_btn {
@@ -152,6 +154,9 @@ ul {
     font-weight: bold;
 }
 
+
+/*주소정렬*/
+.address>input {width:416px;margin-left:0.7rem;}
 
 /*footer*/
 footer {

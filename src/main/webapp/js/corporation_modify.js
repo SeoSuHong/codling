@@ -39,6 +39,9 @@ let inputDataCheck = (id) => {
 }
 
 //submit 눌렀을때 signUpInd_submit 함수 실행
+var pwchk = RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
+const getComNum = RegExp(/([0-9]{3})-?([0-9]{2})-?([0-9]{5})/);
+
 function signUpInd_submit() {
     const getIdCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
     const getPwCheck =  RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
@@ -69,14 +72,23 @@ function signUpInd_submit() {
     $("#pw").focus();
     return;
   }
+
+  //비밀번호 유효성검사
+  if(!pwchk.test($("#pw").val())){
+  	$("#pw").addClass("is-invalid");
+  	$("#pw").focus();
+  	$("#pw").val("");
+  	alert("영문,숫자, 특수문자를 혼합하여 8자리~20자리 이내로 입력해주세요")
+  	return;
+  }
   
-  	// 비밀번호 유효성 검사
-	if(!getPwCheck.test($("#pw").val())){
-		alert("영문,숫자, 특수문자를 혼합하여 8자리~20자리 이내로 입력해주세요")
-		$("#pw").addClass("is-invalid");
-	    $("#pw").focus();
-	    $("#pw").val("");
-	}
+  if($("#pw").val()!=$("#cfpw").val()){
+  	$("#cfpw").addClass("is-invalid");
+  	$("#cfpw").focus();
+  	$("#cfpw").val("");
+  	alert("입력하신 비밀번호가 다릅니다")
+  	return;
+  }
   
   // 비밀번호 확인 공백 확인
   if ($("#cfpw").val() == "") {
@@ -84,17 +96,21 @@ function signUpInd_submit() {
     $("#cfpw").focus();
     return;
   }
-  
-  // 비밀번호와 비밀번호 확인 같은지?
-	if(($("#cfpw").val()!=$("#pw").val())){
-	    alert("입력하신 비밀번호가 다릅니다.")
-	    $("#cfpw").addClass("is-invalid");
-	    $("#cfpw").focus();
-	    $("#cfpw").val("");
-	    return;
-	}
-  
-  // 담당자 이름 공백 확인
+
+  //사업자등록번호 유효성검사
+  if(!getComNum.test($("#comNum").val())){
+  	$("#comNum").addClass("is-invalid");
+  	$("#comNum").focus();
+  	$("#comNum").val("");
+  	alert("유효하지 않은 사업자등록번호입니다");
+  	return;
+  }
+  if ($("#comNum").val() == "") {
+    $("#comNum").addClass("is-invalid");
+    $("#comNum").focus();
+    return;
+  }
+
   if ($("#name").val() == "") {
     $("#name").addClass("is-invalid");
     $("#name").focus();
@@ -172,9 +188,7 @@ function signUpInd_submit() {
     $("#detailAddress").focus();
     return;
   }
-  alert("수정되었습니다.");
-  // document.comFrm.comModify.submit();
-  location.href = "company_modify.jsp";
+  document.updateCorpForm.submit();
 }
 
 function sample6_execDaumPostcode() {
