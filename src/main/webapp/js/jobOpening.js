@@ -108,6 +108,12 @@ $(function() {
     }
 });
 
+// 지원하기 버튼 클릭 시
+function applyChk() {
+	if(document.applyForm.fieldName.value == "") 
+		alert("지원분야를 선택해 주세요.");
+	else document.applyForm.submit();
+}
 
 // 지도 Library
 var address = document.getElementById('area').value; // 회사 주소

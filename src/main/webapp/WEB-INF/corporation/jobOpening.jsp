@@ -327,163 +327,166 @@
 	    © CODLING Corp.
 	</footer>
 	</div>
-		<!-- 지원하기 클릭 시 -->
+	<!-- 지원하기 클릭 시 -->
 	<div id="apply">
-	    <div id="apply_logo">
-	    	<div></div>
-	        <img src="img/logo.png">
-	        <span id="exit">
-	        	<img src="img/exit.png" onclick="popupHide()">
-	        </span>
-	    </div>
-	    <div id="field">
-	        <h1 id="fieldName">지원분야</h1>
-	        <div id="selectField">
-	            <select name="fieldName" id="selField">
-	                <option value="" selected>지원분야를 선택해 주세요.</option>
-	                <option value="백엔드">백엔드</option>
-	                <option value="프론트엔드">프론트엔드</option>
-	                <option value="데이터 엔지니어">데이터 엔지니어</option>
-	            </select>
-	        </div>
-	    </div>
-	    <article id="applyStatus">
-	        <div class="applybox">
-	            <button class="leftArrow"><img src="img/leftArrow.png"></button>
-	            <div class="applys">
-	                <div class="applyWrap">
-	                    <ul class="apply_coverLetter">
-	                        <li class="apply_item">
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.1</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.2</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.3</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                        </li>
-	                        <li class="apply_item">
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.4</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.5</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.6</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                        </li>
-	                        <li class="apply_item">
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.7</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.8</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.9</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                        </li>
-	                        <li class="apply_item">
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.10</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.11</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                            <div class="app">
-	                                <div class="app_content">
-	                                    <p><span>자기소개서</span></p>
-	                                    <p class="apply_title">열심히 할 자신 있습니다.12</p>
-	                                </div>
-	                                <div class="viewInfo">
-	                                    <a href="job_accountment.html">선택하기</a>
-	                                </div>
-	                            </div>
-	                        </li>
-	                    </ul>
-	                </div>
-	            </div>
-	            <button class="rightArrow"><img src="img/rightArrow.png"></button>
-	        </div>
-	        <div id="btn_bar">
-	            <button class="apply_bar">
-	            <button class="apply_bar">
-	            <button class="apply_bar">
-	            <button class="apply_bar">
-	        </div>
-	        <div id="applyBtn_wrap">
-	            <input type="button" value="지원하기" id="applyBtn">
-	        </div>
-	    </article>
+		<form action="jobOpening" method="post" name="applyForm">
+		    <div id="apply_logo">
+		    	<div></div>
+		        <img src="img/logo.png">
+		        <span id="exit">
+		        	<img src="img/exit.png" onclick="popupHide()">
+		        </span>
+		    </div>
+		    <div id="field">
+		        <h1>지원분야</h1>
+		        <div id="selectField">
+		            <select name="fieldName" id="selField">
+		                <option value="" selected>지원분야를 선택해 주세요.</option>
+		                <option value="백엔드">백엔드</option>
+		                <option value="프론트엔드">프론트엔드</option>
+		                <option value="데이터 엔지니어">데이터 엔지니어</option>
+		            </select>
+		        </div>
+		    </div>
+		    <h1 id="self">자기소개서</h1>
+		    <article id="applyStatus">
+		        <div class="applybox">
+		            <button class="leftArrow"><img src="img/leftArrow.png"></button>
+		            <div class="applys">
+		                <div class="applyWrap">
+		                    <ul class="apply_coverLetter">
+		                        <li class="apply_item">
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다. 진짜로 한번만 믿어주세요 제발요!1</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다.2</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다.3</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                        </li>
+		                        <li class="apply_item">
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다.4</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다.5</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다.6</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                        </li>
+		                        <li class="apply_item">
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다.7</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다.8</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다.9</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                        </li>
+		                        <li class="apply_item">
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다.10</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다.11</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                            <div class="app">
+		                                <div class="app_content">
+		                                    <p><span>자기소개서</span></p>
+		                                    <p class="apply_title">열심히 할 자신 있습니다.12</p>
+		                                </div>
+		                                <div class="viewInfo">
+		                                    <a href="job_accountment.html">선택하기</a>
+		                                </div>
+		                            </div>
+		                        </li>
+		                    </ul>
+		                </div>
+		            </div>
+		            <button class="rightArrow"><img src="img/rightArrow.png"></button>
+		        </div>
+		        <div id="btn_bar">
+		            <button class="apply_bar">
+		            <button class="apply_bar">
+		            <button class="apply_bar">
+		            <button class="apply_bar">
+		        </div>
+		        <div id="applyBtn_wrap">
+		            <input type="button" value="지원하기" id="applyBtn" onclick="applyChk()">
+		        </div>
+		    </article>
+		</form>
 	</div>
 </body>
 <script src="jQuery/jquery-3.6.0.min.js"></script>
