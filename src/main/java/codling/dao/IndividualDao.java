@@ -169,9 +169,8 @@ public class IndividualDao {
 		return result;
 	}
 	//이력서 경력사항 insert
-	public boolean setCareer(List<Career> careerList) {
-		boolean result = false;
-		int count = 0;
+	public int setCareer(List<Career> careerList) {
+		int result = 0;
 		String query = "INSERT INTO career VALUES(DEFAULT,?,?,?,?,?,?,?)";
 		
 		try {
@@ -187,21 +186,19 @@ public class IndividualDao {
 				pstmt.setString(6, career.getDepartment());
 				pstmt.setString(7, career.getWork_content());
 				
-				if(pstmt.executeUpdate() == 1) count++;
+				if(pstmt.executeUpdate() == 1) result++;
 				
 				pstmt.close();
 				conn.close();
 			}
-			if(count == careerList.size()) result = true;
 		}catch (Exception e) {
 			System.out.println("setCareer errors :" + e.getMessage());
 		}
 		return result;
 	}
 	//이력서 자격증 insert
-	public boolean setLicense(List<License> licenseList) {
-		boolean result = false;
-		int count = 0;
+	public int setLicense(List<License> licenseList) {
+		int result = 0;
 		String query = "INSERT INTO license VALUES(DEFAULT,?,?,?,?,?)";
 		
 		try {
@@ -215,12 +212,11 @@ public class IndividualDao {
 				pstmt.setString(4, license.getPass());
 				pstmt.setString(5, license.getAcquireDate());
 				
-				if(pstmt.executeUpdate() == 1) count++;
+				if(pstmt.executeUpdate() == 1) result++;
 				
 				pstmt.close();
 				conn.close();
 			}
-			if(count == licenseList.size()) result = true;
 		}catch (Exception e) {
 			System.out.println("setLicense error : " + e.getMessage());
 		}
@@ -228,9 +224,8 @@ public class IndividualDao {
 		
 	}
 	//이력서 포트폴리오 insert
-	public boolean setportfolio(List<Portfolio> portfolioList) {
-		boolean result = false;
-		int count = 0;
+	public int setportfolio(List<Portfolio> portfolioList) {
+		int result = 0;
 		String query = "INSERT INTO portfolio VALUES(DEFAULT,?,?,?,?,?,?)";
 		
 		try {
@@ -245,12 +240,11 @@ public class IndividualDao {
 				pstmt.setString(5, portfolio.getFileName());
 				pstmt.setInt(6, portfolio.getFileSize());
 				
-				if(pstmt.executeUpdate() == 1) count++;
+				if(pstmt.executeUpdate() == 1) result++;
 				
 				pstmt.close();
 				conn.close();
 			}
-			if(count == portfolioList.size()) result = true;
 		}catch (Exception e) {
 			System.out.println("setportfolio errors : " + e.getMessage());
 		}

@@ -89,8 +89,10 @@ public class Resume_writingServlet extends HttpServlet {
 			Career career = new Career(0, indiId, perv_company[i], tenureStart[i], tenureEnd[i], position[i], company_department[i], work_content[i]);
 			careerList.add(career);
 		}
-		
-		boolean careerResult = dao.setCareer(careerList);
+		boolean careerResult = false;
+		int careercount = dao.setCareer(careerList);
+		if(careercount == careerList.size())
+			careerResult = true;
 		
 		//자격증내역
 		List<License> licenseList = new ArrayList<License>();
@@ -107,7 +109,10 @@ public class Resume_writingServlet extends HttpServlet {
 			}
 		}
 		
-		boolean licenseResult = dao.setLicense(licenseList);
+		boolean licenseResult = false;
+		int licensecount = dao.setLicense(licenseList);
+		if(licensecount == licenseList.size())
+			licenseResult = true;
 		
 		//포트폴리오
 		List<Portfolio> portfolioList = new ArrayList<Portfolio>();
@@ -161,12 +166,27 @@ public class Resume_writingServlet extends HttpServlet {
 			Portfolio portfolio = new Portfolio(0, indiId, portfolio_name[i], detail[i], url[i], fileName[i], fileSize[i]);
 			portfolioList.add(portfolio);
 		}
-		
-		boolean portfolioResult = dao.setportfolio(portfolioList);
+		boolean portfolioResult = false;
+		int portfoliocount = dao.setportfolio(portfolioList);
+		if(portfoliocount == portfolioList.size())
+			portfolioResult = true;
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		
+		if(careercount == 0)
+			out.print("<script>alert('경력사항을 등록 하지않았습니다\n경력이 있다면 경력을 등록해 주세요.'); location.href = 'resume_writing';</script>");
+		else
+			out.print("<script>alert('경력사항 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
+		if(licensecount == 0)
+			out.print("<script>alert('자격증 내역을 등록 하지않았습니다\n자격증 내역이 있다면 자격증 내역을 등록해 주세요.'); location.href = 'resume_writing';</script>");
+		else
+			out.print("<script>alert('자격증 내역 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
+		if(careercount == 0)
+			out.print("<script>alert('포트폴리오를 등록 하지않았습니다\n포트폴리오가 있다면 포트폴리오를 등록해 주세요.'); location.href = 'resume_writing';</script>");
+		else
+			out.print("<script>alert('포트폴리오 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
 		if(educationResult && resumeTitleStack && careerResult && licenseResult && portfolioResult)
 			out.print("<script>alert('이력서 등록에 성공하였습니다.'); location.href = 'resume_management';</script>");
 		else
