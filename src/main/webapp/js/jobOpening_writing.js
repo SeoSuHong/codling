@@ -238,7 +238,7 @@ var lastKeyword = "";
 function keyDown() {
     if (checkFirst == false) {
     	//1초뒤 sendKeyword() 수행
-        setTimeout("sendKeyword()", 1000);
+        setTimeout("sendKeyword()", 300);
         loopSend = true;
     }
 }
@@ -248,7 +248,8 @@ function sendKeyword() {
     if (loopSend == false)
         return;
     else {
-        var keyWord = document.frm.keyword.value;
+        var keyWord = document.jobOpForm.keyword.value;
+		console.log(keyWord);
         //키워드가 hide 함수를 불러 검색어 창 숨기기
         if (keyWord === "") {
             lastKeyword = "";
@@ -287,7 +288,7 @@ function process() {
         var stack = "";
         //각각의 이름에 링크 걸기 각각의 이름은 func(자기이름)이 들어가 있다.
         for (var i = 0; i < datas.length; i++) {
-            imsi += "<a href=\"javascript:func('" + datas[i] + "')\">" + datas[i] + "</a><br>";
+            stack += "<li><a href=\"javascript:func('" + datas[i] + "')\">" + datas[i] + "</a></li>";
         }
         //Output-Suggest에 결과 보여주기
         var listView = document.getElementById("suggest").innerHTML = stack;
@@ -298,12 +299,13 @@ function process() {
 
 //이름 클릭시 Output-Selected 에 값 넣기. Suggest창 숨기기
 function func(reData) {
-    frm.sel.value = reData;
+	$('#stacks').append('<div class="st"><div class="stack">' + reData + '</div><div onclick="parentElement.remove(this)" style="cursor:pointer"> X </div></div>');
+	
     loopSend = checkFirst = false;
     lastKeyword = "";
     hide("suggest");
 
-    frm.keyword.value="";
+    jobOpForm.keyword.value="";
 
 }
 
