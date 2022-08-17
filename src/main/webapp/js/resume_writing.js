@@ -110,6 +110,17 @@ function delForm4(obj){
     //라인 삭제
     div.remove();
 }
+/* 파일첨부 추가 삭제 버튼 */
+function addForm5() {
+    $('#problem_list5').append($('#portfolio_file').html());
+    check_click();
+}
+function delForm5(obj){
+    var div = $(obj).parent();
+    //console.log(div);
+    //라인 삭제
+    div.remove();
+}
 //첨부파일, url중에 선택
 // $(function() {
 //     $("#company").hide()
@@ -161,7 +172,7 @@ $(document).ready(function(){
 });
   
 //포트폴리오 첨부파일 url 변경
-$(document).ready(function() {
+/*$(document).ready(function() {
 	let urlBtn = $('.urlbtn');
 	let fileBtn = $('.filebtn');
 	let urlBox = $('.url_box');
@@ -205,7 +216,7 @@ $(document).ready(function() {
 			});
 		}
 	});
-});
+});*/
 
 //유효성검사
 function check(){

@@ -178,11 +178,11 @@ ul{list-style: none;}
 
  /* 포트폴리오 */
  #portfoliobox{width: 1220px; height: 310px; background-color: #F8F8F8; margin-bottom: 50px; border-radius: 10px;}
- .portfolio_title {width: 200px; height: 35px; border: none; border-radius: 5px; font-size: 15px; margin-left: 40px; color: #373F57;}
- .infoForm5{float: right; width: 250px; height:22px; outline: unset; border: none;}
+ .portfolio_title {width: 200px; height: 35px; border: none; border-radius: 5px; font-size: 15px; margin-left: 40px; color: #373F57; margin-top: -20px;}
+ .infoForm5{float: right; width: 250px; height:22px; outline: unset; border: none; }
  .filebox{margin-left: 100px;}
- .filebtn{background-color: #D6D6D6; color: #858585; border: none; width: 80px; height: 30px; border-radius: 10px;
-        margin-left: 10px; cursor: pointer;}
+ .filebtn{background-color: #A5E374; color: white; border: none; width: 80px; height: 30px; border-radius: 10px;
+        margin-left: 40px; cursor: pointer;}
  .urlbtn{background-color: #A5E374; color: white; border: none; width: 80px; height: 30px; border-radius: 10px;
         margin-left: 40px; cursor: pointer;}
  .url{width: 290px; height: 35px; border: none; border-radius: 5px; font-size: 15px; margin-left: 40px; color: #373F57;}
@@ -236,6 +236,6 @@ ul{list-style: none;}
 #submit{display: flex; justify-content: center;}
 
 /*file*/
-.file_box{ display: none; margin-top: 20px}
+.file_box{ margin-top: 20px}
 .url_box{margin-left: 20px; display: block;}
 

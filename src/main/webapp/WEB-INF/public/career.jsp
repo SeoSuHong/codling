@@ -153,7 +153,7 @@
 					</c:forTokens>
 					<span>급여&nbsp;</span>
 					<c:if test="${anno.pay == '면접 후 결정'}">
-	              		${anno.pay}</span>
+	              		${anno.pay}
 	              	</c:if>
 	              	<c:if test="${anno.pay != '면접 후 결정'}">
 	              		${anno.pay}만원

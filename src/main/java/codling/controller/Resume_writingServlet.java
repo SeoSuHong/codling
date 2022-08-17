@@ -113,21 +113,47 @@ public class Resume_writingServlet extends HttpServlet {
 		//포트폴리오
 		List<Portfolio> portfolioList = new ArrayList<Portfolio>();
 		
-		String[] portfolio_name = request.getParameterValues("portfolio_name");
-		String[] detail = request.getParameterValues("detail");
-		String[] url = request.getParameterValues("url");
-		String[] fileName = request.getParameterValues("filelength");
-		String[] _fileSize = request.getParameterValues("filelength");
-		int[] fileSize = new int[_fileSize.length];
-		int index = 0;
+		String[] portfolio_name_ = request.getParameterValues("portfolio_name");
+		String[] detail_ = request.getParameterValues("detail");
+		String[] url_ = request.getParameterValues("url");
+		String portfolio_name = null;
+		String detail = null;
+		String url = null;
+		for(int i = 0; i < portfolio_name_.length; i++) {
+			if(i < portfolio_name_.length) {
+				portfolio_name += (portfolio_name_[i] + " / ");
+				detail += (detail_[i] + " / ");
+				url += (url_[i] + " / ");
+			}else {
+				portfolio_name += portfolio_name_[i];
+				detail += detail_[i];
+				url += url_[i];
+			}
+		}
+		
+		int portfolioResult = 0;
+		if(!portfolio_name.equals("") && portfolio_name != "") {
+				Portfolio portfolio = new Portfolio(0, indiId, portfolio_name, detail, url, "", "", "","");
+				portfolioList.add(portfolio);
+				portfolioResult = dao.setportfolio(portfolioList);
+		}
+		
+		//첨부파일
 		Collection<Part> parts = request.getParts(); //파일 열러개 검사
+		StringBuilder builder = new StringBuilder();
+		StringBuilder builders = new StringBuilder();
 		for(Part p : parts) { //파일 여러개 가지고오기
-				
+			
 			if(!p.getName().equals("fileName")) continue;
 			if(p.getSize() == 0) continue;
 			
 			Part filePart = p; // 업로드한 파일 가지고오기
 			String fileName_ = filePart.getSubmittedFileName(); //파일명 읽어오기
+			builder.append(fileName_);
+			builder.append(" / ");
+			builders.append(p.getSize());
+			builders.append(" / ");
+			
 			InputStream fis = filePart.getInputStream();
 			
 			String realPath = request.getServletContext().getRealPath("/upload");
@@ -144,29 +170,25 @@ public class Resume_writingServlet extends HttpServlet {
 			while((fileSize_ = fis.read(buf)) != -1)
 				fos.write(buf,0,fileSize_);
 			
-			fileName[index] = fileName_;
-			fileSize[index] = (int) p.getSize();
-
-			index++;
-			
 			fos.close();
 			fis.close();
 			
 		}
 		
-		for(int j = 0; j < fileName.length-1; j++) {
-			System.out.println(fileName.length-1);
-			System.out.println(fileName[j]+"j:"+j);
-			System.out.println(fileSize[j]+"j:"+j);
-		}
+		builder.delete(builder.length()-1, builder.length());
+		builders.delete(builders.length()-1, builders.length());
+		String[] fileTitle_ = request.getParameterValues("fileTitle");
+		String[] file_detail_ = request.getParameterValues("file_detail");
+		String fileTitle = null;
+		String file_detail = null;
 		
-		int portfolioResult = 0;
-		if(!portfolio_name[0].equals("")) {
-			for(int j = 0; j < portfolio_name.length-1; j++) {
-				if(fileName[j].equals("") || fileName[j] == "") fileSize[j] = 0;
-				Portfolio portfolio = new Portfolio(0, indiId, portfolio_name[j], detail[j], url[j], fileName[j], fileSize[j]);
-				portfolioList.add(portfolio);
-				portfolioResult = dao.setportfolio(portfolioList);
+		for(int i = 0; i < fileTitle_.length; i++) {
+			if(i < fileTitle_.length) {
+				fileTitle += (fileTitle_[i] + " / ");
+				file_detail += (file_detail_[i] + " / ");
+			}else {
+				fileTitle += fileTitle_[i];
+				file_detail += file_detail_[i];
 			}
 		}
 		

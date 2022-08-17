@@ -226,7 +226,7 @@ public class IndividualDao {
 	//이력서 포트폴리오 insert
 	public int setportfolio(List<Portfolio> portfolioList) {
 		int result = 0;
-		String query = "INSERT INTO portfolio VALUES(DEFAULT,?,?,?,?,?,?)";
+		String query = "INSERT INTO portfolio VALUES(DEFAULT,?,?,?,?,?,?,?,?)";
 		
 		try {
 			for(int i = 0; i < portfolioList.size(); i++) {
@@ -237,8 +237,10 @@ public class IndividualDao {
 				pstmt.setString(2, portfolio.getName());
 				pstmt.setString(3, portfolio.getDetail());
 				pstmt.setString(4, portfolio.getUrl());
-				pstmt.setString(5, portfolio.getFileName());
-				pstmt.setInt(6, portfolio.getFileSize());
+				pstmt.setString(5, portfolio.getTitle());
+				pstmt.setString(6, portfolio.getFileName());
+				pstmt.setString(7, portfolio.getFiledetail());
+				pstmt.setString(8, portfolio.getFileSize());
 				
 				if(pstmt.executeUpdate() == 1) result++;
 				
@@ -249,5 +251,35 @@ public class IndividualDao {
 			System.out.println("setportfolio errors : " + e.getMessage());
 		}
 		return result;	
+	}
+	
+	//파일 업로드
+	public boolean setfile(List<Portfolio> portfolioList) {
+		boolean result = false;
+		String query = "INSERT INTO portfolio VALUES(DEFAULT,?,?,?,?,?,?,?,?)";
+		
+		try {
+			for(int i = 0; i < portfolioList.size(); i++) {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				Portfolio portfolio = portfolioList.get(i);
+				pstmt.setString(1, portfolio.getIndividual_id());
+				pstmt.setString(2, portfolio.getName());
+				pstmt.setString(3, portfolio.getDetail());
+				pstmt.setString(4, portfolio.getUrl());
+				pstmt.setString(5, portfolio.getTitle());
+				pstmt.setString(6, portfolio.getFileName());
+				pstmt.setString(7, portfolio.getFiledetail());
+				pstmt.setString(8, portfolio.getFileSize());
+				
+				if(pstmt.executeUpdate() == 1) result = true;
+				
+				pstmt.close();
+				conn.close();
+			}
+		}catch (Exception e) {
+			System.out.println("setportfolio errors : " + e.getMessage());
+		}
+		return result;
 	}
 }
