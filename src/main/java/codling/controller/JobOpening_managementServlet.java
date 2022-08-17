@@ -1,6 +1,7 @@
 package codling.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,20 @@ public class JobOpening_managementServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String no_ = request.getParameter("no");
+		int no = 0;
+		if(no_ != null && !no_.equals("")) no = Integer.parseInt(no_);
+		
+		CorporationDao dao = new CorporationDao();
+		boolean fieldResult = dao.deleteField(no);
+		boolean jobOpeningResult = dao.deleteJobOpening(no);
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if(fieldResult && jobOpeningResult)
+			out.print("<script>alert('공고가 삭제되었습니다.'); location.href = 'jobOpening_management';</script>");
+		else
+			out.print("<script>alert('공고 삭제에 실패하였습니다.'); location.href = 'jobOpening_management';</script>");
 	}
-
 }

@@ -138,7 +138,7 @@
                                             </div>
                                     </div>
                             </div>
-                            <div class="row align-items-center mt-4" id="frame2">
+                            <div class="row align-items-center mt-4 address" id="frame2">
                                 <p class="fw-bold" id="addressCom">주소</p>
                                     <input type="text" placeholder="우편번호" name="postCode" id="postCode" class="form-control mb-1 " style="display:inline-block; width:100px;"  onkeyup="inputDataCheck(this.id)" required> 
                                     <input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기" id="search"><br>
@@ -245,7 +245,7 @@
                                         <input class="form-control" type="file" id="formFile" name="fileName"  required>
                                 </div>
                             </div>                       
-                            <div class="row align-items-center mt-4" id="frame2">
+                            <div class="row align-items-left mt-4 address" id="frame2">
                                 <p class="fw-bold" id="addressCom">주소</p>
                                     <input type="text" placeholder="우편번호" name="postCode2" id="postCode2" class="form-control mb-1 " style="display:inline-block; width:100px;"  onkeyup="inputDataCheck(this.id)" required> 
                                     <input type="button" onclick="sample7_execDaumPostcode()" value="주소 찾기" id="search"><br>

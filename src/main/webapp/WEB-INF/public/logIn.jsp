@@ -23,8 +23,8 @@
         <p id="suv">서비스를 이용하시려면 로그인을 하세요</p>
         <p id="suv2">Codling 회원이 아니시면 <a href="signUp" id="join1">회원가입</a>을 해주세요</p>
         <ul class="tab_member_type">
-            <li class="t_per t_on"><a class="a_per">개인회원</a></li>
-            <li class="t_com"><a class="a_com">기업회원</a></li>
+            <li class="t_per t_on"><a class="a_per" style="cursor: pointer;">개인회원</a></li>
+            <li class="t_com"><a class="a_com" style="cursor: pointer;">기업회원</a></li>
         </ul>
         <div class="per_log">
 
