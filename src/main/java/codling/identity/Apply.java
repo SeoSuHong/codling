@@ -2,15 +2,16 @@ package codling.identity;
 
 public class Apply {
 	private int no, jobOpening_no, coverLetter_no;
-	private String individual_id, status;
+	private String individual_id, fieldName, status;
 	
 	public Apply() {}
 
-	public Apply(int no, String individual_id, int jobOpening_no, int coverLetter_no, String status) {
+	public Apply(int no, String individual_id, int jobOpening_no, String fieldName, int coverLetter_no, String status) {
 		super();
 		this.no = no;
 		this.individual_id = individual_id;
 		this.jobOpening_no = jobOpening_no;
+		this.fieldName = fieldName;
 		this.coverLetter_no = coverLetter_no;
 		this.status = status;
 	}
@@ -37,6 +38,14 @@ public class Apply {
 
 	public void setJobOpening_no(int jobOpening_no) {
 		this.jobOpening_no = jobOpening_no;
+	}
+	
+	public String getFieldName() {
+		return fieldName;
+	}
+
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
 	}
 
 	public int getCoverLetter_no() {

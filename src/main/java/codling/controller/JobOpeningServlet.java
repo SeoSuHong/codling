@@ -1,6 +1,7 @@
 package codling.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -12,16 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import codling.dao.CorporationDao;
+import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
+import codling.identity.Apply;
 import codling.identity.Corporation;
+import codling.identity.CoverLetter;
 import codling.identity.Field;
 import codling.identity.JobOpening;
 
 @WebServlet("/jobOpening")
 public class JobOpeningServlet extends HttpServlet {
+	String indiId;
+	IndividualDao indiDao;
+	int no;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String indiId = (String)session.getAttribute("indiId");
+		indiId = (String)session.getAttribute("indiId");
 		String corpId = (String)session.getAttribute("corpId");
 		
 		InformationDao infoDao = new InformationDao();
@@ -29,13 +37,16 @@ public class JobOpeningServlet extends HttpServlet {
 			Map<String, String> map = infoDao.getIndiName(indiId);
 			String indiName = map.get(indiId);
 			request.setAttribute("indiName", indiName);
+			
+			indiDao = new IndividualDao();
+			List<CoverLetter> coverLetters = indiDao.getCoverLetter(indiId);
+			request.setAttribute("coverLetters", coverLetters);
 		} else if(corpId != null) {
 			Map<String, String> map = infoDao.getCorpName(corpId);
 			String corpName = map.get(corpId);
 			request.setAttribute("corpName", corpName);
 		}
 		
-		int no = 0;
 		String no_ = request.getParameter("no");
 		if(!no_.equals("") && no_ != null) no = Integer.parseInt(no_);
 		
@@ -56,7 +67,24 @@ public class JobOpeningServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
+		
+		int coverLetterNo = 0;
+		String coverLetterNo_ = request.getParameter("coverLetterNo");
+		if(coverLetterNo_ != null && !coverLetterNo_.equals("")) coverLetterNo = Integer.parseInt(coverLetterNo_);
+		String fieldName = request.getParameter("fieldName");
+		
+		Apply apply = new Apply(0, indiId, no, fieldName, coverLetterNo, "");
+		boolean coverLetterResult = indiDao.insertApply(apply);
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if(coverLetterResult) {
+			out.print("<script>alert('공고 지원이 완료되었습니다. 좋은 결과를 기원합니다.'); location.href='jobOpening?no=" + no + "';</script>");
+		} else {
+			out.print("<script>alert('공고 지원이 실패하였습니다.'); location.href='jobOpening';</script>");
+		}
 	}
 
 }

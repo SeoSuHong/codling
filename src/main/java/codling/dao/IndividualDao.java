@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import codling.identity.Apply;
 import codling.identity.CoverLetter;
 import codling.identity.Individual;
 
@@ -82,28 +85,51 @@ public class IndividualDao {
 	}
 	
 	// 개인회원 자기소개서 가져오기
-	public CoverLetter getCoverletter(CoverLetter coverLetter) {
-		CoverLetter coverletter = null;
-		String query = "select * from coverletter";
+	public List<CoverLetter> getCoverLetter(String individual_id) {
+		List<CoverLetter> coverLetterList = new ArrayList<CoverLetter>();
+		String query = "SELECT * FROM coverLetter WHERE individual_id = ?";
 		try {
 			conn= getConnection();
 			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, individual_id);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				int no = rs.getInt("no");
-				String individual_id = rs.getString("individual_id");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
 				
-				coverletter = new CoverLetter(no, individual_id, title, content);
+				CoverLetter coverLetter = new CoverLetter(no, individual_id, title, content);
+				coverLetterList.add(coverLetter);
 			}
 			rs.close();
 			pstmt.close();
 			conn.close();
 			
 		} catch(Exception e) {
-			System.out.println("getCoverletter errors : "+e.getMessage());
+			System.out.println("getCoverLetter Error : " + e.getMessage());
 		}
-		return coverletter;
+		return coverLetterList;
+	}
+	
+	// 개인회원 지원하기
+	public boolean insertApply(Apply apply) {
+		boolean result = false;
+		String query = "INSERT INTO apply VALUES(DEFAULT, ?, ?, ?, ?, DEFAULT)";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, apply.getIndividual_id());
+			pstmt.setInt(2, apply.getJobOpening_no());
+			pstmt.setString(3, apply.getFieldName());
+			pstmt.setInt(4, apply.getCoverLetter_no());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("insertApply Error : " + e.getMessage());
+		}
+		return result;
 	}
 }

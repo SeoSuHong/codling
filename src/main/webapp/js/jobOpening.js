@@ -88,7 +88,7 @@ $(function() {
                 $(".apply_bar:nth-child(" + idx + ")").css({"background-color":"#A5E374"});
             })
         } else {
-            alert("더이상 지원한 자기소개서가 없습니다.");
+            alert("더이상 작성한 자기소개서가 없습니다.");
         }
     })
 
@@ -108,11 +108,27 @@ $(function() {
     }
 });
 
+// 지원하기 팝업에서 자기소개서 클릭 시
+function choice(obj, coverLetterNo) {
+	$(".choice").parents().css("box-shadow", "none");
+	$(obj).parent().css("box-shadow", "0 0 0 3px #33ff33 inset");
+	
+	document.applyForm.coverLetterNo.value = coverLetterNo;
+	console.log(document.applyForm.coverLetterNo.value);
+}
+
 // 지원하기 버튼 클릭 시
 function applyChk() {
-	if(document.applyForm.fieldName.value == "") 
+	if(document.applyForm.fieldName.value == "") {
 		alert("지원분야를 선택해 주세요.");
-	else document.applyForm.submit();
+		return;
+	}
+	if(document.applyForm.coverLetterNo.value == "") {
+		var check = confirm('선택된 자기소개서가 없습니다.\n자기소개서 없이 지원하시겠습니까?');
+		if(check) document.applyForm.submit();
+	} else{
+		document.applyForm.submit();
+	}
 }
 
 // 지도 Library
