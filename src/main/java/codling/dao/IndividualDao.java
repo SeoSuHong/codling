@@ -256,21 +256,18 @@ public class IndividualDao {
 	//파일 업로드
 	public boolean setfile(List<Portfolio> portfolioList) {
 		boolean result = false;
-		String query = "INSERT INTO portfolio VALUES(DEFAULT,?,?,?,?,?,?,?,?)";
+		String query = "UPDATE portfolio SET title = ?, fileName = ?, filedetail = ?, fileSize = ? WHERE individual_id = ?";
 		
 		try {
 			for(int i = 0; i < portfolioList.size(); i++) {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(query);
 				Portfolio portfolio = portfolioList.get(i);
-				pstmt.setString(1, portfolio.getIndividual_id());
-				pstmt.setString(2, portfolio.getName());
-				pstmt.setString(3, portfolio.getDetail());
-				pstmt.setString(4, portfolio.getUrl());
-				pstmt.setString(5, portfolio.getTitle());
-				pstmt.setString(6, portfolio.getFileName());
-				pstmt.setString(7, portfolio.getFiledetail());
-				pstmt.setString(8, portfolio.getFileSize());
+				pstmt.setString(1, portfolio.getTitle());
+				pstmt.setString(2, portfolio.getFileName());
+				pstmt.setString(3, portfolio.getFiledetail());
+				pstmt.setString(4, portfolio.getFileSize());
+				pstmt.setString(5, portfolio.getIndividual_id());
 				
 				if(pstmt.executeUpdate() == 1) result = true;
 				

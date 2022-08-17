@@ -84,12 +84,15 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] position = request.getParameterValues("position");
 		String[] company_department = request.getParameterValues("company_department");
 		String[] work_content = request.getParameterValues("work_content");
-		boolean careerResult = false;
 		
-		for(int i = 0; i < perv_company.length; i++) {
-			Career career = new Career(0, indiId, perv_company[i], tenureStart[i], tenureEnd[i], position[i], company_department[i], work_content[i]);
-			careerList.add(career);
-			careerResult = dao.setCareer(careerList);
+		int careerResult = 0;
+		if(!perv_company[0].equals("")) {
+			for(int i = 0; i < perv_company.length; i++) {
+				Career career = new Career(0, indiId, perv_company[i], tenureStart[i], tenureEnd[i], position[i], company_department[i], work_content[i]);
+				careerList.add(career);
+				careerResult = dao.setCareer(careerList);
+			}
+
 		}
 		
 		//자격증내역
@@ -98,9 +101,9 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] agency = request.getParameterValues("agency");
 		String[] pass = request.getParameterValues("pass");
 		String[] acquireDate = request.getParameterValues("acquireDate");
-		boolean licenseResult = false;
 		
-		if(license_name.length != 0) {
+		int licenseResult = 0;
+		if(!license_name[0].equals("")) {
 			for(int i = 0; i < license_name.length-1; i++) {
 				License license = new License(0, indiId, license_name[i], agency[i], pass[i], acquireDate[i]);
 				licenseList.add(license);
@@ -111,35 +114,57 @@ public class Resume_writingServlet extends HttpServlet {
 		//포트폴리오
 		List<Portfolio> portfolioList = new ArrayList<Portfolio>();
 		
-		String[] portfolio_name = request.getParameterValues("portfolio_name");
-		String[] detail = request.getParameterValues("detail");
-		String[] url = request.getParameterValues("url");
-		String[] fileName = null;
-		int[] fileSize = null;
-		boolean portfolioResult = false;
+		String[] portfolio_name_ = request.getParameterValues("portfolio_name");
+		String[] detail_ = request.getParameterValues("detail");
+		String[] url_ = request.getParameterValues("url");
+		String portfolio_name = null;
+		String detail = null;
+		String url = null;
+		for(int i = 0; i < portfolio_name_.length; i++) {
+			if(i < portfolio_name_.length) {
+				portfolio_name += (portfolio_name_[i] + " / ");
+				detail += (detail_[i] + " / ");
+				url += (url_[i] + " / ");
+			}else {
+				portfolio_name += portfolio_name_[i];
+				detail += detail_[i];
+				url += url_[i];
+			}
+		}
 		
+		int portfolioResult = 0;
+		if(!portfolio_name.equals("") && portfolio_name != "") {
+				Portfolio portfolio = new Portfolio(0, indiId, portfolio_name, detail, url, "", "", "","");
+				portfolioList.add(portfolio);
+				portfolioResult = dao.setportfolio(portfolioList);
+		}
+		
+		//첨부파일
+		List<Portfolio> fileuploadList = new ArrayList<Portfolio>();
 		Collection<Part> parts = request.getParts(); //파일 열러개 검사
-		
+		StringBuilder builder = new StringBuilder();
+		StringBuilder builders = new StringBuilder();
 		for(Part p : parts) { //파일 여러개 가지고오기
-			int i = 0;
+			
 			if(!p.getName().equals("fileName")) continue;
 			if(p.getSize() == 0) continue;
 			
 			Part filePart = p; // 업로드한 파일 가지고오기
 			String fileName_ = filePart.getSubmittedFileName(); //파일명 읽어오기
+			builder.append(fileName_);
+			builder.append(" / ");
+			builders.append(p.getSize());
+			builders.append(" / ");
+			
 			InputStream fis = filePart.getInputStream();
 			
 			String realPath = request.getServletContext().getRealPath("/upload");
-			System.out.println(realPath);
-			System.out.println(fileName_);
-			System.out.println(p.getSize());
 			
 			File path = new File(realPath);
 			if(!path.exists())
 				path.mkdirs();
 			
-			
-			String filePath = realPath + File.separator + fileName;
+			String filePath = realPath + File.separator + fileName_;
 			FileOutputStream fos = new FileOutputStream(filePath);
 			
 			byte[] buf = new byte[1024];
@@ -147,38 +172,44 @@ public class Resume_writingServlet extends HttpServlet {
 			while((fileSize_ = fis.read(buf)) != -1)
 				fos.write(buf,0,fileSize_);
 			
-			fileName[i] = fileName_;
-			fileSize[i] = (int) p.getSize();
-			
 			fos.close();
 			fis.close();
 			
-			i++;
+		}
+		
+		builder.delete(builder.length()-1, builder.length());
+		builders.delete(builders.length()-1, builders.length());
+		
+		String[] fileTitle_ = request.getParameterValues("fileTitle");
+		String[] file_detail_ = request.getParameterValues("file_detail");
+		String fileTitle = null;
+		String file_detail = null;
+		
+		for(int i = 0; i < fileTitle_.length; i++) {
+			if(i < fileTitle_.length) {
+				fileTitle += (fileTitle_[i] + " / ");
+				file_detail += (file_detail_[i] + " / ");
+			}else {
+				fileTitle += fileTitle_[i];
+				file_detail += file_detail_[i];
+			}
+		}
+		
+		boolean fileuploadResult = false;
+		if(!portfolio_name.equals("") && portfolio_name != "") {
+				Portfolio fileupload = new Portfolio(0, "", "", "", "", fileTitle, file_detail, builder.toString(), builders.toString());
+				fileuploadList.add(fileupload);
+				fileuploadResult = dao.setfile(fileuploadList);
 		}
 		
 		
-		for(int i = 0; i < portfolioList.size(); i++) {
-			Portfolio portfolio = new Portfolio(0, indiId, portfolio_name[i], detail[i], url[i], fileName[i], fileSize[i]);
-			portfolioList.add(portfolio);
-			portfolioResult = dao.setportfolio(portfolioList);
-		}
-
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if(educationResult && resumeTitleStack && careerResult && licenseResult && portfolioResult)
-				out.print("<script>alert('이력서 등록에 성공하였습니다.'); location.href = 'resume_management';</script>");
-		else {
-			if(careerResult != true)
-				out.print("<script>alert('경력사항 등록에 실패 하였습니다\n다시 작성 해주세요'); location.href = 'resume_writing';</script>");
-			
-			if(licenseResult != true)
-				out.print("<script>alert('자격증 내역 등록에 실패 하였습니다\n다시 작성 해주세요'); location.href = 'resume_writing';</script>");
-			
-			if(portfolioResult != true)
-				out.print("<script>alert('포트폴리오 등록에 실패 하였습니다\n다시 작성 해주세요'); location.href = 'resume_writing';</script>");
-			
+		
+		if(educationResult && resumeTitleStack)
+			out.print("<script>alert('이력서 등록에 성공하였습니다.'); location.href = 'resume_management';</script>");
+		else
 			out.print("<script>alert('이력서 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
 		}
 	}
-}

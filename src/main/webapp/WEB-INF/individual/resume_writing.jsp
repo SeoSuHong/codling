@@ -130,9 +130,9 @@
         <article id="stackbox">
         <div id="stack_box">
             <h3>기술스택</h3>
-            <div id="stacks" name="sel" size="10"></div>
+            <div id="stc_box"><div id="stc_box2"></div><div id="stacks" name="sel" size="10"></div></div>
             <input id="stack" name="keyword" onkeydown="keyDown()">
-            <ul id="suggest" style="display:none; position:absolute; top:1325px;"></ul>
+            <ul id="suggest" style="display:none; position:absolute; top:1344px;"></ul>
         </div>
         </article>
     </section>
