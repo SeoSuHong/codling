@@ -105,8 +105,15 @@
                             </td>
                         </tr>
                         <tr>
+                        	<td></td>
+                        	<td><div id="stacks" name="sel" size="10" readonly="readonly"></div></td>
+                        </tr>
+                        <tr>
                             <td>사용스택 및 툴*</td>
-                            <td id="font_medium"><input id="stack" name="stack">
+                            <td id="font_medium">
+	                            <input id="stack" name="keyword" onkeydown="keyDown()">
+	                            <ul id="suggest" style="display:none; position:absolute; top:1333px;"></ul>
+                            </td>
                         </tr>
                         <tr>
                             <td>주요업무*</td>

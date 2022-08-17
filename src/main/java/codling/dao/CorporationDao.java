@@ -552,7 +552,7 @@ public class CorporationDao {
     
     public List<String> getAllStack(String keyWord) {
     	List<String> list = new ArrayList<String>();
-    	String query = "SELECT name FROM field WHERE name LIKE ?";
+    	String query = "SELECT stack FROM stackList WHERE stack LIKE ?";
     	
     	try {
     		conn = getConnection();

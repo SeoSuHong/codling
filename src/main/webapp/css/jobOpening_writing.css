@@ -49,7 +49,13 @@ td{font-weight:bold;color:#373F57;}
 .field{width: 1220px; height: 1000px; background: #F8F8F8; border-radius: 10px; align-items: center; margin-top: 25px; padding-top: 60px;}
 .field:not(:first-of-type){padding-top: 30px;}
 .career_year{width: 40px;margin-top:-25px;vertical-align:middle;}
+#keyword{width: 300px;}
+#stacks{display: flex; height: 50px;}
+.st{display: flex; margin-right: 30px; background-color: #A5E374; border-radius: 50px; padding: 0 12px;}
+.stack{margin-right: 10px; display: flex; color: white; font-size: 1.3rem; font-weight: bold;}
+#suggest{width: 900px; max-height: 300px; background-color: white; overflow-y: scroll; box-shadow: 0 4px 8px 0 rgb(20 20 20 / 2%), 4px 16px 24px 0 rgb(20 20 20 / 12%);}
 #btn{display: flex; justify-content: space-between;}
+
 /* 추가버튼 */
 #add{ background-color: #A5E374; color: white;appearance: none; margin-bottom: 2px; float: right; margin-right: 10px; padding: 7px;font-size:medium; font-weight: 400; text-align: center;
 text-decoration: none; display: block; width: 80px; height: 40px; border: none; border-radius: 10px;
