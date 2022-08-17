@@ -126,11 +126,13 @@
     </section>
     <!--보유기술스택-->
     <section>
-        <div><h2>보유기술스택</h2></div>
+        <h2>보유기술스택</h2>
         <article id="stackbox">
         <div id="stack_box">
             <h3>기술스택</h3>
-            <p><input type="text" name="stack" class="stackinput" placeholder="C, C++, JAVA, HTML, CSS"></p>
+            <div id="stacks" name="sel" size="10"></div>
+            <input id="stack" name="keyword" onkeydown="keyDown()">
+            <ul id="suggest" style="display:none; position:absolute; top:1325px;"></ul>
         </div>
         </article>
     </section>

@@ -97,11 +97,17 @@ ul{list-style: none;}
 
 #description{display: block; position:relative; top: -173px; right: -300px; font-size: 0.95rem !important; color: #8a8c95 !important;}
 /*보유기술스택*/
-#stackbox {width: 1220px; height: 140px; background-color: #F8F8F8; margin-bottom: 50px; border-radius: 10px;}
+#stackbox {width: 1220px; height: 230px; background-color: #F8F8F8; padding: 10px 0; margin-bottom: 50px; border-radius: 10px;}
 #stack_box {padding-top: 5px;}
 #stackbox h3 {margin-left: 20px;}
-#stackbox input {width: 1150px; height: 40px; margin-left: 30px; border: none; border-radius: 10px; font-size: 15px; color: #373F57;}
-
+#keyword{width: 300px;}
+#stacks{display: flex; height: 50px; margin: 30px 0;}
+#stack{width: 1050px; height: 37px; margin-left: 80px; font-size: 1.2rem; border: solid 1.5px #858585; border-radius: 5px; outline: unset;}
+.st{display: flex; margin-right: 30px; background-color: #A5E374; border-radius: 50px; padding: 0 12px;}
+.st:first-child{margin-left: 50px;}
+.stack{margin-right: 10px; display: flex; color: white; font-size: 1.3rem; font-weight: bold;}
+#suggest{width: 1017px; max-height: 250px; margin-left: 80px; background-color: white; overflow-y: scroll; box-shadow: 0 4px 8px 0 rgb(20 20 20 / 2%), 4px 16px 24px 0 rgb(20 20 20 / 12%) !important;}
+.stackli {margin: 10px 0; font-size: larger;}
 
  /* 경력사항 */
  #experiencebox{width: 1220px; height: 650px; background-color: #F8F8F8; margin-bottom: 50px; border-radius: 10px;}
