@@ -63,6 +63,7 @@ public class JobOpening_writingServlet extends HttpServlet {
 		
 		List<Field> fields = new ArrayList<Field>();
 		int no = corpDao.getRecentJobOpeningNo(id);
+
 		for(int i = 0; i < nameList.length - 1; i++) {
 			Field field = new Field(0, no, nameList[i], careerList[i], positionList[i], payList[i], workDayList[i], workList[i], stackList[i], requirementList[i], preferenceList[i]);
 			fields.add(field);
@@ -79,12 +80,3 @@ public class JobOpening_writingServlet extends HttpServlet {
 			out.print("<script>alert('공고작성에 실패하였습니다.'); location.href = 'jobOpening_writing';</script>");
 	}
 }
-
-
-
-
-
-
-
-
-

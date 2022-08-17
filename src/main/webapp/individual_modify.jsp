@@ -16,7 +16,7 @@
 </head>
 <body>
     <header>
-        <a href="index.jsp"><img src="img/logo.png" alt="logoImg" id="logo"></a>
+        <a href="index"><img src="img/logo.png" alt="logoImg" id="logo"></a>
     </header>
     <section>
             <div class="container">

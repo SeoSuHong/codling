@@ -37,9 +37,9 @@
             <c:if test="${not empty allJobOpening}">
             <c:forEach var="jobOpening" items="${allJobOpening}">
             <div class="resumemg">
-                <div class="resumemgbox" style="cursor: pointer;" onclick="location='job_accountment?no=${jobOpening.no}'">
+                <div class="resumemgbox" style="cursor: pointer;" onclick="location.href='job_accountment?no=${jobOpening.no}'">
                     <p><span>내가올린 공고</span></p>
-                    <button type="button" id="applicant_status" onclick="location.href='applicant_status.jsp'"><span>지원 현황</span></button>
+                    <button type="button" id="applicant_status" onclick="status(event)"><span>지원 현황</span></button>
                     <div class="resumemgbox2">
                         <p><span>${jobOpening.title}</span></p>
                         <table>
@@ -120,9 +120,10 @@
                             </tr>
                         </table>
                         <div class="chbtn-box">
-                            <input type="button" name="update" id="update" value="수정" src="">
-                            <input type="submit" name="delete" id="delete" value="삭제" />
-                        </div>
+                            <input type="button" onclick="updateChk(event, ${jobOpening.no})" name="update" id="update" value="수정">
+                           	<input type="button" onclick="deleteChk(event)" name="delete" id="delete" value="삭제"/>
+                       	</div>
+                       	<form action="jobOpening_management?no=${jobOpening.no}" method="post" class="delForm"></form>
                     </div>
                 </div>
             </div>

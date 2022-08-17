@@ -126,11 +126,13 @@
     </section>
     <!--보유기술스택-->
     <section>
-        <div><h2>보유기술스택</h2></div>
+        <h2>보유기술스택</h2>
         <article id="stackbox">
         <div id="stack_box">
             <h3>기술스택</h3>
-            <p><input type="text" name="stack" class="stackinput" placeholder="C, C++, JAVA, HTML, CSS"></p>
+            <div id="stacks" name="sel" size="10"></div>
+            <input id="stack" name="keyword" onkeydown="keyDown()">
+            <ul id="suggest" style="display:none; position:absolute; top:1325px;"></ul>
         </div>
         </article>
     </section>
@@ -242,20 +244,21 @@
             </div>
         </div>
     </section>
+    
+    
+    
     <!--포트폴리오-->
     <section>
         <div id="problem_list4">
             <h2>포트폴리오 제출<input type="button" class="portfolio_add" value="추가" onclick="addForm4();"></h2>
             <div id="portfoliobox"><br><br>
+            	<!-- title -->
                 <input type="text" name="portfolio_name" class="portfolio_title" placeholder="GitHub"><br><br>
+                
                 <button type="button" class="urlbtn">url</button>
-                <button type="button" class="filebtn">첨부파일</button>
                 <div class="url_box">
+                	<!-- url -->
                     <input type="text" name="url" class="url" placeholder="https://github.com">
-                </div>
-                <div class="file_box">
-                    <label class="choose_file" for="ex_filename"><span>파일선택</span></label>
-                    <input type="file" name="fileName" id="ex_filename" class="filename">
                 </div>
                 <textarea name="detail" id="deepcontents" placeholder="상세내용"></textarea>
             </div>
@@ -264,20 +267,57 @@
         <div id="portfolio_info" class="list_file_tag"> 
             <div id="portfoliobox">
 	            <button type="button" class="portfolio_del" onclick="delForm4(this);">삭제</button>
-	            <input type="text" name="portfolio_name" class="portfolio_title" placeholder="개인첨부 파일"><br><br>
+	            <!-- title -->
+	            <input type="text" name="portfolio_name" class="portfolio_title" placeholder="GitHub"><br><br>
+                
                 <button type="button" class="urlbtn">url</button>
-                <button type="button" class="filebtn">첨부파일</button>
                 <div class="url_box">
+                	<!-- url -->
                     <input type="text" name="url" class="url" placeholder="https://github.com">
-                </div>
-                <div class="file_box">
-                    <label class="choose_file" for="ex_filename"><span>파일선택</span></label>
-                    <input type="file" name="fileName" id="ex_filename" class="filename">
                 </div>
                 <textarea name="detail" id="deepcontents" placeholder="상세내용"></textarea>
             </div>
         </div>
     </section>
+    
+    
+    <!-- 파일첨부 -->
+    <section>
+        <div id="problem_list5">
+            <h2>첨부파일<input type="button" class="portfolio_add" value="추가" onclick="addForm5();"></h2>
+            <div id="portfoliobox"><br><br>
+            	<!-- title -->
+                <input type="text" name="fileTitle" class="portfolio_title" placeholder="첨부파일"><br><br>
+                
+                <button type="button" class="filebtn">첨부파일</button>
+                <div class="file_box">
+                	<!-- 첨부파일 -->
+                    <label class="choose_file" for="ex_filename"><span>파일선택</span></label>
+                    <input type="file" name="fileName" id="ex_filename" class="filename">
+                    <input type="hidden" name="filelength" value="">
+                </div>
+                <textarea name="file_detail" id="deepcontents" placeholder="상세내용"></textarea>
+            </div>
+        </div>
+        
+        <div id="portfolio_file" class="list_file_tag"> 
+            <div id="portfoliobox">
+	            <button type="button" class="portfolio_del" onclick="delForm5(this);">삭제</button>
+	            <!-- title -->
+	            <input type="text" name="fileTitle" class="portfolio_title" placeholder="첨부파일"><br><br>
+                
+                <button type="button" class="filebtn">첨부파일</button>
+                <div class="file_box">
+                	<!-- 첨부파일 -->
+                    <label class="choose_file" for="ex_filename"><span>파일선택</span></label>
+                    <input type="file" name="fileName" id="ex_filename" class="filename">
+                    <input type="hidden" name="filelength" value="">
+                </div>
+                <textarea name="file_detail" id="deepcontents" placeholder="상세내용"></textarea>
+            </div>
+        </div>
+    </section>
+    
     <!--완료버튼-->
     <div id="submit">
     	<input type="button" value="등 록" class="resume_submit" onclick="check()">

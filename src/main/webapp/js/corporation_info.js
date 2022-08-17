@@ -38,3 +38,13 @@ function deleteChk() {
 	else
 		alert("비밀번호가 일치하지 않습니다.");
 }
+
+function updateChk() {
+	var pwCheck = prompt("비밀번호를 입력해 주세요.", "비밀번호");
+	var password = document.corpInfoForm.password.value;
+	
+	if(pwCheck == password)
+		location.href = "corporation_modify";
+	else
+		alert("비밀번호가 일치하지 않습니다.");
+}

@@ -91,7 +91,10 @@
                         </tr>
                         <tr>
                             <td>급여*</td>
-                            <td id="font_medium"><input type="text" name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span></td>
+                            <td id="font_medium">
+	                            <input type="text" name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
+	                            <input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span>
+                            </td>
                         </tr>
                         <tr>
                             <td>근무요일*</td>
@@ -102,8 +105,15 @@
                             </td>
                         </tr>
                         <tr>
+                        	<td></td>
+                        	<td><div id="stacks" name="sel" size="10" readonly="readonly"></div></td>
+                        </tr>
+                        <tr>
                             <td>사용스택 및 툴*</td>
-                            <td id="font_medium"><input id="stack" name="stack">
+                            <td id="font_medium">
+	                            <input id="stack" name="keyword" onkeydown="keyDown()">
+	                            <ul id="suggest" style="display:none; position:absolute; top:1333px;"></ul>
+                            </td>
                         </tr>
                         <tr>
                             <td>주요업무*</td>
@@ -175,7 +185,7 @@
        			</div>
 	            <!-- 기업소개 -->
 	            <h3>채용절차</h3>
-            <article id="company">
+            <article id="process">
             	<table>
                     <tr>
                         <td>채용절차 및 기타 지원 유의사항</td>

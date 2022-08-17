@@ -36,6 +36,84 @@ function hasScrolled() {
     lastScrollTop = st;
 }
 
+// 지원하기 popup show, hide
+function popupShow() {
+    $("#apply").show();
+    showPopBlur(true);
+}
+
+function popupHide() {
+    $("#apply").hide();
+    showPopBlur(false);
+}
+
+function showPopBlur(check) {
+    if(check) {
+		$('body').css("overflow", "hidden");
+		$('#main').css({"opacity" : "0.3",  "background-color": "rgb(0, 0, 0)", "pointer-events":"none"});
+    } else {
+		$('body').css("overflow", "auto");
+		$('#main').css({"opacity" : "1", "background-color": "white", "pointer-events":"auto"});
+	}
+}
+
+// 지원하기 popup
+$(function() {
+    var idx = 1;
+    var marginPx = 780;
+    var rightMarginPx = 780;
+    var leftMarginPx = -780;
+    var marginVal = document.querySelector('.apply_coverLetter').children.length * marginPx;
+    $(".leftArrow").click(function() {
+        if(leftMarginPx >= 0) {
+            $(".apply_coverLetter").stop().animate({"margin-left":"-" + leftMarginPx + "px"}, 500, function() {
+                leftMarginPx -= marginPx;
+                rightMarginPx -= marginPx;
+                idx --;
+                $(".apply_bar").css({"background-color":"#D9D9D9"});
+                $(".apply_bar:nth-child(" + idx + ")").css({"background-color":"#A5E374"});
+            })
+        } else {
+            alert("가장 최근 작성한 자기소개서 입니다.");
+        }
+    })
+    
+    $(".rightArrow").click(function() {
+        if(marginVal > rightMarginPx) {
+            $(".apply_coverLetter").stop().animate({"margin-left":"-" + rightMarginPx + "px"}, 500, function() {
+                rightMarginPx += marginPx;
+                leftMarginPx += marginPx;
+                idx ++;
+                $(".apply_bar").css({"background-color":"#D9D9D9"});
+                $(".apply_bar:nth-child(" + idx + ")").css({"background-color":"#A5E374"});
+            })
+        } else {
+            alert("더이상 지원한 자기소개서가 없습니다.");
+        }
+    })
+
+    // 자기소개서 현황 바 클릭
+    var bar = document.getElementById('btn_bar').children;
+    for(var i = 0; i < bar.length; i++) {
+        const bar_idx = i;
+        bar[bar_idx].addEventListener('click', function() {
+            $(".apply_coverLetter").stop().animate({"margin-left":"-" + bar_idx*780 + "px"}, 500, function() {
+                idx = bar_idx + 1;
+                $(".apply_bar").css({"background-color":"#D9D9D9"});
+                $(".apply_bar:nth-child(" + idx + ")").css({"background-color":"#A5E374"});
+                rightMarginPx = idx * marginPx;
+                leftMarginPx = -780 + ((idx-1) * marginPx);
+            });
+        })
+    }
+});
+
+// 지원하기 버튼 클릭 시
+function applyChk() {
+	if(document.applyForm.fieldName.value == "") 
+		alert("지원분야를 선택해 주세요.");
+	else document.applyForm.submit();
+}
 
 // 지도 Library
 var address = document.getElementById('area').value; // 회사 주소
