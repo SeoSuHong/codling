@@ -150,8 +150,8 @@ public class IndividualDao {
 				pstmt.setString(1, education.getIndividual_id());
 				pstmt.setString(2, education.getSchool());
 				pstmt.setString(3, education.getSchoolName());
-				pstmt.setString(4, education.getSchoolDateStart());
-				pstmt.setString(5, education.getSchoolDateEnd());
+				pstmt.setString(4, education.getSchoolStartDate());
+				pstmt.setString(5, education.getSchoolEndDate());
 				pstmt.setString(6, education.getStatus());
 				pstmt.setString(7, education.getDepartment());
 				pstmt.setString(8, education.getScore());

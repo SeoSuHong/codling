@@ -57,14 +57,14 @@ public class Resume_writingServlet extends HttpServlet {
 		//학력정보
 		String[] school = request.getParameterValues("school");
 		String[] schoolName = request.getParameterValues("schoolName");
-		String[] schoolDateStart = request.getParameterValues("schoolDateStart");
-		String[] schoolDateEnd = request.getParameterValues("schoolDateEnd");
+		String[] schoolStartDate = request.getParameterValues("schoolStartDate");
+		String[] schoolEndDate = request.getParameterValues("schoolEndDate");
 		String[] status = request.getParameterValues("status");
 		String[] department = request.getParameterValues("department");
 		String[] score = request.getParameterValues("score");
 		
 		for(int i = 0; i < school.length; i++) {
-			Education education = new Education(0, indiId, school[i], schoolName[i], schoolDateStart[i], schoolDateEnd[i], status[i], department[i], score[i]);
+			Education education = new Education(0, indiId, school[i], schoolName[i], schoolStartDate[i], schoolEndDate[i], status[i], department[i], score[i]);
 			educationList.add(education);
 		}
 		
@@ -84,13 +84,13 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] position = request.getParameterValues("position");
 		String[] company_department = request.getParameterValues("company_department");
 		String[] work_content = request.getParameterValues("work_content");
+		boolean careerResult = false;
 		
 		for(int i = 0; i < perv_company.length; i++) {
 			Career career = new Career(0, indiId, perv_company[i], tenureStart[i], tenureEnd[i], position[i], company_department[i], work_content[i]);
 			careerList.add(career);
+			careerResult = dao.setCareer(careerList);
 		}
-		
-		boolean careerResult = dao.setCareer(careerList);
 		
 		//자격증내역
 		List<License> licenseList = new ArrayList<License>();
@@ -98,16 +98,15 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] agency = request.getParameterValues("agency");
 		String[] pass = request.getParameterValues("pass");
 		String[] acquireDate = request.getParameterValues("acquireDate");
-		int cut = 0;
+		boolean licenseResult = false;
+		
 		if(license_name.length != 0) {
-			cut = -1;
-			for(int i = 0; i < license_name.length + cut; i++) {
+			for(int i = 0; i < license_name.length-1; i++) {
 				License license = new License(0, indiId, license_name[i], agency[i], pass[i], acquireDate[i]);
 				licenseList.add(license);
+				licenseResult = dao.setLicense(licenseList);
 			}
 		}
-		
-		boolean licenseResult = dao.setLicense(licenseList);
 		
 		//포트폴리오
 		List<Portfolio> portfolioList = new ArrayList<Portfolio>();
@@ -117,6 +116,7 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] url = request.getParameterValues("url");
 		String[] fileName = null;
 		int[] fileSize = null;
+		boolean portfolioResult = false;
 		
 		Collection<Part> parts = request.getParts(); //파일 열러개 검사
 		
@@ -160,16 +160,25 @@ public class Resume_writingServlet extends HttpServlet {
 		for(int i = 0; i < portfolioList.size(); i++) {
 			Portfolio portfolio = new Portfolio(0, indiId, portfolio_name[i], detail[i], url[i], fileName[i], fileSize[i]);
 			portfolioList.add(portfolio);
+			portfolioResult = dao.setportfolio(portfolioList);
 		}
-		
-		boolean portfolioResult = dao.setportfolio(portfolioList);
-		
+
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		if(educationResult && resumeTitleStack && careerResult && licenseResult && portfolioResult)
-			out.print("<script>alert('이력서 등록에 성공하였습니다.'); location.href = 'resume_management';</script>");
-		else
+				out.print("<script>alert('이력서 등록에 성공하였습니다.'); location.href = 'resume_management';</script>");
+		else {
+			if(careerResult != true)
+				out.print("<script>alert('경력사항 등록에 실패 하였습니다\n다시 작성 해주세요'); location.href = 'resume_writing';</script>");
+			
+			if(licenseResult != true)
+				out.print("<script>alert('자격증 내역 등록에 실패 하였습니다\n다시 작성 해주세요'); location.href = 'resume_writing';</script>");
+			
+			if(portfolioResult != true)
+				out.print("<script>alert('포트폴리오 등록에 실패 하였습니다\n다시 작성 해주세요'); location.href = 'resume_writing';</script>");
+			
 			out.print("<script>alert('이력서 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
+		}
 	}
 }

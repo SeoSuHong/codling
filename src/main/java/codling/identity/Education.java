@@ -2,19 +2,19 @@ package codling.identity;
 
 public class Education {
 	private int no;
-	private String individual_id, school, schoolName, schoolDateStart, schoolDateEnd, status, department, score;
+	private String individual_id, school, schoolName, schoolStartDate, schoolEndDate, status, department, score;
 	
 	public Education() {}
 
-	public Education(int no, String individual_id, String school, String schoolName, String schoolDateStart,
-			String schoolDateEnd, String status, String department, String score) {
+	public Education(int no, String individual_id, String school, String schoolName, String schoolStartDate,
+			String schoolEndDate, String status, String department, String score) {
 		super();
 		this.no = no;
 		this.individual_id = individual_id;
 		this.school = school;
 		this.schoolName = schoolName;
-		this.schoolDateStart = schoolDateStart;
-		this.schoolDateEnd = schoolDateEnd;
+		this.schoolStartDate = schoolStartDate;
+		this.schoolEndDate = schoolEndDate;
 		this.status = status;
 		this.department = department;
 		this.score = score;
@@ -52,20 +52,20 @@ public class Education {
 		this.schoolName = schoolName;
 	}
 
-	public String getSchoolDateStart() {
-		return schoolDateStart;
+	public String getSchoolStartDate() {
+		return schoolStartDate;
 	}
 
-	public void setSchoolDateStart(String schoolDateStart) {
-		this.schoolDateStart = schoolDateStart;
+	public void setSchoolStartDate(String schoolStartDate) {
+		this.schoolStartDate = schoolStartDate;
 	}
 
-	public String getSchoolDateEnd() {
-		return schoolDateEnd;
+	public String getSchoolEndDate() {
+		return schoolEndDate;
 	}
 
-	public void setSchoolDateEnd(String schoolDateEnd) {
-		this.schoolDateEnd = schoolDateEnd;
+	public void setSchoolEndDate(String schoolEndDate) {
+		this.schoolEndDate = schoolEndDate;
 	}
 
 	public String getStatus() {
