@@ -19,14 +19,14 @@
             <div></div>
             <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
-                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo">고객이름 &nbsp;&nbsp;</div>
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${name} 님 &nbsp;&nbsp;</div>
                 </div>
         </div>
             <div id="profile-hover">
                 <ul>
                     <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
-                    <li id="resume"><a href="jobOpening_management.jsp"><span>공고 관리</span></a></li>
-                    <li id="logout"><a href="#"><span>로그아웃</span></a></li>
+                    <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
+                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
                 </ul>
             </div>
     </header>
@@ -41,14 +41,16 @@
                 </div>
                 <div class="content1">
                     <dl>
-                        <dt>마감일자</dt>
-                            <dd>2022-07-12</dd>
+                        <dt>모집분야</dt>
+                            <dd>백엔드 / 프론트엔드</dd>
+                        <dt>경력여부</dt>
+                            <dd>신입 / 5년↑</dd>
+                        <dt>스택</dt>
+                            <dd>Java · JSP · MySQL · IntelliJ IDEA</dd>
                         <dt>근무지 주소</dt>
                             <dd>인천광역시 남동구 인주대로 593 엔타스 12층</dd>
-                        <dt>모집분야</dt>
-                            <dd>백엔드, 프론트엔드 모집인원 00명</dd>
-                        <dt>경력여부</dt>
-                            <dd>신입, 경력 (5년 이상)</dd>
+                        <dt>모집일자</dt>
+                        	<dd>2022-08-20 ~ 2022-09-20</dd>
                     </dl>
                 </div>
             	</div>

@@ -120,7 +120,7 @@ public class IndividualDao {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, apply.getIndividual_id());
 			pstmt.setInt(2, apply.getJobOpening_no());
-			pstmt.setString(3, apply.getFieldName());
+			pstmt.setInt(3, apply.getField_no());
 			pstmt.setInt(4, apply.getCoverLetter_no());
 			
 			if(pstmt.executeUpdate() == 1) result = true;
@@ -131,5 +131,45 @@ public class IndividualDao {
 			System.out.println("insertApply Error : " + e.getMessage());
 		}
 		return result;
+	}
+	
+	// 지원한 공고 데이터 가져오기
+	public List<Apply> getApply(String individual_id) {
+		List<Apply> applys = new ArrayList<Apply>();
+		String query = "SELECT A.*, C.corporateName, F.name AS fieldName, F.career, F.pay FROM apply A "
+				+ "JOIN corporation C "
+				+ "ON C.id = (SELECT corporation_id FROM jobOpening WHERE no = A.jobOpening_no) "
+				+ "JOIN field F "
+				+ "ON F.no = A.field_no "
+				+ "WHERE individual_id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, individual_id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				int jobOpening_no = rs.getInt("jobOpening_no");
+				int field_no = rs.getInt("field_no");
+				int coverLetter_no = rs.getInt("coverLetter_no");
+				String status = rs.getString("status");
+				String corporateName = rs.getString("corporateName");
+				String fieldName = rs.getString("fieldName");
+				String career = rs.getString("career");
+				String pay = rs.getString("pay");
+				
+				Apply apply = new Apply(no, individual_id, jobOpening_no, field_no, coverLetter_no, status, corporateName, fieldName, career, pay);
+				applys.add(apply);
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getApply Error : " + e.getMessage());
+		}
+		return applys;
 	}
 }

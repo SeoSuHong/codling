@@ -289,9 +289,5 @@
     </section>
     <!--완료버튼-->
     <input type="submit" value="완료" class="resume_submit">
-    <!--footer-->
-    <footer>
-        <div id="footerbox">footer</div>
-    </footer>
 </body>
 </html>

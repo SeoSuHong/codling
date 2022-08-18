@@ -39,7 +39,7 @@
             <div class="resumemg">
                 <div class="resumemgbox" style="cursor: pointer;" onclick="location.href='job_accountment?no=${jobOpening.no}'">
                     <p><span>내가올린 공고</span></p>
-                    <button type="button" id="applicant_status" onclick="status(event)"><span>지원 현황</span></button>
+                    <button type="button" id="applicant_status" onclick="status(event, '${jobOpening.no}')"><span>지원 현황</span></button>
                     <div class="resumemgbox2">
                         <p><span>${jobOpening.title}</span></p>
                         <table>

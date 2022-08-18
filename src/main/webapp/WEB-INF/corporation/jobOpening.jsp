@@ -343,7 +343,7 @@
 		            <select name="fieldName" id="selField">
 		                <option value="" selected>지원분야를 선택해 주세요.</option>
 		                <c:forEach var="field" items="${fields}">
-			                <option value="${field.name}">${field.name}</option>
+			                <option value="${field.no}">${field.name}</option>
 		                </c:forEach>
 		            </select>
 		        </div>

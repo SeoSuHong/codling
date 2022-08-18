@@ -58,9 +58,9 @@ $(function(){
 });
 
 /* 지원 현황 */
-function status(event) {
+function status(event, jobOpening_no) {
 	event.stopPropagation();
-	location.href = 'applicant_status.jsp';
+	location.href = 'applicant_status?no=' + jobOpening_no;
 }
 
 /* 공고 수정 */

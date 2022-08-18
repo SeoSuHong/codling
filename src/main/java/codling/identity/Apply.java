@@ -1,19 +1,35 @@
 package codling.identity;
 
 public class Apply {
-	private int no, jobOpening_no, coverLetter_no;
-	private String individual_id, fieldName, status;
+	private int no, jobOpening_no, field_no, coverLetter_no;
+	private String individual_id, status;
+	private String corporateName, fieldName, career, pay;
 	
 	public Apply() {}
 
-	public Apply(int no, String individual_id, int jobOpening_no, String fieldName, int coverLetter_no, String status) {
+	public Apply(int no, String individual_id, int jobOpening_no, int field_no, int coverLetter_no, String status) {
 		super();
 		this.no = no;
 		this.individual_id = individual_id;
 		this.jobOpening_no = jobOpening_no;
-		this.fieldName = fieldName;
+		this.field_no = field_no;
 		this.coverLetter_no = coverLetter_no;
 		this.status = status;
+	}
+
+	public Apply(int no, String individual_id, int jobOpening_no, int field_no, int coverLetter_no, String status,
+			String corporateName, String fieldName, String career, String pay) {
+		super();
+		this.no = no;
+		this.individual_id = individual_id;
+		this.jobOpening_no = jobOpening_no;
+		this.field_no = field_no;
+		this.coverLetter_no = coverLetter_no;
+		this.status = status;
+		this.corporateName = corporateName;
+		this.fieldName = fieldName;
+		this.career = career;
+		this.pay = pay;
 	}
 
 	public int getNo() {
@@ -40,12 +56,12 @@ public class Apply {
 		this.jobOpening_no = jobOpening_no;
 	}
 	
-	public String getFieldName() {
-		return fieldName;
+	public int getField_no() {
+		return field_no;
 	}
 
-	public void setFieldName(String fieldName) {
-		this.fieldName = fieldName;
+	public void setField_no(int field_no) {
+		this.field_no = field_no;
 	}
 
 	public int getCoverLetter_no() {
@@ -62,5 +78,37 @@ public class Apply {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getCorporateName() {
+		return corporateName;
+	}
+
+	public void setCorporateName(String corporateName) {
+		this.corporateName = corporateName;
+	}
+
+	public String getFieldName() {
+		return fieldName;
+	}
+
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
+	}
+
+	public String getCareer() {
+		return career;
+	}
+
+	public void setCareer(String career) {
+		this.career = career;
+	}
+
+	public String getPay() {
+		return pay;
+	}
+
+	public void setPay(String pay) {
+		this.pay = pay;
 	}
 }

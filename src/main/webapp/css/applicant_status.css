@@ -14,7 +14,7 @@ a{text-decoration: none;}
 #menu-bar{width: 1220px; margin: 0 auto; margin-top: 25px;  display: flex; justify-content: space-between; align-items: center;}
 
 /*header*/
-#menu-bar>div{width: 131.5px; height: 5px;}
+#menu-bar>div{height: 5px;}
 #logoimg{width: 253.32px; height: 56.82px;}
 #profilelogo{width: 35px; height: 35px; margin: 5px;}
 #profile-box{display: flex; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}
@@ -37,13 +37,13 @@ ul{list-style: none;}
 /*section*/
 section{width: 1220px; margin: 0 auto; margin-top: 100px;}
 .jobOpeningmg1{width: 1220px; height: 250px; background: rgba(165, 227, 116, 0.3); border-radius: 10px;
-    display: flex; justify-content: left; align-items: center;margin-top: 30px; }
+    display: flex; justify-content: left; align-items: center; margin-top: 30px; }
 #jobOpening1 h3{font-weight:bold; margin-left: 20px; margin-bottom: 25px;}
 .jobOpeningbox1{width: 160px; height: 60px; margin-left: 40px;}
 .jobOpeningbox1>p>span{font-size: 0.9rem; color: #50B500; font-weight: bold;}
 .jobOpeningbox2{font-weight: bold; font-size: 1.5rem; color: #373F57;line-height: 15px;}
 .content1{display: flex;margin-left: 40px;line-height: 1rem; margin-top: 1rem; }
-.content1 dl{font-size: 1rem; color:#373F57;}
+.content1 dl{font-size: 1rem; color:#373F57; margin-bottom: 0;}
 .content1 dt{margin-right: 0.5rem; float:left; width: 130px;}
 .content1 dd{width:500px;}
 
@@ -67,7 +67,7 @@ section{width: 1220px; margin: 0 auto; margin-top: 100px;}
 .jobOpeningbox5>p>span{font-size: 0.9rem; color: #A3A3A3; font-weight: bold;}
 .jobOpeningbox6{font-weight: bold; font-size: 1.5rem; color:#A3A3A3;line-height: 15px;}
 .content3{display: flex;margin-left: 40px; line-height: 0.8rem; margin-top: 1rem;}
-.content3 dl{ font-size: 1rem;color:#A3A3A3;}
+.content3 dl{font-size: 1rem; color:#A3A3A3;}
 .content3 dt{margin-right: 0.5rem; float:left; width: 80px;}
 .content3 dd{width:550px;}
 

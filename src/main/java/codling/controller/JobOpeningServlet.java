@@ -72,9 +72,12 @@ public class JobOpeningServlet extends HttpServlet {
 		int coverLetterNo = 0;
 		String coverLetterNo_ = request.getParameter("coverLetterNo");
 		if(coverLetterNo_ != null && !coverLetterNo_.equals("")) coverLetterNo = Integer.parseInt(coverLetterNo_);
-		String fieldName = request.getParameter("fieldName");
 		
-		Apply apply = new Apply(0, indiId, no, fieldName, coverLetterNo, "");
+		int fieldNo = 0;
+		String fieldNo_ = request.getParameter("fieldName");
+		if(fieldNo_ != null && !fieldNo_.equals("")) fieldNo = Integer.parseInt(fieldNo_);
+		
+		Apply apply = new Apply(0, indiId, no, fieldNo, coverLetterNo, "");
 		boolean coverLetterResult = indiDao.insertApply(apply);
 		
 		response.setCharacterEncoding("UTF-8");
