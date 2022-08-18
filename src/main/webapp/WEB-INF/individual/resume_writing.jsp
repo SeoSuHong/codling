@@ -59,7 +59,7 @@
                         <td><p>학교명 *<input name="schoolName" id="uni_name" class="infoForm2" placeholder=" 학교명을 입력하세요"></p></td>
                      </tr>
                      <tr>
-                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="schoolDateStart" id="start"><span class="qqqtext"> ~ </span><input type="date" name="schoolDateEnd" class="infoForm2">
+                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="schoolStartDate" id="start"><span class="qqqtext"> ~ </span><input type="date" name="schoolEndDate" class="infoForm2">
                             <select name="status" class="edu_select2" required>
                                 <option value="" disabled selected>선택</option>
                                 <option value="졸업">졸업</option>
@@ -101,7 +101,7 @@
                         <td><p>학교명 *<input name="schoolName" id="uni_name" class="infoForm2" placeholder="학교명을 입력하세요"></p></td>
                      </tr>
                      <tr>
-                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="schoolDateStart" id="start"><span class="qqqtext"> ~ </span><input type="date" name="schoolDateEnd" class="infoForm2">
+                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="schoolStartDate" id="start"><span class="qqqtext"> ~ </span><input type="date" name="schoolEndDate" class="infoForm2">
                             <select name="status" class="edu_select2" required>
                                 <option value="" disabled selected>선택</option>
                                 <option value="졸업">졸업</option>
@@ -133,6 +133,7 @@
             <div id="stc_box"><div id="stc_box2"></div><div id="stacks" name="sel" size="10"></div></div>
             <input id="stack" name="keyword" onkeydown="keyDown()">
             <ul id="suggest" style="display:none; position:absolute; top:1344px;"></ul>
+            <input type="hidden" name="stack" id="st">
         </div>
         </article>
     </section>

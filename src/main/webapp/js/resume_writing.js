@@ -35,7 +35,7 @@ function addForm() {
 }
 function delForm(obj){
     var div = $(obj).parent();
-    //console.log(div);
+
     //라인 삭제
     div.remove();
 }
@@ -97,7 +97,7 @@ function sendKeyword() {
         return;
     else {
         var keyWord = document.resume_Frm.keyword.value;
-		console.log(keyWord);
+
         //키워드가 hide 함수를 불러 검색어 창 숨기기
         if (keyWord === "") {
             lastKeyword = "";
@@ -175,7 +175,7 @@ function addForm2() {
 }
 function delForm2(obj){
     var div = $(obj).parent();
-    //console.log(div);
+
     //라인 삭제
     div.remove();
 }
@@ -186,7 +186,7 @@ function addForm3() {
 }
 function delForm3(obj){
     var div = $(obj).parent();
-    //console.log(div);
+
     //라인 삭제
     div.remove();
 }
@@ -197,7 +197,7 @@ function addForm4() {
 }
 function delForm4(obj){
     var div = $(obj).parent();
-    //console.log(div);
+
     //라인 삭제
     div.remove();
 }
@@ -208,7 +208,7 @@ function addForm5() {
 }
 function delForm5(obj){
     var div = $(obj).parent();
-    //console.log(div);
+
     //라인 삭제
     div.remove();
 }
@@ -320,8 +320,8 @@ function check(){
 	
 	var schoollist = document.getElementsByName('school');
 	var schoolNamelist = document.getElementsByName('schoolName');
-	var startDatelist = document.getElementsByName('schoolDateStart');
-	var endDatelist = document.getElementsByName('schoolDateEnd');
+	var startDatelist = document.getElementsByName('schoolStartDate');
+	var endDatelist = document.getElementsByName('schoolEndDate');
 	var statuslist = document.getElementsByName('status');
 	var departmentlist = document.getElementsByName('department');
 	var scorelist = document.getElementsByName('score');
@@ -366,12 +366,24 @@ function check(){
 			
 		}
 		
-		if(document.resume_Frm.stack.value == ""){
+		let stackList = document.getElementsByClassName('stack');
+		var stack = "";
+		for(var idx = 0; idx < stackList.length; idx++) {
+			var i = idx;
+
+			if(i != stackList.length - 1) {
+				stack += stackList[i].innerText + " / ";
+			} else {
+				stack += stackList[i].innerText;
+			}
+		}
+		$('#st').val(stack);
+
+		if(!$('div').hasClass('stack')){
 			alert("보유하신 기술스택을 입력해주세요.");
-			document.resume_Frm.stack.focus();
+			document.resume_Frm.keyword.focus();
 			return;
 		}
-		
 		document.resume_Frm.submit();
 }
 

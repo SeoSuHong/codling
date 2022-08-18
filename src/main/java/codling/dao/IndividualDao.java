@@ -226,7 +226,7 @@ public class IndividualDao {
 	//이력서 포트폴리오 insert
 	public int setportfolio(List<Portfolio> portfolioList) {
 		int result = 0;
-		String query = "INSERT INTO portfolio VALUES(DEFAULT,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO portfolio VALUES(DEFAULT,?,?,?,?)";
 		
 		try {
 			for(int i = 0; i < portfolioList.size(); i++) {
@@ -237,10 +237,6 @@ public class IndividualDao {
 				pstmt.setString(2, portfolio.getName());
 				pstmt.setString(3, portfolio.getDetail());
 				pstmt.setString(4, portfolio.getUrl());
-				pstmt.setString(5, portfolio.getTitle());
-				pstmt.setString(6, portfolio.getFileName());
-				pstmt.setString(7, portfolio.getFiledetail());
-				pstmt.setString(8, portfolio.getFileSize());
 				
 				if(pstmt.executeUpdate() == 1) result++;
 				
@@ -256,18 +252,18 @@ public class IndividualDao {
 	//파일 업로드
 	public boolean setfile(List<Portfolio> portfolioList) {
 		boolean result = false;
-		String query = "UPDATE portfolio SET title = ?, fileName = ?, filedetail = ?, fileSize = ? WHERE individual_id = ?";
+		String query = "INSERT INTO fileupload VALUES(DEFAULT,?,?,?,?,?)";
 		
 		try {
 			for(int i = 0; i < portfolioList.size(); i++) {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(query);
 				Portfolio portfolio = portfolioList.get(i);
-				pstmt.setString(1, portfolio.getTitle());
-				pstmt.setString(2, portfolio.getFileName());
-				pstmt.setString(3, portfolio.getFiledetail());
-				pstmt.setString(4, portfolio.getFileSize());
-				pstmt.setString(5, portfolio.getIndividual_id());
+				pstmt.setString(1, portfolio.getIndividual_id());
+				pstmt.setString(2, portfolio.getTitle());
+				pstmt.setString(3, portfolio.getFileName());
+				pstmt.setString(4, portfolio.getFiledetail());
+				pstmt.setString(5, portfolio.getFileSize());
 				
 				if(pstmt.executeUpdate() == 1) result = true;
 				

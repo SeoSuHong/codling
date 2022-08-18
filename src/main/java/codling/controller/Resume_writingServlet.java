@@ -97,18 +97,35 @@ public class Resume_writingServlet extends HttpServlet {
 		
 		//자격증내역
 		List<License> licenseList = new ArrayList<License>();
-		String[] license_name = request.getParameterValues("license_name");
-		String[] agency = request.getParameterValues("agency");
-		String[] pass = request.getParameterValues("pass");
-		String[] acquireDate = request.getParameterValues("acquireDate");
+		String[] license_name_ = request.getParameterValues("license_name");
+		String[] agency_ = request.getParameterValues("agency");
+		String[] pass_ = request.getParameterValues("pass");
+		String[] acquireDate_ = request.getParameterValues("acquireDate");
+		String license_name = "";
+		String agency = "";
+		String pass = "";
+		String acquireDate = "";
+		
+		for(int i = 0; i < license_name_.length-1; i++) {
+			if(i != license_name_.length-2) {
+				license_name += (license_name_ [i] + " / ");
+				agency += (agency_ [i] + " / ");
+				pass += (pass_ [i] + " / ");
+				acquireDate += (acquireDate_ [i] + " / ");
+			}else {
+				license_name += license_name_ [i];
+				agency += agency_ [i];
+				pass += pass_ [i];
+				acquireDate += acquireDate_ [i];
+			}
+		}
 		
 		int licenseResult = 0;
-		if(!license_name[0].equals("")) {
-			for(int i = 0; i < license_name.length-1; i++) {
-				License license = new License(0, indiId, license_name[i], agency[i], pass[i], acquireDate[i]);
+		
+		if(!license_name.equals("") && license_name != "") {
+				License license = new License(0, indiId, license_name, agency, pass, acquireDate);
 				licenseList.add(license);
 				licenseResult = dao.setLicense(licenseList);
-			}
 		}
 		
 		//포트폴리오
@@ -117,11 +134,11 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] portfolio_name_ = request.getParameterValues("portfolio_name");
 		String[] detail_ = request.getParameterValues("detail");
 		String[] url_ = request.getParameterValues("url");
-		String portfolio_name = null;
-		String detail = null;
-		String url = null;
-		for(int i = 0; i < portfolio_name_.length; i++) {
-			if(i < portfolio_name_.length) {
+		String portfolio_name = "";
+		String detail = "";
+		String url = "";
+		for(int i = 0; i < portfolio_name_.length-1; i++) {
+			if(i != portfolio_name_.length -2) {
 				portfolio_name += (portfolio_name_[i] + " / ");
 				detail += (detail_[i] + " / ");
 				url += (url_[i] + " / ");
@@ -177,16 +194,18 @@ public class Resume_writingServlet extends HttpServlet {
 			
 		}
 		
-		builder.delete(builder.length()-1, builder.length());
-		builders.delete(builders.length()-1, builders.length());
+		if(builder.toString() != "" && !builder.toString().equals("")) {
+			builder.delete(builder.length()-2, builder.length());
+			builders.delete(builders.length()-2, builders.length());
+		}
 		
 		String[] fileTitle_ = request.getParameterValues("fileTitle");
 		String[] file_detail_ = request.getParameterValues("file_detail");
-		String fileTitle = null;
-		String file_detail = null;
+		String fileTitle = "";
+		String file_detail = "";
 		
-		for(int i = 0; i < fileTitle_.length; i++) {
-			if(i < fileTitle_.length) {
+		for(int i = 0; i < fileTitle_.length-1; i++) {
+			if(i != fileTitle_.length-2) {
 				fileTitle += (fileTitle_[i] + " / ");
 				file_detail += (file_detail_[i] + " / ");
 			}else {
@@ -196,8 +215,8 @@ public class Resume_writingServlet extends HttpServlet {
 		}
 		
 		boolean fileuploadResult = false;
-		if(!portfolio_name.equals("") && portfolio_name != "") {
-				Portfolio fileupload = new Portfolio(0, "", "", "", "", fileTitle, file_detail, builder.toString(), builders.toString());
+		if(!fileTitle.equals("") && fileTitle != "") {
+				Portfolio fileupload = new Portfolio(0, indiId, "", "", "", fileTitle, builder.toString(), file_detail, builders.toString());
 				fileuploadList.add(fileupload);
 				fileuploadResult = dao.setfile(fileuploadList);
 		}
