@@ -111,6 +111,33 @@ public class IndividualDao {
 		return coverLetterList;
 	}
 	
+	// 자기소개서 작성
+	public boolean insertCoverLetter(CoverLetter coverLetter) {
+		boolean result = false;
+		String query = "INSERT INTO coverLetter "
+				+ "VALUES(DEFAULT, ?, ?, ?)";
+		
+		return result;
+	}
+	
+	// 자기소개서 수정
+	public boolean updateCoverLetter(CoverLetter coverLetter) {
+		boolean result = false;
+		String query = "UPDATE coverLetter "
+				+ "SET individual_id = ?, title = ?, content = ? "
+				+ "WHERE no = ?";
+		
+		return result;
+	}
+	
+	// 자기소개서 삭제
+	public boolean deleteCoverLetter(CoverLetter coverLetter) {
+		boolean result = false;
+		String query = "DELETE FROM coverLetter WHERE no = ?";
+		
+		return result;
+	}
+	
 	// 개인회원 지원하기
 	public boolean insertApply(Apply apply) {
 		boolean result = false;

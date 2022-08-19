@@ -126,41 +126,54 @@
         </article>
         <article id="self">
             <h1>자기소개서 관리</h1>
-            <a href="#"><div class="self_box">
-                    <div id="self_introduction">
-                        <p><span>자기소개서</span></p>
-                            <div class="self_introductionbox">자기소개서가 없습니다. 자기소개서를 작성해주세요</div>
-                    </div>
-                </div>
-            </a>
-            <div class="chbtn-box">
-                <input type="button" name="update" id="update" value="수정" src="">
-                <input type="button" name="delete" id="delete" value="삭제" >
-            </div>
+            <c:if test="${empty coverLetters}">
+	            <div class="self_box">
+	                <div id="self_introduction">
+	                    <p><span>자기소개서</span></p>
+	                    <div class="self_introductionbox">자기소개서가 없습니다. 자기소개서를 작성해주세요</div>
+	                </div>
+	            </div>
+            </c:if>
+            <c:if test="${not empty coverLetters}">
+           		<c:forEach var="coverLetter" items="${coverLetters}">
+	            	<div class="self_box">
+		                <div id="self_introduction">
+		                    <p><span>자기소개서</span></p>
+		                    <div class="self_introductionbox">${coverLetter.title}</div>
+		                </div>
+		            </div>
+		            <div class="chbtn-box">
+		                <input type="button" name="update" id="update" onclick="showUpdate(${coverLetter.no}, '${coverLetter.title}', '${coverLetter.content}')" value="수정">
+		                <input type="button" name="delete" id="delete" onclick="self_delete(${coverLetter.no})" value="삭제" >
+		            </div>
+		        </c:forEach>
+            </c:if>
             <div class="btn-sel">
-                <input type="button" id="btn-sel" value="자기소개서 작성"></input>
+                <input type="button" id="btn-sel" onclick="showWrite()" value="자기소개서 작성">
             </div>
         </article>
         <div id="self_inbox">
-            <article>
-                <h1>자기소개서</h1>
-                <form action="" name="selfFrm" method="post">
-                    <div id="self_introduction_box">
-                        <div id="self_box">
-                            <div id="self_title">
-                                <input type="text" name="selftitle" id="input_title" placeholder="제목을 입력해 주세요.">
-                            </div>
-                            <div id="contents_box">
-                                <textarea type="text" name="selfcontent" id="input_contents" placeholder="내용을 입력해 주세요."></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </article>
-            <div class="btn-self">
-                <button action="" form="selfFrm" id="btn-self" onclick="self_check()">등록</button>
-                <button action="" id="btn-self-back" onclick="hidden()">취소</button>
-            </div>
+            <form name="selfFrm" method="post">
+	            <article>
+	                <h1>자기소개서</h1>
+	                    <div id="self_introduction_box">
+	                        <div id="self_box">
+	                            <div id="self_title">
+	                                <input name="selfTitle" id="input_title" placeholder="제목을 입력해 주세요.">
+	                            </div>
+	                            <div id="contents_box">
+	                                <textarea name="selfContent" id="input_contents" placeholder="내용을 입력해 주세요."></textarea>
+	                            </div>
+	                        </div>
+	                    </div>
+	            </article>
+	            <div id="btn-self">
+	                <input type="button" class="btn-self" id="createBtn" onclick="self_check()" value="작성">
+	                <input type="button" class="btn-self" id="updateBtn" onclick="self_update()" value="수정">
+	                <input type="button" class="btn-self" onclick="hideWrite()" value="취소">
+	                <input type="hidden" name="coverLetterNo">
+	            </div>
+            </form>
         </div>
     </section>
     <footer>

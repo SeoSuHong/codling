@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
 import codling.identity.Apply;
+import codling.identity.CoverLetter;
 
 @WebServlet("/resume_management")
 public class Resume_managementServlet extends HttpServlet {
@@ -28,16 +29,40 @@ public class Resume_managementServlet extends HttpServlet {
 		String name = map.get(id);
 		request.setAttribute("name", name);
 		
-		// 지원한 공고 데이터 가져오기
+		// 지원한 공고
 		IndividualDao indiDao = new IndividualDao();
 		List<Apply> applys = indiDao.getApply(id);
 		request.setAttribute("applys", applys);
+		
+		// 이력서
+		
+		// 자기소개서
+		List<CoverLetter> coverLetters = indiDao.getCoverLetter(id);
+		request.setAttribute("coverLetters", coverLetters);
 		
 		request.getRequestDispatcher("/WEB-INF/individual/resume_management.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String crud = request.getParameter("crud");
+		int no = 0;
+		String title, content;
+		
+		switch (crud) {
+		case "c":
+			title = request.getParameter("selfTitle");
+			content = request.getParameter("selfContent");
+			break;
+		case "u":
+			String no_ = request.getParameter("coverLetterNo");
+			if(no_ != null && !no_.equals("")) no = Integer.parseInt(no_);
+			title = request.getParameter("selfTitle");
+			content = request.getParameter("selfContent");
+			break;
+		case "d":
+			
+			break;
+		}
 	}
 
 }
