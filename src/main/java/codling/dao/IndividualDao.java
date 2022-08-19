@@ -117,6 +117,20 @@ public class IndividualDao {
 		String query = "INSERT INTO coverLetter "
 				+ "VALUES(DEFAULT, ?, ?, ?)";
 		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, coverLetter.getIndividual_id());
+			pstmt.setString(2, coverLetter.getTitle());
+			pstmt.setString(3, coverLetter.getContent());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("deleteCoverLetter Error : " + e.getMessage());
+		}
 		return result;
 	}
 	
@@ -127,14 +141,41 @@ public class IndividualDao {
 				+ "SET individual_id = ?, title = ?, content = ? "
 				+ "WHERE no = ?";
 		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, coverLetter.getIndividual_id());
+			pstmt.setString(2, coverLetter.getTitle());
+			pstmt.setString(3, coverLetter.getContent());
+			pstmt.setInt(4, coverLetter.getNo());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateCoverLetter Error : " + e.getMessage());
+		}
 		return result;
 	}
 	
 	// 자기소개서 삭제
-	public boolean deleteCoverLetter(CoverLetter coverLetter) {
+	public boolean deleteCoverLetter(int no) {
 		boolean result = false;
 		String query = "DELETE FROM coverLetter WHERE no = ?";
 		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("deleteCoverLetter Error : " + e.getMessage());
+		}
 		return result;
 	}
 	

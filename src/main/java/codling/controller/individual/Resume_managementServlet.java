@@ -1,6 +1,7 @@
 package codling.controller.individual;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -44,25 +45,59 @@ public class Resume_managementServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("indiId");
+
+		request.setCharacterEncoding("UTF-8");
 		String crud = request.getParameter("crud");
 		int no = 0;
 		String title, content;
 		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		CoverLetter coverLetter = null;
+		IndividualDao indiDao = new IndividualDao();
+		boolean result = false;
 		switch (crud) {
 		case "c":
 			title = request.getParameter("selfTitle");
 			content = request.getParameter("selfContent");
+			
+			coverLetter = new CoverLetter(0, id, title, content);
+			result = indiDao.insertCoverLetter(coverLetter);
+			
+			if(result)
+				out.print("<script>alert('자기소개서 작성이 완료되었습니다.'); location.href = 'resume_management';</script>");
+			else
+				out.print("<script>alert('자기소개서 작성이 실패하였습니다.'); location.href = 'resume_management';</script>");
 			break;
 		case "u":
 			String no_ = request.getParameter("coverLetterNo");
 			if(no_ != null && !no_.equals("")) no = Integer.parseInt(no_);
 			title = request.getParameter("selfTitle");
 			content = request.getParameter("selfContent");
+			
+			coverLetter = new CoverLetter(no, id, title, content);
+			result = indiDao.updateCoverLetter(coverLetter);
+
+			if(result)
+				out.print("<script>alert('자기소개서 수정이 완료되었습니다.'); location.href = 'resume_management';</script>");
+			else
+				out.print("<script>alert('자기소개서 수정이 실패하였습니다.'); location.href = 'resume_management';</script>");
 			break;
 		case "d":
+			String no__ = request.getParameter("no");
+			if(no__ != null && !no__.equals("")) no = Integer.parseInt(no__);
 			
+			result = indiDao.deleteCoverLetter(no);
+
+			if(result)
+				out.print("<script>alert('자기소개를 삭제하였습니다.'); location.href = 'resume_management';</script>");
+			else
+				out.print("<script>alert('자기소개서 삭제에 실패하였습니다.'); location.href = 'resume_management';</script>");
 			break;
 		}
 	}
-
 }
