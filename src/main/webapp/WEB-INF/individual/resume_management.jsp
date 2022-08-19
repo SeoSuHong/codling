@@ -112,7 +112,7 @@
         </article>
         <article id="resume">
             <h1>이력서 관리</h1>
-            <a href="resume_writing.jsp">
+            <a href="resume_writing">
             	<div class="resumemg">
                 	<div class="resumemgbox">
                     	<p><span>이력서</span></p>
@@ -121,7 +121,7 @@
             	</div>
             </a>
             <div class="btn-res">
-                <a href="resume_writing.jsp"><button id="btn-res">이력서 작성</button></a>
+                <a href="resume_writing"><button id="btn-res">이력서 작성</button></a>
             </div>
         </article>
         <article id="self">
@@ -140,10 +140,11 @@
 		                <div id="self_introduction">
 		                    <p><span>자기소개서</span></p>
 		                    <div class="self_introductionbox">${coverLetter.title}</div>
+		                    <div class="selfContent">${fn:replace(coverLetter.content, replacePrevChar, '<br>')}</div>
 		                </div>
 		            </div>
 		            <div class="chbtn-box">
-		                <input type="button" name="update" id="update" onclick="showUpdate(${coverLetter.no}, '${coverLetter.title}', '${coverLetter.content}')" value="수정">
+		                <input type="button" name="update" id="update" onclick="showUpdate(${coverLetter.no}, '${coverLetter.title}', '${fn:replace(coverLetter.content, replacePrevChar, replaceCurrChar)}')" value="수정">
 		                <input type="button" name="delete" id="delete" onclick="self_delete(${coverLetter.no})" value="삭제" >
 		            </div>
 		        </c:forEach>

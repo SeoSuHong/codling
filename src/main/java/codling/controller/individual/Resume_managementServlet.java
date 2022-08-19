@@ -41,6 +41,8 @@ public class Resume_managementServlet extends HttpServlet {
 		List<CoverLetter> coverLetters = indiDao.getCoverLetter(id);
 		request.setAttribute("coverLetters", coverLetters);
 		
+		request.setAttribute("replacePrevChar", "\r\n"); // 줄바꿈 <br>처리를 위해
+		request.setAttribute("replaceCurrChar", "\\n"); // 줄바꿈 <br>처리를 위해
 		request.getRequestDispatcher("/WEB-INF/individual/resume_management.jsp").forward(request, response);
 	}
 
@@ -73,6 +75,7 @@ public class Resume_managementServlet extends HttpServlet {
 			else
 				out.print("<script>alert('자기소개서 작성이 실패하였습니다.'); location.href = 'resume_management';</script>");
 			break;
+			
 		case "u":
 			String no_ = request.getParameter("coverLetterNo");
 			if(no_ != null && !no_.equals("")) no = Integer.parseInt(no_);
@@ -87,6 +90,7 @@ public class Resume_managementServlet extends HttpServlet {
 			else
 				out.print("<script>alert('자기소개서 수정이 실패하였습니다.'); location.href = 'resume_management';</script>");
 			break;
+			
 		case "d":
 			String no__ = request.getParameter("no");
 			if(no__ != null && !no__.equals("")) no = Integer.parseInt(no__);
