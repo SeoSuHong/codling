@@ -1,4 +1,4 @@
-package codling.controller;
+package codling.controller.corporation;
 
 import java.io.IOException;
 

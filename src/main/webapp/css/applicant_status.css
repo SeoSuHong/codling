@@ -39,23 +39,22 @@ section{width: 1220px; margin: 0 auto; margin-top: 100px;}
 .jobOpeningmg1{width: 1220px; height: 250px; background: rgba(165, 227, 116, 0.3); border-radius: 10px;
     display: flex; justify-content: left; align-items: center; margin-top: 30px; }
 #jobOpening1 h3{font-weight:bold; margin-left: 20px; margin-bottom: 25px;}
-.jobOpeningbox1{width: 160px; height: 60px; margin-left: 40px;}
+.jobOpeningbox1{height: 60px; margin-left: 40px;}
 .jobOpeningbox1>p>span{font-size: 0.9rem; color: #50B500; font-weight: bold;}
-.jobOpeningbox2{font-weight: bold; font-size: 1.5rem; color: #373F57;line-height: 15px;}
-.content1{display: flex;margin-left: 40px;line-height: 1rem; margin-top: 1rem; }
-.content1 dl{font-size: 1rem; color:#373F57; margin-bottom: 0;}
-.content1 dt{margin-right: 0.5rem; float:left; width: 130px;}
-.content1 dd{width:500px;}
+.jobOpeningbox2{font-weight: bold; font-size: 1.5rem; color: #373F57; line-height: 15px;}
+.content1{display: flex; margin-left: 40px; line-height: 1rem; margin-top: 1rem;}
+.content1 dl{width: 1180px; font-size: 1rem; color:#373F57; margin-bottom: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.content1 dt{margin-right: 0.5rem; float:left; width: 100px;}
 
-#jobOpening2 h3{font-weight:bold;margin-top: 35px;}
+
+#jobOpening2 h3{font-weight:bold; margin-left: 20px; margin-top: 50px;}
 .jobOpeningmg2{width: 1220px; height: 290px; background: #F5F5F5; border-radius: 10px; display: flex; justify-content: left; align-items: center;margin-top: 25px;}
-.jobOpeningbox3{width: 160px; height: 60px; margin-left: 40px;}
+.jobOpeningbox3{height: 60px; margin-left: 40px;}
 .jobOpeningbox3>p>span{font-size: 0.9rem; color: #50B500; font-weight: bold;}
-.jobOpeningbox4{font-weight: bold; font-size: 1.5rem; color: #373F57;line-height: 15px;}
-.content2{display: flex;margin-left: 40px; line-height: 0.9rem; margin-top: 1rem;}
-.content2 dl{ font-size: 1rem; color:#373F57;}
-.content2 dt{margin-right: 0.5rem; float:left; width: 80px;}
-.content2 dd{width:550px;}
+.jobOpeningbox4{font-weight: bold; font-size: 1.5rem; color: #373F57; line-height: 15px;}
+.content2{display: flex; margin-left: 40px; line-height: 0.9rem; margin-top: 1rem;}
+.content2 dl{width: 1180px; font-size: 1rem; color:#373F57;}
+.content2 dt{margin-right: 0.5rem; float:left; width: 100px;}
 .jobbox{display: flex; flex-direction: column;}
 
 .jobOpeningmg3{width: 1220px; height: 290px; background: rgba(165, 227, 116, 0.3);border-radius: 10px;
@@ -69,11 +68,4 @@ section{width: 1220px; margin: 0 auto; margin-top: 100px;}
 .content3{display: flex;margin-left: 40px; line-height: 0.8rem; margin-top: 1rem;}
 .content3 dl{font-size: 1rem; color:#A3A3A3;}
 .content3 dt{margin-right: 0.5rem; float:left; width: 80px;}
-.content3 dd{width:550px;}
-
-
 dt{font-weight: normal;}
-
-
-
-

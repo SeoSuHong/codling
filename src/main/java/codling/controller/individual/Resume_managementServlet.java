@@ -1,6 +1,7 @@
-package codling.controller;
+package codling.controller.individual;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -10,33 +11,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import codling.dao.CorporationDao;
+import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
-import codling.identity.JobOpening;
+import codling.identity.Apply;
 
-@WebServlet("/applicant_status")
-public class Applicant_statusServlet extends HttpServlet {
+@WebServlet("/resume_management")
+public class Resume_managementServlet extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("corpId");
+		String id = (String)session.getAttribute("indiId");
 		
+		// 회원 이름 가져오기
 		InformationDao infoDao = new InformationDao();
-		Map<String, String> map = infoDao.getCorpName(id);
+		Map<String, String> map = infoDao.getIndiName(id);
 		String name = map.get(id);
 		request.setAttribute("name", name);
 		
-		int no = 0;
-		String no_ = request.getParameter("no");
-		if(no_ != null && !no_.equals("")) no = Integer.parseInt(no_);
+		// 지원한 공고 데이터 가져오기
+		IndividualDao indiDao = new IndividualDao();
+		List<Apply> applys = indiDao.getApply(id);
+		request.setAttribute("applys", applys);
 		
-		CorporationDao corpDao = new CorporationDao();
-		JobOpening jobOpening = corpDao.getJobOpening(no);
-		request.setAttribute("jobOpening", jobOpening);
-		
-		request.getRequestDispatcher("/WEB-INF/corporation/applicant_status.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/individual/resume_management.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
+
 }

@@ -1,4 +1,4 @@
-package codling.controller;
+package codling.controller.guest;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,6 +39,6 @@ public class Top100Servlet extends HttpServlet{
 		
 		request.setAttribute("announcement", announcement);
 		
-		request.getRequestDispatcher("/WEB-INF/public/top100.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/guest/top100.jsp").forward(request, response);
 	}
 }

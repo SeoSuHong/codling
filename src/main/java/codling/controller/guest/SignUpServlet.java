@@ -1,4 +1,4 @@
-package codling.controller;
+package codling.controller.guest;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +20,7 @@ import codling.identity.Individual;
 public class SignUpServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/public/signUp.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/guest/signUp.jsp").forward(request, response);
 	}
 	
 	@Override

@@ -67,7 +67,7 @@
                                 <td>
                                 <c:forEach var="field" items="${fields}" varStatus="st1">
                                 	<c:if test="${jobOpening.no == field.jobOpening_no && !st1.last}">
-                                		<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st2">
+                                		<c:forTokens var="career" items="${field.career}" delims="/" varStatus="st2">
 											<c:if test="${!st2.last}">
 												${career} or 
 											</c:if>
@@ -82,7 +82,7 @@
 										</c:forTokens> / 
 									</c:if>
 									<c:if test="${jobOpening.no == field.jobOpening_no && st1.last}">
-										<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st2">
+										<c:forTokens var="career" items="${field.career}" delims="/" varStatus="st2">
 											<c:if test="${!st2.last}">
 												${career} or 
 											</c:if>

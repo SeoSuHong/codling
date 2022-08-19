@@ -1,4 +1,4 @@
-package codling.controller;
+package codling.controller.guest;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,6 +36,6 @@ public class IndexServlet extends HttpServlet{
 		CorporationDao corpDao = new CorporationDao();
 		ArrayList<Announcement> announcement = corpDao.indexContents();
 		request.setAttribute("announcement", announcement);
-		request.getRequestDispatcher("/WEB-INF/public/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/guest/index.jsp").forward(request, response);
 	}
 }

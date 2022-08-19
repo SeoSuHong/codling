@@ -76,7 +76,7 @@
                             <span>${corporation.corporateName}</span>&ensp;&ensp;
 	                        <c:forEach var="field" items="${fields}">
                         		<span>${field.name} | </span>
-	                			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+	                			<c:forTokens var="career" items="${field.career}" delims="/" varStatus="st">
 	                				<c:if test="${fn:length(field.career) <= 3}">
 	                					<c:if test="${career == '신입'}">
 				                			<span>${career}</span>&ensp;&ensp;
@@ -119,7 +119,7 @@
                 <span class="corpName">${corporation.corporateName}</span>&ensp;&ensp;
 				<c:forEach var="field" items="${fields}">
                		<span>${field.name} | </span>
-	                <c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+	                <c:forTokens var="career" items="${field.career}" delims="/" varStatus="st">
 	             		<c:if test="${fn:length(field.career) <= 3}">
 	             			<c:if test="${career == '신입'}">
 	                			<span class="corpCarrer">${career}</span>&ensp;&ensp;
@@ -175,7 +175,7 @@
 	            </div>
 	            <h2>사용스택 및 툴</h2>
 	                <div class="corpStacks">
-	                	<c:forTokens var="stack" items="${field.stack}" delims=" / ">
+	                	<c:forTokens var="stack" items="${field.stack}" delims="/">
 	                    	<span class="stack">${stack}</span>
 	                    </c:forTokens>
 	                </div>
@@ -238,13 +238,13 @@
         </div>
         <div class="jobs">
             <dl>
-                <dt><img src="img/logo.png" alt=""></dt>
+                <dt><img src="img/logo.png"></dt>
                 <dd>${jobOpening.title}</dd>
                 <dd>${corporation.corporateName}</dd>
                 <dd>
                 	<c:forEach var="field" items="${fields}">
                 		${field.name} | 
-	                	<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+	                	<c:forTokens var="career" items="${field.career}" delims="/" varStatus="st">
 	            			<c:if test="${fn:length(field.career) <= 3}">
 	              				<c:if test="${career == '신입'}">
 		                			<span>${career}</span>&ensp;&ensp;
@@ -271,7 +271,7 @@
                 <dd>${jobOpening.title}</dd>
                 <dd>${corporation.corporateName}</dd>
                 <dd>
-                	<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+                	<c:forTokens var="career" items="${field.career}" delims="/" varStatus="st">
             			<c:if test="${fn:length(field.career) <= 3}">
               				<c:if test="${career == '신입'}">
 	                			<span>${career}</span>&ensp;&ensp;

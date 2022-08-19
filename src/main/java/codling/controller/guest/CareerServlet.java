@@ -1,4 +1,4 @@
-package codling.controller;
+package codling.controller.guest;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,13 +15,13 @@ import codling.dao.CorporationDao;
 import codling.dao.InformationDao;
 import codling.identity.Announcement;
 
-@WebServlet("/newcomer")
-public class NewcomerServlet extends HttpServlet{
+@WebServlet("/career")
+public class CareerServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CorporationDao corpDao = new CorporationDao();
 		HttpSession session = request.getSession();
 		String indiId = (String)session.getAttribute("indiId");
 		String corpId = (String)session.getAttribute("corpId");
-		
 		InformationDao infoDao = new InformationDao();
 		if(indiId != null) {
 			Map<String, String> map = infoDao.getIndiName(indiId);
@@ -33,12 +33,10 @@ public class NewcomerServlet extends HttpServlet{
 			request.setAttribute("corpName", corpName);
 		}
 		
-		CorporationDao corpDao = new CorporationDao();
-
-		ArrayList<Announcement> announcement = corpDao.newcomerContents();
+		ArrayList<Announcement> announcement = corpDao.careerContents();
 		
 		request.setAttribute("announcement", announcement);
 		
-		request.getRequestDispatcher("/WEB-INF/public/newcomer.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/guest/career.jsp").forward(request, response);
 	}
 }
