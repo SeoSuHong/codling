@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import codling.identity.Announcement;
 import codling.identity.Career;
 import codling.identity.CoverLetter;
 import codling.identity.Education;
@@ -48,8 +49,10 @@ public class IndividualDao {
 				String email = rs.getString("email");
 				String phone = rs.getString("phone");
 				String address = rs.getString("address");
+				String resumeTitle = rs.getString("resumeTitle");
+				String stack = rs.getString("stack");
 				
-				individual = new Individual(id, password, name, birth, gender, email, phone, address, "");
+				individual = new Individual(id, password, name, birth, gender, email, phone, address, resumeTitle, stack);
 				
 			}
 			
@@ -168,6 +171,7 @@ public class IndividualDao {
 		}
 		return result;
 	}
+	
 	//이력서 경력사항 insert
 	public int setCareer(List<Career> careerList) {
 		int result = 0;
@@ -274,5 +278,37 @@ public class IndividualDao {
 			System.out.println("setportfolio errors : " + e.getMessage());
 		}
 		return result;
+	}
+	
+	//학력정보 가져오기
+	public ArrayList<Education> getEducation(String id) {
+		ArrayList<Education> list = new ArrayList<Education>();
+		String query = "SELECT * FROM education WHERE individual_id = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				String individual_id = rs.getString("individual_id");
+				String school = rs.getString("school");
+				String schoolName = rs.getString("schoolName");
+				String schoolStartDate = rs.getString("schoolStartDate");
+				String schoolEndDate = rs.getString("schoolEndDate");
+				String status = rs.getString("status");
+				String department = rs.getString("department");
+				String score = rs.getString("score");
+				
+				Education education = new Education(no, individual_id, school, schoolName, schoolStartDate, schoolEndDate, status, department, score);
+				list.add(education);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		}catch (Exception e) {
+			System.out.println("getEducation : " + e.getMessage());
+		}
+		return list;
 	}
 }

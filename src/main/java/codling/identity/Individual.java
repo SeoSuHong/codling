@@ -1,12 +1,12 @@
 package codling.identity;
 
 public class Individual {
-	private String id, password, name, birth, gender, email, phone, address, resumeTitle;
+	private String id, password, name, birth, gender, email, phone, address, resumeTitle, stack ;
 	
 	public Individual() {}
 
 	public Individual(String id, String password, String name, String birth, String gender,
-			String email, String phone, String address, String resumeTitle) {
+			String email, String phone, String address, String resumeTitle, String stack) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -17,6 +17,7 @@ public class Individual {
 		this.phone = phone;
 		this.address = address;
 		this.resumeTitle = resumeTitle;
+		this.stack = stack;
 	}
 
 	public String getId() {
@@ -26,7 +27,7 @@ public class Individual {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -90,4 +91,14 @@ public class Individual {
 	public void setResumeTitle(String resumeTitle) {
 		this.resumeTitle = resumeTitle;
 	}
+
+	public String getStack() {
+		return stack;
+	}
+
+	public void setStack(String stack) {
+		this.stack = stack;
+	}
+
+	
 }
