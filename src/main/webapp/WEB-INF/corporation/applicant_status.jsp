@@ -37,7 +37,7 @@
                 <div class="jobbox2">
                 <div class="jobOpeningbox1">
                     <p><span>내가올린공고</span></p>
-                    <div class="jobOpeningbox2">공고제목</div>
+                    <div class="jobOpeningbox2">${jobOpening.title}</div>
                 </div>
                 <div class="content1">
                     <dl>
@@ -48,9 +48,9 @@
                         <dt>스택</dt>
                             <dd>Java · JSP · MySQL · IntelliJ IDEA</dd>
                         <dt>근무지 주소</dt>
-                            <dd>인천광역시 남동구 인주대로 593 엔타스 12층</dd>
+                            <dd>${jobOpening.region}</dd>
                         <dt>모집일자</dt>
-                        	<dd>2022-08-20 ~ 2022-09-20</dd>
+                        	<dd>${jobOpening.startDate} ~ ${jobOpening.endDate}</dd>
                     </dl>
                 </div>
             	</div>

@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import codling.dao.CorporationDao;
 import codling.dao.InformationDao;
+import codling.identity.JobOpening;
 
 @WebServlet("/applicant_status")
 public class Applicant_statusServlet extends HttpServlet {
@@ -26,6 +28,10 @@ public class Applicant_statusServlet extends HttpServlet {
 		int no = 0;
 		String no_ = request.getParameter("no");
 		if(no_ != null && !no_.equals("")) no = Integer.parseInt(no_);
+		
+		CorporationDao corpDao = new CorporationDao();
+		JobOpening jobOpening = corpDao.getJobOpening(no);
+		request.setAttribute("jobOpening", jobOpening);
 		
 		request.getRequestDispatcher("/WEB-INF/corporation/applicant_status.jsp").forward(request, response);
 	}
