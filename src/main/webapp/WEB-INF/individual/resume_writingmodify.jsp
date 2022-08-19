@@ -6,12 +6,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codling : 이력서 작성</title>
+    <title>Codling : 이력서 수정</title>
     <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
-    <link rel="stylesheet" href="css/resume_writing.css">
+    <link rel="stylesheet" href="css/resume_writingmodify.css">
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
-    <script src="js/resume_writing.js"></script>
+    <script src="js/resume_writingmodify.js"></script>
 </head>
 <body>
     <!--header-->
@@ -32,7 +32,7 @@
         </div>
     </header>
     <!--이력서제목-->
-    <form action="resume_writing" name="resume_Frm" method="post" enctype="multipart/form-data">
+    <form action="resume_writingmodify" name="resume_Frm" method="post" enctype="multipart/form-data">
     <section>
         <h2><b>이력서 제목</b></h2>
         <div><input name="resumetitle" class="resume_title" placeholder="이력서 제목을 입력하세요"></div>
@@ -294,7 +294,7 @@
                 <button type="button" class="filebtn">첨부파일</button>
                 <div class="file_box">
                 	<!-- 첨부파일 -->
-                    <label><span class="choose_file">파일선택</span>
+                    <label for="ex_filename"><span class="choose_file">파일선택</span>
                     <input type="file" name="fileName" id="ex_filename" class="filename"></label>
                     <input type="hidden" name="filelength" value="">
                 </div>

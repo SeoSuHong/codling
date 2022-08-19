@@ -57,6 +57,12 @@ section{width: 1220px; margin: 0 auto; margin-top: 100px;}
 #btn-res{width: 200px; height: 60px; border-radius: 15px; color: white; font-size: 1.3rem;
     background-color: #A5E374; border: none; font-weight: bold;}
 #btn-res:hover {background-color: #8bdf4b;}
+#resume_title{font-size: 1.8rem; color: #373F57;}
+#resumemg{height: 550px;}
+#resumemgbox2{display: flex;}
+#info{display: inline !important; width: 250px;}
+#myinfo{display: inline !important; width: 920px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+#resumetop{margin-top: -200px; }
 
 /*자기소개서*/
 #self{margin-top: 50px;}

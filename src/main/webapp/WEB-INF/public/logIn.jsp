@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name = "google-signin-client_id"content = "818581121502-4ra0mcisdnf0avcrhsird4a58hrg5hjt.apps.googleusercontent.com">
-    <title>Document</title>
+    <title>Codling : 로그인</title>
+    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="css/logIn.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="jQuery/jquery-3.6.0.min.js"></script>

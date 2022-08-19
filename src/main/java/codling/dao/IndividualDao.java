@@ -283,7 +283,7 @@ public class IndividualDao {
 	//학력정보 가져오기
 	public ArrayList<Education> getEducation(String id) {
 		ArrayList<Education> list = new ArrayList<Education>();
-		String query = "SELECT * FROM education WHERE individual_id = ?";
+		String query = "SELECT * FROM education WHERE individual_id = ? order by no asc";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
@@ -311,4 +311,118 @@ public class IndividualDao {
 		}
 		return list;
 	}
+	
+	//경력 가져오기
+		public ArrayList<Career> getCareer(String id) {
+			ArrayList<Career> list = new ArrayList<Career>();
+			String query = "SELECT * FROM career WHERE individual_id = ? order by no asc";
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					int no = rs.getInt("no");
+					String individual_id = rs.getString("individual_id");
+					String prev_company = rs.getString("prev_company");
+					String tenureStart = rs.getString("tenureStart");
+					String tenureEnd = rs.getString("tenureEnd");
+					String position = rs.getString("position");
+					String department = rs.getString("department");
+					String work_content = rs.getString("work_content");
+					
+					Career career = new Career(no, individual_id, prev_company, tenureStart, tenureEnd, position, department, work_content);
+					list.add(career);
+				}
+				rs.close();
+				pstmt.close();
+				conn.close();
+			}catch (Exception e) {
+				System.out.println("getCareer : " + e.getMessage());
+			}
+			return list;
+		}
+		
+		//자격증 가지고오기
+			public License getLicense(String id) {
+				License license = null;
+				String query = "SELECT * FROM license WHERE individual_id = ? order by no asc";
+				try {
+					conn = getConnection();
+					pstmt = conn.prepareStatement(query);
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						int no = rs.getInt("no");
+						String individual_id = rs.getString("individual_id");
+						String name = rs.getString("name");
+						String agency = rs.getString("agency");
+						String pass = rs.getString("pass");
+						String acquireDate = rs.getString("acquireDate");
+						
+						license = new License(no, individual_id, name, agency, pass, acquireDate);
+					}
+					rs.close();
+					pstmt.close();
+					conn.close();
+				}catch (Exception e) {
+					System.out.println("getLicense : " + e.getMessage());
+				}
+				return license;
+			}
+			
+			//포트폴리오 가져오기
+			public Portfolio getportfolio(String id) {
+				Portfolio portfolio = null;
+				String query = "SELECT * FROM portfolio WHERE individual_id = ? order by no asc";
+				try {
+					conn = getConnection();
+					pstmt = conn.prepareStatement(query);
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						int no = rs.getInt("no");
+						String individual_id = rs.getString("individual_id");
+						String name = rs.getString("name");
+						String detail = rs.getString("detail");
+						String url = rs.getString("url");
+						
+						portfolio = new Portfolio(no, individual_id, name, detail, url, "", "", "", "");
+					}
+					rs.close();
+					pstmt.close();
+					conn.close();
+				}catch (Exception e) {
+					System.out.println("getportfolio : " + e.getMessage());
+				}
+				return portfolio;
+			}
+			
+			//첨부파일 가져오기
+			public Portfolio getfileupload(String id) {
+				Portfolio fileupload = null;
+				String query = "SELECT * FROM portfolio WHERE individual_id = ? order by no asc";
+				try {
+					conn = getConnection();
+					pstmt = conn.prepareStatement(query);
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						int no = rs.getInt("no");
+						String individual_id = rs.getString("individual_id");
+						String title = rs.getString("title");
+						String fileName = rs.getString("fileName");
+						String filedetail = rs.getString("filedetail");
+						String fileSize = rs.getString("fileSize");
+						
+						fileupload = new Portfolio(no, individual_id, "", "", "", title, fileName, filedetail, fileSize);
+					}
+					rs.close();
+					pstmt.close();
+					conn.close();
+				}catch (Exception e) {
+					System.out.println("getfileupload : " + e.getMessage());
+				}
+				return fileupload;
+			}
 }

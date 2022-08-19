@@ -15,8 +15,10 @@ import codling.dao.CorporationDao;
 import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
 import codling.identity.Announcement;
+import codling.identity.Career;
 import codling.identity.Education;
 import codling.identity.Individual;
+import codling.identity.License;
 
 @WebServlet("/resume_management")
 public class Resume_managementServlet extends HttpServlet{
@@ -32,10 +34,14 @@ public class Resume_managementServlet extends HttpServlet{
 			request.setAttribute("indiName", indiName);
 			
 			Individual individual = indiviDao.getIndividual(indiId);
-			ArrayList<Education> Education = indiviDao.getEducation(indiId);
+			ArrayList<Education> education = indiviDao.getEducation(indiId);
+			ArrayList<Career> career = indiviDao.getCareer(indiId);
+			License license = indiviDao.getLicense(indiId);
 			
-			request.setAttribute("Individual", individual);
-			request.setAttribute("Education", Education);
+			request.setAttribute("license", license);
+			request.setAttribute("career", career);
+			request.setAttribute("individual", individual);
+			request.setAttribute("education", education);
 		} 
 		
 		request.getRequestDispatcher("/WEB-INF/individual/resume_management.jsp").forward(request, response);

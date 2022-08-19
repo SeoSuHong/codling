@@ -44,7 +44,7 @@ public class SignUpServlet extends HttpServlet {
 			String iEmail = request.getParameter("email");
 			String iPhone = request.getParameter("phoneInd1")+request.getParameter("phoneInd2");
 			String iAddress = request.getParameter("address")+" "+request.getParameter("detailAddress")+" "+request.getParameter("extraAddress");
-			Individual individual = new Individual(iId, iPw, iName, iBirth, iGender, iEmail, iPhone, iAddress,"");
+			Individual individual = new Individual(iId, iPw, iName, iBirth, iGender, iEmail, iPhone, iAddress,"", "");
 			
 			IndividualDao dao = new IndividualDao();
 			boolean result = dao.insertIndividual(individual);

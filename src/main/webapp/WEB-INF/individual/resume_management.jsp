@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Codling : 이력서</title>
+    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="css/resume_management.css">
     <script src="jQuery/jquery-3.6.0.min.js"></script>
@@ -254,18 +258,143 @@
                 <button class="apply_bar"></button>
             </div>
         </article>
-        <article id="resume">
-            <h1>이력서 관리</h1>
-            <div class="resumemg" style="cursor: pointer;" onclick="location.href='resume_writing'">
-                <div class="resumemgbox">
-                    <p><span>이력서</span></p>
-                    <div class="resumemgbox2">이력서가 없습니다. 이력서를 작성해 주세요</div>
-                </div>
-            </div>
-            <div class="btn-res">
-                <a href="resume_writing"><button id="btn-res">이력서 작성</button></a>
-            </div>
-        </article>
+        
+        <c:if test="${empty education}">
+	        <article id="resume">
+	            <h1>이력서 관리</h1>
+	            <div class="resumemg" style="cursor: pointer;" onclick="location.href='resume_writing'">
+	                <div class="resumemgbox">
+	                    <p><span>이력서</span></p>
+	                    <div class="resumemgbox2">이력서가 없습니다. 이력서를 작성해 주세요</div>
+	                </div>
+	            </div>
+	            <div class="btn-res">
+	                <a href="resume_writing"><button id="btn-res">이력서 작성</button></a>
+	            </div>
+	        </article>
+		</c:if>
+		<c:if test="${not empty education}">
+	        <article id="resume">
+	            <h1>이력서 관리</h1>
+	            <div class="resumemg" id="resumemg" style="cursor: pointer;" onclick="location.href='resume_writingmodify'">
+	                <div class="resumemgbox">
+	                    <p id="resumetop"><span>이력서</span></p>
+	                    <p><span id="resume_title">${individual.resumeTitle}</span></p>
+	                    <div class="resumemgbox2" id="resumemgbox2">
+	                    	<div id="info">
+	                    		<p>이름</p>
+	                    		<p>경력</p>
+	                    		<p>보유 기술 스택</p>
+	                    		<p>보유 자격증</p>
+	                    		<p>최종학력</p>
+	                    		<p>휴대폰</p>
+	                    		<p>이메일</p>
+	                    		<p>주소</p>
+	                    	</div>
+	                    	<div id="myinfo">
+	                    		<p>${individual.name}</p>
+	                    		<p>
+	                    			<c:if test="${empty career}">
+	                    				신입
+	                    			</c:if>
+	                    			<c:if test="${not empty career}">
+	                    				<c:set var="tenure" value="0"/>
+	                    				<c:forEach var="car" items="${career}">
+		                    				<fmt:parseNumber var="tenureStartYear" value="${fn:substring(car.tenureStart, 0, 4)}" type="number"/>
+		                    				<fmt:parseNumber var="tenureEndYear" value="${fn:substring(car.tenureEnd, 0, 4)}" type="number"/>
+		                    				<c:set var="tenure" value="${tenure + (tenureEndYear - tenureStartYear)}"/>
+	                    				</c:forEach>
+	                    				${tenure}년
+	                    			</c:if>
+	                    		</p>
+	                    		<p>
+		                    		<c:if test="${not empty individual.stack}">
+		                    			<c:forTokens var="stack" items="${individual.stack}" delims=" / " varStatus="st">
+		                    				 <c:if test="${!st.last}">
+		                    				 	<span>${stack} · </span>
+		                    				 </c:if>
+		                    				 <c:if test="${st.last}">
+		                    				 	<span>${stack}</span>
+		                    				 </c:if>
+		                    			</c:forTokens>
+		                    		</c:if>
+	                    		</p>
+	                    		<p>
+	                    			<c:if test="${empty license.name}">
+		                    			보유하신 자격증이 있다면 등록 해주세요.
+		                    		</c:if>
+		                    		<c:if test="${not empty license.name}">
+		                    			<c:forTokens var="license" items="${license.name}" delims=" / " varStatus="st">
+		                    				 <c:if test="${!st.last}">
+		                    				 	<span>${license} · </span>
+		                    				 </c:if>
+		                    				 <c:if test="${st.last}">
+		                    				 	<span>${license}</span>
+		                    				 </c:if>
+		                    			</c:forTokens>
+		                    		</c:if>
+	                    		</p>
+	                    		<p>
+	                    			<c:set var="lastschoolnum" value="0"/>
+	                    			<c:set var="lastschool" value=""/>
+	                    			<c:forEach var="educations" items="${education}">
+	                    				<c:if test="${educations.school == '고등학교'}">
+	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 1}"/>
+	                    				</c:if>
+	                    				<c:if test="${educations.school == '대학교(2년)'}">
+	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 0.5}"/>
+	                    				</c:if>
+	                    				<c:if test="${educations.school == '대학교(4년)'}">
+	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 1}"/>
+	                    				</c:if>
+	                    				<c:if test="${educations.school == '대학원(석사)'}">
+	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 1}"/>
+	                    				</c:if>
+	                    				<c:if test="${educations.school == '대학원(박사)'}">
+	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 1}"/>
+	                    				</c:if>
+	                    			</c:forEach>
+	                    			<c:if test="${lastschoolnum == 1}">
+	                    				<c:set var="lastschool" value="고등학교"/>
+	                    			</c:if>
+	                    			<c:if test="${lastschoolnum == 1.5}">
+	                    				<c:set var="lastschool" value="대학교(2년)"/>
+	                    			</c:if>
+	                    			<c:if test="${lastschoolnum == 2}">
+	                    				<c:set var="lastschool" value="대학교(4년)"/>
+	                    			</c:if>
+	                    			<c:if test="${lastschoolnum == 2.5}">
+	                    				<c:set var="lastschool" value="대학교(4년)"/>
+	                    			</c:if>
+	                    			<c:if test="${lastschoolnum == 3}">
+	                    				<c:set var="lastschool" value="대학원(석사)"/>
+	                    			</c:if>
+	                    			<c:if test="${lastschoolnum == 3.5}">
+	                    				<c:set var="lastschool" value="대학원(석사)"/>
+	                    			</c:if>
+	                    			<c:if test="${lastschoolnum == 4}">
+	                    				<c:set var="lastschool" value="대학원(박사)"/>
+	                    			</c:if>
+	                    			<c:if test="${lastschoolnum == 4.5}">
+	                    				<c:set var="lastschool" value="대학원(박사)"/>
+	                    			</c:if>
+	                    			${lastschool}
+								</p>
+	                    		<p>
+	                    			${fn:substring(individual.phone, 0, 3)} - ${fn:substring(individual.phone, 3, 7)} - ${fn:substring(individual.phone, 7, 11)}
+	                    		</p>
+	                    		<p>${individual.email}</p>
+	                    		<p>${individual.address}</p>
+	                    	</div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="btn-res">
+	                <a href="resume_writingmodify"><button id="btn-res">이력서 수정</button></a>
+	            </div>
+	        </article>
+		</c:if>
+
         <article id="self">
             <h1>자기소개서 관리</h1>
             <div class="self_box" style="cursor: pointer;" onclick="selfintro()">
