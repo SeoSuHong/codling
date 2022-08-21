@@ -17,7 +17,7 @@
     <script src="jQuery/jquery-ui.min.js"></script>
     <script src="js/resume_management.js"></script>
 </head>
-<body onresize="update_screen_size()">
+<body>
     <header>
         <div id="menu-bar">
             <div></div>
@@ -299,12 +299,35 @@
 	                    			</c:if>
 	                    			<c:if test="${not empty career}">
 	                    				<c:set var="tenure" value="0"/>
+	                    				<c:set var="month" value="0"/>
 	                    				<c:forEach var="car" items="${career}">
 		                    				<fmt:parseNumber var="tenureStartYear" value="${fn:substring(car.tenureStart, 0, 4)}" type="number"/>
 		                    				<fmt:parseNumber var="tenureEndYear" value="${fn:substring(car.tenureEnd, 0, 4)}" type="number"/>
+		                    				<fmt:parseNumber var="tenureStartmonth" value="${fn:substring(car.tenureStart, 5, 7)}" type="number"/>
+		                    				<fmt:parseNumber var="tenureEndmonth" value="${fn:substring(car.tenureEnd, 5, 7)}" type="number"/>
 		                    				<c:set var="tenure" value="${tenure + (tenureEndYear - tenureStartYear)}"/>
+		                    				<c:set var="month" value="${month + (tenureStartmonth - tenureEndmonth)}"/>
 	                    				</c:forEach>
-	                    				${tenure}년
+	                    				<c:if test="${tenure == '1'}">
+	                    					<c:if test="${month > 12}">
+	                    						<c:set var="tenure" value="${tenure + 1}"/>
+		                    					<c:set var="month" value="${month - 12}"/>
+	                    					</c:if>
+	                    					<c:if test="${month < 0}">
+	                    					${month + 12}개월
+	                    					</c:if>
+	                    					<c:if test="${month > 0}">
+	                    					${tenure}년 ${month}개월
+	                    					</c:if>
+	                    				</c:if>
+	                    				<c:if test="${tenure == '0'}">
+	                    					<c:if test="${month == '0'}">
+	                    						신입
+	                    					</c:if>
+	                    					<c:if test="${month > 0}">
+	                    						${month}개월
+	                    					</c:if>
+	                    				</c:if>
 	                    			</c:if>
 	                    		</p>
 	                    		<p>
