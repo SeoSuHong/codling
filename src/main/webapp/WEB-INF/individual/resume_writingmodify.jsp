@@ -141,7 +141,7 @@
         </c:forEach>
         
         <c:forEach var="education" items="${education}" begin="1">
-	        <div id="edu_level_info1" class="list_file_tag1"> 
+	        <div id="edu_level_info_input" class="list_file_tag_input"> 
 	            <div class="eduLevelbox"> 
 	            <button type="button" class="edu_del" onclick="delForm(this);">삭제</button>
 	                <table class="edu_level_info">
@@ -309,29 +309,59 @@
     </section>
     <!--경력사항-->
     <section>
-        <div id="problem_list2">
-            <h2>경력사항<input type="button" class="ex_add" value="추가" onclick="addForm2();"></h2>
-            <div id="experiencebox"><br><br>
-                <table id= "ex_info_box">
-	                <tr>
-	                    <td><p> 회사 명 * <input name="perv_company" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
-	                </tr>
-	                <tr>
-	                    <td><p id="qqq"><span>재직기간 *</span><input type="date" name="tenureStart" class="infoForm4">
-	                        <span class="qqqtext"> ~ </span><input type="date" name="tenureEnd" class="infoForm4"></p></td>
-	                </tr>
-	                <tr>
-	                    <td> <p>직급/직책 *<input name="position" id="position" class="infoForm4" placeholder=" 근무했던 직책명을 입력하세요"></p></td>
-	                </tr>
-	                <tr>
-	                    <td><p>근무 부서 <input name="company_department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요"></p></td>
-	                </tr>
-	                <tr>
-	                    <td><p>주요업무<textarea name="work_content" placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail"></textarea></p></td>
-	                </tr>
-            	</table> 
+    
+    	<c:forEach var="career" items="${career }" begin="0" end="0" varStatus="st">
+	        <div id="problem_list2">
+	            <h2>경력사항<input type="button" class="ex_add" value="추가" onclick="addForm2();"></h2>
+	            <div id="experiencebox"><br><br>
+	                <table id= "ex_info_box">
+		                <tr>
+		                    <td><p> 회사 명 * <input name="perv_company" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요" value="${career.prev_company }"> </p></td>
+		                </tr>
+		                <tr>
+		                    <td><p id="qqq"><span>재직기간 *</span><input type="date" name="tenureStart" class="infoForm4" value="${career.tenureStart }">
+		                        <span class="qqqtext"> ~ </span><input type="date" name="tenureEnd" class="infoForm4" value="${career.tenureEnd }"></p></td>
+		                </tr>
+		                <tr>
+		                    <td> <p>직급/직책 *<input name="position" id="position" class="infoForm4" placeholder=" 근무했던 직책명을 입력하세요" value="${career.position }"></p></td>
+		                </tr>
+		                <tr>
+		                    <td><p>근무 부서 <input name="company_department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요" value="${career.department }"></p></td>
+		                </tr>
+		                <tr>
+		                    <td><p>주요업무<textarea name="work_content" placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail">${career.work_content }</textarea></p></td>
+		                </tr>
+	            	</table> 
+	        	</div>
+	        </div>
+		</c:forEach>
+		
+		<c:forEach var="career" items="${career }" begin="1" varStatus="st">
+        	<div id="experienced_info_input" class="list_file_tag_input"> 
+	            <div id="experiencebox">
+					<button type="button" class="ex_del" onclick="delForm2(this);">삭제</button>
+	                <table id= "ex_info_box">        
+		                <tr>
+		                    <td><p>회사 명 * <input name="company_name" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요" value="${career.prev_company }"> </p></td>
+		                </tr>
+		                <tr>
+		                    <td><p id="qqq"><span>재직 기간 *</span><input type="date" name="tenureStart" class="infoForm4" value="${career.tenureStart }">
+		                        <span class="qqqtext"> ~ </span><input type="date" name="tenureEnd" class="infoForm4" value="${career.tenureEnd }"></p></td>
+		                </tr>
+		                <tr>
+		                    <td> <p>직급/직책 *<input name="position" id="position" class="infoForm4" placeholder=" 근무했던 직책명을 입력하세요" value="${career.position }"></p></td>
+		                </tr>
+	                    <tr>
+		                    <td><p>근무 부서 <input name="company_department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요" value="${career.department }"></p></td>
+		                </tr>
+		                <tr>
+		                    <td><p>주요 업무<textarea name="work_content" placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail">${career.work_content }</textarea></p></td>
+		                </tr>
+		           	</table>
+	            </div> 
         	</div>
-        </div>
+        </c:forEach>
+        
         <div id="experienced_info" class="list_file_tag"> 
             <div id="experiencebox">
 				<button type="button" class="ex_del" onclick="delForm2(this);">삭제</button>
@@ -358,12 +388,19 @@
     </section>
     <!--자격증-->
     <section>
+    
         <div id="problem_list3">
             <h2>자격증 내역<input type="button" class="license_add" value="추가" onclick="addForm3();"></h2>
             <div id="licensebox"> 
                     <table><br><br>
                         <tr>
-                            <td><p>자격증명<input name="license_name" class="infoForm3" placeholder="자격증명을 입력하세요"></p></td>
+                            <td>
+                        	<p>자격증명
+                        		<c:forTokens var="license" items="${license.name}" begin="0" end="0" delims=" / " varStatus="st">
+                        			<input name="license_name" class="infoForm3" placeholder="자격증명을 입력하세요" value="${license}">
+                        		</c:forTokens>
+                        	</p>
+                        </td>
                         </tr>
                         <tr>
                             <td><p>발행처/기관<input name="agency" class="infoForm3" placeholder="발행기관명을 입력하세요"></p></td>
@@ -386,6 +423,42 @@
                     </table>
             </div>
         </div>
+        
+        <div id="license_info_input" class="list_file_tag_input"> 
+            <div id="licensebox">
+            	<button type="button" class="license_del" onclick="delForm3(this);">삭제</button>
+                <table>
+                    <tr>
+                        <td>
+                        	<p>자격증명
+                        		<c:forTokens var="license" items="${license.name}" begin="1" delims=" / " varStatus="st">
+                        			<input name="license_name" class="infoForm3" placeholder="자격증명을 입력하세요" value="${license}">
+                        		</c:forTokens>
+                        	</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p>발행처/기관<input name="agency" class="infoForm3" placeholder="발행기관명을 입력하세요"></p></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>합격구분 <select name="pass" class="license_select">
+                                <option value="" disabled selected>선택</option>
+                                <option value="1차합격">1차합격</option>
+                                <option value="2차합격">2차합격</option>
+                                <option value="필기합격">필기합격</option>
+                                <option value="실기합격">실기합격</option>
+                                <option value="최종합격">최종합격</option>
+                            </select></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p>취득일<input type="date" name="acquireDate" id="passday" class="infoForm3"></p></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
         <div id="license_info" class="list_file_tag"> 
             <div id="licensebox">
             	<button type="button" class="license_del" onclick="delForm3(this);">삭제</button>

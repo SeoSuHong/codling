@@ -47,8 +47,15 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			String indiName = map.get(indiId);
 			Individual individual = indiDao.getIndividual(indiId);
 			ArrayList<Education> education = indiDao.getEducation(indiId);
+			ArrayList<Career> career = indiDao.getCareer(indiId);
+			License license = indiDao.getLicense(indiId);
+			Portfolio portfolio = indiDao.getportfolio(indiId);
+			Portfolio fileupload = indiDao.getfileupload(indiId);
 			
-			
+			request.setAttribute("fileupload", fileupload);
+			request.setAttribute("portfolio", portfolio);
+			request.setAttribute("license", license);
+			request.setAttribute("career", career);
 			request.setAttribute("education", education);
 			request.setAttribute("individual", individual);
 			request.setAttribute("indiName", indiName);
