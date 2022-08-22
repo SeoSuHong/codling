@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,53 +36,208 @@
     <form action="resume_writingmodify" name="resume_Frm" method="post" enctype="multipart/form-data">
     <section>
         <h2><b>이력서 제목</b></h2>
-        <div><input name="resumetitle" class="resume_title" placeholder="이력서 제목을 입력하세요"></div>
+        <div><input name="resumetitle" class="resume_title" placeholder="이력서 제목을 입력하세요" value="${individual.resumeTitle}"></div>
     </section>
     <!--학력사항-->
     <section>
-        <div id="problem_list">
-            <h2><input type="button" class="edu_add" value="추가" onclick="addForm();">학력사항</h2>
-            <div class="eduLevelbox">
-            <br><br>
-                <table class="edu_level_info">                 
-                     <tr>
-                         <td><p>학력 * 
-                            <select name="school" onchange="schoolchange()" class="edu_select" required>
-                            <option value="" disabled selected>선택</option>
-                            <option value="고등학교">고등학교</option>
-                            <option value="대학교(2년)">대학교(2년)</option>
-                            <option value="대학교(4년)">대학교(4년)</option>
-                            <option value="대학원(석사)">대학원(석사)</option>
-                            <option value="대학원(박사)">대학원(박사)</option>
-                            </select>
-                        </p></td>
-                     </tr>
-                     <tr>
-                        <td><p>학교명 *<input name="schoolName" id="uni_name" class="infoForm2" placeholder=" 학교명을 입력하세요"></p></td>
-                     </tr>
-                     <tr>
-                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="schoolStartDate" id="start"><span class="qqqtext"> ~ </span><input type="date" name="schoolEndDate" class="infoForm2">
-                            <select name="status" class="edu_select2" required>
-                                <option value="" disabled selected>선택</option>
-                                <option value="졸업">졸업</option>
-                                <option value="졸업예정">졸업예정</option>
-                                <option value="재학">재학</option>
-                                <option value="휴학">휴학</option>
-                            </select>
-                        </p></td>
-                     </tr>
-                     <tr>
-                        <td><p>학과명<input name="department" id="major" class="infoForm2" placeholder=" 학과명을 입력하세요"></p></td>
-                     </tr>
-                     <tr>
-                        <td><p id="grade" class="grade"><span>학점</span><input type="text" name="score" id="insertgrade" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
-                            <span class="gradetext">/</span><input type="text" class="infoForm2" placeholder=" 4.5" readonly></p>
-                     </td>
-                    </tr>
-                </table>
-                 <p id="description">※ 재학 휴학 졸업예정 이라면 졸업년도에 현재 날자를 입력해 주세요.</p>
-            </div> 
-        </div>
+    	<c:forEach var="education" items="${education}" begin="0" end="0">
+	        <div id="problem_list">
+	            <h2><input type="button" class="edu_add" value="추가" onclick="addForm();">학력사항</h2>
+	            <div class="eduLevelbox">
+	            <br><br>
+	                <table class="edu_level_info">
+	                     <tr>
+	                         <td><p>학력 * 
+	                            <select name="school" onchange="schoolchange()" class="edu_select" required>
+	                            <option value="">선택</option>
+	
+	                            <c:if test="${education.school != '고등학교'}">
+	                            	<option value="고등학교">고등학교</option>
+	                            </c:if>
+	                            <c:if test="${education.school == '고등학교'}">
+	                            	<option value="고등학교" selected="selected">고등학교</option>
+	                            </c:if>
+	                            
+	                            <c:if test="${education.school != '대학교(2년)'}">
+	                            	<option value="대학교(2년)">대학교(2년)</option>
+	                            </c:if>
+	                            <c:if test="${education.school == '대학교(2년)'}">
+	                            	<option value="대학교(2년)" selected="selected">대학교(2년)</option>
+	                            </c:if>
+	                            
+	                            <c:if test="${education.school != '대학교(4년)'}">
+	                            	<option value="대학교(4년)">대학교(4년)</option>
+	                            </c:if>
+	                            <c:if test="${education.school == '대학교(4년)'}">
+	                            	<option value="대학교(4년)" selected="selected">대학교(4년)</option>
+	                            </c:if>
+	                            
+	                            <c:if test="${education.school != '대학원(석사)'}">
+	                            	<option value="대학원(석사)">대학원(석사)</option>
+	                            </c:if>
+	                            <c:if test="${education.school == '대학원(석사)'}">
+	                            	<option value="대학원(석사)" selected="selected">대학원(석사)</option>
+	                            </c:if>
+	                            
+	                            <c:if test="${education.school != '대학원(박사)'}">
+	                            	<option value="대학원(박사)">대학원(박사)</option>
+	                            </c:if>
+	                            <c:if test="${education.school == '대학원(박사)'}">
+	                            	<option value="대학원(박사)" selected="selected">대학원(박사)</option>
+	                            </c:if>
+	                            
+	                            </select>
+	                        </p></td>
+	                     </tr>
+	                     <tr>
+	                        <td><p>학교명 *<input name="schoolName" id="uni_name" class="infoForm2" placeholder=" 학교명을 입력하세요" value="${education.schoolName }"></p></td>
+	                     </tr>
+	                     <tr>
+	                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="schoolStartDate" id="start" value="${education.schoolStartDate}"><span class="qqqtext"> ~ </span><input type="date" name="schoolEndDate" class="infoForm2" value="${education.schoolEndDate}">
+	                            <select name="status" class="edu_select2" required>
+	                                <option value="" disabled selected>선택</option>
+	                                <c:if test="${education.status != '졸업'}">
+	                                	<option value="졸업">졸업</option>
+	                                </c:if>
+	                                <c:if test="${education.status == '졸업'}">
+	                                	<option value="졸업" selected="selected">졸업</option>
+	                                </c:if>
+	                                
+	                                <c:if test="${education.status != '졸업예정'}">
+	                                	<option value="졸업예정">졸업예정</option>
+	                                </c:if>
+	                                 <c:if test="${education.status == '졸업예정'}">
+	                                	<option value="졸업예정" selected="selected">졸업예정</option>
+	                                </c:if>
+	                                
+	                                <c:if test="${education.status != '재학'}">
+	                                	<option value="재학">재학</option>
+	                                </c:if>
+	                                <c:if test="${education.status == '재학'}">
+	                                	<option value="재학" selected="selected">재학</option>
+	                                </c:if>
+	                                
+	                                <c:if test="${education.status != '휴학'}">
+	                                	<option value="휴학">휴학</option>
+	                                </c:if>
+	                                <c:if test="${education.status == '휴학'}">
+	                                	<option value="휴학" selected="selected">휴학</option>
+	                                </c:if>
+	                            </select>
+	                        </p></td>
+	                     </tr>
+	                     <tr>
+	                        <td><p>학과명<input name="department" id="major" class="infoForm2" placeholder=" 학과명을 입력하세요" value="${education.department }"></p></td>
+	                     </tr>
+	                     <tr>
+	                        <td><p id="grade" class="grade"><span>학점</span><input type="text" name="score" id="insertgrade" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');" value="${education.score }"/>
+	                            <span class="gradetext">/</span><input type="text" class="infoForm2" placeholder=" 4.5" readonly></p>
+	                     </td>
+	                    </tr>
+	                </table>
+	                 <p id="description">※ 재학 휴학 졸업예정 이라면 졸업년도에 현재 날자를 입력해 주세요.</p>
+	            </div> 
+	        </div>
+        </c:forEach>
+        
+        <c:forEach var="education" items="${education}" begin="1">
+	        <div id="edu_level_info1" class="list_file_tag1"> 
+	            <div class="eduLevelbox"> 
+	            <button type="button" class="edu_del" onclick="delForm(this);">삭제</button>
+	                <table class="edu_level_info">
+	                     <tr>
+	                         <td><p>학력 * 
+	                            <select name="school" onchange="schoolchange()" class="edu_select" required>
+	                            <option value="">선택</option>
+	                            
+	                            <c:if test="${education.school != '고등학교'}">
+	                            	<option value="고등학교">고등학교</option>
+	                            </c:if>
+	                            <c:if test="${education.school == '고등학교'}">
+	                            	<option value="고등학교" selected="selected">고등학교</option>
+	                            </c:if>
+	                            
+	                            <c:if test="${education.school != '대학교(2년)'}">
+	                            	<option value="대학교(2년)">대학교(2년)</option>
+	                            </c:if>
+	                            <c:if test="${education.school == '대학교(2년)'}">
+	                            	<option value="대학교(2년)" selected="selected">대학교(2년)</option>
+	                            </c:if>
+	                            
+	                            <c:if test="${education.school != '대학교(4년)'}">
+	                            	<option value="대학교(4년)">대학교(4년)</option>
+	                            </c:if>
+	                            <c:if test="${education.school == '대학교(4년)'}">
+	                            	<option value="대학교(4년)" selected="selected">대학교(4년)</option>
+	                            </c:if>
+	                            
+	                            <c:if test="${education.school != '대학원(석사)'}">
+	                            	<option value="대학원(석사)">대학원(석사)</option>
+	                            </c:if>
+	                            <c:if test="${education.school == '대학원(석사)'}">
+	                            	<option value="대학원(석사)" selected="selected">대학원(석사)</option>
+	                            </c:if>
+	                            
+	                            <c:if test="${education.school != '대학원(박사)'}">
+	                            	<option value="대학원(박사)">대학원(박사)</option>
+	                            </c:if>
+	                            <c:if test="${education.school == '대학원(박사)'}">
+	                            	<option value="대학원(박사)" selected="selected">대학원(박사)</option>
+	                            </c:if>
+	                            
+	                            </select>
+	                        </p></td>
+	                     </tr>
+	                     <tr>
+	                        <td><p>학교명 *<input name="schoolName" id="uni_name" class="infoForm2" placeholder="학교명을 입력하세요" value="${education.schoolName }"></p></td>
+	                     </tr>
+	                     <tr>
+	                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="schoolStartDate" id="start" value="${education.schoolStartDate}"><span class="qqqtext"> ~ </span><input type="date" name="schoolEndDate" class="infoForm2" value="${education.schoolEndDate}">
+	                            <select name="status" class="edu_select2" required>
+	                                <c:if test="${education.status != '졸업'}">
+	                                	<option value="졸업">졸업</option>
+	                                </c:if>
+	                                <c:if test="${education.status == '졸업'}">
+	                                	<option value="졸업" selected="selected">졸업</option>
+	                                </c:if>
+	                                
+	                                <c:if test="${education.status != '졸업예정'}">
+	                                	<option value="졸업예정">졸업예정</option>
+	                                </c:if>
+	                                 <c:if test="${education.status == '졸업예정'}">
+	                                	<option value="졸업예정" selected="selected">졸업예정</option>
+	                                </c:if>
+	                                
+	                                <c:if test="${education.status != '재학'}">
+	                                	<option value="재학">재학</option>
+	                                </c:if>
+	                                <c:if test="${education.status == '재학'}">
+	                                	<option value="재학" selected="selected">재학</option>
+	                                </c:if>
+	                                
+	                                <c:if test="${education.status != '휴학'}">
+	                                	<option value="휴학">휴학</option>
+	                                </c:if>
+	                                <c:if test="${education.status == '휴학'}">
+	                                	<option value="휴학" selected="selected">휴학</option>
+	                                </c:if>
+	                            </select></p>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td><p>학과명<input name="department" id="major" class="infoForm2" placeholder="학과명을 입력하세요" value="${education.department }"></p></td>
+	                    </tr>
+	                    <tr>
+	                        <td><p id="grade" class="grade"><span>학점</span><input type="text" name="score" id="insertgrade" placeholder="본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');" value="${education.score }"/>
+	                            <span class="gradetext">/</span><input type="text" class="infoForm2" value="4.5" readonly></p>
+	                     	</td>
+	                    </tr>
+	                </table> 
+	                <p id="description">※ 재학 휴학 졸업예정 이라면 졸업년도에 현재 날자를 입력해 주세요.</p>
+	            </div> 
+	        </div>
+        </c:forEach>
+        
         <div id="edu_level_info" class="list_file_tag"> 
             <div class="eduLevelbox"> 
             <button type="button" class="edu_del" onclick="delForm(this);">삭제</button>
@@ -89,7 +245,7 @@
                      <tr>
                          <td><p>학력 * 
                             <select name="school" onchange="schoolchange()" class="edu_select" required>
-                            <option value="" disabled selected>선택</option>
+                            <option value="">선택</option>
                             <option value="고등학교">고등학교</option>
                             <option value="대학교(2년)">대학교(2년)</option>
                             <option value="대학교(4년)">대학교(4년)</option>
@@ -124,6 +280,7 @@
                 <p id="description">※ 재학 휴학 졸업예정 이라면 졸업년도에 현재 날자를 입력해 주세요.</p>
             </div> 
         </div>
+
     </section>
     <!--보유기술스택-->
     <section>
@@ -131,7 +288,19 @@
         <article id="stackbox">
         <div id="stack_box">
             <h3>기술스택</h3>
-            <div id="stc_box"><div id="stc_box2"></div><div id="stacks" name="sel" size="10"></div></div>
+            <div id="stc_box">
+            	<div id="stc_box2"></div>
+            	<div id="stacks" name="sel" size="10">
+            		<c:forTokens var="stack" items="${individual.stack}" delims=" / ">
+	            		<div class="st">
+	            			<div class="stack">
+								${stack}
+							</div>
+	            			<div onclick="parentElement.remove(this)" style="cursor:pointer"> X </div>
+	            		</div>
+            		</c:forTokens>
+            	</div>
+            </div>
             <input id="stack" name="keyword" onkeydown="keyDown()">
             <ul id="suggest" style="display:none; position:absolute; top:1344px;"></ul>
             <input type="hidden" name="stack" id="st">

@@ -23,6 +23,7 @@ import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
 import codling.identity.Career;
 import codling.identity.Education;
+import codling.identity.Individual;
 import codling.identity.License;
 import codling.identity.Portfolio;
 
@@ -39,11 +40,20 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		String indiId = (String)session.getAttribute("indiId");
 		
 		InformationDao infoDao = new InformationDao();
+		IndividualDao indiDao = new IndividualDao();
+		
 		if(indiId != null) {
 			Map<String, String> map = infoDao.getIndiName(indiId);
 			String indiName = map.get(indiId);
+			Individual individual = indiDao.getIndividual(indiId);
+			ArrayList<Education> education = indiDao.getEducation(indiId);
+			
+			
+			request.setAttribute("education", education);
+			request.setAttribute("individual", individual);
 			request.setAttribute("indiName", indiName);
 		}
+			
 		// resume_writing.jsp로 이동
 		request.getRequestDispatcher("/WEB-INF/individual/resume_writingmodify.jsp").forward(request, response);
 	}

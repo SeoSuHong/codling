@@ -300,34 +300,115 @@
 	                    			<c:if test="${not empty career}">
 	                    				<c:set var="tenure" value="0"/>
 	                    				<c:set var="month" value="0"/>
+	                    				<c:set var="result" value="0"/>
 	                    				<c:forEach var="car" items="${career}">
 		                    				<fmt:parseNumber var="tenureStartYear" value="${fn:substring(car.tenureStart, 0, 4)}" type="number"/>
 		                    				<fmt:parseNumber var="tenureEndYear" value="${fn:substring(car.tenureEnd, 0, 4)}" type="number"/>
 		                    				<fmt:parseNumber var="tenureStartmonth" value="${fn:substring(car.tenureStart, 5, 7)}" type="number"/>
 		                    				<fmt:parseNumber var="tenureEndmonth" value="${fn:substring(car.tenureEnd, 5, 7)}" type="number"/>
 		                    				<c:set var="tenure" value="${tenure + (tenureEndYear - tenureStartYear)}"/>
-		                    				<c:set var="month" value="${month + (tenureStartmonth - tenureEndmonth)}"/>
+		                    				<c:set var="month" value="${month + (tenureEndmonth - tenureStartmonth)}"/>
 	                    				</c:forEach>
-	                    				<c:if test="${tenure == '1'}">
-	                    					<c:if test="${month > 12}">
-	                    						<c:set var="tenure" value="${tenure + 1}"/>
-		                    					<c:set var="month" value="${month - 12}"/>
-	                    					</c:if>
-	                    					<c:if test="${month < 0}">
-	                    					${month + 12}개월
-	                    					</c:if>
-	                    					<c:if test="${month > 0}">
-	                    					${tenure}년 ${month}개월
-	                    					</c:if>
-	                    				</c:if>
+	                    				
+	                    				<!-- 0년 중에 경력 개월 -->
 	                    				<c:if test="${tenure == '0'}">
 	                    					<c:if test="${month == '0'}">
 	                    						신입
 	                    					</c:if>
-	                    					<c:if test="${month > 0}">
+	                    					<c:if test="${month < 12}">
 	                    						${month}개월
 	                    					</c:if>
+	                    					<c:if test="${month == 12}">
+	                    						1년
+	                    					</c:if>
+	                    					<c:if test="${month > 12}">
+	                    						${tenure + 1}년 ${month - 12}개월
+	                    					</c:if>
+	                    					<c:if test="${month > 24}">
+	                    						${tenure + 2}년 ${month - 24}개월
+	                    					</c:if>
+	                    					<c:if test="${month > 36}">
+	                    						${tenure + 3}년 ${month - 36}개월
+	                    					</c:if>
+	                    					<c:if test="${month > 48}">
+	                    						${tenure + 4}년 ${month - 48}개월
+	                    					</c:if>
+	                    					<c:if test="${month > 60}">
+	                    						${tenure + 5}년 ${month - 60}개월
+	                    					</c:if>
 	                    				</c:if>
+	                    				
+	                    				<!-- 1년 중에 경력 개월 -->
+	                    				<c:if test="${tenure == '1'}">
+	                    					<c:if test="${month == '0'}">
+	                    						${tenure}년
+	                    					</c:if>
+	                    					<c:if test="${month < 0}">
+	                    						<c:set var="result" value="${(tenure * 12) + month}"/>
+	                    						${result}개월
+	                    					</c:if>
+	                    					<c:if test="${month > 0}">
+	                    						${tenure }년 ${month}개월
+	                    					</c:if>
+	                    				</c:if>
+	                    				
+	                    				<c:if test="${tenure > 1}">
+	                    					<!-- 2년 이상 중에 경력 개월 -->
+	                    					<c:if test="${month == '0'}">
+	                    						${tenure}년
+	                    					</c:if>
+	                    					<c:if test="${month < 0}">
+	                    						<c:if test="${month < -48}">
+		                    						<c:set var="result" value="${month + 60}"/>
+		                    						${tenure - 5}년 ${result}개월
+		                    					</c:if>
+	                    						<c:if test="${month < -36}">
+		                    						<c:set var="result" value="${month + 48}"/>
+		                    						${tenure - 4}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month < -24}">
+		                    						<c:set var="result" value="${month + 36}"/>
+		                    						${tenure - 3}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month < -12}">
+		                    						<c:set var="result" value="${month + 24}"/>
+		                    						${tenure - 2}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month >= -12}">
+		                    						<c:set var="result" value="${month + 12}"/>
+		                    						${tenure - 1}년 ${result}개월
+		                    					</c:if>
+	                    					</c:if>
+	                    					
+	                    					<!-- 2년 이상 중에 경력 개월 -->
+	                    					<c:if test="${month > 0}">
+	                    						<c:if test="${month > 60}">
+		                    						<c:set var="result" value="${month - 60}"/>
+		                    						${tenure + 5}년 ${result}개월
+		                    					</c:if>
+	                    						<c:if test="${month > 48}">
+		                    						<c:set var="result" value="${month - 48}"/>
+		                    						${tenure + 4}년 ${result}개월
+		                    					</c:if>
+	                    						<c:if test="${month > 36}">
+		                    						<c:set var="result" value="${month - 36}"/>
+		                    						${tenure + 3}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month > 24}">
+		                    						<c:set var="result" value="${month - 24}"/>
+		                    						${tenure + 2}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month > 12}">
+		                    						<c:set var="result" value="${month - 12}"/>
+		                    						${tenure + 1}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month <= 12}">
+		                    						<c:set var="result" value="${month}"/>
+		                    						${tenure}년 ${result}개월
+		                    					</c:if>
+	                    					</c:if>
+	                    				</c:if>
+	                    				
 	                    			</c:if>
 	                    		</p>
 	                    		<p>
