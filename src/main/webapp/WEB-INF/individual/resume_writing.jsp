@@ -31,7 +31,7 @@
         </div>
     </header>
     <section>
-    	<form action="" name="" method="post" enctype="multipart/form-data">
+    	<form action="" name="resumeForm" method="post" enctype="multipart/form-data">
 		    <!--이력서제목-->
 	        <h2>이력서 제목</h2>
 	        <div>
@@ -49,7 +49,7 @@
 	                     <tr>
                          	<th>학력 * </th>
                          	<td>
-	                            <select class="edu_select">
+	                            <select name="school">
 		                            <option value="" selected>선택</option>
 		                            <option value="고등학교">고등학교</option>
 		                            <option value="대학교(2년)">대학교(2년)</option>
@@ -62,14 +62,14 @@
 	                     <tr>
 	                        <th>학교명 * </th>
 	                        <td>
-	                        	<input placeholder=" 학교명을 입력하세요.">
+	                        	<input name="schoolName" placeholder=" 학교명을 입력하세요.">
 	                        </td>
 	                     </tr>
 	                     <tr>
 	                        <th>재학기간 * </th>
 	                        <td>
-	                        	<input type="date" class="edu_date"> ~ <input type="date" class="edu_date">
-	                            <select>
+	                        	<input type="date" name="schoolStartDate" class="edu_date"> ~ <input type="date" name="schoolEndDate" class="edu_date">
+	                            <select name="status">
 	                                <option value="" selected>선택</option>
 	                                <option value="졸업">졸업</option>
 	                                <option value="졸업예정">졸업예정</option>
@@ -81,13 +81,13 @@
 	                     <tr>
 	                        <th>학과명 * </th>
 	                       	<td>
-	                        	<input placeholder=" 전공을 입력하세요.">
+	                        	<input name="department" placeholder=" 전공을 입력하세요.">
 	                        </td>
 	                     </tr>
 	                     <tr>
 	                        <th>학점</th>
 	                        <td>
-	                        	<input type="text" class="score" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '')"/>
+	                        	<input class="score" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '')"/>
 	                            / 4.5
 	                     	</td>
 	                    </tr>
@@ -98,11 +98,11 @@
 		        <div class="hideEdu">
 		            <div class="addForm">
 	                    <input type="button" class="delBtn" onclick="delForm(this)" value="삭제" >
-		                <table class="edu_level_info">                 
+		                <table>                 
 		                     <tr>
 		                         <th>학력 * </th>
 		                         <td>
-		                            <select class="edu_select">
+		                            <select name="school">
 			                            <option value="" selected>선택</option>
 			                            <option value="고등학교">고등학교</option>
 			                            <option value="대학교(2년)">대학교(2년)</option>
@@ -115,15 +115,15 @@
 		                     <tr>
 		                        <th>학교명 * </th>
 		                        <td>
-		                        	<input name="uni_name" id="uni_name" class="infoForm2" placeholder=" 학교명을 입력하세요">
+		                        	<input name="schoolName" placeholder=" 학교명을 입력하세요.">
 		                        </td>
 		                     </tr>
 		                     <tr>
 		                        <th>재학기간 * </th>
 		                        <td>
-		                        	<input type="date" class="edu_date"> ~ <input type="date" class="edu_date">
-		                            <select class="edu_select2" required>
-		                                <option value="" disabled selected>선택</option>
+		                        	<input type="date" name="schoolStartDate" class="edu_date"> ~ <input type="date" name="schoolEndDate" class="edu_date">
+		                            <select name="status">
+		                                <option value="" selected>선택</option>
 		                                <option value="고졸">졸업</option>
 		                                <option value="초대졸">졸업예정</option>
 		                                <option value="대졸">재학</option>
@@ -134,13 +134,13 @@
 		                     <tr>
 		                        <th>학과명 * </th>
 		                        <td>
-		                        	<input name="major" id="major" class="infoForm2" placeholder=" 전공을 입력하세요">
+		                        	<input name="department" placeholder=" 전공을 입력하세요.">
 		                        </td>
 		                     </tr>
 		                     <tr>
 		                        <th>학점</th>
 		                        <td>
-		                        	<input type="text" class="score" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
+		                        	<input class="score" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
 		                            / 4.5
 		                     	</td>
 		                    </tr>
@@ -150,54 +150,54 @@
 		    </div>
 	        
 	    	<!--보유기술스택-->
-	        <h2>보유기술스택</h2>
-	        <div id="stack_box" class="contentWrap">
-	            <h3>기술스택</h3>
-	            <input type="text" name="stack" class="stack" placeholder=" 보유 기술 스택을 입력하세요.">
+	        <h2>보유 기술스택</h2>
+	        <div class="contentWrap">
+	            <h3 id="stackTitle">기술스택</h3>
+	            <div id="stacks" name="sel" size="10" readonly="readonly"></div>
+	            <input id="stack" name="keyword" onkeydown="keyDown()" placeholder=" 보유 기술 스택을 입력하세요.">
+	            <ul id="suggest" style="display: none; position: absolute; top: 1290px;"></ul>
 	        </div>
 	        
 	    	<!--경력사항-->
-	        <div>
-	        	<div class="contentTitleWrap">
-	            	<h2>경력사항</h2>
-	            	<input type="button" id="addCareer" class="addBtn" value="추가">
-	            </div>
-	            <div id="career">
-		            <div class="contentWrap"> 
-		                <table>
-		                    <tr>
-		                        <th>회사명</th>
-		                        <td>
-		                        	<input name="company_name" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요">
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <th>재직기간</th>
-		                        <td>
-		                        	<input type="date" class="career_date"> ~ <input type="date" class="career_date">
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <th>직급/직책</th>
-		                        <td>
-		                        	<input name="position" id="position" class="infoForm4" placeholder=" 근무했던 직책명을 입력하세요">
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <th>근무부서</th>
-		                        <td>
-		                        	<input name="department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요">
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <th>주요업무</th>
-		                        <td>
-		                        	<textarea placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail"></textarea>
-		                        </td>
-		                    </tr>
-		                </table> 
-		        	</div>
-		        </div>
+        	<div class="contentTitleWrap">
+            	<h2>경력사항</h2>
+            	<input type="button" id="addCareer" class="addBtn" value="추가">
+            </div>
+            <div id="career">
+	            <div class="contentWrap"> 
+	                <table>
+	                    <tr>
+	                        <th>회사명</th>
+	                        <td>
+	                        	<input name="prev_company" placeholder=" 회사명을 입력하세요.">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <th>재직기간</th>
+	                        <td>
+	                        	<input type="date" name="tenureStartDate" class="career_date"> ~ <input type="date" name="tenureEndDate" class="career_date">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <th>직급/직책</th>
+	                        <td>
+	                        	<input name="position" placeholder=" 직책명을 입력하세요.">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <th>근무부서</th>
+	                        <td>
+	                        	<input name="career_department" placeholder=" 근무했던 부서명을 입력하세요.">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <th>주요업무</th>
+	                        <td>
+	                        	<textarea name="work_content" placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요."></textarea>
+	                        </td>
+	                    </tr>
+	                </table> 
+	        	</div>
 	        </div>
 	        <div id="hideCarWrap">
 		        <div class="hideCar">
@@ -207,31 +207,31 @@
 		                    <tr>
 		                        <th>회사명</th>
 		                        <td>
-		                        	<input name="company_name" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요">
+		                        	<input name="prev_company" placeholder=" 회사명을 입력하세요.">
 		                        </td>
 		                    </tr>
 		                    <tr>
 		                        <th>재직기간</th>
 								<td>
-									<input type="date" class="career_date"> ~ <input type="date" class="career_date">
+									<input type="date" name="tenureStartDate" class="career_date"> ~ <input type="date" name="tenureEndDate" class="career_date">
 								</td>
 		                    </tr>
 		                    <tr>
 		                        <th>직급/직책</th>
 		                        <td>
-		                        	<input name="position" id="position" class="infoForm4" placeholder=" 근무했던 직책명을 입력하세요">
+		                        	<input name="position" placeholder=" 근무했던 직책명을 입력하세요.">
 		                        </td>
 		                    </tr>
 		                    <tr>
 		                        <th>근무부서</th>
 		                        <td>
-		                        	<input name="department" id="department" class="infoForm4" placeholder=" 근무했던 부서명을 입력하세요">
+		                        	<input name="career_department" placeholder=" 근무했던 부서명을 입력하세요.">
 		                        </td>
 		                    </tr>
 		                    <tr>
 		                        <th>주요 업무</th>
 		                        <td>
-		                        	<textarea placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요" class="ex_detail"></textarea>
+		                        	<textarea name="work_content" placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요." class="ex_detail"></textarea>
 		                        </td>
 		                    </tr>
 		                </table> 
@@ -240,71 +240,69 @@
 	        </div>
 	        
 	    	<!--자격증-->
-	        <div id="problem_list3">
-	        	<div class="contentTitleWrap">
-	            	<h2>자격증 내역</h2>
-	            	<input type="button" id="addLicense" class="addBtn" value="추가">
+        	<div class="contentTitleWrap">
+            	<h2>자격증 내역</h2>
+            	<input type="button" id="addLicense" class="addBtn" value="추가">
+            </div>
+            <div id="license">
+	            <div class="contentWrap"> 
+	                <table>
+	                    <tr>
+	                        <th>자격증명</th>
+	                        <td>
+	                        	<input name="name" placeholder=" 자격증명을 입력하세요.">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <th>발행처/기관</th>
+	                        <td>
+	                        	<input name="agency" placeholder=" 발행기관명을 입력하세요.">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <th>합격구분</th>
+	                        <td>
+	                        	<select name="pass">
+	                                <option value="" selected>선택</option>
+	                                <option value="1차합격">1차합격</option>
+	                                <option value="2차합격">2차합격</option>
+	                                <option value="필기합격">필기합격</option>
+	                                <option value="실기합격">실기합격</option>
+	                                <option value="최종합격">최종합격</option>
+	                            </select>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <th>취득일</th>
+	                        <td>
+	                        	<input type="date" name="acquireDate" class="infoForm3">
+	                        </td>
+	                    </tr>
+	                </table>
 	            </div>
-	            <div id="license">
-		            <div class="contentWrap"> 
-		                <table>
-		                    <tr>
-		                        <th>자격증명</th>
-		                        <td>
-		                        	<input name="license_name" class="infoForm3" placeholder=" 자격증명을 입력하세요">
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <th>발행처/기관</th>
-		                        <td>
-		                        	<input name="organ_name" class="infoForm3" placeholder=" 발행기관명을 입력하세요">
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <th>합격구분</th>
-		                        <td>
-		                        	<select class="license_select">
-		                                <option value="" disabled selected>선택</option>
-		                                <option value="1차합격">1차합격</option>
-		                                <option value="2차합격">2차합격</option>
-		                                <option value="필기합격">필기합격</option>
-		                                <option value="실기합격">실기합격</option>
-		                                <option value="최종합격">최종합격</option>
-		                            </select>
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <th>취득일</th>
-		                        <td>
-		                        	<input type="date" name="pass_date" id="passday" class="infoForm3">
-		                        </td>
-		                    </tr>
-		                </table>
-		            </div>
-		        </div>
 	        </div>
-	        <div id="hideCarWrap">
-		        <div class="hideCar"> 
+	        <div id="hideLicWrap">
+		        <div class="hideLic"> 
 		            <div class="addForm"> 
 		                <input type="button" class="delBtn" onclick="delForm(this)" value="삭제" >
 		                <table>
 		                    <tr>
 		                        <th>자격증명</th>
 		                        <td>
-		                        	<input name="license_name" class="infoForm3" placeholder=" 자격증명을 입력하세요">
+		                        	<input name="name" placeholder=" 자격증명을 입력하세요.">
 		                        </td>
 		                    </tr>
 		                    <tr>
 		                        <th>발행처/기관</th>
 		                        <td>
-		                        	<input name="organ_name" class="infoForm3" placeholder=" 발행기관명을 입력하세요">
+		                        	<input name="agency" placeholder=" 발행기관명을 입력하세요.">
 		                        </td>
 		                    </tr>
 		                    <tr>
 		                        <th>합격구분</th>
 		                        <td>
-		                        	<select class="license_select">
-		                                <option value="" disabled selected>선택</option>
+		                        	<select name="pass">
+		                                <option value="" selected>선택</option>
 		                                <option value="1차합격">1차합격</option>
 		                                <option value="2차합격">2차합격</option>
 		                                <option value="필기합격">필기합격</option>
@@ -316,7 +314,7 @@
 		                    <tr>
 		                        <th>취득일</th>
 		                        <td>
-		                        	<input type="date" name="pass_date" id="passday" class="infoForm3">
+		                        	<input name="acquireDate" type="date">
 		                        </td>
 		                    </tr>
 		                </table>
@@ -335,13 +333,13 @@
 	                	<tr>
 		                	<th>프로젝트명</th>
 		                	<td>
-		                    	<input type="text" class="portfolio_title" placeholder=" 프로젝트명">
+		                    	<input placeholder=" 프로젝트명">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <th>URL 주소</th>
 		                    <td>
-			                    <input type="text" class="url" placeholder=" https://github.com/codling">
+			                    <input placeholder=" https://github.com/codling">
 		                    </td>
 		                </tr>
 		                <tr>
@@ -353,7 +351,7 @@
 		                <tr>
 		                	<th>세부사항</th>
 		                	<td>
-		                		<textarea rows="" cols=""></textarea>
+		                		<textarea placeholder=" 프로젝트에 대한 설명을 자유롭게 기술하세요."></textarea>
 		                	</td>
 		                </tr>
 	                </table>
@@ -367,13 +365,13 @@
 		                	<tr>
 			                	<th>프로젝트명</th>
 			                	<td>
-			                    	<input type="text" class="portfolio_title" placeholder=" 프로젝트명">
+			                    	<input type="text" placeholder=" 프로젝트명">
 			                    </td>
 			                </tr>
 			                <tr>
 			                    <th>URL 주소</th>
 			                    <td>
-				                    <input type="text" class="url" placeholder=" https://github.com/codling">
+				                    <input type="text" placeholder=" https://github.com/codling">
 			                    </td>
 			                </tr>
 			                <tr>
@@ -385,7 +383,7 @@
 			                <tr>
 			                	<th>세부사항</th>
 			                	<td>
-			                		<textarea rows="" cols=""></textarea>
+			                		<textarea placeholder=" 프로젝트에 대한 설명을 자유롭게 기술하세요."></textarea>
 			                	</td>
 			                </tr>
 		                </table>
@@ -395,7 +393,7 @@
 	    
 		    <!--완료버튼-->
 		    <div id="submitWrap">
-		    	<input type="button" value="완 료" id="submitBtn">
+		    	<input type="button" id="submitBtn" value="완 료" onclick="resumeChk()">
 		    </div>
 		</form>
     </section>
