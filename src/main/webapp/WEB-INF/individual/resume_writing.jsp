@@ -31,7 +31,7 @@
         </div>
     </header>
     <section>
-    	<form action="" name="resumeForm" method="post" enctype="multipart/form-data">
+    	<form action="resume_writing" name="resumeForm" method="post" enctype="multipart/form-data">
 		    <!--이력서제목-->
 	        <h2>이력서 제목</h2>
 	        <div>
@@ -49,7 +49,7 @@
 	                     <tr>
                          	<th>학력 * </th>
                          	<td>
-	                            <select name="school">
+	                            <select name="school" onchange="schoolSelect(this, this.value)">
 		                            <option value="" selected>선택</option>
 		                            <option value="고등학교">고등학교</option>
 		                            <option value="대학교(2년)">대학교(2년)</option>
@@ -102,7 +102,7 @@
 		                     <tr>
 		                         <th>학력 * </th>
 		                         <td>
-		                            <select name="school">
+		                            <select name="school" onchange="schoolSelect(this, this.value)">
 			                            <option value="" selected>선택</option>
 			                            <option value="고등학교">고등학교</option>
 			                            <option value="대학교(2년)">대학교(2년)</option>
@@ -153,7 +153,7 @@
 	        <h2>보유 기술스택</h2>
 	        <div class="contentWrap">
 	            <h3 id="stackTitle">기술스택</h3>
-	            <div id="stacks" name="sel" size="10" readonly="readonly"></div>
+	            <div id="stacks"></div>
 	            <input id="stack" name="keyword" onkeydown="keyDown()" placeholder=" 보유 기술 스택을 입력하세요.">
 	            <ul id="suggest" style="display: none; position: absolute; top: 1290px;"></ul>
 	        </div>
@@ -333,25 +333,26 @@
 	                	<tr>
 		                	<th>프로젝트명</th>
 		                	<td>
-		                    	<input placeholder=" 프로젝트명">
+		                    	<input name="portfolioName" placeholder=" 프로젝트명">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <th>URL 주소</th>
 		                    <td>
-			                    <input placeholder=" https://github.com/codling">
+			                    <input name="url" placeholder=" github.com/SeoSuHong/codling">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <th>첨부파일</th>
 		                    <td>
-		                    	<input type="file" class="fileBtn">
+		                    	<input type="file" name="file" class="fileBtn" multiple>
+		                    	<input type="hidden" name="fileCount">
 		                    </td>
 		                </tr>
 		                <tr>
 		                	<th>세부사항</th>
 		                	<td>
-		                		<textarea placeholder=" 프로젝트에 대한 설명을 자유롭게 기술하세요."></textarea>
+		                		<textarea name="detail" placeholder=" 프로젝트에 대한 설명을 자유롭게 기술하세요."></textarea>
 		                	</td>
 		                </tr>
 	                </table>
@@ -365,25 +366,26 @@
 		                	<tr>
 			                	<th>프로젝트명</th>
 			                	<td>
-			                    	<input type="text" placeholder=" 프로젝트명">
+			                    	<input name="portfolioName" placeholder=" 프로젝트명">
 			                    </td>
 			                </tr>
 			                <tr>
 			                    <th>URL 주소</th>
 			                    <td>
-				                    <input type="text" placeholder=" https://github.com/codling">
+				                    <input name="url" placeholder=" github.com/SeoSuHong/codling">
 			                    </td>
 			                </tr>
 			                <tr>
 			                    <th>첨부파일</th>
 			                    <td>
-			                    	<input type="file" class="fileBtn">
+			                    	<input type="file" name="file" class="fileBtn" multiple>
+			                    	<input type="hidden" name="fileCount">
 			                    </td>
 			                </tr>
 			                <tr>
 			                	<th>세부사항</th>
 			                	<td>
-			                		<textarea placeholder=" 프로젝트에 대한 설명을 자유롭게 기술하세요."></textarea>
+			                		<textarea name="detail" placeholder=" 프로젝트에 대한 설명을 자유롭게 기술하세요."></textarea>
 			                	</td>
 			                </tr>
 		                </table>

@@ -70,6 +70,16 @@ $(document).on("keyup", "input[name^=grade]", function() {
     }
 });
 
+function schoolSelect(obj, opt) {
+	var $table = $(obj).parents('table');
+
+	if(opt === '고등학교') {
+		$table.children().children(":last").hide();
+	} else {
+		$table.children().children(":last").show();
+	}
+}
+
 /* 추가버튼*/
 $(function() {
 	var addEduBtn = document.getElementById("addEducation");
@@ -192,7 +202,7 @@ function show(ele) {
 
 // submit
 function resumeChk() {
-	// 이력서 제목
+	/*// 이력서 제목
 	if(document.resumeForm.title.value == "") {
 		alert("이력서 제목을 입력해 주세요.");
 		document.resumeForm.title.focus();
@@ -290,5 +300,24 @@ function resumeChk() {
 				acquireDates[i].focus; return;
 			}
 		}
+	}*/
+	
+	// 포트폴리오
+	var portFolioNames = document.getElementsByName('portfolioName');
+	var files = document.getElementsByName('file');
+	
+	for(var i = 0; i < portFolioNames.length - 1; i++) {
+		if(files[i].value != "") {
+			files[i].nextSibling.value = files[i].files.length;
+		}
 	}
+	
+	var fileCounts = document.getElementsByName('fileCount');
+	console.log(fileCounts.length - 1);
+	
+	for(var i = 0; i < fileCounts.length - 1; i++) {
+		var idx = i;
+		console.log(fileCounts[idx].value);
+	}
+	
 }
