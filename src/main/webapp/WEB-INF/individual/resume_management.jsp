@@ -443,7 +443,7 @@
 	                    			<c:set var="lastschool" value=""/>
 	                    			<c:forEach var="educations" items="${education}">
 	                    				<c:if test="${educations.school == '고등학교'}">
-	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 1}"/>
+	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 0.2}"/>
 	                    				</c:if>
 	                    				<c:if test="${educations.school == '대학교(2년)'}">
 	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 0.5}"/>
@@ -458,28 +458,31 @@
 	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 1}"/>
 	                    				</c:if>
 	                    			</c:forEach>
-	                    			<c:if test="${lastschoolnum == 1}">
+	                    			<c:if test="${lastschoolnum == 0.2}">
 	                    				<c:set var="lastschool" value="고등학교"/>
 	                    			</c:if>
-	                    			<c:if test="${lastschoolnum == 1.5}">
+	                    			<c:if test="${lastschoolnum == 0.5}">
 	                    				<c:set var="lastschool" value="대학교(2년)"/>
 	                    			</c:if>
-	                    			<c:if test="${lastschoolnum == 2}">
+	                    			<c:if test="${lastschoolnum == 0.7}">
+	                    				<c:set var="lastschool" value="대학교(2년)"/>
+	                    			</c:if>
+	                    			<c:if test="${lastschoolnum == 1.2}">
 	                    				<c:set var="lastschool" value="대학교(4년)"/>
 	                    			</c:if>
-	                    			<c:if test="${lastschoolnum == 2.5}">
+	                    			<c:if test="${lastschoolnum == 1.7}">
 	                    				<c:set var="lastschool" value="대학교(4년)"/>
 	                    			</c:if>
-	                    			<c:if test="${lastschoolnum == 3}">
+	                    			<c:if test="${lastschoolnum == 2.2}">
 	                    				<c:set var="lastschool" value="대학원(석사)"/>
 	                    			</c:if>
-	                    			<c:if test="${lastschoolnum == 3.5}">
+	                    			<c:if test="${lastschoolnum == 2.7}">
 	                    				<c:set var="lastschool" value="대학원(석사)"/>
 	                    			</c:if>
-	                    			<c:if test="${lastschoolnum == 4}">
+	                    			<c:if test="${lastschoolnum == 3.2}">
 	                    				<c:set var="lastschool" value="대학원(박사)"/>
 	                    			</c:if>
-	                    			<c:if test="${lastschoolnum == 4.5}">
+	                    			<c:if test="${lastschoolnum == 3.7}">
 	                    				<c:set var="lastschool" value="대학원(박사)"/>
 	                    			</c:if>
 	                    			${lastschool}

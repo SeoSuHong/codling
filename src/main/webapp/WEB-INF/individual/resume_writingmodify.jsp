@@ -129,11 +129,13 @@
 	                     <tr>
 	                        <td><p>학과명<input name="department_update" id="major" class="infoForm2" placeholder=" 학과명을 입력하세요" value="${education.department }"></p></td>
 	                     </tr>
-	                     <tr> <!-- 학점 이없다면 학점 숨기기 -->
-	                        <td><p id="grade" class="grade"><span>학점</span><input type="text" name="score_update" id="insertgrade" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');" value="${education.score }"/>
-	                            <span class="gradetext">/</span><input type="text" class="infoForm2" placeholder=" 4.5" readonly></p>
-	                     </td>
-	                    </tr>
+		                     <tr>
+		                        <td>
+		                        	<p id="grade" class="grade"><span>학점</span><input type="text" name="score_update" id="insertgrade" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');" value="${education.score }"/>
+		                            	<span class="gradetext">/</span><input type="text" class="infoForm2" placeholder=" 4.5" readonly>
+		                            </p>
+		                     	</td>
+		                    </tr>
 	                </table>
 	                 <p id="description">※ 재학 휴학 졸업예정 이라면 졸업년도에 현재 날자를 입력해 주세요.</p>
 	                 <input type="hidden" name="education_no" value="${education.no }">
@@ -228,11 +230,13 @@
 	                    <tr>
 	                        <td><p>학과명<input name="department_update" id="major" class="infoForm2" placeholder="학과명을 입력하세요" value="${education.department }"></p></td>
 	                    </tr>
-	                    <tr>
-	                        <td><p id="grade" class="grade"><span>학점</span><input type="text" name="score_update" id="insertgrade" placeholder="본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');" value="${education.score }"/>
-	                            <span class="gradetext">/</span><input type="text" class="infoForm2" value="4.5" readonly></p>
-	                     	</td>
-	                    </tr>
+		                    <tr>
+		                        <td>
+		                        	<p id="grade" class="grade"><span>학점</span><input type="text" name="score_update" id="insertgrade" placeholder="본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');" value="${education.score }"/>
+		                            	<span class="gradetext">/</span><input type="text" class="infoForm2" value="4.5" readonly>
+		                            </p>
+		                     	</td>
+		                    </tr>
 	                </table> 
 	                <p id="description">※ 재학 휴학 졸업예정 이라면 졸업년도에 현재 날자를 입력해 주세요.</p>
 	                <input type="hidden" name="education_no" value="${education.no }">
@@ -717,6 +721,7 @@
     <c:forTokens var="title" items="${fileupload.title }" begin="0" end="0" delims="/">
     <c:forTokens var="fileName" items="${fileupload.fileName }" begin="0" end="0" delims="/">
     <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="0" end="0" delims="/">
+    <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="0" end="0" delims="|">
         <div id="problem_list5">
             <h2>첨부파일<input type="button" class="portfolio_add" value="추가" onclick="addForm5();"></h2>
             <div id="portfoliobox"><br><br>
@@ -731,8 +736,10 @@
                     <span>업로드된 파일 </span><input class="getfilename" readonly="readonly" value="${fileName}">
                 </div>
                 <textarea name="file_detail_update" id="deepcontents" placeholder="상세내용">${filedetail }</textarea>
+                <input type="hidden" name="fileaddress" value="${fileaddress }">
             </div>
         </div>
+    </c:forTokens>
 	</c:forTokens>
 	</c:forTokens>
 	</c:forTokens>
@@ -758,6 +765,7 @@
 	<c:forTokens var="title" items="${fileupload.title }" begin="1" delims="/" varStatus="st">
     <c:forTokens var="fileName" items="${fileupload.fileName }" begin="${st.index }" end="${st.index }" delims="/">
     <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims="/">
+    <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="${st.index }" end="${st.index }" delims="|">
         <div id="portfolio_file_input" class="list_file_tag_input"> 
             <div id="portfoliobox">
 	            <button type="button" class="portfolio_del" onclick="delForm5(this);">삭제</button>
@@ -772,8 +780,10 @@
                     <span>업로드된 파일 </span><input class="getfilename" readonly="readonly" value="${fileName}">
                 </div>
                 <textarea name="file_detail_update" id="deepcontents" placeholder="상세내용">${filedetail }</textarea>
+                <input type="hidden" name="fileaddress" value="${fileaddress }">
             </div>
         </div>
+	</c:forTokens>   
 	</c:forTokens>
 	</c:forTokens>
 	</c:forTokens>

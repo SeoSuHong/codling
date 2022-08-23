@@ -451,9 +451,9 @@ public class IndividualDao {
 						pstmt.setString(2, education_updat.getSchoolName());
 						pstmt.setString(3, education_updat.getSchoolStartDate());
 						pstmt.setString(4, education_updat.getSchoolEndDate());
-						pstmt.setString(5, education_updat.getStatus());
-						pstmt.setString(6, education_updat.getDepartment());
-						pstmt.setString(7, education_updat.getScore());
+						pstmt.setString(5, education_updat.getDepartment());
+						pstmt.setString(6, education_updat.getScore());
+						pstmt.setString(7, education_updat.getStatus());
 						pstmt.setInt(8, education_updat.getNo());
 						
 						if(pstmt.executeUpdate() == 1) count++;

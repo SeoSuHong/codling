@@ -278,7 +278,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		if(educationResult && resumeTitleStack && education_updateResult)
+		if(resumeTitleStack && education_updateResult)
 			out.print("<script>alert('이력서 수정에 성공하였습니다.'); location.href = 'resume_management';</script>");
 		else
 			out.print("<script>alert('이력서 수정에 실패하였습니다.'); location.href = 'resume_writingmodify';</script>");
