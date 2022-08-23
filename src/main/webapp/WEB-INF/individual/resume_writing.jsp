@@ -133,7 +133,7 @@
             <h3>기술스택</h3>
             <div id="stc_box"><div id="stc_box2"></div><div id="stacks" name="sel" size="10"></div></div>
             <input id="stack" name="keyword" onkeydown="keyDown()">
-            <ul id="suggest" style="display:none; position:absolute; top:1344px;"></ul>
+            <ul id="suggest" style="display:none; position:relative; top:-15px;"></ul>
             <input type="hidden" name="stack" id="st">
         </div>
         </article>

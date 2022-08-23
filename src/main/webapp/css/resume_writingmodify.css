@@ -214,6 +214,7 @@ ul{list-style: none;}
   .filename::file-selector-button {display: none;}
   .filename {background-color: white; border-radius: 10px; padding: 5px 10px; margin-left: 5px; color: #656978;
   	position: relative; top: -4px}
+  .getfilename{border: none; background-color: #F8F8F8;}
   /* 포트폴리오 추가 버튼 */
 .portfolio_add {background-color: #A5E374; color: white;
     -webkit-appearance: none; -moz-appearance: none; appearance: none; 

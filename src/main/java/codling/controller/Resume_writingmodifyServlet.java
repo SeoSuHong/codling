@@ -52,9 +52,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			Portfolio portfolio = indiDao.getportfolio(indiId);
 			Portfolio fileupload = indiDao.getfileupload(indiId);
 			
-			if(fileupload != null) {
-				request.setAttribute("fileupload", fileupload);
-			}
+			request.setAttribute("fileupload", fileupload);
 			request.setAttribute("portfolio", portfolio);
 			request.setAttribute("license", license);
 			request.setAttribute("career", career);
@@ -72,16 +70,41 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String indiId = (String)session.getAttribute("indiId");
 		
-		List<Education> educationList = new ArrayList<Education>();
 		IndividualDao dao = new IndividualDao();
-		boolean educationResult = dao.setEducation(educationList);
 		
 		//resumetitle stack update
 		String resumetitle = request.getParameter("resumetitle");
 		String stack = request.getParameter("stack");
 		boolean resumeTitleStack = dao.upDateResumeTitleStack(resumetitle, stack, indiId);
 		
+		//학력정보 update
+		List<Education> education_updateList = new ArrayList<Education>();
+		String[] education_no = request.getParameterValues("education_no");
+		int[] no = new int[education_no.length];
+		for(int i = 0; i < education_no.length; i++)
+			no[i] = Integer.parseInt(education_no[i]);
+		String[] school_update = request.getParameterValues("school_update");
+		String[] schoolName_update = request.getParameterValues("schoolName_update");
+		String[] schoolStartDate_update = request.getParameterValues("schoolStartDate_update");
+		String[] schoolEndDate_update = request.getParameterValues("schoolEndDate_update");
+		String[] status_update = request.getParameterValues("status_update");
+		String[] department_update = request.getParameterValues("department_update");
+		String[] score_update = request.getParameterValues("score_update");
+		
+		boolean education_updateResult = false;
+		if(!schoolName_update[0].equals("") && schoolName_update[0] != "") {
+			for(int i = 0; i < schoolName_update.length; i++) {
+				if(score_update[i].equals("0") || score_update[i] == "0") score_update[i] = "";
+				Education education_update = new Education(no[i], indiId, school_update[i], schoolName_update[i], schoolStartDate_update[i], schoolEndDate_update[i], status_update[i], department_update[i], score_update[i]);
+				education_updateList.add(education_update);
+				education_updateResult = dao.Education_update(education_updateList);
+			}
+		}
+		
+		
+		
 		//학력정보 insert
+		List<Education> educationList = new ArrayList<Education>();
 		String[] school = request.getParameterValues("school");
 		String[] schoolName = request.getParameterValues("schoolName");
 		String[] schoolStartDate = request.getParameterValues("schoolStartDate");
@@ -90,9 +113,13 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		String[] department = request.getParameterValues("department");
 		String[] score = request.getParameterValues("score");
 		
-		for(int i = 0; i < school.length; i++) {
-			Education education = new Education(0, indiId, school[i], schoolName[i], schoolStartDate[i], schoolEndDate[i], status[i], department[i], score[i]);
-			educationList.add(education);
+		boolean educationResult = false;
+		if(!schoolName[0].equals("") && schoolName[0] != "") {
+			for(int i = 0; i < school.length; i++) {
+				Education education = new Education(0, indiId, school[i], schoolName[i], schoolStartDate[i], schoolEndDate[i], status[i], department[i], score[i]);
+				educationList.add(education);
+				educationResult = dao.setEducation(educationList);
+			}
 		}
 		
 		
@@ -107,8 +134,8 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		String[] work_content = request.getParameterValues("work_content");
 		
 		int careerResult = 0;
-		if(!perv_company[0].equals("")) {
-			for(int i = 0; i < perv_company.length; i++) {
+		if(!tenureStart[0].equals("") && tenureStart[0] != "") {
+			for(int i = 0; i < tenureStart.length; i++) {
 				Career career = new Career(0, indiId, perv_company[i], tenureStart[i], tenureEnd[i], position[i], company_department[i], work_content[i]);
 				careerList.add(career);
 				careerResult = dao.setCareer(careerList);
@@ -172,7 +199,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		
 		int portfolioResult = 0;
 		if(!portfolio_name.equals("") && portfolio_name != "") {
-				Portfolio portfolio = new Portfolio(0, indiId, portfolio_name, detail, url, "", "", "","");
+				Portfolio portfolio = new Portfolio(0, indiId, portfolio_name, detail, url, "", "", "", "","");
 				portfolioList.add(portfolio);
 				portfolioResult = dao.setportfolio(portfolioList);
 		}
@@ -182,6 +209,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		Collection<Part> parts = request.getParts(); //파일 열러개 검사
 		StringBuilder builder = new StringBuilder();
 		StringBuilder builders = new StringBuilder();
+		StringBuilder builder_fileaddress = new StringBuilder();
 		for(Part p : parts) { //파일 여러개 가지고오기
 			
 			if(!p.getName().equals("fileName")) continue;
@@ -204,6 +232,9 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			
 			String filePath = realPath + File.separator + fileName_;
 			FileOutputStream fos = new FileOutputStream(filePath);
+			
+			builder_fileaddress.append(filePath);
+			builder_fileaddress.append(" | ");
 			
 			byte[] buf = new byte[1024];
 			int fileSize_;
@@ -237,7 +268,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		
 		boolean fileuploadResult = false;
 		if(!fileTitle.equals("") && fileTitle != "") {
-				Portfolio fileupload = new Portfolio(0, indiId, "", "", "", fileTitle, builder.toString(), file_detail, builders.toString());
+				Portfolio fileupload = new Portfolio(0, indiId, "", "", "", fileTitle, builder.toString(), builder_fileaddress.toString(), file_detail, builders.toString());
 				fileuploadList.add(fileupload);
 				fileuploadResult = dao.setfile(fileuploadList);
 		}
@@ -247,7 +278,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		if(educationResult && resumeTitleStack)
+		if(educationResult && resumeTitleStack && education_updateResult)
 			out.print("<script>alert('이력서 수정에 성공하였습니다.'); location.href = 'resume_management';</script>");
 		else
 			out.print("<script>alert('이력서 수정에 실패하였습니다.'); location.href = 'resume_writingmodify';</script>");

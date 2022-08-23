@@ -413,7 +413,7 @@
 	                    		</p>
 	                    		<p>
 		                    		<c:if test="${not empty individual.stack}">
-		                    			<c:forTokens var="stack" items="${individual.stack}" delims=" / " varStatus="st">
+		                    			<c:forTokens var="stack" items="${individual.stack}" delims="/" varStatus="st">
 		                    				 <c:if test="${!st.last}">
 		                    				 	<span>${stack} · </span>
 		                    				 </c:if>
@@ -428,7 +428,7 @@
 		                    			보유하신 자격증이 있다면 등록 해주세요.
 		                    		</c:if>
 		                    		<c:if test="${not empty license.name}">
-		                    			<c:forTokens var="license" items="${license.name}" delims=" / " varStatus="st">
+		                    			<c:forTokens var="license" items="${license.name}" delims="/" varStatus="st">
 		                    				 <c:if test="${!st.last}">
 		                    				 	<span>${license} · </span>
 		                    				 </c:if>

@@ -2,11 +2,11 @@ package codling.identity;
 
 public class Portfolio {
 	private int no;
-	private String individual_id, name, detail, url, title, fileName, filedetail, fileSize;
+	private String individual_id, name, detail, url, title, fileName, fileaddress, filedetail, fileSize;
 	
 	public Portfolio() {}
 
-	public Portfolio(int no, String individual_id, String name, String detail, String url, String title, String fileName, String filedetail,
+	public Portfolio(int no, String individual_id, String name, String detail, String url, String title, String fileName, String fileaddress, String filedetail,
 			String fileSize) {
 		super();
 		this.no = no;
@@ -16,6 +16,7 @@ public class Portfolio {
 		this.url = url;
 		this.title = title;
 		this.fileName = fileName;
+		this.fileaddress = fileaddress;
 		this.filedetail = filedetail;
 		this.fileSize = fileSize;
 	}
@@ -74,6 +75,14 @@ public class Portfolio {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	
+	public String getFileaddress() {
+		return fileaddress;
+	}
+
+	public void setFileaddress(String fileaddress) {
+		this.fileaddress = fileaddress;
 	}
 
 	public String getFiledetail() {

@@ -151,7 +151,7 @@ public class Resume_writingServlet extends HttpServlet {
 		
 		int portfolioResult = 0;
 		if(!portfolio_name.equals("") && portfolio_name != "") {
-				Portfolio portfolio = new Portfolio(0, indiId, portfolio_name, detail, url, "", "", "","");
+				Portfolio portfolio = new Portfolio(0, indiId, portfolio_name, detail, url, "", "", "", "","");
 				portfolioList.add(portfolio);
 				portfolioResult = dao.setportfolio(portfolioList);
 		}
@@ -161,6 +161,7 @@ public class Resume_writingServlet extends HttpServlet {
 		Collection<Part> parts = request.getParts(); //파일 열러개 검사
 		StringBuilder builder = new StringBuilder();
 		StringBuilder builders = new StringBuilder();
+		StringBuilder builder_fileaddress = new StringBuilder();
 		for(Part p : parts) { //파일 여러개 가지고오기
 			
 			if(!p.getName().equals("fileName")) continue;
@@ -183,6 +184,9 @@ public class Resume_writingServlet extends HttpServlet {
 			
 			String filePath = realPath + File.separator + fileName_;
 			FileOutputStream fos = new FileOutputStream(filePath);
+			
+			builder_fileaddress.append(filePath);
+			builder_fileaddress.append(" | ");
 			
 			byte[] buf = new byte[1024];
 			int fileSize_;
@@ -216,7 +220,7 @@ public class Resume_writingServlet extends HttpServlet {
 		
 		boolean fileuploadResult = false;
 		if(!fileTitle.equals("") && fileTitle != "") {
-				Portfolio fileupload = new Portfolio(0, indiId, "", "", "", fileTitle, builder.toString(), file_detail, builders.toString());
+				Portfolio fileupload = new Portfolio(0, indiId, "", "", "", fileTitle, builder.toString(), builder_fileaddress.toString(), file_detail, builders.toString());
 				fileuploadList.add(fileupload);
 				fileuploadResult = dao.setfile(fileuploadList);
 		}

@@ -256,7 +256,7 @@ public class IndividualDao {
 	//파일 업로드
 	public boolean setfile(List<Portfolio> portfolioList) {
 		boolean result = false;
-		String query = "INSERT INTO fileupload VALUES(DEFAULT,?,?,?,?,?)";
+		String query = "INSERT INTO fileupload VALUES(DEFAULT,?,?,?,?,?,?)";
 		
 		try {
 			for(int i = 0; i < portfolioList.size(); i++) {
@@ -266,8 +266,9 @@ public class IndividualDao {
 				pstmt.setString(1, portfolio.getIndividual_id());
 				pstmt.setString(2, portfolio.getTitle());
 				pstmt.setString(3, portfolio.getFileName());
-				pstmt.setString(4, portfolio.getFiledetail());
-				pstmt.setString(5, portfolio.getFileSize());
+				pstmt.setString(4, portfolio.getFileaddress());
+				pstmt.setString(5, portfolio.getFiledetail());
+				pstmt.setString(6, portfolio.getFileSize());
 				
 				if(pstmt.executeUpdate() == 1) result = true;
 				
@@ -387,7 +388,7 @@ public class IndividualDao {
 						String detail = rs.getString("detail");
 						String url = rs.getString("url");
 						
-						portfolio = new Portfolio(no, individual_id, name, detail, url, "", "", "", "");
+						portfolio = new Portfolio(no, individual_id, name, detail, url, "", "", "", "", "");
 					}
 					rs.close();
 					pstmt.close();
@@ -401,7 +402,7 @@ public class IndividualDao {
 			//첨부파일 가져오기
 			public Portfolio getfileupload(String id) {
 				Portfolio fileupload = null;
-				String query = "SELECT * FROM portfolio WHERE individual_id = ? order by no asc";
+				String query = "SELECT * FROM fileupload WHERE individual_id = ? order by no asc";
 				try {
 					conn = getConnection();
 					pstmt = conn.prepareStatement(query);
@@ -412,10 +413,11 @@ public class IndividualDao {
 						String individual_id = rs.getString("individual_id");
 						String title = rs.getString("title");
 						String fileName = rs.getString("fileName");
+						String fileaddress = rs.getString("fileaddress");
 						String filedetail = rs.getString("filedetail");
 						String fileSize = rs.getString("fileSize");
 						
-						fileupload = new Portfolio(no, individual_id, "", "", "", title, fileName, filedetail, fileSize);
+						fileupload = new Portfolio(no, individual_id, "", "", "", title, fileName, fileaddress, filedetail, fileSize);
 					}
 					rs.close();
 					pstmt.close();
@@ -424,5 +426,46 @@ public class IndividualDao {
 					System.out.println("getfileupload : " + e.getMessage());
 				}
 				return fileupload;
+			}
+			
+			//이력서 학력 update
+			public boolean Education_update(List<Education> education_updateList) {
+				boolean result = false;
+				int count = 0;
+				String query = "UPDATE education "
+						+ "SET school = ?,"
+						+ "	schoolName = ?,"
+						+ "    schoolStartDate = ?,"
+						+ "    schoolEndDate = ?,"
+						+ "    department = ?,"
+						+ "    score = ?,"
+						+ "    status = ?"
+						+ "WHERE no = ?";
+				
+				try {
+					for(int i = 0; i < education_updateList.size(); i++) {
+						conn = getConnection();
+						pstmt = conn.prepareStatement(query);
+						Education education_updat = education_updateList.get(i);
+						pstmt.setString(1, education_updat.getSchool());
+						pstmt.setString(2, education_updat.getSchoolName());
+						pstmt.setString(3, education_updat.getSchoolStartDate());
+						pstmt.setString(4, education_updat.getSchoolEndDate());
+						pstmt.setString(5, education_updat.getStatus());
+						pstmt.setString(6, education_updat.getDepartment());
+						pstmt.setString(7, education_updat.getScore());
+						pstmt.setInt(8, education_updat.getNo());
+						
+						if(pstmt.executeUpdate() == 1) count++;
+						
+						pstmt.close();
+						conn.close();
+					}
+					
+					if(count == education_updateList.size()) result = true;
+				}catch (Exception e) {
+					System.out.println("setEducation errors : "+e.getMessage());
+				}
+				return result;
 			}
 }
