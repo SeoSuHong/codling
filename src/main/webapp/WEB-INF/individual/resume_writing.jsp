@@ -31,25 +31,25 @@
         </div>
     </header>
     <section>
-    	<form action="">
+    	<form action="" name="" method="post" enctype="multipart/form-data">
 		    <!--이력서제목-->
 	        <h2>이력서 제목</h2>
 	        <div>
-	        	<input name="title" placeholder=" 이력서 제목을 입력하세요.">
+	        	<input name="title" class="title" placeholder=" 이력서 제목을 입력하세요.">
 	        </div>
 	        
 		    <!--학력사항-->
 	        <div>
-	        	<div>
+	        	<div class="contentTitleWrap">
 	        		<h2>학력사항</h2>
-	        		<input type="button" value="추가" onclick="addForm();">
+	        		<input type="button" class="addBtn" value="추가" onclick="addForm();">
 	        	</div>
-	            <div>
+	            <div class="contentWrap">
 	                <table>                 
 	                     <tr>
-	                         <th>학력 * </th>
-	                         <td>
-	                            <select required>
+                         	<th>학력 * </th>
+                         	<td>
+	                            <select class="edu_select">
 		                            <option value="" selected>선택</option>
 		                            <option value="고등학교">고등학교</option>
 		                            <option value="대학교(2년)">대학교(2년)</option>
@@ -68,7 +68,7 @@
 	                     <tr>
 	                        <th>재학기간 * </th>
 	                        <td>
-	                        	<input type="date"> ~ <input type="date">
+	                        	<input type="date" class="edu_date"> ~ <input type="date" class="edu_date">
 	                            <select>
 	                                <option value="" selected>선택</option>
 	                                <option value="졸업">졸업</option>
@@ -87,22 +87,22 @@
 	                     <tr>
 	                        <th>학점</th>
 	                        <td>
-	                        	<input type="text" name="grade" id="insertgrade" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
-	                            / <input type="text" name="grade" class="infoForm2" placeholder=" 4.5" readonly>
+	                        	<input type="text" class="score" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
+	                            / 4.5
 	                     	</td>
 	                    </tr>
 	                </table> 
 	            </div> 
 	        </div>
-	        <div id="edu_level_info" class="list_file_tag"> 
-	            <div id="eduLevelbox">
+	        <div class="contentWrap"> 
+	            <div class="addForm">
 	                <table class="edu_level_info">                 
-	                     <button type="button" class="edu_del" onclick="delForm(this);">삭제</button>
+	                     <input type="button" class="delBtn" onclick="delForm(this);" value="삭제" >
 	                     <tr>
 	                         <th>학력 * </th>
 	                         <td>
-	                            <select class="edu_select" required>
-		                            <option value="" disabled selected>선택</option>
+	                            <select class="edu_select">
+		                            <option value="" selected>선택</option>
 		                            <option value="고등학교">고등학교</option>
 		                            <option value="대학교(2년)">대학교(2년)</option>
 		                            <option value="대학교(4년)">대학교(4년)(2년)</option>
@@ -114,13 +114,13 @@
 	                     <tr>
 	                        <th>학교명 * </th>
 	                        <td>
-	                        	<input name="uni_name" id="uni_name" class="infoForm2" placeholder="학교명을 입력하세요">
+	                        	<input name="uni_name" id="uni_name" class="infoForm2" placeholder=" 학교명을 입력하세요">
 	                        </td>
 	                     </tr>
 	                     <tr>
 	                        <th>재학기간 * </th>
 	                        <td>
-	                        	<input type="date" name="start" id="start"><span class="qqqtext"> ~ </span><input type="date" name="end" class="infoForm2">
+	                        	<input type="date" class="edu_date"> ~ <input type="date" class="edu_date">
 	                            <select class="edu_select2" required>
 	                                <option value="" disabled selected>선택</option>
 	                                <option value="고졸">졸업</option>
@@ -133,14 +133,14 @@
 	                     <tr>
 	                        <th>학과명 * </th>
 	                        <td>
-	                        	<input name="major" id="major" class="infoForm2" placeholder="전공을 입력하세요">
+	                        	<input name="major" id="major" class="infoForm2" placeholder=" 전공을 입력하세요">
 	                        </td>
 	                     </tr>
 	                     <tr>
 	                        <th>학점</th>
 	                        <td>
-	                        	<input type="text" name="grade" id="insertgrade" placeholder="본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
-	                            / <input type="text" name="grade" class="infoForm2" value="4.5" readonly>
+	                        	<input type="text" class="score" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
+	                            / 4.5
 	                     	</td>
 	                    </tr>
 	                </table> 
@@ -149,16 +149,19 @@
 	        
 	    	<!--보유기술스택-->
 	        <h2>보유기술스택</h2>
-	        <div id="stack_box">
+	        <div id="stack_box" class="contentWrap">
 	            <h3>기술스택</h3>
-	            <input type="text" name="stack" class="stackinput" placeholder="C, C++, JAVA, HTML, CSS">
+	            <input type="text" name="stack" class="stack" placeholder=" 보유 기술 스택을 입력하세요.">
 	        </div>
 	        
 	    	<!--경력사항-->
 	        <div>
-	            <h2>경력사항<input type="button" class="ex_add" value="추가" onclick="addForm2();"></h2>
-	            <div id="experiencebox"> 
-	                <table id= "ex_info_box">
+	        	<div class="contentTitleWrap">
+	            	<h2>경력사항</h2>
+	            	<input type="button" class="addBtn" value="추가" onclick="addForm2();">
+	            </div>
+	            <div id="experiencebox" class="contentWrap"> 
+	                <table id="ex_info_box">
 	                    <tr>
 	                        <th>회사명</th>
 	                        <td>
@@ -168,7 +171,7 @@
 	                    <tr>
 	                        <th>재직기간</th>
 	                        <td>
-	                        	<input type="date" name="company_enter" class="infoForm4"> ~ <input type="date" name="retire" class="infoForm4">
+	                        	<input type="date" class="career_date"> ~ <input type="date" class="career_date">
 	                        </td>
 	                    </tr>
 	                    <tr>
@@ -192,10 +195,10 @@
 	                </table> 
 	        	</div>
 	        </div>
-	        <div id="experienced_info" class="list_file_tag"> 
-	            <div id="experiencebox"> 
-	                <table id= "ex_info_box">         
-	                    <button type="button" class="ex_del" onclick="delForm2(this);">삭제</button>
+	        <div class="contentWrap"> 
+	            <div class="addForm"> 
+	                <table id= "ex_info_box">
+	                	<input type="button" class="delBtn" onclick="delForm(this);" value="삭제" >
 	                    <tr>
 	                        <th>회사명</th>
 	                        <td>
@@ -205,7 +208,7 @@
 	                    <tr>
 	                        <th>재직기간</th>
 							<td>
-								<input type="date" name="company_enter" class="infoForm4"> ~ <input type="date" name="retire" class="infoForm4">
+								<input type="date" class="career_date"> ~ <input type="date" class="career_date">
 							</td>
 	                    </tr>
 	                    <tr>
@@ -231,20 +234,23 @@
 	        </div>
 	        
 	    	<!--자격증-->
-	        <div name="problem_list3" id="problem_list3">
-	            <h2>자격증 내역<input type="button" class="license_add" value="추가" onclick="addForm3();"></h2>
-	            <div id="licensebox"> 
+	        <div id="problem_list3">
+	        	<div class="contentTitleWrap">
+	            	<h2>자격증 내역</h2>
+	            	<input type="button" class="addBtn" value="추가" onclick="addForm3();">
+	            </div>
+	            <div id="licensebox" class="contentWrap"> 
 	                <table>
 	                    <tr>
 	                        <th>자격증명</th>
 	                        <td>
-	                        	<input name="license_name" class="infoForm3" placeholder="자격증명을 입력하세요">
+	                        	<input name="license_name" class="infoForm3" placeholder=" 자격증명을 입력하세요">
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                        <th>발행처/기관</th>
 	                        <td>
-	                        	<input name="organ_name" class="infoForm3" placeholder="발행기관명을 입력하세요">
+	                        	<input name="organ_name" class="infoForm3" placeholder=" 발행기관명을 입력하세요">
 	                        </td>
 	                    </tr>
 	                    <tr>
@@ -269,20 +275,20 @@
 	                </table>
 	            </div>
 	        </div>
-	        <div id="license_info" class="list_file_tag"> 
-	            <div id="licensebox"> 
+	        <div class="contentWrap"> 
+	            <div class="addForm"> 
 	                <table>
-	                    <button type="button" class="license_del" onclick="delForm3(this);">삭제</button>
+	                	<input type="button" class="delBtn" onclick="delForm(this);" value="삭제" >
 	                    <tr>
 	                        <th>자격증명</th>
 	                        <td>
-	                        	<input name="license_name" class="infoForm3" placeholder="자격증명을 입력하세요">
+	                        	<input name="license_name" class="infoForm3" placeholder=" 자격증명을 입력하세요">
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                        <th>발행처/기관</th>
 	                        <td>
-	                        	<input name="organ_name" class="infoForm3" placeholder="발행기관명을 입력하세요">
+	                        	<input name="organ_name" class="infoForm3" placeholder=" 발행기관명을 입력하세요">
 	                        </td>
 	                    </tr>
 	                    <tr>
@@ -310,20 +316,22 @@
 	        
 	    	<!--포트폴리오-->
 	        <div id="problem_list4">
-	            <h2>포트폴리오<input type="button" class="portfolio_add" value="추가" onclick="addForm4();"></h2>
-	            <div id="portfoliobox"> 
+	        	<div class="contentTitleWrap">
+	            	<h2>포트폴리오</h2>
+	            	<input type="button" class="addBtn" value="추가" onclick="addForm4();">
+	            </div>
+	            <div id="portfoliobox" class="contentWrap"> 
 	                <table>
 	                	<tr>
 		                	<th>프로젝트명</th>
 		                	<td>
-		                    	<input type="text" class="portfolio_title" placeholder="프로젝트명">
+		                    	<input type="text" class="portfolio_title" placeholder=" 프로젝트명">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <th>URL 주소</th>
 		                    <td>
-			                    <input type="text" class="url" placeholder="https://github.com/codling">
-		                    	<input type="button" value="URL추가">
+			                    <input type="text" class="url" placeholder=" https://github.com/codling">
 		                    </td>
 		                </tr>
 		                <tr>
@@ -331,24 +339,30 @@
 		                    <td>
 		                    	<button type="button" class="filebtn">첨부파일</button>
 		                    </td>
+		                </tr>
+		                <tr>
+		                	<th>세부사항</th>
+		                	<td>
+		                		<textarea rows="" cols=""></textarea>
+		                	</td>
 		                </tr>
 	                </table>
 	            </div>
 	        </div>
-	        <div id="portfolio_info" class="list_file_tag"> 
-	            <div id="portfoliobox"> 
+	        <div class="contentWrap"> 
+	            <div class="addForm">
 	                <table>
+	                	<input type="button" class="delBtn" onclick="delForm(this);" value="삭제" >
 	                	<tr>
 		                	<th>프로젝트명</th>
 		                	<td>
-		                    	<input type="text" class="portfolio_title" placeholder="프로젝트명">
+		                    	<input type="text" class="portfolio_title" placeholder=" 프로젝트명">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <th>URL 주소</th>
 		                    <td>
-			                    <input type="text" class="url" placeholder="https://github.com/codling">
-		                    	<input type="button" value="URL추가">
+			                    <input type="text" class="url" placeholder=" https://github.com/codling">
 		                    </td>
 		                </tr>
 		                <tr>
@@ -356,13 +370,21 @@
 		                    <td>
 		                    	<button type="button" class="filebtn">첨부파일</button>
 		                    </td>
+		                </tr>
+		                <tr>
+		                	<th>세부사항</th>
+		                	<td>
+		                		<textarea rows="" cols=""></textarea>
+		                	</td>
 		                </tr>
 	                </table>
 	            </div>
 	        </div>
 	    
 		    <!--완료버튼-->
-		    <input type="submit" value="완료" class="resume_submit">
+		    <div id="submitWrap">
+		    	<input type="button" value="완 료" id="submitBtn">
+		    </div>
 		</form>
     </section>
 </body>

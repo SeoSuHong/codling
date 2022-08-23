@@ -28,8 +28,34 @@ ul{list-style: none;}
  /* section */
 section{width: 1220px; margin: 0 auto; margin-top: 150px;}
 
-/*이력서 제목*/
-.resume_title {width: 1220px; height: 80px; outline: unset; border: 2px solid #A5E374; font-size: x-large; border-radius: 10px;}
+h2 {margin-top: 80px; margin-bottom: 30px;}
+th {width: 130px; height: 70px; text-align: left;}
+td {width: 300px; height: 70px;}
+input {width: 300px; height: 30px; border: 1px solid #858585; border-radius: 5px;}
+select {height: 32px; border: 1px solid #858585; margin-top: 2px; border-radius: 5px;}
+textarea{width: 900px; height: 100px; border-radius: 5px;}
 
-table{margin: 30px 80px;}
-th{width: 130px;}
+.contentWrap {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: #E2E2E2; border-radius: 10px;}
+.contentTitleWrap {display: flex; justify-content: space-between;}
+.addForm {margin-top: -40px;}
+.addBtn {width: 70px; height: 40px; font-size: medium; margin-top: 90px; margin-right: 10px; background-color: #98F306; border: none; border-radius: 10px; cursor: pointer;}
+.addBtn:hover {background-color: #A5E374;}
+.delBtn {width: 70px; height: 40px; font-size: medium; position: relative; top: 20px; left: 1050px; background-color: #D3D3D3; border: none; border-radius: 10px; cursor: pointer;}
+.delBtn:hover {background-color: #A9A9A9;}
+/*이력서 제목*/
+.title {width: 1220px; height: 80px; outline: unset; border: 2px solid #A5E374; font-size: x-large; border-radius: 10px;}
+
+/* 학력사항 */
+.edu_select {width: 300px;}
+.edu_date {width: 99px;}
+.score {width: 60px;}
+
+/* 스택 */
+.stack {width: 430px; height: 30px; margin-top: 20px;}
+
+/* 경력사항 */
+.career_date {width: 139px;}
+
+/* 완료 버튼 */
+#submitWrap {text-align: center; margin-top: 40px; margin-bottom: 100px;}
+#submitBtn {width: 200px; height: 80px; font-size: x-large; background-color: #98F306; border: none; border-radius: 5px; cursor: pointer;}
