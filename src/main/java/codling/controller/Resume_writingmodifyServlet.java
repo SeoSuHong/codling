@@ -52,7 +52,9 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			Portfolio portfolio = indiDao.getportfolio(indiId);
 			Portfolio fileupload = indiDao.getfileupload(indiId);
 			
-			request.setAttribute("fileupload", fileupload);
+			if(fileupload != null) {
+				request.setAttribute("fileupload", fileupload);
+			}
 			request.setAttribute("portfolio", portfolio);
 			request.setAttribute("license", license);
 			request.setAttribute("career", career);
@@ -71,7 +73,15 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		String indiId = (String)session.getAttribute("indiId");
 		
 		List<Education> educationList = new ArrayList<Education>();
-		//학력정보
+		IndividualDao dao = new IndividualDao();
+		boolean educationResult = dao.setEducation(educationList);
+		
+		//resumetitle stack update
+		String resumetitle = request.getParameter("resumetitle");
+		String stack = request.getParameter("stack");
+		boolean resumeTitleStack = dao.upDateResumeTitleStack(resumetitle, stack, indiId);
+		
+		//학력정보 insert
 		String[] school = request.getParameterValues("school");
 		String[] schoolName = request.getParameterValues("schoolName");
 		String[] schoolStartDate = request.getParameterValues("schoolStartDate");
@@ -85,15 +95,9 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			educationList.add(education);
 		}
 		
-		IndividualDao dao = new IndividualDao();
-		boolean educationResult = dao.setEducation(educationList);
 		
-		//resumetitle stack update
-		String resumetitle = request.getParameter("resumetitle");
-		String stack = request.getParameter("stack");
-		boolean resumeTitleStack = dao.upDateResumeTitleStack(resumetitle, stack, indiId);
 		
-		//경력사항
+		//경력사항 insert
 		List<Career> careerList = new ArrayList<Career>();
 		String[] perv_company = request.getParameterValues("perv_company");
 		String[] tenureStart = request.getParameterValues("tenureStart");
@@ -112,7 +116,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 
 		}
 		
-		//자격증내역
+		//자격증내역 insert
 		List<License> licenseList = new ArrayList<License>();
 		String[] license_name_ = request.getParameterValues("license_name");
 		String[] agency_ = request.getParameterValues("agency");
@@ -145,7 +149,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 				licenseResult = dao.setLicense(licenseList);
 		}
 		
-		//포트폴리오
+		//포트폴리오 insert
 		List<Portfolio> portfolioList = new ArrayList<Portfolio>();
 		
 		String[] portfolio_name_ = request.getParameterValues("portfolio_name");
@@ -173,7 +177,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 				portfolioResult = dao.setportfolio(portfolioList);
 		}
 		
-		//첨부파일
+		//첨부파일 insert
 		List<Portfolio> fileuploadList = new ArrayList<Portfolio>();
 		Collection<Part> parts = request.getParts(); //파일 열러개 검사
 		StringBuilder builder = new StringBuilder();

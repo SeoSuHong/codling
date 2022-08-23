@@ -139,9 +139,9 @@ public class Resume_writingServlet extends HttpServlet {
 		String url = "";
 		for(int i = 0; i < portfolio_name_.length-1; i++) {
 			if(i != portfolio_name_.length -2) {
-				portfolio_name += (portfolio_name_[i] + " / ");
-				detail += (detail_[i] + " / ");
-				url += (url_[i] + " / ");
+				portfolio_name += (portfolio_name_[i] + " | ");
+				detail += (detail_[i] + " | ");
+				url += (url_[i] + " | ");
 			}else {
 				portfolio_name += portfolio_name_[i];
 				detail += detail_[i];
