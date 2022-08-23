@@ -28,29 +28,20 @@ $(function(){
         $(this).stop().slideUp();
     });
 })
-/*학력추가 삭제버튼*/
-function addForm() {
-    $('#problem_list').append($('#edu_level_info').html());
-    check_click();
-}
-function delForm(obj){
-    var div = $(obj).parent();
-    //console.log(div);
-    //라인 삭제
-    div.remove();
-}
-  /* 학점 숫자 소수점 허용*/ 
-  function isNumberKey(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode;
-    if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-    // Textbox value    
-    var _value = event.srcElement.value;    
-    // 소수점(.)이 두번 이상 나오지 못하게
-    var _pattern0 = /^\d*[.]\d*$/; // 현재 value값에 소수점(.) 이 있으면 . 입력불가
-    if (_pattern0.test(_value)) {
-        if (charCode == 46) {
-            return false;
+
+
+/* 학점 숫자 소수점 허용*/ 
+function isNumberKey(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode;
+	if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+    	return false;
+	// Textbox value    
+	var _value = event.srcElement.value;    
+	// 소수점(.)이 두번 이상 나오지 못하게
+	var _pattern0 = /^\d*[.]\d*$/; // 현재 value값에 소수점(.) 이 있으면 . 입력불가
+	if (_pattern0.test(_value)) {
+	    if (charCode == 46) {
+	        return false;
         }
     }
     // 1의 자리 숫자이면 .만 입력가능
@@ -69,93 +60,42 @@ function delForm(obj){
     }  
     return true;
 }
-    //0~4.5 범위
-    $(document).on("keyup", "input[name^=grade]", function() {
-        var val= $(this).val();
-        if(val < 0 || val > 4.5) {
-            alert("0~4.5 범위로 입력해 주십시오.");
-            $(this).val('');
-        }
-    });
-/* 경력사항 추가 삭제 버튼 */
-function addForm2() {
-    $('#problem_list2').append($('#experienced_info').html());
-    check_click();
-}
-function delForm2(obj){
-    var div = $(obj).parent();
-    //console.log(div);
+
+//0~4.5 범위
+$(document).on("keyup", "input[name^=grade]", function() {
+    var val= $(this).val();
+    if(val < 0 || val > 4.5) {
+        alert("0~4.5 범위로 입력해 주십시오.");
+        $(this).val('');
+    }
+});
+
+/* 추가버튼*/
+$(function() {
+	var addEduBtn = document.getElementById("addEducation");
+	var addCarBtn = document.getElementById("addCareer");
+	var addLicBtn = document.getElementById("addLicense");
+	var addPortBtn = document.getElementById("addPortfolio");
+	
+	addEduBtn.addEventListener('click', function() {
+    	$('#education').append($('#hideEduWrap').html());
+	})
+	
+	addCarBtn.addEventListener('click', function() {
+    	$('#career').append($('#hideCarWrap').html());
+	})
+	
+	addLicBtn.addEventListener('click', function() {
+    	$('#license').append($('#hideLicWrap').html());
+	})
+	
+	addPortBtn.addEventListener('click', function() {
+    	$('#portfolio').append($('#hidePortWrap').html());
+	})
+});
+
+function delForm(obj){
+    var div = $(obj).parent().parent();
     //라인 삭제
     div.remove();
 }
-/* 자격증 추가 삭제 버튼 */
-function addForm3() {
-    $('#problem_list3').append($('#license_info').html());
-    check_click();
-}
-function delForm3(obj){
-    var div = $(obj).parent();
-    //console.log(div);
-    //라인 삭제
-    div.remove();
-}
-/* 포트폴리오 추가 삭제 버튼 */
-function addForm4() {
-    $('#problem_list4').append($('#portfolio_info').html());
-    check_click();
-}
-function delForm4(obj){
-    var div = $(obj).parent();
-    //console.log(div);
-    //라인 삭제
-    div.remove();
-}
-//첨부파일, url중에 선택
-// $(function() {
-//     $("#company").hide()
-//     $("#personButton").click(function(){
-//       $("#personButton").css({"background-color": "#A5E374", "color": "white"})
-//       $("#companyButton").css({"background-color": "#F0F0F0", "color": "#858585"})
-//       $("#individual").show()
-//       $("#company").hide()
-//     })
-//     $("#companyButton").click(function(){
-//       $("#companyButton").css({"background-color": "#A5E374", "color": "white"})
-//       $("#personButton").css({"background-color": "#F0F0F0", "color": "#858585"})
-//       $("#individual").hide()
-//       $("#company").show()
-//       $("#company").prop("display","block")
-//     })
-//     });
-//첨부파일명 가져오기
-// $(document).ready(function(){
-//     $('input[type=file]').on('change',function(){
-//         if(window.FileReader){
-//             var filename = $(this).val().split('/').pop().split('\\').pop();
-//            } else {
-//             var filename = $(this).val().split('/').pop().split('\\').pop();
-//            }
-//     });
-   
-//   });
-/* 첨부파일 */
-$(document).ready(function(){
-    var fileTarget = $('.filebox .upload-hidden');
-  
-    fileTarget.on('change', function(){  // 값이 변경되면
-      if(window.FileReader){  // modern browser
-        var filename = $(this)[0].files[0].name;
-      } 
-      else {  // old IE
-        var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
-      }
-      
-      // 추출한 파일명 삽입
-      $(this).siblings('.uploadname').val(filename);
-    });
-  }); 
-/////////////////
-   $("#file").on('change',function(){
-    var fileName = $("#file").val();
-    $(".upload_name").val(fileName);
-  });
