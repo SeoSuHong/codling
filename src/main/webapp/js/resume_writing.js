@@ -269,6 +269,8 @@ function resumeChk() {
 			alert('학과를 입력해 주세요.');
 			departments[i].focus(); return;
 		}
+		console.log(schoolStartDates[i].value);
+		console.log(schoolEndDates[i].value);
 	}
 	
 	// 스택
@@ -344,6 +346,7 @@ function resumeChk() {
 	var files = document.getElementsByName('file');
 	
 	for(var i = 0; i < portfolioNames.length - 1; i++) {
+		console.log(files[i].nextElementSibling);
 		if(files[i].value != "")
 			files[i].nextElementSibling.value = files[i].files.length;
 		else

@@ -68,7 +68,7 @@
 	                     <tr>
 	                        <th>재학기간 * </th>
 	                        <td colspan="2">
-	                        	<input type="date" name="schoolStartDate" class="edu_date"> ~ <input type="date" name="schoolEndDate" class="edu_date">
+	                        	<input type="month" name="schoolStartDate" class="edu_date"> ~ <input type="month" name="schoolEndDate" class="edu_date">
 	                            <select name="status">
 	                                <option value="" selected>선택</option>
 	                                <option value="졸업">졸업</option>
@@ -87,7 +87,7 @@
 	                     <tr>
 	                        <th>학점</th>
 	                        <td>
-	                        	<input class="score" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '')"/>
+	                        	<input name="score" class="score" value="0" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '')"/>
 	                            / 4.5
 	                     	</td>
 	                    </tr>
@@ -121,7 +121,7 @@
 		                     <tr>
 		                        <th>재학기간 * </th>
 		                        <td>
-		                        	<input type="date" name="schoolStartDate" class="edu_date"> ~ <input type="date" name="schoolEndDate" class="edu_date">
+		                        	<input type="month" name="schoolStartDate" class="edu_date"> ~ <input type="month" name="schoolEndDate" class="edu_date">
 		                            <select name="status">
 		                                <option value="" selected>선택</option>
 		                                <option value="졸업">졸업</option>
@@ -140,7 +140,7 @@
 		                     <tr>
 		                        <th>학점</th>
 		                        <td>
-		                        	<input class="score" value="0" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
+		                        	<input name="score" class="score" value="0" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
 		                            / 4.5
 		                     	</td>
 		                    </tr>
@@ -176,7 +176,7 @@
 	                    <tr>
 	                        <th>재직기간</th>
 	                        <td>
-	                        	<input type="date" name="tenureStartDate" class="career_date"> ~ <input type="date" name="tenureEndDate" class="career_date">
+	                        	<input type="month" name="tenureStartDate" class="career_date"> ~ <input type="month" name="tenureEndDate" class="career_date">
 	                        </td>
 	                    </tr>
 	                    <tr>
@@ -214,7 +214,7 @@
 		                    <tr>
 		                        <th>재직기간</th>
 								<td>
-									<input type="date" name="tenureStartDate" class="career_date"> ~ <input type="date" name="tenureEndDate" class="career_date">
+									<input type="month" name="tenureStartDate" class="career_date"> ~ <input type="month" name="tenureEndDate" class="career_date">
 								</td>
 		                    </tr>
 		                    <tr>

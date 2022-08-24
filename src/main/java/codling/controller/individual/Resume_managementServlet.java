@@ -16,6 +16,7 @@ import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
 import codling.identity.Apply;
 import codling.identity.CoverLetter;
+import codling.identity.Individual;
 
 @WebServlet("/resume_management")
 public class Resume_managementServlet extends HttpServlet {
@@ -36,6 +37,8 @@ public class Resume_managementServlet extends HttpServlet {
 		request.setAttribute("applys", applys);
 		
 		// 이력서
+		Individual individual = indiDao.getIndividual(id);
+		
 		
 		// 자기소개서
 		List<CoverLetter> coverLetters = indiDao.getCoverLetter(id);

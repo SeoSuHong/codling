@@ -49,7 +49,7 @@ public class IndividualDao {
 				String phone = rs.getString("phone");
 				String address = rs.getString("address");
 				
-				individual = new Individual(id, password, name, birth, gender, email, phone, address, "");
+				individual = new Individual(id, password, name, birth, gender, email, phone, address, "", "");
 				
 			}
 			
@@ -91,7 +91,7 @@ public class IndividualDao {
 	// 이력서 제목 작성
 	public boolean insertResumeTitle(String id, String title) {
 		boolean result = false;
-		String query = "INSERT INTO individual(resumeTitle) VALUES(?) WHERE id = ?";
+		String query = "UPDATE individual SET resumeTitle = ? WHERE id = ?";
 		
 		try {
 			conn = getConnection();
@@ -112,7 +112,7 @@ public class IndividualDao {
 	// 이력서 스택 작성
 	public boolean insertStack(String id, String stack) {
 		boolean result = false;
-		String query = "INSERT INTO individual(stack) VALUES(?) WHERE id = ?";
+		String query = "UPDATE individual SET stack = ? WHERE id = ?";
 		
 		try {
 			conn = getConnection();
@@ -192,10 +192,10 @@ public class IndividualDao {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, license.getIndividual_id());
-			pstmt.setString(1, license.getName());
-			pstmt.setString(1, license.getAgency());
-			pstmt.setString(1, license.getPass());
-			pstmt.setString(1, license.getAcquireDate());
+			pstmt.setString(2, license.getName());
+			pstmt.setString(3, license.getAgency());
+			pstmt.setString(4, license.getPass());
+			pstmt.setString(5, license.getAcquireDate());
 			
 			if(pstmt.executeUpdate() == 1) result = true;
 			
@@ -220,7 +220,7 @@ public class IndividualDao {
 			pstmt.setString(3, portfolio.getDetail());
 			pstmt.setString(4, portfolio.getUrl());
 			pstmt.setString(5, portfolio.getFileName());
-			pstmt.setInt(6, portfolio.getFileSize());
+			pstmt.setString(6, portfolio.getFileSize());
 			
 			if(pstmt.executeUpdate() == 1) result = true;
 			
@@ -230,6 +230,93 @@ public class IndividualDao {
 			System.out.println("insertPortfolio Error : " + e.getMessage());
 		}
 		return result;
+	}
+	
+	// 이력서 학력사항 가져오기
+	public List<Education> getEducation(String id) {
+		List<Education> educations = new ArrayList<Education>();
+		String query = "SELECT * FROM education WHERE individual_id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				String school = rs.getString("school");
+				String schoolName = rs.getString("schoolName");
+				String schoolStartDate = rs.getString("schoolStartDate");
+				String schoolEndDate = rs.getString("schoolEndDate");
+				String status = rs.getString("status");
+				String department = rs.getString("department");
+				String score = rs.getString("score");
+			}
+		} catch(Exception e) {
+			System.out.println("getEducation Error : " + e.getMessage());
+		}
+		return educations;
+	}
+	
+	// 이력서 경력사항 가져오기
+	public List<Career> getCareer(String id) {
+		List<Career> careers = new ArrayList<Career>();
+		String query = "SELECT * FROM career WHERE individual_id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+			}
+		} catch(Exception e) {
+			System.out.println("getCareer Error : " + e.getMessage());
+		}
+		return careers;
+	}
+	
+	// 이력서 자격증 가져오기
+	public List<License> getLicense(String id) {
+		List<License> licenses = new ArrayList<License>();
+		String query = "SELECT * FROM license WHERE individual_id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+			}
+		} catch(Exception e) {
+			System.out.println("getLicense Error : " + e.getMessage());
+		}
+		return licenses;
+	}
+	
+	// 이력서 포트폴리오 가져오기
+	public List<Portfolio> getPortfolio(String id) {
+		List<Portfolio> portfolios = new ArrayList<Portfolio>();
+		String query = "SELECT * FROM portfolio WHERE individual_id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+			}
+		} catch(Exception e) {
+			System.out.println("getPortfolio Error : " + e.getMessage());
+		}
+		return portfolios;
 	}
 	
 	// 자기소개서 가져오기
