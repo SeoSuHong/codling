@@ -15,8 +15,12 @@ import javax.servlet.http.HttpSession;
 import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
 import codling.identity.Apply;
+import codling.identity.Career;
 import codling.identity.CoverLetter;
+import codling.identity.Education;
 import codling.identity.Individual;
+import codling.identity.License;
+import codling.identity.Portfolio;
 
 @WebServlet("/resume_management")
 public class Resume_managementServlet extends HttpServlet {
@@ -31,14 +35,23 @@ public class Resume_managementServlet extends HttpServlet {
 		String name = map.get(id);
 		request.setAttribute("name", name);
 		
-		// 지원한 공고
 		IndividualDao indiDao = new IndividualDao();
+		// 지원한 공고
 		List<Apply> applys = indiDao.getApply(id);
 		request.setAttribute("applys", applys);
 		
 		// 이력서
 		Individual individual = indiDao.getIndividual(id);
+		List<Education> educations = indiDao.getEducation(id);
+		List<Career> careers = indiDao.getCareer(id);
+		List<License> licenses = indiDao.getLicense(id);
+		List<Portfolio> portfolios = indiDao.getPortfolio(id);
 		
+		request.setAttribute("individual", individual);
+		request.setAttribute("educations", educations);
+		request.setAttribute("careers", careers);
+		request.setAttribute("licenses", licenses);
+		request.setAttribute("portfolios", portfolios);
 		
 		// 자기소개서
 		List<CoverLetter> coverLetters = indiDao.getCoverLetter(id);

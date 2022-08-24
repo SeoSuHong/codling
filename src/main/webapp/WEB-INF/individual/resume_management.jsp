@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,17 +113,111 @@
         </article>
         <article id="resume">
             <h1>이력서 관리</h1>
-            <a href="resume_writing">
-            	<div class="resumemg">
-                	<div class="resumemgbox">
-                    	<p><span>이력서</span></p>
-                    	<div class="resumemgbox2">이력서가 없습니다. 이력서를 작성해 주세요</div>
-                	</div>
+            <c:if test="${empty individual.resumeTitle}">
+	            <a href="resume_writing">
+	            	<div class="resumemg">
+	                	<div class="resumemgbox">
+	                    	<p><span>이력서</span></p>
+	                    	<div class="resumemgbox2">이력서가 없습니다. 이력서를 작성해 주세요</div>
+	                	</div>
+	            	</div>
+	            </a>
+	            <div class="btn-res">
+	                <a href="resume_writing"><button id="btn-res">이력서 작성</button></a>
+	            </div>
+            </c:if>
+            <c:if test="${not empty individual.resumeTitle}">
+            	<div>
+            		<p>이력서</p>
+            		${individual.resumeTitle}
+            		<table>
+            			<tr>
+            				<td>이름</td>
+            				<td>${individual.name}</td>
+            			</tr>
+            			<tr>
+            				<td>경력</td>
+            				<td>
+            					<c:if test="${empty careers}">
+            						신입
+            					</c:if>
+            					<c:if test="${not empty careers}">
+	            					<c:set var="tenureYear"/>
+	            					<c:set var="tenureMonth"/>
+	            					<c:forEach var="career" items="${careers}">
+	            						<fmt:parseNumber var="tenureStartYear" value="${fn:substring(career.tenureStartDate, 0, 4)}" type="number"/>
+	            						<fmt:parseNumber var="tenureEndYear" value="${fn:substring(career.tenureEndDate, 0, 4)}" type="number"/>
+	            						<fmt:parseNumber var="tenureStartMonth" value="${fn:substring(career.tenureStartDate, 5, 7)}" type="number"/>
+	            						<fmt:parseNumber var="tenureEndMonth" value="${fn:substring(career.tenureEndDate, 5, 7)}" type="number"/>
+	            						
+	            						<c:set var="tenureYear" value="${tenureYear + (tenureEndYear - tenureStartYear)}"/>
+	            						<c:set var="tenureMonth" value="${tenureMonth + (tenureEndMonth - tenureStartMonth)}"/>
+	            					</c:forEach>
+	            					총 ${tenureYear}년 ${tenureMonth}개월 (
+	            					<c:forEach var="career" items="${careers}" varStatus="st">
+	            						<fmt:parseNumber var="tenureStartYear" value="${fn:substring(career.tenureStartDate, 0, 4)}" type="number"/>
+	            						<fmt:parseNumber var="tenureEndYear" value="${fn:substring(career.tenureEndDate, 0, 4)}" type="number"/>
+	            						<fmt:parseNumber var="tenureStartMonth" value="${fn:substring(career.tenureStartDate, 5, 7)}" type="number"/>
+	            						<fmt:parseNumber var="tenureEndMonth" value="${fn:substring(career.tenureEndDate, 5, 7)}" type="number"/>
+	            						<c:if test="${!st.last}">
+	            							${career.prev_company} ${tenureEndYear - tenureStartYear}년 ${tenureEndMonth - tenureStartMonth}개월 |
+	            						</c:if>
+	            						<c:if test="${st.last}">
+	            							${career.prev_company} ${tenureEndYear - tenureStartYear}년 ${tenureEndMonth - tenureStartMonth}개월
+	            						</c:if>
+	            					</c:forEach>
+	            					)
+	            				</c:if>
+            				</td>
+            			</tr>
+            			<tr>
+            				<td>기술스택</td>
+            				<td>
+            					<c:forTokens var="stack" items="${individual.stack}" delims="/" varStatus="st">
+            						<c:if test="${!st.last}">
+            							${stack} ·
+            						</c:if>
+            						<c:if test="${st.last}">
+            							${stack}
+            						</c:if>
+            					</c:forTokens>
+            				</td>
+            			</tr>
+            			<tr>
+            				<td>포트폴리오</td>
+            				<td>
+            					<c:forEach var="portfolio" items="${portfolios}" varStatus="st">
+            						<c:if test="${!st.last}">
+            							${portfolio.name} ·
+            						</c:if>
+            						<c:if test="${st.last}">
+            							${portfolio.name}
+            						</c:if>
+            					</c:forEach>
+            				</td>
+            			</tr>
+            			<tr>
+            				<td>자격증</td>
+            				<td>
+            					<c:forEach var="license" items="${licenses}" varStatus="st">
+            						<c:if test="${!st.last}">
+            							${license.name} ·
+            						</c:if>
+            						<c:if test="${st.last}">
+            							${license.name}
+            						</c:if>
+            					</c:forEach>
+            				</td>
+            			</tr>
+            			<tr>
+            				<td>최종학력</td>
+            				<td>
+            					
+            				</td>
+            			</tr>
+            		</table>
             	</div>
-            </a>
-            <div class="btn-res">
-                <a href="resume_writing"><button id="btn-res">이력서 작성</button></a>
-            </div>
+            </c:if>
         </article>
         <article id="self">
             <h1>자기소개서 관리</h1>

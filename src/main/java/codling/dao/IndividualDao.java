@@ -48,8 +48,10 @@ public class IndividualDao {
 				String email = rs.getString("email");
 				String phone = rs.getString("phone");
 				String address = rs.getString("address");
+				String resumeTitle = rs.getString("resumeTitle");
+				String stack = rs.getString("stack");
 				
-				individual = new Individual(id, password, name, birth, gender, email, phone, address, "", "");
+				individual = new 	Individual(id, password, name, birth, gender, email, phone, address, resumeTitle, stack);
 				
 			}
 			
@@ -311,8 +313,19 @@ public class IndividualDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				int no = rs.getInt("no");
+				String name = rs.getString("name");
+				String agency = rs.getString("agency");
+				String pass = rs.getString("pass");
+				String acquireDate = rs.getString("acquireDate");
 				
+				License license = new License(no, id, name, agency, pass, acquireDate);
+				licenses.add(license);
 			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
 		} catch(Exception e) {
 			System.out.println("getLicense Error : " + e.getMessage());
 		}
@@ -331,8 +344,20 @@ public class IndividualDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				int no = rs.getInt("no");
+				String name = rs.getString("name");
+				String detail = rs.getString("detail");
+				String url = rs.getString("url");
+				String fileName = rs.getString("fileName");
+				String fileSize = rs.getString("fileSize");
 				
+				Portfolio portfolio = new Portfolio(no, id, name, detail, url, fileName, fileSize);
+				portfolios.add(portfolio);
 			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
 		} catch(Exception e) {
 			System.out.println("getPortfolio Error : " + e.getMessage());
 		}
