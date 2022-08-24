@@ -67,7 +67,7 @@
 	                     </tr>
 	                     <tr>
 	                        <th>재학기간 * </th>
-	                        <td>
+	                        <td colspan="2">
 	                        	<input type="date" name="schoolStartDate" class="edu_date"> ~ <input type="date" name="schoolEndDate" class="edu_date">
 	                            <select name="status">
 	                                <option value="" selected>선택</option>
@@ -106,7 +106,7 @@
 			                            <option value="" selected>선택</option>
 			                            <option value="고등학교">고등학교</option>
 			                            <option value="대학교(2년)">대학교(2년)</option>
-			                            <option value="대학교(4년)">대학교(4년)(2년)</option>
+			                            <option value="대학교(4년)">대학교(4년)</option>
 			                            <option value="대학원(석사)">대학원(석사)</option>
 			                            <option value="대학원(박사)">대학원(박사)</option>
 		                            </select>
@@ -124,10 +124,10 @@
 		                        	<input type="date" name="schoolStartDate" class="edu_date"> ~ <input type="date" name="schoolEndDate" class="edu_date">
 		                            <select name="status">
 		                                <option value="" selected>선택</option>
-		                                <option value="고졸">졸업</option>
-		                                <option value="초대졸">졸업예정</option>
-		                                <option value="대졸">재학</option>
-		                                <option value="석사">휴학</option>
+		                                <option value="졸업">졸업</option>
+		                                <option value="졸업예정">졸업예정</option>
+		                                <option value="재학중">재학중</option>
+		                                <option value="휴학중">휴학중</option>
 		                            </select>
 		                        </td>
 		                     </tr>
@@ -140,7 +140,7 @@
 		                     <tr>
 		                        <th>학점</th>
 		                        <td>
-		                        	<input class="score" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
+		                        	<input class="score" value="0" placeholder=" 본인학점" onkeypress="return isNumberKey(event)" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"/>
 		                            / 4.5
 		                     	</td>
 		                    </tr>
@@ -151,11 +151,12 @@
 	        
 	    	<!--보유기술스택-->
 	        <h2>보유 기술스택</h2>
-	        <div class="contentWrap">
+	        <div id="stackWrap" class="contentWrap">
 	            <h3 id="stackTitle">기술스택</h3>
 	            <div id="stacks"></div>
 	            <input id="stack" name="keyword" onkeydown="keyDown()" placeholder=" 보유 기술 스택을 입력하세요.">
-	            <ul id="suggest" style="display: none; position: absolute; top: 1290px;"></ul>
+	            <ul id="suggest" style="display: none; position: relative;"></ul>
+	            <input type="hidden" name="stacks">
 	        </div>
 	        
 	    	<!--경력사항-->
@@ -229,7 +230,7 @@
 		                        </td>
 		                    </tr>
 		                    <tr>
-		                        <th>주요 업무</th>
+		                        <th>주요업무</th>
 		                        <td>
 		                        	<textarea name="work_content" placeholder=" 주요업무에 대한 설명을 자유롭게 기술하세요." class="ex_detail"></textarea>
 		                        </td>
@@ -339,7 +340,9 @@
 		                <tr>
 		                    <th>URL 주소</th>
 		                    <td>
+			                    <input type="hidden" name="urlCount" value="1">
 			                    <input name="url" placeholder=" github.com/SeoSuHong/codling">
+			                    <input type="button" class="addUrlBtn" value="추가" onclick="addUrl(this)">
 		                    </td>
 		                </tr>
 		                <tr>
@@ -372,7 +375,9 @@
 			                <tr>
 			                    <th>URL 주소</th>
 			                    <td>
+				                    <input type="hidden" name="urlCount" value="1">
 				                    <input name="url" placeholder=" github.com/SeoSuHong/codling">
+				                    <input type="button" class="addUrlBtn" value="추가" onclick="addUrl(this)">
 			                    </td>
 			                </tr>
 			                <tr>

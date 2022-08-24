@@ -30,12 +30,12 @@ section{width: 1220px; margin: 0 auto; margin-top: 150px;}
 
 h2 {margin-top: 80px; margin-bottom: 30px;}
 th {width: 130px; height: 70px; text-align: left;}
-td {width: 300px; height: 70px;}
+td {height: 70px;}
 input {width: 300px; height: 30px; border: 1px solid #858585; border-radius: 5px;}
 select {height: 32px; border: 1px solid #858585; margin-top: 2px; border-radius: 5px;}
 textarea{width: 900px; height: 100px; border-radius: 5px;}
 
-.contentWrap {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: #E2E2E2; border-radius: 10px;}
+.contentWrap {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: rgba(89, 89, 89, 0.1); border-radius: 10px;}
 .contentTitleWrap {display: flex; justify-content: space-between;}
 .addForm {margin-top: -40px;}
 .addBtn {width: 70px; height: 40px; font-size: medium; margin-top: 90px; margin-right: 10px; background-color: #98F306; border: none; border-radius: 10px; cursor: pointer;}
@@ -48,32 +48,35 @@ textarea{width: 900px; height: 100px; border-radius: 5px;}
 
 /* 학력사항 */
 .edu_select {width: 300px;}
-.edu_date {width: 99px;}
+.edu_date {width: 137px;}
 .score {width: 60px;}
-.hideEdu {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: #E2E2E2; border-radius: 10px;}
+.hideEdu {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: rgba(89, 89, 89, 0.1); border-radius: 10px;}
 #hideEduWrap {display: none;}
 
 /* 스택 */
+#stackWrap {}
 #stackTitle {margin-bottom: 20px;}
-#stack {width: 430px; height: 30px; margin-top: 20px;}
+#stack {width: 430px; margin-top: 20px;}
 #keyword{width: 300px;}
-#stacks{display: flex; width: 1000px; height: 50px; overflow: hidden; overflow-wrap: anywhere;}
-.st{display: flex; margin-right: 30px; background-color: #A5E374; border-radius: 50px; padding: 0 12px; line-height: 50px;}
+#stacks{display: flex; flex-flow: row wrap;}
+.st{height: 40px; display: flex; margin-right: 10px; margin-bottom: 5px; background-color: #A5E374; border-radius: 50px; padding: 0 12px; line-height: 40px;}
 .stack{margin-right: 10px; color: white; font-size: 1.3rem; font-weight: bold;}
-#suggest{width: 432px; max-height: 200px; background-color: white; line-height: 30px; padding-left: 15px; overflow-y: scroll; box-shadow: 0 4px 8px 0 rgb(20 20 20 / 2%), 4px 16px 24px 0 rgb(20 20 20 / 12%);}
+#suggest{width: 417px; max-height: 200px; background-color: white; line-height: 30px; padding-left: 15px; overflow-y: scroll; box-shadow: 0 4px 8px 0 rgb(20 20 20 / 2%), 4px 16px 24px 0 rgb(20 20 20 / 12%);}
 
 /* 경력사항 */
 .career_date {width: 139px;}
-.hideCar {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: #E2E2E2; border-radius: 10px;}
+.hideCar {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: rgba(89, 89, 89, 0.1); border-radius: 10px;}
 #hideCarWrap {display: none;}
 
 /* 자격증 */
-.hideLic {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: #E2E2E2; border-radius: 10px;}
+.hideLic {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: rgba(89, 89, 89, 0.1); border-radius: 10px;}
 #hideLicWrap {display: none;}
 
 /* 포트폴리오 */
 .fileBtn {font-size: 14px; border: none;}
-.hidePort {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: #E2E2E2; border-radius: 10px;}
+.addUrlBtn {width: 50px; background-color: #A5E374; border: none; color: white; cursor: pointer;}
+.delUrlBtn {width: 50px; margin-top: 10px; background-color: #D6D6D6; border: none; color: #858585; cursor: pointer;}
+.hidePort {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: rgba(89, 89, 89, 0.1); border-radius: 10px;}
 #hidePortWrap {display: none;}
 
 /* 완료 버튼 */

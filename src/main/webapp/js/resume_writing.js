@@ -115,6 +115,10 @@ var checkFirst = loopSend = false;
 var lastKeyword = "";
 //Timeout을 1초로 걸었다. 일정 단어 완성 뒤 검색어를 만들어 검색하기 위해서 이다.
 function keyDown() {
+		let stackWrap = document.getElementById("stackWrap");
+		let height = stackWrap.clientHeight - 80;
+		$(stackWrap).css('height', height);
+
     if (checkFirst == false) {
     	//1초뒤 sendKeyword() 수행
         setTimeout("sendKeyword()", 300);
@@ -178,7 +182,7 @@ function process() {
 
 //이름 클릭시 Output-Selected 에 값 넣기. Suggest창 숨기기
 function func(reData) {
-	$('#stacks').append('<span class="st"><div name="stack" class="stack">' + reData + '</div><span onclick="parentElement.remove(this)" style="cursor:pointer"> X </div></div>');
+	$('#stacks').append('<span class="st"><div name="stackList" class="stack">' + reData + '</div><span onclick="parentElement.remove(this)" style="cursor:pointer"> X </div></div>');
 	
     loopSend = checkFirst = false;
     lastKeyword = "";
@@ -192,6 +196,9 @@ function func(reData) {
 function hide(ele) {
     var e = document.getElementById(ele);
     if (e) e.style.display = "none";
+
+	let stackWrap = document.getElementById("stackWrap");
+	$(stackWrap).css('height', 'auto');
 }
 
 //Suggest 창 보이게 속성 바꾸는 함수
@@ -200,9 +207,29 @@ function show(ele) {
     if (e) e.style.display = "";
 }
 
+// 포트폴리오 URL추가 버튼 클릭 시
+function addUrl(obj) {
+	var addNode = "<br><input name='url' placeholder=' github.com/SeoSuHong/codling'> <input type='button' class='delUrlBtn' value='삭제' onclick='delUrl(this)'>";
+	var addPos = obj.parentNode;
+	$(addPos).append(addNode);
+	
+	addPos.childNodes[1].value++;
+}
+
+// 포트폴리오 URL삭제 버튼 클릭 시
+function delUrl(obj) {
+	obj.parentNode.childNodes[1].value--;
+	
+	var br = obj.previousElementSibling.previousElementSibling;
+	var input = obj.previousElementSibling;
+	br.remove();
+	input.remove();
+	obj.remove();
+}
+
 // submit
 function resumeChk() {
-	/*// 이력서 제목
+	// 이력서 제목
 	if(document.resumeForm.title.value == "") {
 		alert("이력서 제목을 입력해 주세요.");
 		document.resumeForm.title.focus();
@@ -245,11 +272,21 @@ function resumeChk() {
 	}
 	
 	// 스택
-	var stacks = document.getElementsByName('stack');
+	var stacks = document.getElementsByName('stackList');
+	var stack = "";
 	if(stacks.length === 0) {
 		alert('기술스택을 1가지 이상 입력해 주세요.');
 		document.resumeForm.keyword.focus();
+	} else {
+		for(var i = 0; i < stacks.length; i++) {
+			if(i < stacks.length - 1)
+				stack += stacks[i].innerText + "/";
+			else
+				stack += stacks[i].innerText;
+		}
+		document.resumeForm.stacks.value = stack;
 	}
+	
 	
 	// 경력사항
 	var prev_companies = document.getElementsByName('prev_company');
@@ -300,24 +337,18 @@ function resumeChk() {
 				acquireDates[i].focus; return;
 			}
 		}
-	}*/
+	}
 	
 	// 포트폴리오
-	var portFolioNames = document.getElementsByName('portfolioName');
+	var portfolioNames = document.getElementsByName('portfolioName');
 	var files = document.getElementsByName('file');
 	
-	for(var i = 0; i < portFolioNames.length - 1; i++) {
-		if(files[i].value != "") {
-			files[i].nextSibling.value = files[i].files.length;
-		}
+	for(var i = 0; i < portfolioNames.length - 1; i++) {
+		if(files[i].value != "")
+			files[i].nextElementSibling.value = files[i].files.length;
+		else
+			files[i].nextElementSibling.value = 0;
 	}
 	
-	var fileCounts = document.getElementsByName('fileCount');
-	console.log(fileCounts.length - 1);
-	
-	for(var i = 0; i < fileCounts.length - 1; i++) {
-		var idx = i;
-		console.log(fileCounts[idx].value);
-	}
-	
+	document.resumeForm.submit();
 }

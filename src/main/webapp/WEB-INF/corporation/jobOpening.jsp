@@ -44,7 +44,7 @@
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
-	                    <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
+	                    <li id="resume"><a href="resume_management"><span>이력서 관리</span></a></li>
 	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
 	                </ul>
 	              </div>

@@ -8,8 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import codling.identity.Apply;
+import codling.identity.Career;
 import codling.identity.CoverLetter;
+import codling.identity.Education;
 import codling.identity.Individual;
+import codling.identity.License;
+import codling.identity.Portfolio;
 
 public class IndividualDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
@@ -84,7 +88,151 @@ public class IndividualDao {
 		return result;
 	}
 	
-	// 개인회원 자기소개서 가져오기
+	// 이력서 제목 작성
+	public boolean insertResumeTitle(String id, String title) {
+		boolean result = false;
+		String query = "INSERT INTO individual(resumeTitle) VALUES(?) WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, title);
+			pstmt.setString(2, id);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("insertResumeTitle Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 스택 작성
+	public boolean insertStack(String id, String stack) {
+		boolean result = false;
+		String query = "INSERT INTO individual(stack) VALUES(?) WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, stack);
+			pstmt.setString(2, id);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("insertStack Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 학력사항 작성
+	public boolean insertEducation(Education education) {
+		boolean result = false;
+		String query = "INSERT INTO education VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, education.getIndividual_id());
+			pstmt.setString(2, education.getSchool());
+			pstmt.setString(3, education.getSchoolName());
+			pstmt.setString(4, education.getSchoolStartDate());
+			pstmt.setString(5, education.getSchoolEndDate());
+			pstmt.setString(6, education.getStatus());
+			pstmt.setString(7, education.getDepartment());
+			pstmt.setString(8, education.getScore());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("insertEducation Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 경력사항 작성
+	public boolean insertCareer(Career career) {
+		boolean result = false;
+		String query = "INSERT INTO career VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, career.getIndividual_id());
+			pstmt.setString(2, career.getPrev_company());
+			pstmt.setString(3, career.getTenureStartDate());
+			pstmt.setString(4, career.getTenureEndDate());
+			pstmt.setString(5, career.getPosition());
+			pstmt.setString(6, career.getDepartment());
+			pstmt.setString(7, career.getWork_content());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("insertCareer Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 자격증 작성
+	public boolean insertLicense(License license) {
+		boolean result = false;
+		String query = "INSERT INTO license VALUES(DEFAULT, ?, ?, ?, ?, ?)";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, license.getIndividual_id());
+			pstmt.setString(1, license.getName());
+			pstmt.setString(1, license.getAgency());
+			pstmt.setString(1, license.getPass());
+			pstmt.setString(1, license.getAcquireDate());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("insertLicense Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 포트폴리오 작성
+	public boolean insertPortfolio(Portfolio portfolio) {
+		boolean result = false;
+		String query = "INSERT INTO portfolio VALUES(DEFAULT, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, portfolio.getIndividual_id());
+			pstmt.setString(2, portfolio.getName());
+			pstmt.setString(3, portfolio.getDetail());
+			pstmt.setString(4, portfolio.getUrl());
+			pstmt.setString(5, portfolio.getFileName());
+			pstmt.setInt(6, portfolio.getFileSize());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("insertPortfolio Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 자기소개서 가져오기
 	public List<CoverLetter> getCoverLetter(String individual_id) {
 		List<CoverLetter> coverLetterList = new ArrayList<CoverLetter>();
 		String query = "SELECT * FROM coverLetter WHERE individual_id = ?";
