@@ -433,13 +433,13 @@ public class IndividualDao {
 				boolean result = false;
 				int count = 0;
 				String query = "UPDATE education "
-						+ "SET school = ?, "
-						+ "schoolName = ?, "
-						+ "schoolStartDate = ?, "
-						+ "schoolEndDate = ?, "
-						+ "department = ?, "
-						+ "score = ?, "
-						+ "status = ? "
+						+ "SET school = ?,"
+						+ "	schoolName = ?,"
+						+ "    schoolStartDate = ?,"
+						+ "    schoolEndDate = ?,"
+						+ "    department = ?,"
+						+ "    score = ?,"
+						+ "    status = ?"
 						+ "WHERE no = ?";
 				
 				try {
