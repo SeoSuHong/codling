@@ -173,15 +173,15 @@ public class IndividualDao {
 	}
 	
 	//이력서 경력사항 insert
-	public int setCareer(List<Career> careerList) {
-		int result = 0;
+	public boolean setCareer(Career careerList) {
+		boolean result = false;
 		String query = "INSERT INTO career VALUES(DEFAULT,?,?,?,?,?,?,?)";
 		
 		try {
-			for(int i = 0; i < careerList.size(); i++) {
+			if(!careerList.getIndividual_id().equals("") && careerList.getIndividual_id() != "") {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(query);
-				Career career = careerList.get(i);
+				Career career = careerList;
 				pstmt.setString(1, career.getIndividual_id());
 				pstmt.setString(2, career.getPrev_company());
 				pstmt.setString(3, career.getTenureStart());
@@ -190,7 +190,7 @@ public class IndividualDao {
 				pstmt.setString(6, career.getDepartment());
 				pstmt.setString(7, career.getWork_content());
 				
-				if(pstmt.executeUpdate() == 1) result++;
+				if(pstmt.executeUpdate() == 1) result = true;
 				
 				pstmt.close();
 				conn.close();
@@ -228,21 +228,21 @@ public class IndividualDao {
 		
 	}
 	//이력서 포트폴리오 insert
-	public int setportfolio(List<Portfolio> portfolioList) {
-		int result = 0;
+	public boolean setportfolio(Portfolio portfolioList) {
+		boolean result = false;
 		String query = "INSERT INTO portfolio VALUES(DEFAULT,?,?,?,?)";
 		
 		try {
-			for(int i = 0; i < portfolioList.size(); i++) {
+			if(!portfolioList.getIndividual_id().equals("") && portfolioList.getIndividual_id() != "") {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(query);
-				Portfolio portfolio = portfolioList.get(i);
+				Portfolio portfolio = portfolioList;
 				pstmt.setString(1, portfolio.getIndividual_id());
 				pstmt.setString(2, portfolio.getName());
 				pstmt.setString(3, portfolio.getDetail());
 				pstmt.setString(4, portfolio.getUrl());
 				
-				if(pstmt.executeUpdate() == 1) result++;
+				if(pstmt.executeUpdate() == 1) result = true;
 				
 				pstmt.close();
 				conn.close();
@@ -254,15 +254,15 @@ public class IndividualDao {
 	}
 	
 	//파일 업로드
-	public boolean setfile(List<Portfolio> portfolioList) {
+	public boolean setfile(Portfolio portfolioList) {
 		boolean result = false;
 		String query = "INSERT INTO fileupload VALUES(DEFAULT,?,?,?,?,?,?)";
 		
 		try {
-			for(int i = 0; i < portfolioList.size(); i++) {
+			if(!portfolioList.getIndividual_id().equals("") && portfolioList.getIndividual_id() != "") {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(query);
-				Portfolio portfolio = portfolioList.get(i);
+				Portfolio portfolio = portfolioList;
 				pstmt.setString(1, portfolio.getIndividual_id());
 				pstmt.setString(2, portfolio.getTitle());
 				pstmt.setString(3, portfolio.getFileName());
@@ -282,15 +282,15 @@ public class IndividualDao {
 	}
 	
 	//학력정보 가져오기
-	public ArrayList<Education> getEducation(String id) {
-		ArrayList<Education> list = new ArrayList<Education>();
+	public Education getEducation(String id) {
+		Education education = null;
 		String query = "SELECT * FROM education WHERE individual_id = ? order by no asc";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			if(rs.next()) {
 				int no = rs.getInt("no");
 				String individual_id = rs.getString("individual_id");
 				String school = rs.getString("school");
@@ -301,8 +301,7 @@ public class IndividualDao {
 				String department = rs.getString("department");
 				String score = rs.getString("score");
 				
-				Education education = new Education(no, individual_id, school, schoolName, schoolStartDate, schoolEndDate, status, department, score);
-				list.add(education);
+				education = new Education(no, individual_id, school, schoolName, schoolStartDate, schoolEndDate, status, department, score);
 			}
 			rs.close();
 			pstmt.close();
@@ -310,19 +309,19 @@ public class IndividualDao {
 		}catch (Exception e) {
 			System.out.println("getEducation : " + e.getMessage());
 		}
-		return list;
+		return education;
 	}
 	
 	//경력 가져오기
-		public ArrayList<Career> getCareer(String id) {
-			ArrayList<Career> list = new ArrayList<Career>();
+		public Career getCareer(String id) {
+			Career career = null;
 			String query = "SELECT * FROM career WHERE individual_id = ? order by no asc";
 			try {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(query);
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
-				while(rs.next()) {
+				if(rs.next()) {
 					int no = rs.getInt("no");
 					String individual_id = rs.getString("individual_id");
 					String prev_company = rs.getString("prev_company");
@@ -332,8 +331,7 @@ public class IndividualDao {
 					String department = rs.getString("department");
 					String work_content = rs.getString("work_content");
 					
-					Career career = new Career(no, individual_id, prev_company, tenureStart, tenureEnd, position, department, work_content);
-					list.add(career);
+					career = new Career(no, individual_id, prev_company, tenureStart, tenureEnd, position, department, work_content);
 				}
 				rs.close();
 				pstmt.close();
@@ -341,7 +339,7 @@ public class IndividualDao {
 			}catch (Exception e) {
 				System.out.println("getCareer : " + e.getMessage());
 			}
-			return list;
+			return career;
 		}
 		
 		//자격증 가지고오기
@@ -429,42 +427,109 @@ public class IndividualDao {
 			}
 			
 			//이력서 학력 update
-			public boolean Education_update(List<Education> education_updateList) {
+			public boolean education_update(Education education_updateList) {
 				boolean result = false;
-				int count = 0;
 				String query = "UPDATE education "
 						+ "SET school = ?,"
-						+ "	schoolName = ?,"
-						+ "    schoolStartDate = ?,"
-						+ "    schoolEndDate = ?,"
-						+ "    department = ?,"
-						+ "    score = ?,"
-						+ "    status = ?"
+						+ "schoolName = ?,"
+						+ "schoolStartDate = ?,"
+						+ "schoolEndDate = ?,"
+						+ "department = ?,"
+						+ "score = ?,"
+						+ "status = ? "
 						+ "WHERE no = ?";
 				
 				try {
-					for(int i = 0; i < education_updateList.size(); i++) {
+					if(!education_updateList.getSchool().equals("") && education_updateList.getSchool() != "") {
 						conn = getConnection();
 						pstmt = conn.prepareStatement(query);
-						Education education_updat = education_updateList.get(i);
-						pstmt.setString(1, education_updat.getSchool());
-						pstmt.setString(2, education_updat.getSchoolName());
-						pstmt.setString(3, education_updat.getSchoolStartDate());
-						pstmt.setString(4, education_updat.getSchoolEndDate());
-						pstmt.setString(5, education_updat.getDepartment());
-						pstmt.setString(6, education_updat.getScore());
-						pstmt.setString(7, education_updat.getStatus());
-						pstmt.setInt(8, education_updat.getNo());
+						Education education_update = education_updateList;
+						pstmt.setString(1, education_update.getSchool());
+						pstmt.setString(2, education_update.getSchoolName());
+						pstmt.setString(3, education_update.getSchoolStartDate());
+						pstmt.setString(4, education_update.getSchoolEndDate());
+						pstmt.setString(5, education_update.getDepartment());
+						pstmt.setString(6, education_update.getScore());
+						pstmt.setString(7, education_update.getStatus());
+						pstmt.setInt(8, education_update.getNo());
 						
-						if(pstmt.executeUpdate() == 1) count++;
+						if(pstmt.executeUpdate() == 1) result = true;
 						
 						pstmt.close();
 						conn.close();
 					}
 					
-					if(count == education_updateList.size()) result = true;
 				}catch (Exception e) {
-					System.out.println("setEducation errors : "+e.getMessage());
+					System.out.println("education_update errors : "+e.getMessage());
+				}
+				return result;
+			}
+			
+			//이력서 경력 update
+			public boolean career_update(Career career_updateList) {
+				boolean result = false;
+				String query = "UPDATE career "
+						+ "SET prev_company = ?, "
+						+ "tenureStart = ?, "
+						+ "tenureEnd = ?, "
+						+ "position = ?, "
+						+ "department = ?, "
+						+ "work_content = ? "
+						+ "WHERE no = ?";
+				
+				try {
+					if(!career_updateList.getPrev_company().equals("") && career_updateList.getPrev_company() != "") {
+						conn = getConnection();
+						pstmt = conn.prepareStatement(query);
+						Career career_update = career_updateList;
+						pstmt.setString(1, career_update.getPrev_company());
+						pstmt.setString(2, career_update.getTenureStart());
+						pstmt.setString(3, career_update.getTenureEnd());
+						pstmt.setString(4, career_update.getPosition());
+						pstmt.setString(5, career_update.getDepartment());
+						pstmt.setString(6, career_update.getWork_content());
+						pstmt.setInt(7, career_update.getNo());
+						
+						if(pstmt.executeUpdate() == 1) result = true;
+						
+						pstmt.close();
+						conn.close();
+					}
+					
+				}catch (Exception e) {
+					System.out.println("career_update errors : "+e.getMessage());
+				}
+				return result;
+			}
+			
+			//자격증 update
+			public boolean license_update(License license_updateList) {
+				boolean result = false;
+				String query = "UPDATE license "
+						+ "SET name = ?, "
+						+ "agency = ?, "
+						+ "pass = ?, "
+						+ "acquireDate = ? "
+						+ "WHERE no = ?";
+				
+				try {
+					if(!license_updateList.getName().equals("") && license_updateList.getName() != "") {
+						conn = getConnection();
+						pstmt = conn.prepareStatement(query);
+						License license_update = license_updateList;
+						pstmt.setString(1, license_update.getName());
+						pstmt.setString(2, license_update.getAgency());
+						pstmt.setString(3, license_update.getPass());
+						pstmt.setString(4, license_update.getAcquireDate());
+						pstmt.setInt(5, license_update.getNo());
+						
+						if(pstmt.executeUpdate() == 1) result = true;
+						
+						pstmt.close();
+						conn.close();
+					}
+				}catch (Exception e) {
+					System.out.println("license_update errors : "+e.getMessage());
 				}
 				return result;
 			}

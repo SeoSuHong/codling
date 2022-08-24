@@ -145,7 +145,7 @@
             <div id="experiencebox"><br><br>
                 <table id= "ex_info_box">
 	                <tr>
-	                    <td><p> 회사 명 * <input name="perv_company" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
+	                    <td><p> 회사 명 * <input name="prev_company" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
 	                </tr>
 	                <tr>
 	                    <td><p id="qqq"><span>재직기간 *</span><input type="date" name="tenureStart" class="infoForm4">
@@ -168,7 +168,7 @@
 				<button type="button" class="ex_del" onclick="delForm2(this);">삭제</button>
                 <table id= "ex_info_box">        
 	                <tr>
-	                    <td><p>회사 명 * <input name="company_name" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
+	                    <td><p>회사 명 * <input name="prev_company" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요"> </p></td>
 	                </tr>
 	                <tr>
 	                    <td><p id="qqq"><span>재직 기간 *</span><input type="date" name="tenureStart" class="infoForm4">

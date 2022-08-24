@@ -53,22 +53,53 @@ public class Resume_writingServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String indiId = (String)session.getAttribute("indiId");
 		
+		IndividualDao dao = new IndividualDao();
+		
 		List<Education> educationList = new ArrayList<Education>();
 		//학력정보
-		String[] school = request.getParameterValues("school");
-		String[] schoolName = request.getParameterValues("schoolName");
-		String[] schoolStartDate = request.getParameterValues("schoolStartDate");
-		String[] schoolEndDate = request.getParameterValues("schoolEndDate");
-		String[] status = request.getParameterValues("status");
-		String[] department = request.getParameterValues("department");
-		String[] score = request.getParameterValues("score");
+		String[] school_ = request.getParameterValues("school");
+		String[] schoolName_ = request.getParameterValues("schoolName");
+		String[] schoolStartDate_ = request.getParameterValues("schoolStartDate");
+		String[] schoolEndDate_ = request.getParameterValues("schoolEndDate");
+		String[] status_ = request.getParameterValues("status");
+		String[] department_ = request.getParameterValues("department");
+		String[] score_ = request.getParameterValues("score");
 		
-		for(int i = 0; i < school.length; i++) {
-			Education education = new Education(0, indiId, school[i], schoolName[i], schoolStartDate[i], schoolEndDate[i], status[i], department[i], score[i]);
-			educationList.add(education);
+		String school = "";
+		String schoolName = "";
+		String schoolStartDate = "";
+		String schoolEndDate = "";
+		String status = "";
+		String department = "";
+		String score = "";
+		
+		for(int i = 0; i < schoolName_.length-1; i++) {
+			if(i != schoolName_.length-2) {
+				school += (school_[i] + " / ");
+				schoolName += (schoolName_[i] + " / ");
+				schoolStartDate += (schoolStartDate_[i] + " / ");
+				schoolEndDate += (schoolEndDate_[i] + " / ");
+				status += (status_[i] + " / ");
+				department += (department_[i] + " / ");
+				if(score_[i].equals("") || score_[i] == "") score_[i] = "0";
+				score += (score_[i] + " / ");
+			}else {
+				school += school_[i];
+				schoolName += schoolName_[i];
+				schoolStartDate += schoolStartDate_[i];
+				schoolEndDate += schoolEndDate_[i];
+				status += status_[i];
+				department += department_[i];
+				if(score_[i].equals("") || score_[i] == "") score_[i] = "0";
+				score += score_[i];
+			}
 		}
 		
-		IndividualDao dao = new IndividualDao();
+		if(!schoolName.equals("") && schoolName != "") {
+			Education education = new Education(0, indiId, school, schoolName, schoolStartDate, schoolEndDate, status, department, score);
+			educationList.add(education);
+		}
+
 		boolean educationResult = dao.setEducation(educationList);
 		
 		//resumetitle stack update
@@ -77,22 +108,53 @@ public class Resume_writingServlet extends HttpServlet {
 		boolean resumeTitleStack = dao.upDateResumeTitleStack(resumetitle, stack, indiId);
 		
 		//경력사항
-		List<Career> careerList = new ArrayList<Career>();
-		String[] perv_company = request.getParameterValues("perv_company");
-		String[] tenureStart = request.getParameterValues("tenureStart");
-		String[] tenureEnd = request.getParameterValues("tenureEnd");
-		String[] position = request.getParameterValues("position");
-		String[] company_department = request.getParameterValues("company_department");
-		String[] work_content = request.getParameterValues("work_content");
+		Career careerList = null;
+		String[] prev_company_ = request.getParameterValues("prev_company");
+		String[] tenureStart_ = request.getParameterValues("tenureStart");
+		String[] tenureEnd_ = request.getParameterValues("tenureEnd");
+		String[] position_ = request.getParameterValues("position");
+		String[] company_department_ = request.getParameterValues("company_department");
+		String[] work_content_ = request.getParameterValues("work_content");
 		
-		int careerResult = 0;
-		if(!perv_company[0].equals("")) {
-			for(int i = 0; i < perv_company.length; i++) {
-				Career career = new Career(0, indiId, perv_company[i], tenureStart[i], tenureEnd[i], position[i], company_department[i], work_content[i]);
-				careerList.add(career);
-				careerResult = dao.setCareer(careerList);
+		String prev_company ="";
+		String tenureStart ="";
+		String tenureEnd ="";
+		String position ="";
+		String company_department ="";
+		String work_content ="";
+		
+		for(int i = 0; i < prev_company_.length-1; i++) {
+			if(i != prev_company_.length-2) {
+				System.out.println(prev_company_[i]);
+				System.out.println(tenureStart_[i]);
+				System.out.println(tenureEnd_[i]);
+				System.out.println(position_[i]);
+				System.out.println(company_department_[i]);
+				System.out.println(work_content_[i]);
+				
+				prev_company += (prev_company_[i] + " / ");
+				tenureStart += (tenureStart_[i] + " / ");
+				tenureEnd += (tenureEnd_[i] + " / ");
+				position += (position_[i] + " / ");
+				company_department += (company_department_[i] + " / ");
+				work_content += (work_content_[i] + " / ");
+			}else {
+				prev_company += prev_company_[i];
+				tenureStart += tenureStart_[i];
+				tenureEnd += tenureEnd_[i];
+				position += position_[i];
+				company_department += company_department_[i];
+				work_content += work_content_[i];
 			}
-
+		}
+		
+		boolean careerResult = false;
+		if(!prev_company.equals("") && prev_company != "") {
+			careerList = new Career(0, indiId, prev_company, tenureStart, tenureEnd, position, company_department, work_content);
+			careerResult = dao.setCareer(careerList);
+		}else {
+			careerList = new Career(0, indiId, "", "", "", "", "", "");
+			careerResult = dao.setCareer(careerList);
 		}
 		
 		//자격증내역
@@ -107,29 +169,35 @@ public class Resume_writingServlet extends HttpServlet {
 		String acquireDate = "";
 		
 		for(int i = 0; i < license_name_.length-1; i++) {
-			if(i != license_name_.length-2) {
-				license_name += (license_name_ [i] + " / ");
-				agency += (agency_ [i] + " / ");
-				pass += (pass_ [i] + " / ");
-				acquireDate += (acquireDate_ [i] + " / ");
-			}else {
-				license_name += license_name_ [i];
-				agency += agency_ [i];
-				pass += pass_ [i];
-				acquireDate += acquireDate_ [i];
+			if(!license_name_[i].equals("") && license_name_[i] != "") {
+				if(i != license_name_.length-2) {
+					license_name += (license_name_[i] + " / ");
+					agency += (agency_[i] + " / ");
+					pass += (pass_[i] + " / ");
+					acquireDate += (acquireDate_[i] + " / ");
+				}else {
+					license_name += license_name_[i];
+					agency += agency_[i];
+					pass += pass_[i];
+					acquireDate += acquireDate_[i];
+				}
 			}
 		}
 		
 		int licenseResult = 0;
 		
 		if(!license_name.equals("") && license_name != "") {
-				License license = new License(0, indiId, license_name, agency, pass, acquireDate);
-				licenseList.add(license);
-				licenseResult = dao.setLicense(licenseList);
+			License license = new License(0, indiId, license_name, agency, pass, acquireDate);
+			licenseList.add(license);
+			licenseResult = dao.setLicense(licenseList);
+		}else {
+			License license = new License(0, indiId, "", "", "", "");
+			licenseList.add(license);
+			licenseResult = dao.setLicense(licenseList);
 		}
 		
 		//포트폴리오
-		List<Portfolio> portfolioList = new ArrayList<Portfolio>();
+		Portfolio portfolioList = null;
 		
 		String[] portfolio_name_ = request.getParameterValues("portfolio_name");
 		String[] detail_ = request.getParameterValues("detail");
@@ -139,8 +207,8 @@ public class Resume_writingServlet extends HttpServlet {
 		String url = "";
 		for(int i = 0; i < portfolio_name_.length-1; i++) {
 			if(i != portfolio_name_.length -2) {
-				portfolio_name += (portfolio_name_[i] + " | ");
-				detail += (detail_[i] + " | ");
+				portfolio_name += (portfolio_name_[i] + " / ");
+				detail += (detail_[i] + " / ");
 				url += (url_[i] + " | ");
 			}else {
 				portfolio_name += portfolio_name_[i];
@@ -149,15 +217,17 @@ public class Resume_writingServlet extends HttpServlet {
 			}
 		}
 		
-		int portfolioResult = 0;
+		boolean portfolioResult = false;
 		if(!portfolio_name.equals("") && portfolio_name != "") {
-				Portfolio portfolio = new Portfolio(0, indiId, portfolio_name, detail, url, "", "", "", "","");
-				portfolioList.add(portfolio);
-				portfolioResult = dao.setportfolio(portfolioList);
+			portfolioList = new Portfolio(0, indiId, portfolio_name, detail, url, "", "", "", "","");
+			portfolioResult = dao.setportfolio(portfolioList);
+		}else {
+			portfolioList = new Portfolio(0, indiId, "", "", "", "", "", "", "","");
+			portfolioResult = dao.setportfolio(portfolioList);
 		}
 		
 		//첨부파일
-		List<Portfolio> fileuploadList = new ArrayList<Portfolio>();
+		Portfolio fileuploadList = null;
 		Collection<Part> parts = request.getParts(); //파일 열러개 검사
 		StringBuilder builder = new StringBuilder();
 		StringBuilder builders = new StringBuilder();
@@ -201,6 +271,7 @@ public class Resume_writingServlet extends HttpServlet {
 		if(builder.toString() != "" && !builder.toString().equals("")) {
 			builder.delete(builder.length()-2, builder.length());
 			builders.delete(builders.length()-2, builders.length());
+			builder_fileaddress.delete(builder_fileaddress.length()-2, builder_fileaddress.length());
 		}
 		
 		String[] fileTitle_ = request.getParameterValues("fileTitle");
@@ -220,9 +291,11 @@ public class Resume_writingServlet extends HttpServlet {
 		
 		boolean fileuploadResult = false;
 		if(!fileTitle.equals("") && fileTitle != "") {
-				Portfolio fileupload = new Portfolio(0, indiId, "", "", "", fileTitle, builder.toString(), builder_fileaddress.toString(), file_detail, builders.toString());
-				fileuploadList.add(fileupload);
-				fileuploadResult = dao.setfile(fileuploadList);
+			fileuploadList = new Portfolio(0, indiId, "", "", "", fileTitle, builder.toString(), builder_fileaddress.toString(), file_detail, builders.toString());
+			fileuploadResult = dao.setfile(fileuploadList);
+		}else {
+			fileuploadList = new Portfolio(0, indiId, "", "", "", "", "", "", "", "");
+			fileuploadResult = dao.setfile(fileuploadList);
 		}
 		
 		

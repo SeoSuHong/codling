@@ -34,8 +34,8 @@ public class Resume_managementServlet extends HttpServlet{
 			request.setAttribute("indiName", indiName);
 			
 			Individual individual = indiviDao.getIndividual(indiId);
-			ArrayList<Education> education = indiviDao.getEducation(indiId);
-			ArrayList<Career> career = indiviDao.getCareer(indiId);
+			Education education = indiviDao.getEducation(indiId);
+			Career career = indiviDao.getCareer(indiId);
 			License license = indiviDao.getLicense(indiId);
 			
 			request.setAttribute("license", license);

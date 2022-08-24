@@ -301,14 +301,16 @@
 	                    				<c:set var="tenure" value="0"/>
 	                    				<c:set var="month" value="0"/>
 	                    				<c:set var="result" value="0"/>
-	                    				<c:forEach var="car" items="${career}">
-		                    				<fmt:parseNumber var="tenureStartYear" value="${fn:substring(car.tenureStart, 0, 4)}" type="number"/>
-		                    				<fmt:parseNumber var="tenureEndYear" value="${fn:substring(car.tenureEnd, 0, 4)}" type="number"/>
-		                    				<fmt:parseNumber var="tenureStartmonth" value="${fn:substring(car.tenureStart, 5, 7)}" type="number"/>
-		                    				<fmt:parseNumber var="tenureEndmonth" value="${fn:substring(car.tenureEnd, 5, 7)}" type="number"/>
+	                    				<c:forTokens var="carS" items="${career.tenureStart}" delims=" / " varStatus="st">
+	                    				<c:forTokens var="carE" items="${career.tenureEnd}" begin="${st.index }" end="${st.index }" delims=" / ">
+	                    					<fmt:parseNumber var="tenureStartYear" value="${fn:substring(carS, 0, 4)}" type="number"/>
+		                    				<fmt:parseNumber var="tenureEndYear" value="${fn:substring(carE, 0, 4)}" type="number"/>
+		                    				<fmt:parseNumber var="tenureStartmonth" value="${fn:substring(carS, 5, 7)}" type="number"/>
+		                    				<fmt:parseNumber var="tenureEndmonth" value="${fn:substring(carE, 5, 7)}" type="number"/>
 		                    				<c:set var="tenure" value="${tenure + (tenureEndYear - tenureStartYear)}"/>
 		                    				<c:set var="month" value="${month + (tenureEndmonth - tenureStartmonth)}"/>
-	                    				</c:forEach>
+	                    				</c:forTokens>
+	                    				</c:forTokens>
 	                    				
 	                    				<!-- 0년 중에 경력 개월 -->
 	                    				<c:if test="${tenure == '0'}">
@@ -316,7 +318,9 @@
 	                    						신입
 	                    					</c:if>
 	                    					<c:if test="${month < 12}">
-	                    						${month}개월
+	                    						<c:if test="${month != '0'}">
+	                    							${month}개월
+	                    						</c:if>
 	                    					</c:if>
 	                    					<c:if test="${month == 12}">
 	                    						1년
@@ -441,23 +445,23 @@
 	                    		<p>
 	                    			<c:set var="lastschoolnum" value="0"/>
 	                    			<c:set var="lastschool" value=""/>
-	                    			<c:forEach var="educations" items="${education}">
-	                    				<c:if test="${educations.school == '고등학교'}">
+	                    			<c:forTokens var="educations" items="${education.school}" delims=" / " varStatus="st">
+	                    				<c:if test="${educations == '고등학교'}">
 	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 0.2}"/>
 	                    				</c:if>
-	                    				<c:if test="${educations.school == '대학교(2년)'}">
+	                    				<c:if test="${educations == '대학교(2년)'}">
 	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 0.5}"/>
 	                    				</c:if>
-	                    				<c:if test="${educations.school == '대학교(4년)'}">
+	                    				<c:if test="${educations == '대학교(4년)'}">
 	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 1}"/>
 	                    				</c:if>
-	                    				<c:if test="${educations.school == '대학원(석사)'}">
+	                    				<c:if test="${educations == '대학원(석사)'}">
 	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 1}"/>
 	                    				</c:if>
-	                    				<c:if test="${educations.school == '대학원(박사)'}">
+	                    				<c:if test="${educations == '대학원(박사)'}">
 	                    					<c:set var="lastschoolnum" value="${lastschoolnum + 1}"/>
 	                    				</c:if>
-	                    			</c:forEach>
+	                    			</c:forTokens>
 	                    			<c:if test="${lastschoolnum == 0.2}">
 	                    				<c:set var="lastschool" value="고등학교"/>
 	                    			</c:if>
@@ -466,6 +470,9 @@
 	                    			</c:if>
 	                    			<c:if test="${lastschoolnum == 0.7}">
 	                    				<c:set var="lastschool" value="대학교(2년)"/>
+	                    			</c:if>
+	                    			<c:if test="${lastschoolnum == 1}">
+	                    				<c:set var="lastschool" value="대학교(4년)"/>
 	                    			</c:if>
 	                    			<c:if test="${lastschoolnum == 1.2}">
 	                    				<c:set var="lastschool" value="대학교(4년)"/>
