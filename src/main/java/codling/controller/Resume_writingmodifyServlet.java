@@ -56,7 +56,6 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			request.setAttribute("portfolio", portfolio);
 			request.setAttribute("license", license);
 			request.setAttribute("career", career);
-			System.out.println(career.getPrev_company());
 			request.setAttribute("education", education);
 			request.setAttribute("individual", individual);
 			request.setAttribute("indiName", indiName);

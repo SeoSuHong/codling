@@ -779,7 +779,7 @@
                 <button type="button" class="filebtn">첨부파일</button>
                 <div class="file_box">
                 	<!-- 첨부파일 -->
-                    <span>업로드된 파일 </span><input name="defualt_file" class="getfilename" readonly="readonly" value="${fileName}">
+                    <span class="uploadfile">업로드된 파일 </span><input name="defualt_file" class="getfilename" readonly="readonly" value="${fileName}">
                 </div>
                 <textarea name="file_detail_update" id="deepcontents" placeholder="상세내용">${filedetail }</textarea>
                 <input type="hidden" name="fileaddress" value="${fileaddress }">
@@ -822,7 +822,7 @@
                 <button type="button" class="filebtn">첨부파일</button>
                 <div class="file_box">
                 	<!-- 첨부파일 -->
-                    <span>업로드된 파일 </span><input name="defualt_file" class="getfilename" readonly="readonly" value="${fileName}">
+                    <span class="uploadfile">업로드된 파일 </span><input name="defualt_file" class="getfilename" readonly="readonly" value="${fileName}">
                 </div>
                 <textarea name="file_detail_update" id="deepcontents" placeholder="상세내용">${filedetail }</textarea>
                 <input type="hidden" name="fileaddress_update" value="${fileaddress }">
