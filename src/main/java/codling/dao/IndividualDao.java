@@ -252,7 +252,14 @@ public class IndividualDao {
 				String status = rs.getString("status");
 				String department = rs.getString("department");
 				String score = rs.getString("score");
+				
+				Education education = new Education(no, id, school, schoolName, schoolStartDate, schoolEndDate, status, department, score);
+				educations.add(education);
 			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
 		} catch(Exception e) {
 			System.out.println("getEducation Error : " + e.getMessage());
 		}
@@ -271,8 +278,21 @@ public class IndividualDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				int no = rs.getInt("no");
+				String prev_company = rs.getString("prev_company");
+				String tenureStartDate = rs.getString("tenureStartDate");
+				String tenureEndDate = rs.getString("tenureEndDate");
+				String position = rs.getString("position");
+				String department = rs.getString("department");
+				String work_content = rs.getString("work_content");
 				
+				Career career = new Career(no, id, prev_company, tenureStartDate, tenureEndDate, position, department, work_content);
+				careers.add(career);
 			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
 		} catch(Exception e) {
 			System.out.println("getCareer Error : " + e.getMessage());
 		}

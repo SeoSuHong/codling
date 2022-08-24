@@ -33,6 +33,7 @@ import codling.identity.Portfolio;
 )
 @WebServlet("/resume_writing")
 public class Resume_writingServlet extends HttpServlet {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("indiId");
@@ -44,7 +45,8 @@ public class Resume_writingServlet extends HttpServlet {
 		request.setAttribute("name", name);
 		request.getRequestDispatcher("/WEB-INF/individual/resume_writing.jsp").forward(request, response);
 	}
-
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
