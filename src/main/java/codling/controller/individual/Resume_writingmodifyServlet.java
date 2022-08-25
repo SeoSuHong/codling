@@ -144,9 +144,9 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		String[] company_department_re = request.getParameterValues("company_department");
 		String[] work_content_re = request.getParameterValues("work_content");
 		
-		for(int i = 0; i < prev_company_re.length; i++) {
-			if(!prev_company_re[i].equals("") && prev_company_re[i] != "") {
-				if(!prev_company_update_[0].equals("") && prev_company_update_[0] != "") {
+		if(prev_company_re.length != 0) {
+			for(int i = 0; i < prev_company_re.length; i++) {
+				if(!prev_company_update_[i].equals("") && prev_company_update_[i] != "") {
 					prev_company_update_[prev_company_update_.length + i] = prev_company_re[i];
 					tenureStart_update_[tenureStart_update_.length + i] = tenureStart_re[i];
 					tenureEnd_update_[tenureEnd_update_.length + i] = tenureEnd_re[i];
