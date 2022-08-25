@@ -300,6 +300,6 @@ public class Resume_writingServlet extends HttpServlet {
 		if(educationResult && resumeTitleStack)
 			out.print("<script>alert('이력서 등록에 성공하였습니다.'); location.href = 'resume_management';</script>");
 		else
-			out.print("<script>alert('이력서 등록에 실패하였습니다.'); location.href = 'resume_writing';</script>");
+			out.print("<script>alert('이력서 등록에 실패하였습니다.\n이력서 제목 또는 학력 스택을 확인해주세요.'); location.href = 'resume_writing';</script>");
 		}
 	}

@@ -614,7 +614,7 @@ public class IndividualDao {
 				+ "work_content = ? "
 				+ "WHERE individual_id = ?";
 		try {
-			if(!career_updateList.getPrev_company().equals("") && career_updateList.getPrev_company() != "") {
+			if(!career_updateList.getIndividual_id().equals("") && career_updateList.getIndividual_id() != "") {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(query);
 				Career career_update = career_updateList;
@@ -648,7 +648,7 @@ public class IndividualDao {
 				+ "acquireDate = ? "
 				+ "WHERE individual_id = ?";
 	try {
-		if(!license_updateList.getName().equals("") && license_updateList.getName() != "") {
+		if(!license_updateList.getIndividual_id().equals("") && license_updateList.getIndividual_id() != "") {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
 			License license_update = license_updateList;
@@ -677,7 +677,7 @@ public class IndividualDao {
 				+ "url = ? "
 				+ "WHERE individual_id = ?";
 	try {
-		if(!portfolio_updateList.getName().equals("") && portfolio_updateList.getName() != "") {
+		if(!portfolio_updateList.getIndividual_id().equals("") && portfolio_updateList.getIndividual_id() != "") {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
 			Portfolio portfolio_update = portfolio_updateList;
@@ -693,6 +693,38 @@ public class IndividualDao {
 		}
 	}catch (Exception e) {
 		System.out.println("portfolio_update errors : "+e.getMessage());
+		}
+		return result;
+	}
+	
+	//파일 update
+	public boolean fileupload_update(Portfolio fileupload_updateList) {
+		boolean result = false;
+		String query = "UPDATE fileupload SET title = ?, "
+				+ "filename = ?, "
+				+ "fileaddress = ?, "
+				+ "filedetail = ?, "
+				+ "fileSize = ? "
+				+ "WHERE individual_id = ?";
+	try {
+		if(!fileupload_updateList.getIndividual_id().equals("") && fileupload_updateList.getIndividual_id() != "") {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			Portfolio fileupload_update = fileupload_updateList;
+			pstmt.setString(1, fileupload_update.getTitle());
+			pstmt.setString(2, fileupload_update.getFileName());
+			pstmt.setString(3, fileupload_update.getFileaddress());
+			pstmt.setString(4, fileupload_update.getFiledetail());
+			pstmt.setString(5, fileupload_update.getFileSize());
+			pstmt.setString(6, fileupload_update.getIndividual_id());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		}
+	}catch (Exception e) {
+		System.out.println("fileupload_update errors : "+e.getMessage());
 		}
 		return result;
 	}

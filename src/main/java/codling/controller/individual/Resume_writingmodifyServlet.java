@@ -161,6 +161,9 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		if(!prev_company_update.equals("") && prev_company_update != "") {
 			career_updateList = new Career(0, indiId, prev_company_update, tenureStart_update, tenureEnd_update, position_update, company_department_update, work_content_update);
 			career_updateResult = dao.career_update(career_updateList);
+		}else if(prev_company_update.equals("") && prev_company_update == "") {
+			career_updateList = new Career(0, indiId, "", "", "", "", "", "");
+			career_updateResult = dao.career_update(career_updateList);
 		}
 		
 		//자격증 update
@@ -192,8 +195,11 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		}
 		boolean license_updateResult = false;
 		if(!license_name_update.equals("") && license_name_update != "") {
-				license_updateList = new License(0, indiId, license_name_update, agency_update, pass_update, acquireDate_update);
-				license_updateResult = dao.license_update(license_updateList);
+			license_updateList = new License(0, indiId, license_name_update, agency_update, pass_update, acquireDate_update);
+			license_updateResult = dao.license_update(license_updateList);
+		}else if(license_name_update.equals("") && license_name_update == "") {
+			license_updateList = new License(0, indiId, "", "", "", "");
+			license_updateResult = dao.license_update(license_updateList);
 		}
 		
 		//포트폴리오 update
@@ -225,10 +231,13 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		if(!portfolio_name_update.equals("") && portfolio_name_update != "") {
 			portfolio_updateList = new Portfolio(0, indiId, portfolio_name_update, detail_update, url_update, "", "", "", "","");
 			portfolio_updateResult = dao.portfolio_update(portfolio_updateList);
+		}else if(portfolio_name_update.equals("") && portfolio_name_update == ""){
+			portfolio_updateList = new Portfolio(0, indiId, "", "", "", "", "", "", "","");
+			portfolio_updateResult = dao.portfolio_update(portfolio_updateList);
 		}
 		
 		//첨부파일 update
-		Portfolio fileuploadList = null;
+		Portfolio fileupload_updateList = null;
 		Collection<Part> parts = request.getParts(); //파일 열러개 검사
 		StringBuilder builder = new StringBuilder();
 		StringBuilder builders = new StringBuilder();
@@ -289,12 +298,51 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			}
 		}
 		
-		//파일 업로드 업데이트 구현해야함
+		String[] fileTitle_update_ = null;
+		fileTitle_update_ = request.getParameterValues("fileTitle_update");
+		String[] fileName_update_ = request.getParameterValues("fileName_update");
+		String[] fileaddress_update_ = request.getParameterValues("fileaddress_update");
+		String[] file_detail_update_ = request.getParameterValues("file_detail_update");
+		String[] fileSize_update_ = request.getParameterValues("fileSize_update");
 		
-		boolean fileuploadResult = false;
+		String fileTitle_update = "";
+		String fileName_update = "";
+		String fileaddress_update = "";
+		String file_detail_update = "";
+		String fileSize_update = "";
+		
+		if(fileTitle_update_ != null) {
+			for(int i = 0; i < fileTitle_update_.length; i++) {
+				if(i != fileTitle_update_.length-1) {
+					fileTitle_update += (fileTitle_update_[i] + " / ");
+					fileName_update += (fileName_update_[i] + " / ");
+					fileaddress_update += (fileaddress_update_[i] + " / ");
+					file_detail_update += (file_detail_update_[i] + " / ");
+					fileSize_update += (fileSize_update_[i] + " / ");
+				}else {
+					fileTitle_update += fileTitle_update_[i];
+					fileName_update += fileName_update_[i];
+					fileaddress_update += fileaddress_update_[i];
+					file_detail_update += file_detail_update_[i];
+					fileSize_update += fileSize_update_[i];
+				}
+			}
+		}
 		if(!fileTitle.equals("") && fileTitle != "") {
-			fileuploadList = new Portfolio(0, indiId, "", "", "", fileTitle, builder.toString(), builder_fileaddress.toString(), file_detail, builders.toString());
-			fileuploadResult = dao.setfile(fileuploadList);
+			fileTitle_update += (" / " + fileTitle);
+			fileName_update += (" / " + builder.toString());
+			fileaddress_update += (" / " + builder_fileaddress.toString());
+			file_detail_update += (" / " + file_detail);
+			fileSize_update += (" / " + builders.toString());
+		}
+		
+		boolean fileupload_updateResult = false;
+		if(!fileTitle_update.equals("") && fileTitle_update != "") {
+			fileupload_updateList = new Portfolio(0, indiId, "", "", "", fileTitle_update, fileName_update, fileaddress_update, file_detail_update, fileSize_update);
+			fileupload_updateResult = dao.fileupload_update(fileupload_updateList);
+		}else if(fileTitle_update.equals("") && fileTitle_update == ""){
+			fileupload_updateList = new Portfolio(0, indiId, "", "", "", "", "", "", "", "");
+			fileupload_updateResult = dao.fileupload_update(fileupload_updateList);
 		}
 		
 		
@@ -305,6 +353,6 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		if(resumeTitleStack && education_updateResult)
 			out.print("<script>alert('이력서 수정에 성공하였습니다.'); location.href = 'resume_management';</script>");
 		else
-			out.print("<script>alert('이력서 수정에 실패하였습니다.'); location.href = 'resume_writingmodify';</script>");
+			out.print("<script>alert('이력서 수정에 실패하였습니다\\n이력서 제목 또는 학력사항 스택을 확인해주세요.'); location.href = 'resume_writingmodify';</script>");
 		}
 	}

@@ -769,6 +769,7 @@
     <c:forTokens var="fileName" items="${fileupload.fileName }" begin="0" end="0" delims="/">
     <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="0" end="0" delims=" / ">
     <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="0" end="0" delims=" | ">
+    <c:forTokens var="fileSize" items="${fileupload.fileSize }" begin="0" end="0" delims=" / ">
         <div id="problem_list5">
             <h2>첨부파일<input type="button" class="portfolio_add" value="추가" onclick="addForm5();"></h2>
             <div id="portfoliobox">
@@ -779,13 +780,42 @@
                 <button type="button" class="filebtn">첨부파일</button>
                 <div class="file_box">
                 	<!-- 첨부파일 -->
-                    <span class="uploadfile">업로드된 파일 </span><input name="defualt_file" class="getfilename" readonly="readonly" value="${fileName}">
+                    <span class="uploadfile">업로드된 파일 </span><input name="fileName_update" class="getfilename" readonly="readonly" value="${fileName}">
                 </div>
+                <input type="hidden" name="fileaddress_update" value="${fileaddress }">
                 <textarea name="file_detail_update" id="deepcontents" placeholder="상세내용">${filedetail }</textarea>
-                <input type="hidden" name="fileaddress" value="${fileaddress }">
+                <input type="hidden" name="fileSize_update" value="${fileSize}">
             </div>
         </div>
     </c:forTokens>
+	</c:forTokens>
+	</c:forTokens>
+	</c:forTokens>
+	</c:forTokens>
+	
+	<c:forTokens var="title" items="${fileupload.title }" begin="1" delims=" / " varStatus="st">
+    <c:forTokens var="fileName" items="${fileupload.fileName }" begin="${st.index }" end="${st.index }" delims="/">
+    <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims=" / ">
+    <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="${st.index }" end="${st.index }" delims=" | ">
+    <c:forTokens var="fileSize" items="${fileupload.fileSize }" begin="${st.index }" end="${st.index }" delims=" / ">
+        <div id="portfolio_file_input" class="list_file_tag_input"> 
+            <div id="portfoliobox">
+	            <button type="button" class="portfolio_del" onclick="delForm5(this);">삭제</button>
+	            <!-- title -->
+	            <input type="text" name="fileTitle_update" class="portfolio_title" placeholder="첨부파일" value="${title }"><br><br>
+                
+                <button type="button" class="filebtn">첨부파일</button>
+                <div class="file_box">
+                	<!-- 첨부파일 -->
+                    <span class="uploadfile">업로드된 파일 </span><input name="fileName_update" class="getfilename" readonly="readonly" value="${fileName}">
+                </div>
+                <input type="hidden" name="fileaddress_update" value="${fileaddress }">
+                <textarea name="file_detail_update" id="deepcontents" placeholder="상세내용">${filedetail }</textarea>
+                <input type="hidden" name="fileSize_update" value="${fileSize}">
+            </div>
+        </div>
+	</c:forTokens>   
+	</c:forTokens>
 	</c:forTokens>
 	</c:forTokens>
 	</c:forTokens>
@@ -808,30 +838,6 @@
             </div>
         </div>
 	</c:if>
-	
-	<c:forTokens var="title" items="${fileupload.title }" begin="1" delims=" / " varStatus="st">
-    <c:forTokens var="fileName" items="${fileupload.fileName }" begin="${st.index }" end="${st.index }" delims="/">
-    <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims=" / ">
-    <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="${st.index }" end="${st.index }" delims=" | ">
-        <div id="portfolio_file_input" class="list_file_tag_input"> 
-            <div id="portfoliobox">
-	            <button type="button" class="portfolio_del" onclick="delForm5(this);">삭제</button>
-	            <!-- title -->
-	            <input type="text" name="fileTitle_update" class="portfolio_title" placeholder="첨부파일" value="${title }"><br><br>
-                
-                <button type="button" class="filebtn">첨부파일</button>
-                <div class="file_box">
-                	<!-- 첨부파일 -->
-                    <span class="uploadfile">업로드된 파일 </span><input name="defualt_file" class="getfilename" readonly="readonly" value="${fileName}">
-                </div>
-                <textarea name="file_detail_update" id="deepcontents" placeholder="상세내용">${filedetail }</textarea>
-                <input type="hidden" name="fileaddress_update" value="${fileaddress }">
-            </div>
-        </div>
-	</c:forTokens>   
-	</c:forTokens>
-	</c:forTokens>
-	</c:forTokens>
         
         <div id="portfolio_file" class="list_file_tag"> 
             <div id="portfoliobox">
