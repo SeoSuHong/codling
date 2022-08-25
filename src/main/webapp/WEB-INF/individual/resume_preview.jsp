@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,27 +20,36 @@
             <div></div>
             <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
-                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${name} 님 &nbsp;&nbsp;</div>
                 </div>
         </div>
             <div id="profile-hover">
-                <ul>
-                    <li id="mypage"><a href="#"><span>내 정보</span></a></li>
-                    <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
-                    <li id="logout"><a href="#"><span>로그아웃</span></a></li>
-                </ul>
+            	<c:if test="${not empty indiId}">
+	                <ul>
+	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
+	                    <li id="resume"><a href="resume_management"><span>이력서 관리</span></a></li>
+	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+	                </ul>
+	            </c:if>
+	            <c:if test="${not empty corpId}">
+	                <ul>
+	                    <li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
+	                    <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
+	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+	                </ul>
+	            </c:if>
             </div>
     </header>
     <section>
             <div id="Preview">
-                <h2 id="title">이력서 title</h2>
+                <h2 id="title">${individual.resumeTitle}</h2>
                 <div id="idInfo">
                     <div>
-                        <h2>&nbsp;(사용자 이름)&nbsp;<span id="gender">남성</span></h2>
+                        <h2>&nbsp;(${individual.name})&nbsp;<span id="gender">${individual.gender}성</span></h2>
                         <p>
+                            <span>신입,경력</span>
                             <span>&nbsp;&nbsp;사용자 이메일</span> | 
                             <span>사용자 생년월일</span> | 
-                            <span>신입,경력</span>
                         </p>
                         <p>&nbsp;&nbsp;사용자 전화번호</p>
                         <p>&nbsp;&nbsp;사용자 주소</p>

@@ -364,8 +364,35 @@ public class IndividualDao {
 		return portfolios;
 	}
 	
-	// 자기소개서 가져오기
-	public List<CoverLetter> getCoverLetter(String individual_id) {
+	public CoverLetter getCoverLetter(int no) {
+		CoverLetter coverLetter = null;
+		String query = "SELECT * FROM coverLetter WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String individual_id = rs.getString("individual_id");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				
+				coverLetter = new CoverLetter(no, individual_id, title, content);
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getCoverLetter Error : " + e.getMessage());
+		}
+		return coverLetter;
+	}
+	
+	// 자기소개서 전부 가져오기
+	public List<CoverLetter> getAllCoverLetter(String individual_id) {
 		List<CoverLetter> coverLetterList = new ArrayList<CoverLetter>();
 		String query = "SELECT * FROM coverLetter WHERE individual_id = ?";
 		try {

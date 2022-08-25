@@ -39,7 +39,7 @@ public class JobOpeningServlet extends HttpServlet {
 			request.setAttribute("indiName", indiName);
 			
 			indiDao = new IndividualDao();
-			List<CoverLetter> coverLetters = indiDao.getCoverLetter(indiId);
+			List<CoverLetter> coverLetters = indiDao.getAllCoverLetter(indiId);
 			request.setAttribute("coverLetters", coverLetters);
 		} else if(corpId != null) {
 			Map<String, String> map = infoDao.getCorpName(corpId);

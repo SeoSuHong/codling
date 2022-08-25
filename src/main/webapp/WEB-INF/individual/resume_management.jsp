@@ -37,11 +37,9 @@
         <article id="applyStatus">
             <h1>공고 지원 현황</h1>
             <div class="applybox">
-            	<c:forEach var="apply" items="${applys}" varStatus="st">
-            		<c:if test="${not st.first && st.count % 4 == 1}">
-                		<button class="leftArrow"><img src="img/leftArrow.png"></button>
-                	</c:if>
-                </c:forEach>
+           		<c:if test="${fn:length(applys) > 4}">
+               		<button class="leftArrow"><img src="img/leftArrow.png"></button>
+               	</c:if>
                 <div class="applys">
                     <div class="applyWrap">
                         <ul class="apply">
@@ -53,7 +51,7 @@
 	                                    <div class="app_content">
 	                                        <p><span>지원한 공고</span></p>
 	                                        <p class="apply_title">${apply.corporateName}</p>
-	                                        <b>분야 &emsp; ${apply.fieldName}</b><br>
+	                                        <p class="apply_field"><b>분야 &emsp; ${apply.fieldName}</b></p>
 	                                        <b>경력 &emsp;
 	                                        	<c:forTokens var="career" items="${apply.career}" delims=" / ">
 							            			<c:if test="${fn:length(apply.career) <= 3}">
@@ -87,7 +85,7 @@
 	                                    </div>
 	                                    <div class="viewInfo">
 	                                        <a href="jobOpening?no=${apply.jobOpening_no}">공고보기</a>
-	                                        <a href="resume_preview.jsp">이력서 보기</a>
+	                                        <a href="resume_preview?id='${individual.id}'&coverLetter_no=${apply.coverLetter_no}">이력서 보기</a>
 	                                    </div>
 	                                </div>
 	                            <c:if test="${st.count % 4 == 0}">
@@ -97,39 +95,41 @@
                         </ul>
                     </div>
                 </div>
-                <c:forEach var="apply" items="${applys}" varStatus="st">
-            		<c:if test="${not st.first && st.count % 4 == 1}">
-                		<button class="rightArrow"><img src="img/rightArrow.png"></button>
-                	</c:if>
-               	</c:forEach>
+           		<c:if test="${fn:length(applys) > 4}">
+               		<button class="rightArrow"><img src="img/rightArrow.png"></button>
+               	</c:if>
             </div>
             <div id="btn_bar">
             	<c:forEach var="apply" items="${applys}" varStatus="st">
-            		<c:if test="${not st.first && st.count % 4 == 1}">
-    		            <button class="apply_bar"></button>
-	                </c:if>
+            		<c:if test="${st.count < 9}">
+	            		<c:if test="${not st.first && st.count % 4 == 1}">
+	    		            <button class="apply_bar"></button>
+	    		            <button class="apply_bar"></button>
+		                </c:if>
+		            </c:if>
+		            <c:if test="${st.count >= 9}">
+	            		<c:if test="${not st.first && st.count % 4 == 1}">
+	    		            <button class="apply_bar"></button>
+		                </c:if>
+		            </c:if>
                 </c:forEach>
             </div>
         </article>
         <article id="resume">
             <h1>이력서 관리</h1>
             <c:if test="${empty individual.resumeTitle}">
-	            <a href="resume_writing">
-	            	<div class="resumemg">
-	                	<div class="resumemgbox">
-	                    	<p><span>이력서</span></p>
-	                    	<div class="resumemgbox2">이력서가 없습니다. 이력서를 작성해 주세요</div>
-	                	</div>
-	            	</div>
-	            </a>
-	            <div class="btn-res">
-	                <a href="resume_writing"><button id="btn-res">이력서 작성</button></a>
+            	<div id="emptyResumeWrap" onclick="location.href='resume_writing'">
+		            <p>이력서</p>
+		            <span>이력서가 없습니다. 이력서를 작성해 주세요.</span>
+		        </div>
+	            <div id="writeBtnWrap">
+	                <a href="resume_writing" id="writeBtn">이력서 작성</a>
 	            </div>
             </c:if>
             <c:if test="${not empty individual.resumeTitle}">
-            	<div>
+            	<div id="resumeWrap" onclick="location.href='resume_preview?id=${individual.id}'">
             		<p>이력서</p>
-            		${individual.resumeTitle}
+            		<p>${individual.resumeTitle}</p>
             		<table>
             			<tr>
             				<td>이름</td>
@@ -142,28 +142,65 @@
             						신입
             					</c:if>
             					<c:if test="${not empty careers}">
-	            					<c:set var="tenureYear"/>
-	            					<c:set var="tenureMonth"/>
+	            					<c:set var="tenureTotalYear"/>
+	            					<c:set var="tenureTotalMonth"/>
 	            					<c:forEach var="career" items="${careers}">
 	            						<fmt:parseNumber var="tenureStartYear" value="${fn:substring(career.tenureStartDate, 0, 4)}" type="number"/>
 	            						<fmt:parseNumber var="tenureEndYear" value="${fn:substring(career.tenureEndDate, 0, 4)}" type="number"/>
 	            						<fmt:parseNumber var="tenureStartMonth" value="${fn:substring(career.tenureStartDate, 5, 7)}" type="number"/>
 	            						<fmt:parseNumber var="tenureEndMonth" value="${fn:substring(career.tenureEndDate, 5, 7)}" type="number"/>
 	            						
-	            						<c:set var="tenureYear" value="${tenureYear + (tenureEndYear - tenureStartYear)}"/>
-	            						<c:set var="tenureMonth" value="${tenureMonth + (tenureEndMonth - tenureStartMonth)}"/>
+	            						<c:set var="tenureTotalYear" value="${tenureTotalYear + (tenureEndYear - tenureStartYear)}"/>
+	            						<c:set var="tenureTotalMonth" value="${tenureTotalMonth + (tenureEndMonth - tenureStartMonth)}"/>
 	            					</c:forEach>
-	            					총 ${tenureYear}년 ${tenureMonth}개월 (
+	            					<c:if test="${tenureTotalMonth < 0}">
+	            						<c:set var="tenureTotalYear" value="${tenureTotalYear - 1}"/>
+	            						<c:set var="tenureTotalMonth" value="${tenureTotalMonth + 12}"/>
+	            					</c:if>
+	            					<c:if test="${tenureTotalYear == 0}">
+	            						총 ${tenureTotalMonth}개월
+	            					</c:if>
+	            					<c:if test="${tenureTotalMonth == 0}">
+	            						총 ${tenureTotalYear}년
+	            					</c:if>
+	            					<c:if test="${tenureTotalYear != 0 && tenureTotalMonth != 0}">
+	            						총 ${tenureTotalYear}년 ${tenureTotalMonth}개월
+	            					</c:if>
+	            					 (
+	            					<c:set var="tenureYear"/>
+	            					<c:set var="tenureMonth"/>
 	            					<c:forEach var="career" items="${careers}" varStatus="st">
 	            						<fmt:parseNumber var="tenureStartYear" value="${fn:substring(career.tenureStartDate, 0, 4)}" type="number"/>
 	            						<fmt:parseNumber var="tenureEndYear" value="${fn:substring(career.tenureEndDate, 0, 4)}" type="number"/>
 	            						<fmt:parseNumber var="tenureStartMonth" value="${fn:substring(career.tenureStartDate, 5, 7)}" type="number"/>
 	            						<fmt:parseNumber var="tenureEndMonth" value="${fn:substring(career.tenureEndDate, 5, 7)}" type="number"/>
+	            						<c:set var="tenureYear" value="${tenureEndYear - tenureStartYear}"/>
+	            						<c:set var="tenureMonth" value="${tenureEndMonth - tenureStartMonth}"/>
+	            						<c:if test="${tenureMonth < 0}">
+	            							<c:set var="tenureYear" value="${tenureYear - 1}"/>
+	            							<c:set var="tenureMonth" value="${tenureMonth + 12}"/>
+	            						</c:if>
 	            						<c:if test="${!st.last}">
-	            							${career.prev_company} ${tenureEndYear - tenureStartYear}년 ${tenureEndMonth - tenureStartMonth}개월 |
+	            							<c:if test="${tenureYear == 0}">
+	            								${career.prev_company} ${tenureMonth}개월 |
+	            							</c:if>
+	            							<c:if test="${tenureMonth == 0}">
+	            								${career.prev_company} ${tenureYear}년 |
+	            							</c:if>
+	            							<c:if test="${tenureYear != 0 && tenureMonth != 0}">
+	            								${career.prev_company} ${tenureYear}년 ${tenureMonth}개월 |
+	            							</c:if>
 	            						</c:if>
 	            						<c:if test="${st.last}">
-	            							${career.prev_company} ${tenureEndYear - tenureStartYear}년 ${tenureEndMonth - tenureStartMonth}개월
+	            							<c:if test="${tenureYear == 0}">
+	            								${career.prev_company} ${tenureMonth}개월
+	            							</c:if>
+	            							<c:if test="${tenureMonth == 0}">
+	            								${career.prev_company} ${tenureYear}년
+	            							</c:if>
+	            							<c:if test="${tenureYear != 0 && tenureMonth != 0}">
+	            								${career.prev_company} ${tenureYear}년 ${tenureMonth}개월
+	            							</c:if>
 	            						</c:if>
 	            					</c:forEach>
 	            					)
@@ -186,37 +223,92 @@
             			<tr>
             				<td>포트폴리오</td>
             				<td>
-            					<c:forEach var="portfolio" items="${portfolios}" varStatus="st">
-            						<c:if test="${!st.last}">
-            							${portfolio.name} ·
-            						</c:if>
-            						<c:if test="${st.last}">
-            							${portfolio.name}
-            						</c:if>
-            					</c:forEach>
+            					<c:if test="${not empty portfolios}">
+	            					<c:forEach var="portfolio" items="${portfolios}" varStatus="st">
+	            						<c:if test="${!st.last}">
+	            							${portfolio.name} ·
+	            						</c:if>
+	            						<c:if test="${st.last}">
+	            							${portfolio.name}
+	            						</c:if>
+		            				</c:forEach>
+            					</c:if>
+            					<c:if test="${empty portfolios}">
+            						포트폴리오가 없습니다.
+            					</c:if>
             				</td>
             			</tr>
             			<tr>
             				<td>자격증</td>
             				<td>
-            					<c:forEach var="license" items="${licenses}" varStatus="st">
-            						<c:if test="${!st.last}">
-            							${license.name} ·
-            						</c:if>
-            						<c:if test="${st.last}">
-            							${license.name}
-            						</c:if>
-            					</c:forEach>
+            					<c:if test="${not empty licenses}">
+	            					<c:forEach var="license" items="${licenses}" varStatus="st">
+	            						<c:if test="${!st.last}">
+	            							${license.name} ·
+	            						</c:if>
+	            						<c:if test="${st.last}">
+	            							${license.name}
+	            						</c:if>
+	            					</c:forEach>
+	            				</c:if>
+	            				<c:if test="${empty licenses}">
+	            					자격증이 없습니다.
+	            				</c:if>
             				</td>
             			</tr>
             			<tr>
             				<td>최종학력</td>
             				<td>
-            					
+            					<c:set var="highEducationNo" value="0"/>
+            					<c:forEach var="education" items="${educations}">
+            						<c:set var="edu" value="0"/>
+            						<c:if test="${education.school == '고등학교'}">
+            							<c:set var="edu" value="1"/>
+            						</c:if>
+            						<c:if test="${education.school == '대학교(2년)'}">
+            							<c:set var="edu" value="2"/>
+            						</c:if>
+            						<c:if test="${education.school == '대학교(4년)'}">
+            							<c:set var="edu" value="3"/>
+            						</c:if>
+            						<c:if test="${education.school == '대학원(석사)'}">
+            							<c:set var="edu" value="4"/>
+            						</c:if>
+            						<c:if test="${education.school == '대학원(박사)'}">
+            							<c:set var="edu" value="5"/>
+            						</c:if>
+            						<c:if test="${edu > highEducationNo}">
+            							<c:set var="highEducationNo" value="${edu}"/>
+            						</c:if>
+            					</c:forEach>
+            					<c:set var="highEducation" value="0"/>
+           						<c:if test="${highEducationNo == 1}">
+           							<c:set var="highEducation" value="고등학교"/>
+           						</c:if>
+           						<c:if test="${highEducationNo == 2}">
+           							<c:set var="highEducation" value="대학교(2년)"/>
+           						</c:if>
+           						<c:if test="${highEducationNo == 3}">
+           							<c:set var="highEducation" value="대학교(4년)"/>
+           						</c:if>
+           						<c:if test="${highEducationNo == 4}">
+           							<c:set var="highEducation" value="대학원(석사)"/>
+           						</c:if>
+           						<c:if test="${highEducationNo == 5}">
+           							<c:set var="highEducation" value="대학원(박사)"/>
+           						</c:if>
+           						<c:forEach var="education" items="${educations}">
+           							<c:if test="${education.school == highEducation}">
+           								${highEducation} - ${education.schoolName}(${education.status})
+           							</c:if>
+           						</c:forEach>
             				</td>
             			</tr>
             		</table>
             	</div>
+            	<div id="updateBtnWrap">
+	                <a href="resume_writing" id="updBtn">이력서 수정</a>
+	            </div>
             </c:if>
         </article>
         <article id="self">

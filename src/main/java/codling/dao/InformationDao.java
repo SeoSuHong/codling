@@ -90,6 +90,28 @@ public class InformationDao {
 		}
 		return map;
 	}
+	
+	// 개인회원 이름
+	public String getIndividualName(String id) {
+		String name = "";
+		String query = "SELECT name FROM individual WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) name = rs.getString("name");
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getIndividualName Error : " + e.getMessage());
+		}
+		return name;
+	}
 		
 	// 기업회원 이름
 	public Map<String, String> getCorpName(String id) {
@@ -113,6 +135,28 @@ public class InformationDao {
 			System.out.println("getCorpName Error : " + e.getMessage());
 		}
 		return map;
+	}
+	
+	// 기업회원 이름
+	public String getCorporationName(String id) {
+		String name = "";
+		String query = "SELECT corporateName FROM corporation WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) name = rs.getString("name");
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getCorporationName Error : " + e.getMessage());
+		}
+		return name;
 	}
 	
 	// 개인회원 삭제

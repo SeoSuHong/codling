@@ -34,7 +34,8 @@ section{width: 1220px; margin: 0 auto; margin-top: 100px;}
 .leftArrow>img,.rightArrow>img{width: 100px; height: 100px;}
 .app{width: 220px; height: 100%; background-color: rgba(165, 227, 116, 0.3); margin: 0 20px; border-radius: 5px;}
 .app_content{padding: 15px; color: rgba(55, 63, 87, 1)}
-.apply_title{font-size: 1.5rem; font-weight: bold;}
+.apply_title{font-size: 1.5rem; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.apply_field{width: 190px; margin-bottom: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .app_content>p:first-child{font-weight: bold; color: #50B500; margin: 0;}
 .viewInfo{height: 40px; background-color: rgba(165, 227, 116, 0.5); display: flex; justify-content: space-around; 
     border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;}
@@ -44,19 +45,29 @@ section{width: 1220px; margin: 0 auto; margin-top: 100px;}
 .apply_bar:first-child{background-color: #A5E374;}
 .apply_bar{width: 50px; height: 10px; margin: 10px 10px; background-color: #D9D9D9; border-style: none; border-radius: 5px;}
 
-/* 이력서 관리 */
-.resumemg{width: 1220px; height: 170px; background: rgba(165, 227, 116, 0.3); border-radius: 10px;
-    display: flex; justify-content: left; align-items: center;}
-#resume>h1{font-size: 2.1rem; font-weight: bold; color: #373F57;
-    margin-bottom: 40px;}
-.resumemgbox{width: 900px; height: 110px; margin-left: 50px;}
-.resumemgbox>p>span{font-size: 1.3rem; color: #50B500; font-weight: bold;}
-.resumemgbox2{font-weight: bold; font-size: 1.5rem; color: #373F57;}
-/*작성button*/
-.btn-res{display: flex; justify-content: center; width: 100vw; margin-top: 35px;}
-#btn-res{width: 200px; height: 60px; border-radius: 15px; color: white; font-size: 1.3rem;
-    background-color: #A5E374; border: none; font-weight: bold;}
-#btn-res:hover {background-color: #8bdf4b;}
+/* 이력서 관리 empty */
+#emptyResumeWrap{width: 1220px; height: 170px; background-color: rgba(165, 227, 116, 0.3); border-radius: 10px; padding: 30px 40px; cursor: pointer;}
+#emptyResumeWrap p {font-size: 1.3rem; color: #50B500; font-weight: bold;}
+#resume>h1{font-size: 2.1rem; font-weight: bold; color: #373F57; margin-bottom: 40px;}
+#emptyResumeWrap span {font-weight: bold; font-size: 1.5rem; color: #373F57;}
+
+/* 작성button */
+#writeBtnWrap{display: flex; justify-content: center; width: 1220px; margin-top: 35px;}
+#writeBtn{width: 200px; height: 60px; line-height: 60px; text-align: center; border-radius: 15px; color: white; font-size: 1.3rem; font-weight: bold;
+    background-color: #A5E374; border: none;}
+#writeBtn:hover {background-color: #8bdf4b;}
+
+/* 이력서 관리 not empty */
+#resumeWrap {width: 1220px; padding: 30px 50px; background-color: rgba(165, 227, 116, 0.3); border-radius: 10px; cursor: pointer;}
+#resumeWrap p:first-child {font-size: 1.3rem; color: #50B500; font-weight: bold;}
+#resumeWrap p:nth-child(2) {font-weight: bold; font-size: 1.5rem; color: #373F57;}
+#resumeWrap table {line-height: 25px;}
+#resumeWrap tr td:first-child {width: 130px;}
+/* 수정버튼 */
+#updateBtnWrap{display: flex; justify-content: center; width: 1220px; margin-top: 35px;}
+#updBtn{width: 200px; height: 60px; line-height: 60px; text-align: center; border-radius: 15px; color: white; font-size: 1.3rem; font-weight: bold;
+    background-color: #A5E374; border: none;}
+#updBtn:hover {background-color: #8bdf4b;}
 
 /*자기소개서*/
 #self{margin-top: 50px;}

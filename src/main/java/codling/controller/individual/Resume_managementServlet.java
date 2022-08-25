@@ -54,7 +54,7 @@ public class Resume_managementServlet extends HttpServlet {
 		request.setAttribute("portfolios", portfolios);
 		
 		// 자기소개서
-		List<CoverLetter> coverLetters = indiDao.getCoverLetter(id);
+		List<CoverLetter> coverLetters = indiDao.getAllCoverLetter(id);
 		request.setAttribute("coverLetters", coverLetters);
 		
 		request.setAttribute("replacePrevChar", "\r\n"); // 줄바꿈 <br>처리를 위해
