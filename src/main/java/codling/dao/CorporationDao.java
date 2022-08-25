@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import codling.identity.Announcement;
-import codling.identity.Apply;
+import codling.identity.Applicant;
 import codling.identity.Corporation;
 import codling.identity.Field;
 import codling.identity.JobOpening;
@@ -342,10 +342,16 @@ public class CorporationDao {
 		return result;
 	}
 	
-	// 지원 정보 가져오기
-	public List<Apply> getApply(int jobOpening_no) {
-		List<Apply> applies = new ArrayList<Apply>();
-		String query = "SELECT * FROM apply WHERE jobOpening_no = ?";
+	// 지원자 정보 가져오기
+	public List<Applicant> getApplicant(int jobOpening_no) {
+		List<Applicant> applicants = new ArrayList<Applicant>();
+		String query = "SELECT A.no, I.id, I.resumeTitle, I.name, F.name AS fieldName, I.stack, I.email, I.phone, A.coverLetter_no, A.status "
+						+ "FROM apply A "
+						+ "JOIN individual I "
+						+ "ON A.individual_id = I.id "
+						+ "JOIN field F ON "
+						+ "F.no = A.field_no "
+						+ "WHERE A.jobOpening_no = ?";
 		
 		try {
 			conn = getConnection();
@@ -354,23 +360,28 @@ public class CorporationDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				int no = rs.getInt("");
-				String individual_id = rs.getString("");
-				int field_no = rs.getInt("field_no");
+				int no = rs.getInt("no");
+				String id = rs.getString("id");
+				String resumeTitle = rs.getString("resumeTitle");
+				String name = rs.getString("name");
+				String fieldName = rs.getString("fieldName");
+				String stack = rs.getString("stack");
+				String email = rs.getString("email");
+				String phone = rs.getString("phone");
 				int coverLetter_no = rs.getInt("coverLetter_no");
 				String status = rs.getString("status");
 				
-				Apply apply = new Apply(no, individual_id, jobOpening_no, field_no, coverLetter_no, status);
-				applies.add(apply);
+				Applicant applicant = new Applicant(no, id, resumeTitle, name, fieldName, stack, email, phone, coverLetter_no, status);
+				applicants.add(applicant);
 			}
 			
 			rs.close();
 			pstmt.close();
 			conn.close();
-		} catch(Exception e) {
-			System.out.println("getApply Error : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("getApplicant Error : " + e.getMessage());
 		}
-		return applies;
+		return applicants;
 	}
 	
 	// index 공고

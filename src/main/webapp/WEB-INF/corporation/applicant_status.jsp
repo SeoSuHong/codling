@@ -140,110 +140,130 @@
 		<article id="jobOpening2">
 			<h3>지원자 현황</h3>
 			
-			<!-- 대기중인 이력서 -->
-			<div class="resumeWrap wait">
-				<p class="waitResume">대기중인 이력서</p>
-				<p class="resumeTitle">열심히 할 자신 있습니다.</p>
-				<dl>
-					<dt>이름</dt>
-					<dd>서수홍</dd>
-				</dl>
-				<dl>
-					<dt>지원분야</dt>
-					<dd>백엔드</dd>
-				</dl>
-				<dl>					
-					<dt>경력사항</dt>
-					<dd>신입</dd>
-				</dl>
-				<dl>
-					<dt>사용스택</dt>
-					<dd>Java · JSP · MySQL · Github</dd>
-				</dl>
-				<dl>
-					<dt>최종학력</dt>
-					<dd>경동대학교 경찰학과 (졸업)</dd>
-				</dl>
-				<dl>
-					<dt>이메일</dt>
-					<dd>tbgkdntm@naver.com</dd>
-				</dl>
-				<dl>
-					<dt>휴대폰</dt>
-					<dd>010-1234-1234</dd>
-				</dl>
-				<button class="resumeBtn" onclick="location.href = 'resume_preview?status=미열람'">이력서 열람</button>
-			</div>
-			
-			<!-- 수락한 이력서 -->
-			<div class="resumeWrap accept">
-				<p class="acceptResume">수락한 이력서</p>
-				<p class="resumeTitle">열심히 할 자신 있습니다.</p>
-				<dl>
-					<dt>이름</dt>
-					<dd>서수홍</dd>
-				</dl>
-				<dl>
-					<dt>지원분야</dt>
-					<dd>백엔드</dd>
-				</dl>
-				<dl>					
-					<dt>경력사항</dt>
-					<dd>신입</dd>
-				</dl>
-				<dl>
-					<dt>사용스택</dt>
-					<dd>Java · JSP · MySQL · Github</dd>
-				</dl>
-				<dl>
-					<dt>최종학력</dt>
-					<dd>경동대학교 경찰학과 (졸업)</dd>
-				</dl>
-				<dl>
-					<dt>이메일</dt>
-					<dd>tbgkdntm@naver.com</dd>
-				</dl>
-				<dl>
-					<dt>휴대폰</dt>
-					<dd>010-1234-1234</dd>
-				</dl>
-				<button class="resumeBtn" onclick="location.href = 'resume_preview'">이력서 열람</button>
-			</div>
-			
-			<!-- 거절한 이력서 -->
-			<div class="resumeWrap refuse">
-				<p class="refuseResume">거절한 이력서</p>
-				<p class="resumeTitle">열심히 할 자신 있습니다.</p>
-				<dl>
-					<dt>이름</dt>
-					<dd>서수홍</dd>
-				</dl>
-				<dl>
-					<dt>지원분야</dt>
-					<dd>백엔드</dd>
-				</dl>
-				<dl>					
-					<dt>경력사항</dt>
-					<dd>신입</dd>
-				</dl>
-				<dl>
-					<dt>사용스택</dt>
-					<dd>Java · JSP · MySQL · Github</dd>
-				</dl>
-				<dl>
-					<dt>최종학력</dt>
-					<dd>경동대학교 경찰학과 (졸업)</dd>
-				</dl>
-				<dl>
-					<dt>이메일</dt>
-					<dd>tbgkdntm@naver.com</dd>
-				</dl>
-				<dl>
-					<dt>휴대폰</dt>
-					<dd>010-1234-1234</dd>
-				</dl>
-				<button class="resumeBtn" onclick="location.href = 'resume_preview'">이력서 열람</button>
-			</div>
+			<c:forEach var="applicant" items="${applicants}">			
+				<c:if test="${applicant.status == '미열람' || applicant.status == '열람'}">
+					<!-- 대기중인 이력서 -->
+					<div class="resumeWrap wait">
+						<p class="waitResume">대기중인 이력서</p>
+						<p class="resumeTitle">${applicant.resumeTitle}</p>
+						<dl>
+							<dt>이름</dt>
+							<dd>${applicant.name}</dd>
+						</dl>
+						<dl>
+							<dt>지원분야</dt>
+							<dd>${applicant.fieldName}</dd>
+						</dl>
+						<dl>					
+							<dt>경력사항</dt>
+							<dd>${applicant.career}</dd>
+						</dl>
+						<dl>
+							<dt>사용스택</dt>
+							<dd>
+								<c:forTokens var="stack" items="${applicant.stack}" delims="/" varStatus="st">
+									${stack}<c:if test="${!st.last}"> · </c:if>
+								</c:forTokens>
+							</dd>
+						</dl>
+						<dl>
+							<dt>최종학력</dt>
+							<dd>${applicant.education}</dd>
+						</dl>
+						<dl>
+							<dt>이메일</dt>
+							<dd>${applicant.email}</dd>
+						</dl>
+						<dl>
+							<dt>휴대폰</dt>
+							<dd>${fn:substring(applicant.phone, 0, 3)}-${fn:substring(applicant.phone, 3, 7)}-${fn:substring(applicant.phone, 7, 11)}</dd>
+						</dl>
+						<button class="resumeBtn" onclick="location.href = 'resume_preview?id=${applicant.id}&coverLetter_no=${applicant.coverLetter_no}&status=미열람'">이력서 열람</button>
+					</div>
+				</c:if>
+				
+				<c:if test="${applicant.status == '수락'}">
+					<!-- 수락한 이력서 -->
+					<div class="resumeWrap accept">
+						<p class="acceptResume">수락한 이력서</p>
+						<p class="resumeTitle">${applicant.resumeTitle}</p>
+						<dl>
+							<dt>이름</dt>
+							<dd>${applicant.name}</dd>
+						</dl>
+						<dl>
+							<dt>지원분야</dt>
+							<dd>${applicant.fieldName}</dd>
+						</dl>
+						<dl>					
+							<dt>경력사항</dt>
+							<dd>${applicant.career}</dd>
+						</dl>
+						<dl>
+							<dt>사용스택</dt>
+							<dd>
+								<c:forTokens var="stack" items="${applicant.stack}" delims="/" varStatus="st">
+									${stack}<c:if test="${!st.last}"> · </c:if>
+								</c:forTokens>
+							</dd>
+						</dl>
+						<dl>
+							<dt>최종학력</dt>
+							<dd>${applicant.education}</dd>
+						</dl>
+						<dl>
+							<dt>이메일</dt>
+							<dd>${applicant.email}</dd>
+						</dl>
+						<dl>
+							<dt>휴대폰</dt>
+							<dd>${fn:substring(applicant.phone, 0, 3)}-${fn:substring(applicant.phone, 3, 7)}-${fn:substring(applicant.phone, 7, 11)}</dd>
+						</dl>
+						<button class="resumeBtn" onclick="location.href = 'resume_preview'">이력서 열람</button>
+					</div>
+				</c:if>
+				
+				<c:if test="${applicant.status == '거절'}">
+					<!-- 거절한 이력서 -->
+					<div class="resumeWrap refuse">
+						<p class="refuseResume">거절한 이력서</p>
+						<p class="resumeTitle">${applicant.resumeTitle}</p>
+						<dl>
+							<dt>이름</dt>
+							<dd>${applicant.name}</dd>
+						</dl>
+						<dl>
+							<dt>지원분야</dt>
+							<dd>${applicant.fieldName}</dd>
+						</dl>
+						<dl>					
+							<dt>경력사항</dt>
+							<dd>${applicant.career}</dd>
+						</dl>
+						<dl>
+							<dt>사용스택</dt>
+							<dd>
+								<c:forTokens var="stack" items="${applicant.stack}" delims="/" varStatus="st">
+									${stack}<c:if test="${!st.last}"> · </c:if>
+								</c:forTokens>
+							</dd>
+						</dl>
+						<dl>
+							<dt>최종학력</dt>
+							<dd>${applicant.education}</dd>
+						</dl>
+						<dl>
+							<dt>이메일</dt>
+							<dd>${applicant.email}</dd>
+						</dl>
+						<dl>
+							<dt>휴대폰</dt>
+							<dd>${fn:substring(applicant.phone, 0, 3)}-${fn:substring(applicant.phone, 3, 7)}-${fn:substring(applicant.phone, 7, 11)}</dd>
+						</dl>
+						<button class="resumeBtn" onclick="location.href = 'resume_preview'">이력서 열람</button>
+					</div>
+				</c:if>
+			</c:forEach>
         </article>
        
         
