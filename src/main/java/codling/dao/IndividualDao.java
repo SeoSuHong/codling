@@ -410,7 +410,7 @@ public class IndividualDao {
 				conn.close();
 			}
 		}catch (Exception e) {
-			System.out.println("setportfolio errors : " + e.getMessage());
+			System.out.println("setfile errors : " + e.getMessage());
 		}
 		return result;
 	}

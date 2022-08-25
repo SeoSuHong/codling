@@ -137,9 +137,9 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		String company_department_update = "";
 		String work_content_update = "";
 		
-		for(int i = 0; i < prev_company_update_.length; i++) {
+		for(int i = 0; i < prev_company_update_.length-1; i++) {
 			if(!prev_company_update_[i].equals("") && prev_company_update_[i] != "") {
-				if(i != prev_company_update_.length-1) {
+				if(i != prev_company_update_.length-2) {
 					prev_company_update += (prev_company_update_[i] + " / ");
 					tenureStart_update += (tenureStart_update_[i] + " / ");
 					tenureEnd_update += (tenureEnd_update_[i] + " / ");
@@ -175,21 +175,8 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		String pass_update = "";
 		String acquireDate_update = "";
 		
-		String[] license_name_re = request.getParameterValues("license_name");
-		String[] agency_re = request.getParameterValues("agency");
-		String[] pass_re = request.getParameterValues("pass");
-		String[] acquireDate_re = request.getParameterValues("acquireDate");
-		
-		if(!license_name_re[0].equals("") && license_name_re[0] != "") {
-			for(int i = 0; i < license_name_re.length; i++) {
-				license_name_update_[license_name_update_.length + i] = license_name_re[i];
-				agency_update_[agency_update_.length + i] = agency_re[i];
-				pass_update_[pass_update_.length  + i] = pass_re[i];
-				acquireDate_update_[acquireDate_update_.length  + i] = acquireDate_re[i];
-			}
-		}
-		if(!license_name_update_[0].equals("") && license_name_update_[0] != "") {
-			for(int i = 0; i < license_name_update_.length-1; i++) {
+		for(int i = 0; i < license_name_update_.length-1; i++) {
+			if(!license_name_update_[i].equals("") && license_name_update_[i] != "") {
 				if(i != license_name_update_.length-2) {
 					license_name_update += (license_name_update_[i] + " / ");
 					agency_update += (agency_update_[i] + " / ");
@@ -209,112 +196,38 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 				license_updateResult = dao.license_update(license_updateList);
 		}
 		
+		//포트폴리오 update
+		Portfolio portfolio_updateList = null;
 		
-			
-		//경력사항 insert
-		Career careerList = null;
-		String[] prev_company_ = request.getParameterValues("prev_company");
-		String[] tenureStart_ = request.getParameterValues("tenureStart");
-		String[] tenureEnd_ = request.getParameterValues("tenureEnd");
-		String[] position_ = request.getParameterValues("position");
-		String[] company_department_ = request.getParameterValues("company_department");
-		String[] work_content_ = request.getParameterValues("work_content");
-		
-		String prev_company = "";
-		String tenureStart = "";
-		String tenureEnd = "";
-		String position = "";
-		String company_department = "";
-		String work_content = "";
-		
-		for(int i = 0; i < prev_company_.length-1; i++) {
-			if(!prev_company_[i].equals("") && prev_company_[i] != "") {
-				if(i != prev_company_.length-2) {
-					prev_company += (prev_company_[i] + " / ");
-					tenureStart += (tenureStart_[i] + " / ");
-					tenureEnd += (tenureEnd_[i] + " / ");
-					position += (position_[i] + " / ");
-					company_department += (company_department_[i] + " / ");
-					work_content += (work_content_[i] + " / ");
-				}else {
-					prev_company += prev_company_[i];
-					tenureStart += tenureStart_[i];
-					tenureEnd += tenureEnd_[i];
-					position += position_[i];
-					company_department += company_department_[i];
-					work_content += work_content_[i];
-				}
-			}
-		}
-		
-		
-		boolean careerResult = false;
-		if(!prev_company.equals("") && prev_company != "") {
-				careerList = new Career(0, indiId, prev_company, tenureStart, tenureEnd, position, company_department, work_content);
-				careerResult = dao.setCareer(careerList);
-		}
-		
-		//자격증내역 insert
-		List<License> licenseList = new ArrayList<License>();
-		String[] license_name_ = request.getParameterValues("license_name");
-		String[] agency_ = request.getParameterValues("agency");
-		String[] pass_ = request.getParameterValues("pass");
-		String[] acquireDate_ = request.getParameterValues("acquireDate");
-		String license_name = "";
-		String agency = "";
-		String pass = "";
-		String acquireDate = "";
-		
-		for(int i = 0; i < license_name_.length-1; i++) {
-			if(i != license_name_.length-2) {
-				license_name += (license_name_ [i] + " / ");
-				agency += (agency_ [i] + " / ");
-				pass += (pass_ [i] + " / ");
-				acquireDate += (acquireDate_ [i] + " / ");
+		String[] portfolio_name_update_ = request.getParameterValues("portfolio_name_update");
+		String[] detail_update_ = request.getParameterValues("detail_update");
+		String[] url_update_ = request.getParameterValues("url_update");
+		String portfolio_name_update = "";
+		String detail_update = "";
+		String url_update = "";
+		for(int i = 0; i < portfolio_name_update_.length-1; i++) {
+			if(i != portfolio_name_update_.length -2) {
+				if(portfolio_name_update_[i].equals("") && portfolio_name_update_[i] == "") portfolio_name_update_[i] = "제목 없음.";
+				portfolio_name_update += (portfolio_name_update_[i] + "/");
+				if(detail_update_[i].equals("") && detail_update_[i] == "") detail_update_[i] = "상세내용 없음.";
+				detail_update += (detail_update_[i] + "/");
+				url_update += (url_update_[i] + " | ");
 			}else {
-				license_name += license_name_ [i];
-				agency += agency_ [i];
-				pass += pass_ [i];
-				acquireDate += acquireDate_ [i];
+				if(portfolio_name_update_[i].equals("") && portfolio_name_update_[i] == "") portfolio_name_update_[i] = "제목 없음.";
+				portfolio_name_update += portfolio_name_update_[i];
+				if(detail_update_[i].equals("") && detail_update_[i] == "") detail_update_[i] = "상세내용 없음.";
+				detail_update += detail_update_[i];
+				url_update += url_update_[i];
 			}
 		}
 		
-		int licenseResult = 0;
-		
-		if(!license_name.equals("") && license_name != "") {
-				License license = new License(0, indiId, license_name, agency, pass, acquireDate);
-				licenseList.add(license);
-				licenseResult = dao.setLicense(licenseList);
+		boolean portfolio_updateResult = false;
+		if(!portfolio_name_update.equals("") && portfolio_name_update != "") {
+			portfolio_updateList = new Portfolio(0, indiId, portfolio_name_update, detail_update, url_update, "", "", "", "","");
+			portfolio_updateResult = dao.portfolio_update(portfolio_updateList);
 		}
 		
-		//포트폴리오 insert
-		Portfolio portfolioList = null;
-		
-		String[] portfolio_name_ = request.getParameterValues("portfolio_name");
-		String[] detail_ = request.getParameterValues("detail");
-		String[] url_ = request.getParameterValues("url");
-		String portfolio_name = "";
-		String detail = "";
-		String url = "";
-		for(int i = 0; i < portfolio_name_.length-1; i++) {
-			if(i != portfolio_name_.length -2) {
-				portfolio_name += (portfolio_name_[i] + " / ");
-				detail += (detail_[i] + " / ");
-				url += (url_[i] + " / ");
-			}else {
-				portfolio_name += portfolio_name_[i];
-				detail += detail_[i];
-				url += url_[i];
-			}
-		}
-		
-		boolean portfolioResult = false;
-		if(!portfolio_name.equals("") && portfolio_name != "") {
-			portfolioList = new Portfolio(0, indiId, portfolio_name, detail, url, "", "", "", "","");
-			portfolioResult = dao.setportfolio(portfolioList);
-		}
-		
-		//첨부파일 insert
+		//첨부파일 update
 		Portfolio fileuploadList = null;
 		Collection<Part> parts = request.getParts(); //파일 열러개 검사
 		StringBuilder builder = new StringBuilder();
@@ -375,6 +288,8 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 				file_detail += file_detail_[i];
 			}
 		}
+		
+		//파일 업로드 업데이트 구현해야함
 		
 		boolean fileuploadResult = false;
 		if(!fileTitle.equals("") && fileTitle != "") {

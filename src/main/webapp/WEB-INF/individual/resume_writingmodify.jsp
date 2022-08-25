@@ -414,7 +414,7 @@
 					<button type="button" class="ex_del" onclick="delForm2(this);">삭제</button>
 	                <table id= "ex_info_box">        
 		                <tr>
-		                    <td><p>회사 명 * <input name="company_name_update" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요" value="${prev_company }"> </p></td>
+		                    <td><p>회사 명 * <input name="prev_company_update" id="company_name" class="infoForm4" placeholder=" 회사명을 입력하세요" value="${prev_company }"> </p></td>
 		                </tr>
 		                <tr>
 		                    <td><p id="qqq"><span>재직 기간 *</span><input type="date" name="tenureStart_update" class="infoForm4" value="${tenureStart }">
@@ -685,7 +685,7 @@
     
     	<c:forTokens var="name" items="${portfolio.name}" begin="0" end="0" delims="/">
     	<c:forTokens var="detail" items="${portfolio.detail}" begin="0" end="0" delims="/">
-    	<c:forTokens var="url" items="${portfolio.url }" begin="0" end="0" delims="|">
+    	<c:forTokens var="url" items="${portfolio.url }" begin="0" end="0" delims=" | ">
 	        <div id="problem_list4">
 	            <h2>포트폴리오 제출<input type="button" class="portfolio_add" value="추가" onclick="addForm4();"></h2>
 	            <div id="portfoliobox">
@@ -705,7 +705,7 @@
         </c:forTokens>
         </c:forTokens>
         
-        <c:if test="${empty portfolio.name}">
+        <c:if test="${empty portfolio.url}">
         	<div id="problem_list4">
 	            <h2>포트폴리오 제출<input type="button" class="portfolio_add" value="추가" onclick="addForm4();"></h2>
 	            <div id="portfoliobox">
@@ -725,7 +725,7 @@
         
         <c:forTokens var="name" items="${portfolio.name}" begin="1" delims="/" varStatus="st">
     	<c:forTokens var="detail" items="${portfolio.detail}" begin="${st.index }" end="${st.index }" delims="/">
-    	<c:forTokens var="url" items="${portfolio.url }" begin="${st.index }" end="${st.index }" delims="|">
+    	<c:forTokens var="url" items="${portfolio.url }" begin="${st.index }" end="${st.index }" delims=" | ">
         <div id="portfolio_info_input" class="list_file_tag_input"> 
             <div id="portfoliobox">
 	            <button type="button" class="portfolio_del" onclick="delForm4(this);">삭제</button>
@@ -765,10 +765,10 @@
     <!-- 파일첨부 -->
     <section>
     
-    <c:forTokens var="title" items="${fileupload.title }" begin="0" end="0" delims="/">
+    <c:forTokens var="title" items="${fileupload.title }" begin="0" end="0" delims=" / ">
     <c:forTokens var="fileName" items="${fileupload.fileName }" begin="0" end="0" delims="/">
-    <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="0" end="0" delims="/">
-    <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="0" end="0" delims="|">
+    <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="0" end="0" delims=" / ">
+    <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="0" end="0" delims=" | ">
         <div id="problem_list5">
             <h2>첨부파일<input type="button" class="portfolio_add" value="추가" onclick="addForm5();"></h2>
             <div id="portfoliobox">
@@ -809,10 +809,10 @@
         </div>
 	</c:if>
 	
-	<c:forTokens var="title" items="${fileupload.title }" begin="1" delims="/" varStatus="st">
+	<c:forTokens var="title" items="${fileupload.title }" begin="1" delims=" / " varStatus="st">
     <c:forTokens var="fileName" items="${fileupload.fileName }" begin="${st.index }" end="${st.index }" delims="/">
-    <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims="/">
-    <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="${st.index }" end="${st.index }" delims="|">
+    <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims=" / ">
+    <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="${st.index }" end="${st.index }" delims=" | ">
         <div id="portfolio_file_input" class="list_file_tag_input"> 
             <div id="portfoliobox">
 	            <button type="button" class="portfolio_del" onclick="delForm5(this);">삭제</button>
@@ -837,15 +837,15 @@
             <div id="portfoliobox">
 	            <button type="button" class="portfolio_del" onclick="delForm5(this);">삭제</button>
 	            <!-- title -->
-	            <input type="text" name="fileTitle_update" class="portfolio_title" placeholder="첨부파일"><br><br>
+	            <input type="text" name="fileTitle" class="portfolio_title" placeholder="첨부파일"><br><br>
                 
                 <button type="button" class="filebtn">첨부파일</button>
                 <div class="file_box">
                 	<!-- 첨부파일 -->
                     <label><span class="choose_file">파일선택</span>
-                    <input type="file" name="fileName_update" id="ex_filename" class="filename"></label>
+                    <input type="file" name="fileName" id="ex_filename" class="filename"></label>
                 </div>
-                <textarea name="file_detail_update" id="deepcontents" placeholder="상세내용"></textarea>
+                <textarea name="file_detail" id="deepcontents" placeholder="상세내용"></textarea>
             </div>
         </div>
     </section>
