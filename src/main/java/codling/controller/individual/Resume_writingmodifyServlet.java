@@ -1,4 +1,4 @@
-package codling.controller;
+package codling.controller.individual;
 
 import java.io.File;
 import java.io.FileOutputStream;

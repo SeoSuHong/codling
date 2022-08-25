@@ -73,17 +73,19 @@ section{width: 1220px; margin: 0 auto; margin-top: 100px;}
 #self_delbtn{margin-right: 15px; background-color: #e6e6e6; color: #858585; font-size: 1rem; font-weight: bold;
     border: none;}
 #self_delbtn:hover{background-color: #A5E374; color: white;}
-.chbtn-box{float: right; margin-top: -50px; margin-right: 10px;}
+.chbtn-box{float: right; margin-top: -100px; margin-right: 10px;}
 .chbtn-box>input{width: 80px; height: 40px; border: none; border-radius: 10px;}
 #update{background-color: #A5E374; color: white;}
 #update:hover {background-color: #8bdf4b;}
 #delete{background-color: #D6D6D6; color: #858585;}
 #delete:hover{background-color: #c6c6c6;}
-.self_box{width: 1220px; height: 170px; background: rgba(165, 227, 116, 0.3); border-radius: 10px;
-    display: flex; justify-content: left; align-items: center;}
-#self_introduction{width: 900px; height: 110px; margin-left: 50px;}
+.self_box{width: 1220px; background: rgba(165, 227, 116, 0.3); border-radius: 10px;
+    margin-bottom: 50px; display: flex; justify-content: left;}
+#self_introduction{margin: 30px 40px; margin-bottom: 60px;}
+#self_introduction>p{margin-bottom: 0.2rem;}
 #self_introduction>p>span{font-size: 1.3rem; color: #50B500; font-weight: bold;}
 .self_introductionbox{font-weight: bold; font-size: 1.5rem; color: #373F57;}
+.selfContent{width: 1150px; max-height: 140px; line-height: 20px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; word-wrap: break-word;}
 /*section*/
 section{width: 1220px; margin: 0 auto; margin-top: 100px;}
 /*article*/
@@ -97,17 +99,20 @@ article>h1{font-size: 2.1rem; font-weight: bold; color: #373F57;
 #input_title{width: 1180px; height: 60px; border: none; outline: unset; font-size: 1.8rem; color: #373F57;}
 #input_contents{width: 1180px; height: 1080px; border: none; outline: unset; font-size: 1.3rem; color: #373F57;
    -ms-overflow-style: none;}
-#self_inbox{display: none;}
+#self_inbox{display: none; margin-top: 30px;}
 /*작성button*/
-.btn-self{display: flex; justify-content: center; width: 1220px; margin-top: 35px;}
-#btn-self{width: 150px; height: 60px; border-radius: 15px; color: white; font-size: 1.3rem;
-   background-color: #A5E374; border: none; font-weight: bold; margin-right: 10px;}
-#btn-self-back{width: 150px; height: 60px; border-radius: 15px; font-size: 1.3rem;
-   background-color: #D6D6D6; color: #858585; border: none; font-weight: bold;}
+#btn-self{display: flex; justify-content: space-between; width: 330px; margin: 0 auto; margin-top: 40px;}
+.btn-self{width: 150px; height: 60px; border-radius: 15px; color: white; font-size: 1.3rem;
+   background-color: #A5E374; border: none; font-weight: bold;}
+.btn-self:last-child{background-color: #D6D6D6; color: #858585;}
+
 /*작성button*/
 .btn-sel{display: flex; justify-content: center; width: 100vw; margin-top: 35px;}
 #btn-sel{width: 200px; height: 60px; border-radius: 15px; color: white; font-size: 1.3rem;
     background-color: #A5E374; border: none; font-weight: bold;}
 #btn-sel:hover {background-color: #8bdf4b;}
+#createBtn{display: none;}
+#updateBtn{display: none;}
+
 /*footer*/
 footer{width: auto; height: 240px;}

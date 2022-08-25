@@ -1,4 +1,4 @@
-package codling.controller;
+package codling.controller.individual;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,16 +20,15 @@ public class IndiInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("indiId");
-		String indiId = id;
 		
 		IndividualDao dao = new IndividualDao();
 		Individual individual = dao.getIndividual(id);
 		InformationDao infoDao = new InformationDao();
 		
-		if(indiId != null) {
-			Map<String, String> map = infoDao.getIndiName(indiId);
-			String indiName = map.get(indiId);
-			request.setAttribute("indiName", indiName);
+		if(id != null) {
+			Map<String, String> map = infoDao.getIndiName(id);
+			String name = map.get(id);
+			request.setAttribute("name", name);
 		}
 		
 		request.setAttribute("individual", individual);

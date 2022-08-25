@@ -2,6 +2,7 @@ package codling.identity;
 
 public class Career {
 	private int no;
+	
 	private String individual_id, prev_company, tenureStart, tenureEnd, position, department, work_content;
 	
 	public Career() {}
@@ -81,6 +82,8 @@ public class Career {
 	public void setWork_content(String work_content) {
 		this.work_content = work_content;
 	}
+
+	
 	
 	
 }

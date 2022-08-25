@@ -1,4 +1,4 @@
-package codling.controller;
+package codling.controller.individual;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,8 +41,8 @@ public class Resume_writingServlet extends HttpServlet {
 		InformationDao infoDao = new InformationDao();
 		if(indiId != null) {		
 			Map<String, String> map = infoDao.getIndiName(indiId);
-			String indiName = map.get(indiId);
-			request.setAttribute("indiName", indiName);
+			String name = map.get(indiId);
+			request.setAttribute("name", name);
 		}
 		// resume_writing.jsp로 이동
 		request.getRequestDispatcher("/WEB-INF/individual/resume_writing.jsp").forward(request, response);

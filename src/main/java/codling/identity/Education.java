@@ -8,6 +8,7 @@ public class Education {
 
 	public Education(int no, String individual_id, String school, String schoolName, String schoolStartDate,
 			String schoolEndDate, String status, String department, String score) {
+
 		super();
 		this.no = no;
 		this.individual_id = individual_id;
@@ -92,6 +93,5 @@ public class Education {
 		this.score = score;
 	}
 
-	
 	
 }

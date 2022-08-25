@@ -299,7 +299,7 @@ function process() {
 
 //이름 클릭시 Output-Selected 에 값 넣기. Suggest창 숨기기
 function func(reData) {
-	$('#stacks').append('<div class="st"><div class="stack">' + reData + '</div><div onclick="parentElement.remove(this)" style="cursor:pointer"> X </div></div>');
+	$('#stacks').append('<span class="st"><div class="stack">' + reData + '</div><span onclick="parentElement.remove(this)" style="cursor:pointer"> X </div></div>');
 	
     loopSend = checkFirst = false;
     lastKeyword = "";

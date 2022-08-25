@@ -1,4 +1,4 @@
-package codling.controller;
+package codling.controller.guest;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,38 +12,31 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import codling.dao.CorporationDao;
-import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
 import codling.identity.Announcement;
-import codling.identity.Career;
-import codling.identity.Education;
-import codling.identity.Individual;
-import codling.identity.License;
 
-@WebServlet("/resume_management")
-public class Resume_managementServlet extends HttpServlet{
+@WebServlet("/career")
+public class CareerServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CorporationDao corpDao = new CorporationDao();
 		HttpSession session = request.getSession();
 		String indiId = (String)session.getAttribute("indiId");
-		
+		String corpId = (String)session.getAttribute("corpId");
 		InformationDao infoDao = new InformationDao();
-		IndividualDao indiviDao = new IndividualDao();
 		if(indiId != null) {
 			Map<String, String> map = infoDao.getIndiName(indiId);
 			String indiName = map.get(indiId);
 			request.setAttribute("indiName", indiName);
-			
-			Individual individual = indiviDao.getIndividual(indiId);
-			Education education = indiviDao.getEducation(indiId);
-			Career career = indiviDao.getCareer(indiId);
-			License license = indiviDao.getLicense(indiId);
-			
-			request.setAttribute("license", license);
-			request.setAttribute("career", career);
-			request.setAttribute("individual", individual);
-			request.setAttribute("education", education);
-		} 
+		} else if(corpId != null) {
+			Map<String, String> map = infoDao.getCorpName(corpId);
+			String corpName = map.get(corpId);
+			request.setAttribute("corpName", corpName);
+		}
 		
-		request.getRequestDispatcher("/WEB-INF/individual/resume_management.jsp").forward(request, response);
+		ArrayList<Announcement> announcement = corpDao.careerContents();
+		
+		request.setAttribute("announcement", announcement);
+		
+		request.getRequestDispatcher("/WEB-INF/guest/career.jsp").forward(request, response);
 	}
 }

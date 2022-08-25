@@ -69,7 +69,7 @@
                 </table>
            	</article>
            	<!-- 모집분야(추가 폼) -->
-           	<div name="problem_list" id="problem_list">
+           	<div id="problem_list">
                	<h3>모집분야<input type="button" id="add" onclick="addForm();" value="추가"></h3>
            		<article class="field">
                     <table>
@@ -113,7 +113,7 @@
                             <td>사용스택 및 툴*</td>
                             <td id="font_medium">
 	                            <input id="stack" name="keyword" onkeydown="keyDown()">
-	                            <ul id="suggest" style="display:none; position:absolute; top:1333px;"></ul>
+	                            <ul id="suggest" style="display: none; position: absolute; top: 1333px;"></ul>
                             </td>
                         </tr>
                         <tr>

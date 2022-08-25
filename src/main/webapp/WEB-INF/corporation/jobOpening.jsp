@@ -45,7 +45,7 @@
 	              <div id="scroll-profile-hover" class="pfhover">
 	                <ul>
 	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
-	                    <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
+	                    <li id="resume"><a href="resume_management"><span>이력서 관리</span></a></li>
 	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
 	                </ul>
 	              </div>
@@ -77,7 +77,7 @@
                             <span>${corporation.corporateName}</span>&ensp;&ensp;
 	                        <c:forEach var="field" items="${fields}">
                         		<span>${field.name} | </span>
-	                			<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+	                			<c:forTokens var="career" items="${field.career}" delims="/" varStatus="st">
 	                				<c:if test="${fn:length(field.career) <= 3}">
 	                					<c:if test="${career == '신입'}">
 				                			<span>${career}</span>&ensp;&ensp;
@@ -120,7 +120,7 @@
                 <span class="corpName">${corporation.corporateName}</span>&ensp;&ensp;
 				<c:forEach var="field" items="${fields}">
                		<span>${field.name} | </span>
-	                <c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+	                <c:forTokens var="career" items="${field.career}" delims="/" varStatus="st">
 	             		<c:if test="${fn:length(field.career) <= 3}">
 	             			<c:if test="${career == '신입'}">
 	                			<span class="corpCarrer">${career}</span>&ensp;&ensp;
@@ -176,7 +176,7 @@
 	            </div>
 	            <h2>사용스택 및 툴</h2>
 	                <div class="corpStacks">
-	                	<c:forTokens var="stack" items="${field.stack}" delims=" / ">
+	                	<c:forTokens var="stack" items="${field.stack}" delims="/">
 	                    	<span class="stack">${stack}</span>
 	                    </c:forTokens>
 	                </div>
@@ -239,13 +239,13 @@
         </div>
         <div class="jobs">
             <dl>
-                <dt><img src="img/logo.png" alt=""></dt>
+                <dt><img src="img/logo.png"></dt>
                 <dd>${jobOpening.title}</dd>
                 <dd>${corporation.corporateName}</dd>
                 <dd>
                 	<c:forEach var="field" items="${fields}">
                 		${field.name} | 
-	                	<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+	                	<c:forTokens var="career" items="${field.career}" delims="/" varStatus="st">
 	            			<c:if test="${fn:length(field.career) <= 3}">
 	              				<c:if test="${career == '신입'}">
 		                			<span>${career}</span>&ensp;&ensp;
@@ -272,7 +272,7 @@
                 <dd>${jobOpening.title}</dd>
                 <dd>${corporation.corporateName}</dd>
                 <dd>
-                	<c:forTokens var="career" items="${field.career}" delims=" / " varStatus="st">
+                	<c:forTokens var="career" items="${field.career}" delims="/" varStatus="st">
             			<c:if test="${fn:length(field.career) <= 3}">
               				<c:if test="${career == '신입'}">
 	                			<span>${career}</span>&ensp;&ensp;
@@ -343,149 +343,52 @@
 		        <div id="selectField">
 		            <select name="fieldName" id="selField">
 		                <option value="" selected>지원분야를 선택해 주세요.</option>
-		                <option value="백엔드">백엔드</option>
-		                <option value="프론트엔드">프론트엔드</option>
-		                <option value="데이터 엔지니어">데이터 엔지니어</option>
+		                <c:forEach var="field" items="${fields}">
+			                <option value="${field.no}">${field.name}</option>
+		                </c:forEach>
 		            </select>
 		        </div>
 		    </div>
 		    <h1 id="self">자기소개서</h1>
 		    <article id="applyStatus">
-		        <div class="applybox">
-		            <button class="leftArrow"><img src="img/leftArrow.png"></button>
-		            <div class="applys">
-		                <div class="applyWrap">
-		                    <ul class="apply_coverLetter">
-		                        <li class="apply_item">
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다. 진짜로 한번만 믿어주세요 제발요!1</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다.2</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다.3</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                        </li>
-		                        <li class="apply_item">
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다.4</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다.5</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다.6</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                        </li>
-		                        <li class="apply_item">
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다.7</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다.8</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다.9</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                        </li>
-		                        <li class="apply_item">
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다.10</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다.11</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                            <div class="app">
-		                                <div class="app_content">
-		                                    <p><span>자기소개서</span></p>
-		                                    <p class="apply_title">열심히 할 자신 있습니다.12</p>
-		                                </div>
-		                                <div class="viewInfo">
-		                                    <a href="job_accountment.html">선택하기</a>
-		                                </div>
-		                            </div>
-		                        </li>
-		                    </ul>
-		                </div>
-		            </div>
-		            <button class="rightArrow"><img src="img/rightArrow.png"></button>
-		        </div>
-		        <div id="btn_bar">
-		            <button class="apply_bar">
-		            <button class="apply_bar">
-		            <button class="apply_bar">
-		            <button class="apply_bar">
-		        </div>
+		    	<c:if test="${not empty coverLetters}">
+			        <div class="applybox">
+			            <span class="leftArrow"><img src="img/leftArrow.png"></span>
+			            <div class="applys">
+			                <div class="applyWrap">
+			                    <ul class="apply_coverLetter">
+			                        <c:forEach var="coverLetter" items="${coverLetters}" varStatus="st">
+			                        	<c:if test="${st.first || st.count % 3 == 1}">
+			                        		<li class="apply_item">
+			                        	</c:if>
+			                        		<div class="app">
+				                                <div class="app_content">
+				                                    <p><span>자기소개서</span></p>
+				                                    <p class="apply_title">${coverLetter.title}</p>
+				                                </div>
+			                                	<input type="button" class="choice" value="선택하기" onclick="choice(this, ${coverLetter.no})">
+			                            	</div>
+				                        <c:if test="${st.count % 3 == 0}">
+			                        		</li>
+			                        	</c:if>
+			                        </c:forEach>
+			                    </ul>
+			                </div>
+			            </div>
+			            <span type="button" class="rightArrow"><img src="img/rightArrow.png"></span>
+			        </div>
+			        <div id="btn_bar">
+			        	<c:forEach var="coverLetter" items="${coverLetters}" varStatus="st">
+			        		<c:if test="${st.first || st.count % 3 == 1}">
+			            		<input type="button" class="apply_bar">
+			            	</c:if>
+			            </c:forEach>
+			        </div>
+			    </c:if>
 		        <div id="applyBtn_wrap">
 		            <input type="button" value="지원하기" id="applyBtn" onclick="applyChk()">
 		        </div>
+		    	<input type="hidden" name="coverLetterNo">
 		    </article>
 		</form>
 	</div>

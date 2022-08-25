@@ -17,13 +17,13 @@
     <script src="jQuery/jquery-ui.min.js"></script>
     <script src="js/resume_management.js"></script>
 </head>
-<body>
+<body onresize="update_screen_size()">
     <header>
         <div id="menu-bar">
             <div></div>
             <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
-                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${indiName} 님 &nbsp;&nbsp;</div>
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${name} 님 &nbsp;&nbsp;</div>
                 </div>
         </div>
             <div id="profile-hover">
@@ -35,227 +35,81 @@
             </div>
     </header>
     <section>
-        <article id="applyStatus">
+       <article id="applyStatus">
             <h1>공고 지원 현황</h1>
             <div class="applybox">
-                <button class="leftArrow"><img src="img/leftArrow.png"></button>
+               <c:forEach var="apply" items="${applys}" varStatus="st">
+                  <c:if test="${not st.first && st.count % 4 == 1}">
+                      <button class="leftArrow"><img src="img/leftArrow.png"></button>
+                   </c:if>
+                </c:forEach>
                 <div class="applys">
                     <div class="applyWrap">
                         <ul class="apply">
-                            <li class="apply_item">
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">Google</p>
-                                        <b>백엔드, DBA</b><br>
-                                        <b>경력</b><br>
-                                        <b>정규직</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">우아한 형제들</p>
-                                        <b>백엔드</b><br>
-                                        <b>신입</b><br>
-                                        <b>프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">Apple</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">쿠팡</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="apply_item">
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">NAVER</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">KAKAO</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">Line</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">토스</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="apply_item">
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">당근마켓</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">Ezen</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">Oracle</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">MicroSoft</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="apply_item">
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">셀트리온</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                                <div class="app">
-                                    <div class="app_content">
-                                        <p><span>지원한 공고</span></p>
-                                        <p class="apply_title">codling</p>
-                                        <b>백엔드, 프론트엔드</b><br>
-                                        <b>신입, 경력</b><br>
-                                        <b>정규직, 계약직, 프리랜서</b><br>
-                                        <b>마감일자 : 2022-08-19</b><br>
-                                    </div>
-                                    <div class="viewInfo">
-                                        <a href="job_accountment">공고보기</a>
-                                        <a href="resume_writing">이력서 보기</a>
-                                    </div>
-                                </div>
-                            </li>
+                           <c:forEach var="apply" items="${applys}" varStatus="st">
+                              <c:if test="${st.first || st.count % 4 == 1}">
+                                  <li class="apply_item">
+                               </c:if>
+                                   <div class="app">
+                                       <div class="app_content">
+                                           <p><span>지원한 공고</span></p>
+                                           <p class="apply_title">${apply.corporateName}</p>
+                                           <b>분야 &emsp; ${apply.fieldName}</b><br>
+                                           <b>경력 &emsp;
+                                              <c:forTokens var="career" items="${apply.career}" delims=" / ">
+                                          <c:if test="${fn:length(apply.career) <= 3}">
+                                               <c:if test="${career == '신입'}">
+                                                 <span>${career}</span>
+                                              </c:if>
+                                              <c:if test="${career != '신입'}">
+                                                 <span>${career}년↑</span>
+                                              </c:if>
+                                           </c:if>
+                                        
+                                           <c:if test="${fn:length(apply.career) > 3}">
+                                              <c:if test="${career == '신입'}">
+                                                 <span>${career} or</span>
+                                              </c:if>
+                                              <c:if test="${career != '신입'}">
+                                                 <span>${career}년↑</span>&ensp;&ensp;
+                                              </c:if>
+                                           </c:if>
+                                      </c:forTokens>
+                                           </b><br>
+                                           <b>급여 &emsp;
+                                              <c:if test="${apply.pay == '면접 후 결정'}">
+                                                 ${apply.pay}
+                                              </c:if>
+                                              <c:if test="${apply.pay != '면접 후 결정'}">
+                                                 ${apply.pay}만↑
+                                              </c:if>
+                                           </b><br>
+                                           <b>상태 &emsp; ${apply.status}</b><br>
+                                       </div>
+                                       <div class="viewInfo">
+                                           <a href="jobOpening?no=${apply.jobOpening_no}">공고보기</a>
+                                           <a href="resume_preview.jsp">이력서 보기</a>
+                                       </div>
+                                   </div>
+                               <c:if test="${st.count % 4 == 0}">
+                                  </li>
+                               </c:if>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
-                <button class="rightArrow"><img src="img/rightArrow.png"></button>
+                <c:forEach var="apply" items="${applys}" varStatus="st">
+                  <c:if test="${not st.first && st.count % 4 == 1}">
+                      <button class="rightArrow"><img src="img/rightArrow.png"></button>
+                   </c:if>
+                  </c:forEach>
             </div>
             <div id="btn_bar">
-                <button class="apply_bar"></button>
-                <button class="apply_bar"></button>
-                <button class="apply_bar"></button>
-                <button class="apply_bar"></button>
+               <c:forEach var="apply" items="${applys}" varStatus="st">
+                  <c:if test="${not st.first && st.count % 4 == 1}">
+                      <button class="apply_bar"></button>
+                   </c:if>
+                </c:forEach>
             </div>
         </article>
         
@@ -511,40 +365,55 @@
 
         <article id="self">
             <h1>자기소개서 관리</h1>
-            <div class="self_box" style="cursor: pointer;" onclick="selfintro()">
-                    <div id="self_introduction">
-                        <p><span>자기소개서</span></p>
-                            <div class="self_introductionbox">자기소개서가 없습니다. 자기소개서를 작성해주세요</div>
-                    </div>
-            </div>
-            <div class="chbtn-box">
-                <input type="button" name="update" id="update" value="수정" src="">
-                <input type="button" name="delete" id="delete" value="삭제" >
-            </div>
+            <c:if test="${empty coverLetters}">
+	            <div class="self_box">
+	                <div id="self_introduction">
+	                    <p><span>자기소개서</span></p>
+	                    <div class="self_introductionbox">자기소개서가 없습니다. 자기소개서를 작성해주세요</div>
+	                </div>
+	            </div>
+            </c:if>
+            <c:if test="${not empty coverLetters}">
+           		<c:forEach var="coverLetter" items="${coverLetters}">
+	            	<div class="self_box">
+		                <div id="self_introduction">
+		                    <p><span>자기소개서</span></p>
+		                    <div class="self_introductionbox">${coverLetter.title}</div>
+		                    <div class="selfContent">${fn:replace(coverLetter.content, replacePrevChar, '<br>')}</div>
+		                </div>
+		            </div>
+		            <div class="chbtn-box">
+		                <input type="button" name="update" id="update" onclick="showUpdate(${coverLetter.no}, '${coverLetter.title}', '${fn:replace(coverLetter.content, replacePrevChar, replaceCurrChar)}')" value="수정">
+		                <input type="button" name="delete" id="delete" onclick="self_delete(${coverLetter.no})" value="삭제" >
+		            </div>
+		        </c:forEach>
+            </c:if>
             <div class="btn-sel">
-                <input type="button" id="btn-sel" value="자기소개서 작성" onclick="selfintro()"></input>
+                <input type="button" id="btn-sel" onclick="showWrite()" value="자기소개서 작성">
             </div>
         </article>
         <div id="self_inbox">
-            <article>
-                <h1>자기소개서</h1>
-                <form action="" name="selfFrm" method="post">
-                    <div id="self_introduction_box">
-                        <div id="self_box">
-                            <div id="self_title">
-                                <input type="text" name="selftitle" id="input_title" placeholder="제목을 입력해 주세요.">
-                            </div>
-                            <div id="contents_box">
-                                <textarea type="text" name="selfcontent" id="input_contents" placeholder="내용을 입력해 주세요."></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </article>
-            <div class="btn-self">
-                <button action="" form="selfFrm" id="btn-self" onclick="self_check()">등록</button>
-                <button action="" id="btn-self-back" onclick="hidden()">취소</button>
-            </div>
+            <form name="selfFrm" method="post">
+	            <article>
+	                <h1>자기소개서</h1>
+	                    <div id="self_introduction_box">
+	                        <div id="self_box">
+	                            <div id="self_title">
+	                                <input name="selfTitle" id="input_title" placeholder="제목을 입력해 주세요.">
+	                            </div>
+	                            <div id="contents_box">
+	                                <textarea name="selfContent" id="input_contents" placeholder="내용을 입력해 주세요."></textarea>
+	                            </div>
+	                        </div>
+	                    </div>
+	            </article>
+	            <div id="btn-self">
+	                <input type="button" class="btn-self" id="createBtn" onclick="self_check()" value="작성">
+	                <input type="button" class="btn-self" id="updateBtn" onclick="self_update()" value="수정">
+	                <input type="button" class="btn-self" onclick="hideWrite()" value="취소">
+	                <input type="hidden" name="coverLetterNo">
+	            </div>
+            </form>
         </div>
     </section>
     <footer>

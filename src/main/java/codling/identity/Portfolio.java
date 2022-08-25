@@ -76,7 +76,7 @@ public class Portfolio {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	
+
 	public String getFileaddress() {
 		return fileaddress;
 	}
@@ -100,6 +100,7 @@ public class Portfolio {
 	public void setFileSize(String fileSize) {
 		this.fileSize = fileSize;
 	}
-	
+
+
 	
 }

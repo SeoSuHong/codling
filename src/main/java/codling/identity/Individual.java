@@ -1,6 +1,7 @@
 package codling.identity;
 
 public class Individual {
+
 	private String id, password, name, birth, gender, email, phone, address, resumeTitle, stack ;
 	
 	public Individual() {}
@@ -99,6 +100,4 @@ public class Individual {
 	public void setStack(String stack) {
 		this.stack = stack;
 	}
-
-	
 }

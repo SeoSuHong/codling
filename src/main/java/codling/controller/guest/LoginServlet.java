@@ -1,4 +1,4 @@
-package codling.controller;
+package codling.controller.guest;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +17,7 @@ import codling.dao.InformationDao;
 public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/public/logIn.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/guest/logIn.jsp").forward(request, response);
 	}
 	
 	@Override

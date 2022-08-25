@@ -57,7 +57,6 @@ $(function(){
     });
 });
 
-
 // 공고 지원 현황 화살표 클릭
 $(function() {
     var idx = 1;
@@ -109,52 +108,73 @@ $(function() {
     }
 });
 
+function showWrite() {
+    $("#self_inbox").show();
+    $("#btn-sel").hide();
+	$("#createBtn").show();
+	$("#updateBtn").hide();
+}
+function showUpdate(no, title, content) {
+	$("#self_inbox").show();
+    $("#btn-sel").hide();
+	$("#createBtn").hide();
+	$("#updateBtn").show();
+	
+	const form = document.selfFrm;
+	form.selfTitle.value = title;
+	form.selfContent.value = content;
+	form.coverLetterNo.value = no;
+	form.selfTitle.focus();
+}
+function hideWrite() {
+	$("#input_title").val('');
+	$("#input_contents").val('');
+    $("#self_inbox").hide();
+	$("#btn-sel").show();
+}    
+
 function self_check() {
-    if(document.selfFrm.selftitle.value == ""){
+    if(document.selfFrm.selfTitle.value == ""){
         alert("자기소개서 제목을 입력해 주세요");
-        document.selfFrm.selftitle.focus();
+        document.selfFrm.selfTitle.focus();
         return;
     }
-    if(document.selfFrm.selfcontent.value == ""){
+    if(document.selfFrm.selfContent.value == ""){
         alert("자기소개서 내용을 입력해 주세요");
-        document.selfFrm.selfcontent.focus();
+        document.selfFrm.selfContent.focus();
         return;
     }
-    document.selfFrm.submit();
-}
 
-function selfintro(){	
-	if($("#self_inbox").css("display") === "block"){
-		alert("이미 자기소개서를 작성 중입니다.");
-	}else{
-		$("#self_inbox").css({"display":"block"});
+	const check = confirm('자기소개서를 작성하시겠습니까?');
+	if(check) {
+		document.selfFrm.action = "resume_management?crud=c";
+	    document.selfFrm.submit();
 	}
-		    
-	$("#btn-self-back").click(function() {
-	    $("#self_inbox").css({"display":"none"});
-	    $("#input_title").val("");
-	    $("#input_contents").val("");
-	})
 }
 
-$(function() {
-    $('.btn').click( function() {
-        if( $(this).html() == '선택' ) {
-        $(this).html('취소');
-        }
-        else {
-        $(this).html('선택');
-        }
-    });
-    $('.btn').click( function() {
-        if( $(this).html() == '선택' ) {
-        $(this).css('background', '#A5E374');
-        $(this).css('color', 'white');
-        }
-        else {
-        $(this).css('background', '#D6D6D6');
-        $(this).css('color', '#858585');
-        }
-    });
-});
-    
+function self_update() {
+    if(document.selfFrm.selfTitle.value == ""){
+        alert("자기소개서 제목을 입력해 주세요");
+        document.selfFrm.selfTitle.focus();
+        return;
+    }
+    if(document.selfFrm.selfContent.value == ""){
+        alert("자기소개서 내용을 입력해 주세요");
+        document.selfFrm.selfContent.focus();
+        return;
+    }
+
+	const check = confirm('자기소개서를 수정하시겠습니까?');
+	if(check) {
+		document.selfFrm.action = "resume_management?crud=u";
+	    document.selfFrm.submit();
+	}
+}
+
+function self_delete(no) {
+	const check = confirm('자기소개서를 삭제하시겠습니까?\n삭제한 자기소개서는 복구가 불가능합니다.');
+	if(check) {
+		document.selfFrm.action = "resume_management?crud=d&no=" + no;
+	    document.selfFrm.submit();
+	}
+}

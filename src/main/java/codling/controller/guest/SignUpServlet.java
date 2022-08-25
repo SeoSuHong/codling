@@ -1,4 +1,4 @@
-package codling.controller;
+package codling.controller.guest;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +20,7 @@ import codling.identity.Individual;
 public class SignUpServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/public/signUp.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/guest/signUp.jsp").forward(request, response);
 	}
 	
 	@Override
@@ -74,7 +74,7 @@ public class SignUpServlet extends HttpServlet {
 			boolean result = dao.insertCorporation(corporation);
 			PrintWriter out = response.getWriter();
 			if(result) {
-				out.print("<script>	alert(\"Welcome🍏\");location.href='login';</script>");
+				out.print("<script>	alert(\"Welcome?🍏\");location.href='login';</script>");
 				out.flush();
 			} else {
 				out.print("<script>alert('회원가입에 실패하였습니다. 다시 시도해주세요.');location.href='signUp';</script>");

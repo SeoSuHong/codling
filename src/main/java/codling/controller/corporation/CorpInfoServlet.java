@@ -1,7 +1,7 @@
-package codling.controller;
+package codling.controller.corporation;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -14,15 +14,14 @@ import javax.servlet.http.HttpSession;
 import codling.dao.CorporationDao;
 import codling.dao.InformationDao;
 import codling.identity.Corporation;
-import codling.identity.Field;
-import codling.identity.JobOpening;
 
-@WebServlet("/jobOpening")
-public class JobOpeningServlet extends HttpServlet {
+@WebServlet("/corporationInfo")
+public class CorpInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String indiId = (String)session.getAttribute("indiId");
 		String corpId = (String)session.getAttribute("corpId");
+		String id = corpId;
 		
 		InformationDao infoDao = new InformationDao();
 		if(indiId != null) {
@@ -35,28 +34,31 @@ public class JobOpeningServlet extends HttpServlet {
 			request.setAttribute("corpName", corpName);
 		}
 		
-		int no = 0;
-		String no_ = request.getParameter("no");
-		if(!no_.equals("") && no_ != null) no = Integer.parseInt(no_);
-		
 		CorporationDao dao = new CorporationDao();
-		dao.count(no);
-		JobOpening jobOpening = dao.getJobOpening(no);
-		List<Field> fields = dao.getAllField(no);
-		
-		String id = jobOpening.getCorporation_id();
 		Corporation corporation = dao.getCorporation(id);
 		
 		request.setAttribute("corporation", corporation);
-		request.setAttribute("jobOpening", jobOpening);
-		request.setAttribute("fields", fields);
-		request.setAttribute("replaceChar", "\n"); // 줄바꿈 <br>처리를 위해
-		
-		request.getRequestDispatcher("/WEB-INF/corporation/jobOpening.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/corporation/corporation_info.jsp").forward(request, response);
 	}
-
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("corpId");
+		
+		InformationDao dao = new InformationDao();
+		boolean result = dao.deleteCorporation(id);
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if(result) {
+			out.print("<script>alert('회원탈퇴가 완료되었습니다.');location.href='index';</script>");
+			out.flush();
+			session.invalidate();
+		} else {
+			out.print("<script>alert('회원탈퇴에 실패하였습니다.');location.href='corporationInfo';</script>");
+			out.flush();
+		}
 	}
-
 }
