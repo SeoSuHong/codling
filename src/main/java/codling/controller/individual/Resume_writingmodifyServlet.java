@@ -137,41 +137,23 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		String company_department_update = "";
 		String work_content_update = "";
 		
-		String[] prev_company_re = request.getParameterValues("prev_company");
-		String[] tenureStart_re = request.getParameterValues("tenureStart");
-		String[] tenureEnd_re = request.getParameterValues("tenureEnd");
-		String[] position_re = request.getParameterValues("position");
-		String[] company_department_re = request.getParameterValues("company_department");
-		String[] work_content_re = request.getParameterValues("work_content");
-		
-		if(prev_company_re.length != 0) {
-			for(int i = 0; i < prev_company_re.length; i++) {
-				if(!prev_company_update_[i].equals("") && prev_company_update_[i] != "") {
-					prev_company_update_[prev_company_update_.length + i] = prev_company_re[i];
-					tenureStart_update_[tenureStart_update_.length + i] = tenureStart_re[i];
-					tenureEnd_update_[tenureEnd_update_.length + i] = tenureEnd_re[i];
-					position_update_[position_update_.length + i] = position_re[i];
-					company_department_update_[company_department_update_.length + i] = company_department_re[i];
-					work_content_update_[work_content_update_.length + i] = work_content_re[i];
-				}
-			}
-		}
-		
 		for(int i = 0; i < prev_company_update_.length; i++) {
-			if(i != prev_company_update_.length-1) {
-				prev_company_update += (prev_company_update_[i] + " / ");
-				tenureStart_update += (tenureStart_update_[i] + " / ");
-				tenureEnd_update += (tenureEnd_update_[i] + " / ");
-				position_update += (position_update_[i] + " / ");
-				company_department_update += (company_department_update_[i] + " / ");
-				work_content_update += (work_content_update_[i] + " / ");
-			}else {
-				prev_company_update += prev_company_update_[i];
-				tenureStart_update += tenureStart_update_[i];
-				tenureEnd_update += tenureEnd_update_[i];
-				position_update += position_update_[i];
-				company_department_update += company_department_update_[i];
-				work_content_update += work_content_update_[i];
+			if(!prev_company_update_[i].equals("") && prev_company_update_[i] != "") {
+				if(i != prev_company_update_.length-1) {
+					prev_company_update += (prev_company_update_[i] + " / ");
+					tenureStart_update += (tenureStart_update_[i] + " / ");
+					tenureEnd_update += (tenureEnd_update_[i] + " / ");
+					position_update += (position_update_[i] + " / ");
+					company_department_update += (company_department_update_[i] + " / ");
+					work_content_update += (work_content_update_[i] + " / ");
+				}else {
+					prev_company_update += prev_company_update_[i];
+					tenureStart_update += tenureStart_update_[i];
+					tenureEnd_update += tenureEnd_update_[i];
+					position_update += position_update_[i];
+					company_department_update += company_department_update_[i];
+					work_content_update += work_content_update_[i];
+				}
 			}
 		}
 		
@@ -226,6 +208,8 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 				license_updateList = new License(0, indiId, license_name_update, agency_update, pass_update, acquireDate_update);
 				license_updateResult = dao.license_update(license_updateList);
 		}
+		
+		
 			
 		//경력사항 insert
 		Career careerList = null;

@@ -125,12 +125,6 @@ public class Resume_writingServlet extends HttpServlet {
 		
 		for(int i = 0; i < prev_company_.length-1; i++) {
 			if(i != prev_company_.length-2) {
-				System.out.println(prev_company_[i]);
-				System.out.println(tenureStart_[i]);
-				System.out.println(tenureEnd_[i]);
-				System.out.println(position_[i]);
-				System.out.println(company_department_[i]);
-				System.out.println(work_content_[i]);
 				
 				prev_company += (prev_company_[i] + " / ");
 				tenureStart += (tenureStart_[i] + " / ");
