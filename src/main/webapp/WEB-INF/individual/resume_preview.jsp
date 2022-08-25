@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,31 +23,150 @@
             <div></div>
             <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
-                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> 고객이름 &nbsp;&nbsp;</div>
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${name} 님 &nbsp;&nbsp;</div>
                 </div>
         </div>
             <div id="profile-hover">
                 <ul>
-                    <li id="mypage"><a href="#"><span>내 정보</span></a></li>
-                    <li id="resume"><a href="resume_management.jsp"><span>이력서 관리</span></a></li>
-                    <li id="logout"><a href="#"><span>로그아웃</span></a></li>
+                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
+                    <li id="resume"><a href="resume_management"><span>이력서 관리</span></a></li>
+                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
                 </ul>
             </div>
     </header>
     <section>
             <div id="Preview">
-                <h2 id="title">이력서 title</h2>
+                <h2 id="title">${individual.resumeTitle }</h2>
                 <div id="idInfo">
                     <div>
-                        <h2>&nbsp;(사용자 이름)&nbsp;<span id="gender">남성</span></h2>
+                        <h2>&nbsp;${name}&nbsp;<span id="gender">${individual.gender }성</span></h2>
                         <p>
-                            <span>&nbsp;&nbsp;사용자 이메일</span> | 
-                            <span>사용자 생년월일</span> | 
-                            <span>신입,경력</span>
+                            <span>&nbsp;&nbsp;<img src="img/email.png" class="icon">&nbsp;${individual.email }</span>&nbsp;&nbsp;
+                            <span><img src="img/birthday.png" class="icon">&nbsp;${fn:substring(individual.birth, 0, 4) }년생</span>&nbsp;&nbsp;
+                            <span><img src="img/career.png" class="icon">
+								<c:if test="${empty career}">
+	                    				신입
+	                    		</c:if>
+	                    		<c:if test="${not empty career}">
+	                    				<c:set var="tenure" value="0"/>
+	                    				<c:set var="month" value="0"/>
+	                    				<c:set var="result" value="0"/>
+	                    				<c:forTokens var="carS" items="${career.tenureStart}" delims=" / " varStatus="st">
+	                    				<c:forTokens var="carE" items="${career.tenureEnd}" begin="${st.index }" end="${st.index }" delims=" / ">
+	                    					<fmt:parseNumber var="tenureStartYear" value="${fn:substring(carS, 0, 4)}" type="number"/>
+		                    				<fmt:parseNumber var="tenureEndYear" value="${fn:substring(carE, 0, 4)}" type="number"/>
+		                    				<fmt:parseNumber var="tenureStartmonth" value="${fn:substring(carS, 5, 7)}" type="number"/>
+		                    				<fmt:parseNumber var="tenureEndmonth" value="${fn:substring(carE, 5, 7)}" type="number"/>
+		                    				<c:set var="tenure" value="${tenure + (tenureEndYear - tenureStartYear)}"/>
+		                    				<c:set var="month" value="${month + (tenureEndmonth - tenureStartmonth)}"/>
+	                    				</c:forTokens>
+	                    				</c:forTokens>
+	                    				<!-- 0년 중에 경력 개월 -->
+	                    				<c:if test="${tenure == '0'}">
+	                    					<c:if test="${month == '0'}">
+	                    						신입
+	                    					</c:if>
+	                    					<c:if test="${month < 12}">
+	                    						<c:if test="${month != '0'}">
+	                    							${month}개월
+	                    						</c:if>
+	                    					</c:if>
+	                    					<c:if test="${month == 12}">
+	                    						1년
+	                    					</c:if>
+	                    					<c:if test="${month > 12}">
+	                    						${tenure + 1}년 ${month - 12}개월
+	                    					</c:if>
+	                    					<c:if test="${month > 24}">
+	                    						${tenure + 2}년 ${month - 24}개월
+	                    					</c:if>
+	                    					<c:if test="${month > 36}">
+	                    						${tenure + 3}년 ${month - 36}개월
+	                    					</c:if>
+	                    					<c:if test="${month > 48}">
+	                    						${tenure + 4}년 ${month - 48}개월
+	                    					</c:if>
+	                    					<c:if test="${month > 60}">
+	                    						${tenure + 5}년 ${month - 60}개월
+	                    					</c:if>
+	                    				</c:if>
+	                    				
+	                    				<!-- 1년 중에 경력 개월 -->
+	                    				<c:if test="${tenure == '1'}">
+	                    					<c:if test="${month == '0'}">
+	                    						${tenure}년
+	                    					</c:if>
+	                    					<c:if test="${month < 0}">
+	                    						<c:set var="result" value="${(tenure * 12) + month}"/>
+	                    						${result}개월
+	                    					</c:if>
+	                    					<c:if test="${month > 0}">
+	                    						${tenure }년 ${month}개월
+	                    					</c:if>
+	                    				</c:if>
+	                    				
+	                    				<c:if test="${tenure > 1}">
+	                    					<!-- 2년 이상 중에 경력 개월 -->
+	                    					<c:if test="${month == '0'}">
+	                    						${tenure}년
+	                    					</c:if>
+	                    					<c:if test="${month < 0}">
+	                    						<c:if test="${month < -48}">
+		                    						<c:set var="result" value="${month + 60}"/>
+		                    						${tenure - 5}년 ${result}개월
+		                    					</c:if>
+	                    						<c:if test="${month < -36}">
+		                    						<c:set var="result" value="${month + 48}"/>
+		                    						${tenure - 4}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month < -24}">
+		                    						<c:set var="result" value="${month + 36}"/>
+		                    						${tenure - 3}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month < -12}">
+		                    						<c:set var="result" value="${month + 24}"/>
+		                    						${tenure - 2}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month >= -12}">
+		                    						<c:set var="result" value="${month + 12}"/>
+		                    						${tenure - 1}년 ${result}개월
+		                    					</c:if>
+	                    					</c:if>
+	                    					
+	                    					<!-- 2년 이상 중에 경력 개월 -->
+	                    					<c:if test="${month > 0}">
+	                    						<c:if test="${month > 60}">
+		                    						<c:set var="result" value="${month - 60}"/>
+		                    						${tenure + 5}년 ${result}개월
+		                    					</c:if>
+	                    						<c:if test="${month > 48}">
+		                    						<c:set var="result" value="${month - 48}"/>
+		                    						${tenure + 4}년 ${result}개월
+		                    					</c:if>
+	                    						<c:if test="${month > 36}">
+		                    						<c:set var="result" value="${month - 36}"/>
+		                    						${tenure + 3}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month > 24}">
+		                    						<c:set var="result" value="${month - 24}"/>
+		                    						${tenure + 2}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month > 12}">
+		                    						<c:set var="result" value="${month - 12}"/>
+		                    						${tenure + 1}년 ${result}개월
+		                    					</c:if>
+		                    					<c:if test="${month <= 12}">
+		                    						<c:set var="result" value="${month}"/>
+		                    						${tenure}년 ${result}개월
+		                    					</c:if>
+	                    					</c:if>
+	                    				</c:if>
+	                    				
+	                    			</c:if>
+							</span>
                         </p>
-                        <p>&nbsp;&nbsp;사용자 전화번호</p>
-                        <p>&nbsp;&nbsp;사용자 주소</p>
-                        <p>&nbsp;&nbsp;사용자 상세주소</p>
+                        <p>&nbsp;&nbsp;<img src="img/phone.png" class="icon">&nbsp;${fn:substring(individual.phone, 0, 3)}-${fn:substring(individual.phone, 3, 7)}-${fn:substring(individual.phone, 7, 11)}</p>
+                        <p>&nbsp;&nbsp;<img src="img/address.png" class="icon">&nbsp;${individual.address}</p>
                     </div>
                 </div>
                 <div class="resume" id="education">

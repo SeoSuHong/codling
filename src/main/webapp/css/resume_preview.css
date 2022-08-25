@@ -25,8 +25,10 @@
         section{width: 1220px; margin: 0 auto; margin-top: 170px; display: flex;
             justify-content: center;}
         #title{margin-bottom: 50px;}
-        #idInfo{background-color: #F8F8F8; width: 1000px; height: 280px; padding-left: 50px; border-radius: 10px;
+        #idInfo{background-color: #F8F8F8; width: 1000px; height: 240px; padding-left: 50px; border-radius: 10px;
             display: flex; align-items: center;}
+        .icon{width: 22px; height: 22px;}
+        #idInfo>div>p,#idInfo>div>span{font-size: 1.3rem;}
         #Preview{width: 1000px;}
         #gender{font-size: 1rem;}
         .resume{display: flex; margin-top: 100px;}

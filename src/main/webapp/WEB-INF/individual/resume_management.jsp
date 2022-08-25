@@ -38,11 +38,9 @@
        <article id="applyStatus">
             <h1>공고 지원 현황</h1>
             <div class="applybox">
-               <c:forEach var="apply" items="${applys}" varStatus="st">
-                  <c:if test="${not st.first && st.count % 4 == 1}">
-                      <button class="leftArrow"><img src="img/leftArrow.png"></button>
-                   </c:if>
-                </c:forEach>
+                 <c:if test="${fn:length(applys) > 4}">
+                     <button class="leftArrow"><img src="img/leftArrow.png"></button>
+                  </c:if>
                 <div class="applys">
                     <div class="applyWrap">
                         <ul class="apply">
@@ -54,7 +52,7 @@
                                        <div class="app_content">
                                            <p><span>지원한 공고</span></p>
                                            <p class="apply_title">${apply.corporateName}</p>
-                                           <b>분야 &emsp; ${apply.fieldName}</b><br>
+                                           <p class="apply_field"><b>분야 &emsp; ${apply.fieldName}</b></p>
                                            <b>경력 &emsp;
                                               <c:forTokens var="career" items="${apply.career}" delims=" / ">
                                           <c:if test="${fn:length(apply.career) <= 3}">
@@ -88,7 +86,7 @@
                                        </div>
                                        <div class="viewInfo">
                                            <a href="jobOpening?no=${apply.jobOpening_no}">공고보기</a>
-                                           <a href="resume_preview.jsp">이력서 보기</a>
+                                           <a href="resume_preview?id=${individual.id}&coverLetter_no=${apply.coverLetter_no}">이력서 보기</a>
                                        </div>
                                    </div>
                                <c:if test="${st.count % 4 == 0}">
@@ -98,17 +96,23 @@
                         </ul>
                     </div>
                 </div>
-                <c:forEach var="apply" items="${applys}" varStatus="st">
-                  <c:if test="${not st.first && st.count % 4 == 1}">
-                      <button class="rightArrow"><img src="img/rightArrow.png"></button>
-                   </c:if>
-                  </c:forEach>
+                 <c:if test="${fn:length(applys) > 4}">
+                     <button class="rightArrow"><img src="img/rightArrow.png"></button>
+                  </c:if>
             </div>
             <div id="btn_bar">
                <c:forEach var="apply" items="${applys}" varStatus="st">
-                  <c:if test="${not st.first && st.count % 4 == 1}">
-                      <button class="apply_bar"></button>
-                   </c:if>
+                  <c:if test="${st.count < 9}">
+                     <c:if test="${not st.first && st.count % 4 == 1}">
+                         <button class="apply_bar"></button>
+                         <button class="apply_bar"></button>
+                      </c:if>
+                  </c:if>
+                  <c:if test="${st.count >= 9}">
+                     <c:if test="${not st.first && st.count % 4 == 1}">
+                         <button class="apply_bar"></button>
+                      </c:if>
+                  </c:if>
                 </c:forEach>
             </div>
         </article>
@@ -130,7 +134,7 @@
 		<c:if test="${not empty education}">
 	        <article id="resume">
 	            <h1>이력서 관리</h1>
-	            <div class="resumemg" id="resumemg" style="cursor: pointer;" onclick="location.href='resume_writingmodify'">
+	            <div class="resumemg" id="resumemg" style="cursor: pointer;" onclick="location.href='resume_preview'">
 	                <div class="resumemgbox">
 	                    <p id="resumetop"><span>이력서</span></p>
 	                    <p><span id="resume_title">${individual.resumeTitle}</span></p>
