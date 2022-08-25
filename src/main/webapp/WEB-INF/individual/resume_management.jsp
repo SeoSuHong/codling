@@ -85,7 +85,7 @@
 	                                    </div>
 	                                    <div class="viewInfo">
 	                                        <a href="jobOpening?no=${apply.jobOpening_no}">공고보기</a>
-	                                        <a href="resume_preview?id='${individual.id}'&coverLetter_no=${apply.coverLetter_no}">이력서 보기</a>
+	                                        <a href="resume_preview?id=${individual.id}&coverLetter_no=${apply.coverLetter_no}">이력서 보기</a>
 	                                    </div>
 	                                </div>
 	                            <c:if test="${st.count % 4 == 0}">
@@ -299,7 +299,7 @@
            						</c:if>
            						<c:forEach var="education" items="${educations}">
            							<c:if test="${education.school == highEducation}">
-           								${highEducation} - ${education.schoolName}(${education.status})
+           								${education.schoolName}(${education.status}) | ${highEducation}
            							</c:if>
            						</c:forEach>
             				</td>

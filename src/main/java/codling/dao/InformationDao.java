@@ -148,7 +148,7 @@ public class InformationDao {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) name = rs.getString("name");
+			if(rs.next()) name = rs.getString("corporateName");
 			
 			rs.close();
 			pstmt.close();

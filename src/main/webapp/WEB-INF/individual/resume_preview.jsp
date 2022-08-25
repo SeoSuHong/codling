@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:useBean id="now" class="java.util.Date" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +21,7 @@
     <header>
         <div id="menu-bar">
             <div></div>
-            <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
+            <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
                     <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${name} 님 &nbsp;&nbsp;</div>
                 </div>
@@ -45,82 +48,178 @@
                 <h2 id="title">${individual.resumeTitle}</h2>
                 <div id="idInfo">
                     <div>
-                        <h2>&nbsp;(${individual.name})&nbsp;<span id="gender">${individual.gender}성</span></h2>
-                        <p>
-                            <span>신입,경력</span>
-                            <span>&nbsp;&nbsp;사용자 이메일</span> | 
-                            <span>사용자 생년월일</span> | 
+                        <h2>&nbsp;${individual.name}&nbsp;<span id="totalCareer">
+							<c:if test="${empty careers}">신입</c:if>
+							<c:if test="${not empty careers}">
+								<c:set var="totalYear"/>
+								<c:set var="totalMonth"/>
+								<c:forEach var="career" items="${careers}">
+									<c:set var="tenureYear" value="${fn:substring(career.tenureEndDate, 0, 4) - fn:substring(career.tenureStartDate, 0, 4)}"/>
+									<c:set var="tenureMonth" value="${fn:substring(career.tenureEndDate, 5, 7) - fn:substring(career.tenureStartDate, 5, 7)}"/>
+									<c:set var="totalYear" value="${totalYear + tenureYear}"/>
+									<c:set var="totalMonth" value="${totalMonth + tenureMonth}"/>
+								</c:forEach>
+								<c:if test="${totalMonth < 0}">
+									<c:set var="totalYear" value="${totalYear - 1}"/>
+									<c:set var="totalMonth" value="${totalMonth + 12}"/>
+								</c:if>
+								<c:if test="${totalYear == 0}">
+									총 경력 ${totalMonth}개월
+								</c:if>
+								<c:if test="${totalMonth == 0}">
+									총 경력 ${totalYear}년
+								</c:if>
+								<c:if test="${totalYear != 0 && totalMonth != 0}">
+									총 경력 ${totalYear}년 ${totalMonth}개월
+								</c:if>
+							</c:if>
+						</span></h2>
+                        <p>	
+                        	&nbsp;&nbsp;<span>${individual.gender}성</span> |
+                        	<fmt:formatDate var="nowYear" value="${now}" pattern="yyyy"/>
+                        	<fmt:parseNumber var="birthYear" value="${fn:substring(individual.birth, 0, 4)}" type="number"/>
+                            <span>${nowYear - birthYear}세</span> |
+                            <span>
+                            	<c:forTokens var="birth" items="${individual.birth}" delims="-" varStatus="st">
+                            		<c:if test="${!st.last}">
+                            			${birth}.
+                            		</c:if>
+                            		<c:if test="${st.last}">
+                            			${birth}
+                            		</c:if>
+                            	</c:forTokens>
+                            </span>
                         </p>
-                        <p>&nbsp;&nbsp;사용자 전화번호</p>
-                        <p>&nbsp;&nbsp;사용자 주소</p>
-                        <p>&nbsp;&nbsp;사용자 상세주소</p>
+                        <p>&nbsp;&nbsp;
+                        	${fn:substring(individual.phone, 0, 3)}-${fn:substring(individual.phone, 3, 7)}-${fn:substring(individual.phone, 7, 11)}
+                        </p>
+                        <p>&nbsp;&nbsp; ${individual.email}</p>
+                        <p>&nbsp;&nbsp; ${individual.address}</p>
                     </div>
                 </div>
+
                 <div class="resume" id="education">
                     <div class="fr">
                         <h2>학력</h2>
                     </div>
                     <div class="content">
-                        <p id="schoolname">학교이름 / 과정</p>
-                        <p id="schooinfo">학과정보</p>
-                        <p id="schooend">졸업날짜</p>
-                        <p id="scor">학점 &ensp; 0.0/4.5</p>
+                    	<c:forEach var="education" items="${educations}" varStatus="st">
+	                        <p id="schoolname">${education.schoolName} | ${education.school} <span class="status">(${education.status})</span></p>
+	                        <p id="schooinfo">${education.department}</p>
+	                        <p id="schooend">${fn:substring(education.schoolStartDate, 0, 4)}년 ${fn:substring(education.schoolStartDate, 5, 7)}월 ~ ${fn:substring(education.schoolEndDate, 0, 4)}년 ${fn:substring(education.schoolEndDate, 5, 7)}월</p>
+	                        <c:if test="${education.score != 0}">
+	                        	<p id="scor">학점 &ensp; ${education.score}/4.5</p>
+	                        </c:if>
+                    		<c:if test="${!st.last}">
+                    			<hr class="hr">
+                    		</c:if>
+	                    </c:forEach>
                     </div>
                 </div>
+                <hr>
                 <div class="resume" id="stack">
                     <div class="fr">
                         <h2>보유기술스택</h2>
                     </div>
                     <div class="content">
-                        <p id="sts">Java, HTML5, CSS3, JavaScript, SQL, JSP, C, C#, C++, Eclipse, Bootstrap, Jquery, MySQL</p>
+                        <p id="sts">
+                        	<c:forTokens var="stack" items="${individual.stack}" delims="/" varStatus="st">
+                        		${stack} <c:if test="${!st.last}">·</c:if>
+                        	</c:forTokens>
+                        </p>
                     </div>
                 </div>
-                <div class="resume" id="career">
-                    <div class="fr">
-                        <h2>경력사항</h2>
-                    </div>
-                    <div class="content">
-                        <p id="comname">회사이름</p>
-                        <p id="part">부서 / 직책,직급</p>
-                        <p>퇴사날짜</p>
-                        <p>주요업무</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit a perspiciatis, iste repellendus sunt aliquid facere aperiam molestiae ipsam ipsa temporibus. Laudantium harum ab, odit labore ut similique dolor est aperiam, officiis facilis excepturi et corporis. Nihil reprehenderit exercitationem doloremque obcaecati, nisi itaque corporis labore ducimus. Dolores, porro excepturi!</p>
-                    </div>
-                </div>
-                <div class="resume" id="license">
-                    <div class="fr">
-                        <h2>자격증 내역</h2>
-                    </div>
-                    <div class="content">
-                        <p id="licname">자격증 이름</p>
-                        <p id="agency">발행기관</p>
-                        <p>취득날짜</p>
-                    </div>
-                </div>
-                <div class="resume" id="resume">
-                    <div class="fr">
-                        <h2>자기소개</h2>
-                    </div>
-                    <div class="content">
-                        <p id="reti">자기소개서 제목</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, accusantium ullam inventore modi mollitia labore laborum saepe illo animi officiis sit magnam ipsum ratione commodi iure nulla dolorem, nobis perspiciatis ipsam consequatur! Aliquid dicta accusantium cumque a sunt, harum quo ex facilis accusamus. Rerum autem accusantium fuga quos repellat at beatae, corporis asperiores modi aliquam excepturi quo vel ipsum hic distinctio ratione ab doloribus eum dolores iste quas perferendis reprehenderit. Id ab distinctio beatae maiores aliquam modi voluptates veritatis quidem facere tenetur eveniet ratione, deleniti dolor sit dolorum maxime itaque nesciunt adipisci delectus consequuntur incidunt debitis doloremque. Ea, voluptas nisi.</p>
-                    </div>
-                </div>
-                <div class="resume" id="popol">
-                    <div class="fr">
-                        <h2>포트폴리오</h2>
-                    </div>
-                    <div class="content">
-                        <p id="url">github &ensp;&ensp;url : </p>
-                        <p id="file">첨부파일 &ensp;&ensp;파일이름 </p>
-                    </div>
-                </div>
+                <hr>
+                <c:if test="${not empty careers}">
+	                <div class="resume" id="career">
+	                    <div class="fr">
+	                        <h2>경력사항</h2>
+	                    </div>
+	                    <div class="content">
+	                    	<c:forEach var="career" items="${careers}" varStatus="st">
+	                    		<c:set var="careerYear" value="${fn:substring(career.tenureEndDate, 0, 4) - fn:substring(career.tenureStartDate, 0, 4)}"/>
+	                    		<c:set var="careerMonth" value="${fn:substring(career.tenureEndDate, 5, 7) - fn:substring(career.tenureStartDate, 5, 7)}"/>
+	                    		<c:if test="${careerMonth < 0}">
+	                    			<c:set var="careerYear" value="${careerYear - 1}"/>
+	                    			<c:set var="careerMonth" value="${careerMonth + 12}"/>
+	                    		</c:if>
+		                        <p id="comname">${career.prev_company} <span class="careerDate">(
+		                        	<c:if test="${careerYear == 0}">
+		                        		${careerMonth}개월
+		                        	</c:if>
+		                        	<c:if test="${careerMonth == 0}">
+		                        		${careerYear}년
+		                        	</c:if>
+		                        	<c:if test="${careerYear != 0 && careerMonth != 0}">
+		                        		${careerYear}년 ${careerMonth}개월
+		                        	</c:if>
+		                        )</span></p>
+		                        <p id="part">${career.department} / ${career.position}</p>
+		                        <p>${fn:substring(career.tenureStartDate, 0, 4)}년 ${fn:substring(career.tenureStartDate, 5, 7)}월 ~ ${fn:substring(career.tenureEndDate, 0, 4)}년 ${fn:substring(career.tenureEndDate, 5, 7)}월</p>
+		                        <p>주요업무</p>
+		                        <p>${career.work_content}</p>
+		                        <c:if test="${!st.last}"><hr class="hr"></c:if>
+	                        </c:forEach>
+	                    </div>
+	                </div>
+	                <hr>
+	            </c:if>
+                <c:if test="${not empty licenses}">
+	                <div class="resume" id="license">
+	                    <div class="fr">
+	                        <h2>자격증 내역</h2>
+	                    </div>
+	                    <div class="content">
+	                    	<c:forEach var="license" items="${licenses}" varStatus="st">
+		                        <p id="licname">${license.name} <span class="pass">(${license.pass})</span></p>
+		                        <p>${license.agency}</p>
+		                        <p>취득일&emsp;${fn:substring(license.acquireDate, 0, 4)}.${fn:substring(license.acquireDate, 5, 7)}.${fn:substring(license.acquireDate, 8, 10)}</p>
+		                        <c:if test="${!st.last}"><hr class="hr"></c:if>
+		                    </c:forEach>
+	                    </div>
+	                </div>
+	                <hr>
+	            </c:if>
+                <c:if test="${not empty portfolios}">
+	                <div class="resume" id="popol">
+	                    <div class="fr">
+	                        <h2>포트폴리오</h2>
+	                    </div>
+	                    <div class="content">
+	                    	<c:forEach var="portfolio" items="${portfolios}" varStatus="">
+	                    		<p class="portfolioName">${portfolio.name}</p>
+		                        <p id="url">url : ${portfolio.url}</p>
+		                        <p id="file">첨부파일 : ${portfolio.fileName}</p>
+		                        <c:if test="${!st.last}"><hr class="hr"></c:if>
+		                    </c:forEach>
+	                    </div>
+	                </div>
+	                <hr>
+	            </c:if>
+                <c:if test="${not empty coverLetter}">
+	                <div class="resume" id="resume">
+	                    <div class="fr">
+	                        <h2>자기소개서</h2>
+	                    </div>
+	                    <div class="content">
+	                        <p id="reti">${coverLetter.title}</p>
+	                        <p>${coverLetter.content}</p>
+	                    </div>
+	                </div>
+	                <hr>
+	            </c:if>
                 <form action="" method="post">
                     <input type="hidden" name="resumNo" value="resumNo">
                     <div id="btn_box">
                         <div>
-                            <button type="button" class="btn_" id="yes"><span>수락</span></button>
-                            <button type="button" class="btn_" id="no"><span>거절</span></button>
+                        	<c:if test="${not empty corpId}">
+	                            <button type="button" class="btn_" id="yes"><span>수락</span></button>
+	                            <button type="button" class="btn_" id="no"><span>거절</span></button>
+	                        </c:if>
+	                        <c:if test="${not empty indiId}">
+	                            <button type="button" class="btn_" id="yes"><span>수정</span></button>
+	                            <button type="button" class="btn_" id="no"><span>삭제</span></button>
+	                        </c:if>
                         </div>
                     </div>
                 </form>

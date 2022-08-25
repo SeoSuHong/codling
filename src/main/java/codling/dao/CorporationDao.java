@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import codling.identity.Announcement;
+import codling.identity.Apply;
 import codling.identity.Corporation;
 import codling.identity.Field;
 import codling.identity.JobOpening;
@@ -341,6 +342,37 @@ public class CorporationDao {
 		return result;
 	}
 	
+	// 지원 정보 가져오기
+	public List<Apply> getApply(int jobOpening_no) {
+		List<Apply> applies = new ArrayList<Apply>();
+		String query = "SELECT * FROM apply WHERE jobOpening_no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, jobOpening_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int no = rs.getInt("");
+				String individual_id = rs.getString("");
+				int field_no = rs.getInt("field_no");
+				int coverLetter_no = rs.getInt("coverLetter_no");
+				String status = rs.getString("status");
+				
+				Apply apply = new Apply(no, individual_id, jobOpening_no, field_no, coverLetter_no, status);
+				applies.add(apply);
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getApply Error : " + e.getMessage());
+		}
+		return applies;
+	}
+	
 	// index 공고
 	public ArrayList<Announcement> indexContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
@@ -550,6 +582,7 @@ public class CorporationDao {
        return count;
     }
     
+    // 스택 suggest
     public List<String> getAllStack(String keyWord) {
     	List<String> list = new ArrayList<String>();
     	String query = "SELECT stack FROM stackList WHERE stack LIKE ?";

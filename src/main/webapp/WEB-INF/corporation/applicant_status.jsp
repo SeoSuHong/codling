@@ -46,12 +46,7 @@
                         <dt>모집분야</dt>
                             <dd>
 								<c:forEach var="field" items="${fields}" varStatus="st">
-									<c:if test="${!st.last}">
-										${field.name} / 
-									</c:if>
-									<c:if test="${st.last}">
-										${field.name}
-									</c:if>
+									${field.name}<c:if test="${!st.last}"> / </c:if>
 								</c:forEach>
 							</dd>
                         <dt>경력여부</dt>
@@ -76,12 +71,12 @@
 										</c:if>
 									</c:if>
 									
-									<c:if test="${fn:length(fields) > 1 && !st.last}">
+									<c:if test="${fn:length(fields) > 1}">
 										<c:if test="${fn:length(field.career) <= 3 && field.career == '신입'}">
-											${field.career} / 
+											${field.career}<c:if test="${!st.last}"> / </c:if>
 										</c:if>
 										<c:if test="${fn:length(field.career) <= 3 && field.career != '신입'}">
-											${field.career}년↑ / 
+											${field.career}년↑<c:if test="${!st.last}"> / </c:if>
 										</c:if>
 										<c:if test="${fn:length(field.career) > 3}">
 											<c:forTokens var="f" items="${field.career}" delims="/">
@@ -89,25 +84,7 @@
 													${f} or 
 												</c:if>
 												<c:if test="${f != '신입'}">
-													${f}년↑ / 
-												</c:if>
-											</c:forTokens>
-										</c:if>
-									</c:if>
-									<c:if test="${fn:length(fields) > 1 && st.last}">
-										<c:if test="${fn:length(field.career) <= 3 && field.career == '신입'}">
-											${field.career}
-										</c:if>
-										<c:if test="${fn:length(field.career) <= 3 && field.career != '신입'}">
-											${field.career}년↑
-										</c:if>
-										<c:if test="${fn:length(field.career) > 3}">
-											<c:forTokens var="f" items="${field.career}" delims="/">
-												<c:if test="${f == '신입'}">
-													${f} or 
-												</c:if>
-												<c:if test="${f != '신입'}">
-													${f}년↑
+													${f}년↑<c:if test="${!st.last}"> / </c:if>
 												</c:if>
 											</c:forTokens>
 										</c:if>
@@ -160,132 +137,113 @@
             </div>
         </article>
 
-        <article id="jobOpening2">
-            <h3>지원자 현황</h3>
-            <div class="jobOpeningmg2">
-                <div class="jobbox">
-                    <div class="jobOpeningbox3">
-                        <p><span>대기중인 이력서</span></p>
-                        <div class="jobOpeningbox4">이력서 제목</div>
-                    </div>
-                    <div class="content2">
-                        <dl>
-                            <dt>이름</dt>
-                                <dd>김태희</dd>
-                            <dt>지원분야</dt>
-                                <dd>백엔드</dd>
-                            <dt>경력사항</dt>
-                                <dd>신입</dd>
-                            <dt>이메일</dt>
-                                <dd>qwerasd@naver.com</dd>
-                            <dt>휴대폰</dt>
-                                <dd>010-1234-1234</dd>
-                            <dt>최종학력</dt>
-                                <dd>서울대학교 컴퓨터공학부 (졸업, 재학, 휴학, 중퇴, 졸업예정)</dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-
-            <div class="jobOpeningmg2">
-                <div class="jobbox">
-                    <div class="jobOpeningbox3">
-                        <p><span>대기중인 이력서</span></p>
-                        <div class="jobOpeningbox4">이력서 제목</div>
-                    </div>
-                    <div class="content2">
-                        <dl>
-                            <dt>이름</dt>
-                                <dd>김태희</dd>
-                            <dt>경력사항</dt>
-                                <dd>신입</dd>
-                            <dt>지원분야</dt>
-                                <dd>백엔드</dd>
-                            <dt>이메일</dt>
-                                <dd>qwerasd@naver.com</dd>
-                            <dt>휴대폰</dt>
-                                <dd>010-1234-1234</dd>
-                            <dt>최종학력</dt>
-                                <dd>서울대학교 컴퓨터공학부 (졸업, 재학, 휴학, 중퇴, 졸업예정)</dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-
-            <div class="jobOpeningmg2">
-                <div class="jobbox">
-                    <div class="jobOpeningbox3">
-                        <p><span>대기중인 이력서</span></p>
-                        <div class="jobOpeningbox4">이력서 제목</div>
-                    </div>
-                    <div class="content2">
-                        <dl>
-                            <dt>이름</dt>
-                                <dd>김태희</dd>
-                            <dt>경력사항</dt>
-                                <dd>신입</dd>
-                            <dt>지원분야</dt>
-                                <dd>백엔드</dd>
-                            <dt>이메일</dt>
-                                <dd>qwerasd@naver.com</dd>
-                            <dt>휴대폰</dt>
-                                <dd>010-1234-1234</dd>
-                            <dt>최종학력</dt>
-                                <dd>서울대학교 컴퓨터공학부 (졸업, 재학, 휴학, 중퇴, 졸업예정)</dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-
-            <div class="jobOpeningmg3">
-                <div class="jobbox">
-                    <div class="jobOpeningbox3">
-                        <p><span>수락한 이력서</span></p>
-                        <div class="jobOpeningbox4">이력서 제목</div>
-                    </div>
-                    <div class="content2">
-                        <dl>
-                            <dt>이름</dt>
-                                <dd>김태희</dd>
-                            <dt>경력사항</dt>
-                                <dd>신입</dd>
-                            <dt>지원분야</dt>
-                                <dd>백엔드</dd>
-                            <dt>이메일</dt>
-                                <dd>qwerasd@naver.com</dd>
-                            <dt>휴대폰</dt>
-                                <dd>010-1234-1234</dd>
-                            <dt>최종학력</dt>
-                                <dd>서울대학교 컴퓨터공학부 (졸업, 재학, 휴학, 중퇴, 졸업예정)</dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-
-            <div class="jobOpeningmg4">
-                <div class="jobbox">
-                    <div class="jobOpeningbox5">
-                        <p><span>거절한 이력서</span></p>
-                        <div class="jobOpeningbox6">이력서 제목</div>
-                    </div>
-                    <div class="content3">
-                        <dl>
-                            <dt>이름</dt>
-                                <dd>김태희</dd>
-                            <dt>경력사항</dt>
-                                <dd>신입</dd>
-                            <dt>지원분야</dt>
-                                <dd>백엔드</dd>
-                            <dt>이메일</dt>
-                                <dd>qwerasd@naver.com</dd>
-                            <dt>휴대폰</dt>
-                                <dd>010-1234-1234</dd>
-                            <dt>최종학력</dt>
-                                <dd>서울대학교 컴퓨터공학부 (졸업, 재학, 휴학, 중퇴, 졸업예정)</dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
+		<article id="jobOpening2">
+			<h3>지원자 현황</h3>
+			
+			<!-- 대기중인 이력서 -->
+			<div class="resumeWrap wait">
+				<p class="waitResume">대기중인 이력서</p>
+				<p class="resumeTitle">열심히 할 자신 있습니다.</p>
+				<dl>
+					<dt>이름</dt>
+					<dd>서수홍</dd>
+				</dl>
+				<dl>
+					<dt>지원분야</dt>
+					<dd>백엔드</dd>
+				</dl>
+				<dl>					
+					<dt>경력사항</dt>
+					<dd>신입</dd>
+				</dl>
+				<dl>
+					<dt>사용스택</dt>
+					<dd>Java · JSP · MySQL · Github</dd>
+				</dl>
+				<dl>
+					<dt>최종학력</dt>
+					<dd>경동대학교 경찰학과 (졸업)</dd>
+				</dl>
+				<dl>
+					<dt>이메일</dt>
+					<dd>tbgkdntm@naver.com</dd>
+				</dl>
+				<dl>
+					<dt>휴대폰</dt>
+					<dd>010-1234-1234</dd>
+				</dl>
+				<button class="resumeBtn" onclick="location.href = 'resume_preview?status=미열람'">이력서 열람</button>
+			</div>
+			
+			<!-- 수락한 이력서 -->
+			<div class="resumeWrap accept">
+				<p class="acceptResume">수락한 이력서</p>
+				<p class="resumeTitle">열심히 할 자신 있습니다.</p>
+				<dl>
+					<dt>이름</dt>
+					<dd>서수홍</dd>
+				</dl>
+				<dl>
+					<dt>지원분야</dt>
+					<dd>백엔드</dd>
+				</dl>
+				<dl>					
+					<dt>경력사항</dt>
+					<dd>신입</dd>
+				</dl>
+				<dl>
+					<dt>사용스택</dt>
+					<dd>Java · JSP · MySQL · Github</dd>
+				</dl>
+				<dl>
+					<dt>최종학력</dt>
+					<dd>경동대학교 경찰학과 (졸업)</dd>
+				</dl>
+				<dl>
+					<dt>이메일</dt>
+					<dd>tbgkdntm@naver.com</dd>
+				</dl>
+				<dl>
+					<dt>휴대폰</dt>
+					<dd>010-1234-1234</dd>
+				</dl>
+				<button class="resumeBtn" onclick="location.href = 'resume_preview'">이력서 열람</button>
+			</div>
+			
+			<!-- 거절한 이력서 -->
+			<div class="resumeWrap refuse">
+				<p class="refuseResume">거절한 이력서</p>
+				<p class="resumeTitle">열심히 할 자신 있습니다.</p>
+				<dl>
+					<dt>이름</dt>
+					<dd>서수홍</dd>
+				</dl>
+				<dl>
+					<dt>지원분야</dt>
+					<dd>백엔드</dd>
+				</dl>
+				<dl>					
+					<dt>경력사항</dt>
+					<dd>신입</dd>
+				</dl>
+				<dl>
+					<dt>사용스택</dt>
+					<dd>Java · JSP · MySQL · Github</dd>
+				</dl>
+				<dl>
+					<dt>최종학력</dt>
+					<dd>경동대학교 경찰학과 (졸업)</dd>
+				</dl>
+				<dl>
+					<dt>이메일</dt>
+					<dd>tbgkdntm@naver.com</dd>
+				</dl>
+				<dl>
+					<dt>휴대폰</dt>
+					<dd>010-1234-1234</dd>
+				</dl>
+				<button class="resumeBtn" onclick="location.href = 'resume_preview'">이력서 열람</button>
+			</div>
         </article>
        
         

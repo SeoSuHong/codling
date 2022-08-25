@@ -364,6 +364,7 @@ public class IndividualDao {
 		return portfolios;
 	}
 	
+	// 자기소개서 가져오기
 	public CoverLetter getCoverLetter(int no) {
 		CoverLetter coverLetter = null;
 		String query = "SELECT * FROM coverLetter WHERE no = ?";
