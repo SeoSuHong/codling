@@ -44,7 +44,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		
 		if(indiId != null) {
 			Map<String, String> map = infoDao.getIndiName(indiId);
-			String indiName = map.get(indiId);
+			String name = map.get(indiId);
 			Individual individual = indiDao.getIndividual(indiId);
 			Education education = indiDao.getEducation(indiId);
 			Career career = indiDao.getCareer(indiId);
@@ -58,7 +58,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			request.setAttribute("career", career);
 			request.setAttribute("education", education);
 			request.setAttribute("individual", individual);
-			request.setAttribute("indiName", indiName);
+			request.setAttribute("name", name);
 		}
 			
 		// resume_writing.jsp로 이동
