@@ -11,6 +11,7 @@ a{text-decoration: none; color: inherit;}
 #menu-bar{width: 1220px; margin: 0 auto; margin-top: 25px;  display: flex; justify-content: space-between; align-items: center;}
 
 /*header*/
+#box{width: 150px;}
 #menu-bar>div{height: 5px;}
 #logoimg{width: 253.32px; height: 56.82px;}
 #profilelogo{width: 35px; height: 35px; margin: 5px;}
@@ -73,7 +74,7 @@ display: flex; justify-content: left; align-items: center; margin-top: 25px;}
 
 #btnWrap {display: flex; justify-content: center; margin-top: 70px; margin-bottom: 200px;}
 #btn {display: flex; justify-content: space-around; width: 440px;}
-#btn input {width: 130px; height: 60px; border: 0; border-radius: 10px; font-size: larger; text-align: center; cursor: pointer; background-color: rgba(165, 227, 116, 0.8);}
+#btn input {width: 130px; height: 60px; border: 0; border-radius: 10px; font-size: larger; text-align: center; cursor: pointer; background-color: rgba(165, 227, 116, 0.8); color: white;}
 
 /*footer*/
 footer {display: flex; height: 80px; background-color: #F0F0F0; border-top: #dddddd solid 0.1rem; color: #BEBEBE; margin-top: 5vh; font-size: 0.8rem; justify-content: center; align-items: center;}
