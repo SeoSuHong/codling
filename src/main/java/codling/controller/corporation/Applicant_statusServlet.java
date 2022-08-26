@@ -23,6 +23,8 @@ import codling.identity.JobOpening;
 
 @WebServlet("/applicant_status")
 public class Applicant_statusServlet extends HttpServlet {
+	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("corpId");
@@ -74,18 +76,21 @@ public class Applicant_statusServlet extends HttpServlet {
 			
 			// 지원자 경력
 			List<Career> careers = indiDao.getCareer(individual_id);
-			if(careers != null) {
+			if(careers.isEmpty() || careers == null) {
+				applicants.get(i).setCareer("신입");
+			} else {
 				String totalTenureDate = "";
 				int totalYear = 0, totalMonth = 0;
 				for(int j = 0; j < careers.size(); j++) {
 					Career career = careers.get(j);
 					int year = Integer.parseInt(career.getTenureEndDate().substring(0, 4)) - Integer.parseInt(career.getTenureStartDate().substring(0, 4));
 					int month = Integer.parseInt(career.getTenureEndDate().substring(5, 7)) - Integer.parseInt(career.getTenureStartDate().substring(5, 7));
+
+					if(month < 0) { year--; month += 12; }
 					totalYear += year;
 					totalMonth += month;
-					if(month < 0) year--; month += 12;					
-					if(totalMonth < 0) totalYear--; totalMonth += 12;
-					
+
+					if(totalMonth >= 12) { totalYear++; totalMonth -= 12; }
 					if(j == 0) totalTenureDate += " ( ";
 					if(j != careers.size() - 1) {
 						if(year == 0)
@@ -112,16 +117,14 @@ public class Applicant_statusServlet extends HttpServlet {
 					total.insert(0, "총 " + totalYear + "년 " + totalMonth + "개월");
 				
 				applicants.get(i).setCareer(total.toString());
-			} else {
-				applicants.get(i).setCareer("신입");
 			}
 		}
 		request.setAttribute("applicants", applicants);
 		request.getRequestDispatcher("/WEB-INF/corporation/applicant_status.jsp").forward(request, response);
 	}
-
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
-	
 }

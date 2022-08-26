@@ -19,6 +19,7 @@ import codling.identity.Apply;
 import codling.identity.Corporation;
 import codling.identity.CoverLetter;
 import codling.identity.Field;
+import codling.identity.Individual;
 import codling.identity.JobOpening;
 
 @WebServlet("/jobOpening")
@@ -69,6 +70,16 @@ public class JobOpeningServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		Individual individual = indiDao.getIndividual(indiId);
+		if(individual.getResumeTitle() == null || individual.getResumeTitle().equals("")) {
+			out.print("<script>alert('작성하신 이력서가 없습니다.\\n이력서 작성 후 지원해 주시기 바랍니다.'); location.href = 'jobOpening?no=" + no + "';</script>");
+			return;
+		}
+		
 		int coverLetterNo = 0;
 		String coverLetterNo_ = request.getParameter("coverLetterNo");
 		if(coverLetterNo_ != null && !coverLetterNo_.equals("")) coverLetterNo = Integer.parseInt(coverLetterNo_);
@@ -78,12 +89,9 @@ public class JobOpeningServlet extends HttpServlet {
 		if(fieldNo_ != null && !fieldNo_.equals("")) fieldNo = Integer.parseInt(fieldNo_);
 		
 		Apply apply = new Apply(0, indiId, no, fieldNo, coverLetterNo, "");
-		boolean coverLetterResult = indiDao.insertApply(apply);
+		boolean applyResult = indiDao.insertApply(apply);
 		
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		if(coverLetterResult) {
+		if(applyResult) {
 			out.print("<script>alert('공고 지원이 완료되었습니다. 좋은 결과를 기원합니다.'); location.href='jobOpening?no=" + no + "';</script>");
 		} else {
 			out.print("<script>alert('공고 지원이 실패하였습니다.'); location.href='jobOpening';</script>");

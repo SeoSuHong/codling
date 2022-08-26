@@ -139,6 +139,12 @@
 
 		<article id="jobOpening2">
 			<h3>지원자 현황</h3>
+			<div id="resumeMenu">
+				<button class="resumeMenu" onclick="showResume(this)">전체 이력서</button>
+				<button class="resumeMenu" onclick="showResume(this)">대기중인 이력서</button>
+				<button class="resumeMenu" onclick="showResume(this)">수락한 이력서</button>
+				<button class="resumeMenu" onclick="showResume(this)">거절한 이력서</button>
+			</div>
 			
 			<c:forEach var="applicant" items="${applicants}">			
 				<c:if test="${applicant.status == '미열람' || applicant.status == '열람'}">
@@ -178,7 +184,7 @@
 							<dt>휴대폰</dt>
 							<dd>${fn:substring(applicant.phone, 0, 3)}-${fn:substring(applicant.phone, 3, 7)}-${fn:substring(applicant.phone, 7, 11)}</dd>
 						</dl>
-						<button class="resumeBtn" onclick="location.href = 'resume_preview?id=${applicant.id}&coverLetter_no=${applicant.coverLetter_no}&status=미열람'">이력서 열람</button>
+						<button class="resumeBtn" onclick="location.href = 'resume_preview?id=${applicant.id}&coverLetter_no=${applicant.coverLetter_no}&no=${applicant.no}&status=${applicant.status}'">이력서 열람</button>
 					</div>
 				</c:if>
 				
@@ -219,7 +225,7 @@
 							<dt>휴대폰</dt>
 							<dd>${fn:substring(applicant.phone, 0, 3)}-${fn:substring(applicant.phone, 3, 7)}-${fn:substring(applicant.phone, 7, 11)}</dd>
 						</dl>
-						<button class="resumeBtn" onclick="location.href = 'resume_preview'">이력서 열람</button>
+						<button class="resumeBtn" onclick="location.href = 'resume_preview?id=${applicant.id}&coverLetter_no=${applicant.coverLetter_no}&no=${applicant.no}&status=${applicant.status}'">이력서 열람</button>
 					</div>
 				</c:if>
 				
@@ -260,14 +266,19 @@
 							<dt>휴대폰</dt>
 							<dd>${fn:substring(applicant.phone, 0, 3)}-${fn:substring(applicant.phone, 3, 7)}-${fn:substring(applicant.phone, 7, 11)}</dd>
 						</dl>
-						<button class="resumeBtn" onclick="location.href = 'resume_preview'">이력서 열람</button>
+						<button class="resumeBtn" onclick="location.href = 'resume_preview?id=${applicant.id}&coverLetter_no=${applicant.coverLetter_no}&no=${applicant.no}&status=${applicant.status}'">이력서 열람</button>
 					</div>
 				</c:if>
 			</c:forEach>
         </article>
-       
-        
     </section>
+    <footer>
+    	<a href="#up"><img src="img/footerLogo.png"></a>
+    	<a href="#">전체서비스</a>&ensp;|&ensp; 
+      	<a href="#">이용약관</a>&ensp;|&ensp; 
+      	<a href="#">개인정보처리방침</a>&ensp;|&ensp;
+      	<a href="#">제휴문의</a>&ensp;| © CODLING Corp.
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -57,8 +57,8 @@ public class Resume_managementServlet extends HttpServlet {
 		List<CoverLetter> coverLetters = indiDao.getAllCoverLetter(id);
 		request.setAttribute("coverLetters", coverLetters);
 		
-		request.setAttribute("replacePrevChar", "\r\n"); // 줄바꿈 <br>처리를 위해
-		request.setAttribute("replaceCurrChar", "\\n"); // 줄바꿈 <br>처리를 위해
+		request.setAttribute("replacePrevChar", "\r\n"); // 줄바꿈 처리를 위해
+		request.setAttribute("replaceCurrChar", "\\n"); // 줄바꿈 처리를 위해
 		request.getRequestDispatcher("/WEB-INF/individual/resume_management.jsp").forward(request, response);
 	}
 

@@ -49,7 +49,8 @@
         #url,#file{font-size: 1.1rem;}
         #btn_box{margin-top: 100px; display: flex; justify-content: center;
             margin-bottom: 15vh;}
-        .btn_{border: none; width: 100px; height: 50px; font-size: 1.5rem; border-radius: 10px;}
+        #btn_box div {font-size: x-large;}
+        .btn_{border: none; width: 150px; height: 60px; font-size: 1.5rem; border-radius: 10px;}
         #yes{margin-right: 50px; background-color: #A5E374; color: white;}
         #yes:hover{background-color: #8bdf4b;}
         #no{background-color: #D6D6D6; color: #858585;}

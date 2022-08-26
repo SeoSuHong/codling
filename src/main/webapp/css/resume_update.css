@@ -1,0 +1,84 @@
+@import url(font.css);
+
+* {font-family: 'MapoPeacefull'; color: #373F57; margin: 0; padding: 0;}
+
+/* body */
+header{margin: 0 auto; width: 1220px;}
+a{text-decoration: none;}
+#menu-bar{width: 1220px; margin: 0 auto; margin-top: 25px;  display: flex; justify-content: space-between; align-items: center;}
+
+/*header*/
+#menu-bar>div{width: 131.5px; height: 5px;}
+#logoimg{width: 253.32px; height: 56.82px;}
+#profilelogo{width: 35px; height: 35px; margin: 5px;}
+#profile-box{display: flex; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}
+#mename{position: relative; top:-15px;}
+#hover-box{height: 45px;}
+#hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
+#profile-hover{border: 1px solid #cecece; width: 150px; height: 160px; float: right; margin-right: -10px; border-radius: 10px;}
+#profile-hover>ul{margin-top: 0px;}
+#profile-hover>ul>li>a{text-decoration: none; color: #656978; font-size: 1rem; display: inline-block;
+    width: 150px; height: 40px; display: flex; align-items: center; margin-left: -40px;
+    margin-top: 10px; font-weight: bold;}
+#profile-hover>ul>li>a>span{ margin-left: 10px;}
+#mypage>a:hover{background-color: #e6e6e6;}
+#resume>a:hover{background-color: #e6e6e6;}
+#logout>a:hover{background-color: #e6e6e6;}
+ul{list-style: none;}
+ /* section */
+section{width: 1220px; margin: 0 auto; margin-top: 150px;}
+
+h2 {margin-top: 80px; margin-bottom: 30px;}
+th {width: 130px; height: 70px; text-align: left;}
+td {height: 70px;}
+input {width: 300px; height: 30px; border: 1px solid #858585; border-radius: 5px;}
+select {height: 32px; border: 1px solid #858585; margin-top: 2px; border-radius: 5px;}
+textarea{width: 900px; height: 100px; border-radius: 5px;}
+
+.contentWrap {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: rgba(89, 89, 89, 0.1); border-radius: 10px;}
+.contentTitleWrap {display: flex; justify-content: space-between;}
+.addForm {margin-top: -40px;}
+.addBtn {width: 70px; height: 40px; font-size: medium; margin-top: 90px; margin-right: 10px; background-color: #98F306; border: none; border-radius: 10px; cursor: pointer;}
+.addBtn:hover {background-color: #A5E374;}
+.delBtn {width: 70px; height: 40px; font-size: medium; position: relative; top: 20px; left: 1050px; background-color: #D3D3D3; border: none; border-radius: 10px; cursor: pointer;}
+.delBtn:hover {background-color: #A9A9A9;}
+
+/*이력서 제목*/
+.title {width: 1220px; height: 80px; outline: unset; border: 2px solid #A5E374; font-size: x-large; border-radius: 10px;}
+
+/* 학력사항 */
+.edu_select {width: 300px;}
+.edu_date {width: 137px;}
+.score {width: 60px;}
+.hideEdu {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: rgba(89, 89, 89, 0.1); border-radius: 10px;}
+#hideEduWrap {display: none;}
+
+/* 스택 */
+#stackWrap {}
+#stackTitle {margin-bottom: 20px;}
+#stack {width: 430px; margin-top: 20px;}
+#keyword{width: 300px;}
+#stacks{display: flex; flex-flow: row wrap;}
+.st{height: 40px; display: flex; margin-right: 10px; margin-bottom: 5px; background-color: #A5E374; border-radius: 50px; padding: 0 12px; line-height: 40px;}
+.stack{margin-right: 10px; color: white; font-size: 1.3rem; font-weight: bold;}
+#suggest{width: 417px; max-height: 200px; background-color: white; line-height: 30px; padding-left: 15px; overflow-y: scroll; box-shadow: 0 4px 8px 0 rgb(20 20 20 / 2%), 4px 16px 24px 0 rgb(20 20 20 / 12%);}
+
+/* 경력사항 */
+.career_date {width: 139px;}
+.hideCar {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: rgba(89, 89, 89, 0.1); border-radius: 10px;}
+#hideCarWrap {display: none;}
+
+/* 자격증 */
+.hideLic {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: rgba(89, 89, 89, 0.1); border-radius: 10px;}
+#hideLicWrap {display: none;}
+
+/* 포트폴리오 */
+.fileBtn {font-size: 14px; border: none;}
+.addUrlBtn {width: 50px; background-color: #A5E374; border: none; color: white; cursor: pointer;}
+.delUrlBtn {width: 50px; margin-top: 10px; background-color: #D6D6D6; border: none; color: #858585; cursor: pointer;}
+.hidePort {width: 1060px; padding: 40px 80px; margin-bottom: 30px; background-color: rgba(89, 89, 89, 0.1); border-radius: 10px;}
+#hidePortWrap {display: none;}
+
+/* 완료 버튼 */
+#submitWrap {text-align: center; margin-top: 40px; margin-bottom: 100px;}
+#submitBtn {width: 200px; height: 80px; font-size: x-large; background-color: #98F306; border: none; border-radius: 5px; cursor: pointer;}

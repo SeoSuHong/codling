@@ -307,7 +307,7 @@
             		</table>
             	</div>
             	<div id="updateBtnWrap">
-	                <a href="resume_writing" id="updBtn">이력서 수정</a>
+	                <a href="resume_update" id="updBtn">이력서 수정</a>
 	            </div>
             </c:if>
         </article>

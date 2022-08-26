@@ -208,17 +208,24 @@
 	                </div>
 	                <hr>
 	            </c:if>
-                <form action="" method="post">
+                <form name="resumeForm" method="post">
                     <input type="hidden" name="resumNo" value="resumNo">
                     <div id="btn_box">
                         <div>
-                        	<c:if test="${not empty corpId}">
-	                            <button type="button" class="btn_" id="yes"><span>수락</span></button>
-	                            <button type="button" class="btn_" id="no"><span>거절</span></button>
-	                        </c:if>
 	                        <c:if test="${not empty indiId}">
-	                            <button type="button" class="btn_" id="yes"><span>수정</span></button>
-	                            <button type="button" class="btn_" id="no"><span>삭제</span></button>
+	                            <input type="button" class="btn_" id="yes" value="수정" onclick="resume_update()">
+	                        </c:if>
+                        	<c:if test="${not empty corpId}">
+                        		<c:if test="${status == '미열람' || status == '열람'}">
+		                            <input type="button" class="btn_" id="yes" value="수락" onclick="resume_accept()">
+		                            <input type="button" class="btn_" id="no" value="거절" onclick="resume_refuse()">
+                        		</c:if>
+                        		<c:if test="${status == '수락'}">
+                        			<div>수락한 이력서 입니다.</div>
+                        		</c:if>
+                        		<c:if test="${status == '거절'}">
+                        			<div>거절한 이력서 입니다.</div>
+                        		</c:if>
 	                        </c:if>
                         </div>
                     </div>

@@ -27,7 +27,7 @@ section{width: 1220px; margin: 0 auto; margin-top: 100px;}
 /* 공고 지원 현황 */
 #applyStatus>h1{font-size: 2.1rem; font-weight: bold; color: #373F57; margin-bottom: 40px;}
 .applybox{display: flex; justify-content: center;}
-.applys{overflow: hidden;}
+.applys{margin-left: 10px; overflow: hidden;}
 .apply{position: relative; display: flex; padding: 0; margin-right: 0px !important;}
 .apply_item{display: flex;}
 .leftArrow,.rightArrow{width: 90px; height: 200px;  border: none; background-color: white; cursor: pointer;}
