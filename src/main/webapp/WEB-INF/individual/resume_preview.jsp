@@ -41,8 +41,8 @@
                     <div>
                         <h2>&nbsp;${name}&nbsp;<span id="gender">${individual.gender }성</span></h2>
                         <p>
-                            <span>&nbsp;&nbsp;<img src="img/email.png" class="icon">&nbsp;${individual.email }</span>&nbsp;&nbsp;
-                            <span><img src="img/birthday.png" class="icon">&nbsp;${fn:substring(individual.birth, 0, 4) }년생</span>&nbsp;&nbsp;
+                            <span>&nbsp;&nbsp;<img src="img/email.png" class="icon">&nbsp;${individual.email }</span>&nbsp;&nbsp;&ensp;&ensp;
+                            <span><img src="img/birthday.png" class="icon">&nbsp;${fn:substring(individual.birth, 0, 4) }년생</span>&nbsp;&nbsp;&ensp;&ensp;
                             <span><img src="img/career.png" class="icon">
 								<c:if test="${empty career}">
 	                    				신입
@@ -174,10 +174,27 @@
                         <h2>학력</h2>
                     </div>
                     <div class="content">
-                        <p id="schoolname">학교이름 / 과정</p>
-                        <p id="schooinfo">학과정보</p>
-                        <p id="schooend">졸업날짜</p>
-                        <p id="scor">학점 &ensp; 0.0/4.5</p>
+                    <c:forTokens var="schoolName" items="${education.schoolName}" delims="/" varStatus="st">
+                    <c:forTokens var="school" items="${education.school}" begin="${st.index }" end="${st.index }" delims="/">
+                    <c:forTokens var="schoolStartDate" items="${education.schoolStartDate}" begin="${st.index }" end="${st.index }" delims="/">
+                    <c:forTokens var="schoolEndDate" items="${education.schoolEndDate}" begin="${st.index }" end="${st.index }" delims="/">
+                    <c:forTokens var="status" items="${education.status}" begin="${st.index }" end="${st.index }" delims="/">
+                    <c:forTokens var="department" items="${education.department}" begin="${st.index }" end="${st.index }" delims="/">
+                    <c:forTokens var="score" items="${education.score}" begin="${st.index }" end="${st.index }" delims="/">    
+                        <p id="schoolname">${schoolName } / ${school }</p>
+                        <p id="schooinfo">${department}</p>
+                        <p id="schooend">재학기간 &ensp;${schoolStartDate} ~ ${schoolEndDate }</p>
+                        <p id="scor">학점 &ensp; ${score }/4.5</p>
+                        <c:if test="${not st.last}">
+                        	</br></br>
+                        </c:if>
+					</c:forTokens>
+					</c:forTokens>
+					</c:forTokens>
+					</c:forTokens>
+					</c:forTokens>
+                    </c:forTokens>
+                    </c:forTokens>     
                     </div>
                 </div>
                 <div class="resume" id="stack">
@@ -185,7 +202,12 @@
                         <h2>보유기술스택</h2>
                     </div>
                     <div class="content">
-                        <p id="sts">Java, HTML5, CSS3, JavaScript, SQL, JSP, C, C#, C++, Eclipse, Bootstrap, Jquery, MySQL</p>
+                        	<p id="sts">
+                        		<c:forTokens var="stack" items="${individual.stack}" delims="/" varStatus="st">
+                        			<span>${stack}</span>
+                        			<c:if test="${not st.last}">,</c:if>
+                        		</c:forTokens>
+                        	</p>
                     </div>
                 </div>
                 <div class="resume" id="career">
@@ -193,11 +215,26 @@
                         <h2>경력사항</h2>
                     </div>
                     <div class="content">
-                        <p id="comname">회사이름</p>
-                        <p id="part">부서 / 직책,직급</p>
-                        <p>퇴사날짜</p>
-                        <p>주요업무</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit a perspiciatis, iste repellendus sunt aliquid facere aperiam molestiae ipsam ipsa temporibus. Laudantium harum ab, odit labore ut similique dolor est aperiam, officiis facilis excepturi et corporis. Nihil reprehenderit exercitationem doloremque obcaecati, nisi itaque corporis labore ducimus. Dolores, porro excepturi!</p>
+                    	<c:forTokens var="prev_company" items="${career.prev_company }" delims="/" varStatus="st">
+	                    <c:forTokens var="tenureStart" items="${career.tenureStart }" begin="${st.index }" end="${st.index }" delims="/">
+	                    <c:forTokens var="tenureEnd" items="${career.tenureEnd }" begin="${st.index }" end="${st.index }" delims="/"> 
+	                    <c:forTokens var="position" items="${career.position }" begin="${st.index }" end="${st.index }" delims="/"> 
+	                    <c:forTokens var="department" items="${career.department }" begin="${st.index }" end="${st.index }" delims="/"> 
+	                    <c:forTokens var="work_content" items="${career.work_content }" begin="${st.index }" end="${st.index }" delims="/">  
+	                        <p id="comname">${prev_company }</p>
+	                        <p id="part">${department } / ${position }</p>
+	                        <p>재직일자&nbsp;&nbsp;${tenureStart } ~ ${tenureEnd }</p>
+	                        <p>주요업무</p>
+	                        <c:set var="wc" value="${work_content }"/>
+	                        <c:set var="w_content" value="${fn:replace(wc, escape, '<br>') }"/>
+	                        <p>${w_content }</p>
+	                        <c:if test="${not st.last }"></br></br></c:if>
+	                    </c:forTokens>
+	                    </c:forTokens>
+	                    </c:forTokens>
+	                    </c:forTokens>
+	                    </c:forTokens>
+                    	</c:forTokens>
                     </div>
                 </div>
                 <div class="resume" id="license">
@@ -205,18 +242,19 @@
                         <h2>자격증 내역</h2>
                     </div>
                     <div class="content">
-                        <p id="licname">자격증 이름</p>
-                        <p id="agency">발행기관</p>
-                        <p>취득날짜</p>
-                    </div>
-                </div>
-                <div class="resume" id="resume">
-                    <div class="fr">
-                        <h2>자기소개</h2>
-                    </div>
-                    <div class="content">
-                        <p id="reti">자기소개서 제목</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, accusantium ullam inventore modi mollitia labore laborum saepe illo animi officiis sit magnam ipsum ratione commodi iure nulla dolorem, nobis perspiciatis ipsam consequatur! Aliquid dicta accusantium cumque a sunt, harum quo ex facilis accusamus. Rerum autem accusantium fuga quos repellat at beatae, corporis asperiores modi aliquam excepturi quo vel ipsum hic distinctio ratione ab doloribus eum dolores iste quas perferendis reprehenderit. Id ab distinctio beatae maiores aliquam modi voluptates veritatis quidem facere tenetur eveniet ratione, deleniti dolor sit dolorum maxime itaque nesciunt adipisci delectus consequuntur incidunt debitis doloremque. Ea, voluptas nisi.</p>
+                    	<c:forTokens var="name" items="${license.name }" delims="/" varStatus="st">
+                    	<c:forTokens var="agency" items="${license.agency }" begin="${st.index }" end="${st.index }" delims="/">
+                    	<c:forTokens var="pass" items="${license.pass }" begin="${st.index }" end="${st.index }" delims="/">
+                    	<c:forTokens var="acquireDate" items="${license.acquireDate }" begin="${st.index }" end="${st.index }" delims="/">
+	                        <p id="licname">${name }</p>
+	                        <p id="agency">발행기관 &nbsp;&nbsp;${agency }</p>
+	                        <p>취득날짜 &nbsp;&nbsp;${acquireDate }</p>
+	                        <p>합격여부 &nbsp;&nbsp;${pass }</p>
+	                        <c:if test="${not st.last }"></br></br></c:if>
+                        </c:forTokens>
+                        </c:forTokens>
+                        </c:forTokens>
+                        </c:forTokens>
                     </div>
                 </div>
                 <div class="resume" id="popol">
@@ -224,8 +262,57 @@
                         <h2>포트폴리오</h2>
                     </div>
                     <div class="content">
-                        <p id="url">github &ensp;&ensp;url : </p>
-                        <p id="file">첨부파일 &ensp;&ensp;파일이름 </p>
+                    	<c:forTokens var="name" items="${portfolio.name }" delims="/" varStatus="st">
+                    	<c:forTokens var="detail" items="${portfolio.detail }" begin="${st.index }" end="${st.index }" delims="/">
+                    	<c:forTokens var="url" items="${portfolio.url }" begin="${st.index }" end="${st.index }" delims="|">
+                        	<p id="url">${name } &ensp;&ensp;</p>
+                        	<p><span class="url">url</span> &ensp;&ensp;${url }</p>
+                        	<p>상세내용</p>
+                        	<c:set var="de" value="${detail }"/>
+	                        <c:set var="re_detail" value="${fn:replace(de, escape, '<br>') }"/>
+                        	<div>${re_detail }</div>
+                        	<c:if test="${not st.last }"></br></br></c:if>
+                        </c:forTokens>
+                        </c:forTokens>
+                        </c:forTokens>
+                    </div>
+                </div>
+                <div class="resume" id="popol">
+                    <div class="fr">
+                        <h2>첨부파일</h2>
+                    </div>
+                    <div class="content">
+                        <c:forTokens var="title" items="${fileupload.title }" delims="/" varStatus="st">
+                        <c:forTokens var="fileName" items="${fileupload.fileName }" begin="${st.index }" end="${st.index }" delims="/">
+                        <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="${st.index }" end="${st.index }" delims="|">
+                        <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims="/">
+                        <c:forTokens var="fileSize" items="${fileupload.fileSize }" begin="${st.index }" end="${st.index }" delims="/">
+                        	<p id="file">${title }</p>
+                        	<fmt:parseNumber var="file_Size_" value="${fileSize}"/>
+                        	<c:set var="num" value="1024" />
+                        	<c:if test="${file_Size_ > num}">
+                        		<c:set var="file_Size" value="${file_Size_ }" />
+                        	</c:if>
+                        	<p><a download href="/upload/${fileName }">${fileName }</a>&nbsp;&nbsp;<span></span></p>
+                        	<c:set var="fi" value="${filedetail }"/>
+	                        <c:set var="re_filedetail" value="${fn:replace(fi, escape, '<br>') }"/>
+                        	<p>${re_filedetail }</p>
+                        	<c:if test="${not st.last }"><br><br></c:if>
+                        </c:forTokens>
+                        </c:forTokens>
+                        </c:forTokens>
+                        </c:forTokens>
+                        </c:forTokens>
+                    </div>
+                </div>
+                <div class="resume" id="resume">
+                    <div class="fr">
+                        <h2>자기소개</h2>
+                    </div>
+                    <div class="content">
+                    	
+                        <p id="reti">자기소개서 제목</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, accusantium ullam inventore modi mollitia labore laborum saepe illo animi officiis sit magnam ipsum ratione commodi iure nulla dolorem, nobis perspiciatis ipsam consequatur! Aliquid dicta accusantium cumque a sunt, harum quo ex facilis accusamus. Rerum autem accusantium fuga quos repellat at beatae, corporis asperiores modi aliquam excepturi quo vel ipsum hic distinctio ratione ab doloribus eum dolores iste quas perferendis reprehenderit. Id ab distinctio beatae maiores aliquam modi voluptates veritatis quidem facere tenetur eveniet ratione, deleniti dolor sit dolorum maxime itaque nesciunt adipisci delectus consequuntur incidunt debitis doloremque. Ea, voluptas nisi.</p>
                     </div>
                 </div>
                 <form action="" method="post">

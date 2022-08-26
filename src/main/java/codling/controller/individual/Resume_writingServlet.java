@@ -234,7 +234,7 @@ public class Resume_writingServlet extends HttpServlet {
 			Part filePart = p; // 업로드한 파일 가지고오기
 			String fileName_ = filePart.getSubmittedFileName(); //파일명 읽어오기
 			builder.append(fileName_);
-			builder.append(" / ");
+			builder.append("/");
 			builders.append(p.getSize());
 			builders.append(" / ");
 			

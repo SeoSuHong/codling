@@ -98,11 +98,11 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		for(int i = 0; i < school_update_.length-1; i++) {
 			if( i != school_update_.length-2) {
 				school_update += (school_update_[i] + " / ");
-				schoolName_update += (schoolName_update_[i] + " / ");
+				schoolName_update += (schoolName_update_[i] + "/");
 				schoolStartDate_update += (schoolStartDate_update_[i] + " / ");
 				schoolEndDate_update += (schoolEndDate_update_[i] + " / ");
 				status_update += (status_update_[i] + " / ");
-				department_update += (department_update_[i] + " / ");
+				department_update += (department_update_[i] + "/");
 				if(score_update_[i].equals("") || score_update_[i] == "") score_update_[i] = "0";
 				score_update += (score_update_[i] + " / ");
 			}else {
@@ -142,12 +142,12 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		for(int i = 0; i < prev_company_update_.length-1; i++) {
 			if(!prev_company_update_[i].equals("") && prev_company_update_[i] != "") {
 				if(i != prev_company_update_.length-2) {
-					prev_company_update += (prev_company_update_[i] + " / ");
+					prev_company_update += (prev_company_update_[i] + "/");
 					tenureStart_update += (tenureStart_update_[i] + " / ");
 					tenureEnd_update += (tenureEnd_update_[i] + " / ");
-					position_update += (position_update_[i] + " / ");
-					company_department_update += (company_department_update_[i] + " / ");
-					work_content_update += (work_content_update_[i] + " / ");
+					position_update += (position_update_[i] + "/");
+					company_department_update += (company_department_update_[i] + "/");
+					work_content_update += (work_content_update_[i] + "/");
 				}else {
 					prev_company_update += prev_company_update_[i];
 					tenureStart_update += tenureStart_update_[i];
@@ -252,7 +252,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			Part filePart = p; // 업로드한 파일 가지고오기
 			String fileName_ = filePart.getSubmittedFileName(); //파일명 읽어오기
 			builder.append(fileName_);
-			builder.append(" / ");
+			builder.append("/");
 			builders.append(p.getSize());
 			builders.append(" / ");
 			
@@ -292,8 +292,8 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		
 		for(int i = 0; i < fileTitle_.length-1; i++) {
 			if(i != fileTitle_.length-2) {
-				fileTitle += (fileTitle_[i] + " / ");
-				file_detail += (file_detail_[i] + " / ");
+				fileTitle += (fileTitle_[i] + "/");
+				file_detail += (file_detail_[i] + "/");
 			}else {
 				fileTitle += fileTitle_[i];
 				file_detail += file_detail_[i];
@@ -319,7 +319,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 					fileTitle_update += (fileTitle_update_[i] + "/");
 					fileName_update += (fileName_update_[i] + "/");
 					fileaddress_update += (fileaddress_update_[i] + " | ");
-					file_detail_update += (file_detail_update_[i] + " / ");
+					file_detail_update += (file_detail_update_[i] + "/");
 					fileSize_update += (fileSize_update_[i] + " / ");
 				}else {
 					fileTitle_update += fileTitle_update_[i];
@@ -331,10 +331,10 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			}
 		}
 		if(!fileTitle.equals("") && fileTitle != "") {
-			fileTitle_update += (" / " + fileTitle);
-			fileName_update += (" / " + builder.toString());
+			fileTitle_update += ("/" + fileTitle);
+			fileName_update += ("/" + builder.toString());
 			fileaddress_update += (" | " + builder_fileaddress.toString());
-			file_detail_update += (" / " + file_detail);
+			file_detail_update += ("/" + file_detail);
 			fileSize_update += (" / " + builders.toString());
 		}
 		

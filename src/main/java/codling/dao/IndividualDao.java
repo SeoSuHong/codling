@@ -269,7 +269,7 @@ public class IndividualDao {
 				conn.close();
 			}
 		}catch (Exception e) {
-			System.out.println("setResumeTitleStack errors : " + e.getMessage());
+			System.out.println("upDateResumeTitleStack errors : " + e.getMessage());
 		}
 		return result;
 	}
@@ -589,7 +589,6 @@ public class IndividualDao {
 				pstmt.setString(6, education_update.getScore());
 				pstmt.setString(7, education_update.getStatus());
 				pstmt.setString(8, education_update.getIndividual_id());
-				
 				if(pstmt.executeUpdate() == 1) result = true;
 				
 				pstmt.close();

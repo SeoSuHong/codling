@@ -1,23 +1,14 @@
 package codling.controller.individual;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import java.util.Collection;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
@@ -27,11 +18,6 @@ import codling.identity.Individual;
 import codling.identity.License;
 import codling.identity.Portfolio;
 
-@MultipartConfig(
-	fileSizeThreshold = 1024*1024,
-	maxFileSize = 1024*1024*50,
-	maxRequestSize = 1024*1024*50*5 
-)
 @WebServlet("/resume_preview")
 public class Resume_previewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,7 +36,9 @@ public class Resume_previewServlet extends HttpServlet {
 			License license = indiDao.getLicense(indiId);
 			Portfolio portfolio = indiDao.getportfolio(indiId);
 			Portfolio fileupload = indiDao.getfileupload(indiId);
+			String escape = "\r\n" ;
 			
+			request.setAttribute("escape", escape);
 			request.setAttribute("fileupload", fileupload);
 			request.setAttribute("portfolio", portfolio);
 			request.setAttribute("license", license);

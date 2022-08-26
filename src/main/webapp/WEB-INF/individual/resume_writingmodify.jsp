@@ -41,11 +41,11 @@
     <!--학력사항-->
     <section>
     	<c:forTokens var="school" items="${education.school}" begin="0" end="0" delims=" / ">
-    	<c:forTokens var="schoolName" items="${education.schoolName }" begin="0" end="0" delims=" / ">
+    	<c:forTokens var="schoolName" items="${education.schoolName }" begin="0" end="0" delims="/">
     	<c:forTokens var="schoolStartDate" items="${education.schoolStartDate}" begin="0" end="0" delims=" / ">
     	<c:forTokens var="schoolEndDate" items="${education.schoolEndDate}" begin="0" end="0" delims=" / ">
     	<c:forTokens var="status" items="${education.status}" begin="0" end="0" delims=" / ">
-    	<c:forTokens var="department" items="${education.department }" begin="0" end="0" delims=" / ">
+    	<c:forTokens var="department" items="${education.department }" begin="0" end="0" delims="/">
     	<c:forTokens var="score" items="${education.score }" begin="0" end="0" delims=" / ">
 	        <div id="problem_list">
 	            <h2><input type="button" class="edu_add" value="추가" onclick="addForm();">학력사항</h2>
@@ -156,11 +156,11 @@
         </c:forTokens>
         
     	<c:forTokens var="school" items="${education.school}" begin="1" delims=" / " varStatus="st">
-    	<c:forTokens var="schoolName" items="${education.schoolName }" begin="${st.index }" end="${st.index }" delims=" / ">
+    	<c:forTokens var="schoolName" items="${education.schoolName }" begin="${st.index }" end="${st.index }" delims="/">
     	<c:forTokens var="schoolStartDate" items="${education.schoolStartDate}" begin="${st.index }" end="${st.index }" delims=" / ">
     	<c:forTokens var="schoolEndDate" items="${education.schoolEndDate}" begin="${st.index }" end="${st.index }" delims=" / ">
     	<c:forTokens var="status" items="${education.status}" begin="${st.index }" end="${st.index }" delims=" / ">
-    	<c:forTokens var="department" items="${education.department }" begin="${st.index }" end="${st.index }" delims=" / ">
+    	<c:forTokens var="department" items="${education.department }" begin="${st.index }" end="${st.index }" delims="/">
     	<c:forTokens var="score" items="${education.score }" begin="${st.index }" end="${st.index }" delims=" / ">
 	        <div id="edu_level_info_input" class="list_file_tag_input"> 
 	            <div class="eduLevelbox"> 
@@ -339,12 +339,12 @@
     <!--경력사항-->
     <section>
     
-    	<c:forTokens var="prev_company" items="${career.prev_company }" begin="0" end="0" delims=" / " varStatus="st">
+    	<c:forTokens var="prev_company" items="${career.prev_company }" begin="0" end="0" delims="/" varStatus="st">
     	<c:forTokens var="tenureStart" items="${career.tenureStart }" begin="0" end="0" delims=" / " varStatus="st">
     	<c:forTokens var="tenureEnd" items="${career.tenureEnd }" begin="0" end="0" delims=" / " varStatus="st">
-    	<c:forTokens var="position" items="${career.position }" begin="0" end="0" delims=" / " varStatus="st">
-    	<c:forTokens var="department" items="${career.department }" begin="0" end="0" delims=" / " varStatus="st">
-    	<c:forTokens var="work_content" items="${career.work_content }" begin="0" end="0" delims=" / " varStatus="st">
+    	<c:forTokens var="position" items="${career.position }" begin="0" end="0" delims="/" varStatus="st">
+    	<c:forTokens var="department" items="${career.department }" begin="0" end="0" delims="/" varStatus="st">
+    	<c:forTokens var="work_content" items="${career.work_content }" begin="0" end="0" delims="/" varStatus="st">
 	        <div id="problem_list2">
 	            <h2>경력사항<input type="button" class="ex_add" value="추가" onclick="addForm2();"></h2>
 	            <div id="experiencebox">
@@ -403,12 +403,12 @@
 	        </div>
 		</c:if>
 		
-		<c:forTokens var="prev_company" items="${career.prev_company }" begin="1" delims=" / " varStatus="st">
+		<c:forTokens var="prev_company" items="${career.prev_company }" begin="1" delims="/" varStatus="st">
     	<c:forTokens var="tenureStart" items="${career.tenureStart }" begin="${st.index }" end="${st.index }" delims=" / ">
     	<c:forTokens var="tenureEnd" items="${career.tenureEnd }" begin="${st.index }" end="${st.index }" delims=" / ">
-    	<c:forTokens var="position" items="${career.position }" begin="${st.index }" end="${st.index }" delims=" / ">
-    	<c:forTokens var="department" items="${career.department }" begin="${st.index }" end="${st.index }" delims=" / ">
-    	<c:forTokens var="work_content" items="${career.work_content }" begin="${st.index }" end="${st.index }" delims=" / ">
+    	<c:forTokens var="position" items="${career.position }" begin="${st.index }" end="${st.index }" delims="/">
+    	<c:forTokens var="department" items="${career.department }" begin="${st.index }" end="${st.index }" delims="/">
+    	<c:forTokens var="work_content" items="${career.work_content }" begin="${st.index }" end="${st.index }" delims="/">
         	<div id="experienced_info_input" class="list_file_tag_input"> 
 	            <div id="experiencebox">
 					<button type="button" class="ex_del" onclick="delForm2(this);">삭제</button>
@@ -765,9 +765,9 @@
     <!-- 파일첨부 -->
     <section>
     
-    <c:forTokens var="title" items="${fileupload.title }" begin="0" end="0" delims=" / ">
+    <c:forTokens var="title" items="${fileupload.title }" begin="0" end="0" delims="/">
     <c:forTokens var="fileName" items="${fileupload.fileName }" begin="0" end="0" delims="/">
-    <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="0" end="0" delims=" / ">
+    <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="0" end="0" delims="/">
     <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="0" end="0" delims=" | ">
     <c:forTokens var="fileSize" items="${fileupload.fileSize }" begin="0" end="0" delims=" / ">
         <div id="problem_list5">
@@ -793,9 +793,9 @@
 	</c:forTokens>
 	</c:forTokens>
 	
-	<c:forTokens var="title" items="${fileupload.title }" begin="1" delims=" / " varStatus="st">
+	<c:forTokens var="title" items="${fileupload.title }" begin="1" delims="/" varStatus="st">
     <c:forTokens var="fileName" items="${fileupload.fileName }" begin="${st.index }" end="${st.index }" delims="/">
-    <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims=" / ">
+    <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims="/">
     <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="${st.index }" end="${st.index }" delims=" | ">
     <c:forTokens var="fileSize" items="${fileupload.fileSize }" begin="${st.index }" end="${st.index }" delims=" / ">
         <div id="portfolio_file_input" class="list_file_tag_input"> 
