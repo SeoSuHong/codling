@@ -305,25 +305,78 @@
                         </c:forTokens>
                     </div>
                 </div>
-                <div class="resume" id="resume">
-                    <div class="fr">
-                        <h2>자기소개</h2>
-                    </div>
-                    <div class="content">
-                    	
-                        <p id="reti">자기소개서 제목</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, accusantium ullam inventore modi mollitia labore laborum saepe illo animi officiis sit magnam ipsum ratione commodi iure nulla dolorem, nobis perspiciatis ipsam consequatur! Aliquid dicta accusantium cumque a sunt, harum quo ex facilis accusamus. Rerum autem accusantium fuga quos repellat at beatae, corporis asperiores modi aliquam excepturi quo vel ipsum hic distinctio ratione ab doloribus eum dolores iste quas perferendis reprehenderit. Id ab distinctio beatae maiores aliquam modi voluptates veritatis quidem facere tenetur eveniet ratione, deleniti dolor sit dolorum maxime itaque nesciunt adipisci delectus consequuntur incidunt debitis doloremque. Ea, voluptas nisi.</p>
-                    </div>
-                </div>
-                <form action="" method="post">
-                    <input type="hidden" name="resumNo" value="resumNo">
+                <c:if test="${not empty indiId }">
+                	<c:if test="${coverLetter_no == 0}">
+		                <div class="resume" id="resume">
+		                    <div class="fr">
+		                        <h2>자기소개</h2>
+		                    </div>
+		                    <div class="content">
+		                    	<c:forEach var="coverLetter" items="${coverLetter }" varStatus="st">
+			                        <p id="reti">${coverLetter.title }</p>
+			                        <c:set var="content" value="${coverLetter.content }"/>
+			                        <c:set var="re_content" value="${fn:replace(content, escape, '<br>') }"/>
+			                        <p style="word-wrap: break-word;">${re_content }</p>
+		                        </c:forEach>
+		                    </div>
+		                </div>
+	                </c:if>
+                </c:if>
+                <c:if test="${not empty indiId }">
+                	<c:if test="${coverLetter_no != 0}">
+		                <div class="resume" id="resume">
+		                    <div class="fr">
+		                        <h2>자기소개</h2>
+		                    </div>
+		                    <div class="content">
+		                    	<c:forEach var="coverLetter" items="${coverLetter }" varStatus="st">
+		                    		<c:if test="${coverLetter_no == coverLetter.no}">
+				                        <p id="reti">${coverLetter.title }</p>
+				                        <c:set var="content" value="${coverLetter.content }"/>
+				                        <c:set var="re_content" value="${fn:replace(content, escape, '<br>') }"/>
+				                        <p style="word-wrap: break-word;">${re_content }</p>
+			                        </c:if>
+		                        </c:forEach>
+		                    </div>
+		                </div>
+	                </c:if>
+                </c:if>
+                <c:if test="${not empty corpId }">
+	                <div class="resume" id="resume">
+	                    <div class="fr">
+	                        <h2>자기소개</h2>
+	                    </div>
+	                    <div class="content">
+	                    	<c:forEach var="coverLetter" items="${coverLetter }" varStatus="st">
+	                    		<c:if test="${coverLetter_no == coverLetter.no}">
+			                        <p id="reti">${coverLetter.title }</p>
+			                        <c:set var="content" value="${coverLetter.content }"/>
+			                        <c:set var="re_content" value="${fn:replace(content, escape, '<br>') }"/>
+			                        <p style="word-wrap: break-word;">${re_content }</p>
+		                        </c:if>
+	                        </c:forEach>
+	                    </div>
+	                </div>
+                </c:if>
+                <c:if test="${not empty corpId }">
+	                <form action="" method="post">
+	                    <input type="hidden" name="resumNo" value="resumNo">
+	                    <div id="btn_box">
+	                        <div>
+	                            <button type="button" class="btn_" id="yes"><span>수락</span></button>
+	                            <button type="button" class="btn_" id="no"><span>거절</span></button>
+	                        </div>
+	                    </div>
+	                </form>
+                </c:if>
+                <c:if test="${not empty indiId }">
                     <div id="btn_box">
                         <div>
-                            <button type="button" class="btn_" id="yes"><span>수락</span></button>
-                            <button type="button" class="btn_" id="no"><span>거절</span></button>
+                            <button type="button" class="btn_" id="yes" onclick="location='/resume_writingmodify'"><span>수정</span></button>
+                            <button type="button" class="btn_" id="no" onclick="history.back();"><span>뒤로</span></button>
                         </div>
                     </div>
-                </form>
+                </c:if>
             </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

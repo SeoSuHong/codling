@@ -56,43 +56,12 @@
 	                     <tr>
 	                         <td><p>학력 * 
 	                            <select name="school_update" onchange="schoolchange()" class="edu_select" required>
-	                            <option value="">선택</option>
-	
-	                            <c:if test="${school != '고등학교'}">
-	                            	<option value="고등학교">고등학교</option>
-	                            </c:if>
-	                            <c:if test="${school == '고등학교'}">
-	                            	<option value="고등학교" selected="selected">고등학교</option>
-	                            </c:if>
-	                            
-	                            <c:if test="${school != '대학교(2년)'}">
-	                            	<option value="대학교(2년)">대학교(2년)</option>
-	                            </c:if>
-	                            <c:if test="${school == '대학교(2년)'}">
-	                            	<option value="대학교(2년)" selected="selected">대학교(2년)</option>
-	                            </c:if>
-	                            
-	                            <c:if test="${school != '대학교(4년)'}">
-	                            	<option value="대학교(4년)">대학교(4년)</option>
-	                            </c:if>
-	                            <c:if test="${school == '대학교(4년)'}">
-	                            	<option value="대학교(4년)" selected="selected">대학교(4년)</option>
-	                            </c:if>
-	                            
-	                            <c:if test="${school != '대학원(석사)'}">
-	                            	<option value="대학원(석사)">대학원(석사)</option>
-	                            </c:if>
-	                            <c:if test="${school == '대학원(석사)'}">
-	                            	<option value="대학원(석사)" selected="selected">대학원(석사)</option>
-	                            </c:if>
-	                            
-	                            <c:if test="${school != '대학원(박사)'}">
-	                            	<option value="대학원(박사)">대학원(박사)</option>
-	                            </c:if>
-	                            <c:if test="${school == '대학원(박사)'}">
-	                            	<option value="대학원(박사)" selected="selected">대학원(박사)</option>
-	                            </c:if>
-	                            
+		                            <option value="">선택</option>
+		                            <option value="고등학교" <c:if test="${school == '고등학교'}">selected="selected" </c:if>>고등학교</option>
+		                            <option value="대학교(2년)" <c:if test="${school == '대학교(2년)'}">selected="selected" </c:if>>대학교(2년)</option>
+		                            <option value="대학교(4년)" <c:if test="${school == '대학교(4년)'}">selected="selected" </c:if>>대학교(4년)</option>
+		                            <option value="대학원(석사)" <c:if test="${school == '대학원(석사)'}">selected="selected" </c:if>>대학원(석사)</option>
+		                            <option value="대학원(박사)" <c:if test="${school == '대학원(박사)'}">selected="selected" </c:if>>대학원(박사)</option>
 	                            </select>
 	                        </p></td>
 	                     </tr>
@@ -103,33 +72,10 @@
 	                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="schoolStartDate_update" id="start" value="${schoolStartDate}"><span class="qqqtext"> ~ </span><input type="date" name="schoolEndDate_update" class="infoForm2" value="${schoolEndDate}">
 	                            <select name="status_update" class="edu_select2" required>
 	                                <option value="" disabled selected>선택</option>
-	                                <c:if test="${status != '졸업'}">
-	                                	<option value="졸업">졸업</option>
-	                                </c:if>
-	                                <c:if test="${status == '졸업'}">
-	                                	<option value="졸업" selected="selected">졸업</option>
-	                                </c:if>
-	                                
-	                                <c:if test="${status != '졸업예정'}">
-	                                	<option value="졸업예정">졸업예정</option>
-	                                </c:if>
-	                                 <c:if test="${status == '졸업예정'}">
-	                                	<option value="졸업예정" selected="selected">졸업예정</option>
-	                                </c:if>
-	                                
-	                                <c:if test="${status != '재학'}">
-	                                	<option value="재학">재학</option>
-	                                </c:if>
-	                                <c:if test="${status == '재학'}">
-	                                	<option value="재학" selected="selected">재학</option>
-	                                </c:if>
-	                                
-	                                <c:if test="${status != '휴학'}">
-	                                	<option value="휴학">휴학</option>
-	                                </c:if>
-	                                <c:if test="${status == '휴학'}">
-	                                	<option value="휴학" selected="selected">휴학</option>
-	                                </c:if>
+                                	<option value="졸업" <c:if test="${status == '졸업'}">selected="selected"</c:if>>졸업</option>
+                                	<option value="졸업예정" <c:if test="${status == '졸업예정'}">selected="selected"</c:if>>졸업예정</option>
+                                	<option value="재학" <c:if test="${status == '재학'}">selected="selected"</c:if>>재학</option>
+                                	<option value="휴학" <c:if test="${status == '휴학'}">selected="selected"</c:if>>휴학</option>
 	                            </select>
 	                        </p></td>
 	                     </tr>
@@ -170,42 +116,12 @@
 	                         <td><p>학력 * 
 	                            <select name="school_update" onchange="schoolchange()" class="edu_select" required>
 	                            <option value="">선택</option>
-	                            
-	                            <c:if test="${school != '고등학교'}">
-	                            	<option value="고등학교">고등학교</option>
-	                            </c:if>
-	                            <c:if test="${school == '고등학교'}">
-	                            	<option value="고등학교" selected="selected">고등학교</option>
-	                            </c:if>
-	                            
-	                            <c:if test="${school != '대학교(2년)'}">
-	                            	<option value="대학교(2년)">대학교(2년)</option>
-	                            </c:if>
-	                            <c:if test="${school == '대학교(2년)'}">
-	                            	<option value="대학교(2년)" selected="selected">대학교(2년)</option>
-	                            </c:if>
-	                            
-	                            <c:if test="${school != '대학교(4년)'}">
-	                            	<option value="대학교(4년)">대학교(4년)</option>
-	                            </c:if>
-	                            <c:if test="${school == '대학교(4년)'}">
-	                            	<option value="대학교(4년)" selected="selected">대학교(4년)</option>
-	                            </c:if>
-	                            
-	                            <c:if test="${school != '대학원(석사)'}">
-	                            	<option value="대학원(석사)">대학원(석사)</option>
-	                            </c:if>
-	                            <c:if test="${school == '대학원(석사)'}">
-	                            	<option value="대학원(석사)" selected="selected">대학원(석사)</option>
-	                            </c:if>
-	                            
-	                            <c:if test="${school != '대학원(박사)'}">
-	                            	<option value="대학원(박사)">대학원(박사)</option>
-	                            </c:if>
-	                            <c:if test="${school == '대학원(박사)'}">
-	                            	<option value="대학원(박사)" selected="selected">대학원(박사)</option>
-	                            </c:if>
-	                            
+	                            <option value="">선택</option>
+		                            <option value="고등학교" <c:if test="${school == '고등학교'}">selected="selected" </c:if>>고등학교</option>
+		                            <option value="대학교(2년)" <c:if test="${school == '대학교(2년)'}">selected="selected" </c:if>>대학교(2년)</option>
+		                            <option value="대학교(4년)" <c:if test="${school == '대학교(4년)'}">selected="selected" </c:if>>대학교(4년)</option>
+		                            <option value="대학원(석사)" <c:if test="${school == '대학원(석사)'}">selected="selected" </c:if>>대학원(석사)</option>
+		                            <option value="대학원(박사)" <c:if test="${school == '대학원(박사)'}">selected="selected" </c:if>>대학원(박사)</option>
 	                            </select>
 	                        </p></td>
 	                     </tr>
@@ -215,33 +131,10 @@
 	                     <tr>
 	                        <td><p id="qqq2"><span>재학기간 *</span><input type="date" name="schoolStartDate_update" id="start" value="${schoolStartDate}"><span class="qqqtext"> ~ </span><input type="date" name="schoolEndDate_update" class="infoForm2" value="${schoolEndDate}">
 	                            <select name="status_update" class="edu_select2" required>
-	                                <c:if test="${status != '졸업'}">
-	                                	<option value="졸업">졸업</option>
-	                                </c:if>
-	                                <c:if test="${status == '졸업'}">
-	                                	<option value="졸업" selected="selected">졸업</option>
-	                                </c:if>
-	                                
-	                                <c:if test="${status != '졸업예정'}">
-	                                	<option value="졸업예정">졸업예정</option>
-	                                </c:if>
-	                                 <c:if test="${status == '졸업예정'}">
-	                                	<option value="졸업예정" selected="selected">졸업예정</option>
-	                                </c:if>
-	                                
-	                                <c:if test="${status != '재학'}">
-	                                	<option value="재학">재학</option>
-	                                </c:if>
-	                                <c:if test="${status == '재학'}">
-	                                	<option value="재학" selected="selected">재학</option>
-	                                </c:if>
-	                                
-	                                <c:if test="${status != '휴학'}">
-	                                	<option value="휴학">휴학</option>
-	                                </c:if>
-	                                <c:if test="${status == '휴학'}">
-	                                	<option value="휴학" selected="selected">휴학</option>
-	                                </c:if>
+	                                <option value="졸업" <c:if test="${status == '졸업'}">selected="selected"</c:if>>졸업</option>
+                                	<option value="졸업예정" <c:if test="${status == '졸업예정'}">selected="selected"</c:if>>졸업예정</option>
+                                	<option value="재학" <c:if test="${status == '재학'}">selected="selected"</c:if>>재학</option>
+                                	<option value="휴학" <c:if test="${status == '휴학'}">selected="selected"</c:if>>휴학</option>
 	                            </select></p>
 	                        </td>
 	                    </tr>
@@ -489,42 +382,11 @@
                             <td>
                                 <p>합격구분 <select name="pass_update" class="license_select">
                                     <option value="">선택</option>
-                                    
-                                    <c:if test="${license_pass != '1차합격'}">
-                                    <option value="1차합격">1차합격</option>
-                                    </c:if>
-                                    <c:if test="${license_pass == '1차합격'}">
-                                    <option value="1차합격" selected>1차합격</option>
-                                    </c:if>
-                                    
-                                    <c:if test="${license_pass != '2차합격'}">
-                                    <option value="2차합격">2차합격</option>
-                                    </c:if>
-                                    <c:if test="${license_pass == '2차합격'}">
-                                    <option value="2차합격" selected>2차합격</option>
-                                    </c:if>
-                                    
-                                    <c:if test="${license_pass != '필기합격'}">
-                                    <option value="필기합격">필기합격</option>
-                                    </c:if>
-                                    <c:if test="${license_pass == '필기합격'}">
-                                    <option value="필기합격" selected>필기합격</option>
-                                    </c:if>
-                                    
-                                    <c:if test="${license_pass != '실기합격'}">
-                                    <option value="실기합격">실기합격</option>
-                                    </c:if>
-                                    <c:if test="${license_pass == '실기합격'}">
-                                    <option value="실기합격" selected>실기합격</option>
-                                    </c:if>
-                                    
-                                    <c:if test="${license_pass != '최종합격'}">
-                                    <option value="최종합격">최종합격</option>
-                                    </c:if>
-                                    <c:if test="${license_pass == '최종합격'}">
-                                    <option value="최종합격" selected>최종합격</option>
-                                    </c:if>
-                                    
+                                    <option value="1차합격" <c:if test="${license_pass == '1차합격'}">selected="selected"</c:if>>1차합격</option>
+	                                <option value="2차합격" <c:if test="${license_pass == '2차합격'}">selected="selected"</c:if>>2차합격</option>
+	                                <option value="필기합격" <c:if test="${license_pass == '필기합격'}">selected="selected"</c:if>>필기합격</option>
+	                                <option value="실기합격" <c:if test="${license_pass == '실기합격'}">selected="selected"</c:if>>실기합격</option>
+	                                <option value="최종합격" <c:if test="${license_pass == '최종합격'}">selected="selected"</c:if>>최종합격</option>
                                 </select></p>
                             </td>
                         </tr>
@@ -598,42 +460,11 @@
                         <td>
                             <p>합격구분 <select name="pass_update" class="license_select">
                                 <option value="" disabled selected>선택</option>
-                                
-                                	<c:if test="${license_pass != '1차합격'}">
-                                    <option value="1차합격">1차합격</option>
-                                    </c:if>
-                                    <c:if test="${license_pass == '1차합격'}">
-                                    <option value="1차합격" selected="selected">1차합격</option>
-                                    </c:if>
-                                    
-                                    <c:if test="${license_pass != '2차합격'}">
-                                    <option value="2차합격">2차합격</option>
-                                    </c:if>
-                                    <c:if test="${license_pass == '2차합격'}">
-                                    <option value="2차합격" selected="selected">2차합격</option>
-                                    </c:if>
-                                    
-                                    <c:if test="${license_pass != '필기합격'}">
-                                    <option value="필기합격">필기합격</option>
-                                    </c:if>
-                                    <c:if test="${license_pass == '필기합격'}">
-                                    <option value="필기합격" selected="selected">필기합격</option>
-                                    </c:if>
-                                    
-                                    <c:if test="${license_pass != '실기합격'}">
-                                    <option value="실기합격">실기합격</option>
-                                    </c:if>
-                                    <c:if test="${license_pass == '실기합격'}">
-                                    <option value="실기합격" selected="selected">실기합격</option>
-                                    </c:if>
-                                    
-                                    <c:if test="${license_pass != '최종합격'}">
-                                    <option value="최종합격">최종합격</option>
-                                    </c:if>
-                                    <c:if test="${license_pass == '최종합격'}">
-                                    <option value="최종합격" selected="selected">최종합격</option>
-                                    </c:if>
-                                
+                                <option value="1차합격" <c:if test="${license_pass == '1차합격'}">selected="selected"</c:if>>1차합격</option>
+                                <option value="2차합격" <c:if test="${license_pass == '2차합격'}">selected="selected"</c:if>>2차합격</option>
+                                <option value="필기합격" <c:if test="${license_pass == '필기합격'}">selected="selected"</c:if>>필기합격</option>
+                                <option value="실기합격" <c:if test="${license_pass == '실기합격'}">selected="selected"</c:if>>실기합격</option>
+                                <option value="최종합격" <c:if test="${license_pass == '최종합격'}">selected="selected"</c:if>>최종합격</option>
                             </select></p>
                         </td>
                     </tr>

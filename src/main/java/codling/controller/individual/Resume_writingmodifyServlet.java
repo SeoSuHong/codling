@@ -283,6 +283,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		if(builder.toString() != "" && !builder.toString().equals("")) {
 			builder.delete(builder.length()-2, builder.length());
 			builders.delete(builders.length()-2, builders.length());
+			builder_fileaddress.delete(builder_fileaddress.length()-2, builder_fileaddress.length());
 		}
 		
 		String[] fileTitle_ = request.getParameterValues("fileTitle");
@@ -330,12 +331,18 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 				}
 			}
 		}
-		if(!fileTitle.equals("") && fileTitle != "") {
+		if(!fileTitle.equals("") && fileTitle != "" && fileTitle_update_ != null) {
 			fileTitle_update += ("/" + fileTitle);
 			fileName_update += ("/" + builder.toString());
 			fileaddress_update += (" | " + builder_fileaddress.toString());
 			file_detail_update += ("/" + file_detail);
 			fileSize_update += (" / " + builders.toString());
+		}else {
+			fileTitle_update += fileTitle;
+			fileName_update += builder.toString();
+			fileaddress_update += builder_fileaddress.toString();
+			file_detail_update += file_detail;
+			fileSize_update += builders.toString();
 		}
 		
 		boolean fileupload_updateResult = false;
