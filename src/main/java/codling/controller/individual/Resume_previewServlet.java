@@ -30,7 +30,7 @@ public class Resume_previewServlet extends HttpServlet {
 		String corpId = (String)session.getAttribute("corpId");
 		
 		String c_no = request.getParameter("coverLetter_no");
-		int coverLetter_no = 0;
+		int coverLetter_no = -1;
 		if(c_no != null && !c_no.equals("")) coverLetter_no = Integer.parseInt(c_no);
 		
 		InformationDao infoDao = new InformationDao();

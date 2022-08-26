@@ -281,7 +281,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		}
 		
 		if(builder.toString() != "" && !builder.toString().equals("")) {
-			builder.delete(builder.length()-2, builder.length());
+			builder.delete(builder.length()-1, builder.length());
 			builders.delete(builders.length()-2, builders.length());
 			builder_fileaddress.delete(builder_fileaddress.length()-2, builder_fileaddress.length());
 		}
@@ -346,10 +346,10 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		}
 		
 		boolean fileupload_updateResult = false;
-		if(!fileTitle_update.equals("") && fileTitle_update != "") {
+		if(!fileTitle_update.equals("") && fileTitle_update != null) {
 			fileupload_updateList = new Portfolio(0, indiId, "", "", "", fileTitle_update, fileName_update, fileaddress_update, file_detail_update, fileSize_update);
 			fileupload_updateResult = dao.fileupload_update(fileupload_updateList);
-		}else if(fileTitle_update.equals("") && fileTitle_update == ""){
+		}else{
 			fileupload_updateList = new Portfolio(0, indiId, "", "", "", "", "", "", "", "");
 			fileupload_updateResult = dao.fileupload_update(fileupload_updateList);
 		}

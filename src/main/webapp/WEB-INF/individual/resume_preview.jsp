@@ -210,120 +210,149 @@
                         	</p>
                     </div>
                 </div>
-                <div class="resume" id="career">
-                    <div class="fr">
-                        <h2>경력사항</h2>
-                    </div>
-                    <div class="content">
-                    	<c:forTokens var="prev_company" items="${career.prev_company }" delims="/" varStatus="st">
-	                    <c:forTokens var="tenureStart" items="${career.tenureStart }" begin="${st.index }" end="${st.index }" delims="/">
-	                    <c:forTokens var="tenureEnd" items="${career.tenureEnd }" begin="${st.index }" end="${st.index }" delims="/"> 
-	                    <c:forTokens var="position" items="${career.position }" begin="${st.index }" end="${st.index }" delims="/"> 
-	                    <c:forTokens var="department" items="${career.department }" begin="${st.index }" end="${st.index }" delims="/"> 
-	                    <c:forTokens var="work_content" items="${career.work_content }" begin="${st.index }" end="${st.index }" delims="/">  
-	                        <p id="comname">${prev_company }</p>
-	                        <p id="part">${department } / ${position }</p>
-	                        <p>재직일자&nbsp;&nbsp;${tenureStart } ~ ${tenureEnd }</p>
-	                        <p>주요업무</p>
-	                        <c:set var="wc" value="${work_content }"/>
-	                        <c:set var="w_content" value="${fn:replace(wc, escape, '<br>') }"/>
-	                        <p>${w_content }</p>
-	                        <c:if test="${not st.last }"></br></br></c:if>
-	                    </c:forTokens>
-	                    </c:forTokens>
-	                    </c:forTokens>
-	                    </c:forTokens>
-	                    </c:forTokens>
-                    	</c:forTokens>
-                    </div>
-                </div>
-                <div class="resume" id="license">
-                    <div class="fr">
-                        <h2>자격증 내역</h2>
-                    </div>
-                    <div class="content">
-                    	<c:forTokens var="name" items="${license.name }" delims="/" varStatus="st">
-                    	<c:forTokens var="agency" items="${license.agency }" begin="${st.index }" end="${st.index }" delims="/">
-                    	<c:forTokens var="pass" items="${license.pass }" begin="${st.index }" end="${st.index }" delims="/">
-                    	<c:forTokens var="acquireDate" items="${license.acquireDate }" begin="${st.index }" end="${st.index }" delims="/">
-	                        <p id="licname">${name }</p>
-	                        <p id="agency">발행기관 &nbsp;&nbsp;${agency }</p>
-	                        <p>취득날짜 &nbsp;&nbsp;${acquireDate }</p>
-	                        <p>합격여부 &nbsp;&nbsp;${pass }</p>
-	                        <c:if test="${not st.last }"></br></br></c:if>
-                        </c:forTokens>
-                        </c:forTokens>
-                        </c:forTokens>
-                        </c:forTokens>
-                    </div>
-                </div>
-                <div class="resume" id="popol">
-                    <div class="fr">
-                        <h2>포트폴리오</h2>
-                    </div>
-                    <div class="content">
-                    	<c:forTokens var="name" items="${portfolio.name }" delims="/" varStatus="st">
-                    	<c:forTokens var="detail" items="${portfolio.detail }" begin="${st.index }" end="${st.index }" delims="/">
-                    	<c:forTokens var="url" items="${portfolio.url }" begin="${st.index }" end="${st.index }" delims="|">
-                        	<p id="url">${name } &ensp;&ensp;</p>
-                        	<p><span class="url">url</span> &ensp;&ensp;${url }</p>
-                        	<p>상세내용</p>
-                        	<c:set var="de" value="${detail }"/>
-	                        <c:set var="re_detail" value="${fn:replace(de, escape, '<br>') }"/>
-                        	<div>${re_detail }</div>
-                        	<c:if test="${not st.last }"></br></br></c:if>
-                        </c:forTokens>
-                        </c:forTokens>
-                        </c:forTokens>
-                    </div>
-                </div>
-                <div class="resume" id="popol">
-                    <div class="fr">
-                        <h2>첨부파일</h2>
-                    </div>
-                    <div class="content">
-                        <c:forTokens var="title" items="${fileupload.title }" delims="/" varStatus="st">
-                        <c:forTokens var="fileName" items="${fileupload.fileName }" begin="${st.index }" end="${st.index }" delims="/">
-                        <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="${st.index }" end="${st.index }" delims="|">
-                        <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims="/">
-                        <c:forTokens var="fileSize" items="${fileupload.fileSize }" begin="${st.index }" end="${st.index }" delims="/">
-                        	<p id="file">${title }</p>
-                        	<fmt:parseNumber var="file_Size_" value="${fileSize}"/>
-                        	<c:set var="num" value="1024" />
-                        	<c:if test="${file_Size_ > num}">
-                        		<c:set var="file_Size" value="${file_Size_ }" />
-                        	</c:if>
-                        	<p><a download href="/upload/${fileName }">${fileName }</a>&nbsp;&nbsp;<span></span></p>
-                        	<c:set var="fi" value="${filedetail }"/>
-	                        <c:set var="re_filedetail" value="${fn:replace(fi, escape, '<br>') }"/>
-                        	<p>${re_filedetail }</p>
-                        	<c:if test="${not st.last }"><br><br></c:if>
-                        </c:forTokens>
-                        </c:forTokens>
-                        </c:forTokens>
-                        </c:forTokens>
-                        </c:forTokens>
-                    </div>
-                </div>
-                <c:if test="${not empty indiId }">
-                	<c:if test="${coverLetter_no == 0}">
-		                <div class="resume" id="resume">
-		                    <div class="fr">
-		                        <h2>자기소개</h2>
-		                    </div>
-		                    <div class="content">
-		                    	<c:forEach var="coverLetter" items="${coverLetter }" varStatus="st">
-			                        <p id="reti">${coverLetter.title }</p>
-			                        <c:set var="content" value="${coverLetter.content }"/>
-			                        <c:set var="re_content" value="${fn:replace(content, escape, '<br>') }"/>
-			                        <p style="word-wrap: break-word;">${re_content }</p>
-		                        </c:forEach>
-		                    </div>
-		                </div>
-	                </c:if>
+                <c:if test="${not empty career.prev_company}">
+	                <div class="resume" id="career">
+	                    <div class="fr">
+	                        <h2>경력사항</h2>
+	                    </div>
+	                    <div class="content">
+	                    	<c:forTokens var="prev_company" items="${career.prev_company }" delims="/" varStatus="st">
+		                    <c:forTokens var="tenureStart" items="${career.tenureStart }" begin="${st.index }" end="${st.index }" delims="/">
+		                    <c:forTokens var="tenureEnd" items="${career.tenureEnd }" begin="${st.index }" end="${st.index }" delims="/"> 
+		                    <c:forTokens var="position" items="${career.position }" begin="${st.index }" end="${st.index }" delims="/"> 
+		                    <c:forTokens var="department" items="${career.department }" begin="${st.index }" end="${st.index }" delims="/"> 
+		                    <c:forTokens var="work_content" items="${career.work_content }" begin="${st.index }" end="${st.index }" delims="/">  
+		                        <p id="comname">${prev_company }</p>
+		                        <p id="part">${department } / ${position }</p>
+		                        <p>재직일자&nbsp;&nbsp;${tenureStart } ~ ${tenureEnd }</p>
+		                        <p>주요업무</p>
+		                        <c:set var="wc" value="${work_content }"/>
+		                        <c:set var="w_content" value="${fn:replace(wc, escape, '<br>') }"/>
+		                        <p>${w_content }</p>
+		                        <c:if test="${not st.last }"></br></br></c:if>
+		                    </c:forTokens>
+		                    </c:forTokens>
+		                    </c:forTokens>
+		                    </c:forTokens>
+		                    </c:forTokens>
+	                    	</c:forTokens>
+	                    </div>
+	                </div>
+	            </c:if>
+                <c:if test="${not empty license.name}">
+	                <div class="resume" id="license">
+	                    <div class="fr">
+	                        <h2>자격증 내역</h2>
+	                    </div>
+	                    <div class="content">
+	                    	<c:forTokens var="name" items="${license.name }" delims="/" varStatus="st">
+	                    	<c:forTokens var="agency" items="${license.agency }" begin="${st.index }" end="${st.index }" delims="/">
+	                    	<c:forTokens var="pass" items="${license.pass }" begin="${st.index }" end="${st.index }" delims="/">
+	                    	<c:forTokens var="acquireDate" items="${license.acquireDate }" begin="${st.index }" end="${st.index }" delims="/">
+		                        <p id="licname">${name }</p>
+		                        <p id="agency">발행기관 &nbsp;&nbsp;${agency }</p>
+		                        <p>취득날짜 &nbsp;&nbsp;${acquireDate }</p>
+		                        <p>합격여부 &nbsp;&nbsp;${pass }</p>
+		                        <c:if test="${not st.last }"></br></br></c:if>
+	                        </c:forTokens>
+	                        </c:forTokens>
+	                        </c:forTokens>
+	                        </c:forTokens>
+	                    </div>
+	                </div>
+	            </c:if>
+                <c:if test="${not empty portfolio.name}">
+	                <div class="resume" id="popol">
+	                    <div class="fr">
+	                        <h2>포트폴리오</h2>
+	                    </div>
+	                    <div class="content">
+	                    	<c:forTokens var="name" items="${portfolio.name }" delims="/" varStatus="st">
+	                    	<c:forTokens var="detail" items="${portfolio.detail }" begin="${st.index }" end="${st.index }" delims="/">
+	                    	<c:forTokens var="url" items="${portfolio.url }" begin="${st.index }" end="${st.index }" delims="|">
+	                        	<p id="url">${name } &ensp;&ensp;</p>
+	                        	<p><span class="url">url</span> &ensp;&ensp;${url }</p>
+	                        	<p>상세내용</p>
+	                        	<c:set var="de" value="${detail }"/>
+		                        <c:set var="re_detail" value="${fn:replace(de, escape, '<br>') }"/>
+	                        	<div>${re_detail }</div>
+	                        	<c:if test="${not st.last }"></br></br></c:if>
+	                        </c:forTokens>
+	                        </c:forTokens>
+	                        </c:forTokens>
+	                    </div>
+	                </div>
+	            </c:if>
+	            <c:if test="${not empty fileupload.title}">
+	                <div class="resume" id="popol">
+	                    <div class="fr">
+	                        <h2>첨부파일</h2>
+	                    </div>
+	                    <div class="content">
+	                        <c:forTokens var="title" items="${fileupload.title }" delims="/" varStatus="st">
+	                        <c:forTokens var="fileName" items="${fileupload.fileName }" begin="${st.index }" end="${st.index }" delims="/">
+	                        <c:forTokens var="fileaddress" items="${fileupload.fileaddress }" begin="${st.index }" end="${st.index }" delims="|">
+	                        <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims="/">
+	                        <c:forTokens var="fileSize" items="${fileupload.fileSize }" begin="${st.index }" end="${st.index }" delims="/">
+	                        	<p id="file">${title }</p>
+	                        	<fmt:parseNumber var="file_Size_" value="${fileSize}"/>
+	                        	<c:set var="num" value="1024" />
+	                        	<c:if test="${file_Size_ <= num}">
+	                        		<c:set var="byte" value="${file_Size_ } byte" />
+	                        	</c:if>
+	                        	<c:if test="${file_Size_ <= num}">
+	                        		<c:set var="byte" value="${file_Size_ } byte" />
+	                        	</c:if>
+	                        	<p><a download href="/upload/${fileName }">${fileName }</a>&nbsp;&nbsp;<span></span></p>
+	                        	<c:set var="fi" value="${filedetail }"/>
+		                        <c:set var="re_filedetail" value="${fn:replace(fi, escape, '<br>') }"/>
+	                        	<p>${re_filedetail }</p>
+	                        	<c:if test="${not st.last }"><br><br></c:if>
+	                        </c:forTokens>
+	                        </c:forTokens>
+	                        </c:forTokens>
+	                        </c:forTokens>
+	                        </c:forTokens>
+	                    </div>
+                	</div>
                 </c:if>
-                <c:if test="${not empty indiId }">
-                	<c:if test="${coverLetter_no != 0}">
+	                <c:if test="${not empty indiId }">
+	                	<c:if test="${coverLetter_no == -1}">
+			                <div class="resume" id="resume">
+			                    <div class="fr">
+			                        <h2>자기소개</h2>
+			                    </div>
+			                    <div class="content">
+			                    	<c:forEach var="coverLetter" items="${coverLetter }" varStatus="st">
+				                        <p id="reti">${coverLetter.title }</p>
+				                        <c:set var="content" value="${coverLetter.content }"/>
+				                        <c:set var="re_content" value="${fn:replace(content, escape, '<br>') }"/>
+				                        <p style="word-wrap: break-word;">${re_content }</p>
+			                        </c:forEach>
+			                    </div>
+			                </div>
+		                </c:if>
+	                </c:if>
+	                <c:forEach var="coverLetter" items="${coverLetter }" varStatus="st">
+						<c:if test="${coverLetter_no == coverLetter.no}">
+			                <c:if test="${not empty indiId }">
+			                	<c:if test="${coverLetter_no != 0}">
+					                <div class="resume" id="resume">
+					                    <div class="fr">
+					                        <h2>자기소개</h2>
+					                    </div>
+					                    <div class="content">
+					                        <p id="reti">${coverLetter.title }</p>
+					                        <c:set var="content" value="${coverLetter.content }"/>
+					                        <c:set var="re_content" value="${fn:replace(content, escape, '<br>') }"/>
+					                        <p style="word-wrap: break-word;">${re_content }</p>
+										</div>
+									</div>
+		                		</c:if>
+	                		</c:if>
+	                	</c:if>
+					</c:forEach>
+	                <c:if test="${not empty corpId }">
 		                <div class="resume" id="resume">
 		                    <div class="fr">
 		                        <h2>자기소개</h2>
@@ -340,24 +369,6 @@
 		                    </div>
 		                </div>
 	                </c:if>
-                </c:if>
-                <c:if test="${not empty corpId }">
-	                <div class="resume" id="resume">
-	                    <div class="fr">
-	                        <h2>자기소개</h2>
-	                    </div>
-	                    <div class="content">
-	                    	<c:forEach var="coverLetter" items="${coverLetter }" varStatus="st">
-	                    		<c:if test="${coverLetter_no == coverLetter.no}">
-			                        <p id="reti">${coverLetter.title }</p>
-			                        <c:set var="content" value="${coverLetter.content }"/>
-			                        <c:set var="re_content" value="${fn:replace(content, escape, '<br>') }"/>
-			                        <p style="word-wrap: break-word;">${re_content }</p>
-		                        </c:if>
-	                        </c:forEach>
-	                    </div>
-	                </div>
-                </c:if>
                 <c:if test="${not empty corpId }">
 	                <form action="" method="post">
 	                    <input type="hidden" name="resumNo" value="resumNo">

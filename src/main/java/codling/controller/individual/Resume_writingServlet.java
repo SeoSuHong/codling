@@ -269,7 +269,7 @@ public class Resume_writingServlet extends HttpServlet {
 		if(builder.toString() != "" && !builder.toString().equals("")) {
 			builder.delete(builder.length()-2, builder.length());
 			builders.delete(builders.length()-2, builders.length());
-			builder_fileaddress.delete(builder_fileaddress.length()-2, builder_fileaddress.length());
+			builder_fileaddress.delete(builder_fileaddress.length()-1, builder_fileaddress.length());
 		}
 		
 		String[] fileTitle_ = request.getParameterValues("fileTitle");
