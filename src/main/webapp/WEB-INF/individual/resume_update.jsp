@@ -35,7 +35,7 @@
 		    <!--이력서제목-->
 	        <h2>이력서 제목</h2>
 	        <div>
-	        	<input name="title" class="title" placeholder=" 이력서 제목을 입력하세요.">
+	        	<input value="${individual.resumeTitle}" name="title" class="title" placeholder=" 이력서 제목을 입력하세요.">
 	        </div>
 	        
 		    <!--학력사항-->
