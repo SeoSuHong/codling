@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,11 @@ import codling.identity.Individual;
 import codling.identity.License;
 import codling.identity.Portfolio;
 
+@MultipartConfig(
+		fileSizeThreshold = 1024 * 1024, 
+		maxFileSize = 1024 * 1024 * 50,
+		maxRequestSize = 1024 * 1024 * 50 * 5
+	)
 @WebServlet("/resume_update")
 public class Resume_updateServlet extends HttpServlet {
 	int eduSize, carSize, licSize, porSize;  // 기존 사항들의 size
@@ -135,8 +141,10 @@ public class Resume_updateServlet extends HttpServlet {
 				}
 			}
 		} else if(schools.length - 1 > eduSize) {
-			for(int i = eduSize; i < schools.length; i++) {
-				
+			for(int i = eduSize; i < schools.length - 1; i++) {
+				Education education = new Education(0, id, schools[i], schoolNames[i], schoolStartDates[i] + "-00", schoolEndDates[i] + "-00", statuses[i], departments[i], scores[i]);
+				boolean result = indiDao.insertEducation(education);
+				if(!result) educationResult = false;
 			}
 		}
 		
@@ -159,7 +167,20 @@ public class Resume_updateServlet extends HttpServlet {
 		
 		List<Career> careers = indiDao.getCareer(id);
 		if(prev_companies.length - 1 < carSize) {
-			
+			for(int i = 0; i < prev_companies.length - 1; i++) {
+				for(int j = 0; j < careers.size(); j++) {
+					if(!careers.get(j).getPrev_company().equals(prev_companies[i])) {
+						boolean result = indiDao.deleteCareer(careers.get(j).getNo());
+						if(!result) careerResult = false;
+					}
+				}
+			}
+		} else if(prev_companies.length - 1 > carSize) {
+			for(int i = carSize; i < prev_companies.length - 1; i++) {
+				Career career = new Career(0, id, prev_companies[i], tenureStartDates[i] + "-00", tenureEndDates[i] + "-00", positions[i], departments[i], work_contents[i]);
+				boolean result = indiDao.insertCareer(career);
+				if(!result) careerResult = false;
+			}
 		}
 		
 		// 자격증
@@ -170,13 +191,29 @@ public class Resume_updateServlet extends HttpServlet {
 		
 		boolean licenseResult = true;
 		for(int i = 0; i < names.length - 1; i++) {
-			License license = new License(0, id, names[i], agencies[i], passes[i], acquireDates[i]);
-			
-			
-			boolean result = indiDao.insertLicense(license);
-			
-			
-			if(!result) licenseResult = false;
+			if(i < licSize) {
+				License license = new License(licNo[i], id, names[i], agencies[i], passes[i], acquireDates[i]);
+				boolean result = indiDao.updateLicense(license);
+				if(!result) licenseResult = false;
+			}
+		}
+		
+		List<License> licenses = indiDao.getLicense(id);
+		if(names.length - 1 < licSize) {
+			for(int i = 0; i < names.length - 1; i++) {
+				for(int j = 0; j < licenses.size(); j++) {
+					if(!licenses.get(j).getName().equals(names[i])) {
+						boolean result = indiDao.deleteLicense(licenses.get(j).getNo());
+						if(!result) licenseResult = false;
+					}
+				}
+			}
+		} else if(names.length - 1 > licSize) {
+			for(int i = licSize; i < names.length - 1; i++) {
+				License license = new License(0, id, names[i], agencies[i], passes[i], acquireDates[i]);
+				boolean result = indiDao.insertLicense(license);
+				if(!result) licenseResult = false;
+			}
 		}
 		
 		// 포트폴리오
@@ -195,11 +232,35 @@ public class Resume_updateServlet extends HttpServlet {
 			if(fileCount_[i] != null && !fileCount_[i].equals(""))
 				fileCount[i] = Integer.parseInt(fileCount_[i]);
 		}
+		String[] prev_file_      = request.getParameterValues("prev_file");
+		List<String> prev_file = new ArrayList<String>();
+		for(int i = 0; i < prev_file_.length; i++) {
+			prev_file.add(prev_file_[i]);
+		}
 		
 		Collection<Part> parts = request.getParts();
 		List<StringBuilder> builderNames = new ArrayList<StringBuilder>();
 		List<String> builderSizes = new ArrayList<String>();
 		
+		String realPath = request.getServletContext().getRealPath("/portfolio_files");  // 업로드 파일 관리 폴더의 절대경로
+		
+		List<Portfolio> portfolios = indiDao.getPortfolio(id);
+		List<String> deleteFiles = new ArrayList<String>();
+		for(int i = 0; i < portfolios.size(); i++) {
+			String[] curr_file = portfolios.get(i).getFileName().split("/");
+			for(int j = 0; j < curr_file.length; j++) {
+				if(!prev_file.contains(curr_file[j])) deleteFiles.add(curr_file[j]);
+			}
+		}
+		
+		for(int i = 0; i < deleteFiles.size(); i++) {
+			System.out.println(deleteFiles.get(i));
+		}
+//		String deleteFileName = portfolios.get(i).getFileName();
+//		String deleteFilePath = realPath + File.separator + deleteFileName;
+//		File deleteFile = new File(deleteFilePath);
+//		if(deleteFile.exists()) deleteFile.delete();
+
 		for(Part p : parts) {
 			if(!p.getName().equals("file") || p.getSize() == 0) continue;
 			
@@ -215,7 +276,6 @@ public class Resume_updateServlet extends HttpServlet {
 			
 			InputStream fis = file.getInputStream();
 			
-			String realPath = request.getServletContext().getRealPath("/portfolio_files");
 			String filePath = realPath + File.separator + fileName;
 			FileOutputStream fos = new FileOutputStream(filePath);
 			
@@ -255,12 +315,6 @@ public class Resume_updateServlet extends HttpServlet {
 			}
 
 			Portfolio portfolio = new Portfolio(0, id, portfolioNames[i], details[i], url, fileName, fileSize);
-			
-			
-			boolean result = indiDao.insertPortfolio(portfolio);
-			
-			
-			if(!result) portfolioResult = false;
 		}
 		
 		response.setCharacterEncoding("UTF-8");

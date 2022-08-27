@@ -80,7 +80,7 @@ function schoolSelect(obj, opt) {
 	}
 }
 
-/* 추가버튼*/
+/* 추가버튼 */
 $(function() {
 	var addEduBtn = document.getElementById("addEducation");
 	var addCarBtn = document.getElementById("addCareer");
@@ -209,22 +209,35 @@ function show(ele) {
 
 // 포트폴리오 URL추가 버튼 클릭 시
 function addUrl(obj) {
-	var addNode = "<br><input name='url' placeholder=' github.com/SeoSuHong/codling'> <input type='button' class='delUrlBtn' value='삭제' onclick='delUrl(this)'>";
-	var addPos = obj.parentNode;
+	var addNode = "<tr class='urlTr'><td></td><td><input name='url' placeholder=' github.com/SeoSuHong/codling'> <input type='button' class='delUrlBtn' value='삭제' onclick='delUrl(this)'></td></tr>";
+	var addPos = obj.parentNode.parentNode.parentNode;
 	$(addPos).append(addNode);
 	
-	addPos.childNodes[1].value++;
+	addPos.parentNode.nextSibling.nextSibling.value++;
+	console.log(addPos.parentNode.nextSibling.nextSibling);
+	console.log(addPos.parentNode.nextSibling.nextSibling.value);
 }
 
 // 포트폴리오 URL삭제 버튼 클릭 시
 function delUrl(obj) {
-	obj.parentNode.childNodes[1].value--;
+	obj.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling.value--;
+	console.log(obj.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling.value);
+	var tr = obj.parentNode.parentNode;
+	tr.remove();
+}
+
+// 포트폴리오 프로젝트 파일 삭제 버튼 클릭 시
+function deleteFile(obj) {
+	var currTr = obj.parentNode.previousSibling.previousSibling;
+	var nextTr = obj.parentNode.parentNode.nextSibling.nextSibling;
+	console.log(nextTr);
+	if(currTr.innerText == '프로젝트 파일' && nextTr.className == 'projectFile') {
+		nextTr.childNodes[1].innerText = '프로젝트 파일';
+	}
 	
-	var br = obj.previousElementSibling.previousElementSibling;
-	var input = obj.previousElementSibling;
-	br.remove();
-	input.remove();
-	obj.remove();
+	var del = obj.parentNode.parentNode;
+	console.log(del);
+	del.remove();
 }
 
 // submit
