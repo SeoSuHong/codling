@@ -47,7 +47,7 @@
         #licname{font-size: 1.5rem;}
         .pass{font-size: 1rem;}
         #reti{font-size: 1.5rem;}
-        .portfolioName {font-size: 1.5rem;}
+        .portfolioName {font-size: 1.5rem; margin-bottom: 2rem;}
         .url, .file, .detail{font-size: 1.1rem;}
         .urlTd, .fileTd{width: 100px;}
 		.emptyTr{height: 30px;}
