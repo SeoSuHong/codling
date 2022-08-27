@@ -448,6 +448,41 @@ public class IndividualDao {
 		return education;
 	}
 	
+	//학력정보들 가져오기
+	public List<Education> getEducations(String id) {
+		List<Education> educations = new ArrayList<Education>();
+		String query = "SELECT * FROM education WHERE individual_id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				String individual_id = rs.getString("individual_id");
+				String school = rs.getString("school");
+				String schoolName = rs.getString("schoolName");
+				String schoolStartDate = rs.getString("schoolStartDate");
+				String schoolEndDate = rs.getString("schoolEndDate");
+				String status = rs.getString("status");
+				String department = rs.getString("department");
+				String score = rs.getString("score");
+				
+				Education education = new Education(no, individual_id, school, schoolName, schoolStartDate, schoolEndDate, status, department, score);
+				educations.add(education);
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getEducation Error : " + e.getMessage());
+		}
+		return educations;
+	}
+	
 	//경력 가져오기
 	public Career getCareer(String id) {
 		Career career = null;
@@ -477,6 +512,40 @@ public class IndividualDao {
 		}
 		return career;
 	}
+	
+	// 경력들 가져오기
+		public List<Career> getCareers(String id) {
+			List<Career> careers = new ArrayList<Career>();
+			String query = "SELECT * FROM career WHERE individual_id = ?";
+			
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					int no = rs.getInt("no");
+					String individual_id = rs.getString("individual_id");
+					String prev_company = rs.getString("prev_company");
+					String tenureStart = rs.getString("tenureStart");
+					String tenureEnd = rs.getString("tenureEnd");
+					String position = rs.getString("position");
+					String department = rs.getString("department");
+					String work_content = rs.getString("work_content");
+					
+					Career career = new Career(no, individual_id, prev_company, tenureStart, tenureEnd, position, department, work_content);
+					careers.add(career);
+				}
+				
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch(Exception e) {
+				System.out.println("getCareers Error : " + e.getMessage());
+			}
+			return careers;
+		}
 	
 	//자격증 가지고오기
 	public License getLicense(String id) {

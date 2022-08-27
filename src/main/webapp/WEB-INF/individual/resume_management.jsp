@@ -134,7 +134,7 @@
 		<c:if test="${not empty education}">
 	        <article id="resume">
 	            <h1>이력서 관리</h1>
-	            <div class="resumemg" id="resumemg" style="cursor: pointer;" onclick="location.href='resume_preview'">
+	            <div class="resumemg" id="resumemg" style="cursor: pointer;" onclick="location.href='resume_preview?id=${individual.id}'">
 	                <div class="resumemgbox">
 	                    <p id="resumetop"><span>이력서</span></p>
 	                    <p><span id="resume_title">${individual.resumeTitle}</span></p>

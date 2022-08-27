@@ -28,9 +28,16 @@
         </div>
             <div id="profile-hover">
                 <ul>
-                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
-                    <li id="resume"><a href="resume_management"><span>이력서 관리</span></a></li>
-                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+	                 <c:if test="${not empty indiId }">
+	                    <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
+	                    <li id="resume"><a href="resume_management"><span>이력서 관리</span></a></li>
+	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+					</c:if>
+					<c:if test="${not empty corpId }">
+						<li id="mypage"><a href="corporationInfo"><span>내 정보</span></a></li>
+	                    <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
+	                    <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+					</c:if>
                 </ul>
             </div>
     </header>
@@ -369,25 +376,30 @@
 		                    </div>
 		                </div>
 	                </c:if>
-                <c:if test="${not empty corpId }">
-	                <form action="" method="post">
-	                    <input type="hidden" name="resumNo" value="resumNo">
-	                    <div id="btn_box">
-	                        <div>
-	                            <button type="button" class="btn_" id="yes"><span>수락</span></button>
-	                            <button type="button" class="btn_" id="no"><span>거절</span></button>
-	                        </div>
-	                    </div>
-	                </form>
-                </c:if>
-                <c:if test="${not empty indiId }">
+	                
+                <form name="resumeForm" method="post">
+                    <input type="hidden" name="resumNo" value="resumNo">
                     <div id="btn_box">
                         <div>
-                            <button type="button" class="btn_" id="yes" onclick="location='/resume_writingmodify'"><span>수정</span></button>
-                            <button type="button" class="btn_" id="no" onclick="history.back();"><span>뒤로</span></button>
+	                        <c:if test="${not empty indiId}">
+	                            <button type="button" class="btn_" id="yes" onclick="location='/resume_writingmodify'"><span>수정</span></button>
+                            	<button type="button" class="btn_" id="no" onclick="history.back();"><span>뒤로</span></button>
+	                        </c:if>
+                        	<c:if test="${not empty corpId}">
+                        		<c:if test="${status == '미열람' || status == '열람'}">
+		                            <input type="button" class="btn_" id="yes" value="수락" onclick="resume_accept()">
+		                            <input type="button" class="btn_" id="no" value="거절" onclick="resume_refuse()">
+                        		</c:if>
+                        		<c:if test="${status == '수락'}">
+                        			<div>수락한 이력서 입니다.</div>
+                        		</c:if>
+                        		<c:if test="${status == '거절'}">
+                        			<div>거절한 이력서 입니다.</div>
+                        		</c:if>
+	                        </c:if>
                         </div>
                     </div>
-                </c:if>
+                </form>
             </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

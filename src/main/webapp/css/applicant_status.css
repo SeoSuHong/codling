@@ -11,6 +11,7 @@
 
 header{margin: 0 auto; width: 1220px;}
 a{text-decoration: none;}
+#box{width: 150px;}
 #menu-bar{width: 1220px; margin: 0 auto; margin-top: 25px;  display: flex; justify-content: space-between; align-items: center;}
 
 /*header*/
@@ -35,37 +36,46 @@ ul{list-style: none;}
 
 
 /*section*/
-section{width: 1220px; margin: 0 auto; margin-top: 100px;}
+section{width: 1220px; margin: 100px auto;}
+
+dt{font-size: 1.1rem; font-weight: normal; font-weight: bold;}
+dl,dd{font-size: 1.1rem; font-weight: bold;}
+#box{width: 150px}
+#hover-box{white-space: nowrap;}
 .jobOpeningmg1{width: 1220px; height: 250px; background: rgba(165, 227, 116, 0.3); border-radius: 10px;
     display: flex; justify-content: left; align-items: center; margin-top: 30px; }
 #jobOpening1 h3{font-weight:bold; margin-left: 20px; margin-bottom: 25px;}
 .jobOpeningbox1{height: 60px; margin-left: 40px;}
 .jobOpeningbox1>p>span{font-size: 0.9rem; color: #50B500; font-weight: bold;}
 .jobOpeningbox2{font-weight: bold; font-size: 1.5rem; color: #373F57; line-height: 15px;}
-.content1{display: flex; margin-left: 40px; line-height: 1rem; margin-top: 1rem;}
+.content1{display: flex; margin-left: 40px; line-height: 1.5rem; margin-top: 1rem;}
 .content1 dl{width: 1180px; font-size: 1rem; color:#373F57; margin-bottom: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .content1 dt{margin-right: 0.5rem; float:left; width: 100px;}
 
+#resumeMenu {margin-left: 20px; margin-bottom: 20px;}
+.resumeMenu {margin-right: 15px; padding: 7px 12px; color: #A3A3A3; border: 1px solid white; border-radius: 10px; }
+.resumeMenu:first-child {color: white; background-color: rgb(165, 227, 116);}
 
-#jobOpening2 h3{font-weight:bold; margin-left: 20px; margin-top: 50px;}
-.jobOpeningmg2{width: 1220px; height: 290px; background: #F5F5F5; border-radius: 10px; display: flex; justify-content: left; align-items: center;margin-top: 25px;}
-.jobOpeningbox3{height: 60px; margin-left: 40px;}
-.jobOpeningbox3>p>span{font-size: 0.9rem; color: #50B500; font-weight: bold;}
-.jobOpeningbox4{font-weight: bold; font-size: 1.5rem; color: #373F57; line-height: 15px;}
-.content2{display: flex; margin-left: 40px; line-height: 0.9rem; margin-top: 1rem;}
-.content2 dl{width: 1180px; font-size: 1rem; color:#373F57;}
-.content2 dt{margin-right: 0.5rem; float:left; width: 100px;}
-.jobbox{display: flex; flex-direction: column;}
+.resumeBtn {width: 120px; height: 37px; background-color: #A5E374; color: white; border: none; border-radius: 10px; position: relative; top: -280px; left: 1045px;}
+.resumeBtn:hover {background-color: #8BDF4B;}
+#jobOpening2 h3{font-weight:bold; margin-left: 20px; margin-top: 60px; margin-bottom: 25px;}
 
-.jobOpeningmg3{width: 1220px; height: 290px; background: rgba(165, 227, 116, 0.3);border-radius: 10px;
-    display: flex; justify-content: left; align-items: center;margin-top: 25px;}
+.resumeWrap {width: 1220px; margin-bottom: 30px; padding: 35px 40px 0; border-radius: 10px;}
+.resumeWrap dl {display: flex; margin-bottom: 0;}
+.resumeWrap dt {width: 130px;}
+.resumeWrap dd {margin-bottom: 0;}
+.resumeTitle {font-weight: bold; font-size: 1.5rem; color: #373F57; line-height: 15px; margin-bottom: 25px;}
 
-.jobOpeningmg4{width: 1220px; height:290px; background: #F5F5F5; border-radius: 10px;
-    display: flex; justify-content: left; align-items: center;margin-top: 25px; margin-bottom: 100px; }
-.jobOpeningbox5{width: 160px; height: 60px; margin-left: 40px;}
-.jobOpeningbox5>p>span{font-size: 0.9rem; color: #A3A3A3; font-weight: bold;}
-.jobOpeningbox6{font-weight: bold; font-size: 1.5rem; color:#A3A3A3;line-height: 15px;}
-.content3{display: flex;margin-left: 40px; line-height: 0.8rem; margin-top: 1rem;}
-.content3 dl{font-size: 1rem; color:#A3A3A3;}
-.content3 dt{margin-right: 0.5rem; float:left; width: 80px;}
-dt{font-weight: normal;}
+.waitResume, .acceptResume {font-size: 0.9rem; color: #50B500; font-weight: bold;}
+.refuseResume {font-size: 0.9rem; color: #A3A3A3; font-weight: bold;}
+.wait {background-color: #F5F5F5;}
+
+.accept {background-color: rgba(165, 227, 116, 0.3);}
+
+.refuse,.refuse>p,.refuse dd,.refuse dl,.refuse dt {background-color: #F5F5F5; color: #A3A3A3 !important;}
+
+footer{ display: flex; height: 80px; background-color: #F0F0F0; border-top: #dddddd solid 0.1rem;
+    color: #BEBEBE; margin-top: 5vh; font-size: 0.8rem; justify-content: center; align-items: center;}
+    footer a:hover{text-decoration: underline; color: #BEBEBE;}
+    footer img{margin: 0 2rem;}
+footer a {color:inherit;}

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import codling.identity.Announcement;
+import codling.identity.Applicant;
 import codling.identity.Corporation;
 import codling.identity.Field;
 import codling.identity.JobOpening;
@@ -179,7 +180,7 @@ public class CorporationDao {
 		return no;
 	}
 	
-	// 지원분야 정보
+	// 모집분야 정보
 	public Field getField(int jobOpening_no) {
 		Field field = null;
 		String query = "SELECT * FROM field WHERE jobOpening_no = ?";
@@ -215,7 +216,7 @@ public class CorporationDao {
 		return field;
 	}
 	
-	// 모든 지원분야 정보
+	// 모든 모집분야 정보
 	public List<Field> getAllField(int jobOpening_no) {
 		List<Field> fields = new ArrayList<Field>();
 		String query = "SELECT * FROM field WHERE jobopening_no = ?";
@@ -276,7 +277,7 @@ public class CorporationDao {
 		return result;
 	}
 	
-	// 지원분야 작성
+	// 모집분야 작성
 	public boolean insertField(List<Field> fields) {
 		int count = 0;
 		boolean result = false;
@@ -326,7 +327,7 @@ public class CorporationDao {
 		return result;
 	}
 	
-	// 지원분야 삭제
+	// 모집분야 삭제
 	public boolean deleteField(int jobOpening_no) {
 		boolean result = false;
 		String query = "DELETE FROM field WHERE jobOpening_no = " + jobOpening_no;
@@ -337,6 +338,91 @@ public class CorporationDao {
 			if(pstmt.executeUpdate() >= 1) result = true;
 		} catch(Exception e) {
 			System.out.println("deleteField Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 지원no로 공고no 가져오기
+	public int getJobOpening_no(int apply_no) {
+		int no = 0;
+		String query = "SELECT jobOpening_no FROM apply WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, apply_no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) no = rs.getInt("jobOpening_no");
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getJobOpening_no Error : " + e.getMessage());
+		}
+		return no;
+	}
+	
+	// 지원자 정보 가져오기
+	public List<Applicant> getApplicant(int jobOpening_no) {
+		List<Applicant> applicants = new ArrayList<Applicant>();
+		String query = "SELECT A.no, I.id, I.resumeTitle, I.name, F.name AS fieldName, I.stack, I.email, I.phone, A.coverLetter_no, A.status "
+						+ "FROM apply A "
+						+ "JOIN individual I "
+						+ "ON A.individual_id = I.id "
+						+ "JOIN field F ON "
+						+ "F.no = A.field_no "
+						+ "WHERE A.jobOpening_no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, jobOpening_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				String id = rs.getString("id");
+				String resumeTitle = rs.getString("resumeTitle");
+				String name = rs.getString("name");
+				String fieldName = rs.getString("fieldName");
+				String stack = rs.getString("stack");
+				String email = rs.getString("email");
+				String phone = rs.getString("phone");
+				int coverLetter_no = rs.getInt("coverLetter_no");
+				String status = rs.getString("status");
+				
+				Applicant applicant = new Applicant(no, id, resumeTitle, name, fieldName, stack, email, phone, coverLetter_no, status);
+				applicants.add(applicant);
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("getApplicant Error : " + e.getMessage());
+		}
+		return applicants;
+	}
+	
+	// 지원상태 업데이트
+	public boolean updateStatus(int apply_no, String status) {
+		boolean result = false;
+		String query = "UPDATE apply SET status = ? WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, status);
+			pstmt.setInt(2, apply_no);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("updateStatus Error : " + e.getMessage());
 		}
 		return result;
 	}
@@ -550,6 +636,7 @@ public class CorporationDao {
        return count;
     }
     
+    // 스택 suggest
     public List<String> getAllStack(String keyWord) {
     	List<String> list = new ArrayList<String>();
     	String query = "SELECT stack FROM stackList WHERE stack LIKE ?";

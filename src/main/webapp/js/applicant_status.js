@@ -29,3 +29,20 @@ $(function(){
     });
 })
 
+function showResume(obj) {
+	$(".resumeMenu").css({"color":"#A3A3A3", "background-color":"#F0F0F0"});
+	$(obj).css({"color":"white", "background-color":"rgb(165, 227, 116)"});
+	
+	if($(obj).html() == '전체 이력서') {
+		$(".resumeWrap").show();
+	} else if($(obj).html() == '대기중인 이력서') {
+		$(".resumeWrap").hide();
+		$(".wait").show();
+	} else if($(obj).html() == '수락한 이력서') {
+		$(".resumeWrap").hide();
+		$(".accept").show();
+	} else if($(obj).html() == '거절한 이력서') {
+		$(".resumeWrap").hide();
+		$(".refuse").show();
+	}
+}

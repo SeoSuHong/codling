@@ -202,10 +202,10 @@ public class Resume_writingServlet extends HttpServlet {
 		for(int i = 0; i < portfolio_name_.length-1; i++) {
 			if(i != portfolio_name_.length -2) {
 				if(portfolio_name_[i].equals("") && portfolio_name_[i] == "") portfolio_name_[i] = "제목 없음";
-				portfolio_name += (portfolio_name_[i] + " / ");
+				portfolio_name += (portfolio_name_[i] + "/");
 				if(detail_[i].equals("") && detail_[i] == "") detail_[i] = "상세 내용 없음";
-				detail += (detail_[i] + " / ");
-				url += (url_[i] + " | ");
+				detail += (detail_[i] + "/");
+				url += (url_[i] + "|");
 			}else {
 				if(portfolio_name_[i].equals("") && portfolio_name_[i] == "") portfolio_name_[i] = "제목 없음";
 				portfolio_name += portfolio_name_[i];
@@ -240,7 +240,7 @@ public class Resume_writingServlet extends HttpServlet {
 			builder.append(fileName_);
 			builder.append("/");
 			builders.append(p.getSize());
-			builders.append(" / ");
+			builders.append("/");
 			
 			InputStream fis = filePart.getInputStream();
 			
@@ -254,7 +254,7 @@ public class Resume_writingServlet extends HttpServlet {
 			FileOutputStream fos = new FileOutputStream(filePath);
 			
 			builder_fileaddress.append(filePath);
-			builder_fileaddress.append(" | ");
+			builder_fileaddress.append("|");
 			
 			byte[] buf = new byte[1024];
 			int fileSize_;
@@ -267,8 +267,8 @@ public class Resume_writingServlet extends HttpServlet {
 		}
 		
 		if(builder.toString() != "" && !builder.toString().equals("")) {
-			builder.delete(builder.length()-2, builder.length());
-			builders.delete(builders.length()-2, builders.length());
+			builder.delete(builder.length()-1, builder.length());
+			builders.delete(builders.length()-1, builders.length());
 			builder_fileaddress.delete(builder_fileaddress.length()-1, builder_fileaddress.length());
 		}
 		
@@ -280,9 +280,9 @@ public class Resume_writingServlet extends HttpServlet {
 		for(int i = 0; i < fileTitle_.length-1; i++) {
 			if(i != fileTitle_.length-2) {
 				if(fileTitle_[i].equals("") && fileTitle_[i] == "") fileTitle_[i] = "첨부파일 제목 없음";
-				fileTitle += (fileTitle_[i] + " / ");
+				fileTitle += (fileTitle_[i] + "/");
 				if(file_detail_[i].equals("") && file_detail_[i] == "") file_detail_[i] = "첨부파일 내용 없음";
-				file_detail += (file_detail_[i] + " / ");
+				file_detail += (file_detail_[i] + "/");
 			}else {
 				if(fileTitle_[i].equals("") && fileTitle_[i] == "") fileTitle_[i] = "첨부파일 제목 없음";
 				fileTitle += fileTitle_[i];

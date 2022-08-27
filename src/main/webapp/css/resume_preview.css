@@ -9,7 +9,7 @@
         #menu-bar>div{width: 131.5px; height: 5px;}
         #logoimg{width: 253.32px; height: 56.82px;}
         #profilelogo{width: 35px; height: 35px; margin: 5px;}
-        #profile-box{display: flex; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}
+        #profile-box{display: flex; align-items: center; height: 56.81px; color: #373F57; font-weight: bold; white-space: nowrap;}
         #hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
         #profile-hover{border: 1px solid #cecece; width: 150px; height: 160px; float: right; margin-left: 10px;
             border-radius: 10px;}

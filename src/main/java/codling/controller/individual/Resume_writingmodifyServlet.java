@@ -219,7 +219,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 				portfolio_name_update += (portfolio_name_update_[i] + "/");
 				if(detail_update_[i].equals("") && detail_update_[i] == "") detail_update_[i] = "상세내용 없음.";
 				detail_update += (detail_update_[i] + "/");
-				url_update += (url_update_[i] + " | ");
+				url_update += (url_update_[i] + "|");
 			}else {
 				if(portfolio_name_update_[i].equals("") && portfolio_name_update_[i] == "") portfolio_name_update_[i] = "제목 없음.";
 				portfolio_name_update += portfolio_name_update_[i];
@@ -254,7 +254,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			builder.append(fileName_);
 			builder.append("/");
 			builders.append(p.getSize());
-			builders.append(" / ");
+			builders.append("/");
 			
 			InputStream fis = filePart.getInputStream();
 			
@@ -268,7 +268,7 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 			FileOutputStream fos = new FileOutputStream(filePath);
 			
 			builder_fileaddress.append(filePath);
-			builder_fileaddress.append(" | ");
+			builder_fileaddress.append("|");
 			
 			byte[] buf = new byte[1024];
 			int fileSize_;
@@ -282,8 +282,8 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		
 		if(builder.toString() != "" && !builder.toString().equals("")) {
 			builder.delete(builder.length()-1, builder.length());
-			builders.delete(builders.length()-2, builders.length());
-			builder_fileaddress.delete(builder_fileaddress.length()-2, builder_fileaddress.length());
+			builders.delete(builders.length()-1, builders.length());
+			builder_fileaddress.delete(builder_fileaddress.length()-1, builder_fileaddress.length());
 		}
 		
 		String[] fileTitle_ = request.getParameterValues("fileTitle");
@@ -319,9 +319,9 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 				if(i != fileTitle_update_.length-1) {
 					fileTitle_update += (fileTitle_update_[i] + "/");
 					fileName_update += (fileName_update_[i] + "/");
-					fileaddress_update += (fileaddress_update_[i] + " | ");
+					fileaddress_update += (fileaddress_update_[i] + "|");
 					file_detail_update += (file_detail_update_[i] + "/");
-					fileSize_update += (fileSize_update_[i] + " / ");
+					fileSize_update += (fileSize_update_[i] + "/");
 				}else {
 					fileTitle_update += fileTitle_update_[i];
 					fileName_update += fileName_update_[i];
@@ -334,9 +334,9 @@ public class Resume_writingmodifyServlet extends HttpServlet {
 		if(!fileTitle.equals("") && fileTitle != "" && fileTitle_update_ != null) {
 			fileTitle_update += ("/" + fileTitle);
 			fileName_update += ("/" + builder.toString());
-			fileaddress_update += (" | " + builder_fileaddress.toString());
+			fileaddress_update += ("|" + builder_fileaddress.toString());
 			file_detail_update += ("/" + file_detail);
-			fileSize_update += (" / " + builders.toString());
+			fileSize_update += ("/" + builders.toString());
 		}else {
 			fileTitle_update += fileTitle;
 			fileName_update += builder.toString();
