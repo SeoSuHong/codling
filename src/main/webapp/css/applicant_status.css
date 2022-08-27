@@ -40,7 +40,7 @@ section{width: 1220px; margin: 100px auto;}
 dt{font-weight: normal;}
 
 .jobOpeningmg1{width: 1220px; height: 250px; background: rgba(165, 227, 116, 0.3); border-radius: 10px;
-    display: flex; justify-content: left; align-items: center; margin-top: 30px; }
+    display: flex; justify-content: left; align-items: center; margin-top: 30px; cursor: pointer;}
 #jobOpening1 h3{font-weight:bold; margin-left: 20px; margin-bottom: 25px;}
 .jobOpeningbox1{height: 60px; margin-left: 40px;}
 .jobOpeningbox1>p>span{font-size: 0.9rem; color: #50B500; font-weight: bold;}
@@ -53,7 +53,7 @@ dt{font-weight: normal;}
 .resumeMenu {margin-right: 15px; padding: 7px 12px; color: #A3A3A3; border: 1px solid white; border-radius: 10px; }
 .resumeMenu:first-child {color: white; background-color: rgb(165, 227, 116);}
 
-.resumeBtn {width: 120px; height: 37px; background-color: #A5E374; border: none; border-radius: 10px; position: relative; top: -265px; left: 1045px;}
+.resumeBtn {width: 120px; height: 37px; color: white; background-color: #A5E374; border: none; border-radius: 10px; position: relative; top: -265px; left: 1045px;}
 .resumeBtn:hover {background-color: #8BDF4B;}
 #jobOpening2 h3{font-weight:bold; margin-left: 20px; margin-top: 60px; margin-bottom: 25px;}
 

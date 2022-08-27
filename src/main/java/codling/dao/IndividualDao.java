@@ -67,7 +67,7 @@ public class IndividualDao {
 	// 개인회원 회원가입
 	public boolean insertIndividual(Individual individual) {
 		boolean result = false;
-		String query = "INSERT INTO individual VALUES (?,DEFAULT,?,?,?,?,?,?,?,'')";
+		String query = "INSERT INTO individual VALUES (?, DEFAULT, ?, ?, ?, ?, ?, ?, ?, '', '')";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);

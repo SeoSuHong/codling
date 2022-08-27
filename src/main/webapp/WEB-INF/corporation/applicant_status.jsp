@@ -35,7 +35,7 @@
     <section>
         <article id="jobOpening1">
             <h3>공고 현황</h3>
-            <div class="jobOpeningmg1">
+            <div class="jobOpeningmg1" onclick="location.href = 'job_accountment?no=${jobOpening.no}'">
                 <div class="jobbox2">
                 <div class="jobOpeningbox1">
                     <p><span>내가올린공고</span></p>
@@ -146,9 +146,9 @@
 				<button class="resumeMenu" onclick="showResume(this)">거절한 이력서</button>
 			</div>
 			
+			<!-- 대기중인 이력서 -->
 			<c:forEach var="applicant" items="${applicants}">			
 				<c:if test="${applicant.status == '미열람' || applicant.status == '열람'}">
-					<!-- 대기중인 이력서 -->
 					<div class="resumeWrap wait">
 						<p class="waitResume">대기중인 이력서</p>
 						<p class="resumeTitle">${applicant.resumeTitle}</p>
@@ -187,9 +187,11 @@
 						<button class="resumeBtn" onclick="location.href = 'resume_preview?id=${applicant.id}&coverLetter_no=${applicant.coverLetter_no}&no=${applicant.no}&status=${applicant.status}'">이력서 열람</button>
 					</div>
 				</c:if>
-				
+			</c:forEach>
+			
+			<!-- 수락한 이력서 -->
+			<c:forEach var="applicant" items="${applicants}">	
 				<c:if test="${applicant.status == '수락'}">
-					<!-- 수락한 이력서 -->
 					<div class="resumeWrap accept">
 						<p class="acceptResume">수락한 이력서</p>
 						<p class="resumeTitle">${applicant.resumeTitle}</p>
@@ -228,9 +230,11 @@
 						<button class="resumeBtn" onclick="location.href = 'resume_preview?id=${applicant.id}&coverLetter_no=${applicant.coverLetter_no}&no=${applicant.no}&status=${applicant.status}'">이력서 열람</button>
 					</div>
 				</c:if>
-				
+			</c:forEach>
+			
+			<!-- 거절한 이력서 -->
+			<c:forEach var="applicant" items="${applicants}">	
 				<c:if test="${applicant.status == '거절'}">
-					<!-- 거절한 이력서 -->
 					<div class="resumeWrap refuse">
 						<p class="refuseResume">거절한 이력서</p>
 						<p class="resumeTitle">${applicant.resumeTitle}</p>
@@ -270,6 +274,7 @@
 					</div>
 				</c:if>
 			</c:forEach>
+			
         </article>
     </section>
     <footer>

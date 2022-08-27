@@ -85,6 +85,7 @@ public class Resume_previewServlet extends HttpServlet {
 		
 		request.setAttribute("status", status);
 		
+		request.setAttribute("replaceChar", "\n");
 		request.getRequestDispatcher("/WEB-INF/individual/resume_preview.jsp").forward(request, response);
 	}
 	

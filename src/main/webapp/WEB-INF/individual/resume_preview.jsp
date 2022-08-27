@@ -186,10 +186,41 @@
 	                        <h2>포트폴리오</h2>
 	                    </div>
 	                    <div class="content">
-	                    	<c:forEach var="portfolio" items="${portfolios}" varStatus="">
+	                    	<c:forEach var="portfolio" items="${portfolios}" varStatus="st">
 	                    		<p class="portfolioName">${portfolio.name}</p>
-		                        <p id="url">url : ${portfolio.url}</p>
-		                        <p id="file">첨부파일 : ${portfolio.fileName}</p>
+		                        <table>
+		                        	<c:if test="${not empty portfolio.url}">
+			                        	<c:forTokens var="url" items="${portfolio.url}" delims="|" varStatus="urlSt">
+			                        		<tr class="url">
+			                        			<td class="urlTd"><c:if test="${urlSt.first}">URL</c:if></td>
+			                        			<td>
+			                        				· <a href="https://${url}" target="_blank">${url}</a>		                        				
+			                        			</td>
+			                        		</tr>
+			                        	</c:forTokens>
+			                        	<tr class="emptyTr"></tr>
+			                        </c:if>
+			                        
+			                        <c:if test="${not empty portfolio.fileName}">
+										<c:forTokens var="file" items="${portfolio.fileName}" delims="/" varStatus="fileSt">
+			                        		<tr class="file">
+			                        			<td class="fileTd"><c:if test="${fileSt.first}">첨부파일</c:if></td>
+			                        			<td>
+			                        				· <a download href="/portfolio_files/${file}">${file}</a>
+												</td>
+				                        	</tr>
+	                        			</c:forTokens>
+	                        			<tr class="emptyTr"></tr>
+	                        		</c:if>
+	                        		
+		                        </table>
+		                        
+		                        <c:if test="${not empty portfolio.detail}">
+	                       			<div class="detailWrap">
+	                       				<div class="detailTxt detail">세부사항</div>
+	                       				<div class="deatil">${fn:replace(portfolio.detail, replaceChar, '<br>')}</div>
+	                       			</div>
+	                       		</c:if>
 		                        <c:if test="${!st.last}"><hr class="hr"></c:if>
 		                    </c:forEach>
 	                    </div>
