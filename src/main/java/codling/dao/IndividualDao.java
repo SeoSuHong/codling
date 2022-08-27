@@ -90,6 +90,7 @@ public class IndividualDao {
 		return result;
 	}
 	
+	// ============================== 이력서 작성 ==============================
 	// 이력서 제목 작성
 	public boolean insertResumeTitle(String id, String title) {
 		boolean result = false;
@@ -147,7 +148,7 @@ public class IndividualDao {
 			pstmt.setString(5, education.getSchoolEndDate());
 			pstmt.setString(6, education.getStatus());
 			pstmt.setString(7, education.getDepartment());
-			pstmt.setString(8, education.getScore());
+			pstmt.setDouble(8, education.getScore());
 			
 			if(pstmt.executeUpdate() == 1) result = true;
 			
@@ -234,6 +235,134 @@ public class IndividualDao {
 		return result;
 	}
 	
+	// ============================== 이력서 수정 ==============================
+	// 이력서 제목 and 스택 수정
+	public boolean updateResume(String id, String title, String stack) {
+		boolean result = false;
+		String query = "UPDATE individual SET resumeTitle = ?, stack = ? WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, title);
+			pstmt.setString(3, stack);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateResume Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 학력사항 수정
+	public boolean updateEducation(Education education) {
+		boolean result = false;
+		String query = "UPDATE education "
+					+ "SET school = ?, schoolName = ?, schoolStartDate = ?, schoolEndDate = ?, status = ?, department = ?, score = ? WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, education.getSchool());
+			pstmt.setString(2, education.getSchoolName());
+			pstmt.setString(3, education.getSchoolStartDate());
+			pstmt.setString(4, education.getSchoolEndDate());
+			pstmt.setString(5, education.getStatus());
+			pstmt.setString(6, education.getDepartment());
+			pstmt.setDouble(7, education.getScore());
+			pstmt.setInt(8, education.getNo());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateEducation Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 경력사항 수정
+	public boolean updateCareer(Career career) {
+		boolean result = false;
+		String query = "UPDATE career SET prev_company = ?, tenureStartDate = ?, tenureEndDate = ?, position = ?, department = ?, work_content = ? WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, career.getPrev_company());
+			pstmt.setString(2, career.getTenureStartDate());
+			pstmt.setString(3, career.getTenureEndDate());
+			pstmt.setString(4, career.getPosition());
+			pstmt.setString(5, career.getDepartment());
+			pstmt.setString(6, career.getWork_content());
+			pstmt.setInt(7, career.getNo());
+			
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateCareer Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 자격증 수정
+	public boolean updateLicense(License license) {
+		boolean result = false;
+		String query = "UPDATE license SET name = ?, agency = ?, pass = ?, acquireDate = ? WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, license.getName());
+			pstmt.setString(2, license.getAgency());
+			pstmt.setString(3, license.getPass());
+			pstmt.setString(4, license.getAcquireDate());
+			pstmt.setInt(5, license.getNo());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateLicense Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 포트폴리오 수정
+	public boolean updatePortfolio(Portfolio portfolio) {
+		boolean result = false;
+		String query = "UPDATE portfolio SET name = ?, detail = ?, url = ?, fileName = ?, fileSize = ? WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, portfolio.getName());
+			pstmt.setString(2, portfolio.getDetail());
+			pstmt.setString(3, portfolio.getUrl());
+			pstmt.setString(4, portfolio.getFileName());
+			pstmt.setString(5, portfolio.getFileSize());
+			pstmt.setInt(6, portfolio.getNo());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updatePortfolio Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// ============================== 이력서 조회 ==============================
 	// 이력서 학력사항 가져오기
 	public List<Education> getEducation(String id) {
 		List<Education> educations = new ArrayList<Education>();
@@ -253,7 +382,7 @@ public class IndividualDao {
 				String schoolEndDate = rs.getString("schoolEndDate");
 				String status = rs.getString("status");
 				String department = rs.getString("department");
-				String score = rs.getString("score");
+				double score = rs.getDouble("score");
 				
 				Education education = new Education(no, id, school, schoolName, schoolStartDate, schoolEndDate, status, department, score);
 				educations.add(education);
@@ -362,6 +491,87 @@ public class IndividualDao {
 			System.out.println("getPortfolio Error : " + e.getMessage());
 		}
 		return portfolios;
+	}
+
+	// ============================== 이력서 삭제 ==============================
+	// 이력서 학력 삭제
+	public boolean deleteEducation(int no) {
+		boolean result = false;
+		String query = "DELETE FROM education WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("deleteEducation Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 경력 삭제
+	public boolean deleteCareer(int no) {
+		boolean result = false;
+		String query = "DELETE FROM career WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("deleteCareer Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 자격증 삭제
+	public boolean deleteLicense(int no) {
+		boolean result = false;
+		String query = "DELETE FROM license WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("deleteLicense Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 이력서 포트폴리오 삭제
+	public boolean deletePortfolio(int no) {
+		boolean result = false;
+		String query = "DELETE FROM portfolio WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("deletePortfolio Error : " + e.getMessage());
+		}
+		return result;
 	}
 	
 	// 자기소개서 가져오기

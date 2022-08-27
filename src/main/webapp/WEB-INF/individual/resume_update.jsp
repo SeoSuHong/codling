@@ -33,7 +33,7 @@
         </div>
     </header>
     <section>
-    	<form action="resume_writing" name="resumeForm" method="post" enctype="multipart/form-data">
+    	<form action="resume_update" name="resumeForm" method="post" enctype="multipart/form-data">
 		    <!--이력서제목-->
 	        <h2>이력서 제목</h2>
 	        <div>
@@ -729,9 +729,9 @@
 		        </div>
 	        </div>
 	    
-		    <!--완료버튼-->
+		    <!--수정버튼-->
 		    <div id="submitWrap">
-		    	<input type="button" id="submitBtn" value="완 료" onclick="resumeChk()">
+		    	<input type="button" id="submitBtn" value="수 정" onclick="resumeChk()">
 		    </div>
 		</form>
     </section>

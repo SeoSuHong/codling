@@ -43,6 +43,8 @@
         .status {font-size: 1rem;}
         #comname{font-size: 1.5rem;}
         .careerDate{font-size: 1rem;}
+        .work_contentWrap, .tenureWrap, .schoolDateWrap, .scoreWrap {display: flex;}
+        .work_contentWrap p:first-child, .tenureWrap p:first-child, .schoolDateWrap p:first-child, .scoreWrap p:first-child {width: 80px;}
         #part{font-size: 1.3rem;}
         #licname{font-size: 1.5rem;}
         .pass{font-size: 1rem;}

@@ -2,12 +2,13 @@ package codling.identity;
 
 public class Education {
 	private int no;
-	private String individual_id, school, schoolName, schoolStartDate, schoolEndDate, status, department, score;
+	private String individual_id, school, schoolName, schoolStartDate, schoolEndDate, status, department;
+	private double score;
 	
 	public Education() {}
 
 	public Education(int no, String individual_id, String school, String schoolName, String schoolStartDate, String schoolEndDate, 
-			String status, String department, String score) {
+			String status, String department, double score) {
 		super();
 		this.no = no;
 		this.individual_id = individual_id;
@@ -84,28 +85,11 @@ public class Education {
 		this.department = department;
 	}
 
-	public String getScore() {
+	public double getScore() {
 		return score;
 	}
 
-	public void setScore(String score) {
+	public void setScore(double score) {
 		this.score = score;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Education other = (Education) obj;
-		if (school == null) {
-			if (other.school != null)
-				return false;
-		} else if (!school.equals(other.school))
-			return false;
-		return true;
 	}
 }

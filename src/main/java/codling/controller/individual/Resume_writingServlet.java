@@ -66,10 +66,13 @@ public class Resume_writingServlet extends HttpServlet {
 		String[] schoolEndDates   = request.getParameterValues("schoolEndDate");
 		String[] statuses         = request.getParameterValues("status");
 		String[] departments      = request.getParameterValues("department");
-		String[] scores           = request.getParameterValues("score");
+		String[] scores_          = request.getParameterValues("score");
+		
+		double[] scores = new double[scores_.length];
 		
 		boolean educationResult = true;
 		for(int i = 0; i < schools.length - 1; i++) {
+			if(scores_[i] != null && !scores_[i].equals("")) scores[i] = Double.parseDouble(scores_[i]);
 			Education education = new Education(0, id, schools[i], schoolNames[i], schoolStartDates[i] + "-00", schoolEndDates[i] + "-00", statuses[i], departments[i], scores[i]);
 			boolean result = indiDao.insertEducation(education);
 			if(!result) educationResult = false;

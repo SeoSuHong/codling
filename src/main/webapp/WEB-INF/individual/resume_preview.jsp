@@ -75,26 +75,26 @@
 							</c:if>
 						</span></h2>
                         <p>	
-                        	&nbsp;&nbsp;<span>${individual.gender}성</span> |
+                        	&nbsp;&nbsp;<span>
+	                        	<c:if test="${individual.gender == '남'}">♂️</c:if>
+	                        	<c:if test="${individual.gender == '여'}">♀</c:if>
+	                        	${individual.gender}성
+                        	</span> |
                         	<fmt:formatDate var="nowYear" value="${now}" pattern="yyyy"/>
                         	<fmt:parseNumber var="birthYear" value="${fn:substring(individual.birth, 0, 4)}" type="number"/>
                             <span>${nowYear - birthYear}세</span> |
-                            <span>
+                            <span>🎂
                             	<c:forTokens var="birth" items="${individual.birth}" delims="-" varStatus="st">
-                            		<c:if test="${!st.last}">
-                            			${birth}.
-                            		</c:if>
-                            		<c:if test="${st.last}">
-                            			${birth}
-                            		</c:if>
+                            		<c:if test="${!st.last}">${birth}.</c:if>
+                            		<c:if test="${st.last}">${birth}</c:if>
                             	</c:forTokens>
                             </span>
                         </p>
                         <p>&nbsp;&nbsp;
-                        	${fn:substring(individual.phone, 0, 3)}-${fn:substring(individual.phone, 3, 7)}-${fn:substring(individual.phone, 7, 11)}
+                        	📞${fn:substring(individual.phone, 0, 3)}-${fn:substring(individual.phone, 3, 7)}-${fn:substring(individual.phone, 7, 11)}
                         </p>
-                        <p>&nbsp;&nbsp; ${individual.email}</p>
-                        <p>&nbsp;&nbsp; ${individual.address}</p>
+                        <p>&nbsp;&nbsp; 📧${individual.email}</p>
+                        <p>&nbsp;&nbsp; 🏠${individual.address}</p>
                     </div>
                 </div>
 
@@ -106,9 +106,15 @@
                     	<c:forEach var="education" items="${educations}" varStatus="st">
 	                        <p id="schoolname">${education.schoolName} | ${education.school} <span class="status">(${education.status})</span></p>
 	                        <p id="schooinfo">${education.department}</p>
-	                        <p id="schooend">${fn:substring(education.schoolStartDate, 0, 4)}년 ${fn:substring(education.schoolStartDate, 5, 7)}월 ~ ${fn:substring(education.schoolEndDate, 0, 4)}년 ${fn:substring(education.schoolEndDate, 5, 7)}월</p>
+	                        <div class="schoolDateWrap">
+	                        	<p>재학기간</p>
+	                        	<p id="schooend">${fn:substring(education.schoolStartDate, 0, 4)}년 ${fn:substring(education.schoolStartDate, 5, 7)}월 ~ ${fn:substring(education.schoolEndDate, 0, 4)}년 ${fn:substring(education.schoolEndDate, 5, 7)}월</p>
+	                        </div>
 	                        <c:if test="${education.score != 0}">
-	                        	<p id="scor">학점 &ensp; ${education.score}/4.5</p>
+	                        	<div class="scoreWrap">
+		                        	<p>학점</p>
+		                        	<p>${education.score} / 4.5</p>
+		                        </div>
 	                        </c:if>
                     		<c:if test="${!st.last}">
                     			<hr class="hr">
@@ -155,9 +161,14 @@
 		                        	</c:if>
 		                        )</span></p>
 		                        <p id="part">${career.department} / ${career.position}</p>
-		                        <p>${fn:substring(career.tenureStartDate, 0, 4)}년 ${fn:substring(career.tenureStartDate, 5, 7)}월 ~ ${fn:substring(career.tenureEndDate, 0, 4)}년 ${fn:substring(career.tenureEndDate, 5, 7)}월</p>
-		                        <p>주요업무</p>
-		                        <p>${career.work_content}</p>
+		                        <div class="tenureWrap">
+		                        	<p>재직기간</p>
+		                        	<p>${fn:substring(career.tenureStartDate, 0, 4)}년 ${fn:substring(career.tenureStartDate, 5, 7)}월 ~ ${fn:substring(career.tenureEndDate, 0, 4)}년 ${fn:substring(career.tenureEndDate, 5, 7)}월</p>
+		                        </div>
+		                        <div class="work_contentWrap">
+			                        <p>주요업무</p>
+			                        <p>${fn:replace(career.work_content, replaceChar, '<br>')}</p>
+		                        </div>
 		                        <c:if test="${!st.last}"><hr class="hr"></c:if>
 	                        </c:forEach>
 	                    </div>
@@ -234,7 +245,7 @@
 	                    </div>
 	                    <div class="content">
 	                        <p id="reti">${coverLetter.title}</p>
-	                        <p>${coverLetter.content}</p>
+	                        <p>${fn:replace(coverLetter.content, replaceChar, '<br>')}</p>
 	                    </div>
 	                </div>
 	                <hr>
