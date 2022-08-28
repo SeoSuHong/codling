@@ -244,10 +244,10 @@ public class IndividualDao {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, id);
-			pstmt.setString(2, title);
-			pstmt.setString(3, stack);
-			
+			pstmt.setString(1, title);
+			pstmt.setString(2, stack);
+			pstmt.setString(3, id);
+
 			if(pstmt.executeUpdate() == 1) result = true;
 			
 			pstmt.close();

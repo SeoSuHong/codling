@@ -7,7 +7,9 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -104,6 +106,7 @@ public class Resume_updateServlet extends HttpServlet {
 		// 이력서 제목 and 스택
 		String title = request.getParameter("title");
 		String stack = request.getParameter("stacks");
+		
 		boolean resumeResult = indiDao.updateResume(id, title, stack);
 		
 		
@@ -177,9 +180,11 @@ public class Resume_updateServlet extends HttpServlet {
 			}
 		} else if(prev_companies.length - 1 > carSize) {
 			for(int i = carSize; i < prev_companies.length - 1; i++) {
-				Career career = new Career(0, id, prev_companies[i], tenureStartDates[i] + "-00", tenureEndDates[i] + "-00", positions[i], departments[i], work_contents[i]);
-				boolean result = indiDao.insertCareer(career);
-				if(!result) careerResult = false;
+				if(prev_companies[i] != null && !prev_companies[i].equals("")) {
+					Career career = new Career(0, id, prev_companies[i], tenureStartDates[i] + "-00", tenureEndDates[i] + "-00", positions[i], career_departments[i], work_contents[i]);
+					boolean result = indiDao.insertCareer(career);
+					if(!result) careerResult = false;
+				}
 			}
 		}
 		
@@ -210,9 +215,11 @@ public class Resume_updateServlet extends HttpServlet {
 			}
 		} else if(names.length - 1 > licSize) {
 			for(int i = licSize; i < names.length - 1; i++) {
-				License license = new License(0, id, names[i], agencies[i], passes[i], acquireDates[i]);
-				boolean result = indiDao.insertLicense(license);
-				if(!result) licenseResult = false;
+				if (names[i] != null && !names[i].equals("")) {
+					License license = new License(0, id, names[i], agencies[i], passes[i], acquireDates[i]);
+					boolean result = indiDao.insertLicense(license);
+					if(!result) licenseResult = false;
+				}
 			}
 		}
 		
@@ -233,9 +240,23 @@ public class Resume_updateServlet extends HttpServlet {
 				fileCount[i] = Integer.parseInt(fileCount_[i]);
 		}
 		String[] prev_file_      = request.getParameterValues("prev_file");
+		String[] prev_fileCount_ = request.getParameterValues("prev_fileCount");
+		int[]    prev_fileCount  = null;
+		
 		List<String> prev_file = new ArrayList<String>();
-		for(int i = 0; i < prev_file_.length; i++) {
-			prev_file.add(prev_file_[i]);
+		if(prev_file_ != null) {
+			for(int i = 0; i < prev_file_.length; i++) {
+				prev_file.add(prev_file_[i]);
+			}
+		}
+		
+		if(prev_fileCount_ != null) {
+			prev_fileCount = new int[prev_fileCount_.length];
+			for(int i = 0; i < prev_fileCount_.length; i++) {
+				if(prev_fileCount_[i] != null && !prev_fileCount_[i].equals("")) {
+					prev_fileCount[i] = Integer.parseInt(prev_fileCount_[i]);
+				}
+			}
 		}
 		
 		Collection<Part> parts = request.getParts();
@@ -247,19 +268,20 @@ public class Resume_updateServlet extends HttpServlet {
 		List<Portfolio> portfolios = indiDao.getPortfolio(id);
 		List<String> deleteFiles = new ArrayList<String>();
 		for(int i = 0; i < portfolios.size(); i++) {
-			String[] curr_file = portfolios.get(i).getFileName().split("/");
-			for(int j = 0; j < curr_file.length; j++) {
-				if(!prev_file.contains(curr_file[j])) deleteFiles.add(curr_file[j]);
+			if(portfolios.get(i).getFileName() != null && !portfolios.get(i).getFileName().equals("")) {
+				String[] curr_file = portfolios.get(i).getFileName().split("/");
+				for(int j = 0; j < curr_file.length; j++) {
+					if(!prev_file.contains(curr_file[j])) deleteFiles.add(curr_file[j]);
+				}
 			}
 		}
 		
 		for(int i = 0; i < deleteFiles.size(); i++) {
-			System.out.println(deleteFiles.get(i));
+			String deleteFileName = deleteFiles.get(i);
+			String deleteFilePath = realPath + File.separator + deleteFileName;
+			File deleteFile = new File(deleteFilePath);
+			if(deleteFile.exists()) deleteFile.delete();
 		}
-//		String deleteFileName = portfolios.get(i).getFileName();
-//		String deleteFilePath = realPath + File.separator + deleteFileName;
-//		File deleteFile = new File(deleteFilePath);
-//		if(deleteFile.exists()) deleteFile.delete();
 
 		for(Part p : parts) {
 			if(!p.getName().equals("file") || p.getSize() == 0) continue;
@@ -291,6 +313,26 @@ public class Resume_updateServlet extends HttpServlet {
 		boolean portfolioResult = true;
 		int urlIdx = 0;
 		int fileIdx = 0;
+		int prev_fileIdx = 0;
+		
+		Map<String, String> fileNameSize = new LinkedHashMap<String, String>();  // key : DB.fileName, value : DB.fileSize (기존 fileSize를 살리기 위해)
+		for(int i = 0; i < portfolios.size(); i++) {
+			if((portfolios.get(i).getFileName() != null && !portfolios.get(i).getFileName().equals("")) && (portfolios.get(i).getFileSize() != null && !portfolios.get(i).getFileSize().equals(""))) {
+				String[] fileNames = portfolios.get(i).getFileName().split("/");
+				String[] fileSizes = portfolios.get(i).getFileSize().split("/");
+			
+				for(int j = 0; j < fileNames.length; j++) {
+					fileNameSize.put(fileNames[j], fileSizes[j]);
+				}
+			}
+		}
+		
+		// 사용자가 삭제한 file 제거
+		for(String fName : fileNameSize.keySet()) {
+			if(!prev_file.contains(fName))
+				fileNameSize.remove(fName);
+		}
+		
 		for(int i = 0; i < portfolioNames.length - 1; i++) {
 			String url = "";
 			for(int j = 0; j < urlCount[i]; j++) {
@@ -303,6 +345,24 @@ public class Resume_updateServlet extends HttpServlet {
 			
 			String fileName = "";
 			String fileSize = "";
+			
+			if(prev_fileCount != null) {
+				for(int j = 0; j < prev_fileCount[i]; j++) {
+					fileName += prev_file.get(prev_fileIdx) + "/";
+					
+					// fileSize 가져오기
+					String fs = (new ArrayList<String>(fileNameSize.values())).get(prev_fileIdx);
+					fileSize += fs + "/";
+					System.out.println("fileSize : " + fileSize);
+					
+					prev_fileIdx++;
+				}
+				if(fileCount[i] == 0) {
+					fileName = fileName.replaceFirst(".$", "");
+					fileSize = fileSize.replaceFirst(".$", "");
+				}
+			}
+			
 			for(int j = 0; j < fileCount[i]; j++) {
 				if(j < fileCount[i] - 1) {
 					fileName += builderNames.get(fileIdx) + "/";
@@ -313,9 +373,57 @@ public class Resume_updateServlet extends HttpServlet {
 				}
 				fileIdx++;
 			}
-
-			Portfolio portfolio = new Portfolio(0, id, portfolioNames[i], details[i], url, fileName, fileSize);
+			if(i < porSize) {
+				Portfolio portfolio = new Portfolio(porNo[i], id, portfolioNames[i], details[i], url, fileName, fileSize);
+				boolean result = indiDao.updatePortfolio(portfolio);
+				if(!result) portfolioResult = false;
+			}
 		}
+		
+		List<Portfolio> curr_ports = indiDao.getPortfolio(id);
+		if(portfolioNames.length - 1 < porSize) {
+			for(int i = 0; i < portfolioNames.length - 1; i++) {
+				for(int j = 0; j < curr_ports.size(); j++) {
+					if(!curr_ports.get(j).getName().equals(portfolioNames[i])) {
+						boolean result = indiDao.deletePortfolio(portfolios.get(j).getNo());
+						if(!result) portfolioResult = false;
+					}
+				}
+			}
+		} else if(portfolioNames.length - 1 > porSize) {
+			for(int i = porSize; i < portfolioNames.length - 1; i++) {
+				String url = "";
+				for(int j = 0; j < urlCount[i]; j++) {
+					if(j < urlCount[i] - 1)
+						url += urls[urlIdx] + "|";
+					else
+						url += urls[urlIdx];
+					urlIdx++;
+				}
+					
+				String fileName = "";
+				String fileSize = "";
+				for(int j = 0; j < fileCount[i]; j++) {
+					if(j < fileCount[i] - 1) {
+						fileName += builderNames.get(fileIdx) + "/";
+						fileSize += builderSizes.get(fileIdx) + "/";
+					} else {
+						fileName += builderNames.get(fileIdx);
+						fileSize += builderSizes.get(fileIdx);
+					}
+					fileIdx++;
+				}				
+				Portfolio portfolio = new Portfolio(0, id, portfolioNames[i], details[i], url, fileName, fileSize);
+				boolean result = indiDao.insertPortfolio(portfolio);
+				if(!result) portfolioResult = false;
+			}
+		}
+		
+		System.out.println("resumeResult : " + resumeResult);
+		System.out.println("educationResult : " + educationResult);
+		System.out.println("careerResult : " + careerResult);
+		System.out.println("licenseResult : " + licenseResult);
+		System.out.println("portfolioResult : " + portfolioResult);
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");

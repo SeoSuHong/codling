@@ -221,22 +221,22 @@ function addUrl(obj) {
 // 포트폴리오 URL삭제 버튼 클릭 시
 function delUrl(obj) {
 	obj.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling.value--;
-	console.log(obj.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling.value);
 	var tr = obj.parentNode.parentNode;
 	tr.remove();
 }
 
 // 포트폴리오 프로젝트 파일 삭제 버튼 클릭 시
 function deleteFile(obj) {
-	var currTr = obj.parentNode.previousSibling.previousSibling;
-	var nextTr = obj.parentNode.parentNode.nextSibling.nextSibling;
-	console.log(nextTr);
-	if(currTr.innerText == '프로젝트 파일' && nextTr.className == 'projectFile') {
-		nextTr.childNodes[1].innerText = '프로젝트 파일';
+	var currTh = obj.parentNode.previousSibling.previousSibling;
+	var nextTh = obj.parentNode.parentNode.nextSibling.nextSibling;
+
+	if(currTh.innerText == '프로젝트 파일' && nextTh.className == 'projectFile') {
+		nextTh.childNodes[1].innerText = '프로젝트 파일';
 	}
 	
 	var del = obj.parentNode.parentNode;
-	console.log(del);
+	var prev_fileCount = del.parentNode.lastChild.previousSibling;
+	prev_fileCount.value--;
 	del.remove();
 }
 
@@ -282,8 +282,6 @@ function resumeChk() {
 			alert('학과를 입력해 주세요.');
 			departments[i].focus(); return;
 		}
-		console.log(schoolStartDates[i].value);
-		console.log(schoolEndDates[i].value);
 	}
 	
 	// 스택
@@ -357,13 +355,19 @@ function resumeChk() {
 	// 포트폴리오
 	var portfolioNames = document.getElementsByName('portfolioName');
 	var files = document.getElementsByName('file');
+	var urls = document.getElementsByName('url');
 	
 	for(var i = 0; i < portfolioNames.length - 1; i++) {
-		console.log(files[i].nextElementSibling);
 		if(files[i].value != "")
 			files[i].nextElementSibling.value = files[i].files.length;
 		else
 			files[i].nextElementSibling.value = 0;
+	}
+	
+	for(var i = 0; i < urls.length; i++) {
+		if(urls[i].value == "") {
+			delUrl(urls[i]);
+		}
 	}
 	
 	document.resumeForm.submit();

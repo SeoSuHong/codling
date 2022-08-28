@@ -573,30 +573,44 @@
 			                    </td>
 			                </tr>
 		                </table>
-		                <table>
-		                    <c:forTokens var="url" items="${portfolios[0].url}" delims="|" varStatus="st">
-				                <c:if test="${st.first}">
-			                		<tr class="urlTr">
-					                    <th>URL 주소</th>
-					                    <td>
-							                <input name="url" value="${url}" placeholder=" github.com/SeoSuHong/codling">
-							                <input type="button" class="addUrlBtn" value="추가" onclick="addUrl(this)">
-					                    </td>
-					                </tr>
-						        </c:if>
-						        <c:if test="${!st.first}">
-						        	<tr class="urlTr">
-						        		<td></td>
-						            	<td>
-						                    <input name='url' value="${url}" placeholder=' github.com/SeoSuHong/codling'>
-						                    <input type='button' class='delUrlBtn' value='삭제' onclick='delUrl(this)'>
-						                </td>
-				                	</tr>
-						        </c:if>
-						        <c:set var="urlCount" value="${st.count}"/>
-				            </c:forTokens>
-				        </table>
-		                <input type="hidden" name="urlCount" value="${urlCount}">
+	                	<c:if test="${not empty portfolios[0].url}">
+			                <table>
+			                    <c:forTokens var="url" items="${portfolios[0].url}" delims="|" varStatus="st">
+					                <c:if test="${st.first}">
+				                		<tr class="urlTr">
+						                    <th>URL 주소</th>
+						                    <td>
+								                <input name="url" value="${url}" placeholder=" github.com/SeoSuHong/codling">
+								                <input type="button" class="addUrlBtn" value="추가" onclick="addUrl(this)">
+						                    </td>
+						                </tr>
+							        </c:if>
+							        <c:if test="${!st.first}">
+							        	<tr class="urlTr">
+							        		<td></td>
+							            	<td>
+							                    <input name='url' value="${url}" placeholder=' github.com/SeoSuHong/codling'>
+							                    <input type='button' class='delUrlBtn' value='삭제' onclick='delUrl(this)'>
+							                </td>
+					                	</tr>
+							        </c:if>
+							        <c:set var="urlCount" value="${st.count}"/>
+					            </c:forTokens>
+					        </table>
+			                <input type="hidden" name="urlCount" value="${urlCount}">
+				        </c:if>
+				        <c:if test="${empty portfolios[0].url}">
+				        	<table>
+				        		<tr class="urlTr">
+				                    <th>URL 주소</th>
+				                    <td>
+						                <input name="url" placeholder=" github.com/SeoSuHong/codling">
+						                <input type="button" class="addUrlBtn" value="추가" onclick="addUrl(this)">
+				                    </td>
+						        </tr>
+				        	</table>
+					        <input type="hidden" name="urlCount" value="1">
+				        </c:if>
 			            <table>
 				            <tr><td class="emptyWrap"></td></tr>
 				            <c:if test="${not empty portfolios[0].fileName}">
@@ -608,8 +622,12 @@
 					                		<input type="hidden" name="prev_file" value="${fileName}">
 					                	</td>
 					                </tr>
+					                <c:set var="prev_fileCount" value="${st.count}"/>
 					            </c:forTokens>
+					            <input type="hidden" name="prev_fileCount" value="${prev_fileCount}">
 					        </c:if>
+					    </table>
+					    <table>
 			                <tr>
 			                    <th><c:if test="${empty portfolios[0].fileName}">첨부파일</c:if><c:if test="${not empty portfolios[0].fileName}">파일추가</c:if></th>
 			                    <td>
@@ -638,7 +656,7 @@
 			                </tr>
 			            </table>
 			            <table>
-			                <tr>
+			                <tr class="urlTr">
 			                    <th>URL 주소</th>
 			                    <td>
 				                    <input name="url" placeholder=" github.com/SeoSuHong/codling">
@@ -678,25 +696,39 @@
 					                    </td>
 					                </tr>
 					            </table>
-					            <table>
-					                <tr class="urlTr">
-					                    <th>URL 주소</th>
-					                    <td>
-					                    	<c:forTokens var="url" items="${portfolio.url}" delims="|" varStatus="st">
-					                    		<c:if test="${st.first}">
-							                    	<input name="url" value="${url}" placeholder=" github.com/SeoSuHong/codling">
-							                    	<input type="button" class="addUrlBtn" value="추가" onclick="addUrl(this)">
-							                	</c:if>
-							                	<c:if test="${!st.first}">
-							                    	<br><input name='url' value="${url}" placeholder=' github.com/SeoSuHong/codling'>
-							                    	<input type='button' class='delUrlBtn' value='삭제' onclick='delUrl(this)'>
-							                	</c:if>
-							                	<c:set var="urlCount" value="${st.count}"/>
-					                    	</c:forTokens>
-					                    </td>
-					                </tr>
-					            </table>
-					            <input type="hidden" name="urlCount" value="${urlCount}">
+					            <c:if test="${not empty portfolio.url}">
+						            <table>
+						                <tr class="urlTr">
+						                    <th>URL 주소</th>
+						                    <td>
+						                    	<c:forTokens var="url" items="${portfolio.url}" delims="|" varStatus="st">
+						                    		<c:if test="${st.first}">
+								                    	<input name="url" value="${url}" placeholder=" github.com/SeoSuHong/codling">
+								                    	<input type="button" class="addUrlBtn" value="추가" onclick="addUrl(this)">
+								                	</c:if>
+								                	<c:if test="${!st.first}">
+								                    	<br><input name='url' value="${url}" placeholder=' github.com/SeoSuHong/codling'>
+								                    	<input type='button' class='delUrlBtn' value='삭제' onclick='delUrl(this)'>
+								                	</c:if>
+								                	<c:set var="urlCount" value="${st.count}"/>
+						                    	</c:forTokens>
+						                    </td>
+						                </tr>
+						            </table>
+						            <input type="hidden" name="urlCount" value="${urlCount}">
+						        </c:if>
+					            <c:if test="${empty portfolio.url}">
+						            <table>
+						                <tr class="urlTr">
+						                    <th>URL 주소</th>
+						                    <td>
+							                    <input name="url" placeholder=" github.com/SeoSuHong/codling">
+							                    <input type="button" class="addUrlBtn" value="추가" onclick="addUrl(this)">
+						                    </td>
+						                </tr>
+						            </table>
+				                    <input type="hidden" name="urlCount" value="1">
+					            </c:if>
 					            <table>
 						            <tr><td class="emptyWrap"></td></tr>
 						            <c:if test="${not empty portfolio.fileName}">
@@ -708,8 +740,12 @@
 							                		<input type="hidden" name="prev_file" value="${fileName}">
 							                	</td>
 							                </tr>
+							                <c:set var="prev_fileCount" value="${st.count}"/>
 							            </c:forTokens>
+							            <input type="hidden" name="prev_fileCount" value="${prev_fileCount}">
 							        </c:if>
+							    </table>
+							    <table>
 					                <tr>
 					                    <th><c:if test="${empty portfolio.fileName}">첨부파일</c:if><c:if test="${not empty portfolios[0].fileName}">파일추가</c:if></th>
 					                    <td>
