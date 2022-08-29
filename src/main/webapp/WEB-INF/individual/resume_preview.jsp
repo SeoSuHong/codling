@@ -94,7 +94,7 @@
                         	📞${fn:substring(individual.phone, 0, 3)}-${fn:substring(individual.phone, 3, 7)}-${fn:substring(individual.phone, 7, 11)}
                         </p>
                         <p>&nbsp;&nbsp; 📧${individual.email}</p>
-                        <p>&nbsp;&nbsp; 🏠${individual.address}</p>
+                        <p>&nbsp;&nbsp; 🏠${individual.address} ${individual.detailAddress}</p>
                     </div>
                 </div>
 

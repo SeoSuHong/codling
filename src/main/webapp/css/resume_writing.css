@@ -18,8 +18,7 @@ a{text-decoration: none;}
 #profile-hover{border: 1px solid #cecece; width: 150px; height: 160px; float: right; margin-right: -10px; border-radius: 10px;}
 #profile-hover>ul{margin-top: 0px;}
 #profile-hover>ul>li>a{text-decoration: none; color: #656978; font-size: 1rem; display: inline-block;
-    width: 150px; height: 40px; display: flex; align-items: center; margin-left: -40px;
-    margin-top: 10px; font-weight: bold;}
+    width: 150px; height: 40px; display: flex; align-items: center; margin-top: 10px; font-weight: bold;}
 #profile-hover>ul>li>a>span{ margin-left: 10px;}
 #mypage>a:hover{background-color: #e6e6e6;}
 #resume>a:hover{background-color: #e6e6e6;}

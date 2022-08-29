@@ -116,7 +116,7 @@
                             </tr>
                             <tr>
                                 <td>근무지 주소</td>
-                                <td>${jobOpening.region}</td>
+                                <td>${jobOpening.region} ${jobOpening.detailRegion}</td>
                             </tr>
                         </table>
                         <div class="chbtn-box">

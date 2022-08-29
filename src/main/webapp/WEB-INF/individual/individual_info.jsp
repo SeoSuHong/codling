@@ -62,7 +62,7 @@
 	            </div>
 	            <div class="type">
 	                <p>주소</p>
-	                <div>${individual.address}</div>
+	                <div>${individual.address} ${individual.detailAddress}</div>
 	            </div>
 	        </div>
 	        <div id="choice">

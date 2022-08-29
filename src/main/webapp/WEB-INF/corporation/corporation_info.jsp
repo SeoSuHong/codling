@@ -61,7 +61,7 @@
 	            </div>
 	            <div class="type">
 	                <p>주소</p>
-	                <div>${corporation.address}</div>
+	                <div>${corporation.address} ${corporation.detailAddress}</div>
 	            </div>
 	        </div>
 	        <div id="choice">

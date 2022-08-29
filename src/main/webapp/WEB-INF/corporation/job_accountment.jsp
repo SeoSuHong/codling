@@ -14,11 +14,6 @@
 </head>
 <body>
 	<header>
-		<!-- <div class="logo-default">
-        	<div class="areaWrap"></div>
-            <a href="index"><img src="img/logo.png"></a>
-        	<button type="button" id="log" onclick="location.href='index'">Login</button>
-    	</div> -->
     	<div id="menu-bar">
             <div id="headerbox"></div>
             <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
@@ -167,7 +162,7 @@
         <div id="comcon">
             <div>
                 <p><span>모집일</span>${fn:replace(jobOpening.startDate, "-", ".")} - ${fn:replace(jobOpening.endDate, "-", ".")}</p>
-                <p><span>근무지역</span>${jobOpening.region}</p>
+                <p><span>근무지역</span>${jobOpening.region} ${jobOpening.detailRegion}</p>
             </div>
         </div>
         <div id="companyInfo">
@@ -181,14 +176,14 @@
                     <dt>연 락 처</dt>
                         <dd>${fn:substring(corporation.corporatePhone, 0, 3)}-${fn:substring(corporation.corporatePhone, 3, 7)}-${fn:substring(corporation.corporatePhone, 7, 11)}</dd>   
                     <dt>주 &ensp;&ensp; 소</dt>
-                        <dd>${corporation.address}</dd>
+                        <dd>${corporation.address} ${corporation.detailAddress}</dd>
                 </dl>
             </div>
         </div>
         <div id="hr">   
             <hr>
         </div>
-		<input type="hidden" id="area" value="${jobOpening.region}">
+		<input type="hidden" id="area" value="${jobOpening.region} ${jobOpening.detailRegion}">
 		<input type="hidden" id="corpName" value="${corporation.corporateName}">
 		<div id="mapWrap">
         	<div id="map"></div>

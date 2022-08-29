@@ -128,7 +128,7 @@
 								</c:forEach>
 							</dd>
                         <dt>근무지 주소</dt>
-                            <dd> ${jobOpening.region}</dd>
+                            <dd> ${jobOpening.region} ${jobOpening.detailRegion}</dd>
                         <dt>모집일자</dt>
                         	<dd> ${jobOpening.startDate} ~ ${jobOpening.endDate}</dd>
                     </dl>

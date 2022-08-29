@@ -207,7 +207,7 @@
         <div id="comcon">
             <div>
                 <p><span>모집일</span>${fn:replace(jobOpening.startDate, "-", ".")} - ${fn:replace(jobOpening.endDate, "-", ".")}</p>
-                <p><span>근무지역</span>${jobOpening.region}</p>
+                <p><span>근무지역</span>${jobOpening.region} ${jobOpening.detailRegion}</p>
             </div>
         </div>
         <div id="companyInfo">
@@ -221,14 +221,14 @@
                     <dt>대표자명</dt>
                         <dd>${corporation.ceoName}</dd>
                     <dt>주 &ensp;&ensp; 소</dt>
-                        <dd>${corporation.address}</dd>
+                        <dd>${corporation.address} ${corporation.detailAddress}</dd>
                 </dl>
             </div>
         </div>
         <div id="hr">   
             <hr>
         </div>
-		<input type="hidden" id="area" value="${jobOpening.region}">
+		<input type="hidden" id="area" value="${jobOpening.region} ${jobOpening.detailRegion}">
 		<input type="hidden" id="corpName" value="${corporation.corporateName}">
 		<div id="mapWrap">
         	<div id="map"></div>

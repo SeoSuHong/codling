@@ -43,8 +43,9 @@ public class SignUpServlet extends HttpServlet {
 			String iGender = request.getParameter("gender");
 			String iEmail = request.getParameter("email");
 			String iPhone = request.getParameter("phoneInd1")+request.getParameter("phoneInd2");
-			String iAddress = request.getParameter("address")+" "+request.getParameter("detailAddress")+" "+request.getParameter("extraAddress");
-			Individual individual = new Individual(iId, iPw, iName, iBirth, iGender, iEmail, iPhone, iAddress, null, null);
+			String iAddress = request.getParameter("address");
+			String iDetailAddress = request.getParameter("detailAddress");
+			Individual individual = new Individual(iId, iPw, iName, iBirth, iGender, iEmail, iPhone, iAddress, iDetailAddress, null, null);
 			
 			IndividualDao dao = new IndividualDao();
 			boolean result = dao.insertIndividual(individual);
@@ -67,8 +68,9 @@ public class SignUpServlet extends HttpServlet {
 			String cCeo = request.getParameter("representative");
 			String cNumber = request.getParameter("companyNum");
 			String fileName = request.getParameter("fileName");
-			String cAddress = request.getParameter("address2")+" "+request.getParameter("detailAddress2")+" "+request.getParameter("extraAddress2");
-			Corporation corporation = new Corporation(cId, cPw, cName, cPhone, cCeo, cNumber, fileName, cAddress);
+			String cAddress = request.getParameter("address2");
+			String cDetailAddress = request.getParameter("detailAddress2");
+			Corporation corporation = new Corporation(cId, cPw, cName, cPhone, cCeo, cNumber, fileName, cAddress, cDetailAddress);
 			
 			CorporationDao dao = new CorporationDao();
 			boolean result = dao.insertCorporation(corporation);

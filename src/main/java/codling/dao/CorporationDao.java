@@ -46,8 +46,9 @@ public class CorporationDao {
 				String corporateNumber = rs.getString("corporateNumber");
 				String fileName = rs.getString("fileName");
 				String address = rs.getString("address");
+				String detailAddress = rs.getString("detailAddress");
 				
-				corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address);
+				corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address, detailAddress);
 			}
 			
 			rs.close();
@@ -75,12 +76,13 @@ public class CorporationDao {
 				String corporation_id = rs.getString("corporation_id");
 				String title = rs.getString("title");
 				String region = rs.getString("region");
+				String detailRegion = rs.getString("detailRegion");
 				String process = rs.getString("process");
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
 				
-				jobOpening = new JobOpening(no, corporation_id, title, region, process, startDate, endDate, count);
+				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count);
 			}
 			
 			rs.close();
@@ -108,12 +110,13 @@ public class CorporationDao {
 				String corporation_id = rs.getString("corporation_id");
 				String title = rs.getString("title");
 				String region = rs.getString("region");
+				String detailRegion = rs.getString("detailRegion");
 				String process = rs.getString("process");
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
 				
-				jobOpening = new JobOpening(no, corporation_id, title, region, process, startDate, endDate, count);
+				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count);
 			}
 			
 			rs.close();
@@ -141,12 +144,13 @@ public class CorporationDao {
 				int no = rs.getInt("no");
 				String title = rs.getString("title");
 				String region = rs.getString("region");
+				String detailRegion = rs.getString("detailRegion");
 				String process = rs.getString("process");
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
 				
-				JobOpening jobOpening = new JobOpening(no, id, title, region, process, startDate, endDate, count);
+				JobOpening jobOpening = new JobOpening(no, id, title, region, detailRegion, process, startDate, endDate, count);
 				list.add(jobOpening);
 			}
 			
@@ -255,16 +259,17 @@ public class CorporationDao {
 	public boolean insertJobOpening(JobOpening jobOpening) {
 		boolean result = false;
 		String query = "INSERT INTO jobOpening "
-				+ "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, 0)";
+				+ "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, 0)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, jobOpening.getCorporation_id());
 			pstmt.setString(2, jobOpening.getTitle());
 			pstmt.setString(3, jobOpening.getRegion());
-			pstmt.setString(4, jobOpening.getProcess());
-			pstmt.setString(5, jobOpening.getStartDate());
-			pstmt.setString(6, jobOpening.getEndDate());
+			pstmt.setString(4, jobOpening.getDetailRegion());
+			pstmt.setString(5, jobOpening.getProcess());
+			pstmt.setString(6, jobOpening.getStartDate());
+			pstmt.setString(7, jobOpening.getEndDate());
 			
 			if(pstmt.executeUpdate() == 1) result = true;
 			
@@ -573,7 +578,7 @@ public class CorporationDao {
 	// 기업회원 회원가입
 	public boolean insertCorporation(Corporation corporation) {
 		boolean result = false;
-	    String query = "INSERT INTO corporation VALUES (?,DEFAULT,?,?,?,?,?,?,?)";
+	    String query = "INSERT INTO corporation VALUES (?, DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
 	    try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
@@ -585,6 +590,7 @@ public class CorporationDao {
 			pstmt.setString(6, corporation.getCorporateNumber());
 			pstmt.setString(7, corporation.getFileName());
 			pstmt.setString(8, corporation.getAddress());
+			pstmt.setString(9, corporation.getDetailAddress());
  
 			if(pstmt.executeUpdate() == 1) result = true;
  

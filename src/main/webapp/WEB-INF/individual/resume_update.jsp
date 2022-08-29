@@ -696,27 +696,34 @@
 					                    </td>
 					                </tr>
 					            </table>
+					            
 					            <c:if test="${not empty portfolio.url}">
 						            <table>
-						                <tr class="urlTr">
-						                    <th>URL 주소</th>
-						                    <td>
-						                    	<c:forTokens var="url" items="${portfolio.url}" delims="|" varStatus="st">
-						                    		<c:if test="${st.first}">
+				                    	<c:forTokens var="url" items="${portfolio.url}" delims="|" varStatus="st">
+						                    <c:if test="${st.first}">
+							                	<tr class="urlTr">
+							                    	<th>URL 주소</th>
+							                    	<td>
 								                    	<input name="url" value="${url}" placeholder=" github.com/SeoSuHong/codling">
 								                    	<input type="button" class="addUrlBtn" value="추가" onclick="addUrl(this)">
-								                	</c:if>
-								                	<c:if test="${!st.first}">
-								                    	<br><input name='url' value="${url}" placeholder=' github.com/SeoSuHong/codling'>
+								                    </td>
+								                </tr>
+								            </c:if>
+								           	<c:if test="${!st.first}">
+								           		<tr class="urlTr">
+								           			<td></td>
+								           			<td>
+								                    	<input name='url' value="${url}" placeholder=' github.com/SeoSuHong/codling'>
 								                    	<input type='button' class='delUrlBtn' value='삭제' onclick='delUrl(this)'>
-								                	</c:if>
-								                	<c:set var="urlCount" value="${st.count}"/>
-						                    	</c:forTokens>
-						                    </td>
-						                </tr>
+								                    </td>
+								                </tr>
+								            </c:if>
+								            <c:set var="urlCount" value="${st.count}"/>
+						               	</c:forTokens>
 						            </table>
 						            <input type="hidden" name="urlCount" value="${urlCount}">
 						        </c:if>
+						        
 					            <c:if test="${empty portfolio.url}">
 						            <table>
 						                <tr class="urlTr">

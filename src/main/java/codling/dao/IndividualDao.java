@@ -48,10 +48,11 @@ public class IndividualDao {
 				String email = rs.getString("email");
 				String phone = rs.getString("phone");
 				String address = rs.getString("address");
+				String detailAddress = rs.getString("detailAddress");
 				String resumeTitle = rs.getString("resumeTitle");
 				String stack = rs.getString("stack");
 				
-				individual = new 	Individual(id, password, name, birth, gender, email, phone, address, resumeTitle, stack);
+				individual = new Individual(id, password, name, birth, gender, email, phone, address, detailAddress, resumeTitle, stack);
 				
 			}
 			
@@ -67,7 +68,7 @@ public class IndividualDao {
 	// 개인회원 회원가입
 	public boolean insertIndividual(Individual individual) {
 		boolean result = false;
-		String query = "INSERT INTO individual VALUES (?, DEFAULT, ?, ?, ?, ?, ?, ?, ?, '', '')";
+		String query = "INSERT INTO individual VALUES (?, DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, '', '')";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
@@ -79,6 +80,7 @@ public class IndividualDao {
 			pstmt.setString(6, individual.getEmail());
 			pstmt.setString(7, individual.getPhone());
 			pstmt.setString(8, individual.getAddress());
+			pstmt.setString(9, individual.getDetailAddress());
 			
 			if(pstmt.executeUpdate() == 1) result = true;
 			

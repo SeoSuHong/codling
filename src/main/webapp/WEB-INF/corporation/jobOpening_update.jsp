@@ -50,7 +50,7 @@
                        </tr>
                        <tr>
                            <td></td>
-                           <td id="font_medium"><input name="detailAddress" type="text" id="detailAddr" placeholder="상세주소" size="30"></td>
+                           <td id="font_medium"><input value="${jobOpening.detailRegion}" name="detailAddress" type="text" id="detailAddr" placeholder="상세주소" size="30"></td>
                        </tr>
                    </table>
            	</article>	
