@@ -80,18 +80,18 @@
                         <tr>
                             <td>경력여부*</td>
                             <td id="font_medium">
-                            	<c:if test="${fields[0].career == '신입'}">
-	                            	<input name="career_status" value="신입" type="checkbox" checked><label>&nbsp;신입&emsp;&emsp;</label>
-	                                <input name="career_status" value="경력" class="careerChk" type="checkbox"><label>&nbsp;경력&emsp;</label>
-	                                <input name="career_year" class="career_year" readonly> ※숫자(연차)만 입력
-	                                <input name="career" type="hidden">
-                                </c:if>
-                                <c:if test="${fields[0].career != '신입'}">
-	                            	<input name="career_status" value="신입" type="checkbox"><label>&nbsp;신입&emsp;&emsp;</label>
-	                                <input name="career_status" value="경력" class="careerChk" type="checkbox" checked><label>&nbsp;경력&emsp;</label>
-	                                <input name="career_year" class="career_year" value="${fields[0].career}" readonly> ※숫자(연차)만 입력
-	                                <input name="career" type="hidden">
-                                </c:if>
+                            	<c:set var="chkCareer" value="0"/>
+                            	<c:set var="car"/>
+                            	<input name="career_status" value="신입" type="checkbox" <c:if test="${fn:contains(fields[0].career, '신입')}">checked</c:if>><label>&nbsp;신입&emsp;&emsp;</label>
+                            	<c:forTokens var="c" items="${fields[0].career}" delims="/">
+                            		<c:if test="${!c == '신입'}">
+                            			<c:set var="chkCareer" value="1"/>
+                            			<c:set var="car" value="${c}"/>
+	                                </c:if>
+                                </c:forTokens>
+                                <input name="career_status" value="경력" class="careerChk" type="checkbox" <c:if test="${chkCareer == 1}">checked</c:if>><label>&nbsp;경력&emsp;</label>
+                                <input name="career_year" class="career_year" <c:if test="${not empty car}">value="${car}"</c:if> <c:if test="${empty car}">readonly</c:if>> ※숫자(연차)만 입력
+                                <input name="career" type="hidden">
                             </td>
                         </tr>
                         <tr>
@@ -101,34 +101,16 @@
                         <tr>
                             <td>급여*</td>
                             <td id="font_medium">
-                            	<c:if test="${fields[0].pay == '면접 후 결정'}">
-		                            <input type="text" name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
-		                            <input type="checkbox" name="pay" value="면접 후 결정" checked><label>&nbsp;면접 후 결정</label></span>
-	                            </c:if>
-	                            <c:if test="${fields[0].pay != '면접 후 결정'}">
-		                            <input  value="${fields[0].pay}" type="text" name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
-		                            <input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span>
-	                            </c:if>
+	                            <input <c:if test="${not empty fields[0].pay}">value="${fields[0].pay}"</c:if> name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
+	                            <input type="checkbox" name="pay" value="면접 후 결정" <c:if test="${fields[0].pay == '면접 후 결정'}">checked</c:if>><label>&nbsp;면접 후 결정</label></span>
                             </td>
                         </tr>
                         <tr>
                             <td>근무요일*</td>
                             <td id="font_medium">
-                            	<c:if test="${fields[0].workDay == '월-금'}">
-	                                <input name="workday" type="checkbox" value="주5일(월~금)" checked><label>&nbsp;주5일(월~금)</label>&emsp;
-	                                <input name="workday" type="checkbox" value="유연근무제"><label>&nbsp;유연근무제</label>&emsp;
-	                                <input name="workday" type="checkbox" value="면접 후 결정"><label>&nbsp;면접 후 결정</label>
-                                </c:if>
-                                <c:if test="${fields[0].workDay == '유연근무제'}">
-	                                <input name="workday" type="checkbox" value="주5일(월~금)"><label>&nbsp;주5일(월~금)</label>&emsp;
-	                                <input name="workday" type="checkbox" value="유연근무제" checked><label>&nbsp;유연근무제</label>&emsp;
-	                                <input name="workday" type="checkbox" value="면접 후 결정"><label>&nbsp;면접 후 결정</label>
-                                </c:if>
-                                <c:if test="${fields[0].workDay == '면접 후 결정'}">
-	                                <input name="workday" type="checkbox" value="주5일(월~금)"><label>&nbsp;주5일(월~금)</label>&emsp;
-	                                <input name="workday" type="checkbox" value="유연근무제"><label>&nbsp;유연근무제</label>&emsp;
-	                                <input name="workday" type="checkbox" value="면접 후 결정" checked><label>&nbsp;면접 후 결정</label>
-                                </c:if>
+                                <input name="workday" type="checkbox" value="주5일(월~금)" <c:if test="${fields[0].workDay == '월-금'}">checked</c:if>><label>&nbsp;주5일(월~금)</label>&emsp;
+                                <input name="workday" type="checkbox" value="유연근무제" <c:if test="${fields[0].workDay == '유연근무제'}">checked</c:if>><label>&nbsp;유연근무제</label>&emsp;
+                                <input name="workday" type="checkbox" value="면접 후 결정" <c:if test="${fields[0].workDay == '면접 후 결정'}">checked</c:if>><label>&nbsp;면접 후 결정</label>
                             </td>
                         </tr>
                         <tr>
