@@ -63,12 +63,8 @@
 	            </div>
 	            <div class="type">
 	                <p>주소</p>
-	                <div>${individual.address}</div>
+	                <div>${fn:split(individual.address, '/')[0]} ${fn:split(individual.address, '/')[1]}</div>
 	            </div>
-	        </div>
-	        <div>
-	        	<h2>수정 또는 탈퇴를 원하시면 비밀번호를 입력해주세요.</h2>
-	        	<input type="password" id="password_t" name="re_password">
 	        </div>
 	        <div id="choice">
 	        	<input type="hidden" name="password" value="${individual.password}">

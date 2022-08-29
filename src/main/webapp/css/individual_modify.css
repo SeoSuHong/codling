@@ -134,6 +134,8 @@ ul {
     border-radius: 8px;
 }
 
+#number{border: none; width: 100px; outline:none;}
+
 .btn-xlarge:visited {
     border: white;
     display: flex;

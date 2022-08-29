@@ -27,7 +27,7 @@ body {margin: 0;}
 ul{list-style: none;}
 
 /*section*/
-#password_t{width: 200px; height: 20px; margin-left: 20px;}
+#password_t{width: 200px; height: 20px; margin-left: 20px; outline: unset;}
 section {width: 1000px; margin: 100px auto; margin-bottom: 200px;}
 section h2 {margin: 20px 20px; font-size: 30px;}
 #wrap {padding: 60px 0; line-height: 75px; font-size: 1.5rem; background-color: #f8f8f8; border-radius: 10px;}

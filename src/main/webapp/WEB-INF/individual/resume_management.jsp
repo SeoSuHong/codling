@@ -356,7 +356,7 @@
 	                    			${fn:substring(individual.phone, 0, 3)} - ${fn:substring(individual.phone, 3, 7)} - ${fn:substring(individual.phone, 7, 11)}
 	                    		</p>
 	                    		<p>${individual.email}</p>
-	                    		<p>${individual.address}</p>
+	                    		<p>${fn:split(individual.address, '/')[0]} ${fn:split(individual.address, '/')[1]}</p>
 	                    	</div>
 	                    </div>
 	                </div>

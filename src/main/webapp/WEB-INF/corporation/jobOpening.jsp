@@ -238,7 +238,7 @@
             <hr>
         </div>
         <div class="jobs">
-            <dl>
+            <dl onclick="location='jobOpening?no=${field.jobOpening_no}'" style="cursor: pointer;">
                 <dt><img src="img/logo.png"></dt>
                 <dd>${jobOpening.title}</dd>
                 <dd>${corporation.corporateName}</dd>
@@ -246,23 +246,23 @@
                 	<c:forEach var="field" items="${fields}">
                 		${field.name} | 
 	                	<c:forTokens var="career" items="${field.career}" delims="/" varStatus="st">
-	            			<c:if test="${fn:length(field.career) <= 3}">
-	              				<c:if test="${career == '신입'}">
-		                			<span>${career}</span>&ensp;&ensp;
-		                		</c:if>
-		                		<c:if test="${career != '신입'}">
-		                			<span>${career}년↑</span>&ensp;&ensp;
-		                		</c:if>
-		                	</c:if>
-		                
-		                	<c:if test="${fn:length(field.career) > 3}">
-		                		<c:if test="${career == '신입'}">
-		                			<span>${career} or</span>
-		                		</c:if>
-		                		<c:if test="${career != '신입'}">
-		                			<span>${career}년↑</span>&ensp;&ensp;
-		                		</c:if>
-		                	</c:if>
+		            			<c:if test="${fn:length(field.career) <= 3}">
+		              				<c:if test="${career == '신입'}">
+			                			<span>${career}</span>&ensp;&ensp;
+			                		</c:if>
+			                		<c:if test="${career != '신입'}">
+			                			<span>${career}년↑</span>&ensp;&ensp;
+			                		</c:if>
+			                	</c:if>
+			                	
+			                	<c:if test="${fn:length(field.career) > 3}">
+			                		<c:if test="${career == '신입'}">
+			                			<span>${career} or</span>
+			                		</c:if>
+			                		<c:if test="${career != '신입'}">
+			                			<span>${career}년↑</span>&ensp;&ensp;
+			                		</c:if>
+			                	</c:if>
 				        </c:forTokens>
 			        </c:forEach>
                 </dd>

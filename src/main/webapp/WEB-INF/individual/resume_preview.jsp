@@ -21,7 +21,7 @@
     <header>
         <div id="menu-bar">
             <div></div>
-            <a href="index.jsp"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
+            <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
                     <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"> ${name} 님 &nbsp;&nbsp;</div>
                 </div>
@@ -173,7 +173,7 @@
 							</span>
                         </p>
                         <p>&nbsp;&nbsp;<img src="img/phone.png" class="icon">&nbsp;${fn:substring(individual.phone, 0, 3)}-${fn:substring(individual.phone, 3, 7)}-${fn:substring(individual.phone, 7, 11)}</p>
-                        <p>&nbsp;&nbsp;<img src="img/address.png" class="icon">&nbsp;${individual.address}</p>
+                        <p>&nbsp;&nbsp;<img src="img/address.png" class="icon">&nbsp;${fn:split(individual.address, '/')[0]} ${fn:split(individual.address, '/')[1]}</p>
                     </div>
                 </div>
                 <div class="resume" id="education">
@@ -278,7 +278,7 @@
 	                    	<c:forTokens var="detail" items="${portfolio.detail }" begin="${st.index }" end="${st.index }" delims="/">
 	                    	<c:forTokens var="url" items="${portfolio.url }" begin="${st.index }" end="${st.index }" delims="|">
 	                        	<p id="url">${name } &ensp;&ensp;</p>
-	                        	<p><span class="url">url</span> &ensp;&ensp;${url }</p>
+	                        	<p><span class="url">url</span> &ensp;&ensp;<a href="${url }">${url }</a></p>
 	                        	<p>상세내용</p>
 	                        	<c:set var="de" value="${detail }"/>
 		                        <c:set var="re_detail" value="${fn:replace(de, escape, '<br>') }"/>
@@ -302,14 +302,6 @@
 	                        <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims="/">
 	                        <c:forTokens var="fileSize" items="${fileupload.fileSize }" begin="${st.index }" end="${st.index }" delims="/">
 	                        	<p id="file">${title }</p>
-	                        	<fmt:parseNumber var="file_Size_" value="${fileSize}"/>
-	                        	<c:set var="num" value="1024" />
-	                        	<c:if test="${file_Size_ <= num}">
-	                        		<c:set var="byte" value="${file_Size_ } byte" />
-	                        	</c:if>
-	                        	<c:if test="${file_Size_ <= num}">
-	                        		<c:set var="byte" value="${file_Size_ } byte" />
-	                        	</c:if>
 	                        	<p><a download href="/upload/${fileName }">${fileName }</a>&nbsp;&nbsp;<span></span></p>
 	                        	<c:set var="fi" value="${filedetail }"/>
 		                        <c:set var="re_filedetail" value="${fn:replace(fi, escape, '<br>') }"/>
