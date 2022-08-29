@@ -30,11 +30,21 @@ $(function(){
 })
 
 function deleteChk() {
-	var pwCheck = prompt("비밀번호를 입력해 주세요.", "비밀번호");
+	var pwCheck = document.indiInfoForm.re_password.value;
 	var password = document.indiInfoForm.password.value;
 	
 	if(pwCheck == password)
 		document.indiInfoForm.submit();
+	else
+		alert("비밀번호가 일치하지 않습니다.");
+}
+
+function updateChk() {
+	var pwCheck = document.indiInfoForm.re_password.value;
+	var password = document.indiInfoForm.password.value;
+	
+	if(pwCheck == password)
+		location.href = "individual_modify";
 	else
 		alert("비밀번호가 일치하지 않습니다.");
 }

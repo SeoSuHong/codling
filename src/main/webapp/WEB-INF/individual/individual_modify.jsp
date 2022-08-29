@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>개인 회원 정보 수정</title>
+    <title>Coding : 내 정보 수정</title>
+    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="css/individual_modify.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/footers/">
@@ -28,7 +30,7 @@
                                 <!-- 아이디 -->
                                 <p class="fw-bold">아이디</p>
                                 <div class="col" id="chain">
-                                    <input type="text" maxlength="20" oninput="maxLengthCheck(this)" onkeyup="inputDataCheck(this.id)" name="id" id="id" class="form-control" required readonly value="codling123">
+                                    <input type="text" maxlength="20" oninput="maxLengthCheck(this)" onkeyup="inputDataCheck(this.id)" name="id" id="id" class="form-control" required readonly value="${individual.id }">
                                         <div class="invalid-feedback">
                                             아이디를 입력하세요
                                         </div>      
@@ -37,7 +39,7 @@
                             <!-- 비밀번호 -->
                             <div class="row align-items-center mt-4 frame" id="hey">
                                 <div class="col" >
-                                    <p class="fw-bold">비밀번호</p>
+                                    <p class="fw-bold">변경할 비밀번호</p>
                                         <input type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호"  onkeyup="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 비밀번호를 입력하세요.
@@ -58,13 +60,16 @@
                             <div class="row align-items-center mt-4 frame" >
                                 <div class="col">
                                     <p class="fw-bold">이름</p>
-                                        <input type="text" name="name" id = "name" class="form-control" placeholder="이름"  onkeyup="inputDataCheck(this.id)" required>
+                                        <input type="text" name="name" id = "name" class="form-control" placeholder="이름"  onkeyup="inputDataCheck(this.id)" required value="${individual.name }">
                                             <div class="invalid-feedback">
                                                 이름을 입력하세요.
                                             </div>
                                 </div>
                             </div>
                             <!-- 생년월일 -->
+                            <input type="hidden" name="year" value="${fn:substring(individual.birth, 0, 4) }">
+                            <input type="hidden" name="month" value="${fn:substring(individual.birth, 5, 7) }">
+                            <input type="hidden" name="day" value="${fn:substring(individual.birth, 8, 10) }">
                             <div class="row align-items-center mt-4 frame">
                                 <p class="fw-bold">생년월일<span class="caution"></span></p>
                                     <div class="col">
@@ -137,7 +142,6 @@
                                     <input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기" id="search"><br>
                                     <input type="text"  name="address" id="address" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required>
                                     <input type="text" name="detailAddress" id="detailAddress" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
-                                    <input type="text" name="extraAddress" id="extraAddress" class="form-control mb-3 col-md-7" placeholder="참고항목"  onkeyup="inputDataCheck(this.id)" required>
                                 </div>       
                             </div>
                             <div id="modify_btn" >

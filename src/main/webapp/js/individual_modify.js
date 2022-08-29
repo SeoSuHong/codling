@@ -7,7 +7,11 @@ $(document).ready(function () {
 
   //년도 selectBox
   for (var i = 1900; i <= year; i++) {
-    $('#year').append('<option value="' + i + '">' + i + '년</option>');
+		var year = document.indiInfoForm.year.value;
+		if(i == year)
+			$('#year').append('<option selected="selected" value="' + i + '">' + i + '년</option>');
+		else
+			$('#year').append('<option value="' + i + '">' + i + '년</option>');
   }
 
   // 월별 selectBox 

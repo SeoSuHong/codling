@@ -8,7 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내 정보</title>
+    <title>Codling : 내 정보</title>
+    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="css/individual_info.css">
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -65,9 +66,13 @@
 	                <div>${individual.address}</div>
 	            </div>
 	        </div>
+	        <div>
+	        	<h2>수정 또는 탈퇴를 원하시면 비밀번호를 입력해주세요.</h2>
+	        	<input type="password" id="password_t" name="re_password">
+	        </div>
 	        <div id="choice">
 	        	<input type="hidden" name="password" value="${individual.password}">
-	            <input type="button" class="modify" value="수 정" onclick="">
+	            <input type="button" class="modify" value="수 정" onclick="updateChk()">
 	            <input type="button" class="drop" value="탈 퇴" onclick="deleteChk()">
 	        </div>
 	    </form>
