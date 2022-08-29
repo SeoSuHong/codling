@@ -434,6 +434,7 @@ public class CorporationDao {
 				+ "FROM jobopening J "
 				+ "JOIN field F ON J.no = F.jobOpening_no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
+				+ "GROUP BY no "
 				+ "ORDER BY J.no DESC";
 		
 		try {
@@ -470,7 +471,9 @@ public class CorporationDao {
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
-				+ "WHERE F.career like '%신입%' ORDER BY J.count DESC";
+				+ "WHERE F.career like '%신입%' "
+				+ "GROUP BY no "
+				+ "ORDER BY J.count DESC";
 		
 		try {
 			conn = getConnection();
@@ -506,7 +509,9 @@ public class CorporationDao {
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
-				+ "WHERE F.career REGEXP '[0-9]+' ORDER BY J.count DESC;";
+				+ "WHERE F.career REGEXP '[0-9]+' "
+				+ "GROUP BY no "
+				+ "ORDER BY J.count DESC;";
 		
 		try {
 			conn = getConnection();
@@ -542,6 +547,7 @@ public class CorporationDao {
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
+				+ "GROUP BY no "
 				+ "ORDER BY J.count DESC LIMIT 100";
 		
 		try {

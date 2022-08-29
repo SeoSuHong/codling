@@ -35,6 +35,22 @@ public class IndexServlet extends HttpServlet{
 		
 		CorporationDao corpDao = new CorporationDao();
 		ArrayList<Announcement> announcement = corpDao.indexContents();
+		int count,count_ = 0;
+		String[] duplication = null;
+		for(int i = 0; i < announcement.size(); i++) {
+			Announcement announcements = announcement.get(i);
+			count = announcements.getNo();
+			
+			for(int j = 1; j < announcement.size()+1; j++) {
+				Announcement announcement_ = announcement.get(j);
+				count_ = announcement_.getNo();
+				
+				if(count == count_) {
+					duplication[i] = String.valueOf(count);
+				}
+			}
+		}
+		request.setAttribute("duplication", duplication);
 		request.setAttribute("announcement", announcement);
 		request.getRequestDispatcher("/WEB-INF/guest/index.jsp").forward(request, response);
 	}
