@@ -34,11 +34,11 @@
 						<li><a href="top100" class="menu" id="scroll_Top100">Top100</a></li>
 					</ul>
 				</nav>
-				<form id="searbox">
-					<input type="text" id="search" name="search" class="searchbox"
+				<form id="scroll_searbox" name="scroll_search_Frm" action="search">
+					<input type="text" id="scroll_search" name="search" class="searchbox"
 						value="" placeholder="검색어를 입력하세요.">
 				</form>
-				<input type="button" form="searbox" class="btn-search"></input>
+				<input type="submit" form="scroll_searbox" class="btn-search" value=""/>
 
 				<c:if test="${empty indiId && empty corpId}">
 					<button type="button" id="scroll-log" class="log"
@@ -87,11 +87,11 @@
 			<div id="login_header">
 				<a href="index"><img src="img/logo.png" alt="logoimg"
 					id="logoimg"></a>
-				<form id="searbox">
+				<form id="searbox" name="search_Frm" action="search">
 					<input type="text" id="search" name="search" class="searchbox"
 						value="" placeholder="검색어를 입력하세요." autofocus>
 				</form>
-				<button type="button" form="searbox" class="btn-search"></button>
+				<input type="submit" form="searbox" class="btn-search" value=""/>
 
 				<c:if test="${empty indiId && empty corpId}">
 					<button type="button" id="log" class="log"

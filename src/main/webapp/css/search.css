@@ -57,26 +57,45 @@ ul{list-style: none;}
     font-size: 1.1rem; font-weight: bold; }
 .menu:hover{color: #A5E374 !important;}
 /*scroll-header*/
+#detail_search{margin-top: -25px; display: flex; justify-content: space-between; width: 1220px; 
+	height: 50px; border: solid #A5E374; align-items: center; border-radius: 10px; position: fixed; z-index: 2; background-color: white;}
+#zone{width: 400px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; margin-left: 5px;}
+#career{width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+#task{width: 500px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+#scroll_check{width: 1220px; height: 200px; border: solid #A5E374; border-top: none; border-radius: 0px 0px 10px 10px; display: flex; 
+	justify-content: space-between; margin-top: 17px!important; position: fixed; z-index: 1; background-color: white;}
+#zone_input{width: 350px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; border: none; outline: unset;}
+#career_input{width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; border: none; outline: unset;}
+#task_input{width: 450px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; border: none; outline: unset;}
+#zone_menu{width: 400px; margin-left: 5px; display: flex;}
+#zone_menu>div{margin-right: 20px;}
+#career_menu{width: 200px;}
+#task_menu{width: 500px; margin-left: 5px; display: flex;}
+#task_menu>div{margin-right: 20px;}
+.sc_menu{margin-top: 15px; overflow: hidden; overflow: scroll;}
+.sc_menu::-webkit-scrollbar {display: none;}
+#box_{width: 90px;}
+#submit_box{ width: 50px; height: 30px; color: white; background-color: #A5E374; border: none; border-radius: 5px; z-index: 2;}
+.sc_menu>p,#zone_menu>div>p,#task_menu>div>p{align-items: center; display: flex;}
+.check_box{width: 20px; height: 20px; border: solid #8D8D8D;}
+#down_button{border: none !important; background-color: white !important;}
+#up_button{border: none !important; background-color: white !important;}
+.row{margin-top: 130px;}
 #scroll-header-box{display: flex; justify-content: center; width: 100vw; align-items: center; z-index: 2;}
-#scroll-header{clear: both; display: flex; height: 100px; margin-left: -8px;
-    background-color: white; position: fixed; top: -130px;
-    transition: top 0.5s; box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25); z-index: 1;}
+#scroll-header{clear: both; display: flex; height: 100px; margin-left: 0px;
+    background-color: white; position: fixed; top: 0px;
+    transition: top 0.5s; box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25); z-index: 3;}
 #scroll-header-box>#menu>ul{display: flex; margin-top: 15px;}
-#scroll-header-box>#scroll_searbox{width: 400px !important; margin-top: 0px; border: 3px solid #A5E374;
-            margin-left: 20px; height: 50px; border-radius: 6px;}
-#scroll-header-box>#scroll_searbox>input{width: 350px !important; font-size: 1.1rem;}
+#scroll-header-box>#searbox{width: 400px !important; margin-top: 0px; border: 3px solid #A5E374;
+            margin-left: 20px;}
+#scroll-header-box>#searbox>input{width: 350px !important; font-size: 1.1rem;}
 #scroll-header-box>.btn-search{top: 0px; left: -40px;}
 #scroll-header-box>a>#log{margin-top: 0px; margin-left: 75px;}
 
 
 /*section*/
 section{width: 1220px; margin: 0 auto;}
-/*파워광고*/
-.carousel-control-next,.carousel-control-prev{z-index: 0;}
-
-.sectionimg{text-decoration: none; color: rgb(255, 255, 255); font-size: 1.2rem;}
-.sectionimg:hover{color: #A5E374;}
-/*일반광고*/
+/*공고*/
 .col{padding: 5px 15px;}
 .card{border-top: 5px solid #A5E374; border-radius: 3px; cursor: pointer;}
 .card>img{height: 150px; padding: 10px;}

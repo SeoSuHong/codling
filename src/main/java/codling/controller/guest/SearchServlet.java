@@ -14,9 +14,10 @@ import javax.servlet.http.HttpSession;
 import codling.dao.CorporationDao;
 import codling.dao.InformationDao;
 import codling.identity.Announcement;
+import codling.identity.Field;
 
-@WebServlet("/index")
-public class IndexServlet extends HttpServlet{
+@WebServlet("/search")
+public class SearchServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String indiId = (String)session.getAttribute("indiId");
@@ -33,10 +34,23 @@ public class IndexServlet extends HttpServlet{
 			request.setAttribute("corpName", corpName);
 		}
 		
+		String search = request.getParameter("search");
+		String[] zone = request.getParameterValues("zone");
+		String[] career = request.getParameterValues("career");
+		String[] task = request.getParameterValues("task");
+		
 		CorporationDao corpDao = new CorporationDao();
+		ArrayList<Field> filed = corpDao.getSearch();
+		
+		
 		ArrayList<Announcement> announcement = corpDao.indexContents();
 		
+		request.setAttribute("zone", zone);
+		request.setAttribute("career", career);
+		request.setAttribute("task", task);
+		request.setAttribute("search", search);
+		request.setAttribute("filed", filed);
 		request.setAttribute("announcement", announcement);
-		request.getRequestDispatcher("/WEB-INF/guest/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/guest/search.jsp").forward(request, response);
 	}
 }

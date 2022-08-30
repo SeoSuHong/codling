@@ -666,4 +666,29 @@ public class CorporationDao {
     	
     	return list;
     }
+    
+    // 공고 검색 직무 가지고오기
+ 	public ArrayList<Field> getSearch() {
+ 		ArrayList<Field> list = new ArrayList<Field>();
+ 		String query = "select name from field GROUP By name;";
+ 		
+ 		try {
+ 			conn = getConnection();
+ 			pstmt = conn.prepareStatement(query);
+ 			rs = pstmt.executeQuery();
+ 			
+ 			while(rs.next()) {
+ 				String name = rs.getString("name");
+ 				
+ 				Field field = new Field(0, 0, name, "", "", "", "", "", "", "", "");
+ 				list.add(field);
+ 			}
+ 			rs.close();
+ 			pstmt.close();
+ 			conn.close();
+ 		} catch(Exception e) {
+ 			System.out.println("indexContents Error : " + e.getMessage());
+ 		}
+ 		return list;
+ 	}
 }
