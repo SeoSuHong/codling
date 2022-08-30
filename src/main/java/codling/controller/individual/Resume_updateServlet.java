@@ -447,12 +447,6 @@ public class Resume_updateServlet extends HttpServlet {
 			}
 		}
 
-		System.out.println("resumeResult : " + resumeResult);
-		System.out.println("educationResult : " + educationResult);
-		System.out.println("careerResult : " + careerResult);
-		System.out.println("licenseResult : " + licenseResult);
-		System.out.println("portfolioResult : " + portfolioResult);
-
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();

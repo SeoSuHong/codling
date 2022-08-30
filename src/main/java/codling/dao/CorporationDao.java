@@ -317,6 +317,62 @@ public class CorporationDao {
 		return result;
 	}
 	
+	// ==================== 공고 수정 ====================
+	// 공고 수정
+	public boolean updateJobOpening(JobOpening jobOpening) {
+		boolean result = false;
+		String query = "UPDATE jobOpening SET title = ?, region = ?, detailRegion = ?, process = ?, startDate = ?, endDate = ? WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, jobOpening.getTitle());
+			pstmt.setString(2, jobOpening.getRegion());
+			pstmt.setString(3, jobOpening.getDetailRegion());
+			pstmt.setString(4, jobOpening.getProcess());
+			pstmt.setString(5, jobOpening.getStartDate());
+			pstmt.setString(6, jobOpening.getEndDate());
+			pstmt.setInt(7, jobOpening.getNo());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateJobOpening Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 지원분야 수정
+	public boolean updateField(Field field) {
+		boolean result = false;
+		String query = "UPDATE field SET name = ?, career = ?, position = ?, pay = ?, workDay = ?, work = ?, stack = ?, requirement = ?, preference = ? WHERE no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, field.getName());
+			pstmt.setString(2, field.getCareer());
+			pstmt.setString(3, field.getPosition());
+			pstmt.setString(4, field.getPay());
+			pstmt.setString(5, field.getWorkDay());
+			pstmt.setString(6, field.getWork());
+			pstmt.setString(7, field.getStack());
+			pstmt.setString(8, field.getRequirement());
+			pstmt.setString(9, field.getPreference());
+			pstmt.setInt(10, field.getNo());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateField Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
 	// 공고 삭제
 	public boolean deleteJobOpening(int no) {
 		boolean result = false;
@@ -333,9 +389,25 @@ public class CorporationDao {
 	}
 	
 	// 모집분야 삭제
+	// 공고no의 모든 모집분야 삭제
 	public boolean deleteField(int jobOpening_no) {
 		boolean result = false;
 		String query = "DELETE FROM field WHERE jobOpening_no = " + jobOpening_no;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			
+			if(pstmt.executeUpdate() >= 1) result = true;
+		} catch(Exception e) {
+			System.out.println("deleteField Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 모집분야명으로 삭제
+	public boolean deleteField(String name) {
+		boolean result = false;
+		String query = "DELETE FROM field WHERE name = " + name;
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);

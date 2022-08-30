@@ -231,8 +231,104 @@ $(function() {
 	});
 });
 
+var xhr;
+var checkFirst = loopSend = false;
+var lastKeyword = "";
+//Timeout을 1초로 걸었다. 일정 단어 완성 뒤 검색어를 만들어 검색하기 위해서 이다.
+function keyDown(obj) {
+	/*let stackWrap = document.querySelector(".field");
+	let height = stackWrap.clientHeight;
+	$(stackWrap).css('height', height);*/
+	
+    if (checkFirst == false) {
+    	//1초뒤 sendKeyword() 수행
+        setTimeout(function() {
+			//Ajax를 활용하여 suggest.jsp 에게 요청을 하는 함수이다. 넘겨주는 값은 keyword이며 Post방식으로 전송한다.
+		    if (loopSend == false)
+		        return;
+		    else {
+		        var keyWord = obj.value;
+
+		        //키워드가 hide 함수를 불러 검색어 창 숨기기
+		        if (keyWord === "") {
+		            lastKeyword = "";
+		            hide(obj);
+		        //검색어가 있는 경우 suggest.jsp에게 값 요청
+		        } else if (keyWord !== lastKeyword) {
+		            lastKeyword = keyWord;
+		
+		            var para = "keyword=" + keyWord;
+		            
+		            xhr = new XMLHttpRequest();
+		            xhr.open("post", "suggest", true);
+		            xhr.onreadystatechange = function () {
+		                if (xhr.readyState == 4) {
+		                    if (xhr.status == 200) {
+		                        process(obj);
+		                    } else {
+		                        alert("요청실패1" + xhr.status);
+		                    }
+		                }
+		            }
+		            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		            xhr.send(para);
+		        }
+		    }
+		}, 300);
+        loopSend = true;
+    }
+}
+
+//Ajax의 결과를 받고 처리하는 공간이다.
+//Ajax에게 받은 Data(이름)에 링크를 건 뒤 Output-Suggest에 보여지는 형식이다.
+function process(obj) {
+	console.log(obj);
+    var data = xhr.responseText;
+    var result = data.split("|");
+    var tot = result[0];
+    if (tot > 0) {
+        var datas = result[1].split(",");
+        var stack = "";
+
+        //각각의 이름에 링크 걸기 각각의 이름은 func(자기이름)이 들어가 있다.
+        for (var i = 0; i < datas.length; i++) {
+            stack += "<li><span class='s'>" + datas[i] + "</span></li>";
+        }
+        //Output-Suggest에 결과 보여주기
+        var listView = obj.nextSibling.nextSibling.innerHTML = stack;
+		$('.s').click(function() {
+			//이름 클릭 시 Output-Selected 에 값 넣기. Suggest창 숨기기
+			console.log($(obj).parent().parent().prev().children('td:eq(-1)').children());
+			$(obj).parent().parent().prev().children('td:eq(-1)').children().append('<span class="st"><div class="stack">' + this.innerHTML + '</div><span onclick="parentElement.remove(this)" style="cursor:pointer"> X </div></div>');
+	
+		    loopSend = checkFirst = false;
+		    lastKeyword = "";
+		    hide(obj);
+		
+		    obj.value="";
+		});
+        show(obj);
+    }
+}
+
+
+//Suggest 창 숨기는 함수
+function hide(obj) {
+    var e = obj.nextSibling.nextSibling;
+    if (e) e.style.display = "none";
+
+	let stackWrap = document.querySelector(".field");
+	/*$(stackWrap).css('height', 'auto');*/
+}
+
+//Suggest 창 보이게 속성 바꾸는 함수
+function show(obj) {
+    var e = obj.nextSibling.nextSibling;
+    if (e) e.style.display = "";
+}
+
 // null값 검사 후 submit
-function updateJobOpeningCheck() {
+function insertJobOpeningCheck() {
 	if(document.jobOpForm.address.value == '') {
 		alert("근무지역을 입력해 주세요.");
 		document.jobOpForm.detailAddress.focus(); return;
@@ -255,6 +351,7 @@ function updateJobOpeningCheck() {
 	var career_yearList   = document.getElementsByName('career_year');
 	var careerList        = document.getElementsByName('career');
 	var positionList      = document.getElementsByName('position');
+	var payList_          = document.getElementsByName('pay_');
 	var payList           = document.getElementsByName('pay');
 	var workdayList       = document.getElementsByName('workday');
 	var stackList         = document.getElementsByName('stack');
@@ -282,9 +379,9 @@ function updateJobOpeningCheck() {
 			alert("직급/직책을 입력해 주세요.");
 			positionList[i].focus(); return;
 		}
-		if(payList[i2].value == '' && !payList[i2 + 1].checked) {
+		if(payList_[i2].value == '' && !payList_[i2 + 1].checked) {
 			alert("급여를 입력해 주세요.");
-			payList[i2].focus(); return;
+			payList_[i2].focus(); return;
 		}
 		if(!workdayList[i3].checked && !workdayList[i3 + 1].checked && !workdayList[i3 + 2].checked) {
 			alert("근무요일을 선택해 주세요."); return;
@@ -305,11 +402,18 @@ function updateJobOpeningCheck() {
 			alert("우대사항을 작성해 주세요.");
 			preferenceList[i].focus(); return;
 		}
+		
 		if(career_statusList[i2].checked && !career_statusList[i2 + 1].checked) 
 			careerList[i].value = career_statusList[i2].value;
 		else if(!career_statusList[i2].checked && career_statusList[i2 + 1].checked)
 			careerList[i].value = career_yearList[i].value;
-		else careerList[i].value = career_statusList[i2].value + " / " + career_yearList[i].value;
+		else careerList[i].value = career_statusList[i2].value + "/" + career_yearList[i].value;
+		
+		if(payList_[i2].value == '') {
+			pay[i].value = '면접 후 결정';
+		} else if(!payList_[i2 + 1].checked) {
+			pay[i].value = payList_[i2].value; 
+		}
 	}
 	if(document.jobOpForm.process.value == '') {
 		alert("채용절차를 입력해 주세요.");

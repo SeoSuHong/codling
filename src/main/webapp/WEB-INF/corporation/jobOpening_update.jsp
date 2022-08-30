@@ -68,10 +68,11 @@
                     </tr>
                 </table>
            	</article>
+           	
            	<!-- 모집분야(추가 폼) -->
-           	<div name="problem_list" id="problem_list">
+           	<div id="problem_list">
                	<h3>모집분야<input type="button" id="add" onclick="addForm();" value="추가"></h3>
-           		<article class="field">
+           		<article class="field" id="field">
                     <table>
                         <tr>
                             <td>분야명*</td>
@@ -81,10 +82,10 @@
                             <td>경력여부*</td>
                             <td id="font_medium">
                             	<c:set var="chkCareer" value="0"/>
-                            	<c:set var="car"/>
+                            	<c:set var="car" />
                             	<input name="career_status" value="신입" type="checkbox" <c:if test="${fn:contains(fields[0].career, '신입')}">checked</c:if>><label>&nbsp;신입&emsp;&emsp;</label>
                             	<c:forTokens var="c" items="${fields[0].career}" delims="/">
-                            		<c:if test="${!c == '신입'}">
+                            		<c:if test="${c != '신입'}">
                             			<c:set var="chkCareer" value="1"/>
                             			<c:set var="car" value="${c}"/>
 	                                </c:if>
@@ -101,8 +102,9 @@
                         <tr>
                             <td>급여*</td>
                             <td id="font_medium">
-	                            <input <c:if test="${not empty fields[0].pay}">value="${fields[0].pay}"</c:if> name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
-	                            <input type="checkbox" name="pay" value="면접 후 결정" <c:if test="${fields[0].pay == '면접 후 결정'}">checked</c:if>><label>&nbsp;면접 후 결정</label></span>
+	                            <input <c:if test="${fields[0].pay != '면접 후 결정'}">value="${fields[0].pay}"</c:if> name="pay_" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
+	                            <input type="checkbox" name="pay_" value="면접 후 결정" <c:if test="${fields[0].pay == '면접 후 결정'}">checked</c:if>><label>&nbsp;면접 후 결정</label></span>
+	                            <input type="hidden" name="pay">
                             </td>
                         </tr>
                         <tr>
@@ -114,9 +116,17 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>사용스택 및 툴*</td>
-                            <td id="font_medium"><input value="${fields[0].stack}" id="stack" name="stack">
+                        	<td></td>
+                        	<td><div id="stacks" name="sel" size="10" readonly="readonly"></div></td>
                         </tr>
+                        <tr>
+                            <td>사용스택 및 툴*</td>
+                            <td id="font_medium">
+	                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
+	                            <ul id="suggest" style="display: none; position: relative; top: 0px;"></ul>
+                            </td>
+                        </tr>
+                     	<tr>
                         <tr>
                             <td>주요업무*</td>
                             <td id="font_medium"><textarea id="textbox" name="work">${fields[0].work}</textarea>
@@ -144,18 +154,18 @@
 		                        	<tr>
 			                            <td>경력여부*</td>
 			                            <td id="font_medium">
-			                            	<c:if test="${field.career == '신입'}">
-				                            	<input name="career_status" value="신입" type="checkbox" checked><label>&nbsp;신입&emsp;&emsp;</label>
-				                                <input name="career_status" value="경력" class="careerChk" type="checkbox"><label>&nbsp;경력&emsp;</label>
-				                                <input name="career_year" class="career_year" readonly> ※숫자(연차)만 입력
-				                                <input name="career" type="hidden">
-			                                </c:if>
-			                                <c:if test="${field.career != '신입'}">
-				                            	<input name="career_status" value="신입" type="checkbox"><label>&nbsp;신입&emsp;&emsp;</label>
-				                                <input name="career_status" value="경력" class="careerChk" type="checkbox" checked><label>&nbsp;경력&emsp;</label>
-				                                <input name="career_year" class="career_year" value="${field.career}" readonly> ※숫자(연차)만 입력
-				                                <input name="career" type="hidden">
-			                                </c:if>
+			          	                 	<c:set var="chkCareer" value="0"/>
+                        			    	<c:set var="car" />
+			                            	<input name="career_status" value="신입" type="checkbox" <c:if test="${fn:contains(field.career, '신입')}">checked</c:if>><label>&nbsp;신입&emsp;&emsp;</label>
+			                            	<c:forTokens var="c" items="${field.career}" delims="/">
+			                            		<c:if test="${c != '신입'}">
+			                            			<c:set var="chkCareer" value="1"/>
+			                            			<c:set var="car" value="${c}"/>
+				                                </c:if>
+			                                </c:forTokens>
+			                                <input name="career_status" value="경력" class="careerChk" type="checkbox" <c:if test="${chkCareer == 1}">checked</c:if>><label>&nbsp;경력&emsp;</label>
+			                                <input name="career_year" class="career_year" <c:if test="${not empty car}">value="${car}"</c:if> <c:if test="${empty car}">readonly</c:if>> ※숫자(연차)만 입력
+			                                <input name="career" type="hidden">
 			                            </td>
 		                        	</tr>
 		                        	<tr>
@@ -164,37 +174,32 @@
 		                        	</tr>
 		                        	<tr>
 			                            <td>급여*</td>
-			                            <c:if test="${field.pay == '면접 후 결정'}">
-			                            	<td id="font_medium"><input name="pay" id="comma" onkeyup="commas(this)" size="10">&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="pay" value="면접 후 결정" checked><label>&nbsp;면접 후 결정</label></span></td>
-			                            </c:if>
-			                            <c:if test="${field.pay != '면접 후 결정'}">
-			                            	<td id="font_medium"><input value="${field.pay}" name="pay" id="comma" onkeyup="commas(this)" size="10">&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span></td>
-			                            </c:if>
+			                            <td id="font_medium">
+				                            <input <c:if test="${field.pay != '면접 후 결정'}">value="${field.pay}"</c:if> name="pay_" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
+				                            <input type="checkbox" name="pay_" value="면접 후 결정" <c:if test="${field.pay == '면접 후 결정'}">checked</c:if>><label>&nbsp;면접 후 결정</label></span>
+				                            <input type="hidden" name="pay">
+			                            </td>
 		                        	</tr>
 		                        	<tr>
 			                            <td>근무요일*</td>
 			                            <td id="font_medium">
-				                            <c:if test="${field.workDay == '주5일(월~금)'}">
-				                                <input name="workday" type="checkbox" value="주5일(월~금)" checked><label>&nbsp;주5일(월~금)</label>&emsp;
-				                                <input name="workday" type="checkbox" value="유연근무제"><label>&nbsp;유연근무제</label>&emsp;
-				                                <input name="workday" type="checkbox" value="면접 후 결정"><label>&nbsp;면접 후 결정</label>
-			                                </c:if>
-			                                <c:if test="${field.workDay == '유연근무제'}">
-				                                <input name="workday" type="checkbox" value="주5일(월~금)"><label>&nbsp;주5일(월~금)</label>&emsp;
-				                                <input name="workday" type="checkbox" value="유연근무제" checked><label>&nbsp;유연근무제</label>&emsp;
-				                                <input name="workday" type="checkbox" value="면접 후 결정"><label>&nbsp;면접 후 결정</label>
-			                                </c:if>
-			                                <c:if test="${field.workDay == '면접 후 결정'}">
-				                                <input name="workday" type="checkbox" value="주5일(월~금)"><label>&nbsp;주5일(월~금)</label>&emsp;
-				                                <input name="workday" type="checkbox" value="유연근무제"><label>&nbsp;유연근무제</label>&emsp;
-				                                <input name="workday" type="checkbox" value="면접 후 결정" checked><label>&nbsp;면접 후 결정</label>
-			                                </c:if>
+			                                <input name="workday" type="checkbox" value="주5일(월~금)" <c:if test="${field.workDay == '월-금'}">checked</c:if>><label>&nbsp;주5일(월~금)</label>&emsp;
+			                                <input name="workday" type="checkbox" value="유연근무제" <c:if test="${field.workDay == '유연근무제'}">checked</c:if>><label>&nbsp;유연근무제</label>&emsp;
+			                                <input name="workday" type="checkbox" value="면접 후 결정" <c:if test="${field.workDay == '면접 후 결정'}">checked</c:if>><label>&nbsp;면접 후 결정</label>
 			                            </td>
 		                        	</tr>
 		                        	<tr>
+			                        	<td></td>
+			                        	<td><div id="stacks" name="sel" size="10" readonly="readonly"></div></td>
+			                        </tr>
+			                        <tr>
 			                            <td>사용스택 및 툴*</td>
-			                            <td id="font_medium"><input value="${field.stack}" id="stack" name="stack">
-		                        	</tr>
+			                            <td id="font_medium">
+				                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
+				                            <ul id="suggest" style="display: none; position: relative; top: 0px;"></ul>
+			                            </td>
+			                        </tr>
+			                     	<tr>
 			                        <tr>
 			                            <td>주요업무*</td>
 			                            <td id="font_medium"><textarea id="textbox" name="work">${field.work}</textarea>
@@ -237,7 +242,11 @@
                     	</tr>
                     	<tr>
                         	<td>급여*</td>
-                         	<td id="font_medium"><input name="pay" id="comma" onkeyup="commas(this)" size="10">&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span></td>
+                         	<td id="font_medium">
+                         		<input name="pay_" id="comma" onkeyup="commas(this)" size="10">&nbsp;만원 <span>&emsp;&emsp;
+                         		<input type="checkbox" name="pay_" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span>
+                         		<input type="hidden" name="pay">
+                         	</td>
                     	</tr>
                     	<tr>
                          	<td>근무요일*</td>
@@ -248,9 +257,16 @@
                          	</td>
                     	</tr>
                     	<tr>
-                         	<td>사용스택 및 툴*</td>
-                         	<td id="font_medium"><input id="stack" name="stack">
-                    	</tr>
+                        	<td></td>
+                        	<td><div id="stacks" name="sel" size="10" readonly="readonly"></div></td>
+                        </tr>
+                        <tr>
+                            <td>사용스택 및 툴*</td>
+                            <td id="font_medium">
+	                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
+	                            <ul id="suggest" style="display: none; position: relative; top: 0px;"></ul>
+                            </td>
+                        </tr>
                      	<tr>
                          	<td>주요업무*</td>
                          	<td id="font_medium"><textarea id="textbox" name="work"></textarea>

@@ -46,9 +46,16 @@ td{font-weight:bold;color:#373F57;}
 #title{width: 1220px; height: 200px; background: #F8F8F8; border-radius: 10px;display: flex; justify-content: left; align-items: center;margin-top: 25px;}
 
 /* 모집분야 */
-.field{width: 1220px; height: 1000px; background: #F8F8F8; border-radius: 10px; align-items: center; margin-top: 25px; padding-top: 60px;}
-.field:not(:first-of-type){padding-top: 30px;}
+.field{width: 1220px; height: 1050px; background: #F8F8F8; border-radius: 10px; align-items: center; margin-top: 30px; padding-top: 30px;}
+#field {padding-top: 65px;}
 .career_year{width: 40px;margin-top:-25px;vertical-align:middle;}
+
+#keyword{width: 300px;}
+#stacks{display: flex; width: 1000px; height: 50px; flex-flow: row wrap;}
+.st{display: flex; margin-right: 30px; background-color: #A5E374; border-radius: 50px; padding: 0 12px;}
+.stack{margin-right: 10px; display: flex; color: white; font-size: 1.3rem; font-weight: bold;}
+#suggest{width: 900px; max-height: 300px; background-color: white; overflow-y: scroll; box-shadow: 0 4px 8px 0 rgb(20 20 20 / 2%), 4px 16px 24px 0 rgb(20 20 20 / 12%);}
+
 #btn{display: flex; justify-content: space-between;}
 /* 추가버튼 */
 #add{ background-color: #A5E374; color: white;appearance: none; margin-bottom: 2px; float: right; margin-right: 10px; padding: 7px;font-size:medium; font-weight: 400; text-align: center;
@@ -60,7 +67,7 @@ box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06
 #textbox{width:900px; height:120px; margin-top: 20px; line-height: 20px;}
 label{position:relative;top:-7px;}
 /* 삭제버튼 */
-#del{font-family: 'Gosanja';  -webkit-appearance: none; -moz-appearance: none; appearance: none; font-size: medium;text-decoration: none;font-weight: 400;text-align: center; display: inline-block;width: 80px;height: 40px;
+#del{-webkit-appearance: none; -moz-appearance: none; appearance: none; font-size: medium;text-decoration: none;font-weight: 400;text-align: center; display: inline-block;width: 80px;height: 40px;
 border: none;border-radius: 10px;box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
 cursor: pointer;background-color:#D6D6D6; border:0;color: #858585;position: relative; top: -15px; left: 1125px;}
 td{line-height: 50px; padding-left: 30px;}

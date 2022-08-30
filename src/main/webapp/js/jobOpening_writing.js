@@ -399,7 +399,7 @@ function insertJobOpeningCheck() {
 			careerList[i].value = career_statusList[i2].value;
 		else if(!career_statusList[i2].checked && career_statusList[i2 + 1].checked)
 			careerList[i].value = career_yearList[i].value;
-		else careerList[i].value = career_statusList[i2].value + " / " + career_yearList[i].value;
+		else careerList[i].value = career_statusList[i2].value + "/" + career_yearList[i].value;
 	}
 	if(document.jobOpForm.process.value == '') {
 		alert("채용절차를 입력해 주세요.");

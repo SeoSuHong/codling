@@ -214,8 +214,6 @@ function addUrl(obj) {
 	$(addPos).append(addNode);
 	
 	addPos.parentNode.nextSibling.nextSibling.value++;
-	console.log(addPos.parentNode.nextSibling.nextSibling);
-	console.log(addPos.parentNode.nextSibling.nextSibling.value);
 }
 
 // 포트폴리오 URL삭제 버튼 클릭 시
