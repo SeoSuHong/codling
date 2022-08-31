@@ -25,9 +25,10 @@ public class LoginServlet extends HttpServlet {
 		String indiId = request.getParameter("perId");
 		String corpId = request.getParameter("comId");
 		
+		String indiPw = request.getParameter("perPassword");
+		String corpPw = request.getParameter("comPassword");
+		
 		InformationDao dao = new InformationDao();
-		Map<String, String> indiMap = dao.getIndiName(indiId);
-		Map<String, String> corpMap = dao.getCorpName(corpId);
 		
 		HttpSession session = request.getSession();
 		
@@ -35,21 +36,27 @@ public class LoginServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		if(indiMap != null) {
-			for(String key : indiMap.keySet()) {
-				if(key.equals(indiId)) {
-					String name = indiMap.get(key);
-					session.setAttribute("indiId", indiId);
-					out.print("<script>alert('" + name + "님 환영합니다.'); location.href = 'index';</script>");
-				}
+		String password = "";
+		String name = "";
+		if(indiId != null) {
+			password = dao.getIndiPassword(indiId);
+			if(indiPw.equals(password)) {
+				session.setAttribute("indiId", indiId);
+				
+				name = dao.getIndividualName(indiId);
+				out.print("<script>alert('" + name + "님 환영합니다.'); location.href = 'index';</script>");
+			} else {
+				out.print("<script>alert('아이디 또는 비밀번호를 확인해 주세요.'); history.back();</script>");
 			}
-		} else if(corpMap != null) {
-			for(String key : corpMap.keySet()) {
-				if(key.equals(corpId)) {
-					String name = corpMap.get(key);
-					session.setAttribute("corpId", corpId);
-					out.print("<script>alert('" + name + "님 환영합니다.'); location.href = 'index';</script>");
-				}
+		} else if(corpId != null) {
+			password = dao.getCorpPassword(corpId);
+			if(corpPw.equals(password)) {
+				session.setAttribute("corpId", corpId);
+				
+				name = dao.getCorporationName(corpId);
+				out.print("<script>alert('" + name + "님 환영합니다.'); location.href = 'index';</script>");
+			} else {
+				out.print("<script>alert('아이디 또는 비밀번호를 확인해 주세요.'); history.back();</script>");
 			}
 		} else {
 			out.print("<script>alert('아이디 또는 비밀번호를 확인해 주세요.'); history.back();</script>");

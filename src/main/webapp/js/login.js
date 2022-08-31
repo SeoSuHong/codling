@@ -4,12 +4,18 @@ $(function() {
         $(this).css('color','white');
         $('.a_com').css('background','#F0F0F0');
         $('.a_com').css('color','#858585');
+
+		$('#com-id').val('');
+		$('#com-password').val('');
     });
     $('.a_com').click( function() {
         $(this).css('background','#A5E374');
         $(this).css('color','white');
         $('.a_per').css('background','#F0F0F0');
         $('.a_per').css('color','#858585');
+
+		$('#per-id').val('');
+		$('#password').val('');
     });
 });
 

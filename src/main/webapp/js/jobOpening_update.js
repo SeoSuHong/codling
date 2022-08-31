@@ -378,6 +378,16 @@ function updateJobOpeningCheck() {
 		let i2 = i * 2;
 		let i3 = i * 3;
 
+		var stackName = "";
+		for(var j = 0; j < stackCount[i].value; j++) {
+			if(j != stackCount[i].value - 1)
+				stackName += stackList[cnt].innerText + "/";
+			else
+				stackName += stackList[cnt].innerText;
+			cnt++;
+		}
+		stack[i].value = stackName;
+		
 		if(nameList[i].value == '') {
 			alert("분야명을 입력해 주세요.");
 			nameList[i].focus(); return;
@@ -429,15 +439,6 @@ function updateJobOpeningCheck() {
 			payList[i].value = payList_[i2].value; 
 		}
 		
-		var stackName = "";
-		for(var j = 0; j < stackCount[i].value; j++) {
-			if(j != stackCount[i].value - 1)
-				stackName += stackList[cnt].innerText + "/";
-			else
-				stackName += stackList[cnt].innerText;
-			cnt++;
-		}
-		stack[i].value = stackName;
 	}
 	
 	if(document.jobOpForm.process.value == '') {

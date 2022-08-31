@@ -92,8 +92,9 @@
                         <tr>
                             <td>급여*</td>
                             <td id="font_medium">
-	                            <input type="text" name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
-	                            <input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span>
+	                            <input name="pay_" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
+	                            <input type="checkbox" name="pay_" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span>
+	                            <input type="hidden" name="pay">
                             </td>
                         </tr>
                         <tr>
@@ -106,13 +107,17 @@
                         </tr>
                         <tr>
                         	<td></td>
-                        	<td><div id="stacks" name="sel" size="10" readonly="readonly"></div></td>
+                        	<td>
+                        		<div id="stacks"></div>
+                        		<input type="hidden" name="stack">
+                        		<input type="hidden" name="stackCount">
+                        	</td>
                         </tr>
                         <tr>
                             <td>사용스택 및 툴*</td>
-                            <td id="font_medium">
-	                            <input id="stack" name="keyword" onkeydown="keyDown()">
-	                            <ul id="suggest" style="display: none; position: absolute; top: 1333px;"></ul>
+                            <td id="font_medium" class="stackTd">
+	                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
+	                            <ul id="suggest" style="position: absolute; display: none; top: 48px;"></ul>
                             </td>
                         </tr>
                         <tr>
@@ -154,7 +159,11 @@
                         	</tr>
                         	<tr>
 	                            <td>급여*</td>
-	                            <td id="font_medium"><input name="pay" id="comma" onkeyup="commas(this)" size="10">&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span></td>
+	                            <td id="font_medium">
+	                            	<input name="pay_" id="comma" onkeyup="commas(this)" size="10">&nbsp;만원 <span>&emsp;&emsp;
+	                            	<input type="checkbox" name="pay_" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span>
+	                            	<input type="hidden" name="pay">
+	                            </td>
                         	</tr>
                         	<tr>
 	                            <td>근무요일*</td>
@@ -165,9 +174,20 @@
 	                            </td>
                         	</tr>
                         	<tr>
+	                        	<td></td>
+	                        	<td>
+	                        		<div id="stacks"></div>
+	                        		<input type="hidden" name="stack">
+	                        		<input type="hidden" name="stackCount">
+	                        	</td>
+	                        </tr>
+	                        <tr>
 	                            <td>사용스택 및 툴*</td>
-	                            <td id="font_medium"><input id="stack" name="stack">
-                        	</tr>
+	                            <td id="font_medium" class="stackTd">
+		                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
+		                            <ul id="suggest" style="position: absolute; display: none; top: 48px;"></ul>
+	                            </td>
+	                        </tr>
 	                        <tr>
 	                            <td>주요업무*</td>
 	                            <td id="font_medium"><textarea id="textbox" name="work"></textarea>
