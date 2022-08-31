@@ -39,9 +39,8 @@ public class JobOpening_writingServlet extends HttpServlet {
 		String id = (String)session.getAttribute("corpId");
 		
 		String title             = request.getParameter("title");
-		String address           = request.getParameter("address");
-		String detailAddress     = request.getParameter("detailAddress");
-		String region            = address + " " + detailAddress;
+		String region           = request.getParameter("address");
+		String detailregion     = request.getParameter("detailAddress");
 		String startDate         = request.getParameter("startDate");
 		String endDate           = request.getParameter("endDate");
 		String process           = request.getParameter("process");
@@ -56,7 +55,7 @@ public class JobOpening_writingServlet extends HttpServlet {
 		String[] requirementList = request.getParameterValues("requirement");
 		String[] preferenceList  = request.getParameterValues("preference");
 		
-		JobOpening jobOpening = new JobOpening(0, id, title, region, process, startDate, endDate, 0);
+		JobOpening jobOpening = new JobOpening(0, id, title, region, detailregion, process, startDate, endDate, 0);
 		
 		CorporationDao corpDao = new CorporationDao();
 		boolean jobOpening_result = corpDao.insertJobOpening(jobOpening);
