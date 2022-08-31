@@ -213,7 +213,7 @@
 	<c:if test="${empty announcement}">
 		<div id="not_contents">
 			<div>
-				<h2>검색하신 공고가 존재하지 않습니다.</h2>
+				<h2>&nbsp;검색하신 공고가 존재하지 않습니다.</h2>
 				<img alt="준비중 이미지" src="img/contentsloading.png">
 			</div>
 		</div>

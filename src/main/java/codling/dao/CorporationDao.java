@@ -705,7 +705,7 @@ public class CorporationDao {
  	public ArrayList<Announcement> getSearch(String search, String zone, String careers, String task) {
  		ArrayList<Announcement> list = new ArrayList<Announcement>();
  		String query = "SELECT C.corporateName, J.title, F.name, F.stack, F.career, F.pay, F.name, J.no, J.count "
- 				+ "FROM field F \r\n"
+ 				+ "FROM field F "
  				+ "JOIN jobopening J ON F.jobopening_no = J.no "
  				+ "JOIN corporation C ON J.corporation_id = C.id "
  				+ "WHERE J.title REGEXP ? AND J.region REGEXP ? AND F.career REGEXP ? AND F.name REGEXP ? "
