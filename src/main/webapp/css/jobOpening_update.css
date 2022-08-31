@@ -50,13 +50,14 @@ td{font-weight:bold;color:#373F57;}
 #field {padding-top: 65px;}
 .career_year{width: 40px;margin-top:-25px;vertical-align:middle;}
 
-#keyword{width: 300px;}
-#stacks{display: flex; width: 1000px; flex-flow: row wrap;}
-.st{display: flex; margin-right: 10px; margin-bottom: 10px; background-color: #A5E374; border-radius: 50px; padding: 0 12px;}
-.stack{margin-right: 10px; display: flex; color: white; font-size: 1.3rem; font-weight: bold;}
-#suggest{width: 900px; padding: 0; max-height: 300px; background-color: white; overflow-y: scroll; box-shadow: 0 4px 8px 0 rgb(20 20 20 / 2%), 4px 16px 24px 0 rgb(20 20 20 / 12%);}
-#suggest li{cursor: pointer; height: 50px; line-height: 25px;}
-#suggest li:hover{background-color: #D6D6D6;}
+.stackTd {position: relative;}
+#keyword {width: 300px;}
+#stacks {display: flex; width: 1000px; flex-flow: row wrap;}
+.st {display: flex; margin-right: 10px; margin-bottom: 10px; background-color: #A5E374; border-radius: 50px; padding: 0 12px;}
+.stack {margin-right: 10px; display: flex; color: white; font-size: 1.3rem; font-weight: bold;}
+#suggest {width: 900px; padding: 0; max-height: 300px; background-color: white; overflow-y: scroll; box-shadow: 0 4px 8px 0 rgb(20 20 20 / 2%), 4px 16px 24px 0 rgb(20 20 20 / 12%);}
+#suggest li {cursor: pointer; height: 50px; line-height: 25px;}
+#suggest li:hover {background-color: #D6D6D6;}
 .s {width: 100%; height: 100%; color: #0D6EFD; padding-left: 32px; display: inline-block;}
 
 #btn{display: flex; justify-content: space-between;}

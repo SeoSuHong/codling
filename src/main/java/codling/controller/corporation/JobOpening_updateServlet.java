@@ -94,7 +94,6 @@ public class JobOpening_updateServlet extends HttpServlet {
 		curr_fieldSize = nameList.length - 1;
 		
 		for(int i = 0; i < nameList.length - 1; i++) {
-			System.out.println(stackList[i]);
 			if (i < prev_fieldSize) {
 				Field field = new Field(field_no[i], no, nameList[i], careerList[i], positionList[i], payList[i],
 						workDayList[i], workList[i], stackList[i], requirementList[i], preferenceList[i]);

@@ -444,5 +444,5 @@ function updateJobOpeningCheck() {
 		alert("채용절차를 입력해 주세요.");
 		document.jobOpForm.process.focus(); return;
 	}
-	/*document.jobOpForm.submit();*/
+	document.jobOpForm.submit();
 }

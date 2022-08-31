@@ -120,7 +120,7 @@
                         	<td>
                         		<c:set var="s"/>
                         		<c:set var="count"/>
-                        		<div id="stacks" name="sel" size="10" readonly="readonly">
+                        		<div id="stacks">
                         			<c:forTokens var="stack" items="${fields[0].stack}" delims="/" varStatus="st">
                         				<span class="st"><div class="stack">${stack}</div><span onclick="parentRemove(this)" style="cursor:pointer"> X </span></span>
                         				<c:set var="s" value="${s += stack}/"/>
@@ -135,7 +135,7 @@
                             <td>사용스택 및 툴*</td>
                             <td id="font_medium" class="stackTd">
 	                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
-	                            <ul id="suggest" style="display: none; position: relative; top: -3px;"></ul>
+	                            <ul id="suggest" style="position: absolute; display: none; top: 48px;"></ul>
                             </td>
                         </tr>
                      	<tr>
@@ -220,7 +220,7 @@
 			                            <td>사용스택 및 툴*</td>
 			                            <td id="font_medium" class="stackTd">
 				                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
-				                            <ul id="suggest" style="display: none; position: relative; top: -3px;"></ul>
+				                            <ul id="suggest" style="display: none; position: absolute; top: 48px;"></ul>
 			                            </td>
 			                        </tr>
 			                     	<tr>
@@ -292,7 +292,7 @@
                             <td>사용스택 및 툴*</td>
                             <td id="font_medium" class="stackTd">
 	                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
-	                            <ul id="suggest" style="display: none; position: relative; top: -3px;"></ul>
+	                            <ul id="suggest" style="display: none; position: absolute; top: 48px;"></ul>
                             </td>
                         </tr>
                      	<tr>
