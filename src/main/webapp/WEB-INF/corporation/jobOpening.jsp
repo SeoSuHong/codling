@@ -8,8 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codling : 공고 지원</title>
-    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
+    <title>Document</title>
     <link rel="stylesheet" href="css/jobOpening.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=370fa568d4acbeb9115655e735792c45&libraries=services"></script>
 </head>
@@ -208,7 +207,7 @@
         <div id="comcon">
             <div>
                 <p><span>모집일</span>${fn:replace(jobOpening.startDate, "-", ".")} - ${fn:replace(jobOpening.endDate, "-", ".")}</p>
-                <p><span>근무지역</span>${jobOpening.region}</p>
+                <p><span>근무지역</span>${jobOpening.region} ${jobOpening.detailRegion}</p>
             </div>
         </div>
         <div id="companyInfo">
@@ -222,14 +221,14 @@
                     <dt>대표자명</dt>
                         <dd>${corporation.ceoName}</dd>
                     <dt>주 &ensp;&ensp; 소</dt>
-                        <dd>${corporation.address}</dd>
+                        <dd>${corporation.address} ${corporation.detailAddress}</dd>
                 </dl>
             </div>
         </div>
         <div id="hr">   
             <hr>
         </div>
-		<input type="hidden" id="area" value="${jobOpening.region}">
+		<input type="hidden" id="area" value="${jobOpening.region} ${jobOpening.detailRegion}">
 		<input type="hidden" id="corpName" value="${corporation.corporateName}">
 		<div id="mapWrap">
         	<div id="map"></div>
@@ -238,7 +237,7 @@
             <hr>
         </div>
         <div class="jobs">
-            <dl onclick="location='jobOpening?no=${field.jobOpening_no}'" style="cursor: pointer;">
+            <dl>
                 <dt><img src="img/logo.png"></dt>
                 <dd>${jobOpening.title}</dd>
                 <dd>${corporation.corporateName}</dd>
@@ -246,23 +245,23 @@
                 	<c:forEach var="field" items="${fields}">
                 		${field.name} | 
 	                	<c:forTokens var="career" items="${field.career}" delims="/" varStatus="st">
-		            			<c:if test="${fn:length(field.career) <= 3}">
-		              				<c:if test="${career == '신입'}">
-			                			<span>${career}</span>&ensp;&ensp;
-			                		</c:if>
-			                		<c:if test="${career != '신입'}">
-			                			<span>${career}년↑</span>&ensp;&ensp;
-			                		</c:if>
-			                	</c:if>
-			                	
-			                	<c:if test="${fn:length(field.career) > 3}">
-			                		<c:if test="${career == '신입'}">
-			                			<span>${career} or</span>
-			                		</c:if>
-			                		<c:if test="${career != '신입'}">
-			                			<span>${career}년↑</span>&ensp;&ensp;
-			                		</c:if>
-			                	</c:if>
+	            			<c:if test="${fn:length(field.career) <= 3}">
+	              				<c:if test="${career == '신입'}">
+		                			<span>${career}</span>&ensp;&ensp;
+		                		</c:if>
+		                		<c:if test="${career != '신입'}">
+		                			<span>${career}년↑</span>&ensp;&ensp;
+		                		</c:if>
+		                	</c:if>
+		                
+		                	<c:if test="${fn:length(field.career) > 3}">
+		                		<c:if test="${career == '신입'}">
+		                			<span>${career} or</span>
+		                		</c:if>
+		                		<c:if test="${career != '신입'}">
+		                			<span>${career}년↑</span>&ensp;&ensp;
+		                		</c:if>
+		                	</c:if>
 				        </c:forTokens>
 			        </c:forEach>
                 </dd>
