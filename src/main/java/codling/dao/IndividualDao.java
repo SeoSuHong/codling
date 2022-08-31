@@ -143,6 +143,33 @@ public class IndividualDao {
 		}
 		return result;
 	}
+	
+	// 자기소개서 전부 가져오기
+		public List<CoverLetter> getAllCoverLetter(String individual_id) {
+			List<CoverLetter> coverLetterList = new ArrayList<CoverLetter>();
+			String query = "SELECT * FROM coverLetter WHERE individual_id = ?";
+			try {
+				conn= getConnection();
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, individual_id);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					int no = rs.getInt("no");
+					String title = rs.getString("title");
+					String content = rs.getString("content");
+					
+					CoverLetter coverLetter = new CoverLetter(no, individual_id, title, content);
+					coverLetterList.add(coverLetter);
+				}
+				rs.close();
+				pstmt.close();
+				conn.close();
+				
+			} catch(Exception e) {
+				System.out.println("getCoverLetter Error : " + e.getMessage());
+			}
+			return coverLetterList;
+		}
 
 	// 자기소개서 수정
 	public boolean updateCoverLetter(CoverLetter coverLetter) {
