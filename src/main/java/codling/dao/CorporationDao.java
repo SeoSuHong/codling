@@ -75,12 +75,13 @@ public class CorporationDao {
 				String corporation_id = rs.getString("corporation_id");
 				String title = rs.getString("title");
 				String region = rs.getString("region");
+				String detailRegion = rs.getString("detailRegion");
 				String process = rs.getString("process");
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
 				
-				jobOpening = new JobOpening(no, corporation_id, title, region, process, startDate, endDate, count);
+				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count);
 			}
 			
 			rs.close();
@@ -108,12 +109,13 @@ public class CorporationDao {
 				String corporation_id = rs.getString("corporation_id");
 				String title = rs.getString("title");
 				String region = rs.getString("region");
+				String detailRegion = rs.getString("detailRegion");
 				String process = rs.getString("process");
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
 				
-				jobOpening = new JobOpening(no, corporation_id, title, region, process, startDate, endDate, count);
+				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count);
 			}
 			
 			rs.close();
@@ -141,12 +143,13 @@ public class CorporationDao {
 				int no = rs.getInt("no");
 				String title = rs.getString("title");
 				String region = rs.getString("region");
+				String detailRegion = rs.getString("detailRegion");
 				String process = rs.getString("process");
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
 				
-				JobOpening jobOpening = new JobOpening(no, id, title, region, process, startDate, endDate, count);
+				JobOpening jobOpening = new JobOpening(no, id, title, region, detailRegion, process, startDate, endDate, count);
 				list.add(jobOpening);
 			}
 			
