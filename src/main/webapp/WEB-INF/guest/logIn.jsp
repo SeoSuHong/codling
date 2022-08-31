@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name = "google-signin-client_id"content = "818581121502-4ra0mcisdnf0avcrhsird4a58hrg5hjt.apps.googleusercontent.com">
+    <!-- content에 자신의 OAuth2.0 클라이언트ID를 넣습니다. -->
+    <meta name ="google-signin-client_id" content="284499893832-9k98h204k3rhjp1jevbuclg4dc8b4nk2.apps.googleusercontent.com">
     <title>Codling : 로그인</title>
     <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="css/logIn.css">
@@ -66,8 +67,8 @@
     <div id="loginAPI">
         <div>
             <a href="javascript:kakaoLogin()"><img src="img/kakao.png" alt=""></a>
-            <div class="g-signin2" data-width="40" data-height="40" data-longtitle="true"></div>
-             <a id="naverIdLogin_loginButton" href="javascript:void(0)"><img src="img/naver.png" alt=""></a>
+			<a id="GgCustomLogin" href="javascript:void(0)"><img src="img/google.png" alt=""></a>
+            <a id="naverIdLogin_loginButton" href="javascript:void(0)"><img src="img/naver.png" alt=""></a>
         </div>
     </div>
         <p id="loginAPI-Pt">
@@ -79,6 +80,7 @@
             </span>
         </p>
     </div>
+    <!-- 카카오 -->
         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
         window.Kakao.init("370fa568d4acbeb9115655e735792c45");
@@ -99,16 +101,46 @@
             })
         }
     </script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script type="text/javascript">
-    function onSignIn(googleUser) {
-    	  var profile = googleUser.getBasicProfile();
-    	  console.log('ID: ' + profile.getId(); // Do not send to your backend! Use an ID token instead.
-    	  console.log('Name: ' + profile.getName());
-    	  console.log('Image URL: ' + profile.getImageUrl());
-    	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    	}
-    </script>
+    <script>
+	//처음 실행하는 함수
+	function init() {
+		gapi.load('auth2', function() {
+			gapi.auth2.init();
+			options = new gapi.auth2.SigninOptionsBuilder();
+			options.setPrompt('select_account');
+	        // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+			options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+	        // 인스턴스의 함수 호출 - element에 로그인 기능 추가
+	        // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
+			gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+		})
+	}
+	
+	function onSignIn(googleUser) {
+		var access_token = googleUser.getAuthResponse().access_token
+		$.ajax({
+	    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+			url: 'https://people.googleapis.com/v1/people/me'
+	        // key에 자신의 API 키를 넣습니다.
+			, data: {personFields:'birthdays', key:'AIzaSyCVu2ya6dVaACUjx4cHYS3Y43UFvNkSlj0', 'access_token': access_token}
+			, method:'GET'
+		})
+		.done(function(e){
+	        //프로필을 가져온다.
+			var profile = googleUser.getBasicProfile();
+			console.log(profile)
+		})
+		.fail(function(e){
+			console.log(e);
+		})
+	}
+	function onSignInFailure(t){		
+		console.log(t);
+	}
+	</script>
+	<!-- 구글 api 사용을 위한 스크립트 -->
+	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    <!-- 네이버 -->
     <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
 	<script>

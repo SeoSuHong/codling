@@ -146,8 +146,8 @@
 									<p class="fw-bold" id="addressCom">주소</p>
 									<input type="text" placeholder="우편번호" name="postCode" id="postcode" class="form-control mb-1 " style="display: inline-block; width: 100px;" onkeyup="inputDataCheck(this.id)" required>
 									<input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기" id="search"><br>
-									<input type="text" name="address" id="extraAddress" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required value="${fn:split(individual.address, '/')[0]}">
-									<input type="text" name="detailAddress" id="detailAddress" class="form-control mb-3 col-md-7" placeholder="상세주소" onkeyup="inputDataCheck(this.id)" required value="${fn:split(individual.address, '/')[1]}">
+									<input type="text" name="address" id="extraAddress" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required value="${individual.address}">
+									<input type="text" name="detailAddress" id="detailAddress" class="form-control mb-3 col-md-7" placeholder="상세주소" onkeyup="inputDataCheck(this.id)" required value="${individual.detailAddress}">
 								</div>
 							</div>
 							<div id="modify_btn">

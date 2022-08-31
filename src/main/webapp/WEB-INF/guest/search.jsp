@@ -148,6 +148,7 @@
 			</form>
 		</article>
 		<!-- 일반광고 -->
+		
 		<div class="row row-cols-1 row-cols-md-4 g-4">
 			<c:forEach var="anno" items="${announcement}">
 				<div class="col">
@@ -207,6 +208,16 @@
 				</div>
 			</c:forEach>
 		</div>
+		
+	<!-- 공고가 없을때 -->
+	<c:if test="${empty announcement}">
+		<div id="not_contents">
+			<div>
+				<h2>검색하신 공고가 존재하지 않습니다.</h2>
+				<img alt="준비중 이미지" src="img/contentsloading.png">
+			</div>
+		</div>
+	</c:if>	
 	</section>
 	<footer>
 		<a href="#up"><img src="img/footerLogo.png"></a> <a href="#">전체서비스</a>&ensp;|&ensp;

@@ -65,11 +65,12 @@ public class Individual_modifyServlet extends HttpServlet {
 		String gender = request.getParameter("gender");
 		String email = request.getParameter("email");
 		String phone = "010" + request.getParameter("phone");
-		String address = request.getParameter("address") + "/" + request.getParameter("detailAddress");
+		String address = request.getParameter("address");
+		String detailAddress = request.getParameter("detailAddress");
 		
 		boolean update_infoResult = false;
 		if(indiId != "" && !indiId.equals(null)) {
-			update_infoList = new Individual(id, password, name, birthday, gender, email, phone, address, "", "");
+			update_infoList = new Individual(id, password, name, birthday, gender, email, phone, address, detailAddress, "", "");
 			update_infoResult = indiDao.myinfo_update(update_infoList);
 		}
 		

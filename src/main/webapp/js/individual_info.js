@@ -41,11 +41,10 @@ function deleteChk() {
 
 function updateChk() {
 	var pwCheck = prompt('비밀번호를 입력하세요.', '비밀번호');
-	
-	/*var password = document.indiInfoForm.password.value;
+	var password = document.indiInfoForm.password.value;
 	
 	if(pwCheck == password)
 		location.href = "individual_modify";
 	else if(pwCheck != null && pwCheck != "")
-		alert("비밀번호가 일치하지 않습니다.");*/
+		alert("비밀번호가 일치하지 않습니다.");
 }

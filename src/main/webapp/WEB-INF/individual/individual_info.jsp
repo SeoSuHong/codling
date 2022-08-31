@@ -63,7 +63,7 @@
 	            </div>
 	            <div class="type">
 	                <p>주소</p>
-	                <div>${fn:split(individual.address, '/')[0]} ${fn:split(individual.address, '/')[1]}</div>
+	                <div>${individual.address} ${individual.detailAddress}</div>
 	            </div>
 	        </div>
 	        <div id="choice">

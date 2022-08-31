@@ -34,6 +34,12 @@ body {
 #logout>a:hover{background-color: #e6e6e6;}
 ul{list-style: none;}
 #searchbox{width: 300px;}
+#resume_empty{height: 200px; display: flex; justify-content: center;}
+#resume_empty_href{color:  #a5e374 !important;}
+dd{overflow: hidden; white-space: nowrap; text-overflow: ellipsis; margin-left: 10px;}
+dt{display: flex; justify-content: center;}
+
+#dldddt{display: flex; justify-content: center;}
 
 a {
     text-decoration: none;
@@ -443,15 +449,12 @@ dl img{
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+    width: 1000px;
 }
 
 .jobs dl {
-    width: 30%;
+    width: 26%;
     color: #373F57;
-}
-
-.jobs dt{
-    margin-left: 2.5rem;
 }
 
 .jobs dl dd:nth-child(2){

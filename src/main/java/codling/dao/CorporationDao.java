@@ -29,35 +29,36 @@ public class CorporationDao {
 	}
 	
 	// 기업회원 정보
-	public Corporation getCorporation(String id) {
-		Corporation corporation = null;
-		String query = "SELECT * FROM corporation WHERE id = ?";
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				String corporateName = rs.getString("corporateName");
-				String password = rs.getString("password");
-				String corporatePhone = rs.getString("corporatePhone");
-				String ceoName = rs.getString("ceoName");
-				String corporateNumber = rs.getString("corporateNumber");
-				String fileName = rs.getString("fileName");
-				String address = rs.getString("address");
+		public Corporation getCorporation(String id) {
+			Corporation corporation = null;
+			String query = "SELECT * FROM corporation WHERE id = ?";
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
 				
-				corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address);
+				if(rs.next()) {
+					String corporateName = rs.getString("corporateName");
+					String password = rs.getString("password");
+					String corporatePhone = rs.getString("corporatePhone");
+					String ceoName = rs.getString("ceoName");
+					String corporateNumber = rs.getString("corporateNumber");
+					String fileName = rs.getString("fileName");
+					String address = rs.getString("address");
+					String detailAddress = rs.getString("detailAddress");
+					
+					corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address, detailAddress);
+				}
+				
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch(Exception e) {
+				System.out.println("getCorporation Error : " + e.getMessage());
 			}
-			
-			rs.close();
-			pstmt.close();
-			conn.close();
-		} catch(Exception e) {
-			System.out.println("getCorporation Error : " + e.getMessage());
+			return corporation;
 		}
-		return corporation;
-	}
 	
 	// 공고 정보(ID)
 	public JobOpening getJobOpening(String id) {
@@ -433,7 +434,7 @@ public class CorporationDao {
 	// index 공고
 	public ArrayList<Announcement> indexContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, F.name, J.no, J.count "
 				+ "FROM jobopening J "
 				+ "JOIN field F ON J.no = F.jobOpening_no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -451,10 +452,11 @@ public class CorporationDao {
 				String stack = rs.getString("stack");
 				String career = rs.getString("career");
 				String pay = rs.getString("pay");
+				String name = rs.getString("name");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, name, no, count);
 				list.add(announcement);
 			}
 			rs.close();
@@ -470,7 +472,7 @@ public class CorporationDao {
 	// newcomer 공고
 	public ArrayList<Announcement> newcomerContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, F.name, J.no, J.count "
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -489,10 +491,11 @@ public class CorporationDao {
 				String stack = rs.getString("stack");
 				String career = rs.getString("career");
 				String pay = rs.getString("pay");
+				String name = rs.getString("name");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, name, no, count);
 				list.add(announcement);
 			}
 			rs.close();
@@ -508,7 +511,7 @@ public class CorporationDao {
 	// career 공고
 	public ArrayList<Announcement> careerContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, F.name, J.no, J.count "
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -527,10 +530,11 @@ public class CorporationDao {
 				String stack = rs.getString("stack");
 				String career = rs.getString("career");
 				String pay = rs.getString("pay");
+				String name = rs.getString("name");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, name, no, count);
 				list.add(announcement);
 			}
 			rs.close();
@@ -546,7 +550,7 @@ public class CorporationDao {
 	// Top100 공고
 	public ArrayList<Announcement> top100Contents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, F.name, J.no, J.count "
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -564,10 +568,11 @@ public class CorporationDao {
 				String stack = rs.getString("stack");
 				String career = rs.getString("career");
 				String pay = rs.getString("pay");
+				String name = rs.getString("name");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, name, no, count);
 				list.add(announcement);
 			}
 			rs.close();
@@ -582,7 +587,7 @@ public class CorporationDao {
 	// 기업회원 회원가입
 	public boolean insertCorporation(Corporation corporation) {
 		boolean result = false;
-	    String query = "INSERT INTO corporation VALUES (?,DEFAULT,?,?,?,?,?,?,?)";
+	    String query = "INSERT INTO corporation VALUES (?, DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
 	    try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
@@ -594,6 +599,7 @@ public class CorporationDao {
 			pstmt.setString(6, corporation.getCorporateNumber());
 			pstmt.setString(7, corporation.getFileName());
 			pstmt.setString(8, corporation.getAddress());
+			pstmt.setString(9, corporation.getDetailAddress());
  
 			if(pstmt.executeUpdate() == 1) result = true;
  
@@ -698,7 +704,7 @@ public class CorporationDao {
  	// 공고 검색
  	public ArrayList<Announcement> getSearch(String search, String zone, String careers, String task) {
  		ArrayList<Announcement> list = new ArrayList<Announcement>();
- 		String query = "SELECT C.corporateName, J.title, F.name, F.stack, F.career, F.pay, J.no, J.count "
+ 		String query = "SELECT C.corporateName, J.title, F.name, F.stack, F.career, F.pay, F.name, J.no, J.count "
  				+ "FROM field F \r\n"
  				+ "JOIN jobopening J ON F.jobopening_no = J.no "
  				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -722,10 +728,11 @@ public class CorporationDao {
  				String stack = rs.getString("stack");
  				String career = rs.getString("career");
  				String pay = rs.getString("pay");
+ 				String name = rs.getString("name");
  				int no = rs.getInt("no");
  				int count = rs.getInt("count");
  				
- 				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+ 				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, name, no, count);
  				list.add(announcement);
  			}
  			rs.close();
@@ -734,6 +741,43 @@ public class CorporationDao {
  		} catch(Exception e) {
  			System.out.println("indexContents Error : " + e.getMessage());
  		}
+ 		return list;
+ 	}
+ 	
+ 	// jobOpening 하단 공고
+ 	public ArrayList<Announcement> getAllJobOpenings() {
+ 		ArrayList<Announcement> list = new ArrayList<Announcement>();
+ 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, F.name, J.no, J.count "
+				+ "FROM jobopening J "
+				+ "JOIN field F ON J.no = F.jobOpening_no "
+				+ "JOIN corporation C ON J.corporation_id = C.id "
+				+ "GROUP BY no ";
+ 		
+ 		try {
+ 			conn = getConnection();
+ 			pstmt = conn.prepareStatement(query);
+ 			rs = pstmt.executeQuery();
+ 			
+ 			while(rs.next()) {
+ 				String corporateName = rs.getString("corporateName");
+ 				String title = rs.getString("title");
+ 				String stack = rs.getString("stack");
+ 				String career = rs.getString("career");
+ 				String pay = rs.getString("pay");
+ 				String name = rs.getString("name");
+ 				int no = rs.getInt("no");
+ 				int count = rs.getInt("count");
+ 				
+ 				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, name, no, count);
+ 				list.add(announcement);
+ 			}
+ 			rs.close();
+ 			pstmt.close();
+ 			conn.close();
+ 		} catch(Exception e) {
+ 			System.out.println("indexContents Error : " + e.getMessage());
+ 		}
+ 		
  		return list;
  	}
 }

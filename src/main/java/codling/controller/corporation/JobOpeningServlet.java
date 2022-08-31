@@ -2,6 +2,7 @@ package codling.controller.corporation;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import codling.dao.CorporationDao;
 import codling.dao.IndividualDao;
 import codling.dao.InformationDao;
+import codling.identity.Announcement;
 import codling.identity.Apply;
 import codling.identity.Corporation;
 import codling.identity.CoverLetter;
@@ -47,7 +49,6 @@ public class JobOpeningServlet extends HttpServlet {
 			String corpName = map.get(corpId);
 			request.setAttribute("corpName", corpName);
 		}
-		
 		String no_ = request.getParameter("no");
 		if(!no_.equals("") && no_ != null) no = Integer.parseInt(no_);
 		
@@ -58,7 +59,12 @@ public class JobOpeningServlet extends HttpServlet {
 		
 		String id = jobOpening.getCorporation_id();
 		Corporation corporation = dao.getCorporation(id);
+		ArrayList<Announcement> allJobOpenings = dao.getAllJobOpenings();
+		ArrayList<Announcement> allJobOpeningtwo = dao.getAllJobOpenings();
 		
+		request.setAttribute("no", no_);
+		request.setAttribute("allJobOpeningtwo", allJobOpeningtwo);
+		request.setAttribute("allJobOpenings", allJobOpenings);
 		request.setAttribute("corporation", corporation);
 		request.setAttribute("jobOpening", jobOpening);
 		request.setAttribute("fields", fields);
