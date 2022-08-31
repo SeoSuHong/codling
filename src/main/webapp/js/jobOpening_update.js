@@ -282,7 +282,6 @@ function keyDown(obj) {
 //Ajax의 결과를 받고 처리하는 공간이다.
 //Ajax에게 받은 Data(이름)에 링크를 건 뒤 Output-Suggest에 보여지는 형식이다.
 function process(obj) {
-	console.log(obj);
     var data = xhr.responseText;
     var result = data.split("|");
     var tot = result[0];
@@ -298,8 +297,11 @@ function process(obj) {
         var listView = obj.nextSibling.nextSibling.innerHTML = stack;
 		$('.s').click(function() {
 			//이름 클릭 시 Output-Selected 에 값 넣기. Suggest창 숨기기
-			console.log($(obj).parent().parent().prev().children('td:eq(-1)').children());
-			$(obj).parent().parent().prev().children('td:eq(-1)').children().append('<span class="st"><div class="stack">' + this.innerHTML + '</div><span onclick="parentElement.remove(this)" style="cursor:pointer"> X </div></div>');
+			$(obj).parent().parent().prev().children('td:eq(-1)').children('div').append('<span class="st"><div class="stack">' + this.innerHTML + '</div><span onclick="parentRemove(this)" style="cursor:pointer"> X </span></span>');
+			
+			var count = $(obj).closest('tr').prev().children().last().children().last().val();
+			count++;
+			$(obj).closest('tr').prev().children().last().children().last().val(count);
 	
 		    loopSend = checkFirst = false;
 		    lastKeyword = "";
@@ -327,8 +329,17 @@ function show(obj) {
     if (e) e.style.display = "";
 }
 
+// stack X버튼(삭제)
+function parentRemove(obj) {
+	var count = $(obj).parent().parent().next().next().val()
+	count--;
+	$(obj).parent().parent().next().next().val(count);
+
+	$(obj).parent().remove();
+}
+
 // null값 검사 후 submit
-function insertJobOpeningCheck() {
+function updateJobOpeningCheck() {
 	if(document.jobOpForm.address.value == '') {
 		alert("근무지역을 입력해 주세요.");
 		document.jobOpForm.detailAddress.focus(); return;
@@ -354,12 +365,15 @@ function insertJobOpeningCheck() {
 	var payList_          = document.getElementsByName('pay_');
 	var payList           = document.getElementsByName('pay');
 	var workdayList       = document.getElementsByName('workday');
-	var stackList         = document.getElementsByName('stack');
+	var stackList         = document.getElementsByClassName('stack');
+	var stackCount        = document.getElementsByName('stackCount');
+	var stack             = document.getElementsByName('stack');
+	var keyword           = document.getElementsByName('keyword');
 	var workList          = document.getElementsByName('work');
 	var requirementList   = document.getElementsByName('requirement');
 	var preferenceList    = document.getElementsByName('preference');
-	
-	
+		
+	var cnt = 0;  // stack 갯수
 	for(let i = 0; i < nameList.length - 1; i++) {
 		let i2 = i * 2;
 		let i3 = i * 3;
@@ -386,9 +400,9 @@ function insertJobOpeningCheck() {
 		if(!workdayList[i3].checked && !workdayList[i3 + 1].checked && !workdayList[i3 + 2].checked) {
 			alert("근무요일을 선택해 주세요."); return;
 		}
-		if(stackList[i].value == '') {
+		if(stack[i].value == '') {
 			alert("사용스택 및 툴을 입력해 주세요.");
-			stackList[i].focus(); return;
+			keyword[i].focus(); return;
 		}
 		if(workList[i].value == '') {
 			alert("주요업무를 작성해 주세요.");
@@ -410,14 +424,25 @@ function insertJobOpeningCheck() {
 		else careerList[i].value = career_statusList[i2].value + "/" + career_yearList[i].value;
 		
 		if(payList_[i2].value == '') {
-			pay[i].value = '면접 후 결정';
+			payList[i].value = '면접 후 결정';
 		} else if(!payList_[i2 + 1].checked) {
-			pay[i].value = payList_[i2].value; 
+			payList[i].value = payList_[i2].value; 
 		}
+		
+		var stackName = "";
+		for(var j = 0; j < stackCount[i].value; j++) {
+			if(j != stackCount[i].value - 1)
+				stackName += stackList[cnt].innerText + "/";
+			else
+				stackName += stackList[cnt].innerText;
+			cnt++;
+		}
+		stack[i].value = stackName;
 	}
+	
 	if(document.jobOpForm.process.value == '') {
 		alert("채용절차를 입력해 주세요.");
 		document.jobOpForm.process.focus(); return;
 	}
-	document.jobOpForm.submit();
+	/*document.jobOpForm.submit();*/
 }

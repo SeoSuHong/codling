@@ -117,13 +117,25 @@
                         </tr>
                         <tr>
                         	<td></td>
-                        	<td><div id="stacks" name="sel" size="10" readonly="readonly"></div></td>
+                        	<td>
+                        		<c:set var="s"/>
+                        		<c:set var="count"/>
+                        		<div id="stacks" name="sel" size="10" readonly="readonly">
+                        			<c:forTokens var="stack" items="${fields[0].stack}" delims="/" varStatus="st">
+                        				<span class="st"><div class="stack">${stack}</div><span onclick="parentRemove(this)" style="cursor:pointer"> X </span></span>
+                        				<c:set var="s" value="${s += stack}/"/>
+                        				<c:set var="count" value="${st.count}"/>
+                        			</c:forTokens>
+                        		</div>
+                        		<input type="hidden" name="stack" value="${s}">
+                        		<input type="hidden" name="stackCount" value="${count}">
+                        	</td>
                         </tr>
                         <tr>
                             <td>사용스택 및 툴*</td>
-                            <td id="font_medium">
+                            <td id="font_medium" class="stackTd">
 	                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
-	                            <ul id="suggest" style="display: none; position: relative; top: 0px;"></ul>
+	                            <ul id="suggest" style="display: none; position: relative; top: -3px;"></ul>
                             </td>
                         </tr>
                      	<tr>
@@ -190,13 +202,25 @@
 		                        	</tr>
 		                        	<tr>
 			                        	<td></td>
-			                        	<td><div id="stacks" name="sel" size="10" readonly="readonly"></div></td>
+			                        	<td>
+			                        		<c:set var="s"/>
+                        					<c:set var="count"/>
+			                        		<div id="stacks" name="sel" size="10" readonly="readonly">
+			                        			<c:forTokens var="stack" items="${field.stack}" delims="/" varStatus="st">
+			                        				<span class="st"><div class="stack">${stack}</div><span onclick="parentRemove(this)" style="cursor:pointer"> X </span></span>
+			                        				<c:set var="s" value="${s += stack}/"/>
+			                        				<c:set var="count" value="${st.count}"/>
+			                        			</c:forTokens>
+			                        		</div>
+			                        		<input type="hidden" name="stack" value="${s}">
+			                        		<input type="hidden" name="stackCount" value="${count}">
+			                        	</td>
 			                        </tr>
 			                        <tr>
 			                            <td>사용스택 및 툴*</td>
-			                            <td id="font_medium">
+			                            <td id="font_medium" class="stackTd">
 				                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
-				                            <ul id="suggest" style="display: none; position: relative; top: 0px;"></ul>
+				                            <ul id="suggest" style="display: none; position: relative; top: -3px;"></ul>
 			                            </td>
 			                        </tr>
 			                     	<tr>
@@ -258,13 +282,17 @@
                     	</tr>
                     	<tr>
                         	<td></td>
-                        	<td><div id="stacks" name="sel" size="10" readonly="readonly"></div></td>
+                        	<td>
+	                        	<div id="stacks" name="sel" size="10" readonly="readonly"></div>
+	                        	<input type="hidden" name="stack">
+	                        	<input type="hidden" name="stackCount">
+                        	</td>
                         </tr>
                         <tr>
                             <td>사용스택 및 툴*</td>
-                            <td id="font_medium">
+                            <td id="font_medium" class="stackTd">
 	                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
-	                            <ul id="suggest" style="display: none; position: relative; top: 0px;"></ul>
+	                            <ul id="suggest" style="display: none; position: relative; top: -3px;"></ul>
                             </td>
                         </tr>
                      	<tr>

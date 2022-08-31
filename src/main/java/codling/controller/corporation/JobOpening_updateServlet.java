@@ -84,10 +84,6 @@ public class JobOpening_updateServlet extends HttpServlet {
 		String[] workList = request.getParameterValues("work");
 		String[] requirementList = request.getParameterValues("requirement");
 		String[] preferenceList = request.getParameterValues("preference");
-
-		for(String pay : payList) {
-			System.out.println(pay);
-		}
 		
 		JobOpening jobOpening = new JobOpening(no, id, title, region, detailRegion, process, startDate, endDate, 0);
 
@@ -98,6 +94,7 @@ public class JobOpening_updateServlet extends HttpServlet {
 		curr_fieldSize = nameList.length - 1;
 		
 		for(int i = 0; i < nameList.length - 1; i++) {
+			System.out.println(stackList[i]);
 			if (i < prev_fieldSize) {
 				Field field = new Field(field_no[i], no, nameList[i], careerList[i], positionList[i], payList[i],
 						workDayList[i], workList[i], stackList[i], requirementList[i], preferenceList[i]);
