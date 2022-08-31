@@ -100,6 +100,121 @@
           </c:if>
           
         </div>
+        
+        <!-- 검색 기능 -->
+        <article>
+        	<div id="searchChk">
+        		<div id="area">
+        			<span>지역 | </span>
+        			<span class="keyword a"></span>
+        		</div>
+        		<div id="field">
+        			<span>분야 | </span>
+        			<span class="keyword f"></span>
+        		</div>
+        		<div id="career">
+        			<span>경력 | </span>
+        			<span class="keyword c"></span>
+        		</div>
+        		<div id="pay">
+        			<span>급여 | </span>
+        			<span class="keyword p"></span>
+        		</div>
+        	</div>
+        	<div id="keyList">
+        		<div id="areaList">
+	        		<input type="checkbox" name="area" value="서울"> 서울
+	        		<input type="checkbox" name="area" value="강남"> 강남
+	        		<input type="checkbox" name="area" value="구로"> 구로
+	        		<input type="checkbox" name="area" value="가산"> 가산
+	        		<input type="checkbox" name="area" value="판교"> 판교
+	        		<input type="checkbox" name="area" value="마포"> 마포
+	        		<input type="checkbox" name="area" value="서초"> 서초
+	        		<input type="checkbox" name="area" value="경기"> 경기
+	        		<input type="checkbox" name="area" value="인천"> 인천
+	        		<input type="checkbox" name="area" value="대전"> 대전
+	        		<input type="checkbox" name="area" value="부산"> 부산
+	        		<input type="checkbox" name="area" value="제주"> 제주
+	        		<input type="checkbox" name="area" value="대구"> 대구
+	        		<input type="checkbox" name="area" value="광주"> 광주
+	        		<input type="checkbox" name="area" value="울산"> 울산
+	        		<input type="checkbox" name="area" value="세종"> 세종
+	        		<input type="checkbox" name="area" value="경상"> 경상
+	        		<input type="checkbox" name="area" value="전라"> 전라
+	        		<input type="checkbox" name="area" value="충청"> 충청
+	        	</div>
+	        	<div id="fieldList">
+	        		<c:forEach var="fieldName" items="${fieldNames}">
+	        			<input type="checkbox" name="field" value="${fieldName}"> ${fieldName}
+	        		</c:forEach>
+	        	</div>
+	        	<div id="careerList">
+	        		<input type="checkbox" name="career" value="신입"> 신입
+	        		<input type="checkbox" name="career" value="1"> 1년↑
+	        		<input type="checkbox" name="career" value="3"> 3년↑
+	        		<input type="checkbox" name="career" value="5"> 5년↑
+	        		<input type="checkbox" name="career" value="7"> 7년↑
+	        		<input type="checkbox" name="career" value="10"> 10년↑
+	        	</div>
+	        	<div id="payList">
+	        		<input type="range" id="payRange" min="2500" max="10000" step="500" name="pay" value="0">
+	        	</div>
+        	</div>
+        </article>
+        
+        <%-- <article>
+
+                     <p><input class="check_box" type="checkbox" name="zone" value="서울"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '서울'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;서울 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="강남"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '강남'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;강남 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="구로 디지털단지"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '구로 디지털단지'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;구로 디지털단지 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="가산 디지털단지"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '가산 디지털단지'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;가산 디지털단지 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="판교 테크노밸리"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '판교 테크노밸리'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;판교 테크노밸리 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="마포"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '마포'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;마포 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="서초"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '서초'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;서초 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="경기"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '경기'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;경기 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="인천"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '인천'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;인천 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="대전"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '대전'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;대전 </p>
+                  </div>
+                  <div>
+                     <p><input class="check_box" type="checkbox" name="zone" value="부산"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '부산'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;부산 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="제주"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '제주'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;제주 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="대구"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '대구'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;대구 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="광주"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '광주'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;광주 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="울산"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '울산'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;울산 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="세종"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '세종'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;세종 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="경상"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '경상'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;경상 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="전라"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '전라'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;전라 </p>
+                     <p><input class="check_box" type="checkbox" name="zone" value="충청"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '충청'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;충청 </p>
+                  </div>
+               </div>
+               <div class="sc_menu" id="career_menu">
+                  <p><input class="check_box" type="checkbox" name="career" value="신입"<c:forEach var="career" items="${career }" varStatus="st"><c:if test="${career == '신입'}">checked</c:if></c:forEach> onclick="getcareerValue(event)">&nbsp;신입</p>
+                  <p><input class="check_box" type="checkbox" name="career" value="경력"<c:forEach var="career" items="${career }" varStatus="st"><c:if test="${career == '경력'}">checked</c:if></c:forEach> onclick="getcareerValue(event)">&nbsp;경력</p>
+               </div>
+               <div class="sc_menu" id="task_menu">
+                  <c:set var="filed_length" value="${fn:length(filed) }"/>
+                  <c:set var="filed_split" value="${filed_length/2}"/>
+                  <c:set var="filed_rounds" value="${filed_split-(filed_split%1)}"/>
+                  <div>
+                     <c:forEach var="filed" items="${filed }" begin="0" end="${filed_rounds }" varStatus="st">
+                        <p><input class="check_box" type="checkbox" name="task" value="${filed.name }"<c:forEach var="task" items="${task }" varStatus="st"><c:if test="${task == filed.name}">checked</c:if></c:forEach> onclick="gettaskValue(event)">&nbsp;${filed.name }</p>
+                     </c:forEach>
+                  </div>
+                  <div>
+                     <c:forEach var="filed" items="${filed }" begin="${filed_rounds+1 }" varStatus="st">
+                        <p><input class="check_box" type="checkbox" name="task" value="${filed.name }"<c:forEach var="task" items="${task }" varStatus="st"><c:if test="${task == filed.name}">checked</c:if></c:forEach> onclick="gettaskValue(event)">&nbsp;${filed.name }</p>
+                     </c:forEach>
+                  </div>
+               </div>
+               <input type="hidden" name="search" id="search_down">
+               <div id="box_"></div>
+            </div>
+         </form>
+      </article> --%>
+        
+        
+        
+        
         <nav id="menu">
             <ul>
               <li><a href="newcomer" class="menu" id="newcomer">신입채용</a></li>

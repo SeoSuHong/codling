@@ -51,6 +51,24 @@
 #resume>a:hover{background-color: #e6e6e6;}
 #logout>a:hover{background-color: #e6e6e6;}
 ul{list-style: none;}
+
+/* 검색 기능 */
+#searchChk {width: 1250px; height: 50px; margin: 0 auto; margin-top: 15px; line-height: 38px; font-size: 1.2rem; display: flex; border: 3px solid #A5E374; box-shadow: 2px 2px 3px -1px rgb(0 0 0 / 25%); border-radius: 6px;}
+.keyword {width: 230px; display: inline-block; margin-right: 20px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.f {width: 400px;}
+.c, .p {width: 150px;}
+#area>span {margin-left: 20px;}
+#keyList {width: 1250px; height: 300px; display: flex; font-size: 1.1rem; margin-top: -4px; padding: 10px 50px; padding-left: 75px; border: 3px solid #A5E374; border-top: none; box-shadow: 2px 2px 3px -1px rgb(0 0 0 / 25%); border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;}
+
+#areaList {margin-right: 80px; display: grid; grid-template-columns: 15px 80px 15px 100px; gap: 10px; overflow-y: scroll;}
+#areaList::-webkit-scrollbar {display: none;}
+#fieldList {margin-right: 50px; display: grid; grid-template-columns: 15px auto 15px auto; gap: 10px 10px; overflow-y: scroll;}
+#fieldList::-webkit-scrollbar {display: none;}
+#careerList {height: 210px; margin-right: 30px; display: grid; grid-template-columns: 15px 100px; gap: 10px 10px; overflow-y: scroll;}
+#careerList::-webkit-scrollbar {display: none;}
+#payList {padding-top: 20px;}
+#payRange {width: 150px;}
+
 /*menu*/
 #menu>ul{ list-style: none; margin-top: 30px; display: flex;}
 .menu{text-decoration-line: none; color: #8D8D8D; margin: 0 20px; height: 50px; display: flex; align-items: center; 

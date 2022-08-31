@@ -504,6 +504,29 @@ public class CorporationDao {
 		return result;
 	}
 	
+	// 모든 분야명(검색에서 사용)
+	public List<String> getAllFieldName() {
+		List<String> fieldNames = new ArrayList<String>();
+		String query = "SELECT name FROM field";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				fieldNames.add(rs.getString("name"));
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getAllFieldName Error : " + e.getMessage());
+		}
+		return fieldNames;
+	}
+	
 	// index 공고
 	public ArrayList<Announcement> indexContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
