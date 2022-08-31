@@ -35,19 +35,57 @@ public class SearchServlet extends HttpServlet{
 		}
 		
 		String search = request.getParameter("search");
-		String[] zone = request.getParameterValues("zone");
-		String[] career = request.getParameterValues("career");
-		String[] task = request.getParameterValues("task");
+		String[] zone_ = request.getParameterValues("zone");
+		String[] career_ = request.getParameterValues("career");
+		String[] task_ = request.getParameterValues("task");
+		String zone = "";
+		String careers = "";
+		String task = "";
 		
+		if(zone_ != null) {
+			for(int i = 0; i < zone_.length; i++) {
+				if(i != zone_.length-1)
+					zone += (zone_[i] + "|");
+				else
+					zone += zone_[i];
+				}
+			}else
+				zone = "[가-힇]|[a-z]|[0-9]";
+		
+		if(career_ != null) {
+			for(int i = 0; i < career_.length; i++) {
+				if(i != career_.length-1) {
+					if(career_[i].equals("경력") || career_[i] == "경력") 
+						careers += "[0-9]";
+					else
+						careers += (career_[i] + "|");
+				}else {
+					if(career_[i].equals("경력") || career_[i] == "경력")
+						careers += "[0-9]";
+					else
+						careers += career_[i];
+				}
+			}
+		}else
+			careers = "[가-힇]|[a-z]|[0-9]";
+		
+		if(task_ != null) {
+			for(int i = 0; i < task_.length; i++) {
+				if(i != task_.length-1)
+					task += (task_[i] + "|");
+				else
+					task += task_[i];
+			}
+		}else
+			task = "[가-힇]|[a-z]|[0-9]";
+			
 		CorporationDao corpDao = new CorporationDao();
-		ArrayList<Field> filed = corpDao.getSearch();
+		ArrayList<Field> filed = corpDao.getTask();
+		ArrayList<Announcement> announcement = corpDao.getSearch(search, zone, careers, task);
 		
-		
-		ArrayList<Announcement> announcement = corpDao.indexContents();
-		
-		request.setAttribute("zone", zone);
-		request.setAttribute("career", career);
-		request.setAttribute("task", task);
+		request.setAttribute("zone", zone_);
+		request.setAttribute("career", career_);
+		request.setAttribute("task", task_);
 		request.setAttribute("search", search);
 		request.setAttribute("filed", filed);
 		request.setAttribute("announcement", announcement);

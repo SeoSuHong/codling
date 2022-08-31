@@ -668,7 +668,7 @@ public class CorporationDao {
     }
     
     // 공고 검색 직무 가지고오기
- 	public ArrayList<Field> getSearch() {
+ 	public ArrayList<Field> getTask() {
  		ArrayList<Field> list = new ArrayList<Field>();
  		String query = "select name from field GROUP By name;";
  		
@@ -682,6 +682,48 @@ public class CorporationDao {
  				
  				Field field = new Field(0, 0, name, "", "", "", "", "", "", "", "");
  				list.add(field);
+ 			}
+ 			rs.close();
+ 			pstmt.close();
+ 			conn.close();
+ 		} catch(Exception e) {
+ 			System.out.println("indexContents Error : " + e.getMessage());
+ 		}
+ 		return list;
+ 	}
+ 	
+ 	// 공고 검색
+ 	public ArrayList<Announcement> getSearch(String search, String zone, String careers, String task) {
+ 		ArrayList<Announcement> list = new ArrayList<Announcement>();
+ 		String query = "SELECT C.corporateName, J.title, F.name, F.stack, F.career, F.pay, J.no, J.count "
+ 				+ "FROM field F \r\n"
+ 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+ 				+ "JOIN corporation C ON J.corporation_id = C.id "
+ 				+ "WHERE J.title REGEXP ? AND J.region REGEXP ? AND F.career REGEXP ? AND F.name REGEXP ? "
+ 				+ "GROUP BY no "
+ 				+ "ORDER BY F.no DESC";
+ 		
+ 		try {
+ 			conn = getConnection();
+ 			pstmt = conn.prepareStatement(query);
+ 			if(search.equals("") || search == null) search = "[가-힇]|[a-z]|[0-9]";
+ 			pstmt.setString(1, search);
+ 			pstmt.setString(2, zone);
+ 			pstmt.setString(3, careers);
+ 			pstmt.setString(4, task);
+ 			rs = pstmt.executeQuery();
+ 			
+ 			while(rs.next()) {
+ 				String corporateName = rs.getString("corporateName");
+ 				String title = rs.getString("title");
+ 				String stack = rs.getString("stack");
+ 				String career = rs.getString("career");
+ 				String pay = rs.getString("pay");
+ 				int no = rs.getInt("no");
+ 				int count = rs.getInt("count");
+ 				
+ 				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+ 				list.add(announcement);
  			}
  			rs.close();
  			pstmt.close();

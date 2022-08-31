@@ -32,7 +32,7 @@
 /*login-view*/
 
 .profile-box{margin-top: 10px;}
-#hover-box{margin-left: 120px; height: 45px; white-space:nowrap;}
+#hover-box{margin-left: 110px; height: 45px;}
 #login_header{display: flex; align-items: center; margin-top: 100px;}
 #menu-bar>div{width: 131.5px; height: 5px;}
 #profilelogo{width: 35px; height: 35px; margin: 5px;}
@@ -44,7 +44,7 @@
 #scroll-hover-box{margin-left: 25px;}
 #scroll-hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
 .pfhover>ul>li>a{text-decoration: none; color: #656978; font-size: 1rem; display: inline-block;
-    width: 148px; height: 40px; display: flex; align-items: center; margin-left: -32px;
+    width: 148.5px; height: 40px; display: flex; align-items: center; margin-left: -32px;
     margin-top: 10px; font-weight: bold;}
 .pfhover>ul>li>a>span{ margin-left: 10px;}
 #mypage>a:hover{background-color: #e6e6e6;}
@@ -56,27 +56,33 @@ ul{list-style: none;}
 .menu{text-decoration-line: none; color: #8D8D8D; margin: 0 20px; height: 50px; display: flex; align-items: center; 
     font-size: 1.1rem; font-weight: bold; }
 .menu:hover{color: #A5E374 !important;}
-#Top100{color: #A5E374;}
+#scroll_top100{color: #A5E374;}
+#top100{color: #A5E374;}
 /*scroll-header*/
-#scroll_Top100{color: #A5E374;}
 #scroll-header-box{display: flex; justify-content: center; width: 100vw; align-items: center; z-index: 2;}
 #scroll-header{clear: both; display: flex; height: 100px; margin-left: -8px;
     background-color: white; position: fixed; top: -130px;
     transition: top 0.5s; box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25); z-index: 1;}
 #scroll-header-box>#menu>ul{display: flex; margin-top: 15px;}
-#scroll-header-box>#searbox{width: 400px !important; margin-top: 0px; border: 3px solid #A5E374;
-            margin-left: 20px;}
-#scroll-header-box>#searbox>input{width: 350px !important; font-size: 1.1rem;}
+#scroll-header-box>#scroll_searbox{width: 400px !important; margin-top: 0px; border: 3px solid #A5E374;
+            margin-left: 20px; height: 50px; border-radius: 6px;}
+#scroll-header-box>#scroll_searbox>input{width: 350px !important; font-size: 1.1rem;}
 #scroll-header-box>.btn-search{top: 0px; left: -40px;}
 #scroll-header-box>a>#log{margin-top: 0px; margin-left: 75px;}
 
 
 /*section*/
 section{width: 1220px; margin: 0 auto;}
+/*파워광고*/
+.carousel-control-next,.carousel-control-prev{z-index: 0;}
+
+.sectionimg{text-decoration: none; color: rgb(255, 255, 255); font-size: 1.2rem;}
+.sectionimg:hover{color: #A5E374;}
+/*일반광고*/
 .col{padding: 5px 15px;}
-.card{border-top:5px solid #A5E374 ; border-radius: 3px; cursor: pointer;}
+.card{border-top: 5px solid #A5E374; border-radius: 3px; cursor: pointer;}
 .card>img{height: 150px; padding: 10px;}
-.card-body{height: 140px;overflow: hidden;}
+.card-body{height: 140px; overflow: hidden;}
 .card-title{font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .contents{font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .cardlink,.cardlink:hover{text-decoration: none; color: #373F57;}

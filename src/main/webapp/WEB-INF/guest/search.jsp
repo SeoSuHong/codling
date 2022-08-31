@@ -100,7 +100,6 @@
 				<div id="scroll_check">
 					<div class="sc_menu" id="zone_menu">
 						<div>
-							<p><input class="check_box" type="checkbox" name="zone" value="전체"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '전체'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;전체 </p>
 							<p><input class="check_box" type="checkbox" name="zone" value="서울"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '서울'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;서울 </p>
 							<p><input class="check_box" type="checkbox" name="zone" value="강남"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '강남'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;강남 </p>
 							<p><input class="check_box" type="checkbox" name="zone" value="구로 디지털단지"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '구로 디지털단지'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;구로 디지털단지 </p>
@@ -110,9 +109,9 @@
 							<p><input class="check_box" type="checkbox" name="zone" value="서초"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '서초'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;서초 </p>
 							<p><input class="check_box" type="checkbox" name="zone" value="경기"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '경기'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;경기 </p>
 							<p><input class="check_box" type="checkbox" name="zone" value="인천"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '인천'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;인천 </p>
+							<p><input class="check_box" type="checkbox" name="zone" value="대전"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '대전'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;대전 </p>
 						</div>
 						<div>
-							<p><input class="check_box" type="checkbox" name="zone" value="대전"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '대전'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;대전 </p>
 							<p><input class="check_box" type="checkbox" name="zone" value="부산"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '부산'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;부산 </p>
 							<p><input class="check_box" type="checkbox" name="zone" value="제주"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '제주'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;제주 </p>
 							<p><input class="check_box" type="checkbox" name="zone" value="대구"<c:forEach var="zone" items="${zone }" varStatus="st"><c:if test="${zone == '대구'}">checked</c:if></c:forEach> onclick="getzoneValue(event)">&nbsp;대구 </p>
