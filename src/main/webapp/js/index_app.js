@@ -8,6 +8,20 @@ function scrollFunction(){
     }
 }
 
+// search 보이기
+function showSearch() {
+	$('#searchHide').animate({height:"70px"}, 300);
+}
+
+// search 숨기기
+function hideSearch() {
+	$('#searchHide').animate({height:"0px"}, 300);
+}
+
+function showSearchList() {
+	
+}
+
 $(function() {
 
     var idx = 1;

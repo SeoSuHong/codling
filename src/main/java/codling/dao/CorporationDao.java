@@ -507,7 +507,7 @@ public class CorporationDao {
 	// 모든 분야명(검색에서 사용)
 	public List<String> getAllFieldName() {
 		List<String> fieldNames = new ArrayList<String>();
-		String query = "SELECT name FROM field";
+		String query = "SELECT name FROM field GROUP BY name";
 		
 		try {
 			conn = getConnection();
