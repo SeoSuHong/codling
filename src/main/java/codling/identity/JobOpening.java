@@ -2,17 +2,18 @@ package codling.identity;
 
 public class JobOpening {
 	private int no, count;
-	private String corporation_id, title, region, process, startDate, endDate;
+	private String corporation_id, title, region, detailRegion, process, startDate, endDate;
 	
 	public JobOpening() {}
 
-	public JobOpening(int no, String corporation_id, String title, String region, String process, String startDate, String endDate,
+	public JobOpening(int no, String corporation_id, String title, String region, String detailRegion, String process, String startDate, String endDate,
 			int count) {
 		super();
 		this.no = no;
 		this.corporation_id = corporation_id;
 		this.title = title;
 		this.region = region;
+		this.detailRegion = detailRegion;
 		this.process = process;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -49,6 +50,14 @@ public class JobOpening {
 
 	public void setRegion(String region) {
 		this.region = region;
+	}
+	
+	public String getDetailRegion() {
+		return detailRegion;
+	}
+	
+	public void setDetailRegion(String detailRegion) {
+		this.detailRegion = detailRegion;
 	}
 	
 	public String getProcess() {
