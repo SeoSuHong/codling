@@ -1,12 +1,12 @@
 package codling.identity;
 
 public class Corporation {
-	private String id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address;
+	private String id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address, detailAddress;
 	
 	public Corporation() {}
 
 	public Corporation(String id, String password, String corporateName, String corporatePhone,
-			String ceoName, String corporateNumber, String fileName, String address) {
+			String ceoName, String corporateNumber, String fileName, String address, String detailAddress) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -16,6 +16,7 @@ public class Corporation {
 		this.corporateNumber = corporateNumber;
 		this.fileName = fileName;
 		this.address = address;
+		this.detailAddress = detailAddress;
 	}
 
 	public String getId() {
@@ -80,5 +81,13 @@ public class Corporation {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
 	}
 }
