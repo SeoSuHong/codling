@@ -1,6 +1,7 @@
 package codling.controller.corporation;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import codling.dao.CorporationDao;
+import codling.identity.Announcement;
 import codling.identity.Corporation;
 import codling.identity.Field;
 import codling.identity.JobOpening;
@@ -29,7 +31,10 @@ public class Job_accountmentServlet extends HttpServlet {
 		Corporation corporation = corpDao.getCorporation(id);
 		JobOpening jobOpening = corpDao.getJobOpening(no);
 		List<Field> fields = corpDao.getAllField(no);
+		ArrayList<Announcement> allJobOpenings = corpDao.getAllJobOpenings();
 		
+		request.setAttribute("allJobOpenings", allJobOpenings);
+		request.setAttribute("no", no_);
 		request.setAttribute("corporation", corporation);
 		request.setAttribute("jobOpening", jobOpening);
 		request.setAttribute("fields", fields);

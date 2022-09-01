@@ -173,7 +173,13 @@
         </div>
         <div id="companyInfo">
             <div class="companyInfo">
-                <div class="comLogo"><img src="img/logo.png" alt="회사로고"></div>
+                <div class="comLogo">
+                	<c:forEach var="JobOpenings" items="${allJobOpenings }" varStatus="">
+	                	<c:if test="${no == JobOpenings.no}">
+	                		<img src="/upload/${JobOpenings.logo_fileName }" alt="회사로고">
+	                	</c:if>
+                	</c:forEach>
+                </div>
                 <dl>
                     <dt>기 업 명</dt>
                         <dd>${corporation.corporateName}</dd>

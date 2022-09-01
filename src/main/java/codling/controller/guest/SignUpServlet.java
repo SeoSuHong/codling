@@ -1,20 +1,33 @@
 package codling.controller.guest;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Collection;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import codling.dao.CorporationDao;
 import codling.dao.IndividualDao;
 import codling.identity.Corporation;
 import codling.identity.Individual;
+import codling.identity.Portfolio;
+
+@MultipartConfig(
+		fileSizeThreshold = 1024*1024,
+		maxFileSize = 1024*1024*50,
+		maxRequestSize = 1024*1024*50*5 
+	)
 
 @WebServlet("/signUp")
 public class SignUpServlet extends HttpServlet {
@@ -67,10 +80,74 @@ public class SignUpServlet extends HttpServlet {
 			String cName = request.getParameter("companyName");
 			String cCeo = request.getParameter("representative");
 			String cNumber = request.getParameter("companyNum");
-			String fileName = request.getParameter("fileName");
 			String cAddress = request.getParameter("address2");
 			String cDetailAddress = request.getParameter("detailAddress2");
-			Corporation corporation = new Corporation(cId, cPw, cName, cPhone, cCeo, cNumber, fileName, cAddress, cDetailAddress);
+			
+			//증빙서류 첨부파일
+			Collection<Part> parts = request.getParts(); //파일 열러개 검사
+			String fileName = "";
+			for(Part p : parts) { //파일 여러개 가지고오기
+				
+				if(!p.getName().equals("fileName")) continue;
+				if(p.getSize() == 0) continue;
+				
+				Part filePart = p; // 업로드한 파일 가지고오기
+				fileName = filePart.getSubmittedFileName(); //파일명 읽어오기
+				
+				InputStream fis = filePart.getInputStream();
+				
+				String realPath = request.getServletContext().getRealPath("/upload");
+				
+				File path = new File(realPath);
+				if(!path.exists())
+					path.mkdirs();
+				
+				String filePath = realPath + File.separator + fileName;
+				FileOutputStream fos = new FileOutputStream(filePath);
+				
+				byte[] buf = new byte[1024];
+				int fileSize_;
+				while((fileSize_ = fis.read(buf)) != -1)
+					fos.write(buf,0,fileSize_);
+				
+				fos.close();
+				fis.close();
+				
+			}
+			
+			//회사 로고 이미지
+			Collection<Part> partsimg = request.getParts(); //파일 열러개 검사
+			String logo_fileName = "";
+			for(Part p : partsimg) { //파일 여러개 가지고오기
+				
+				if(!p.getName().equals("logo_fileName")) continue;
+				if(p.getSize() == 0) continue;
+				
+				Part filePart = p; // 업로드한 파일 가지고오기
+				logo_fileName = filePart.getSubmittedFileName(); //파일명 읽어오기
+				
+				InputStream fis = filePart.getInputStream();
+				
+				String realPath = request.getServletContext().getRealPath("/upload");
+				
+				File path = new File(realPath);
+				if(!path.exists())
+					path.mkdirs();
+				
+				String filePath = realPath + File.separator + logo_fileName;
+				FileOutputStream fos = new FileOutputStream(filePath);
+				
+				byte[] buf = new byte[1024];
+				int fileSize_;
+				while((fileSize_ = fis.read(buf)) != -1)
+					fos.write(buf,0,fileSize_);
+				
+				fos.close();
+				fis.close();
+				
+			}
+			
+			Corporation corporation = new Corporation(cId, cPw, cName, cPhone, cCeo, cNumber, fileName, logo_fileName, cAddress, cDetailAddress);
 			
 			CorporationDao dao = new CorporationDao();
 			boolean result = dao.insertCorporation(corporation);

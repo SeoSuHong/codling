@@ -79,9 +79,9 @@
 			</div>
 		</div>
 	</header>
-	<section id="default">
-		<!-- 검색 -->
-		<article>
+	<!-- 검색 -->
+	<div id="scroll_notbox">
+		<div id="search_">
 			<div id="detail_search">
 				<div id="zone">
 					<span>지역</span>&nbsp;<span id="zone_in"><c:forEach var="zone" items="${zone }" varStatus="st">&nbsp;${zone }</c:forEach></span>
@@ -146,14 +146,15 @@
 					<div id="box_"></div>
 				</div>
 			</form>
-		</article>
+		</div>
+	</div>
+	<section id="default">
 		<!-- 일반광고 -->
-		
 		<div class="row row-cols-1 row-cols-md-4 g-4">
 			<c:forEach var="anno" items="${announcement}">
 				<div class="col">
 					<div class="card" onmouseover="showCount(${anno.no})" onmouseout="hideCount(${anno.no})" onclick="location='jobOpening?no=${anno.no}'">
-						<img src="img/logo.png" class="card-img-top" alt="...">
+						<div id="company_logo"><img src="/upload/${anno.logo_fileName }" class="card-img-top" alt="..."></div>
 						<div class="card-body">
 							<p id="corporname">
 								${anno.corporateName}<span id="${anno.no}" class="count"><img src="img/eyes.png">&nbsp;${anno.count}</span>

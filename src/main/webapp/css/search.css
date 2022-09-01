@@ -61,7 +61,7 @@ ul{list-style: none;}
 .check_box{width: 20px; height: 20px; border: solid #8D8D8D;}
 #down_button{border: none !important; background-color: white !important;}
 #up_button{border: none !important; background-color: white !important;}
-.row{margin-top: 130px;}
+.row{margin-top: 5px;}
 #scroll-header-box{display: flex; justify-content: center; width: 100vw; align-items: center; z-index: 2;}
 #scroll-header{clear: both; display: flex; height: 100px; margin-left: 0px;
     background-color: white; position: fixed; top: 0px;
@@ -72,7 +72,7 @@ ul{list-style: none;}
 #scroll-header-box>#searbox>input{width: 350px !important; font-size: 1.1rem;}
 #scroll-header-box>.btn-search{top: 0px; left: -40px;}
 #scroll-header-box>a>#log{margin-top: 0px; margin-left: 75px;}
-
+#scroll_notbox{display: flex; margin-top: 130px!important; width: 1220px; margin: 0 auto;}
 
 /*section*/
 #not_contents{ color: #373F57; display: flex; justify-content: center; margin-top: 200px; margin-bottom: 300px;}
@@ -87,7 +87,7 @@ section{width: 1220px; margin: 0 auto;}
 #zone_input{width: 350px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; border: none; outline: unset;}
 #career_input{width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; border: none; outline: unset;}
 #task_input{width: 450px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; border: none; outline: unset;}
-#zone_menu{width: 400px; margin-left: 5px; display: flex;}
+#zone_menu{width: 400px; margin-left: 5px; display: flex; }
 #zone_menu>div{margin-right: 20px;}
 #career_menu{width: 200px;}
 #task_menu{width: 500px; margin-left: 5px; display: flex;}
@@ -100,7 +100,8 @@ section{width: 1220px; margin: 0 auto;}
 /*공고*/
 .col{padding: 5px 15px;}
 .card{border-top: 5px solid #A5E374; border-radius: 3px; cursor: pointer;}
-.card>img{height: 150px; padding: 10px;}
+.card>#company_logo>img{height: 100%; width: 100%; object-fit: contain;}
+#company_logo{height: 120px; display: flex; align-items: center;}
 .card-body{height: 140px; overflow: hidden;}
 .card-title{font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .contents{font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}

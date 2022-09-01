@@ -144,7 +144,6 @@
                                     <input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기" id="search"><br>
                                     <input type="text"  name="address" id="address" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required>
                                     <input type="text" name="detailAddress" id="detailAddress" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
-                                    <input type="text" name="extraAddress" id="extraAddress" class="form-control mb-3 col-md-7" placeholder="참고항목"  onkeyup="inputDataCheck(this.id)" required>
                             </div>
                             <div id="signUp" >
                                 <button type="button" id="#btn1" value="signUpIndividual" onClick="signUpInd_submit()" class="btn-xlarge"  style="color: white; background-color: #A5E374;">가입하기</button>
@@ -153,7 +152,7 @@
                     </form>
                         <!-- 개인 내용 -->
                         <!-- 기업 내용 -->
-                    <form class="validation-form" novalidate name="comFrm" action="signUp?num=2" method="post">
+                    <form class="validation-form" novalidate name="comFrm" action="signUp?num=2" method="post" enctype="multipart/form-data">
                         <div id="company">    
                         <!-- 기업 내용 시작 -->
                             <div  class="row align-items-center mt-4" id="frame">
@@ -244,14 +243,20 @@
                                     <p class="fw-bold">증빙서류 첨부</p>
                                         <input class="form-control" type="file" id="formFile" name="fileName"  required>
                                 </div>
-                            </div>                       
+                            </div>
+                            <div class="row align-items-center mt-4">
+                                <div class="col">
+                                    <p class="fw-bold">회사 로고 이미지 첨부</p>
+                                    <input class="form-control" type="file" id="formlogo_File" name="logo_fileName"  required>
+                                    <span>※이미지 사이즈는 280x100 으로 해주세요.</span>    
+                                </div>
+                            </div>                         
                             <div class="row align-items-left mt-4 address" id="frame2">
                                 <p class="fw-bold" id="addressCom">주소</p>
                                     <input type="text" placeholder="우편번호" name="postCode2" id="postCode2" class="form-control mb-1 " style="display:inline-block; width:100px;"  onkeyup="inputDataCheck(this.id)" required> 
                                     <input type="button" onclick="sample7_execDaumPostcode()" value="주소 찾기" id="search"><br>
                                     <input type="text"  name="address2" id="address2" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required>
                                     <input type="text" name="detailAddress2" id="detailAddress2" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
-                                    <input type="text" name="extraAddress2" id="extraAddress2" class="form-control mb-3 col-md-7" placeholder="참고항목"  onkeyup="inputDataCheck(this.id)" required>
                             </div>
                             <div id="signUp" >
                                 <button type="button" value="signUpCompany" onClick="signUpCom_submit()" class="btn-xlarge submit"  style="color: white; background-color: #A5E374;">가입하기</button>

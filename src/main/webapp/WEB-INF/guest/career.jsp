@@ -119,7 +119,7 @@
       <c:forEach var="anno" items="${announcement}">
         <div class="col">
           <div class="card" onmouseover="showCount(${anno.no})" onmouseout="hideCount(${anno.no})" onclick="location='jobOpening?no=${anno.no}'">
-            <img src="img/logo.png" class="card-img-top" alt="...">
+            <div id="company_logo"><img src="/upload/${anno.logo_fileName }" class="card-img-top" alt="..."></div>
 	            <div class="card-body">
 	            	<p id="corporname">${anno.corporateName}<span id="${anno.no}" class="count"><img src="img/eyes.png">&nbsp; ${anno.count}</span></p>
 	              <h5 class="card-title">${anno.title}</h5>

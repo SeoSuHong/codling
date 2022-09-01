@@ -6,19 +6,21 @@ public class Announcement {
 	private String stack;
 	private String career;
 	private String pay;
+	private String logo_fileName;
 	private String name;
 	private int no;
 	private int count;
 	
 	public Announcement() {}
 
-	public Announcement(String corporateName, String title, String stack, String career, String pay, String name, int no, int count) {
+	public Announcement(String corporateName, String title, String stack, String career, String pay, String logo_fileName, String name, int no, int count) {
 		super();
 		this.corporateName = corporateName;
 		this.title = title;
 		this.stack = stack;
 		this.career = career;
 		this.pay = pay;
+		this.logo_fileName = logo_fileName;
 		this.name = name;
 		this.no = no;
 		this.count = count;
@@ -64,6 +66,14 @@ public class Announcement {
 		this.pay = pay;
 	}
 
+	public String getLogo_fileName() {
+		return logo_fileName;
+	}
+
+	public void setLogo_fileName(String logo_fileName) {
+		this.logo_fileName = logo_fileName;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -87,6 +97,8 @@ public class Announcement {
 	public void setCount(int count) {
 		this.count = count;
 	}
+
+	
 
 	
 }

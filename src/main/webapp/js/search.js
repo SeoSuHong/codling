@@ -151,7 +151,22 @@ $(function(){
 			$("#down_button").show();
 			$("#up_button").hide();
     });
+
 });
+
+$(function(){
+        $("#scroll_notbox").hover(function() {
+			$("#default").on('scroll touchmove mousewheel', function(e){
+			e.preventDefault();
+			e.stopPropagation(); 
+			return false;
+			});
+        },function(){
+			$("#default").off('scroll touchmove mousewheel');
+        });
+        
+});
+
 //공고 검색 옵션 사용시 들어가는 값
 function getzoneValue(event)  {
   var zone_length = document.getElementsByName("zone").length;
@@ -186,16 +201,6 @@ function gettaskValue(event)  {
   
   document.getElementById('task_in').innerText = task_input;
 }
-
-function zone() {
-        var obj_length = document.getElementsByName("zone").length;
-  
-        for (var i=0; i<obj_length; i++) {
-            if (document.getElementsByName("fruit")[i].checked == true) {
-                alert(document.getElementsByName("fruit")[i].value);
-            }
-        }
-    }
 
 
 function showCount(no) {

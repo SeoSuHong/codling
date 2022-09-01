@@ -364,8 +364,12 @@ function signUpCom_submit() {
 	if ($("#formFile").val() == "") {
 		alert("최근 3개월 이내 발급받으신 사업자등록증명원을 첨부해 주시기 바랍니다.");
 		$("#formFile").addClass("is-invalid");
-		$("#formFile").focus();
-		return;
+	}
+	
+	// 파일 등록 했는지 ? 
+	if ($("#formlogo_File").val() == "") {
+		alert("회사로고 이미지를 미첨부 할경우 기본 이미지로 적용됩니다.");
+		$("#formlogo_File").addClass("is-invalid");
 	}
 
 	// 주소 입력 확인

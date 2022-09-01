@@ -61,6 +61,10 @@
 	                <div>${corporation.fileName}</div>
 	            </div>
 	            <div class="type">
+	                <p>회사 로고 파일</p>
+	                <div id="logo_filebox"><img class="logo_file" alt="logo_file" src="/upload/${corporation.logo_fileName}"></div>
+	            </div>
+	            <div class="type">
 	                <p>주소</p>
 	                <div>${corporation.address}</div>
 	            </div>

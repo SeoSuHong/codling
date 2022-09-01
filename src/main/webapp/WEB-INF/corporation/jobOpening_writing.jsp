@@ -6,8 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codling : 공고 작성</title>
-    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
+    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -19,7 +18,7 @@
 <body>
     <header>
         <div id="menu-bar">
-            <div id="box"></div>
+            <div></div>
             <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
                     <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> ${name} 님</span> &nbsp;&nbsp;</div>
@@ -93,8 +92,9 @@
                         <tr>
                             <td>급여*</td>
                             <td id="font_medium">
-	                            <input type="text" name="pay" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
-	                            <input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span>
+	                            <input name="pay_" size="10" id="inputprice" id="comma" onkeyup="commas(this)" />&nbsp;만원 <span>&emsp;&emsp;
+	                            <input type="checkbox" name="pay_" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span>
+	                            <input type="hidden" name="pay">
                             </td>
                         </tr>
                         <tr>
@@ -107,13 +107,17 @@
                         </tr>
                         <tr>
                         	<td></td>
-                        	<td><div id="stacks" name="sel" size="10" readonly="readonly"></div></td>
+                        	<td>
+                        		<div id="stacks"></div>
+                        		<input type="hidden" name="stack">
+                        		<input type="hidden" name="stackCount">
+                        	</td>
                         </tr>
                         <tr>
                             <td>사용스택 및 툴*</td>
-                            <td id="font_medium">
-	                            <input id="stack" name="keyword" onkeydown="keyDown()">
-	                            <ul id="suggest" style="display: none; position: absolute; top: 1333px;"></ul>
+                            <td id="font_medium" class="stackTd">
+	                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
+	                            <ul id="suggest" style="position: absolute; display: none; top: 48px;"></ul>
                             </td>
                         </tr>
                         <tr>
@@ -155,7 +159,11 @@
                         	</tr>
                         	<tr>
 	                            <td>급여*</td>
-	                            <td id="font_medium"><input name="pay" id="comma" onkeyup="commas(this)" size="10">&nbsp;만원 <span>&emsp;&emsp;<input type="checkbox" name="pay" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span></td>
+	                            <td id="font_medium">
+	                            	<input name="pay_" id="comma" onkeyup="commas(this)" size="10">&nbsp;만원 <span>&emsp;&emsp;
+	                            	<input type="checkbox" name="pay_" value="면접 후 결정"><label>&nbsp;면접 후 결정</label></span>
+	                            	<input type="hidden" name="pay">
+	                            </td>
                         	</tr>
                         	<tr>
 	                            <td>근무요일*</td>
@@ -166,9 +174,20 @@
 	                            </td>
                         	</tr>
                         	<tr>
+	                        	<td></td>
+	                        	<td>
+	                        		<div id="stacks"></div>
+	                        		<input type="hidden" name="stack">
+	                        		<input type="hidden" name="stackCount">
+	                        	</td>
+	                        </tr>
+	                        <tr>
 	                            <td>사용스택 및 툴*</td>
-	                            <td id="font_medium"><input id="stack" name="stack">
-                        	</tr>
+	                            <td id="font_medium" class="stackTd">
+		                            <input id="stack" name="keyword" onkeydown="keyDown(this)">
+		                            <ul id="suggest" style="position: absolute; display: none; top: 48px;"></ul>
+	                            </td>
+	                        </tr>
 	                        <tr>
 	                            <td>주요업무*</td>
 	                            <td id="font_medium"><textarea id="textbox" name="work"></textarea>

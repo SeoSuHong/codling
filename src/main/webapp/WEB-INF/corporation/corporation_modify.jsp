@@ -100,7 +100,14 @@
                                                 증빙서류를 첨부하세요.
                                             </div>
                                 </div>
-                            </div>                       
+                            </div>     
+                            <div class="row align-items-center mt-4">
+                                <div class="col">
+                                    <p class="fw-bold">회사 로고 이미지 첨부</p>
+                                    <input class="form-control" type="file" id="formlogo_File" name="logo_fileName"  required>
+                                    <span>※이미지 사이즈는 280x100 으로 해주세요.</span>    
+                                </div>
+                            </div>                  
                             <div class="row align-items-left mt-4 address" id="frame2">
                             	<p class="fw-bold" id="addressCom">주소</p>
                                     <input type="text" placeholder="우편번호" name="postCode" id="postCode" class="form-control mb-1" style="display:inline-block;width:100px;"  onkeyup="inputDataCheck(this.id)" required value="${corporation.address}"> 
