@@ -165,43 +165,43 @@
 			        	</div>
 			        	<div id="careerList">
 			        		<input type="checkbox" name="career" value="신입"> 신입
-			        		<input type="checkbox" name="career" value="1"> 1년↑
-			        		<input type="checkbox" name="career" value="3"> 3년↑
-			        		<input type="checkbox" name="career" value="5"> 5년↑
-			        		<input type="checkbox" name="career" value="7"> 7년↑
-			        		<input type="checkbox" name="career" value="10"> 10년↑
-			        		<input type="checkbox" name="career" value="13"> 13년↑
-			        		<input type="checkbox" name="career" value="15"> 15년↑
-			        		<input type="checkbox" name="career" value="17"> 17년↑
-			        		<input type="checkbox" name="career" value="20"> 20년↑
+			        		<input type="checkbox" name="career" value="1"> 1년
+			        		<input type="checkbox" name="career" value="3"> 3년
+			        		<input type="checkbox" name="career" value="5"> 5년
+			        		<input type="checkbox" name="career" value="7"> 7년
+			        		<input type="checkbox" name="career" value="10"> 10년
+			        		<input type="checkbox" name="career" value="13"> 13년
+			        		<input type="checkbox" name="career" value="15"> 15년
+			        		<input type="checkbox" name="career" value="17"> 17년
+			        		<input type="checkbox" name="career" value="20"> 20년
 			        	</div>
 			        	<div id="payList">
-			        		<input type="checkbox" name="pay" value="2,500"> <span>2,500만</span>
-			        		<input type="checkbox" name="pay" value="3,000"> <span>3,000만</span>
-			        		<input type="checkbox" name="pay" value="3,500"> <span>3,500만</span>
-			        		<input type="checkbox" name="pay" value="4,000"> <span>4,000만</span>
-			        		<input type="checkbox" name="pay" value="4,500"> <span>4,500만</span>
-			        		<input type="checkbox" name="pay" value="5,000"> <span>5,000만</span>
-			        		<input type="checkbox" name="pay" value="5,500"> <span>5,500만</span>
-			        		<input type="checkbox" name="pay" value="6,000"> <span>6,000만</span>
-			        		<input type="checkbox" name="pay" value="6,500"> <span>6,500만</span>
-			        		<input type="checkbox" name="pay" value="7,000"> <span>7,000만</span>
-			        		<input type="checkbox" name="pay" value="7,500"> <span>7,500만</span>
-			        		<input type="checkbox" name="pay" value="8,000"> <span>8,000만</span>
-			        		<input type="checkbox" name="pay" value="8,500"> <span>8,500만</span>
-			        		<input type="checkbox" name="pay" value="9,000"> <span>9,000만</span>
-			        		<input type="checkbox" name="pay" value="9,500"> <span>9,500만</span>
-			        		<input type="checkbox" name="pay" value="10,000"> <span>1억</span>
-			        		<input type="checkbox" name="pay" value="11,000"> <span>1억 1,000만</span>
-			        		<input type="checkbox" name="pay" value="12,000"> <span>1억 2,000만</span>
-			        		<input type="checkbox" name="pay" value="13,000"> <span>1억 3,000만</span>
-			        		<input type="checkbox" name="pay" value="14,000"> <span>1억 4,000만</span>
-			        		<input type="checkbox" name="pay" value="15,000"> <span>1억 5,000만</span>
-			        		<input type="checkbox" name="pay" value="16,000"> <span>1억 6,000만</span>
-			        		<input type="checkbox" name="pay" value="17,000"> <span>1억 7,000만</span>
-			        		<input type="checkbox" name="pay" value="18,000"> <span>1억 8,000만</span>
-			        		<input type="checkbox" name="pay" value="19,000"> <span>1억 9,000만</span>
-			        		<input type="checkbox" name="pay" value="20,000"> <span>2억</span>
+			        		<input type="checkbox" name="pay" value="2500"> <span>2,500만</span>
+			        		<input type="checkbox" name="pay" value="3000"> <span>3,000만</span>
+			        		<input type="checkbox" name="pay" value="3500"> <span>3,500만</span>
+			        		<input type="checkbox" name="pay" value="4000"> <span>4,000만</span>
+			        		<input type="checkbox" name="pay" value="4500"> <span>4,500만</span>
+			        		<input type="checkbox" name="pay" value="5000"> <span>5,000만</span>
+			        		<input type="checkbox" name="pay" value="5500"> <span>5,500만</span>
+			        		<input type="checkbox" name="pay" value="6000"> <span>6,000만</span>
+			        		<input type="checkbox" name="pay" value="6500"> <span>6,500만</span>
+			        		<input type="checkbox" name="pay" value="7000"> <span>7,000만</span>
+			        		<input type="checkbox" name="pay" value="7500"> <span>7,500만</span>
+			        		<input type="checkbox" name="pay" value="8000"> <span>8,000만</span>
+			        		<input type="checkbox" name="pay" value="8500"> <span>8,500만</span>
+			        		<input type="checkbox" name="pay" value="9000"> <span>9,000만</span>
+			        		<input type="checkbox" name="pay" value="9500"> <span>9,500만</span>
+			        		<input type="checkbox" name="pay" value="10000"> <span>1억</span>
+			        		<input type="checkbox" name="pay" value="11000"> <span>1억 1,000만</span>
+			        		<input type="checkbox" name="pay" value="12000"> <span>1억 2,000만</span>
+			        		<input type="checkbox" name="pay" value="13000"> <span>1억 3,000만</span>
+			        		<input type="checkbox" name="pay" value="14000"> <span>1억 4,000만</span>
+			        		<input type="checkbox" name="pay" value="15000"> <span>1억 5,000만</span>
+			        		<input type="checkbox" name="pay" value="16000"> <span>1억 6,000만</span>
+			        		<input type="checkbox" name="pay" value="17000"> <span>1억 7,000만</span>
+			        		<input type="checkbox" name="pay" value="18000"> <span>1억 8,000만</span>
+			        		<input type="checkbox" name="pay" value="19000"> <span>1억 9,000만</span>
+			        		<input type="checkbox" name="pay" value="20000"> <span>2억</span>
 			        	</div>
         			</div>
         		</article>

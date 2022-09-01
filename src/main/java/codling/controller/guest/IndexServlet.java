@@ -36,9 +36,9 @@ public class IndexServlet extends HttpServlet{
 		
 		CorporationDao corpDao = new CorporationDao();
 		
-		List<String> fieldNames = corpDao.getAllFieldName();
 		ArrayList<Announcement> announcement = corpDao.indexContents();
 		
+		List<String> fieldNames = corpDao.getAllFieldName();
 		request.setAttribute("fieldNames", fieldNames);
 		request.setAttribute("announcement", announcement);
 		request.getRequestDispatcher("/WEB-INF/guest/index.jsp").forward(request, response);

@@ -75,7 +75,9 @@ public class searchServlet extends HttpServlet{
 					career = "신입";
 				}
 				else {
-					
+					int c = Integer.parseInt(careers[i]);
+					if(c < 9) career = "[1-" + careers[i] + "]";
+					else career = "[0-9]";
 				}
 			}
 		} else {
@@ -83,11 +85,24 @@ public class searchServlet extends HttpServlet{
 		}
 		
 		// 급여 키워드
-		String pay = "";
+		String strPay = "";
+		int intPay = 0;
 		String[] pays = request.getParameterValues("pay");
 		
+		ArrayList<Announcement> announcement = null;		
+		
+		if(pays != null) {
+			for(int i = 0; i < pays.length; i++) {
+				intPay = Integer.parseInt(pays[i]);
+				announcement = corpDao.searchJobOpening(search, area, field, career, intPay);
+			}
+			
+		} else {
+			strPay = "[가-힇]|[a-z]|[0-9]";
+			announcement = corpDao.searchJobOpening(search, area, field, career, strPay);
+		}
+		
 		List<String> fieldNames = corpDao.getAllFieldName();
-		ArrayList<Announcement> announcement = null;
 		
 		request.setAttribute("fieldNames", fieldNames);
 		request.setAttribute("announcement", announcement);

@@ -2,6 +2,7 @@ package codling.controller.guest;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -34,8 +35,10 @@ public class CareerServlet extends HttpServlet{
 		}
 		
 		ArrayList<Announcement> announcement = corpDao.careerContents();
+		List<String> fieldNames = corpDao.getAllFieldName();
 		
 		request.setAttribute("announcement", announcement);
+		request.setAttribute("fieldNames", fieldNames);
 		
 		request.getRequestDispatcher("/WEB-INF/guest/career.jsp").forward(request, response);
 	}

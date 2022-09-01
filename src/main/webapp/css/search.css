@@ -41,7 +41,7 @@
 #hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
 .pfhover{border: 1px solid #cecece; width: 150px; height: 160px; float: right;
     border-radius: 10px;  background-color: white; position: relative; top: 10px; right: 0px;
-     display: none; z-index: 100;}
+     display: none; z-index: 1000;}
 #scroll-hover-box{margin-left: 25px;}
 #scroll-hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
 .pfhover>ul>li>a{text-decoration: none; color: #656978; font-size: 1rem; display: inline-block;
@@ -59,7 +59,7 @@ ul{list-style: none;}
 #search:focus {outline: 0;}
 #searchHide {width: 1250px; height: 0px; overflow: hidden;}
 #searchWrap {display: flex;}
-#searchChk {width: 100%; height: 50px; display: flex; position: relative; z-index: 10; margin-top: 15px; line-height: 38px; font-size: 1.2rem; border: 3px solid #A5E374; box-shadow: 2px 2px 3px -1px rgb(0 0 0 / 25%); border-radius: 6px;}
+#searchChk {width: 100%; height: 50px; display: flex; position: relative; z-index: 100; margin-top: 15px; line-height: 38px; font-size: 1.2rem; border: 3px solid #A5E374; box-shadow: 2px 2px 3px -1px rgb(0 0 0 / 25%); border-radius: 6px;}
 #searchChk div {display: flex;}
 .keyword {display: inline-block; margin: 0 10px; font-size: medium; color: #A5E374; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .a {width: 249px;}
@@ -67,7 +67,7 @@ ul{list-style: none;}
 .c {width: 60px;}
 .p {width: 110px;}
 #area>span:first-child {margin-left: 20px;}
-#keyList {width: 1249px; height: 0px; display: flex; position: absolute; z-index: 0; font-size: 1.1rem; background-color: white; margin-top: -4px; padding-left: 90px; border: 3px solid #A5E374; border-top: none; border-bottom: none; box-shadow: 2px 2px 3px -1px rgb(0 0 0 / 25%); border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;}
+#keyList {width: 1249px; height: 0px; display: flex; position: absolute; z-index: 10; font-size: 1.1rem; background-color: white; margin-top: -4px; padding-left: 90px; border: 3px solid #A5E374; border-top: none; border-bottom: none; box-shadow: 2px 2px 3px -1px rgb(0 0 0 / 25%); border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;}
 
 #keyList div {margin-top: 10px;}
 #areaList {margin-right: 70px; display: grid; grid-template-columns: 15px 80px 15px 100px; gap: 10px; overflow-y: scroll;}
@@ -123,7 +123,7 @@ section{width: 1220px; margin: 0 auto;}
 
 /*footer*/
 footer{ display: flex; height: 80px; background-color: #F0F0F0; border-top: #dddddd solid 0.1rem;
-    color: #BEBEBE; margin-top: 5vh; font-size: 0.8rem; justify-content: center; align-items: center;}
+    color: #BEBEBE; margin-top: 200px; font-size: 0.8rem; justify-content: center; align-items: center;}
     footer a:hover{text-decoration: underline; color: #BEBEBE;}
     footer img{margin: 0 2rem;}
 a{text-decoration: none; color:inherit;}

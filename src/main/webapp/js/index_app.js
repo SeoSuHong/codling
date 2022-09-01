@@ -97,7 +97,7 @@ $(function() {
 				if(this.value == '신입')
 					career.innerHTML = "<span class='cKey'>" + this.value + "</span>";
 				else
-					career.innerHTML = "<span class='cKey'>" + this.value + "년↑</span>";
+					career.innerHTML = "<span class='cKey'>" + this.value + "년</span>";
 			} else {
 				career.innerHTML = "";
 			}

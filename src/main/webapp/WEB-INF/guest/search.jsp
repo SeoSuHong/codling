@@ -165,15 +165,15 @@
 			        	</div>
 			        	<div id="careerList">
 			        		<input type="checkbox" name="career" value="신입"> 신입
-			        		<input type="checkbox" name="career" value="1"> 1년↑
-			        		<input type="checkbox" name="career" value="3"> 3년↑
-			        		<input type="checkbox" name="career" value="5"> 5년↑
-			        		<input type="checkbox" name="career" value="7"> 7년↑
-			        		<input type="checkbox" name="career" value="10"> 10년↑
-			        		<input type="checkbox" name="career" value="13"> 13년↑
-			        		<input type="checkbox" name="career" value="15"> 15년↑
-			        		<input type="checkbox" name="career" value="17"> 17년↑
-			        		<input type="checkbox" name="career" value="20"> 20년↑
+			        		<input type="checkbox" name="career" value="1"> 1년
+			        		<input type="checkbox" name="career" value="3"> 3년
+			        		<input type="checkbox" name="career" value="5"> 5년
+			        		<input type="checkbox" name="career" value="7"> 7년
+			        		<input type="checkbox" name="career" value="10"> 10년
+			        		<input type="checkbox" name="career" value="13"> 13년
+			        		<input type="checkbox" name="career" value="15"> 15년
+			        		<input type="checkbox" name="career" value="17"> 17년
+			        		<input type="checkbox" name="career" value="20"> 20년
 			        	</div>
 			        	<div id="payList">
 			        		<input type="checkbox" name="pay" value="2,500"> <span>2,500만</span>
