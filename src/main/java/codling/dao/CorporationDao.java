@@ -670,6 +670,48 @@ public class CorporationDao {
 		return list;
 	}
 	
+	// 공고 검색
+    public ArrayList<Announcement> searchJobOpening(String search, String area, String field, String career, String pay) {
+       ArrayList<Announcement> list = new ArrayList<Announcement>();
+       String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+             + "FROM jobOpening J "
+             + "JOIN field F ON F.jobOpening_no = J.no "
+             + "JOIN corporation C ON J.corporation_id = C.id "
+             + "WHERE J.title REGEXP ? AND J.region REGEXP ? AND F.name REGEXP ? AND F.career REGEXP ? AND F.pay REGEXP ? "
+             + "ORDER BY F.no DESC";
+       
+       try {
+          conn = getConnection();
+          pstmt = conn.prepareStatement(query);
+          if(search.equals("") || search == null) search = "[가-힇]|[a-z]|[0-9]";
+          pstmt.setString(1, search);
+          pstmt.setString(2, area);
+          pstmt.setString(3, field);
+          pstmt.setString(4, career);
+          pstmt.setString(5, pay);
+          rs = pstmt.executeQuery();
+          
+          while(rs.next()) {
+             String corporateName = rs.getString("corporateName");
+             String title = rs.getString("title");
+             String stack = rs.getString("stack");
+             String career_ = rs.getString("career");
+             String pay_ = rs.getString("pay");
+             int no = rs.getInt("no");
+             int count = rs.getInt("count");
+             
+             Announcement announcement = new Announcement(corporateName, title, stack, career_, pay_, no, count);
+             list.add(announcement);
+          }
+          rs.close();
+          pstmt.close();
+          conn.close();
+       } catch(Exception e) {
+          System.out.println("searchJobOpening Error : " + e.getMessage());
+       }
+       return list;
+    }
+	
 	// 기업회원 회원가입
 	public boolean insertCorporation(Corporation corporation) {
 		boolean result = false;
