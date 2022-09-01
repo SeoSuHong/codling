@@ -60,7 +60,7 @@
             
             
         </div>
-        <p id="join2"><a href="signUp">회원가입</a><a href="find_account.jsp">아이디/비밀번호 찾기</a></p>
+        <p id="join2"><a href="signUp">회원가입</a><a href="find_account">아이디/비밀번호 찾기</a></p>
     </article>
     <div id="loginAPI">
         <div>
@@ -102,10 +102,10 @@
     <script type="text/javascript">
     function onSignIn(googleUser) {
     	  var profile = googleUser.getBasicProfile();
-    	  console.log('ID: ' + profile.getId(); // Do not send to your backend! Use an ID token instead.
+    	  console.log('ID: ' + profile.getId();
     	  console.log('Name: ' + profile.getName());
     	  console.log('Image URL: ' + profile.getImageUrl());
-    	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    	  console.log('Email: ' + profile.getEmail());
     	}
     </script>
     <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
@@ -114,7 +114,7 @@
 	
 		var naverLogin = new naver.LoginWithNaverId(
 				{
-					clientId: "VbyRMVals_lVgeC5hpie", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
+					clientId: "VbyRMVals_lVgeC5hpie", // 내 애플리케이션 정보에 cliendId를 입력해줍니다.
 					callbackUrl: "http://localhost:8090/index.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
 					isPopup: false,
 					callbackHandle: true
