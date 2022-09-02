@@ -76,7 +76,7 @@
 				<div id="login_header">
 					<a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
 					<div id="searchWrap">
-						<input id="search" name="search" placeholder="검색어를 입력하세요." autocomplete="off" onfocus="showSearch()">
+						<input id="search" name="search" value="${s}" placeholder="검색어를 입력하세요." autocomplete="off" onfocus="showSearch()">
 						<a href="javascript:search()"><img alt="검색" src="../../img/search.png" class="searchBtn"></a>
 					</div>
 
@@ -120,88 +120,102 @@
 					<div id="searchChk" onmouseenter="showSearchList()">
 						<div id="area">
 							<span>지역 | </span>
-							<span class="keyword a"></span>
+							<span class="keyword a">
+								<c:forEach var="aKey" items="${a}" varStatus="st">
+									<span class="aKey"><c:if test="${!st.first}"> · </c:if>${aKey}</span>
+								</c:forEach>
+							</span>
 						</div>
 						<div id="field">
 							<span>분야 | </span>
-							<span class="keyword f"></span>
+							<span class="keyword f">
+								<c:forEach var="fKey" items="${f}" varStatus="st">
+									<span class="fKey"><c:if test="${!st.first}"> · </c:if>${fKey}</span>
+								</c:forEach>
+							</span>
 						</div>
 						<div id="career">
 							<span>경력 | </span>
-							<span class="keyword c"></span>
+							<span class="keyword c">
+								<c:if test="${not empty c && c == '신입'}"><span class="cKey">${c}</span></c:if>
+								<c:if test="${not empty c && c != '신입'}"><span class="cKey">${c}년</span></c:if>
+							</span>
 						</div>
 						<div id="pay">
 							<span>급여 | </span>
-							<span class="keyword p"></span>
+							<span class="keyword p">
+								<c:if test="${not empty p && p < 10000}">
+									<span class="pKey">
+										${fn:substring(p, 0, 1)},${fn:substring(p, 1, 4)}만↑
+									</span>
+								</c:if>
+								<c:if test="${not empty p && p >= 10000}">
+									<span class="pKey">
+										<c:if test="${fn:substring(p, 1, 5) == 0000}">
+											${fn:substring(p, 0, 1)}억↑
+										</c:if>
+										<c:if test="${fn:substring(p, 1, 5) != 0000}">
+					        				${fn:substring(p, 0, 1)}억 ${fn:substring(p, 1, 2)},${fn:substring(p, 2, 5)}만↑
+					        			</c:if>
+									</span>
+								</c:if>
+							</span>
 						</div>
 					 	<img src="../../img/exit.png" id="exitSearch" onclick="hideSearch()">
 					</div>
         			<div id="keyList">
         				<div id="areaList">
-			        		<input type="checkbox" name="area" value="서울"> 서울
-			        		<input type="checkbox" name="area" value="강남"> 강남
-			        		<input type="checkbox" name="area" value="구로"> 구로
-			        		<input type="checkbox" name="area" value="가산"> 가산
-			        		<input type="checkbox" name="area" value="판교"> 판교
-			        		<input type="checkbox" name="area" value="마포"> 마포
-			        		<input type="checkbox" name="area" value="서초"> 서초
-			        		<input type="checkbox" name="area" value="경기"> 경기
-			        		<input type="checkbox" name="area" value="인천"> 인천
-			        		<input type="checkbox" name="area" value="대전"> 대전
-			        		<input type="checkbox" name="area" value="부산"> 부산
-			        		<input type="checkbox" name="area" value="제주"> 제주
-			        		<input type="checkbox" name="area" value="대구"> 대구
-			        		<input type="checkbox" name="area" value="광주"> 광주
-			        		<input type="checkbox" name="area" value="울산"> 울산
-			        		<input type="checkbox" name="area" value="세종"> 세종
-			        		<input type="checkbox" name="area" value="경상"> 경상
-			        		<input type="checkbox" name="area" value="전라"> 전라
-			        		<input type="checkbox" name="area" value="충청"> 충청
+			        		<input type="checkbox" name="area" value="서울" <c:if test="${fn:contains(a, '서울')}">checked</c:if>> 서울
+			        		<input type="checkbox" name="area" value="강남" <c:if test="${fn:contains(a, '강남')}">checked</c:if>> 강남
+			        		<input type="checkbox" name="area" value="구로" <c:if test="${fn:contains(a, '구로')}">checked</c:if>> 구로
+			        		<input type="checkbox" name="area" value="가산" <c:if test="${fn:contains(a, '가산')}">checked</c:if>> 가산
+			        		<input type="checkbox" name="area" value="판교" <c:if test="${fn:contains(a, '판교')}">checked</c:if>> 판교
+			        		<input type="checkbox" name="area" value="마포" <c:if test="${fn:contains(a, '마포')}">checked</c:if>> 마포
+			        		<input type="checkbox" name="area" value="서초" <c:if test="${fn:contains(a, '서초')}">checked</c:if>> 서초
+			        		<input type="checkbox" name="area" value="경기" <c:if test="${fn:contains(a, '경기')}">checked</c:if>> 경기
+			        		<input type="checkbox" name="area" value="인천" <c:if test="${fn:contains(a, '인천')}">checked</c:if>> 인천
+			        		<input type="checkbox" name="area" value="대전" <c:if test="${fn:contains(a, '대전')}">checked</c:if>> 대전
+			        		<input type="checkbox" name="area" value="부산" <c:if test="${fn:contains(a, '부산')}">checked</c:if>> 부산
+			        		<input type="checkbox" name="area" value="제주" <c:if test="${fn:contains(a, '제주')}">checked</c:if>> 제주
+			        		<input type="checkbox" name="area" value="대구" <c:if test="${fn:contains(a, '대구')}">checked</c:if>> 대구
+			        		<input type="checkbox" name="area" value="광주" <c:if test="${fn:contains(a, '광주')}">checked</c:if>> 광주
+			        		<input type="checkbox" name="area" value="울산" <c:if test="${fn:contains(a, '울산')}">checked</c:if>> 울산
+			        		<input type="checkbox" name="area" value="세종" <c:if test="${fn:contains(a, '세종')}">checked</c:if>> 세종
+			        		<input type="checkbox" name="area" value="경상" <c:if test="${fn:contains(a, '경상')}">checked</c:if>> 경상
+			        		<input type="checkbox" name="area" value="전라" <c:if test="${fn:contains(a, '전라')}">checked</c:if>> 전라
+			        		<input type="checkbox" name="area" value="충청" <c:if test="${fn:contains(a, '충청')}">checked</c:if>> 충청
 			        	</div>
 			        	<div id="fieldList">
 			        		<c:forEach var="fieldName" items="${fieldNames}">
-			        			<input type="checkbox" name="field" value="${fieldName}"> ${fieldName}
+			        			<input type="checkbox" name="field" value="${fieldName}" <c:if test="${fn:contains(f, fieldName)}">checked</c:if>> ${fieldName}
 			        		</c:forEach>
 			        	</div>
 			        	<div id="careerList">
-			        		<input type="checkbox" name="career" value="신입"> 신입
-			        		<input type="checkbox" name="career" value="1"> 1년
-			        		<input type="checkbox" name="career" value="3"> 3년
-			        		<input type="checkbox" name="career" value="5"> 5년
-			        		<input type="checkbox" name="career" value="7"> 7년
-			        		<input type="checkbox" name="career" value="10"> 10년
-			        		<input type="checkbox" name="career" value="13"> 13년
-			        		<input type="checkbox" name="career" value="15"> 15년
-			        		<input type="checkbox" name="career" value="17"> 17년
-			        		<input type="checkbox" name="career" value="20"> 20년
+			        		<input type="checkbox" name="career" value="신입" <c:if test="${c == '신입'}">checked</c:if>> 신입
+			        		<input type="checkbox" name="career" value="3" <c:if test="${c == '3'}">checked</c:if>> 3년
+			        		<input type="checkbox" name="career" value="5" <c:if test="${c == '5'}">checked</c:if>> 5년
+			        		<input type="checkbox" name="career" value="7" <c:if test="${c == '7'}">checked</c:if>> 7년
+			        		<input type="checkbox" name="career" value="10" <c:if test="${c == '10'}">checked</c:if>> 10년
+			        		<input type="checkbox" name="career" value="13" <c:if test="${c == '13'}">checked</c:if>> 13년
+			        		<input type="checkbox" name="career" value="15" <c:if test="${c == '15'}">checked</c:if>> 15년
+			        		<input type="checkbox" name="career" value="17" <c:if test="${c == '17'}">checked</c:if>> 17년
+			        		<input type="checkbox" name="career" value="20" <c:if test="${c == '20'}">checked</c:if>> 20년
 			        	</div>
 			        	<div id="payList">
-			        		<input type="checkbox" name="pay" value="2,500"> <span>2,500만</span>
-			        		<input type="checkbox" name="pay" value="3,000"> <span>3,000만</span>
-			        		<input type="checkbox" name="pay" value="3,500"> <span>3,500만</span>
-			        		<input type="checkbox" name="pay" value="4,000"> <span>4,000만</span>
-			        		<input type="checkbox" name="pay" value="4,500"> <span>4,500만</span>
-			        		<input type="checkbox" name="pay" value="5,000"> <span>5,000만</span>
-			        		<input type="checkbox" name="pay" value="5,500"> <span>5,500만</span>
-			        		<input type="checkbox" name="pay" value="6,000"> <span>6,000만</span>
-			        		<input type="checkbox" name="pay" value="6,500"> <span>6,500만</span>
-			        		<input type="checkbox" name="pay" value="7,000"> <span>7,000만</span>
-			        		<input type="checkbox" name="pay" value="7,500"> <span>7,500만</span>
-			        		<input type="checkbox" name="pay" value="8,000"> <span>8,000만</span>
-			        		<input type="checkbox" name="pay" value="8,500"> <span>8,500만</span>
-			        		<input type="checkbox" name="pay" value="9,000"> <span>9,000만</span>
-			        		<input type="checkbox" name="pay" value="9,500"> <span>9,500만</span>
-			        		<input type="checkbox" name="pay" value="10,000"> <span>1억</span>
-			        		<input type="checkbox" name="pay" value="11,000"> <span>1억 1,000만</span>
-			        		<input type="checkbox" name="pay" value="12,000"> <span>1억 2,000만</span>
-			        		<input type="checkbox" name="pay" value="13,000"> <span>1억 3,000만</span>
-			        		<input type="checkbox" name="pay" value="14,000"> <span>1억 4,000만</span>
-			        		<input type="checkbox" name="pay" value="15,000"> <span>1억 5,000만</span>
-			        		<input type="checkbox" name="pay" value="16,000"> <span>1억 6,000만</span>
-			        		<input type="checkbox" name="pay" value="17,000"> <span>1억 7,000만</span>
-			        		<input type="checkbox" name="pay" value="18,000"> <span>1억 8,000만</span>
-			        		<input type="checkbox" name="pay" value="19,000"> <span>1억 9,000만</span>
-			        		<input type="checkbox" name="pay" value="20,000"> <span>2억</span>
+			        	
+			        		<c:forEach var="num" begin="2500" end="9500" step="500">
+				        		<input type="checkbox" name="pay" value="${num}" <c:if test="${not empty p && p == num}">checked</c:if>>
+				        		<span>${fn:substring(num, 0, 1)},${fn:substring(num, 1, 4)}만</span>
+			        		</c:forEach>
+			        		
+			        		<c:forEach var="num" begin="10000" end="20000" step="1000" varStatus="st">
+			        			<input type="checkbox" name="pay" value="${num}" <c:if test="${not empty p && p == num}">checked</c:if>>
+				        		<span>${fn:substring(num, 0, 1)}억
+					        		<c:if test="${!st.first && !st.last}">
+					        			${fn:substring(num, 1, 2)},${fn:substring(num, 2, 5)}만
+					        		</c:if>
+					        	</span>
+				        	</c:forEach>
 			        	</div>
         			</div>
         		</article>

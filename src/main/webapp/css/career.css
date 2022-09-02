@@ -86,7 +86,7 @@ ul{list-style: none;}
 .menu{text-decoration-line: none; color: #8D8D8D; margin: 0 20px; height: 50px; display: flex; align-items: center; 
     font-size: 1.1rem; font-weight: bold; }
 .menu:hover{color: #A5E374 !important;}
-#career{color: #A5E374;}
+#career_{color: #A5E374;}
 
 /*scroll-header*/
 #scroll-header-box{display: flex; justify-content: center; width: 100vw; align-items: center; z-index: 2;}

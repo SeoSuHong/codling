@@ -17,7 +17,7 @@ import codling.dao.InformationDao;
 import codling.identity.Announcement;
 
 @WebServlet("/search")
-public class searchServlet extends HttpServlet{
+public class SearchServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String indiId = (String)session.getAttribute("indiId");
@@ -65,44 +65,69 @@ public class searchServlet extends HttpServlet{
 			field = "[가-힇]|[a-z]|[0-9]";
 		}
 		
-		// 경력 키워드
-		String career = "";
-		String[] careers = request.getParameterValues("career");
-		
-		if(careers != null) {
-			for(int i = 0; i < careers.length; i++) {
-				if(careers[i].equals("신입")) {
-					career = "신입";
-				}
-				else {
-					int c = Integer.parseInt(careers[i]);
-					if(c < 9) career = "[1-" + careers[i] + "]";
-					else career = "[0-9]";
-				}
-			}
-		} else {
-			career = "[가-힇]|[a-z]|[0-9]";
-		}
-		
 		// 급여 키워드
 		String strPay = "";
 		int intPay = 0;
-		String[] pays = request.getParameterValues("pay");
+		String pay = request.getParameter("pay");
 		
 		ArrayList<Announcement> announcement = null;		
 		
-		if(pays != null) {
-			for(int i = 0; i < pays.length; i++) {
-				intPay = Integer.parseInt(pays[i]);
-				announcement = corpDao.searchJobOpening(search, area, field, career, intPay);
-			}
+		if(pay != null) {
+			intPay = Integer.parseInt(pay);
+			announcement = corpDao.searchJobOpening(search, area, field, intPay);
 			
 		} else {
 			strPay = "[가-힇]|[a-z]|[0-9]";
-			announcement = corpDao.searchJobOpening(search, area, field, career, strPay);
+			announcement = corpDao.searchJobOpening(search, area, field, strPay);
+		}
+		
+		// 경력 키워드 (선택한 경력의 이상 경력 삭제)
+		int career = 0;
+		String career_ = request.getParameter("career");
+		if(career_ != null && !career_.equals("신입")) career = Integer.parseInt(career_);
+		
+		
+		for(int i = announcement.size() - 1; i >= 0; i--) {
+			if (career_ != null && career_.equals("신입")) {
+				String annoCareer = announcement.get(i).getCareer();
+				if(!annoCareer.contains("신입")) {
+					announcement.remove(i);
+				}
+				System.out.println(i);
+			} else if(career != 0) {
+				String[] annoCareers = announcement.get(i).getCareer().split("/");
+				for(String car : annoCareers) {
+					if(!car.equals("신입")) {
+						int intCar = Integer.parseInt(car);
+						if(intCar > career) announcement.remove(i);
+					}
+				}
+			}
 		}
 		
 		List<String> fieldNames = corpDao.getAllFieldName();
+		
+		List<String>areaList = new ArrayList<String>();
+		
+		if(areas != null) {
+			for(String a : areas) {
+				areaList.add(a);
+			}
+		}
+		
+		List<String>fieldList = new ArrayList<String>();
+		
+		if(fields != null) {
+			for(String f : fields) {
+				fieldList.add(f);
+			}
+		}
+		
+		request.setAttribute("s", search);
+		request.setAttribute("a", areaList);
+		request.setAttribute("f", fieldList);
+		request.setAttribute("c", career_);
+		request.setAttribute("p", pay);
 		
 		request.setAttribute("fieldNames", fieldNames);
 		request.setAttribute("announcement", announcement);

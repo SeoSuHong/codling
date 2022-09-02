@@ -111,6 +111,50 @@ public class InformationDao {
 		return password;
 	}
 	
+	// 개인회원 비밀번호 변경
+	public boolean updateIndiPassword(String id, String password) {
+		boolean result = false;
+		String query = "UPDATE individual SET password = ? WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, password);
+			pstmt.setString(2, id);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateIndiPassword Error : " + e.getMessage());
+		}
+		
+		return result;
+	}
+	
+	// 기업회원 비밀번호 변경
+	public boolean updateCorpPassword(String id, String password) {
+		boolean result = false;
+		String query = "UPDATE corporation SET password = ? WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, password);
+			pstmt.setString(2, id);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateCorpPassword Error : " + e.getMessage());
+		}
+		
+		return result;
+	}
+	
 	// 개인회원 이름
 	public Map<String, String> getIndiName(String id) {
 		Map<String, String> map = null;

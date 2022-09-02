@@ -67,3 +67,24 @@ function checkFindEmail() {
         document.findEmailForm.chk.focus();
     }
 }
+
+function sendCheckCode() {
+	console.log("메소드 진입");
+	var code = "";
+	var email = document.findEmailForm.email.value;
+	var chk = document.findEmailForm.chk.value;
+	
+	console.log("변수 성공");
+	
+	$.ajax({
+		type : "get",
+		url : "sendEmail?email=" + email,
+		success : function(data) {
+			console.log("code : " + data);
+			code = data;
+		}
+	});
+	
+	if(chk == code) alert("인증번호 ok");
+	else alert("인증 실패");
+}

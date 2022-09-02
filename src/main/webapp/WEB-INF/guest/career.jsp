@@ -210,7 +210,7 @@
         	<nav id="menu">
 	            <ul>
 	              <li><a href="newcomer" class="menu" id="newcomer">신입채용</a></li>
-	              <li><a href="career" class="menu" id="career">경력채용</a></li>
+	              <li><a href="career" class="menu" id="career_">경력채용</a></li>
 	              <li><a href="top100" class="menu" id="scroll_Top100">Top100</a></li>
 	            </ul>
         	</nav>
