@@ -68,23 +68,41 @@ function checkFindEmail() {
     }
 }
 
+// 인증코드 이메일 발송
+var code = "";  // 인증코드
 function sendCheckCode() {
-	console.log("메소드 진입");
-	var code = "";
-	var email = document.findEmailForm.email.value;
-	var chk = document.findEmailForm.chk.value;
+	var email = document.findEmailForm.email.value;  // 사용자 이메일
 	
-	console.log("변수 성공");
+	if(email == "") {
+		alert("이메일을 입력해 주세요.");
+		document.findEmailForm.email.focus(); return;
+	}
 	
+	// 이메일 전송
 	$.ajax({
 		type : "get",
 		url : "sendEmail?email=" + email,
 		success : function(data) {
-			console.log("code : " + data);
 			code = data;
+			alert("인증번호가 발송되었습니다.\n이메일을 확인해 주세요.");
 		}
 	});
-	
-	if(chk == code) alert("인증번호 ok");
-	else alert("인증 실패");
+}
+
+function checkEmail() {
+	if(document.findEmailForm.name.value == "") {
+		alert("이름을 입력해 주세요.");
+		document.findEmailForm.focus();
+	} else if(document.findEmailForm.email.value == "") {
+		alert("이메일을 입력해 주세요.");
+		document.findEmailForm.email.focus();
+	} else if(document.findEmailForm.chk.value == "") {
+		alert("인증번호를 입력해 주세요.");
+		document.findEmailForm.chk.focus();
+	} else if(document.findEmailForm.chk.value != code) {
+		alert("인증번호가 일치하지 않습니다.");
+		document.findEmailForm.chk.focus();
+	} else {
+		document.findEmailForm.submit();
+	}
 }

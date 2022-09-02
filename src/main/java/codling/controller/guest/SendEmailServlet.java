@@ -14,19 +14,18 @@ import codling.controller.EmailService;
 public class SendEmailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String to = request.getParameter("email");
+		String code = "";
 		
 		EmailService email = new EmailService();
 		
 		try {
-			String code = email.sendEmail(to);
+			code = email.sendEmail(to);
 		} catch(Exception e) {
-			System.out.println("메일전송 실패");
-			System.out.println(e.getMessage());
+			System.out.println("sendEmail Error : " + e.getMessage());
 		}
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().print(code);
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
 }

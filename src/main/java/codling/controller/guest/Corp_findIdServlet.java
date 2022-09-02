@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/indi_findPassword")
-public class Indi_findPassword extends HttpServlet {
+@WebServlet("/corp_findId")
+public class Corp_findIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/guest/indi_findPassword.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/guest/corp_findId.jsp").forward(request, response);
 	}
 }

@@ -67,94 +67,6 @@ public class InformationDao {
 		return result;
 	}
 	
-	// 개인회원 비밀번호
-	public String getIndiPassword (String id) {
-		String password = "";
-		String query = "SELECT password FROM individual WHERE id = ?";
-		
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) password = rs.getString("password");
-			
-			rs.close();
-			pstmt.close();
-			conn.close();
-		} catch(Exception e) {
-			System.out.println("getIndiPassword Error : " + e.getMessage());
-		}
-		return password;
-	}
-	
-	// 기업회원 비밀번호
-	public String getCorpPassword (String id) {
-		String password = "";
-		String query = "SELECT password FROM corporation WHERE id = ?";
-		
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) password = rs.getString("password");
-			
-			rs.close();
-			pstmt.close();
-			conn.close();
-		} catch(Exception e) {
-			System.out.println("getCorpPassword Error : " + e.getMessage());
-		}
-		return password;
-	}
-	
-	// 개인회원 비밀번호 변경
-	public boolean updateIndiPassword(String id, String password) {
-		boolean result = false;
-		String query = "UPDATE individual SET password = ? WHERE id = ?";
-		
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, password);
-			pstmt.setString(2, id);
-			
-			if(pstmt.executeUpdate() == 1) result = true;
-			
-			pstmt.close();
-			conn.close();
-		} catch(Exception e) {
-			System.out.println("updateIndiPassword Error : " + e.getMessage());
-		}
-		
-		return result;
-	}
-	
-	// 기업회원 비밀번호 변경
-	public boolean updateCorpPassword(String id, String password) {
-		boolean result = false;
-		String query = "UPDATE corporation SET password = ? WHERE id = ?";
-		
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, password);
-			pstmt.setString(2, id);
-			
-			if(pstmt.executeUpdate() == 1) result = true;
-			
-			pstmt.close();
-			conn.close();
-		} catch(Exception e) {
-			System.out.println("updateCorpPassword Error : " + e.getMessage());
-		}
-		
-		return result;
-	}
-	
 	// 개인회원 이름
 	public Map<String, String> getIndiName(String id) {
 		Map<String, String> map = null;
@@ -245,6 +157,119 @@ public class InformationDao {
 			System.out.println("getCorporationName Error : " + e.getMessage());
 		}
 		return name;
+	}
+	
+	// 개인회원 이름, 이메일, ID
+	public String findId(String name, String email) {
+		String id = "";
+		String query = "SELECT id FROM individual WHERE name = ? AND email = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				id = rs.getString("id");
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("findId Error : " + e.getMessage());
+		}
+		return id;
+	}
+	
+	// 개인회원 비밀번호
+	public String getIndiPassword (String id) {
+		String password = "";
+		String query = "SELECT password FROM individual WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) password = rs.getString("password");
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getIndiPassword Error : " + e.getMessage());
+		}
+		return password;
+	}
+	
+	// 기업회원 비밀번호
+	public String getCorpPassword (String id) {
+		String password = "";
+		String query = "SELECT password FROM corporation WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) password = rs.getString("password");
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getCorpPassword Error : " + e.getMessage());
+		}
+		return password;
+	}
+	
+	// 개인회원 비밀번호 변경
+	public boolean updateIndiPassword(String id, String password) {
+		boolean result = false;
+		String query = "UPDATE individual SET password = ? WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, password);
+			pstmt.setString(2, id);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateIndiPassword Error : " + e.getMessage());
+		}
+		
+		return result;
+	}
+	
+	// 기업회원 비밀번호 변경
+	public boolean updateCorpPassword(String id, String password) {
+		boolean result = false;
+		String query = "UPDATE corporation SET password = ? WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, password);
+			pstmt.setString(2, id);
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateCorpPassword Error : " + e.getMessage());
+		}
+		
+		return result;
 	}
 	
 	// 개인회원 삭제

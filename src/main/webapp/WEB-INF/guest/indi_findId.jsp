@@ -48,7 +48,7 @@
                 
             <div id="chk_email">
                 <b>가입 시 입력한 본인정보를 입력해 주세요.</b>
-                <form action="" method="post" name="findEmailForm">
+                <form action="indi_findId" method="post" name="findEmailForm">
                     <div class="input">
                         <div class="item"><b>이름</b></div>
                         <div class="item"><input name="name"></div>
@@ -61,7 +61,7 @@
                         <div class="item"></div>
                     </div>
                     <div>
-                        <input type="button" id="chk_email_ok" value="인증확인" onclick="sendEmail()">
+                        <input type="button" id="chk_email_ok" value="아이디 찾기" onclick="checkEmail()">
                     </div>
                 </form>
             </div>

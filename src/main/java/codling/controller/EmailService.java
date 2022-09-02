@@ -11,8 +11,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailService {
-	String user = "tbgkdntm@naver.com";
-	String password = "!@#sh595944";
+	String user = "suhong58@gmail.com";
+	String password = "xpqvtlgcvooegxwc";
 	
 	public String sendEmail(String to) throws Exception {
 		String result = "fail";
@@ -55,7 +55,7 @@ public class EmailService {
 		
 		// send the message
 		Transport.send(message);;  // 전송
-		System.out.println("메일 보내기 성공");
+
 		return result = buffer.toString();
 	}
 }
