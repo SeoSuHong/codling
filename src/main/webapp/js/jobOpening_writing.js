@@ -236,9 +236,6 @@ var checkFirst = loopSend = false;
 var lastKeyword = "";
 //Timeout을 1초로 걸었다. 일정 단어 완성 뒤 검색어를 만들어 검색하기 위해서 이다.
 function keyDown(obj) {
-	/*let stackWrap = document.querySelector(".field");
-	let height = stackWrap.clientHeight;
-	$(stackWrap).css('height', height);*/
 	
     if (checkFirst == false) {
     	//1초뒤 sendKeyword() 수행
@@ -320,7 +317,6 @@ function hide(obj) {
     if (e) e.style.display = "none";
 
 	let stackWrap = document.querySelector(".field");
-	/*$(stackWrap).css('height', 'auto');*/
 }
 
 //Suggest 창 보이게 속성 바꾸는 함수

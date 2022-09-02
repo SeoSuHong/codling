@@ -673,13 +673,13 @@ public class CorporationDao {
 	}
 	
 	// 공고 검색 (pay == null)
-    public ArrayList<Announcement> searchJobOpening(String search, String area, String field, String career, String pay) {
+    public ArrayList<Announcement> searchJobOpening(String search, String area, String field, String pay) {
        ArrayList<Announcement> list = new ArrayList<Announcement>();
        String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
              + "FROM jobOpening J "
              + "JOIN field F ON F.jobOpening_no = J.no "
              + "JOIN corporation C ON J.corporation_id = C.id "
-             + "WHERE J.title REGEXP ? AND J.region REGEXP ? AND F.name REGEXP ? AND F.career REGEXP ? AND F.pay REGEXP ? "
+             + "WHERE J.title REGEXP ? AND J.region REGEXP ? AND F.name REGEXP ? AND F.pay REGEXP ? "
              + "GROUP BY J.no ORDER BY F.no DESC";
        
        try {
@@ -689,8 +689,7 @@ public class CorporationDao {
           pstmt.setString(1, search);
           pstmt.setString(2, area);
           pstmt.setString(3, field);
-          pstmt.setString(4, career);
-          pstmt.setString(5, pay);
+          pstmt.setString(4, pay);
           rs = pstmt.executeQuery();
           
           while(rs.next()) {
@@ -715,13 +714,13 @@ public class CorporationDao {
     }
     
     // 공고 검색 (pay != '면접 후 결정')
-    public ArrayList<Announcement> searchJobOpening(String search, String area, String field, String career, int pay) {
+    public ArrayList<Announcement> searchJobOpening(String search, String area, String field, int pay) {
         ArrayList<Announcement> list = new ArrayList<Announcement>();
         String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
               + "FROM jobOpening J "
               + "JOIN field F ON F.jobOpening_no = J.no "
               + "JOIN corporation C ON J.corporation_id = C.id "
-              + "WHERE J.title REGEXP ? AND J.region REGEXP ? AND F.name REGEXP ? AND F.career REGEXP ? AND F.pay >= ? "
+              + "WHERE J.title REGEXP ? AND J.region REGEXP ? AND F.name REGEXP ? AND F.pay >= ? "
               + "GROUP BY J.no ORDER BY F.no DESC";
         
         try {
@@ -731,8 +730,7 @@ public class CorporationDao {
            pstmt.setString(1, search);
            pstmt.setString(2, area);
            pstmt.setString(3, field);
-           pstmt.setString(4, career);
-           pstmt.setInt(5, pay);
+           pstmt.setInt(4, pay);
            rs = pstmt.executeQuery();
            
            while(rs.next()) {

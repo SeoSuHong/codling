@@ -55,13 +55,13 @@
                         <div class="item"></div>
                         <div class="item"><b>이메일 주소</b></div>
                         <div class="item"><input type="email" name="email"></div>
-                        <div class="item"><input type="button" class="chk_btn" name="chk_btn" value="인증번호 발송" onclick=""></input></div>
+                        <div class="item"><input type="button" class="chk_btn" name="chk_btn" value="인증번호 발송" onclick="sendCheckCode()"></div>
                         <div class="item"><b>인증번호</b></div>
                         <div class="item"><input name="chk"></div>
                         <div class="item"></div>
                     </div>
                     <div>
-                        <input type="button" id="chk_email_ok" value="인증확인" onClick="checkFindEmail()">
+                        <input type="button" id="chk_email_ok" value="인증확인" onclick="sendEmail()">
                     </div>
                 </form>
             </div>
