@@ -51,3 +51,17 @@ function comCheck() {
 		document.comLogFrm.submit();
 	}
 }
+//엔터시 로그인
+$(function() {
+	$("#password").keypress(function (e){
+		if(e.keyCode === 13){
+			perCheck();
+		}
+	});
+	
+	$("#com-password").keypress(function (e){
+		if(e.keyCode === 13){
+			comCheck();
+		}
+	});
+});

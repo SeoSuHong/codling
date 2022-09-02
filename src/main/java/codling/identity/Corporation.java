@@ -5,8 +5,7 @@ public class Corporation {
 	
 	public Corporation() {}
 
-	public Corporation(String id, String password, String corporateName, String corporatePhone,
-			String ceoName, String corporateNumber, String fileName, String logo_fileName, String address, String detailAddress) {
+	public Corporation(String id, String password, String corporateName, String corporatePhone, String ceoName, String corporateNumber, String fileName, String logo_fileName, String address, String detailAddress) {
 		super();
 		this.id = id;
 		this.password = password;

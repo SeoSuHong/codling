@@ -152,3 +152,28 @@ function hideCount(no) {
     	$("#" + no).css('display', 'none');
 	}
 }
+//스크롤 엔터키시 폼서브밋
+$(function(){
+	$("#scroll_search").keypress(function (e){
+		if(e.keyCode === 13){
+			scroll_search();
+		}
+	});
+});
+//스크롤 돋보기 버튼 클릭시 폼 서브밋
+function scroll_search() {
+    document.scroll_search_Frm.submit();
+}
+
+//엔터키시 폼서브밋
+$(function(){
+	$("#search").keypress(function (e){
+		if(e.keyCode === 13){
+			search();
+		}
+	});
+});
+//돋보기 버튼 클릭시 폼 서브밋
+function search() {
+    document.search_Frm.submit();
+}

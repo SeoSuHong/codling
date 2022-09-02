@@ -215,9 +215,16 @@ function hideCount(no) {
 	}
 }
 
+//아이콘 클릭시 폼서브밋
 function searchValue(){
 	$('#search_down').val($('#search').val());
-	console.log($('#search_down').val());
 	
 	document.search_Fmr.submit();
+}
+
+//엔터키시 폼서브밋
+function searchEnter() {
+	if(window.event.keyCode == 13) {
+		searchValue();
+	}
 }

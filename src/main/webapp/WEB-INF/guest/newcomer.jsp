@@ -166,6 +166,7 @@
 	              		${anno.pay}만원
 	              	</c:if>
 	              	</p>
+	              	<p>${anno.name}</p>
 	              </div>
 	            </div>
           	</div>

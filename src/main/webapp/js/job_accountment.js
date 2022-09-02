@@ -145,3 +145,7 @@ geocoder.addressSearch(address, function(result, status) {
        map.setCenter(coords);
     } 
 });
+
+function advertisement_upload() {
+    document.advertisement_up.submit();
+}

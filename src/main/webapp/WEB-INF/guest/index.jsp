@@ -37,7 +37,7 @@
 					<input type="text" id="scroll_search" name="search" class="searchbox"
 						value="" placeholder="검색어를 입력하세요.">
 				</form>
-				<input type="submit" form="scroll_searbox" class="btn-search" value=""/>
+				<input type="button" class="btn-search" onclick="search()" value=""/>
 
 				<c:if test="${empty indiId && empty corpId}">
 					<button type="button" id="scroll-log" class="log"
@@ -90,7 +90,7 @@
 					<input type="text" id="search" name="search" class="searchbox"
 						value="" placeholder="검색어를 입력하세요." autofocus>
 				</form>
-				<input type="submit" form="searbox" class="btn-search" value=""/>
+				<input type="button" class="btn-search" onclick="search()" value=""/>
 
 				<c:if test="${empty indiId && empty corpId}">
 					<button type="button" id="log" class="log"
@@ -151,24 +151,46 @@
 				</button>
 				<div class="pow">
 					<div class="advertisement">
-						<div class="item">
-							<a href="##"><img src="img/목각이미지.png" alt=""></a>
+						<c:forEach var="advertisement" items="${advertisement}" varStatus="st">
+						<div class="item" onclick="location='jobOpening?no=${advertisement.no}'" style="cursor: pointer;">
+							<div id="advertisement_box">
+								<div id="advertisement_flex">
+									<div id="img_box">
+										<img alt="로고 이미지" src="/upload/${advertisement.logo_fileName }">
+									</div>
+									<div>
+										<h1 id="advertisement_comname">${advertisement.corporateName }</h1>
+										<h2 id="advertisement_title">${advertisement.title }</h2>
+									</div>
+								</div>
+								<div id="advertisement_contents">
+									<div>
+										<p>모집분야</p>
+										<p>주요업무</p>
+										<p>스택</p>
+										<p>근무지역</p>
+										<p>모집일</p>
+									</div>
+									<div style="width: 830px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+										<p>${advertisement.name }</p>
+										<p>${advertisement.work }</p>
+										<p>
+											<c:forTokens var="stack" items="${advertisement.stack }" delims=" / " varStatus="st">
+												<c:if test="${!st.last }">
+													${stack },&nbsp;
+												</c:if>
+												<c:if test="${st.last }">
+													${stack }
+												</c:if>
+											</c:forTokens>
+										</p>
+										<p>${advertisement.region } ${advertisement.detailregion }</p>
+										<p>${advertisement.startDate } ~ ${advertisement.endDate }</p>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="item">
-							<a href="##"><img src="img/목각이미지.png" alt=""></a>
-						</div>
-						<div class="item">
-							<a href="##"><img src="img/목각이미지.png" alt=""></a>
-						</div>
-						<div class="item">
-							<a href="##"><img src="img/목각이미지.png" alt=""></a>
-						</div>
-						<div class="item">
-							<a href="##"><img src="img/목각이미지.png" alt=""></a>
-						</div>
-						<div class="item">
-							<a href="##"><img src="img/목각이미지.png" alt=""></a>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 				<button class="rightArrow">
@@ -238,6 +260,7 @@
 					              		${anno.pay}만원
 					              	</c:if>
 								</p>
+								<p>${anno.name}</p>
 							</div>
 						</div>
 					</div>

@@ -151,7 +151,10 @@
 					<div class="card" onmouseover="showCount(${anno.no})"
 						onmouseout="hideCount(${anno.no})"
 						onclick="location='jobOpening?no=${anno.no}'">
-						<div id="company_logo"><img src="/upload/${anno.logo_fileName }" class="card-img-top" alt="..."></div>
+						<div id="company_logo">
+							<img src="/upload/${anno.logo_fileName }" class="card-img-top"
+								alt="...">
+						</div>
 						<div class="card-body">
 							<p id="corporname">${anno.corporateName}<span id="${anno.no}"
 									class="count"><img src="img/eyes.png">&nbsp;
@@ -165,11 +168,11 @@
 										varStatus="st">
 										<!-- if -->
 										<c:if test="${!st.last}">
-		              		${stack} · 
-		              	</c:if>
+						              		${stack} · 
+						              	</c:if>
 										<c:if test="${st.last}">
-		              		${stack} 
-		              	</c:if>
+						              		${stack} 
+						              	</c:if>
 									</c:forTokens>
 								</p>
 								<p class="contents">
@@ -178,29 +181,30 @@
 										varStatus="st">
 										<c:if test="${fn:length(anno.career) <= 3}">
 											<c:if test="${career == '신입'}">
-		              			${career}&emsp;
-		              		</c:if>
+						              			${career}&emsp;
+						              		</c:if>
 											<c:if test="${career != '신입'}">
-		              			${career}년↑&emsp;
-		              		</c:if>
+						              			${career}년↑&emsp;
+						              		</c:if>
 										</c:if>
 										<c:if test="${fn:length(anno.career) > 3}">
 											<c:if test="${career == '신입'}">
-		              			${career} or
-		              		</c:if>
+						              			${career} or
+						              		</c:if>
 											<c:if test="${career != '신입'}">
-		              			${career}년↑&emsp;
-		              		</c:if>
+						              			${career}년↑&emsp;
+						              		</c:if>
 										</c:if>
 									</c:forTokens>
 									<span>급여&nbsp;</span>
 									<c:if test="${anno.pay == '면접 후 결정'}">
-	              		${anno.pay}</span>
+				              			<span>${anno.pay}</span>
 									</c:if>
 									<c:if test="${anno.pay != '면접 후 결정'}">
-	              		${anno.pay}만원
-	              	</c:if>
+					              		${anno.pay}만원
+					              	</c:if>
 								</p>
+								<p>${anno.name}</p>
 							</div>
 						</div>
 					</div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,11 +59,25 @@
 	            </div>
 	            <div class="type">
 	                <p>증빙서류</p>
-	                <div>${corporation.fileName}</div>
+	                <div>
+		                <c:if test="${not empty corporation.fileName}">
+		                	${corporation.fileName}
+		                </c:if>
+		                <c:if test="${empty corporation.fileName}">
+		                	증빙서류가 없습니다 증빙서류를 등록해주세요.
+		                </c:if>
+	                </div>
 	            </div>
 	            <div class="type">
 	                <p>회사 로고 파일</p>
-	                <div id="logo_filebox"><img class="logo_file" alt="logo_file" src="/upload/${corporation.logo_fileName}"></div>
+	                <div id="logo_filebox">
+	                	<c:if test="${corporation.logo_fileName != 'logo.png'}">
+		                	<img class="logo_file" alt="logo_file" src="/upload/${corporation.logo_fileName}">
+		                </c:if>
+		                <c:if test="${corporation.logo_fileName == 'logo.png'}">
+		                	회사 로고가 없습니다 회사 로고를 등록해주세요.
+		                </c:if>
+	                </div>
 	            </div>
 	            <div class="type">
 	                <p>주소</p>

@@ -85,7 +85,7 @@ public class JobOpening_updateServlet extends HttpServlet {
 		String[] requirementList = request.getParameterValues("requirement");
 		String[] preferenceList = request.getParameterValues("preference");
 		
-		JobOpening jobOpening = new JobOpening(no, id, title, region, detailRegion, process, startDate, endDate, 0);
+		JobOpening jobOpening = new JobOpening(no, id, title, region, detailRegion, process, startDate, endDate, 0, 0);
 
 		CorporationDao corpDao = new CorporationDao();
 		boolean jobOpeningResult = corpDao.updateJobOpening(jobOpening);

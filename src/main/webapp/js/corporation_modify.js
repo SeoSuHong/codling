@@ -64,22 +64,16 @@ function signUpInd_submit() {
   	$("#id").val("");
   	return;
 	}
-  
-  
-  // 비밀번호 공백 확인
-  if ($("#pw").val() == "") {
-    $("#pw").addClass("is-invalid");
-    $("#pw").focus();
-    return;
-  }
 
   //비밀번호 유효성검사
   if(!pwchk.test($("#pw").val())){
   	$("#pw").addClass("is-invalid");
   	$("#pw").focus();
   	$("#pw").val("");
-  	alert("영문,숫자, 특수문자를 혼합하여 8자리~20자리 이내로 입력해주세요")
-  	return;
+		if ($("#pw").val() != "") {
+	  	alert("영문,숫자, 특수문자를 혼합하여 8자리~20자리 이내로 입력해주세요")
+	  	return;
+		}
   }
   
   if($("#pw").val()!=$("#cfpw").val()){
@@ -88,13 +82,6 @@ function signUpInd_submit() {
   	$("#cfpw").val("");
   	alert("입력하신 비밀번호가 다릅니다")
   	return;
-  }
-  
-  // 비밀번호 확인 공백 확인
-  if ($("#cfpw").val() == "") {
-    $("#cfpw").addClass("is-invalid");
-    $("#cfpw").focus();
-    return;
   }
 
   //사업자등록번호 유효성검사
@@ -137,7 +124,12 @@ function signUpInd_submit() {
 	alert("최근 3개월 이내 발급받으신 사업자등록증명원을 첨부해 주시기 바랍니다.");
 	$("#formFile").addClass("is-invalid");
 	$("#formFile").focus();
-	return;
+	}
+	
+	// 로고 파일 등록 했는지 ? 
+	if ($("#formlogo_File").val() == "") {
+		alert("회사로고 이미지를 미첨부 할경우 기본 이미지로 적용됩니다.");
+		$("#formlogo_File").addClass("is-invalid");
 	}
 	
 	// 전화번호 유효성 확인
@@ -173,11 +165,6 @@ function signUpInd_submit() {
 	}
 	
   // 주소 공백 확인
-  if($("#postCode").val() == "") {
-    $("#postCode").addClass("is-invalid");
-    $("#postCode").focus();
-    return;
-  }
   if($("#address").val() == "") {
     $("#address").addClass("is-invalid");
     $("#address").focus();

@@ -29,10 +29,10 @@
 						<li><a href="top100" class="menu" id="scroll_Top100">Top100</a></li>
 					</ul>
 				</nav>
-				<form id="searbox" name="search_Frm" action="search">
+				<div id="searbox">
 					<input type="text" id="search" name="search" class="searchbox"
-						value="${search}" placeholder="검색어를 입력하세요.">
-				</form>
+						value="${search}" placeholder="검색어를 입력하세요." onkeypress="searchEnter()">
+				</div>
 				<input type="button" class="btn-search" onclick="searchValue()"/>
 
 				<c:if test="${empty indiId && empty corpId}">
@@ -203,6 +203,7 @@
 					              		${anno.pay}만원
 					              	</c:if>
 								</p>
+								<p>${anno.name}</p>
 							</div>
 						</div>
 					</div>

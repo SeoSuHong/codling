@@ -112,6 +112,10 @@
 	                </c:if>
 				</c:forEach>
             </div>
+            <div id="advertisement_box">
+            	<input type="button" id="advertisement_up" onclick="advertisement_upload()" value="광고 업로드"/>
+            	<form action="job_accountment" name="advertisement_up" method="post"><input type="hidden" name="no" value="${jobOpening.no}"></form>
+            </div>
         </div>
     </div>
     <c:forEach var="field" items="${fields}">
@@ -205,8 +209,8 @@
     	</div>
         <div id="btnWrap">
 	        <div id="btn">
-	        	<button onclick="updateChk(${jobOpening.no})">수 &emsp;정</button>
-	        	<button onclick="deleteChk()">삭 &emsp;제</button><form action="jobOpening_management?no=${jobOpening.no}" method="post" name="delForm"></form>
+	        	<button style="color: white;" onclick="updateChk(${jobOpening.no})">수 &emsp;정</button>
+	        	<button style="background-color: rgba(163, 163, 163, 0.7); color: #373F57;" onclick="deleteChk()">삭 &emsp;제</button><form action="jobOpening_management?no=${jobOpening.no}" method="post" name="delForm"></form>
 	        </div>
         </div>
 </section>

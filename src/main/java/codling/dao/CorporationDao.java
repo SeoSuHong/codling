@@ -29,37 +29,74 @@ public class CorporationDao {
 	}
 	
 	// 기업회원 정보
-		public Corporation getCorporation(String id) {
-			Corporation corporation = null;
-			String query = "SELECT * FROM corporation WHERE id = ?";
-			try {
-				conn = getConnection();
-				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();
+	public Corporation getCorporation(String id) {
+		Corporation corporation = null;
+		String query = "SELECT * FROM corporation WHERE id = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String corporateName = rs.getString("corporateName");
+				String password = rs.getString("password");
+				String corporatePhone = rs.getString("corporatePhone");
+				String ceoName = rs.getString("ceoName");
+				String corporateNumber = rs.getString("corporateNumber");
+				String fileName = rs.getString("fileName");
+				String logo_fileName = rs.getString("logo_fileName");
+				String address = rs.getString("address");
+				String detailAddress = rs.getString("detailAddress");
 				
-				if(rs.next()) {
-					String corporateName = rs.getString("corporateName");
-					String password = rs.getString("password");
-					String corporatePhone = rs.getString("corporatePhone");
-					String ceoName = rs.getString("ceoName");
-					String corporateNumber = rs.getString("corporateNumber");
-					String fileName = rs.getString("fileName");
-					String logo_fileName = rs.getString("logo_fileName");
-					String address = rs.getString("address");
-					String detailAddress = rs.getString("detailAddress");
-					
-					corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, logo_fileName, address, detailAddress);
-				}
-				
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch(Exception e) {
-				System.out.println("getCorporation Error : " + e.getMessage());
+				corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, logo_fileName, address, detailAddress);
 			}
-			return corporation;
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getCorporation Error : " + e.getMessage());
 		}
+		return corporation;
+	}
+	
+	// 기업회원 수정
+	public boolean updateCorporation(Corporation corporation) {
+		boolean result = false;
+		String query = "UPDATE corporation SET password = ?, "
+				+ "corporateName = ?, "
+				+ "corporatePhone = ?, "
+				+ "ceoName = ?, "
+				+ "corporateNumber = ?, "
+				+ "fileName = ?, "
+				+ "logo_fileName = ?, "
+				+ "address = ?, "
+				+ "detailAddress = ? "
+				+ "WHERE id = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, corporation.getPassword());
+			pstmt.setString(2, corporation.getCorporateName());
+			pstmt.setString(3, corporation.getCorporatePhone());
+			pstmt.setString(4, corporation.getCeoName());
+			pstmt.setString(5, corporation.getCorporateNumber());
+			pstmt.setString(6, corporation.getFileName());
+			pstmt.setString(7, corporation.getLogo_fileName());
+			pstmt.setString(8, corporation.getAddress());
+			pstmt.setString(9, corporation.getDetailAddress());
+			pstmt.setString(10, corporation.getId());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateCorporation Error : " + e.getMessage());
+		}
+		return result;
+	}
 	
 	// 공고 정보(ID)
 	public JobOpening getJobOpening(String id) {
@@ -82,8 +119,9 @@ public class CorporationDao {
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
+				int advertisement = rs.getInt("advertisement");
 				
-				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count);
+				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count, advertisement);
 			}
 			
 			rs.close();
@@ -116,8 +154,9 @@ public class CorporationDao {
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
+				int advertisement = rs.getInt("advertisement");
 				
-				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count);
+				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count, advertisement);
 			}
 			
 			rs.close();
@@ -150,8 +189,9 @@ public class CorporationDao {
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
+				int advertisement = rs.getInt("advertisement");
 				
-				JobOpening jobOpening = new JobOpening(no, id, title, region, detailRegion, process, startDate, endDate, count);
+				JobOpening jobOpening = new JobOpening(no, id, title, region, detailRegion, process, startDate, endDate, count, advertisement);
 				list.add(jobOpening);
 			}
 			
@@ -507,7 +547,7 @@ public class CorporationDao {
 	// index 공고
 	public ArrayList<Announcement> indexContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
 				+ "FROM jobopening J "
 				+ "JOIN field F ON J.no = F.jobOpening_no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -529,8 +569,14 @@ public class CorporationDao {
 				String name = rs.getString("name");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
+				int advertisement = rs.getInt("advertisement");
+				String region = rs.getString("region");
+ 				String detailregion = rs.getString("detailregion");
+ 				String startDate = rs.getString("startDate");
+ 				String endDate = rs.getString("endDate");
+ 				String work = rs.getString("work");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count, advertisement, region, detailregion, startDate, endDate, work);
 				list.add(announcement);
 			}
 			rs.close();
@@ -546,7 +592,7 @@ public class CorporationDao {
 	// newcomer 공고
 	public ArrayList<Announcement> newcomerContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -569,8 +615,14 @@ public class CorporationDao {
 				String name = rs.getString("name");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
+				int advertisement = rs.getInt("advertisement");
+				String region = rs.getString("region");
+ 				String detailregion = rs.getString("detailregion");
+ 				String startDate = rs.getString("startDate");
+ 				String endDate = rs.getString("endDate");
+ 				String work = rs.getString("work");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count, advertisement, region, detailregion, startDate, endDate, work);
 				list.add(announcement);
 			}
 			rs.close();
@@ -586,7 +638,7 @@ public class CorporationDao {
 	// career 공고
 	public ArrayList<Announcement> careerContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -609,8 +661,14 @@ public class CorporationDao {
 				String name = rs.getString("name");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
+				int advertisement = rs.getInt("advertisement");
+				String region = rs.getString("region");
+ 				String detailregion = rs.getString("detailregion");
+ 				String startDate = rs.getString("startDate");
+ 				String endDate = rs.getString("endDate");
+ 				String work = rs.getString("work");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count, advertisement, region, detailregion, startDate, endDate, work);
 				list.add(announcement);
 			}
 			rs.close();
@@ -626,7 +684,7 @@ public class CorporationDao {
 	// Top100 공고
 	public ArrayList<Announcement> top100Contents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -648,8 +706,14 @@ public class CorporationDao {
 				String name = rs.getString("name");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
+				int advertisement = rs.getInt("advertisement");
+				String region = rs.getString("region");
+ 				String detailregion = rs.getString("detailregion");
+ 				String startDate = rs.getString("startDate");
+ 				String endDate = rs.getString("endDate");
+ 				String work = rs.getString("work");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count, advertisement, region, detailregion, startDate, endDate, work);
 				list.add(announcement);
 			}
 			rs.close();
@@ -782,7 +846,7 @@ public class CorporationDao {
  	// 공고 검색
  	public ArrayList<Announcement> getSearch(String search, String zone, String careers, String task) {
  		ArrayList<Announcement> list = new ArrayList<Announcement>();
- 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count "
+ 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
  				+ "FROM field F "
  				+ "JOIN jobopening J ON F.jobopening_no = J.no "
  				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -810,8 +874,14 @@ public class CorporationDao {
  				String name = rs.getString("name");
  				int no = rs.getInt("no");
  				int count = rs.getInt("count");
+ 				int advertisement = rs.getInt("advertisement");
+ 				String region = rs.getString("region");
+ 				String detailregion = rs.getString("detailregion");
+ 				String startDate = rs.getString("startDate");
+ 				String endDate = rs.getString("endDate");
+ 				String work = rs.getString("work");
  				
- 				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count);
+ 				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count, advertisement, region, detailregion, startDate, endDate, work);
  				list.add(announcement);
  			}
  			rs.close();
@@ -826,7 +896,7 @@ public class CorporationDao {
  	// jobOpening 하단 공고
  	public ArrayList<Announcement> getAllJobOpenings() {
  		ArrayList<Announcement> list = new ArrayList<Announcement>();
- 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count "
+ 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
 				+ "FROM jobopening J "
 				+ "JOIN field F ON J.no = F.jobOpening_no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -847,8 +917,14 @@ public class CorporationDao {
  				String name = rs.getString("name");
  				int no = rs.getInt("no");
  				int count = rs.getInt("count");
+ 				int advertisement = rs.getInt("advertisement");
+ 				String region = rs.getString("region");
+ 				String detailregion = rs.getString("detailregion");
+ 				String startDate = rs.getString("startDate");
+ 				String endDate = rs.getString("endDate");
+ 				String work = rs.getString("work");
  				
- 				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count);
+ 				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count, advertisement, region, detailregion, startDate, endDate, work);
  				list.add(announcement);
  			}
  			rs.close();
@@ -858,6 +934,93 @@ public class CorporationDao {
  			System.out.println("indexContents Error : " + e.getMessage());
  		}
  		
+ 		return list;
+ 	}
+ 	
+ 	//광고 제일 큰숫자 가져오기
+ 	 	public int getadvertisement_max() {
+ 			int result = 0;
+ 		    String query = "SELECT MAX(advertisement) AS advertisement FROM jobopening ";
+ 		    try {
+ 				conn = getConnection();
+ 				pstmt = conn.prepareStatement(query);
+ 				rs = pstmt.executeQuery();
+ 				
+ 				if(rs.next()) {
+ 					result = rs.getInt("advertisement");
+ 				}
+ 				
+ 				rs.close();
+ 				pstmt.close();
+ 				conn.close();
+ 			} catch(Exception e) {
+ 				System.out.println("advertisement_max Error : " + e.getMessage());
+ 		    }
+ 		    return result;
+ 		}
+ 	
+ 	//광고업로드
+ 	public boolean advertisement_upload(int number, int no) {
+		boolean result = false;
+	    String query = "UPDATE jobopening SET advertisement = ? "
+	    		+ "WHERE no = ?";
+	    try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, number);
+			pstmt.setInt(2, no);
+ 
+			if(pstmt.executeUpdate() == 1) result = true;
+ 
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("insertCorporation Error : " + e.getMessage());
+	    }
+	    return result;
+	}
+ 	
+ 	// 광고 공고 가지고오기
+ 	public ArrayList<Announcement> getadvertisement() {
+ 		ArrayList<Announcement> list = new ArrayList<Announcement>();
+ 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
+ 				+ "FROM field F "
+ 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+ 				+ "JOIN corporation C ON J.corporation_id = C.id "
+ 				+ "GROUP BY no "
+ 				+ "ORDER BY J.advertisement DESC LIMIT 6";
+ 		
+ 		try {
+ 			conn = getConnection();
+ 			pstmt = conn.prepareStatement(query);
+ 			rs = pstmt.executeQuery();
+ 			
+ 			while(rs.next()) {
+ 				String corporateName = rs.getString("corporateName");
+ 				String title = rs.getString("title");
+ 				String stack = rs.getString("stack");
+ 				String career = rs.getString("career");
+ 				String pay = rs.getString("pay");
+ 				String logo_fileName = rs.getString("logo_fileName");
+ 				String name = rs.getString("name");
+ 				int no = rs.getInt("no");
+ 				int count = rs.getInt("count");
+ 				int advertisement = rs.getInt("advertisement");
+ 				String region = rs.getString("region");
+ 				String detailregion = rs.getString("detailregion");
+ 				String startDate = rs.getString("startDate");
+ 				String endDate = rs.getString("endDate");
+ 				String work = rs.getString("work");
+ 				
+ 				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo_fileName, name, no, count, advertisement, region, detailregion, startDate, endDate, work);
+ 				list.add(announcement);
+ 			}
+ 			rs.close();
+ 			pstmt.close();
+ 			conn.close();
+ 		} catch(Exception e) {
+ 			System.out.println("indexContents Error : " + e.getMessage());
+ 		}
  		return list;
  	}
 }

@@ -1,13 +1,13 @@
 package codling.identity;
 
 public class JobOpening {
-	private int no, count;
+	private int no, count, advertisement;
 	private String corporation_id, title, region, detailRegion, process, startDate, endDate;
 	
 	public JobOpening() {}
 
 	public JobOpening(int no, String corporation_id, String title, String region, String detailRegion, String process, String startDate, String endDate,
-			int count) {
+			int count, int advertisement) {
 		super();
 		this.no = no;
 		this.corporation_id = corporation_id;
@@ -18,6 +18,7 @@ public class JobOpening {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.count = count;
+		this.count = advertisement;
 	}
 
 	public int getNo() {
@@ -26,6 +27,22 @@ public class JobOpening {
 
 	public void setNo(int no) {
 		this.no = no;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public int getAdvertisement() {
+		return advertisement;
+	}
+
+	public void setAdvertisement(int advertisement) {
+		this.advertisement = advertisement;
 	}
 
 	public String getCorporation_id() {
@@ -51,15 +68,15 @@ public class JobOpening {
 	public void setRegion(String region) {
 		this.region = region;
 	}
-	
+
 	public String getDetailRegion() {
 		return detailRegion;
 	}
-	
+
 	public void setDetailRegion(String detailRegion) {
 		this.detailRegion = detailRegion;
 	}
-	
+
 	public String getProcess() {
 		return process;
 	}
@@ -67,7 +84,7 @@ public class JobOpening {
 	public void setProcess(String process) {
 		this.process = process;
 	}
-	
+
 	public String getStartDate() {
 		return startDate;
 	}
@@ -84,11 +101,5 @@ public class JobOpening {
 		this.endDate = endDate;
 	}
 
-	public int getCount() {
-		return count;
-	}
 
-	public void setCount(int count) {
-		this.count = count;
-	}
 }
