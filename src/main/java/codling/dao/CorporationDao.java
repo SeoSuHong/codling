@@ -300,16 +300,17 @@ public class CorporationDao {
 	public boolean insertJobOpening(JobOpening jobOpening) {
 		boolean result = false;
 		String query = "INSERT INTO jobOpening "
-				+ "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, 0)";
+				+ "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, 0, DEFAULT)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, jobOpening.getCorporation_id());
 			pstmt.setString(2, jobOpening.getTitle());
 			pstmt.setString(3, jobOpening.getRegion());
-			pstmt.setString(4, jobOpening.getProcess());
-			pstmt.setString(5, jobOpening.getStartDate());
-			pstmt.setString(6, jobOpening.getEndDate());
+			pstmt.setString(4, jobOpening.getDetailRegion());
+			pstmt.setString(5, jobOpening.getProcess());
+			pstmt.setString(6, jobOpening.getStartDate());
+			pstmt.setString(7, jobOpening.getEndDate());
 			
 			if(pstmt.executeUpdate() == 1) result = true;
 			
