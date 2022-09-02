@@ -122,9 +122,4 @@ public class Applicant_statusServlet extends HttpServlet {
 		request.setAttribute("applicants", applicants);
 		request.getRequestDispatcher("/WEB-INF/corporation/applicant_status.jsp").forward(request, response);
 	}
-	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 }

@@ -184,6 +184,29 @@ public class InformationDao {
 		return id;
 	}
 	
+	// 개인회원 ID, 이메일
+	public boolean findPassword(String id, String email) {
+		boolean result = false;
+		String query = "SELECT id FROM individual WHERE id = ? AND email = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) result = true;
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("findPassword Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
 	// 개인회원 비밀번호
 	public String getIndiPassword (String id) {
 		String password = "";
