@@ -111,7 +111,7 @@
                                     <p class="fw-bold">회사 로고 이미지 첨부</p>
                                     <input class="form-control" type="file" id="formlogo_File" name="logo_fileName"  required> 
                                     <c:if test="${corporation.logo_fileName == 'logo.png'}">
-										<p>증빙서류가 없습니다 증빙서류를 제출해주세요.</p>
+										<p>회사 대표 로고가 없습니다 로고 를 첨부해주세요.</p>
 									</c:if>
 									<c:if test="${corporation.logo_fileName != 'logo.png'}">
 										<div id="logobox">

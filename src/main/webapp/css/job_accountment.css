@@ -148,6 +148,8 @@ section{width: 1220px; margin: 0 auto; }
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
+	margin-top: -30px;
+    margin-left: 140px;
 }
 
 .title_container {
