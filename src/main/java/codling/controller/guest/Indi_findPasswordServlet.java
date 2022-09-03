@@ -27,7 +27,7 @@ public class Indi_findPasswordServlet extends HttpServlet {
 		
 		InformationDao infoDao = new InformationDao();
 		
-		boolean result = infoDao.findPassword(id, email);
+		boolean result = infoDao.findIndiPassword(id, email);
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");

@@ -4,11 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import codling.identity.Corporation;
-import codling.identity.Individual;
 
 public class InformationDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
@@ -159,8 +158,8 @@ public class InformationDao {
 		return name;
 	}
 	
-	// 개인회원 이름, 이메일, ID
-	public String findId(String name, String email) {
+	// 개인회원 이름, 이메일, ID (ID 찾기 사용)
+	public String findIndiId(String name, String email) {
 		String id = "";
 		String query = "SELECT id FROM individual WHERE name = ? AND email = ?";
 		
@@ -179,13 +178,38 @@ public class InformationDao {
 			pstmt.close();
 			conn.close();
 		} catch(Exception e) {
-			System.out.println("findId Error : " + e.getMessage());
+			System.out.println("findIndiId Error : " + e.getMessage());
 		}
 		return id;
 	}
 	
-	// 개인회원 ID, 이메일
-	public boolean findPassword(String id, String email) {
+	// 개인회원 이름, 이메일, ID (ID 찾기 사용)
+	public String findCorpId(String corporateName, String email) {
+		String id = "";
+		String query = "SELECT id FROM corporation WHERE corporateName = ? AND email = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, corporateName);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				id = rs.getString("id");
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("findCorpId Error : " + e.getMessage());
+		}
+		return id;
+	}
+	
+	// 개인회원 ID, 이메일 (비밀번호 찾기 사용)
+	public boolean findIndiPassword(String id, String email) {
 		boolean result = false;
 		String query = "SELECT id FROM individual WHERE id = ? AND email = ?";
 		
@@ -202,7 +226,30 @@ public class InformationDao {
 			pstmt.close();
 			conn.close();
 		} catch(Exception e) {
-			System.out.println("findPassword Error : " + e.getMessage());
+			System.out.println("findIndiPassword Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 개인회원 ID, 이메일 (비밀번호 찾기 사용)
+	public boolean findCorpPassword(String id, String email) {
+		boolean result = false;
+		String query = "SELECT id FROM corporation WHERE id = ? AND email = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) result = true;
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("findCorpPassword Error : " + e.getMessage());
 		}
 		return result;
 	}

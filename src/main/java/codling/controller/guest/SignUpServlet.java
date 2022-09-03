@@ -68,9 +68,10 @@ public class SignUpServlet extends HttpServlet {
 			String cCeo = request.getParameter("representative");
 			String cNumber = request.getParameter("companyNum");
 			String fileName = request.getParameter("fileName");
+			String cEmail = request.getParameter("cEmail");
 			String cAddress = request.getParameter("address2");
 			String cDetailAddress = request.getParameter("detailAddress2");
-			Corporation corporation = new Corporation(cId, cPw, cName, cPhone, cCeo, cNumber, fileName, cAddress, cDetailAddress);
+			Corporation corporation = new Corporation(cId, cPw, cName, cPhone, cCeo, cNumber, fileName, cEmail, cAddress, cDetailAddress);
 			
 			CorporationDao dao = new CorporationDao();
 			boolean result = dao.insertCorporation(corporation);

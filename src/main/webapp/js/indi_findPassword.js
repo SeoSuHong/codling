@@ -75,7 +75,7 @@ function checkEmail() {
     let regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
     if(document.findEmailForm.id.value == "") {
-        alert("ID를 입력해 주세요.");
+        alert("아이디를 입력해 주세요.");
         document.findEmailForm.id.focus();
     } else if(document.findEmailForm.email.value == "") {
         alert("이메일 주소를 입력해 주세요.");

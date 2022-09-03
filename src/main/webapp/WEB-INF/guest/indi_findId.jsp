@@ -41,7 +41,7 @@
                         <div class="item"></div>
                     </div>
                     <div>
-                        <input type="button" id="chk_phone_ok" value="인증확인" onClick="checkFindPhone()">
+                        <input type="button" id="chk_phone_ok" value="아이디 찾기" onClick="checkFindPhone()">
                     </div>
                 </form>
             </div>
@@ -54,7 +54,7 @@
                         <div class="item"><input name="name"></div>
                         <div class="item"></div>
                         <div class="item"><b>이메일 주소</b></div>
-                        <div class="item"><input type="email" name="email"></div>
+                        <div class="item"><input type="email" name="email" placeholder="example@codling.com"></div>
                         <div class="item"><input type="button" class="chk_btn" name="chk_btn" value="인증번호 발송" onclick="sendCheckCode()"></div>
                         <div class="item"><b>인증번호</b></div>
                         <div class="item"><input name="chk"></div>

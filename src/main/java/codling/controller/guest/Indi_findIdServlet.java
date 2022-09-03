@@ -26,7 +26,7 @@ public class Indi_findIdServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		InformationDao infoDao = new InformationDao();
-		String id = infoDao.findId(name, email);
+		String id = infoDao.findIndiId(name, email);
 
 		if(id == null || id.equals("")) {
 			response.setCharacterEncoding("UTF-8");

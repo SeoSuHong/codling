@@ -45,10 +45,11 @@ public class CorporationDao {
 				String ceoName = rs.getString("ceoName");
 				String corporateNumber = rs.getString("corporateNumber");
 				String fileName = rs.getString("fileName");
+				String email = rs.getString("email");
 				String address = rs.getString("address");
 				String detailAddress = rs.getString("detailAddress");
 				
-				corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, address, detailAddress);
+				corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, email, address, detailAddress);
 			}
 			
 			rs.close();
