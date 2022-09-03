@@ -1,30 +1,4 @@
-// 생년월일 select  
-$(document).ready(function () {
-  var now = new Date();
-  var year = now.getFullYear();
-  var mon = (now.getMonth() + 1) > 9 ? '' + (now.getMonth() + 1) : '0' + (now.getMonth() + 1);
-  var day = (now.getDate()) > 9 ? '' + (now.getDate()) : '0' + (now.getDate());
 
-  //년도 selectBox
-  for (var i = 1900; i <= year; i++) {
-    $('#year').append('<option value="' + i + '">' + i + '년</option>');
-  }
-
-  // 월별 selectBox 
-  for (var i = 1; i <= 12; i++) {
-    var mm = i > 9 ? i : "0" + i;
-    $('#month').append('<option value="' + mm + '">' + mm + '월</option>');
-  }
-
-  // 일별 selectBox
-  for (var i = 1; i <= 31; i++) {
-    var dd = i > 9 ? i : "0" + i;
-    $('#day').append('<option value="' + dd + '">' + dd + '일</option>');
-  }
-  $("#year  > option[value=" + year + "]").attr("selected", "true");
-  $("#month  > option[value=" + mon + "]").attr("selected", "true");
-  $("#day  > option[value=" + day + "]").attr("selected", "true");
-})
 
 // ID 길이 체크
 function maxLengthCheck(object) {
@@ -72,7 +46,7 @@ function signUpInd_submit() {
 
   // 비밀번호 유효성 검사
   if(!getPwCheck.test($("#pw").val())){
-    alert("영문,숫자, 특수문자를 혼합하여 8자리~20자리 이내로 입력해주세요")
+    alert("영문, 숫자, 특수문자를 혼합하여 8자리~20자리 이내로 입력해주세요")
     $("#pw").addClass("is-invalid");
     $("#pw").focus();
     $("#pw").val("");
@@ -186,26 +160,15 @@ if(!getPhone.test($("#phoneInd2").val())){
 }
 
 // 주소 입력 확인
-if($("#postCode").val() == ""){
-  $("#postCode").addClass("is-invalid");
-  $("#postCode").focus();
-  return;
-}
 if($("#address").val() == ""){
   $("#address").addClass("is-invalid");
   $("#address").focus();
   return;
 }
-if($("#detailAddress").val() == ""){
-  $("#detailAddress").addClass("is-invalid");
-  $("#detailAddress").focus();
-  return;
-}
-  alert("수정되었습니다.");
-  location.href = "individual_modify.jsp";
+  document.indiModifyForm.submit();
 }
 
-function sample6_execDaumPostcode() {
+function findAddress() {
   new daum.Postcode({
       oncomplete: function(data) {
           // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -238,31 +201,16 @@ function sample6_execDaumPostcode() {
                   extraAddr = ' (' + extraAddr + ')';
               }
               // 조합된 참고항목을 해당 필드에 넣는다.
-              document.getElementById("extraAddress").value = extraAddr;
+              document.getElementById("detailAddress").value = extraAddr;
           
           } else {
-              document.getElementById("extraAddress").value = '';
+              document.getElementById("detailAddress").value = '';
           }
 
           // 우편번호와 주소 정보를 해당 필드에 넣는다.
-          document.getElementById('postcode').value = data.zonecode;
           document.getElementById("address").value = addr;
           // 커서를 상세주소 필드로 이동한다.
           document.getElementById("detailAddress").focus();
       }
   }).open();
 }
-
-// 전화번호 직접입력 시 나오는 input
-$(function () {
-  $("#selfBoxDirect").hide();
-  $("#phoneInd1").change(function () {
-    if ($("#phoneInd1").val() == "direct") {
-      $("#selfBoxDirect").show();
-      $("#phoneInd1").hide();
-    } else {
-      $("#selfBoxDirect").hide();
-      $("#phoneInd1").show();
-    }
-  })
-});

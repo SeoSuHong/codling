@@ -21,6 +21,20 @@ public class Individual {
 		this.stack = stack;
 	}
 
+	public Individual(String id, String password, String name, String birth, String gender, String email, String phone,
+			String address, String detailAddress) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.birth = birth;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.detailAddress = detailAddress;
+	}
+
 	public String getId() {
 		return id;
 	}

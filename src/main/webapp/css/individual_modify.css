@@ -94,6 +94,7 @@ ul {
 #search {
     width: 90px;
     height: 38px;
+    margin-bottom: 5px;
     color: white;
     background-color: #A5E374;
     border: 1px solid white;

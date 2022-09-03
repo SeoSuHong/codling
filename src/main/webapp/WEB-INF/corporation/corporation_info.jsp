@@ -33,7 +33,6 @@
     </header>
     <section>
         <h2>회원정보</h2>
-        <form action="corporationInfo" name="corpInfoForm" method="post">
 	        <div id="wrap">
 	            <div class="type">
 	                <p>아이디</p>
@@ -64,8 +63,14 @@
 	                <div>${corporation.address} ${corporation.detailAddress}</div>
 	            </div>
 	        </div>
+        <form name="corpInfoForm">
+	        <div id="checkPwWrap">
+		        <div id="checkPw">
+		        	<span>비밀번호 입력 </span>	        
+		        	<input type="password" name="password">
+		        </div>
+		    </div>
 	        <div id="choice">
-	        	<input type="hidden" name="password" value="${corporation.password}">
 	            <input type="button" class="modify" value="수 정" onclick="updateChk()">
 	            <input type="button" class="drop" value="탈 퇴" onclick="deleteChk()">
 	        </div>

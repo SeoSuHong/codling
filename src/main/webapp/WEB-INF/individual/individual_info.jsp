@@ -34,40 +34,45 @@
     </header>
     <section>
         <h2>회원정보</h2>
-        <form action="individualInfo" name="indiInfoForm" method="post">
-        	<div id="wrap">
-	            <div class="type">
-	                <p>아이디</p>
-	                <div>${individual.id}</div>
-	            </div>
-	            <div class="type">
-	                <p>이름</p>
-	                <div>${individual.name}</div>
-	            </div>
-	            <div class="type">
-	                <p>생년월일</p>
-	                <div>${individual.birth}</div>
-	            </div>
-	            <div class="type">
-	                <p>성별</p>
-	                <div>${individual.gender}성</div>
-	            </div>
-	            <div class="type">
-	                <p>이메일</p>
-	                <div>${individual.email}</div>
-	            </div>
-	            <div class="type">
-	                <p>전화번호</p>
-	                <div>${fn:substring(individual.phone, 0, 3)}-${fn:substring(individual.phone, 3, 7)}-${fn:substring(individual.phone, 7, 11)}</div>
-	            </div>
-	            <div class="type">
-	                <p>주소</p>
-	                <div>${individual.address} ${individual.detailAddress}</div>
-	            </div>
-	        </div>
+       	<div id="wrap">
+            <div class="type">
+                <p>아이디</p>
+                <div>${individual.id}</div>
+            </div>
+            <div class="type">
+                <p>이름</p>
+                <div>${individual.name}</div>
+            </div>
+            <div class="type">
+                <p>생년월일</p>
+                <div>${individual.birth}</div>
+            </div>
+            <div class="type">
+                <p>성별</p>
+                <div>${individual.gender}성</div>
+            </div>
+            <div class="type">
+                <p>이메일</p>
+                <div>${individual.email}</div>
+            </div>
+            <div class="type">
+                <p>전화번호</p>
+                <div>${fn:substring(individual.phone, 0, 3)}-${fn:substring(individual.phone, 3, 7)}-${fn:substring(individual.phone, 7, 11)}</div>
+            </div>
+            <div class="type">
+                <p>주소</p>
+                <div>${individual.address} ${individual.detailAddress}</div>
+            </div>
+        </div>
+        <form name="indiInfoForm">
+	        <div id="checkPwWrap">
+		        <div id="checkPw">
+		        	<span>비밀번호 입력 </span>	        
+		        	<input type="password" name="password">
+		        </div>
+		    </div>
 	        <div id="choice">
-	        	<input type="hidden" name="password" value="${individual.password}">
-	            <input type="button" class="modify" value="수 정" onclick="">
+	            <input type="button" class="modify" value="수 정" onclick="modifyChk()">
 	            <input type="button" class="drop" value="탈 퇴" onclick="deleteChk()">
 	        </div>
 	    </form>

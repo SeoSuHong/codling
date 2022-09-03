@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,13 +24,13 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-10 col-md-7 col-lg-5 col-xl-4">
-                        <form class="validation-form" method="post">
+                        <form action="individual_modify" name="indiModifyForm" class="validation-form" method="post">
                         <div id="individual" class="form-action show container-fluid align-items-center">
                             <div class="row align-items-center mt-4" id="frame">
                                 <!-- 아이디 -->
                                 <p class="fw-bold">아이디</p>
                                 <div class="col" id="chain">
-                                    <input type="text" maxlength="20" oninput="maxLengthCheck(this)" onkeyup="inputDataCheck(this.id)" name="id" id="id" class="form-control" required readonly value="codling123">
+                                    <input maxlength="20" oninput="maxLengthCheck(this)" onkeyup="inputDataCheck(this.id)" id="id" class="form-control" required readonly value="${individual.id}">
                                         <div class="invalid-feedback">
                                             아이디를 입력하세요
                                         </div>      
@@ -38,7 +40,7 @@
                             <div class="row align-items-center mt-4 frame" id="hey">
                                 <div class="col" >
                                     <p class="fw-bold">비밀번호</p>
-                                        <input type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호"  onkeyup="inputDataCheck(this.id)" required>
+                                        <input type="password" name="password" id="pw" class="form-control" placeholder="비밀번호"  onkeyup="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 비밀번호를 입력하세요.
                                             </div>
@@ -58,7 +60,7 @@
                             <div class="row align-items-center mt-4 frame" >
                                 <div class="col">
                                     <p class="fw-bold">이름</p>
-                                        <input type="text" name="name" id = "name" class="form-control" placeholder="이름"  onkeyup="inputDataCheck(this.id)" required>
+                                        <input name="name" id="name" class="form-control" value="${individual.name}" placeholder="이름" onkeyup="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 이름을 입력하세요.
                                             </div>
@@ -68,19 +70,31 @@
                             <div class="row align-items-center mt-4 frame">
                                 <p class="fw-bold">생년월일<span class="caution"></span></p>
                                     <div class="col">
-                                        <select name="yy" id="year" class="form-select" aria-label="Default select example"></select>
+                                        <select name="year" id="year" class="form-select" aria-label="Default select example">
+                                        	<c:forEach var="year" begin="1900" end="2022">
+	                                        	<option value="${year}" <c:if test="${fn:substring(individual.birth, 0, 4) == year}">selected</c:if>>${year}년</option>
+                                        	</c:forEach>
+                                        </select>
                                             <div class="invalid-feedback">
                                                 년을 입력하세요.
                                             </div>
                                     </div>
                                     <div class="col">
-                                        <select name="mm" id="month" class="form-select" aria-label="Default select example"></select>
+                                        <select name="month" id="month" class="form-select" aria-label="Default select example">
+                                        	<c:forEach var="month" begin="1" end="12">
+	                                        	<option value="${month}" <c:if test="${fn:substring(individual.birth, 5, 7) == month}">selected</c:if>>${month}월</option>
+                                        	</c:forEach>
+                                        </select>
                                             <div class="invalid-feedback">
                                                 월을 입력하세요.
                                             </div>
                                     </div>
                                     <div class="col">
-                                        <select name="dd" id="day" class="form-select" aria-label="Default select example"></select>
+                                        <select name="day" id="day" class="form-select" aria-label="Default select example">
+                                        	<c:forEach var="day" begin="1" end="31">
+	                                        	<option value="${day}" <c:if test="${fn:substring(individual.birth, 8, 10) == day}">selected</c:if>>${day}일</option>
+                                        	</c:forEach>
+                                        </select>
                                             <div class="invalid-feedback">
                                                 일을 입력하세요.
                                             </div>
@@ -90,10 +104,10 @@
                             <div class="row align-items-center mt-4 frame">
                                 <div class="col">
                                     <p class="fw-bold">성별 </p>
-                                        <select class="form-select" id="gender" >
+                                        <select name="gender" class="form-select" id="gender">
                                             <option value="">성별</option>
-                                            <option value="male">남성</option>
-                                            <option value="female">여성</option>
+                                            <option value="남" <c:if test="${individual.gender == '남'}">selected</c:if>>남성</option>
+                                            <option value="여" <c:if test="${individual.gender == '여'}">selected</c:if>>여성</option>
                                         </select>
                                             <div class="invalid-feedback">
                                                 성별을 선택하세요.
@@ -104,7 +118,7 @@
                             <div class="row align-items-center mt-4 frame" >
                                 <div class="col">
                                     <p class="fw-bold">이메일</p>
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="name@example.com"  onkeyup="inputDataCheck(this.id)" required>
+                                        <input type="email" name="email" id="email" class="form-control" value="${individual.email}" placeholder="example@codling.com"  onkeyup="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 이메일을 입력하세요.
                                             </div>
@@ -113,18 +127,12 @@
                             <!-- 전화번호 -->
                             <div class="row align-items-center mt-4 frame" >
                                 <p class="fw-bold">전화번호</p>
-                                    <div class="col-4">
-                                        <select class="form-select" id="phoneInd1" name="tel" onkeyup="inputDataCheck(this.id)" required>
-                                            <option selected value="010">010</option>
-                                            <option value="direct">직접입력</option>
-                                            <input type="text" id="selfBoxDirect" name="selfBoxDirect" class="form-control"/>
-                                            </select>
-                                                <div class="invalid-feedback">
-                                                    식별번호를 선택하세요.
-                                                </div>
+                                    <div class="col-3">
+                                        <input class="form-control" id="phoneInd1" value="010" readonly>
+                                        
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" id="phoneInd2" placeholder="'-'없이 입력"  onkeyup="inputDataCheck(this.id)" required>
+                                        <input class="form-control" id="phoneInd2" name="phone" value="${fn:substring(individual.phone, 3, 11)}" placeholder="'-'없이 입력" onkeyup="inputDataCheck(this.id)">
                                             <div class="invalid-feedback">
                                                 전화번호를 입력하세요.
                                             </div>
@@ -132,12 +140,10 @@
                             </div>
                             <div class="row align-items-center mt-4" id="frame2">
                                 <div class="col">
-                                    <p class="fw-bold" id="addressCom">주소</p>
-                                    <input type="text" placeholder="우편번호" name="postCode" id="postcode" class="form-control mb-1 " style="display:inline-block;width:100px;"  onkeyup="inputDataCheck(this.id)" required> 
-                                    <input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기" id="search"><br>
-                                    <input type="text"  name="address" id="address" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required>
-                                    <input type="text" name="detailAddress" id="detailAddress" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
-                                    <input type="text" name="extraAddress" id="extraAddress" class="form-control mb-3 col-md-7" placeholder="참고항목"  onkeyup="inputDataCheck(this.id)" required>
+                                    <p class="fw-bold" id="addressCom">주소</p> 
+                                    <input type="button" id="search" value="주소 찾기" onclick="findAddress()"><br>
+                                    <input value="${individual.address}" name="address" id="address" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required>
+                                    <input value="${individual.detailAddress}" name="detailAddress" id="detailAddress" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
                                 </div>       
                             </div>
                             <div id="modify_btn" >

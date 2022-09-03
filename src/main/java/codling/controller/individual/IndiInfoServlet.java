@@ -38,19 +38,26 @@ public class IndiInfoServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("indiId");
 		
-		InformationDao dao = new InformationDao();
-		boolean result = dao.deleteIndividual(id);
+		String password = request.getParameter("password");
 		
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		if(result) {
-			out.print("<script>alert('회원탈퇴가 완료되었습니다.');location.href='index';</script>");
-			out.flush();
-			session.invalidate();
-		} else {
-			out.print("<script>alert('회원탈퇴에 실패하였습니다.');location.href='individualInfo';</script>");
-			out.flush();
+		InformationDao dao = new InformationDao();
+		
+		boolean check = dao.checkIndiId(id, password);
+		if(check) {
+			boolean Result = dao.deleteIndividual(id);
+			
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			
+			if(Result) {
+				out.print("<script>alert('회원탈퇴가 완료되었습니다.');location.href='index';</script>");
+				out.flush();
+				session.invalidate();
+			} else {
+				out.print("<script>alert('회원탈퇴에 실패하였습니다.');location.href='individualInfo';</script>");
+				out.flush();
+			}
 		}
 	}
 }

@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import codling.identity.Individual;
 
 public class InformationDao {
 	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
@@ -62,6 +62,34 @@ public class InformationDao {
 			conn.close();
 		} catch(Exception e) {
 			System.out.println("checkCorpId Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	public boolean updateIndividual(Individual individual) {
+		boolean result = false;
+		String query = "UPDATE individual "
+					+ "SET password = ?, name = ?, birth = ?, gender = ?, email = ?, phone = ?, address = ?, detailAddress = ? WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, individual.getPassword());
+			pstmt.setString(2, individual.getName());
+			pstmt.setString(3, individual.getBirth());
+			pstmt.setString(4, individual.getGender());
+			pstmt.setString(5, individual.getEmail());
+			pstmt.setString(6, individual.getPhone());
+			pstmt.setString(7, individual.getAddress());
+			pstmt.setString(8, individual.getDetailAddress());
+			pstmt.setString(9, individual.getId());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateIndividual Error : " + e.getMessage());
 		}
 		return result;
 	}
@@ -339,6 +367,52 @@ public class InformationDao {
 			System.out.println("updateCorpPassword Error : " + e.getMessage());
 		}
 		
+		return result;
+	}
+	
+	// 개인회원 일치 여부
+	public boolean checkIndiId (String id, String password) {
+		boolean result = false;
+		String query = "SELECT id FROM individual WHERE id = ? AND password = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) result = true;
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("checkIndiId Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 기업회원 일치 여부
+	public boolean checkCorpId (String id, String password) {
+		boolean result = false;
+		String query = "SELECT id FROM corporation WHERE id = ? AND password = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) result = true;
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("checkCorpId Error : " + e.getMessage());
+		}
 		return result;
 	}
 	
