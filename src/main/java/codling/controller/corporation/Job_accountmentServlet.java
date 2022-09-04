@@ -58,6 +58,9 @@ public class Job_accountmentServlet extends HttpServlet {
 		if(number_ >= (re_number + 6)) {
 			int number = 1 + number_;
 			result = corpDao.advertisement_upload(number, no);
+		}else if(re_number == 0) {
+			int number = 1 + number_;
+			result = corpDao.advertisement_upload(number, no);
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");

@@ -33,7 +33,7 @@
 
 .profile-box{margin-top: 10px;}
 #hover-box{margin-left: 110px; height: 45px;}
-#login_header{display: flex; align-items: center; margin-top: 100px;}
+#login_header{display: flex; align-items: center; margin-top: 40px;}
 #menu-bar>div{width: 131.5px; height: 5px;}
 #profilelogo{width: 35px; height: 35px; margin: 5px;}
 #profile-box{display: block; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}

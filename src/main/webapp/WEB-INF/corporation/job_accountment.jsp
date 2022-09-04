@@ -113,7 +113,8 @@
 				</c:forEach>
             </div>
             <div id="advertisement_box">
-            	<input type="button" id="advertisement_up" onclick="" value="광고 업로드"/>
+            	<input type="button" id="advertisement_up" onclick="advertisement_upload()" value="광고 업로드"/>
+            	<input type="button" id="advertisement_cencel" onclick="location='cancelRequest'" value="업로드 취소"/>
             	<form action="job_accountment" name="advertisement_up" method="post"><input type="hidden" name="no" value="${jobOpening.no}"></form>
             </div>
         </div>
