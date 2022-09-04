@@ -129,7 +129,6 @@
                                 <p class="fw-bold">전화번호</p>
                                     <div class="col-3">
                                         <input class="form-control" id="phoneInd1" value="010" readonly>
-                                        
                                     </div>
                                     <div class="col">
                                         <input class="form-control" id="phoneInd2" name="phone" value="${fn:substring(individual.phone, 3, 11)}" placeholder="'-'없이 입력" onkeyup="inputDataCheck(this.id)">

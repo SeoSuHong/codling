@@ -43,13 +43,16 @@
                         <div id="individual" class="form-action show container-fluid align-items-center">
                         <!-- 개인 시작-->
                             <div  class="row align-items-center mt-4" id="frame">
-                                <p class="fw-bold">아이디</p>
-                                <div class="col" id="chain">
-                                    <input maxLength=20 onInput="maxLengthCheck(this)" onKeyUp="inputDataCheck(this.id)" name="iId" id="id" class="form-control" placeholder="아이디" required/>
-                                        <div class="invalid-feedback">
-                                            아이디를 입력해주세요.
-                                        </div>      
-                                 </div>
+                               <p class="fw-bold">아이디</p>
+                               <div class="col" id="chain">
+                                   <input maxLength=20 onInput="maxLengthCheck(this)" onKeyUp="inputDataCheck(this.id)" name="iId" id="indiId" class="form-control" placeholder="아이디" required/>
+                                       <div class="invalid-feedback">
+                                           아이디를 입력해주세요.
+                                       </div>      
+                                </div>
+                                <div class="col-3">
+                            		<input type="button" class="idCheckBtn" id="indiIdCheck" value="중복확인">
+                            	</div>
                             </div>
 
                             <div class="row align-items-center mt-4 frame" id="hey">
@@ -119,7 +122,7 @@
                             <div class="row align-items-center mt-4" id="frame">
                                 <div class="col">
                                     <p class="fw-bold">이메일</p>
-                                        <input type="email" name="iEmail" id="email" class="form-control" placeholder="name@example.com"  onKeyUp="inputDataCheck(this.id)" required>
+                                        <input type="email" name="iEmail" id="email" class="form-control" placeholder="example@codling.com"  onKeyUp="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 이메일을 입력하세요.
                                             </div>
@@ -127,14 +130,14 @@
                             </div>
                             <div class="row align-items-center mt-4" id="frame">
                                 <p class="fw-bold">전화번호</p>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <input class="form-control" id="010" readonly value="010" name="phoneInd1">
                                     </div>
                                     <div class="col">
-                                        <input class="form-control" id="phoneInd2" name="phone" placeholder="'-'없이 입력"  onKeyUp="inputDataCheck(this.id)" required>
-                                            <div class="invalid-feedback">
-                                                전화번호를 입력하세요.
-                                            </div>
+                                    	<input class="form-control" id="phoneInd2" name="phone" placeholder="'-'없이 입력"  onKeyUp="inputDataCheck(this.id)" required>
+	                                    <div class="invalid-feedback">
+	                                        전화번호를 입력하세요.
+	                                    </div>
                                     </div>
                             </div>
                             <div class="row align-items-center mt-4 address" id="frame2">
@@ -144,30 +147,33 @@
                                     <input type="text" name="iDetailAddress" id="detailAddress" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
                             </div>
                             <div id="signUp" >
-                                <button type="button" id="#btn1" value="signUpIndividual" onClick="signUpInd_submit()" class="btn-xlarge"  style="color: white; background-color: #A5E374;">가입하기</button>
+                                <input type="button" value="가입하기" id="indiSignUpBtn" class="btn-xlarge"  style="color: white; background-color: #A5E374;">
                             </div>
                         </div>
                     </form>
                         <!-- 개인 내용 -->
                         
                         <!-- 기업 내용 -->
-                    <form class="validation-form" novalidate name="comFrm" action="signUp?position=corporation" method="post">
+                    <form class="validation-form" novalidate name="comFrm" action="signUp?position=corporation" method="post" enctype="multipart/form-data">
                         <div id="company">    
                         <!-- 기업 내용 시작 -->
                             <div  class="row align-items-center mt-4" id="frame">
-                                <p class="fw-bold">아이디</p>
+	                            <p class="fw-bold">아이디</p>
                                 <div class="col" id="chain">
-                                    <input type="text" maxLength=20 onInput="maxLengthCheck(this)" name="cId" id="corId" class="form-control" placeholder="아이디"  onKeyUp="inputDataCheck(this.id)" required/>
+                                    <input type="text" maxLength=20 onInput="maxLengthCheck(this)" name="cId" id="corpId" class="form-control" placeholder="아이디"  onKeyUp="inputDataCheck(this.id)" required/>
                                         <div class="invalid-feedback">
                                             아이디를 입력하세요
-                                        </div>      
-                                 </div>
+                                        </div>
+                                </div>
+                                <div class="col-3">
+    	                       		<input type="button" class="idCheckBtn" id="corpIdCheck" value="중복확인">
+	                           	</div>
                             </div>
 
-                            <div class="row align-items-center mt-4">
-                                <div class="col">
+                            <div class="row align-items-center mt-4 frame" id="hey">
+                                <div class="col" >
                                     <p class="fw-bold">비밀번호</p>
-                                        <input type="password" name="cPassword" id="corPw" class="form-control" placeholder="비밀번호" onKeyUp="inputDataCheck(this.id)"  required>
+                                        <input type="password" name="cPassword" id="corPw" class="form-control" placeholder="비밀번호"  onKeyUp="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 비밀번호를 입력하세요.
                                             </div>
@@ -259,7 +265,7 @@
                                     <input type="text" name="cDetailAddress" id="detailAddress2" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
                             </div>
                             <div id="signUp" >
-                                <button type="button" value="signUpCompany" onClick="signUpCom_submit()" class="btn-xlarge submit"  style="color: white; background-color: #A5E374;">가입하기</button>
+                                <input type="button" value="가입하기" id="corpSignUpBtn" class="btn-xlarge submit"  style="color: white; background-color: #A5E374;">
                             </div>
                         </div>
                         </form>

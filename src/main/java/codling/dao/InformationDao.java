@@ -26,7 +26,7 @@ public class InformationDao {
 	}
 	
 	// 개인회원 ID 중복확인
-	public boolean checkIndiId(String id) {
+	public boolean checkIndividualId(String id) {
 		boolean result = false;
 		String query = "SELECT id FROM individual WHERE id = ?";
 		try {
@@ -41,13 +41,13 @@ public class InformationDao {
 			pstmt.close();
 			conn.close();
 		} catch(Exception e) {
-			System.out.println("checkIndiId Error : " + e.getMessage());
+			System.out.println("checkIndividualId Error : " + e.getMessage());
 		}
 		return result;
 	}
 	
 	// 기업회원 ID 중복확인
-	public boolean checkCorpId(String id) {
+	public boolean checkCorporationId(String id) {
 		boolean result = false;
 		String query = "SELECT id FROM corporation WHERE id = ?";
 		try {
@@ -62,7 +62,7 @@ public class InformationDao {
 			pstmt.close();
 			conn.close();
 		} catch(Exception e) {
-			System.out.println("checkCorpId Error : " + e.getMessage());
+			System.out.println("checkCorporationId Error : " + e.getMessage());
 		}
 		return result;
 	}
