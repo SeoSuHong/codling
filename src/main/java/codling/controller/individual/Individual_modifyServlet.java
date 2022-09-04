@@ -43,6 +43,7 @@ public class Individual_modifyServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("indiId");
 		
@@ -65,7 +66,7 @@ public class Individual_modifyServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		if(result) {
-			out.print("<script>alert('회원정보 수정이 완료되었습니다.'); location.href = 'individualInfo'</script>");
+			out.print("<script>alert('회원정보를 수정하였습니다.'); location.href = 'individualInfo'</script>");
 		} else {
 			out.print("<script>alert('회원정보 수정에 실패하었습니다.'); location.href = 'individualInfo'</script>");
 		}

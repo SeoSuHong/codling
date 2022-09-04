@@ -29,7 +29,11 @@ import codling.identity.Individual;
 import codling.identity.License;
 import codling.identity.Portfolio;
 
-@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 50, maxRequestSize = 1024 * 1024 * 50 * 5)
+@MultipartConfig(
+	fileSizeThreshold = 1024 * 1024,
+	maxFileSize = 1024 * 1024 * 50,
+	maxRequestSize = 1024 * 1024 * 50 * 5
+)
 @WebServlet("/resume_update")
 public class Resume_updateServlet extends HttpServlet {
 	int eduSize, carSize, licSize, porSize; // 기존 사항들의 size

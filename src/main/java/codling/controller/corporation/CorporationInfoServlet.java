@@ -16,27 +16,18 @@ import codling.dao.InformationDao;
 import codling.identity.Corporation;
 
 @WebServlet("/corporationInfo")
-public class CorpInfoServlet extends HttpServlet {
+public class CorporationInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String indiId = (String)session.getAttribute("indiId");
-		String corpId = (String)session.getAttribute("corpId");
-		String id = corpId;
+		String id = (String)session.getAttribute("corpId");
 		
 		InformationDao infoDao = new InformationDao();
-		if(indiId != null) {
-			Map<String, String> map = infoDao.getIndiName(indiId);
-			String indiName = map.get(indiId);
-			request.setAttribute("indiName", indiName);
-		} else if(corpId != null) {
-			Map<String, String> map = infoDao.getCorpName(corpId);
-			String corpName = map.get(corpId);
-			request.setAttribute("corpName", corpName);
-		}
+		String name = infoDao.getCorporationName(id);
 		
 		CorporationDao dao = new CorporationDao();
 		Corporation corporation = dao.getCorporation(id);
 		
+		request.setAttribute("name", name);
 		request.setAttribute("corporation", corporation);
 		request.getRequestDispatcher("/WEB-INF/corporation/corporation_info.jsp").forward(request, response);
 	}

@@ -1,6 +1,7 @@
 @import url(font.css);
 
 * {font-family: 'MapoPeacefull';}
+a {}
 
 /* header */
 header {
@@ -99,7 +100,16 @@ ul {
     background-color: #A5E374;
     border: 1px solid white;
     border-radius: 7px;
-    margin-left: 1rem;
+}
+
+#fileName {
+	text-decoration: none;
+	color: #858585;
+	font-size: 1.1rem;
+}
+
+#fileName:hover {
+	text-decoration: underline;
 }
 
 #modify_btn {

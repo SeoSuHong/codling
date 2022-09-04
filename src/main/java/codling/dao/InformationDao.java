@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import codling.identity.Corporation;
 import codling.identity.Individual;
 
 public class InformationDao {
@@ -66,6 +67,7 @@ public class InformationDao {
 		return result;
 	}
 	
+	// 개인회원 정보 수정
 	public boolean updateIndividual(Individual individual) {
 		boolean result = false;
 		String query = "UPDATE individual "
@@ -90,6 +92,36 @@ public class InformationDao {
 			conn.close();
 		} catch(Exception e) {
 			System.out.println("updateIndividual Error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 기업회원 정보 수정
+	public boolean updateCorporation(Corporation corporation) {
+		boolean result = false;
+		String query = "UPDATE corporation "
+					+ "SET password = ?, corporateName = ?, corporatePhone = ?, ceoName = ?, corporateNumber = ?, fileName = ?, email = ?, address = ?, detailAddress = ? "
+					+ "WHERE id = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, corporation.getPassword());
+			pstmt.setString(2, corporation.getCorporateName());
+			pstmt.setString(3, corporation.getCorporatePhone());
+			pstmt.setString(4, corporation.getCeoName());
+			pstmt.setString(5, corporation.getCorporateNumber());
+			pstmt.setString(6, corporation.getFileName());
+			pstmt.setString(7, corporation.getEmail());
+			pstmt.setString(8, corporation.getAddress());
+			pstmt.setString(9, corporation.getDetailAddress());
+			pstmt.setString(10, corporation.getId());
+			
+			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateCorporation Error : " + e.getMessage());
 		}
 		return result;
 	}

@@ -16,7 +16,7 @@ import codling.dao.InformationDao;
 import codling.identity.Individual;
 
 @WebServlet("/individualInfo")
-public class IndiInfoServlet extends HttpServlet {
+public class IndividualInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("indiId");
@@ -42,22 +42,23 @@ public class IndiInfoServlet extends HttpServlet {
 		
 		InformationDao dao = new InformationDao();
 		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		boolean check = dao.checkIndiId(id, password);
 		if(check) {
-			boolean Result = dao.deleteIndividual(id);
-			
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			
+			boolean Result = dao.deleteIndividual(id);	
 			if(Result) {
-				out.print("<script>alert('회원탈퇴가 완료되었습니다.');location.href='index';</script>");
+				out.print("<script>alert('회원탈퇴가 완료되었습니다.'); location.href='index';</script>");
 				out.flush();
 				session.invalidate();
 			} else {
-				out.print("<script>alert('회원탈퇴에 실패하였습니다.');location.href='individualInfo';</script>");
+				out.print("<script>alert('회원탈퇴에 실패하였습니다.'); location.href='individualInfo';</script>");
 				out.flush();
 			}
+		} else {
+			out.print("<script>alert('비밀번호가 일치하지 않습니다.'); location.href='individualInfo'</script>");
 		}
 	}
 }

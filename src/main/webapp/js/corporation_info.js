@@ -29,22 +29,30 @@ $(function(){
     });
 });
 
-function deleteChk() {
-	var pwCheck = prompt("비밀번호를 입력해 주세요.", "비밀번호");
-	var password = document.corpInfoForm.password.value;
-	
-	if(pwCheck == password)
+function modifyChk() {
+	if($('#checkPwWrap').css("display") == "none") {
+		$('#checkPwWrap').css("display", "flex");
+		$('#password').val('');
+	} else if(document.corpInfoForm.password.value == "") {
+		alert('비밀번호를 입력해 주세요.');
+		document.corpInfoForm.password.focus();
+	} else {
+		document.corpInfoForm.action = "corporation_modify";
+		document.corpInfoForm.method = "get";
 		document.corpInfoForm.submit();
-	else
-		alert("비밀번호가 일치하지 않습니다.");
+	}
 }
 
-function updateChk() {
-	var pwCheck = prompt("비밀번호를 입력해 주세요.", "비밀번호");
-	var password = document.corpInfoForm.password.value;
-	
-	if(pwCheck == password)
-		location.href = "corporation_modify";
-	else
-		alert("비밀번호가 일치하지 않습니다.");
+function deleteChk() {
+	if($('#checkPwWrap').css("display") == "none") {
+		$('#checkPwWrap').css("display", "flex");
+		$('#password').val('');
+	} else if(document.corpInfoForm.password.value == "") {
+		alert('비밀번호를 입력해 주세요.');
+		document.corpInfoForm.password.focus();
+	} else {
+		document.corpInfoForm.action = "individualInfo";
+		document.corpInfoForm.method = "post";
+		document.corpInfoForm.submit();
+	}
 }

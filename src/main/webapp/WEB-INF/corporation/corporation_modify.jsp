@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +24,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-10 col-md-7 col-lg-5 col-xl-4">
-                        <form class="validation-form" novalidate name="updateCorpForm" action="corporation_modify" method="post">
+                        <form class="validation-form" novalidate name="updateCorpForm" action="corporation_modify" method="post" enctype="multipart/form-data">
                         <div id="individual" class="form-action show container-fluid align-items-center">
                             <div class="row align-items-center mt-4" id="frame">
                                 <!-- 아이디 -->
@@ -39,7 +40,7 @@
                             <div class="row align-items-center mt-4 frame" id="hey">
                                 <div class="col" >
                                     <p class="fw-bold">비밀번호</p>
-                                        <input type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호"  onkeyup="inputDataCheck(this.id)" required>
+                                        <input type="password" name="password" id="pw" class="form-control" placeholder="비밀번호"  onkeyup="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">
                                                 비밀번호를 입력하세요.
                                             </div>
@@ -58,7 +59,7 @@
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">회사명</p>
-                                        <input type="text" name="companyName" id="comName" class="form-control" placeholder="회사명" onkeyup="inputDataCheck(this.id)" required value="${corporation.corporateName}">
+                                        <input type="text" name="corporateName" id="comName" class="form-control" placeholder="회사명" onkeyup="inputDataCheck(this.id)" required value="${corporation.corporateName}">
                                             <div class="invalid-feedback">
                                                 회사명을 입력하세요.
                                             </div>
@@ -70,13 +71,13 @@
                                         <input class="form-control" value="010" readonly>
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" id="telePhone" placeholder="'-'없이 입력" value="${fn:substring(corporation.corporatePhone, 3, 11)}">
+                                        <input type="text" name="corporatePhone" class="form-control" id="telePhone" placeholder="'-'없이 입력" value="${fn:substring(corporation.corporatePhone, 3, 11)}">
                                     </div>
                             </div>
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">대표자명</p>
-                                        <input type="text" name="representative" id="representative" class="form-control" placeholder="대표자명" onkeyup="inputDataCheck(this.id)" required value="${corporation.ceoName}">
+                                        <input name="ceoName" id="representative" class="form-control" placeholder="대표자명" onkeyup="inputDataCheck(this.id)" required value="${corporation.ceoName}">
                                             <div class="invalid-feedback">
                                                 대표자명을 입력하세요.
                                             </div>
@@ -85,28 +86,46 @@
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">사업자 등록번호</p>
-                                        <input type="text" name="companyNum" id="comNum" class="form-control" placeholder="사업자 등록번호"  onkeyup="inputDataCheck(this.id)" required value="${corporation.corporateNumber}">
+                                        <input name="corporateNumber" id="comNum" class="form-control" placeholder="사업자 등록번호"  onkeyup="inputDataCheck(this.id)" required value="${corporation.corporateNumber}">
                                             <div class="invalid-feedback">
                                                 사업자 등록번호를 입력하세요.
                                             </div>
                                 </div>
                             </div>
+                            
+                            <c:if test="${not empty corporation.fileName}">
+	                            <div class="row align-items-center mt-4">
+	                                <div class="col">
+	                                    <p class="fw-bold">등록된 증빙서류</p>
+	                                        <a download href="/corporateNumber_files/${corporation.fileName}" id="fileName">${corporation.fileName}</a>
+	                                        <input type="hidden" value="${corporation.fileName}" name="fileName">
+	                                </div>
+	                            </div>
+                            </c:if>
+                            
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">증빙서류 첨부</p>
-                                        <input class="form-control" type="file" id="formFile"  required>
+                                        <input class="form-control" type="file" name="file" id="formFile" required>
                                             <div class="invalid-feedback">
                                                 증빙서류를 첨부하세요.
                                             </div>
                                 </div>
-                            </div>                       
+                            </div> 
+                            <div class="row align-items-center mt-4">
+                                <div class="col">
+                                    <p class="fw-bold">이메일</p>
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="example@codling.com" required value="${corporation.email}">
+                                            <div class="invalid-feedback">
+                                                이메일을 입력하세요.
+                                            </div>
+                                </div>
+                            </div>                      
                             <div class="row align-items-left mt-4 address" id="frame2">
                             	<p class="fw-bold" id="addressCom">주소</p>
-                                    <input type="text" placeholder="우편번호" name="postCode" id="postCode" class="form-control mb-1" style="display:inline-block;width:100px;"  onkeyup="inputDataCheck(this.id)" required value="${corporation.address}"> 
                                     <input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기" id="search"><br>
-                                    <input type="text"  name="address" id="address" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required>
-                                    <input type="text" name="detailAddress" id="detailAddress" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
-                                    <input type="text" name="extraAddress" id="extraAddress" class="form-control mb-3 col-md-7" placeholder="참고항목"  onkeyup="inputDataCheck(this.id)" required>
+                                    <input name="address" value="${corporation.address}" id="address" class="form-control  mb-1" placeholder="주소" onkeyup="inputDataCheck(this.id)" required>
+                                    <input name="detailAddress" value="${corporation.detailAddress}" id="detailAddress" class="form-control mb-3 col-md-7" placeholder="상세주소"  onkeyup="inputDataCheck(this.id)" required>
                             </div>
                             <div id="modify_btn" >
                                 <button type="button" id="#btn1" value="modifyIndividual" onclick="signUpInd_submit()" class="btn-xlarge modifyBtn">수정하기</button>

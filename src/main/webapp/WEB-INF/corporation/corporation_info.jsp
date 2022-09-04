@@ -20,7 +20,7 @@
             <div></div>
             <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
-                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> ${corpName} 님</span> &nbsp;&nbsp;</div>
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> ${name} 님</span> &nbsp;&nbsp;</div>
                 </div>
         </div>
         <div id="profile-hover">
@@ -67,11 +67,11 @@
 	        <div id="checkPwWrap">
 		        <div id="checkPw">
 		        	<span>비밀번호 입력 </span>	        
-		        	<input type="password" name="password">
+		        	<input type="password" name="password" id="password">
 		        </div>
 		    </div>
 	        <div id="choice">
-	            <input type="button" class="modify" value="수 정" onclick="updateChk()">
+	            <input type="button" class="modify" value="수 정" onclick="modifyChk()">
 	            <input type="button" class="drop" value="탈 퇴" onclick="deleteChk()">
 	        </div>
         </form>
