@@ -34,7 +34,7 @@ ul {list-style:none;}
        border: 1px solid white; border-radius: 7px;display: inline-block;}
 
 #search {width: 100px; height: 35px; color: white; margin-bottom:8px;
-       background-color: #A5E374; border: 1px solid white; border-radius: 7px; margin-left: 1rem;}
+       background-color: #A5E374; border: 1px solid white; border-radius: 7px;}
 #search:hover{background-color: #62AE26;}
 #signup>#btn1:hover{background-color: #62AE26;}       
 #signUp{display: flex; justify-content: center; margin-top: 20px;}

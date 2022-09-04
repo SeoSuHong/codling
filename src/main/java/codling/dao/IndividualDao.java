@@ -65,33 +65,6 @@ public class IndividualDao {
 		return individual;
 	}
 	
-	// 개인회원 회원가입
-	public boolean insertIndividual(Individual individual) {
-		boolean result = false;
-		String query = "INSERT INTO individual VALUES (?, DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, '', '')";
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, individual.getId());
-			pstmt.setString(2, individual.getPassword());
-			pstmt.setString(3, individual.getName());
-			pstmt.setString(4, individual.getBirth());			
-			pstmt.setString(5, individual.getGender());
-			pstmt.setString(6, individual.getEmail());
-			pstmt.setString(7, individual.getPhone());
-			pstmt.setString(8, individual.getAddress());
-			pstmt.setString(9, individual.getDetailAddress());
-			
-			if(pstmt.executeUpdate() == 1) result = true;
-			
-			pstmt.close();
-			conn.close();
-		} catch(Exception e) {
-			System.out.println("insertIndividual Error : " + e.getMessage());
-		}
-		return result;
-	}
-	
 	// ============================== 이력서 작성 ==============================
 	// 이력서 제목 작성
 	public boolean insertResumeTitle(String id, String title) {

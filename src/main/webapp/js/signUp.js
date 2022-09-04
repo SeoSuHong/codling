@@ -360,12 +360,11 @@ function signUpCom_submit(){
     return;
 	}
 	
-	// 파일 등록 했는지 ? 
-	if($("#formFile").val() == ""){
-	alert("최근 3개월 이내 발급받으신 사업자등록증명원을 첨부해 주시기 바랍니다.");
-	$("#formFile").addClass("is-invalid");
-	$("#formFile").focus();
-	return;
+	// 주소 입력 확인
+	if($("#email2").val() == ""){
+	  $("#email2").addClass("is-invalid");
+	  $("#email2").focus();
+	  return;
 	}
 	
 	// 주소 입력 확인
@@ -385,6 +384,10 @@ function signUpCom_submit(){
 	  return;
 	}
 	
+	// 첨부파일 등록 
+	if($("#formFile").val() == ""){
+	alert("1개월 이내에 사업자등록증 첨부파일을 등록해 주시기 바랍니다.");
+	}
 	comFrm.submit();
   }
   
@@ -424,17 +427,16 @@ function sample6_execDaumPostcode() {
               }
               // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
               if(extraAddr !== ''){
-                  extraAddr = ' (' + extraAddr + ')';
+                  extraAddr = '(' + extraAddr + ')';
               }
               // 조합된 참고항목을 해당 필드에 넣는다.
-              document.getElementById("extraAddress").value = extraAddr;
+              document.getElementById("detailAddress").value = extraAddr;
           
           } else {
-              document.getElementById("extraAddress").value = '';
+              document.getElementById("detailAddress").value = '';
           }
 
           // 우편번호와 주소 정보를 해당 필드에 넣는다.
-          document.getElementById('postCode').value = data.zonecode;
           document.getElementById("address").value = addr;
           // 커서를 상세주소 필드로 이동한다.
           document.getElementById("detailAddress").focus();
@@ -473,17 +475,16 @@ function sample7_execDaumPostcode() {
               }
               // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
               if(extraAddr !== ''){
-                  extraAddr = ' (' + extraAddr + ')';
+                  extraAddr = '(' + extraAddr + ')';
               }
               // 조합된 참고항목을 해당 필드에 넣는다.
-              document.getElementById("extraAddress2").value = extraAddr;
+              document.getElementById("detailAddress2").value = extraAddr;
           
           } else {
-              document.getElementById("extraAddress2").value = '';
+              document.getElementById("detailAddress2").value = '';
           }
 
           // 우편번호와 주소 정보를 해당 필드에 넣는다.
-          document.getElementById('postCode2').value = data.zonecode;
           document.getElementById("address2").value = addr;
           // 커서를 상세주소 필드로 이동한다.
           document.getElementById("detailAddress2").focus();
