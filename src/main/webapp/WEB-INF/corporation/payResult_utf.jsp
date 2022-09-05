@@ -154,53 +154,94 @@ if(authResultCode.equals("0000") /*&& authSignature.equals(authComparisonSignatu
 <!DOCTYPE html>
 <html>
 <head>
-<title>NICEPAY PAY RESULT(UTF-8)</title>
-<m eta charset="utf-8">
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codling : 결제</title>
+    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="css/payResult.css">
+    <script src="jQuery/jquery-3.6.0.min.js"></script>
+    <script src="jQuery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/payResult.js"></script>
 </head>
 <body>
-	<table>
-		<%if("9999".equals(resultJsonStr)){%>
-		<tr>
-			<th>승인 통신 실패로 인한 망취소 처리 진행 결과</th>
-			<td>[<%=ResultCode%>]<%=ResultMsg%></td>
-		</tr>
-		<%}else{%>
-		<tr>
-			<th>결과 내용</th>
-			<td>[<%=ResultCode%>]<%=ResultMsg%></td>
-		</tr>
-		<tr>
-			<th>결제수단</th>
-			<td><%=PayMethod%></td>
-		</tr>
-		<tr>
-			<th>상품명</th>
-			<td><%=GoodsName%></td>
-		</tr>
-		<tr>
-			<th>결제 금액</th>
-			<td><%=Amt%></td>
-		</tr>
-		<tr>
-			<th>거래 번호</th>
-			<td><%=TID%></td>
-		</tr>
-		<!--<%/*if(Signature.equals(paySignature)){%>
-		<tr>
-			<th>Signature</th>
-			<td><%=Signature%></td>
-		</tr>
-		<%}else{%>
-		<tr>
-			<th>승인 Signature</th>
-			<td><%=Signature%></td>
-		</tr>
-		<tr>
-			<th>생성 Signature</th>
-			<td><%=paySignature%></td>
-		</tr> -->
-		<%}*/}%>
-	</table>
+<body>
+	<header>
+        <div id="menu-bar">
+            <div></div>
+            <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
+                <div id="profile-box">
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> ${name} 님</span> &nbsp;&nbsp;</div>
+                </div>
+        </div>
+        <div id="profile-hover">
+            <ul>
+                <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
+                <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
+                <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+            </ul>
+        </div>
+    </header>
+    <section>
+    	<div id="del">
+    		<div>
+				<table>
+					<%if("9999".equals(resultJsonStr)){%>
+					<tr>
+						<th>승인 통신 실패로 인한 망취소 처리 진행 결과</th>
+						<td>[<%=ResultCode%>]<%=ResultMsg%></td>
+					</tr>
+					<%}else{%>
+					<tr>
+						<th>결과 내용</th>
+						<td>[<%=ResultCode%>]<%=ResultMsg%></td>
+					</tr>
+					<tr>
+						<th>결제수단</th>
+						<td><%=PayMethod%></td>
+					</tr>
+					<tr>
+						<th>상품명</th>
+						<td><%=GoodsName%></td>
+					</tr>
+					<tr>
+						<th>결제 금액</th>
+						<td><%=Amt%></td>
+					</tr>
+					<tr>
+						<th>거래 번호</th>
+						<td><%=TID%></td>
+					</tr>
+					<tr>
+						<th colspan="2">※거래번호는 거래취소시 이용됩니다. 기록되지 않으며 거래 번호 분실시 개인과실로 Codling에서 책임을 지지않습니다.</th>
+					</tr>
+					<tr>
+						<td colspan="2"><button onclick="location='index'">홈으로</button></td>
+					</tr>
+					<!--<%/*if(Signature.equals(paySignature)){%>
+					<tr>
+						<th>Signature</th>
+						<td><%=Signature%></td>
+					</tr>
+					<%}else{%>
+					<tr>
+						<th>승인 Signature</th>
+						<td><%=Signature%></td>
+					</tr>
+					<tr>
+						<th>생성 Signature</th>
+						<td><%=paySignature%></td>
+					</tr> -->
+					<%}*/}%>
+				</table>
+			</div>
+		</div>
+    </section>
+    <footer>
+		<a href="#up"><img src="img/footerLogo.png"></a> <a href="#">전체서비스</a>&ensp;|&ensp;
+		<a href="#">이용약관</a>&ensp;|&ensp; <a href="#">개인정보처리방침</a>&ensp;|&ensp;
+		<a href="#">제휴문의</a>&ensp;| © CODLING Corp.
+	</footer>
 	<p>*테스트 아이디인경우 당일 오후 11시 30분에 취소됩니다.</p>
 </body>
 </html>

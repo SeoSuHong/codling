@@ -33,7 +33,8 @@
     	<div id="del">
     		<div>
 	    		<h2>광고 업로드 취소</h2>
-				<form name="cancelForm" method="post" target="_self" action="cancelResult_utf.jsp">
+				<form name="cancelForm" method="post" target="_self" action="cancelResult">
+					<input type="hidden" name="no" value="${no }">
 					<table>
 						<tr>
 							<th>원거래 ID</th>

@@ -30,8 +30,8 @@ public class CancelRequest_Servlet extends HttpServlet {
 			String corpName = map.get(corpId);
 			request.setAttribute("name", corpName);
 		}
-		corporDao.advertisement_cancel(0, no);
 		
+		request.setAttribute("no", no);
 		request.getRequestDispatcher("/WEB-INF/corporation/cancelRequest_utf.jsp").forward(request, response);
 	}
 	

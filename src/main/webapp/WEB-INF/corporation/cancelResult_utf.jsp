@@ -13,6 +13,7 @@
 <%@ page import="org.json.simple.JSONObject" %>
 <%@ page import="org.json.simple.parser.JSONParser" %>
 <%@ page import="org.apache.commons.codec.binary.Hex" %>
+<%@ page import="codling.dao.CorporationDao" %>
 <%
 request.setCharacterEncoding("utf-8"); 
 
@@ -85,6 +86,11 @@ if("9999".equals(resultJsonStr)){
 }else{
 	HashMap resultData = jsonStringToHashMap(resultJsonStr);
 	ResultCode 	= (String)resultData.get("ResultCode");	// 결과코드 (취소성공: 2001, 취소성공(LGU 계좌이체):2211)
+	CorporationDao corpoDao = new CorporationDao();
+	int no = Integer.parseInt(request.getParameter("no"));
+	if(ResultCode == "2001" || ResultCode.equals("2001")){
+		corpoDao.advertisement_upload(0, no);
+	}
 	ResultMsg 	= (String)resultData.get("ResultMsg");	// 결과메시지
 	CancelAmt 	= (String)resultData.get("CancelAmt");	// 취소금액
 	CancelDate 	= (String)resultData.get("CancelDate");	// 취소일
@@ -97,47 +103,83 @@ if("9999".equals(resultJsonStr)){
 <!DOCTYPE html>
 <html>
 <head>
-<title>NICEPAY CANCEL RESULT(UTF-8)</title>
-<meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/cancelResult.css" type="text/css">
+    <script src="jQuery/jquery-3.6.0.min.js"></script>
+    <script src="jQuery/jquery-ui.min.js"></script>
+    <script src="js/cancelResult.js"></script>
 </head>
 <body> 
-	<table>												  
-		<tr>
-			<th>취소 결과 내용</th>
-			<td>[<%=ResultCode%>]<%=ResultMsg%></td>
-		</tr>
-		<tr>
-			<th>거래 아이디</th>
-			<td><%=TID%></td>
-		</tr>
-		<tr>
-			<th>취소 금액</th>
-			<td><%=CancelAmt%></td>
-		</tr>
-		<tr>
-			<th>취소일</th>
-			<td><%=CancelDate%></td>
-		</tr>
-		<tr>
-			<th>취소시간</th>
-			<td><%=CancelTime%></td>
-		</tr>
-		<!--<%/*if(Signature.equals(cancelSignature)){%>
-		<tr>
-			<th>Signature</th>
-			<td><%=Signature%></td>
-		</tr>
-		<%}else{%>
-		<tr>
-			<th>승인 Signature</th>
-			<td><%=Signature%></td>
-		</tr>
-		<tr>
-			<th>생성 Signature</th>
-			<td><%=cancelSignature%></td>
-		</tr>-->
-		<%}*/%>
-	</table>
+<header>
+        <div id="menu-bar">
+            <div></div>
+            <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
+                <div id="profile-box">
+                    <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> ${name} 님</span> &nbsp;&nbsp;</div>
+                </div>
+        </div>
+        <div id="profile-hover">
+            <ul>
+                <li id="mypage"><a href="individualInfo"><span>내 정보</span></a></li>
+                <li id="resume"><a href="jobOpening_management"><span>공고 관리</span></a></li>
+                <li id="logout"><a href="logout"><span>로그아웃</span></a></li>
+            </ul>
+        </div>
+ </header>
+ <section>
+    	<div id="del">
+    		<div>
+				<table>												  
+					<tr>
+						<th>취소 결과 내용</th>
+						<td>[<%=ResultCode%>]<%=ResultMsg%></td>
+					</tr>
+					<tr>
+						<th>거래 아이디</th>
+						<td><%=TID%></td>
+					</tr>
+					<tr>
+						<th>취소 금액</th>
+						<td><%=CancelAmt%></td>
+					</tr>
+					<tr>
+						<th>취소일</th>
+						<td><%=CancelDate%></td>
+					</tr>
+					<tr>
+						<th>취소시간</th>
+						<td><%=CancelTime%></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button onclick="location='index'">홈으로</button></td>
+					</tr>
+					<!--<%/*if(Signature.equals(cancelSignature)){%>
+					<tr>
+						<th>Signature</th>
+						<td><%=Signature%></td>
+					</tr>
+					<%}else{%>
+					<tr>
+						<th>승인 Signature</th>
+						<td><%=Signature%></td>
+					</tr>
+					<tr>
+						<th>생성 Signature</th>
+						<td><%=cancelSignature%></td>
+					</tr>-->
+					<%}*/%>
+				</table>
+			</div>
+		</div>
+    </section>
+    <footer>
+		<a href="#up"><img src="img/footerLogo.png"></a> <a href="#">전체서비스</a>&ensp;|&ensp;
+		<a href="#">이용약관</a>&ensp;|&ensp; <a href="#">개인정보처리방침</a>&ensp;|&ensp;
+		<a href="#">제휴문의</a>&ensp;| © CODLING Corp.
+	</footer>
 </body>
 </html>
 <%!

@@ -79,7 +79,7 @@ section{width: 1220px; margin: 0 auto;}
 #advertisement_flex{display: flex;}
 #img_box{width: 180px; height: 180px; margin-left: 30px;}
 #img_box>img{height: 100%; width: 100%; object-fit: contain;}
-#advertisement_comname{margin-top: 50px; margin-left: 90px; font-weight: bold; color: #373F57;}
+#advertisement_comname{margin-top: 30px; margin-left: 90px; font-weight: bold; color: #373F57;}
 #advertisement_title{margin-left: 90px; font-weight: bold; color: #373F57; margin-top: 20px;}
 #advertisement_contents{width: 1020px; height: 220px; display: flex; font-size: 1.3rem; font-weight: bold;}
 #advertisement_contents>div>p{margin-left: 100px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}

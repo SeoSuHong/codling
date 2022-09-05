@@ -1,13 +1,6 @@
 package codling.controller.corporation;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -19,15 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import codling.dao.CorporationDao;
 import codling.dao.InformationDao;
-import codling.identity.Announcement;
-import codling.identity.Corporation;
-import codling.identity.JobOpening;
 
-import org.apache.commons.codec.binary.Hex;
-
-@WebServlet("/payRequest")
-public class PayRequest_Servlet extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@WebServlet("/cancelResult")
+public class CancelResult_Servlet extends HttpServlet {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8"); 
 		HttpSession session = request.getSession();
 		String corpId = (String)session.getAttribute("corpId");
 		String id = corpId;
@@ -42,22 +31,15 @@ public class PayRequest_Servlet extends HttpServlet {
 			request.setAttribute("name", corpName);
 		}
 		
-		JobOpening jobOpening = corpoDao.getJobOpening(no);
-		Corporation corporation = corpoDao.getCorporation(id);
+		String tid 					= (String)request.getParameter("TID");	// 거래 ID
+		String cancelAmt 			= (String)request.getParameter("CancelAmt");	// 취소금액
+		String partialCancelCode 	= (String)request.getParameter("PartialCancelCode"); 
 		
-		Calendar cal = Calendar.getInstance();
-	    cal.setTime(new Date());
-	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
-	    cal.add(Calendar.DATE, 3);
-	    String date = df.format(cal.getTime());
-		
-	    request.setAttribute("date", date);
-		request.setAttribute("corporation", corporation);
 		request.setAttribute("no", no);
-		request.setAttribute("jobOpening", jobOpening);
-		
-		request.getRequestDispatcher("/WEB-INF/corporation/payRequest_utf.jsp").forward(request, response);
+		request.setAttribute("partialCancelCode", partialCancelCode);
+		request.setAttribute("cancelAmt", cancelAmt);
+		request.setAttribute("tid", tid);
+		request.getRequestDispatcher("/WEB-INF/corporation/cancelResult_utf.jsp").forward(request, response);
 	}
 	
 //	@Override

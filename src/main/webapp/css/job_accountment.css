@@ -132,6 +132,8 @@ section{width: 1220px; margin: 0 auto; }
     width: 800px !important;
 }
 
+.title{width: 455px!important;}
+
 #advertisement_box{
 	display: flex;
 	justify-content: center;

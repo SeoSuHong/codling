@@ -69,7 +69,8 @@ String hashString 		= sha256Enc.encrypt(ediDate + merchantID + price + merchantK
     <section>
     	<div id="del">
     		<div>
-				<form name="payForm" method="post" action="payResult_utf.jsp">
+				<form name="payForm" method="post" action="payResult">
+					<input type="hidden" name="no" value="${jobOpening.no }">
 					<table>
 						<tr>
 							<th><span>결제 상품명</span></th>
@@ -119,6 +120,11 @@ String hashString 		= sha256Enc.encrypt(ediDate + merchantID + price + merchantK
 			</div>
 		</div>
     </section>
+     <footer>
+		<a href="#up"><img src="img/footerLogo.png"></a> <a href="#">전체서비스</a>&ensp;|&ensp;
+		<a href="#">이용약관</a>&ensp;|&ensp; <a href="#">개인정보처리방침</a>&ensp;|&ensp;
+		<a href="#">제휴문의</a>&ensp;| © CODLING Corp.
+	</footer>
 </body>
 </html>
 <%!
