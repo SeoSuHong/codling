@@ -27,7 +27,7 @@
         <form class="search_box" action="search" id="searbox">
             <input id="searchbox"type="text" name="search" placeholder="검색어를 입력하세요.">
         </form>
-            <input type="submit" form="searbox" class="search" value="">
+            <input type="submit" form="searbox" style="cursor: pointer;" class="search" value="">
             <c:if test="${empty indiId && empty corpId}">
             	<button type="button" id="log" onclick="location.href='login'">Login</button>
             </c:if>
