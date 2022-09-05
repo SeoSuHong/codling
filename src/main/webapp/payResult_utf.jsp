@@ -12,6 +12,7 @@
 <%@ page import="org.json.simple.JSONObject" %>
 <%@ page import="org.json.simple.parser.JSONParser" %>
 <%@ page import="org.apache.commons.codec.binary.Hex" %>
+<%@ page import="codling.dao.CorporationDao" %>
 <%
 request.setCharacterEncoding("utf-8"); 
 /*

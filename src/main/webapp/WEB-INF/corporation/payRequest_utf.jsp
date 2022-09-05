@@ -73,7 +73,7 @@ String hashString 		= sha256Enc.encrypt(ediDate + merchantID + price + merchantK
 					<table>
 						<tr>
 							<th><span>결제 상품명</span></th>
-							<td><input type="text" name="GoodsName" value="<%=goodsName%>"></td>
+							<td><input type="text" name="GoodsName" value="${jobOpening.title }"></td>
 						</tr>
 						<tr>
 							<th><span>결제 상품금액</span></th>
@@ -85,23 +85,23 @@ String hashString 		= sha256Enc.encrypt(ediDate + merchantID + price + merchantK
 						</tr>
 						<tr>
 							<th><span>구매자명</span></th>
-							<td><input type="text" name="BuyerName" value="<%=buyerName%>"></td>
+							<td><input type="text" name="BuyerName" value="${jobOpening.corporation_id }"></td>
 						</tr>	 
-						<tr>
+						<tr style="display: none;">
 							<th>구매자명 이메일</th>
 							<td><input type="text" name="BuyerEmail" value="<%=buyerEmail%>"></td>
 						</tr>			
 						<tr>
 							<th><span>구매자 연락처</span></th>
-							<td><input type="text" name="BuyerTel" value="<%=buyerTel%>"></td>
+							<td><input type="text" name="BuyerTel" value="${corporation.corporatePhone }"></td>
 						</tr>	 
-						<tr>
+						<tr style="display: none;">
 							<th><span>인증완료 결과처리 URL<!-- (모바일 결제창 전용)PC 결제창 사용시 필요 없음 --></span></th>
 							<td><input type="text" name="ReturnURL" value="<%=returnURL%>"></td>
 						</tr>
 						<tr>
 							<th>가상계좌입금만료일(YYYYMMDD)</th>
-							<td><input type="text" name="VbankExpDate" value=""></td>
+							<td><input type="text" name="VbankExpDate" value="${date }"></td>
 						</tr>		
 									
 						<!-- 옵션 --> 

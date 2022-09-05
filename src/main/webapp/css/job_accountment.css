@@ -122,6 +122,7 @@ nav {
 }
 
 /* section */
+#top_title_container{width: 455px; display: flex; flex-flow: row wrap;}
 section{width: 1220px; margin: 0 auto; }
 #downmenu{
     display: flex;
@@ -269,6 +270,7 @@ hr{
     border-top: 1px solid rgba(187, 187, 187,0.2);
     margin: 30px auto;
     width: 900px;
+    margin-top: 50px;
 }
 
 /*hr 밑 */
