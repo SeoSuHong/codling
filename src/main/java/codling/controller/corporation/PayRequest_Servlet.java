@@ -44,6 +44,9 @@ public class PayRequest_Servlet extends HttpServlet {
 		
 		JobOpening jobOpening = corpoDao.getJobOpening(no);
 		Corporation corporation = corpoDao.getCorporation(id);
+		int number = corpoDao.getadvertisement_max() + 1;
+		corpoDao.advertisement_upload(number, no);
+		
 		Calendar cal = Calendar.getInstance();
 	    cal.setTime(new Date());
 	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");

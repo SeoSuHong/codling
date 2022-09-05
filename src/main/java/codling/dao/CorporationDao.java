@@ -981,6 +981,27 @@ public class CorporationDao {
 	    return result;
 	}
  	
+ 	//광고업로드 취소
+ 	 	public boolean advertisement_cancel(int number, int no) {
+ 			boolean result = false;
+ 		    String query = "UPDATE jobopening SET advertisement = ? "
+ 		    		+ "WHERE no = ?";
+ 		    try {
+ 				conn = getConnection();
+ 				pstmt = conn.prepareStatement(query);
+ 				pstmt.setInt(1, number);
+ 				pstmt.setInt(2, no);
+ 	 
+ 				if(pstmt.executeUpdate() == 1) result = true;
+ 	 
+ 				pstmt.close();
+ 				conn.close();
+ 			} catch(Exception e) {
+ 				System.out.println("insertCorporation Error : " + e.getMessage());
+ 		    }
+ 		    return result;
+ 		}
+ 	
  	// 광고 공고 가지고오기
  	public ArrayList<Announcement> getadvertisement() {
  		ArrayList<Announcement> list = new ArrayList<Announcement>();

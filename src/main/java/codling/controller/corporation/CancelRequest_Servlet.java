@@ -21,13 +21,16 @@ public class CancelRequest_Servlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String corpId = (String)session.getAttribute("corpId");
 		String id = corpId;
+		int no = Integer.parseInt(request.getParameter("no"));
 		
 		InformationDao infoDao = new InformationDao();
+		CorporationDao corporDao = new CorporationDao();
 		if(corpId != null) {
 			Map<String, String> map = infoDao.getCorpName(corpId);
 			String corpName = map.get(corpId);
 			request.setAttribute("name", corpName);
 		}
+		corporDao.advertisement_cancel(0, no);
 		
 		request.getRequestDispatcher("/WEB-INF/corporation/cancelRequest_utf.jsp").forward(request, response);
 	}

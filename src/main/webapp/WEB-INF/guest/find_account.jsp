@@ -14,8 +14,8 @@
 <body>
     <header>
         <div></div>
-        <a href="index.jsp"><img src="img/logo.png" alt="logo image" id="logo"></a>
-        <a href="logIn.jsp"><button type="button" id="logIn">Login</button></a>
+        <a href="index"><img src="img/logo.png" alt="logo image" id="logo"></a>
+        <a href="login"><button type="button" id="logIn">Login</button></a>
     </header>
     <section>
         <article>
@@ -27,8 +27,8 @@
                         <strong class="indi">개인회원</strong>
                     </li>
                     <li class="find_link">
-                        <a href="indi_findId.jsp" id="find_id"><b>아이디 찾기</b></a>
-                        <a href="indi_findPassword.jsp" id="find_pw"><b>비밀번호 찾기</b></a>
+                        <a href="indi_findId" id="find_id"><b>아이디 찾기</b></a>
+                        <a href="indi_findPassword" id="find_pw"><b>비밀번호 찾기</b></a>
                     </li>
                 </ul>
                 <ul>
@@ -36,8 +36,8 @@
                         <strong class="corp">기업회원</strong>
                     </li>
                     <li class="find_link">
-                        <a href="corp_findId.jsp" id="find_id"><b>아이디 찾기</b></a>
-                        <a href="corp_findPassword.jsp" id="find_pw"><b>비밀번호 찾기</b></a>
+                        <a href="corp_findId" id="find_id"><b>아이디 찾기</b></a>
+                        <a href="corp_findPassword" id="find_pw"><b>비밀번호 찾기</b></a>
                     </li>
                 </ul>
             </div>

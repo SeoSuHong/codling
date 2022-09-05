@@ -15,8 +15,8 @@
 <body>
     <header>
         <div></div>
-        <a href="index.jsp"><img src="img/logo.png" alt="logoImage" id="logo"></a>
-        <a href="logIn.jsp"><button type="button" id="logIn">Login</button></a>
+        <a href="index"><img src="img/logo.png" alt="logoImage" id="logo"></a>
+        <a href="login"><button type="button" id="logIn">Login</button></a>
     </header>
     <section>
         <article>
@@ -41,27 +41,27 @@
                         <div class="item"></div>
                     </div>
                     <div>
-                        <input type="button" id="chk_phone_ok" value="인증확인" onClick="checkFindPhone()">
+                        <input type="button" id="chk_phone_ok" value="아이디 찾기" onClick="checkFindPhone()">
                     </div>
                 </form>
             </div>
                 
             <div id="chk_email">
                 <b>가입 시 입력한 기업정보를 입력해 주세요.</b>
-                <form action="" method="post" name="findEmailForm">
+                <form action="corp_findId" method="post" name="findEmailForm">
                     <div class="input">
                         <div class="item"><b>기업명</b></div>
                         <div class="item"><input name="name"></div>
                         <div class="item"></div>
                         <div class="item"><b>이메일 주소</b></div>
-                        <div class="item"><input type="email" name="email"></div>
-                        <div class="item"><input type="button" class="chk_btn" name="chk_btn" value="인증번호 발송" onclick=""></input></div>
+                        <div class="item"><input type="email" name="email" placeholder="example@codling.com"></div>
+                        <div class="item"><input type="button" class="chk_btn" name="chk_btn" value="인증번호 발송" onclick="sendCheckCode()"></input></div>
                         <div class="item"><b>인증번호</b></div>
                         <div class="item"><input name="chk"></div>
                         <div class="item"></div>
                     </div>
                     <div>
-                        <input type="button" id="chk_email_ok" value="인증확인" onClick="checkFindEmail()">
+                        <input type="button" id="chk_email_ok" value="아이디 찾기" onClick="checkEmail()">
                     </div>
                 </form>
                 </div>

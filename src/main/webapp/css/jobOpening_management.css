@@ -5,12 +5,13 @@
 header{margin: 0 auto; width: 1220px;}
 #menu-bar{width: 1220px; margin: 0 auto; margin-top: 25px;  display: flex; justify-content: space-between; align-items: center;}
 /*header*/
+#box_{width: 150px;}
 #menu-bar>div{height: 5px;}
 #logoimg{width: 253.32px; height: 56.82px;}
 #profilelogo{width: 35px; height: 35px; margin: 5px;}
 #profile-box{display: flex; align-items: center; height: 56.81px; color: #373F57; font-weight: bold;}
 #mename{position: relative; top:0px;}
-#hover-box{height: 45px;}
+#hover-box{height: 45px; white-space: nowrap;}
 #hover-box:hover{background-color: #e6e6e6; border-radius: 30px; cursor: pointer;}
 #profile-hover{border: 1px solid #cecece; width: 150px; height: 160px; float: right; margin-right: 15px;
     border-radius: 10px;}

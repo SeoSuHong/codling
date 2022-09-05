@@ -18,7 +18,7 @@
 <body onresize="update_screen_size()">
     <header>
         <div id="menu-bar">
-            <div></div>
+            <div id="box_"></div>
             <a href="index"><img src="img/logo.png" alt="logoimg" id="logoimg"></a>
                 <div id="profile-box">
                     <div id="hover-box"><img src="img/profile.png" alt="mypagelogo" id="profilelogo"><span id="mename"> ${name} 님</span> &nbsp;&nbsp;</div>
