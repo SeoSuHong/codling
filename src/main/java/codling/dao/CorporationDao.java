@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import codling.identity.Announcement;
 import codling.identity.Applicant;
@@ -82,8 +84,9 @@ public class CorporationDao {
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
+				int grade = rs.getInt("grade");
 				
-				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count);
+				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count, grade);
 			}
 			
 			rs.close();
@@ -116,8 +119,9 @@ public class CorporationDao {
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
+				int grade = rs.getInt("grade");
 				
-				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count);
+				jobOpening = new JobOpening(no, corporation_id, title, region, detailRegion, process, startDate, endDate, count, grade);
 			}
 			
 			rs.close();
@@ -150,8 +154,9 @@ public class CorporationDao {
 				String startDate = rs.getString("startDate");
 				String endDate = rs.getString("endDate");
 				int count = rs.getInt("count");
+				int grade = rs.getInt("grade");
 				
-				JobOpening jobOpening = new JobOpening(no, id, title, region, detailRegion, process, startDate, endDate, count);
+				JobOpening jobOpening = new JobOpening(no, id, title, region, detailRegion, process, startDate, endDate, count, grade);
 				list.add(jobOpening);
 			}
 			
@@ -256,11 +261,42 @@ public class CorporationDao {
 		return fields;
 	}
 	
+	// ==================== 결제 공고 ====================
+	public List<JobOpening> getRankJobOpening() {
+		List<JobOpening> rankJobOpening = new ArrayList<JobOpening>();
+		String query = "SELECT no, corporation_id, title, region, detailRegion, startDate, endDate "
+					+ "FROM jobOpening WHERE grade = 1";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				JobOpening jobOpening = new JobOpening();
+				
+				jobOpening.setNo(rs.getInt("no"));
+				jobOpening.setCorporation_id(rs.getString("corporation_id")); 
+				jobOpening.setTitle(rs.getString("title"));
+				jobOpening.setRegion(rs.getString("region"));
+				jobOpening.setDetailRegion(rs.getString("detailRegion"));
+				jobOpening.setStartDate(rs.getString("startDate"));
+				jobOpening.setEndDate(rs.getString("endDate"));
+				
+				rankJobOpening.add(jobOpening);
+			}
+		} catch(Exception e) {
+			System.out.println("getRankJobOpening Error : " + e.getMessage());
+		}
+		return rankJobOpening;
+	}
+	
+	
 	// 공고 작성
 	public boolean insertJobOpening(JobOpening jobOpening) {
 		boolean result = false;
 		String query = "INSERT INTO jobOpening "
-				+ "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, 0)";
+				+ "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, 0, 0)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);

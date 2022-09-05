@@ -53,15 +53,7 @@ public class SignUpServlet extends HttpServlet {
 			String phone = request.getParameter("iPhone1")+request.getParameter("iPhone2");
 			String address = request.getParameter("iAddress");
 			String detailAddress = request.getParameter("iDetailAddress");
-			System.out.println(id);
-			System.out.println(password);
-			System.out.println(name);
-			System.out.println(birth);
-			System.out.println(gender);
-			System.out.println(email);
-			System.out.println(phone);
-			System.out.println(address);
-			System.out.println(detailAddress);
+			
 			Individual individual = new Individual(id, password, name, birth, gender, email, phone, address, detailAddress);
 			result = infoDao.insertIndividual(individual);
 			

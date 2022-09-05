@@ -40,6 +40,7 @@
 	    <version>5.2.10.RELEASE</version>
 	</dependency>
 	
+	<!-- JSTL 관련 -->
 	<dependency>
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>jstl</artifactId>

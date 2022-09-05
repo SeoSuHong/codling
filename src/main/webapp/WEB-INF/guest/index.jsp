@@ -176,32 +176,21 @@
 			        		<input type="checkbox" name="career" value="20"> 20년
 			        	</div>
 			        	<div id="payList">
-			        		<input type="checkbox" name="pay" value="2500"> <span>2,500만</span>
-			        		<input type="checkbox" name="pay" value="3000"> <span>3,000만</span>
-			        		<input type="checkbox" name="pay" value="3500"> <span>3,500만</span>
-			        		<input type="checkbox" name="pay" value="4000"> <span>4,000만</span>
-			        		<input type="checkbox" name="pay" value="4500"> <span>4,500만</span>
-			        		<input type="checkbox" name="pay" value="5000"> <span>5,000만</span>
-			        		<input type="checkbox" name="pay" value="5500"> <span>5,500만</span>
-			        		<input type="checkbox" name="pay" value="6000"> <span>6,000만</span>
-			        		<input type="checkbox" name="pay" value="6500"> <span>6,500만</span>
-			        		<input type="checkbox" name="pay" value="7000"> <span>7,000만</span>
-			        		<input type="checkbox" name="pay" value="7500"> <span>7,500만</span>
-			        		<input type="checkbox" name="pay" value="8000"> <span>8,000만</span>
-			        		<input type="checkbox" name="pay" value="8500"> <span>8,500만</span>
-			        		<input type="checkbox" name="pay" value="9000"> <span>9,000만</span>
-			        		<input type="checkbox" name="pay" value="9500"> <span>9,500만</span>
-			        		<input type="checkbox" name="pay" value="10000"> <span>1억</span>
-			        		<input type="checkbox" name="pay" value="11000"> <span>1억 1,000만</span>
-			        		<input type="checkbox" name="pay" value="12000"> <span>1억 2,000만</span>
-			        		<input type="checkbox" name="pay" value="13000"> <span>1억 3,000만</span>
-			        		<input type="checkbox" name="pay" value="14000"> <span>1억 4,000만</span>
-			        		<input type="checkbox" name="pay" value="15000"> <span>1억 5,000만</span>
-			        		<input type="checkbox" name="pay" value="16000"> <span>1억 6,000만</span>
-			        		<input type="checkbox" name="pay" value="17000"> <span>1억 7,000만</span>
-			        		<input type="checkbox" name="pay" value="18000"> <span>1억 8,000만</span>
-			        		<input type="checkbox" name="pay" value="19000"> <span>1억 9,000만</span>
-			        		<input type="checkbox" name="pay" value="20000"> <span>2억</span>
+			        	
+			        		<c:forEach var="num" begin="2500" end="9500" step="500">
+				        		<input type="checkbox" name="pay" value="${num}" <c:if test="${not empty p && p == num}">checked</c:if>>
+				        		<span>${fn:substring(num, 0, 1)},${fn:substring(num, 1, 4)}만</span>
+			        		</c:forEach>
+			        		
+			        		<c:forEach var="num" begin="10000" end="20000" step="1000" varStatus="st">
+			        			<input type="checkbox" name="pay" value="${num}" <c:if test="${not empty p && p == num}">checked</c:if>>
+				        		<span>${fn:substring(num, 0, 1)}억
+					        		<c:if test="${!st.first && !st.last}">
+					        			${fn:substring(num, 1, 2)},${fn:substring(num, 2, 5)}만
+					        		</c:if>
+					        	</span>
+				        	</c:forEach>
+				        	
 			        	</div>
         			</div>
         		</article>
@@ -224,25 +213,301 @@
 				<div class="pow">
 					<div class="advertisement">
 						<div class="item">
-							<a href="##"><img src="img/img1.jpg" alt=""></a>
+							<div class="rank">
+								<div class="rankTop">
+									<div class="imgWrap">
+										<img alt="" src="img/logo.png">
+									</div>
+									<div>
+										<p class="rankCorp">
+											두산 인프라코어
+										</p>
+										<p class="rankTitle">
+											서버 관리자 / DBMS 경력자 채용
+										</p>
+									</div>
+								</div>
+								<table class="rankContent">
+									<tr>
+										<th>모집분야</th>
+										<td>
+											서버 개발자 | 웹 개발자
+										</td>
+									</tr>
+									<tr>
+										<th>사용스택</th>
+										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
+									</tr>
+									<tr>
+										<th>경력</th>
+										<td>신입 or 3년↑ | 신입</td>
+									</tr>
+									<tr>
+										<th>직급/직책</th>
+										<td>대리 | 인턴</td>
+									</tr>
+									<tr>
+										<th>근무요일</th>
+										<td>유연근무제 | 유연근무제</td>
+									</tr>
+									<tr>
+										<th>근무지역</th>
+										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
+									</tr>
+									<tr>
+										<th>모집일</th>
+										<td>2022.08.01 - 2022.09.01</td>
+									</tr>
+								</table>
+							</div>
 						</div>
 						<div class="item">
-							<a href="##"><img src="img/img2.jpg" alt=""></a>
+							<div class="rank">
+								<div class="rankTop">
+									<div class="imgWrap">
+										<img alt="" src="img/logo.png">
+									</div>
+									<div>
+										<p class="rankCorp">
+											두산 인프라코어
+										</p>
+										<p class="rankTitle">
+											서버 관리자 / DBMS 경력자 채용
+										</p>
+									</div>
+								</div>
+								<table class="rankContent">
+									<tr>
+										<th>모집분야</th>
+										<td>
+											서버 개발자 | 웹 개발자
+										</td>
+									</tr>
+									<tr>
+										<th>사용스택</th>
+										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
+									</tr>
+									<tr>
+										<th>경력</th>
+										<td>신입 or 3년↑ | 신입</td>
+									</tr>
+									<tr>
+										<th>직급/직책</th>
+										<td>대리 | 인턴</td>
+									</tr>
+									<tr>
+										<th>근무요일</th>
+										<td>유연근무제 | 유연근무제</td>
+									</tr>
+									<tr>
+										<th>근무지역</th>
+										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
+									</tr>
+									<tr>
+										<th>모집일</th>
+										<td>2022.08.01 - 2022.09.01</td>
+									</tr>
+								</table>
+							</div>
 						</div>
 						<div class="item">
-							<a href="##"><img src="img/img3.jpg" alt=""></a>
+							<div class="rank">
+								<div class="rankTop">
+									<div class="imgWrap">
+										<img alt="" src="img/logo.png">
+									</div>
+									<div>
+										<p class="rankCorp">
+											두산 인프라코어
+										</p>
+										<p class="rankTitle">
+											서버 관리자 / DBMS 경력자 채용
+										</p>
+									</div>
+								</div>
+								<table class="rankContent">
+									<tr>
+										<th>모집분야</th>
+										<td>
+											서버 개발자 | 웹 개발자
+										</td>
+									</tr>
+									<tr>
+										<th>사용스택</th>
+										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
+									</tr>
+									<tr>
+										<th>경력</th>
+										<td>신입 or 3년↑ | 신입</td>
+									</tr>
+									<tr>
+										<th>직급/직책</th>
+										<td>대리 | 인턴</td>
+									</tr>
+									<tr>
+										<th>근무요일</th>
+										<td>유연근무제 | 유연근무제</td>
+									</tr>
+									<tr>
+										<th>근무지역</th>
+										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
+									</tr>
+									<tr>
+										<th>모집일</th>
+										<td>2022.08.01 - 2022.09.01</td>
+									</tr>
+								</table>
+							</div>
 						</div>
 						<div class="item">
-							<a href="##"><img src="img/img1.jpg" alt=""></a>
+							<div class="rank">
+								<div class="rankTop">
+									<div class="imgWrap">
+										<img alt="" src="img/logo.png">
+									</div>
+									<div>
+										<p class="rankCorp">
+											두산 인프라코어
+										</p>
+										<p class="rankTitle">
+											서버 관리자 / DBMS 경력자 채용
+										</p>
+									</div>
+								</div>
+								<table class="rankContent">
+									<tr>
+										<th>모집분야</th>
+										<td>
+											서버 개발자 | 웹 개발자
+										</td>
+									</tr>
+									<tr>
+										<th>사용스택</th>
+										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
+									</tr>
+									<tr>
+										<th>경력</th>
+										<td>신입 or 3년↑ | 신입</td>
+									</tr>
+									<tr>
+										<th>직급/직책</th>
+										<td>대리 | 인턴</td>
+									</tr>
+									<tr>
+										<th>근무요일</th>
+										<td>유연근무제 | 유연근무제</td>
+									</tr>
+									<tr>
+										<th>근무지역</th>
+										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
+									</tr>
+									<tr>
+										<th>모집일</th>
+										<td>2022.08.01 - 2022.09.01</td>
+									</tr>
+								</table>
+							</div>
 						</div>
 						<div class="item">
-							<a href="##"><img src="img/img2.jpg" alt=""></a>
+							<div class="rank">
+								<div class="rankTop">
+									<div class="imgWrap">
+										<img alt="" src="img/logo.png">
+									</div>
+									<div>
+										<p class="rankCorp">
+											두산 인프라코어
+										</p>
+										<p class="rankTitle">
+											서버 관리자 / DBMS 경력자 채용
+										</p>
+									</div>
+								</div>
+								<table class="rankContent">
+									<tr>
+										<th>모집분야</th>
+										<td>
+											서버 개발자 | 웹 개발자
+										</td>
+									</tr>
+									<tr>
+										<th>사용스택</th>
+										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
+									</tr>
+									<tr>
+										<th>경력</th>
+										<td>신입 or 3년↑ | 신입</td>
+									</tr>
+									<tr>
+										<th>직급/직책</th>
+										<td>대리 | 인턴</td>
+									</tr>
+									<tr>
+										<th>근무요일</th>
+										<td>유연근무제 | 유연근무제</td>
+									</tr>
+									<tr>
+										<th>근무지역</th>
+										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
+									</tr>
+									<tr>
+										<th>모집일</th>
+										<td>2022.08.01 - 2022.09.01</td>
+									</tr>
+								</table>
+							</div>
 						</div>
 						<div class="item">
-							<a href="##"><img src="img/img3.jpg" alt=""></a>
+							<div class="rank">
+								<div class="rankTop">
+									<div class="imgWrap">
+										<img alt="" src="img/logo.png">
+									</div>
+									<div>
+										<p class="rankCorp">
+											두산 인프라코어
+										</p>
+										<p class="rankTitle">
+											서버 관리자 / DBMS 경력자 채용
+										</p>
+									</div>
+								</div>
+								<table class="rankContent">
+									<tr>
+										<th>모집분야</th>
+										<td>
+											서버 개발자 | 웹 개발자
+										</td>
+									</tr>
+									<tr>
+										<th>사용스택</th>
+										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
+									</tr>
+									<tr>
+										<th>경력</th>
+										<td>신입 or 3년↑ | 신입</td>
+									</tr>
+									<tr>
+										<th>직급/직책</th>
+										<td>대리 | 인턴</td>
+									</tr>
+									<tr>
+										<th>근무요일</th>
+										<td>유연근무제 | 유연근무제</td>
+									</tr>
+									<tr>
+										<th>근무지역</th>
+										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
+									</tr>
+									<tr>
+										<th>모집일</th>
+										<td>2022.08.01 - 2022.09.01</td>
+									</tr>
+								</table>
+							</div>
 						</div>
-					  </div>
 					</div>
+				</div>
 				<button class="rightArrow"><img src="img/rightArrow.png"></button>
 			</div>
 			<div id="btn_bar">

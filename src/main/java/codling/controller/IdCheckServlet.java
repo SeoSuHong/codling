@@ -21,9 +21,6 @@ public class IdCheckServlet extends HttpServlet {
 		String position = request.getParameter("position");
 		boolean check = false;
 		
-		System.out.println(id);
-		System.out.println(position);
-		
 		InformationDao infoDao = new InformationDao();
 		
 		response.setCharacterEncoding("UTF-8");
@@ -32,12 +29,10 @@ public class IdCheckServlet extends HttpServlet {
 		
 		if(position.equals("individual")) {
 			check = infoDao.checkIndividualId(id);
-			System.out.println(check);
 			out.print(check);
 			
 		} else if(position.equals("corporation")) {
 			check = infoDao.checkCorporationId(id);
-			
 			out.print(check);
 		}
 	}

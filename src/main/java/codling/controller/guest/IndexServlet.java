@@ -15,6 +15,10 @@ import javax.servlet.http.HttpSession;
 import codling.dao.CorporationDao;
 import codling.dao.InformationDao;
 import codling.identity.Announcement;
+import codling.identity.Corporation;
+import codling.identity.Field;
+import codling.identity.JobOpening;
+import codling.identity.RankJobOpening;
 
 @WebServlet("/index")
 public class IndexServlet extends HttpServlet{
@@ -36,9 +40,36 @@ public class IndexServlet extends HttpServlet{
 		
 		CorporationDao corpDao = new CorporationDao();
 		
+		List<RankJobOpening> ranks = new ArrayList<RankJobOpening>();
+		List<JobOpening> rankJobOpenings = corpDao.getRankJobOpening();
+		
+		RankJobOpening rank = new RankJobOpening();
+		
+		for(int i = 0; i < rankJobOpenings.size(); i++) {
+			JobOpening jobOpening = rankJobOpenings.get(i);
+			int no = jobOpening.getNo();
+			String corporation_id = jobOpening.getCorporation_id();
+			
+			Corporation corporation = corpDao.getCorporation(corporation_id);
+			String corporateName = corporation.getCorporateName();
+			
+			String title = jobOpening.getTitle();
+			
+			String fieldName = "";
+			List<Field> rankFields = corpDao.getAllField(no);
+			for(int j = 0; j < rankFields.size(); j++) {
+				Field field = rankFields.get(i);
+				String name = field.getName();
+				fieldName += name;
+				if(j != rankFields.size() - 1) fieldName += " | ";
+			}
+		}
+		
+		
 		ArrayList<Announcement> announcement = corpDao.indexContents();
 		
 		List<String> fieldNames = corpDao.getAllFieldName();
+		
 		request.setAttribute("fieldNames", fieldNames);
 		request.setAttribute("announcement", announcement);
 		request.getRequestDispatcher("/WEB-INF/guest/index.jsp").forward(request, response);

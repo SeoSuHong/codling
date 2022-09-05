@@ -39,7 +39,7 @@ public class Indi_findPasswordServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("/WEB-INF/guest/updatePassword.jsp").forward(request, response);
 		} else {
-			out.print("<script>alert('가입이 되어있지 않은 회원입니다.\\n아이디와 이메일을 다시 확인해 주세요.');</script>");
+			out.print("<script>alert('가입이 되어있지 않은 회원입니다.\\n아이디와 이메일을 다시 확인해 주세요.'); location.href = 'indi_findPassword';</script>");
 		}
 	}
 }

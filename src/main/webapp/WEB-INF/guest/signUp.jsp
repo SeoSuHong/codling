@@ -200,7 +200,7 @@
                             <div class="row align-items-center mt-4">
                                 <p class="fw-bold">회사 전화번호</p>
                                     <div class="col-4">
-                                        <select class="form-select" id="localNum" name="corporatePhone1">
+                                        <select class="form-select" id="localNum" name="cPhone1">
                                             <option value="02">02</option>
                                             <option value="031">031</option>
                                             <option value="032">032</option>
@@ -221,7 +221,7 @@
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <input class="form-control" id="telePhone" name="corporatePhone2" placeholder="'-'없이 입력" >
+                                        <input class="form-control" id="telePhone" name="cPhone2" placeholder="'-'없이 입력" >
                                     </div>
                                     <div class="invalid-feedback">전화번호를 입력하세요.</div>
                             </div>

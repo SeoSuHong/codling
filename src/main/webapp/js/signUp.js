@@ -117,6 +117,7 @@ $(function() {
 			return;
 		}
 
+		// ID 중복확인
 		prev_id = $("#indiId").val();
 
 		$.ajax({
@@ -127,14 +128,13 @@ $(function() {
 				"id" : prev_id
 			},
 			success : function(data) {
-				console.log(data);
 				if(data == "true") {
+					idCheck = false;
 					alert("이미 사용중인 아이디 입니다.");
 				} else {
 					idCheck = true;
 					alert("사용 가능한 아이디 입니다.");
-				}
-				
+				}				
 			}
 		})
 	})
@@ -295,13 +295,55 @@ $(function() {
 
 // 기업 회원 유효성 검사
 $(function() {
+	let idCheck = false;
+	let prev_id = "";
 	const getIdCheck = RegExp(/^[a-z0-9]{4,12}$/);
 	const getPwCheck = RegExp(/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/);
 	const getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 	const getPhone = RegExp(/^[0-9]{7,8}$/);
 	const getComNum = RegExp(/([0-9]{3})-?([0-9]{2})-?([0-9]{5})/);
 
+	$("#corpIdCheck").click(function() {
+		// 아이디 공백 확인
+		if ($("#corpId").val() == "") {
+			$("#corpId").addClass("is-invalid");
+			$("#corpId").focus();
+			return;
+		}
+	
+		// 아이디 유효성 검사
+		if (!getIdCheck.test($("#corpId").val())) {
+			alert("영문,숫자를 혼합하여 4자리~12자리 이내로 입력해주세요")
+			$("#corpId").addClass("is-invalid");
+			$("#corpId").focus();
+			return;
+		}
+		
+		// ID 중복확인
+		prev_id = $("#corpId").val();
+
+		$.ajax({
+			type : "post",
+			url : "idCheck",
+			data : {
+				"position" : "corporation",
+				"id" : prev_id
+			},
+			success : function(data) {
+				if(data == "true") {
+					idCheck = false;
+					alert("이미 사용중인 아이디 입니다.");
+				} else {
+					idCheck = true;
+					alert("사용 가능한 아이디 입니다.");
+				}				
+			}
+		})
+	})
+
 	$("#corpSignUpBtn").click(function() {
+		let curr_id = $("#corpId").val();
+		
 		// 아이디 공백 확인
 		if ($("#corpId").val() == "") {
 			$("#corpId").addClass("is-invalid");
@@ -411,6 +453,11 @@ $(function() {
 		if ($("#detailAddress2").val() == "") {
 			$("#detailAddress2").addClass("is-invalid");
 			$("#detailAddress2").focus();
+			return;
+		}
+		if(prev_id != curr_id || !idCheck) {
+			alert("아이디 중복확인을 체크해 주세요.");
+			$("#corpId").focus();
 			return;
 		}
 	

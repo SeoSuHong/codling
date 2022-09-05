@@ -216,6 +216,7 @@
 					        		</c:if>
 					        	</span>
 				        	</c:forEach>
+				        	
 			        	</div>
         			</div>
         		</article>
