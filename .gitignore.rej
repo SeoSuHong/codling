@@ -1,0 +1,9 @@
+diff a/.gitignore b/.gitignore	(rejected hunks)
+@@ -84,7 +84,6 @@
+ .mtj.tmp/
+ 
+ # Package Files #
+-*.jar
+ *.war
+ *.nar
+ *.ear
