@@ -11,9 +11,9 @@ import codling.identity.Corporation;
 import codling.identity.Individual;
 
 public class InformationDao {
-	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
+	final static String DB_URL = "jdbc:mysql://codling-aws.cefyx30hbpqh.ap-northeast-2.rds.amazonaws.com:3306/codling";
 	final static String DB_NAME = "codling";
-	final static String DB_PASSWORD = "1234";
+	final static String DB_PASSWORD = "rlaxogml98";
 	
 	static Connection conn;
 	static PreparedStatement pstmt;

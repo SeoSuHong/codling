@@ -18,9 +18,9 @@ import codling.identity.License;
 import codling.identity.Portfolio;
 
 public class IndividualDao {
-	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
+	final static String DB_URL = "jdbc:mysql://codling-aws.cefyx30hbpqh.ap-northeast-2.rds.amazonaws.com:3306/codling";
 	final static String DB_NAME = "codling";
-	final static String DB_PASSWORD = "1234";
+	final static String DB_PASSWORD = "rlaxogml98";
 
 	static Connection conn;
 	static PreparedStatement pstmt;
@@ -245,7 +245,7 @@ public class IndividualDao {
 		List<Apply> applys = new ArrayList<Apply>();
 		String query = "SELECT A.*, C.corporateName, F.name AS fieldName, F.career, F.pay FROM apply A "
 				+ "JOIN corporation C "
-				+ "ON C.id = (SELECT corporation_id FROM jobOpening WHERE no = A.jobOpening_no) " + "JOIN field F "
+				+ "ON C.id = (SELECT corporation_id FROM jobopening WHERE no = A.jobOpening_no) " + "JOIN field F "
 				+ "ON F.no = A.field_no " + "WHERE individual_id = ?";
 
 		try {

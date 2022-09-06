@@ -14,9 +14,9 @@ import codling.identity.Field;
 import codling.identity.JobOpening;
 
 public class CorporationDao {
-	final static String DB_URL = "jdbc:mysql://localhost:3306/codling";
+	final static String DB_URL = "jdbc:mysql://codling-aws.cefyx30hbpqh.ap-northeast-2.rds.amazonaws.com:3306/codling";
 	final static String DB_NAME = "codling";
-	final static String DB_PASSWORD = "1234";
+	final static String DB_PASSWORD = "rlaxogml98";
 	
 	static Connection conn;
 	static PreparedStatement pstmt;
@@ -101,7 +101,7 @@ public class CorporationDao {
 	// 공고 정보(ID)
 	public JobOpening getJobOpening(String id) {
 		JobOpening jobOpening = null;
-		String query = "SELECT * FROM jobOpening WHERE corporation_id=?";
+		String query = "SELECT * FROM jobopening WHERE corporation_id=?";
 		
 		try {
 			conn = getConnection();
@@ -137,7 +137,7 @@ public class CorporationDao {
 	// 공고 정보(no)
 	public JobOpening getJobOpening(int no) {
 		JobOpening jobOpening = null;
-		String query = "SELECT * FROM jobOpening WHERE no=?";
+		String query = "SELECT * FROM jobopening WHERE no=?";
 		
 		try {
 			conn = getConnection();
@@ -172,7 +172,7 @@ public class CorporationDao {
 	// 모든 공고 정보(ID)
 	public List<JobOpening> getAllJobOpening (String id) {
 		List<JobOpening> list = new ArrayList<JobOpening>();
-		String query = "SELECT * FROM jobOpening WHERE corporation_id = ?";
+		String query = "SELECT * FROM jobopening WHERE corporation_id = ?";
 		
 		try {
 			conn = getConnection();
@@ -207,7 +207,7 @@ public class CorporationDao {
 	// 가장 최근 공고no (ID)
 	public int getRecentJobOpeningNo(String corporation_id) {
 		int no = 0;
-		String query = "SELECT MAX(no) AS no FROM jobOpening WHERE corporation_id = '" + corporation_id + "'";
+		String query = "SELECT MAX(no) AS no FROM jobopening WHERE corporation_id = '" + corporation_id + "'";
 		
 		try {
 			conn = getConnection();
@@ -264,7 +264,7 @@ public class CorporationDao {
 	// 모든 모집분야 정보
 	public List<Field> getAllField(int jobOpening_no) {
 		List<Field> fields = new ArrayList<Field>();
-		String query = "SELECT * FROM field WHERE jobopening_no = ?";
+		String query = "SELECT * FROM field WHERE jobOpening_no = ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
@@ -299,7 +299,7 @@ public class CorporationDao {
 	// 공고 작성
 	public boolean insertJobOpening(JobOpening jobOpening) {
 		boolean result = false;
-		String query = "INSERT INTO jobOpening "
+		String query = "INSERT INTO jobopening "
 				+ "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, 0, DEFAULT)";
 		try {
 			conn = getConnection();
@@ -362,7 +362,7 @@ public class CorporationDao {
 	// 공고 수정
 	public boolean updateJobOpening(JobOpening jobOpening) {
 		boolean result = false;
-		String query = "UPDATE jobOpening SET title = ?, region = ?, detailRegion = ?, process = ?, startDate = ?, endDate = ? WHERE no = ?";
+		String query = "UPDATE jobopening SET title = ?, region = ?, detailRegion = ?, process = ?, startDate = ?, endDate = ? WHERE no = ?";
 		
 		try {
 			conn = getConnection();
@@ -417,7 +417,7 @@ public class CorporationDao {
 	// 공고 삭제
 	public boolean deleteJobOpening(int no) {
 		boolean result = false;
-		String query = "DELETE FROM jobOpening WHERE no = " + no;
+		String query = "DELETE FROM jobopening WHERE no = " + no;
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
@@ -595,7 +595,7 @@ public class CorporationDao {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
 				+ "FROM field F "
-				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+				+ "JOIN jobopening J ON F.jobOpening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
 				+ "WHERE F.career like '%신입%' "
 				+ "GROUP BY no "
@@ -641,7 +641,7 @@ public class CorporationDao {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
 				+ "FROM field F "
-				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+				+ "JOIN jobopening J ON F.jobOpening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
 				+ "WHERE F.career REGEXP '[0-9]+' "
 				+ "GROUP BY no "
@@ -687,7 +687,7 @@ public class CorporationDao {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
 		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
 				+ "FROM field F "
-				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+				+ "JOIN jobopening J ON F.jobOpening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
 				+ "GROUP BY no "
 				+ "ORDER BY J.count DESC LIMIT 100";
@@ -849,7 +849,7 @@ public class CorporationDao {
  		ArrayList<Announcement> list = new ArrayList<Announcement>();
  		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
  				+ "FROM field F "
- 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+ 				+ "JOIN jobopening J ON F.jobOpening_no = J.no "
  				+ "JOIN corporation C ON J.corporation_id = C.id "
  				+ "WHERE J.title REGEXP ? AND J.region REGEXP ? AND F.career REGEXP ? AND F.name REGEXP ? "
  				+ "GROUP BY no "
@@ -1007,7 +1007,7 @@ public class CorporationDao {
  		ArrayList<Announcement> list = new ArrayList<Announcement>();
  		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo_fileName, F.name, J.no, J.count, J.advertisement , J.region, J.detailregion, J.startDate, J.endDate, F.work "
  				+ "FROM field F "
- 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
+ 				+ "JOIN jobopening J ON F.jobOpening_no = J.no "
  				+ "JOIN corporation C ON J.corporation_id = C.id "
  				+ "GROUP BY no "
  				+ "ORDER BY J.advertisement DESC LIMIT 6";
