@@ -212,300 +212,59 @@
 				<button class="leftArrow"><img src="img/leftArrow.png"></button>
 				<div class="pow">
 					<div class="advertisement">
-						<div class="item">
-							<div class="rank">
-								<div class="rankTop">
-									<div class="imgWrap">
-										<img alt="" src="img/logo.png">
+					
+						<c:forEach var="rank" items="${ranks}">
+							<div class="item">
+								<div class="rank">
+									<div class="rankTop">
+										<div class="imgWrap">
+											<img alt="" src="img/logo.png">
+										</div>
+										<div>
+											<p class="rankCorp">
+												${rank.corporateName}
+											</p>
+											<p class="rankTitle">
+												${rank.title}
+											</p>
+										</div>
 									</div>
-									<div>
-										<p class="rankCorp">
-											두산 인프라코어
-										</p>
-										<p class="rankTitle">
-											서버 관리자 / DBMS 경력자 채용
-										</p>
-									</div>
+									<table class="rankContent">
+										<tr>
+											<th>모집분야</th>
+											<td>
+												${rank.fieldName}
+											</td>
+										</tr>
+										<tr>
+											<th>사용스택</th>
+											<td class="stack">${rank.stack}</td>
+										</tr>
+										<tr>
+											<th>경력</th>
+											<td>${rank.career}</td>
+										</tr>
+										<tr>
+											<th>직급/직책</th>
+											<td>${rank.position}</td>
+										</tr>
+										<tr>
+											<th>근무요일</th>
+											<td>${rank.workDay}</td>
+										</tr>
+										<tr>
+											<th>근무지역</th>
+											<td>${rank.region}</td>
+										</tr>
+										<tr>
+											<th>모집일</th>
+											<td>${rank.date}</td>
+										</tr>
+									</table>
 								</div>
-								<table class="rankContent">
-									<tr>
-										<th>모집분야</th>
-										<td>
-											서버 개발자 | 웹 개발자
-										</td>
-									</tr>
-									<tr>
-										<th>사용스택</th>
-										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
-									</tr>
-									<tr>
-										<th>경력</th>
-										<td>신입 or 3년↑ | 신입</td>
-									</tr>
-									<tr>
-										<th>직급/직책</th>
-										<td>대리 | 인턴</td>
-									</tr>
-									<tr>
-										<th>근무요일</th>
-										<td>유연근무제 | 유연근무제</td>
-									</tr>
-									<tr>
-										<th>근무지역</th>
-										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
-									</tr>
-									<tr>
-										<th>모집일</th>
-										<td>2022.08.01 - 2022.09.01</td>
-									</tr>
-								</table>
 							</div>
-						</div>
-						<div class="item">
-							<div class="rank">
-								<div class="rankTop">
-									<div class="imgWrap">
-										<img alt="" src="img/logo.png">
-									</div>
-									<div>
-										<p class="rankCorp">
-											두산 인프라코어
-										</p>
-										<p class="rankTitle">
-											서버 관리자 / DBMS 경력자 채용
-										</p>
-									</div>
-								</div>
-								<table class="rankContent">
-									<tr>
-										<th>모집분야</th>
-										<td>
-											서버 개발자 | 웹 개발자
-										</td>
-									</tr>
-									<tr>
-										<th>사용스택</th>
-										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
-									</tr>
-									<tr>
-										<th>경력</th>
-										<td>신입 or 3년↑ | 신입</td>
-									</tr>
-									<tr>
-										<th>직급/직책</th>
-										<td>대리 | 인턴</td>
-									</tr>
-									<tr>
-										<th>근무요일</th>
-										<td>유연근무제 | 유연근무제</td>
-									</tr>
-									<tr>
-										<th>근무지역</th>
-										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
-									</tr>
-									<tr>
-										<th>모집일</th>
-										<td>2022.08.01 - 2022.09.01</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div class="item">
-							<div class="rank">
-								<div class="rankTop">
-									<div class="imgWrap">
-										<img alt="" src="img/logo.png">
-									</div>
-									<div>
-										<p class="rankCorp">
-											두산 인프라코어
-										</p>
-										<p class="rankTitle">
-											서버 관리자 / DBMS 경력자 채용
-										</p>
-									</div>
-								</div>
-								<table class="rankContent">
-									<tr>
-										<th>모집분야</th>
-										<td>
-											서버 개발자 | 웹 개발자
-										</td>
-									</tr>
-									<tr>
-										<th>사용스택</th>
-										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
-									</tr>
-									<tr>
-										<th>경력</th>
-										<td>신입 or 3년↑ | 신입</td>
-									</tr>
-									<tr>
-										<th>직급/직책</th>
-										<td>대리 | 인턴</td>
-									</tr>
-									<tr>
-										<th>근무요일</th>
-										<td>유연근무제 | 유연근무제</td>
-									</tr>
-									<tr>
-										<th>근무지역</th>
-										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
-									</tr>
-									<tr>
-										<th>모집일</th>
-										<td>2022.08.01 - 2022.09.01</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div class="item">
-							<div class="rank">
-								<div class="rankTop">
-									<div class="imgWrap">
-										<img alt="" src="img/logo.png">
-									</div>
-									<div>
-										<p class="rankCorp">
-											두산 인프라코어
-										</p>
-										<p class="rankTitle">
-											서버 관리자 / DBMS 경력자 채용
-										</p>
-									</div>
-								</div>
-								<table class="rankContent">
-									<tr>
-										<th>모집분야</th>
-										<td>
-											서버 개발자 | 웹 개발자
-										</td>
-									</tr>
-									<tr>
-										<th>사용스택</th>
-										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
-									</tr>
-									<tr>
-										<th>경력</th>
-										<td>신입 or 3년↑ | 신입</td>
-									</tr>
-									<tr>
-										<th>직급/직책</th>
-										<td>대리 | 인턴</td>
-									</tr>
-									<tr>
-										<th>근무요일</th>
-										<td>유연근무제 | 유연근무제</td>
-									</tr>
-									<tr>
-										<th>근무지역</th>
-										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
-									</tr>
-									<tr>
-										<th>모집일</th>
-										<td>2022.08.01 - 2022.09.01</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div class="item">
-							<div class="rank">
-								<div class="rankTop">
-									<div class="imgWrap">
-										<img alt="" src="img/logo.png">
-									</div>
-									<div>
-										<p class="rankCorp">
-											두산 인프라코어
-										</p>
-										<p class="rankTitle">
-											서버 관리자 / DBMS 경력자 채용
-										</p>
-									</div>
-								</div>
-								<table class="rankContent">
-									<tr>
-										<th>모집분야</th>
-										<td>
-											서버 개발자 | 웹 개발자
-										</td>
-									</tr>
-									<tr>
-										<th>사용스택</th>
-										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
-									</tr>
-									<tr>
-										<th>경력</th>
-										<td>신입 or 3년↑ | 신입</td>
-									</tr>
-									<tr>
-										<th>직급/직책</th>
-										<td>대리 | 인턴</td>
-									</tr>
-									<tr>
-										<th>근무요일</th>
-										<td>유연근무제 | 유연근무제</td>
-									</tr>
-									<tr>
-										<th>근무지역</th>
-										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
-									</tr>
-									<tr>
-										<th>모집일</th>
-										<td>2022.08.01 - 2022.09.01</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div class="item">
-							<div class="rank">
-								<div class="rankTop">
-									<div class="imgWrap">
-										<img alt="" src="img/logo.png">
-									</div>
-									<div>
-										<p class="rankCorp">
-											두산 인프라코어
-										</p>
-										<p class="rankTitle">
-											서버 관리자 / DBMS 경력자 채용
-										</p>
-									</div>
-								</div>
-								<table class="rankContent">
-									<tr>
-										<th>모집분야</th>
-										<td>
-											서버 개발자 | 웹 개발자
-										</td>
-									</tr>
-									<tr>
-										<th>사용스택</th>
-										<td>HTML5 · CSS3 · Git · JavaScript · Node.js · React · TypeScript</td>
-									</tr>
-									<tr>
-										<th>경력</th>
-										<td>신입 or 3년↑ | 신입</td>
-									</tr>
-									<tr>
-										<th>직급/직책</th>
-										<td>대리 | 인턴</td>
-									</tr>
-									<tr>
-										<th>근무요일</th>
-										<td>유연근무제 | 유연근무제</td>
-									</tr>
-									<tr>
-										<th>근무지역</th>
-										<td>인천광역시 남동구 인주대로 593 12층 (구월동)</td>
-									</tr>
-									<tr>
-										<th>모집일</th>
-										<td>2022.08.01 - 2022.09.01</td>
-									</tr>
-								</table>
-							</div>
-						</div>
+						</c:forEach>
+
 					</div>
 				</div>
 				<button class="rightArrow"><img src="img/rightArrow.png"></button>

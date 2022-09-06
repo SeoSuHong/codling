@@ -43,8 +43,6 @@ public class IndexServlet extends HttpServlet{
 		List<RankJobOpening> ranks = new ArrayList<RankJobOpening>();
 		List<JobOpening> rankJobOpenings = corpDao.getRankJobOpening();
 		
-		RankJobOpening rank = new RankJobOpening();
-		
 		for(int i = 0; i < rankJobOpenings.size(); i++) {
 			JobOpening jobOpening = rankJobOpenings.get(i);
 			int no = jobOpening.getNo();
@@ -56,20 +54,77 @@ public class IndexServlet extends HttpServlet{
 			String title = jobOpening.getTitle();
 			
 			String fieldName = "";
+			String stack = "";
+			String career = "";
+			String position = "";
+			String workDay = "";
 			List<Field> rankFields = corpDao.getAllField(no);
 			for(int j = 0; j < rankFields.size(); j++) {
-				Field field = rankFields.get(i);
-				String name = field.getName();
-				fieldName += name;
-				if(j != rankFields.size() - 1) fieldName += " | ";
+				Field field = rankFields.get(j);
+				
+				fieldName += field.getName();
+				
+				String[] stacks = field.getStack().split("/");
+				for(int k = 0; k < stacks.length; k++) {
+					stack += stacks[k];
+					if(k != stacks.length - 1) stack += " · ";
+				}
+
+				String[] careers = field.getCareer().split("/");
+				for(int k = 0; k < careers.length; k++) {
+					if(careers.length > 1) {
+						if(careers[k].equals("신입"))
+							career += careers[k] + " or ";
+						else
+							career += careers[k] + "년↑";
+					} else {
+						if(careers[k].equals("신입"))
+							career += careers[k];
+						else
+							career += careers[k] + "년↑";
+					}
+				}
+				position += field.getPosition();
+				String wd = field.getWorkDay();
+				if(wd.equals("월-금")) wd = "주5일(월~금)";
+				workDay += wd;
+				
+				if(j != rankFields.size() - 1) {
+					fieldName += " | ";
+					stack += " | ";
+					career += " | ";
+					position += " | ";
+					workDay += " | ";
+				}
+				
 			}
+			String region = jobOpening.getRegion();
+			if(jobOpening.getDetailRegion() != null)
+				region += " " + jobOpening.getDetailRegion();
+			String date = "";
+			String[] startDate = jobOpening.getStartDate().split("-");
+			String[] endDate = jobOpening.getEndDate().split("-");
+			for(int j = 0; j < startDate.length; j++) {
+				date += startDate[j];
+				if(j != startDate.length - 1) date += ".";
+			}
+			
+			date += " - ";
+			
+			for(int j = 0; j < endDate.length; j++) {
+				date += endDate[j];
+				if(j != endDate.length - 1) date += ".";
+			}
+			
+			RankJobOpening rankJobOpening = new RankJobOpening(no, corporateName, title, fieldName, stack, career, position, workDay, region, date);
+			ranks.add(rankJobOpening);
 		}
-		
 		
 		ArrayList<Announcement> announcement = corpDao.indexContents();
 		
 		List<String> fieldNames = corpDao.getAllFieldName();
 		
+		request.setAttribute("ranks", ranks);
 		request.setAttribute("fieldNames", fieldNames);
 		request.setAttribute("announcement", announcement);
 		request.getRequestDispatcher("/WEB-INF/guest/index.jsp").forward(request, response);

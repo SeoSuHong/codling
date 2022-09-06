@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import codling.identity.Corporation;
@@ -66,7 +68,6 @@ public class InformationDao {
 		}
 		return result;
 	}
-	
 	
 	// 개인회원 회원가입
 	public boolean insertIndividual(Individual individual) {
@@ -272,6 +273,31 @@ public class InformationDao {
 			System.out.println("getCorporationName Error : " + e.getMessage());
 		}
 		return name;
+	}
+	
+	// 기업회원 전화번호, email
+	public List<String> getCorpPhoneEmail(String id) {
+		List<String> corpInfo = new ArrayList<String>();
+		String query = "SELECT corporatePhone, email FROM corporation WHERE id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				corpInfo.add(rs.getString("corporatePhone"));
+				corpInfo.add(rs.getString("email"));
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getCorpPhoneEmail Error : " + e.getMessage());
+		}
+		return corpInfo;
 	}
 	
 	// 개인회원 이름, 이메일, ID (ID 찾기 사용)

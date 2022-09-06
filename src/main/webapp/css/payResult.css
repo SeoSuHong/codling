@@ -1,0 +1,31 @@
+@import url(font.css);
+
+* {font-family: 'MapoPeacefull';}
+
+body {margin: 0; padding: 0;}
+a {text-decoration: none; }
+
+/* header */
+header {width: 1000px; margin: 110px auto 0; display: flex; justify-content: center; align-items: center;}
+header #logo {width: 253.32px; height: 56.82px;}
+
+/* section */
+section {width: 1000px; height: 73.8vh; display: flex; margin: auto;}
+article {width: 100%; margin: 30px auto;}
+.title {font-size:30px; margin: 0 0 20px 20px; color: #373F57;}
+
+table {margin: 50px auto 0;}
+tr {height: 30px;}
+th {width: 200px; text-align: left;}
+input {width: 200px;}
+
+#buttonWrap {width: 1000px; margin-top: 30px; display: flex; justify-content: center;}
+#buttonWrap a {width: 150px; height: 50px; font-size: 1.3rem; text-align: center; line-height: 50px; color: #8D8D8D; background-color: #DDDDDD; border-radius: 10px;}
+#buttonWrap a:hover {color: white; background-color: #A5E374;}
+
+/*footer*/
+footer{ display: flex; height: 80px; background-color: #F0F0F0; border-top: #dddddd solid 0.1rem;
+    color: #BEBEBE; font-size: 0.8rem; justify-content: center; align-items: center;}
+footer a:hover{text-decoration: underline; color: #BEBEBE;}
+footer img{margin: 0 2rem; }
+footer a{color: #BEBEBE}

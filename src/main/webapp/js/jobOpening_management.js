@@ -57,6 +57,12 @@ $(function(){
     });
 });
 
+/* 파워공고 */
+function power(event, jobOpening_no) {
+	event.stopPropagation();
+	location.href = 'payRequest?jobOpening_no=' + jobOpening_no;
+}
+
 /* 지원 현황 */
 function status(event, jobOpening_no) {
 	event.stopPropagation();

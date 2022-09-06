@@ -34,6 +34,12 @@ section{width: 1220px; margin: 0 auto; margin-top: 150px;}
 .resumemgbox>p>span{font-size: 1.3rem; color: #50B500; font-weight: bold;}
 .resumemgbox2>p>span{font-weight: bold; font-size: 1.5rem; color: #373F57;}
 .resumemgbox2>table{font-weight: bold; font-size: 1rem; color: #373F57; width: 800px;}
+/* 파워공고 button */
+.power {background-color: #A5E374; color: white; float: right; margin-top: -50px; margin-right: 100px;
+        width: 80px; height: 40px; border: none; border-radius: 10px; justify-content: flex-end; z-index: 1; 
+        text-decoration: none; display: flex; justify-content: center; align-items: center;}
+.power:hover {background-color: #8bdf4b;}
+.powerTxt {margin-left: 10px; color: #8bdf4b !important; padding: 3px; border: 3px solid #8bdf4b;}
 /*지원 현황 button*/
 #applicant_status{background-color: #A5E374; color: white; float: right; margin-top: -50px; margin-right: 10px;
         width: 80px; height: 40px; border: none; border-radius: 10px; justify-content: flex-end; z-index: 1; 

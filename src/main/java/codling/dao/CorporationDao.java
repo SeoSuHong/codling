@@ -265,7 +265,7 @@ public class CorporationDao {
 	public List<JobOpening> getRankJobOpening() {
 		List<JobOpening> rankJobOpening = new ArrayList<JobOpening>();
 		String query = "SELECT no, corporation_id, title, region, detailRegion, startDate, endDate "
-					+ "FROM jobOpening WHERE grade = 1";
+					+ "FROM jobOpening WHERE grade = 1 LIMIT 6";
 		
 		try {
 			conn = getConnection();
@@ -454,6 +454,22 @@ public class CorporationDao {
 			System.out.println("deleteField Error : " + e.getMessage());
 		}
 		return result;
+	}
+	
+	// grade 1로 변경 (결제시스템)
+	public void updateGrade(int jobOpening_no) {
+		String query = "UPDATE jobOpening SET grade = 1 WHERE no = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, jobOpening_no);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("updateGrade Error : " + e.getMessage());
+		}
 	}
 	
 	// 지원no로 공고no 가져오기
