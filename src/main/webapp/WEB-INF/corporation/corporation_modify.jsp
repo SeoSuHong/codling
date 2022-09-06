@@ -107,11 +107,27 @@
                                 <div class="col">
                                     <p class="fw-bold">증빙서류 첨부</p>
                                         <input class="form-control" type="file" name="file" id="formFile" required>
-                                            <div class="invalid-feedback">
-                                                증빙서류를 첨부하세요.
-                                            </div>
                                 </div>
-                            </div> 
+                            </div>
+                            
+                            <c:if test="${not empty corporation.logo}">
+                            	<div class="row align-items-center mt-4">
+	                                <div class="col">
+	                                    <p class="fw-bold">등록된 로고이미지</p>
+	                                    	<div class="imgWrap">
+	                                        	<img src="/corporation_logo/${corporation.logo}" id="fileName">
+	                                        </div>
+	                                        <input type="hidden" value="${corporation.logo}" name="logoName">
+	                                </div>
+	                            </div>
+                            </c:if>
+                            
+                            <div class="row align-items-center mt-4">
+                                <div class="col">
+                                    <p class="fw-bold">기업로고 이미지</p>
+                                        <input class="form-control" type="file" name="logo" id="formFile" required>
+                                </div>
+                            </div>
                             <div class="row align-items-center mt-4">
                                 <div class="col">
                                     <p class="fw-bold">이메일</p>

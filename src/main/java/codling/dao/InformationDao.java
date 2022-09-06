@@ -99,7 +99,7 @@ public class InformationDao {
 	// 기업회원 회원가입
 	public boolean insertCorporation(Corporation corporation) {
 		boolean result = false;
-	    String query = "INSERT INTO corporation VALUES (?, DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	    String query = "INSERT INTO corporation VALUES (?, DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	    try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(query);
@@ -113,6 +113,7 @@ public class InformationDao {
 			pstmt.setString(8, corporation.getEmail());
 			pstmt.setString(9, corporation.getAddress());
 			pstmt.setString(10, corporation.getDetailAddress());
+			pstmt.setString(11, corporation.getLogo());
  
 			if(pstmt.executeUpdate() == 1) result = true;
  
@@ -157,7 +158,7 @@ public class InformationDao {
 	public boolean updateCorporation(Corporation corporation) {
 		boolean result = false;
 		String query = "UPDATE corporation "
-					+ "SET password = ?, corporateName = ?, corporatePhone = ?, ceoName = ?, corporateNumber = ?, fileName = ?, email = ?, address = ?, detailAddress = ? "
+					+ "SET password = ?, corporateName = ?, corporatePhone = ?, ceoName = ?, corporateNumber = ?, fileName = ?, email = ?, address = ?, detailAddress = ?, logo = ? "
 					+ "WHERE id = ?";
 		try {
 			conn = getConnection();
@@ -171,7 +172,8 @@ public class InformationDao {
 			pstmt.setString(7, corporation.getEmail());
 			pstmt.setString(8, corporation.getAddress());
 			pstmt.setString(9, corporation.getDetailAddress());
-			pstmt.setString(10, corporation.getId());
+			pstmt.setString(10, corporation.getLogo());
+			pstmt.setString(11, corporation.getId());
 			
 			if(pstmt.executeUpdate() == 1) result = true;
 			

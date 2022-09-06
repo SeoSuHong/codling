@@ -51,6 +51,12 @@
 	                <div>${corporation.ceoName}</div>
 	            </div>
 	            <div class="type">
+	                <p>로고 이미지</p>
+	                <div class="imgWrap">
+	                	<img src="/corporation_logo/${corporation.logo}">
+	                </div>
+	            </div>
+	            <div class="type">
 	                <p>사업자등록번호</p>
 	                <div>${corporation.corporateNumber}</div>
 	            </div>

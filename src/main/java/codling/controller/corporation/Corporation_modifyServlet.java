@@ -65,6 +65,7 @@ public class Corporation_modifyServlet extends HttpServlet{
 		String email           = request.getParameter("email");
 		String address         = request.getParameter("address");
 		String detailAddress   = request.getParameter("detailAddress");
+		String logoName        = request.getParameter("logoName");
 		
 		
 		Part file = request.getPart("file");
@@ -94,7 +95,34 @@ public class Corporation_modifyServlet extends HttpServlet{
 			fis.close();
 		}
 		
-		Corporation corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, email, address, detailAddress);
+		Part logo = request.getPart("logo");
+		if(logo != null && logo.getSize() != 0) {
+			String realPath = request.getServletContext().getRealPath("/corporation_logo");
+			
+			// 기존 첨부파일 삭제
+			if(logoName != null && !logoName.equals("")) {
+				String deleteFilePath = realPath + File.separator + logoName;
+				File deleteFile = new File(deleteFilePath);
+				if(deleteFile.exists()) deleteFile.delete();
+			}
+			
+			logoName = logo.getSubmittedFileName();
+			
+			InputStream fis = logo.getInputStream();
+			
+			String filePath = realPath + File.separator + logoName;
+			FileOutputStream fos = new FileOutputStream(filePath);
+			
+			byte[] buf = new byte[1024];
+			int size = 0;
+			while((size = fis.read(buf)) != -1)
+				fos.write(buf, 0, size);
+			
+			fos.close();
+			fis.close();
+		}
+		
+		Corporation corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, email, address, detailAddress, logoName);
 		
 		InformationDao infoDao = new InformationDao();
 				

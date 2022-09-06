@@ -167,7 +167,9 @@
         </div>
         <div id="companyInfo">
             <div class="companyInfo">
-                <div class="comLogo"><img src="img/logo.png" alt="회사로고"></div>
+                <div class="comLogo">
+                	<img src="/corporation_logo/${corporation.logo}">
+                </div>
                 <dl>
                     <dt>기 업 명</dt>
                         <dd>${corporation.corporateName}</dd>

@@ -58,6 +58,7 @@ public class SignUpServlet extends HttpServlet {
 			result = infoDao.insertIndividual(individual);
 			
 		} else if(position.equals("corporation")) {  // 기업 회원가입
+			
 			String id = request.getParameter("cId");
 			String password = request.getParameter("cPassword");
 			String corporateName = request.getParameter("corporateName");
@@ -68,6 +69,7 @@ public class SignUpServlet extends HttpServlet {
 			String email = request.getParameter("cEmail");
 			String address = request.getParameter("cAddress");
 			String detailAddress = request.getParameter("cDetailAddress");
+			String logoName = "logo_default.png";
 			
 			Part file = request.getPart("file");
 			if(file != null && file.getSize() != 0) {
@@ -87,17 +89,27 @@ public class SignUpServlet extends HttpServlet {
 				fos.close();
 				fis.close();
 			}
-			System.out.println(id);
-			System.out.println(password);
-			System.out.println(corporateName);
-			System.out.println(corporatePhone);
-			System.out.println(ceoName);
-			System.out.println(corporateNumber);
-			System.out.println(fileName);
-			System.out.println(email);
-			System.out.println(address);
-			System.out.println(detailAddress);
-			Corporation corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, email, address, detailAddress);
+			
+			Part logo = request.getPart("logo");
+			if(logo != null && logo.getSize() != 0) {
+				logoName = logo.getSubmittedFileName();
+				
+				String realPath = request.getServletContext().getRealPath("corporation_logo");
+				String filePath = realPath + File.separator + fileName;
+				
+				InputStream fis = logo.getInputStream();
+				FileOutputStream fos = new FileOutputStream(filePath);
+				
+				byte[] buf = new byte[1024];
+				int size = 0;
+				while((size = fis.read(buf)) != 1)
+					fos.write(buf, 0, size);
+				
+				fos.close();
+				fis.close();
+			}
+
+			Corporation corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, email, address, detailAddress, logoName);
 			result = infoDao.insertCorporation(corporation);
 		}
 		

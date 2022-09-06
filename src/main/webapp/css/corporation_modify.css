@@ -112,6 +112,17 @@ ul {
 	text-decoration: underline;
 }
 
+.imgWrap {
+   width: 300px;
+   height: 150px;
+   margin-right: 30px;
+}
+.imgWrap img {
+   height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
 #modify_btn {
     display: flex;
     justify-content: center;

@@ -33,6 +33,19 @@ section h2 {margin: 20px 20px; font-size: 30px;}
 #wrap div {display: flex;}
 #wrap div p {margin: 0 150px; width: 155px;}
 
+.imgWrap {
+   width: 230px;
+   height: 80px;
+   padding-top: 20px;
+   
+}
+.imgWrap img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	padding-right: 60px;
+}
+
 #checkPwWrap {width: 1000px; display: none; justify-content: center; margin-top: 20px;}
 #checkPw span {font-size: 1.2rem;}
 #checkPw input {height: 25px;}

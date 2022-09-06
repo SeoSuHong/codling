@@ -50,6 +50,7 @@ public class IndexServlet extends HttpServlet{
 			
 			Corporation corporation = corpDao.getCorporation(corporation_id);
 			String corporateName = corporation.getCorporateName();
+			String logo = corporation.getLogo();
 			
 			String title = jobOpening.getTitle();
 			
@@ -116,7 +117,7 @@ public class IndexServlet extends HttpServlet{
 				if(j != endDate.length - 1) date += ".";
 			}
 			
-			RankJobOpening rankJobOpening = new RankJobOpening(no, corporateName, title, fieldName, stack, career, position, workDay, region, date);
+			RankJobOpening rankJobOpening = new RankJobOpening(no, corporateName, title, fieldName, stack, career, position, workDay, region, date, logo);
 			ranks.add(rankJobOpening);
 		}
 		

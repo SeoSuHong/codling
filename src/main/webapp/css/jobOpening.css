@@ -498,6 +498,8 @@ dl img{
 #applyBtn_wrap {display: flex; justify-content: center;}
 #applyBtn {width: 170px; height: 70px; font-size: x-large; border-radius: 10px; background-color: #A5E374;}
 
+.nextTitle {width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+
 /*footer*/
 footer {
     display: flex;

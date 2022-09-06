@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -50,8 +51,9 @@ public class CorporationDao {
 				String email = rs.getString("email");
 				String address = rs.getString("address");
 				String detailAddress = rs.getString("detailAddress");
+				String logo = rs.getString("logo");
 				
-				corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, email, address, detailAddress);
+				corporation = new Corporation(id, password, corporateName, corporatePhone, ceoName, corporateNumber, fileName, email, address, detailAddress, logo);
 			}
 			
 			rs.close();
@@ -61,6 +63,28 @@ public class CorporationDao {
 			System.out.println("getCorporation Error : " + e.getMessage());
 		}
 		return corporation;
+	}
+	
+	// 공고no으로 기업id 가져오기
+	public String getCorporationId(int no) {
+		String id = "";
+		String query = "SELECT C.id FROM corporation C JOIN jobOpening J ON J.corporation_id = C.id WHERE J.no = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) id = rs.getString("id");
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			System.out.println("getCorporationId Error : " + e.getMessage());
+		}
+		return id;
 	}
 	
 	// 공고 정보(ID)
@@ -188,6 +212,40 @@ public class CorporationDao {
 			System.out.println("getRecentJobOpeningNo Error : " + e.getMessage());
 		}
 		return no;
+	}
+	
+	// 하단 공고 (다음 공고 6개)
+	public List<Integer> getNextJobOpening(int no) {
+		List<Integer> noList = new ArrayList<Integer>();
+		String query = "SELECT LEAD(no) OVER(ORDER BY no) AS next_no "
+					+ "FROM jobOpening "
+					+ "WHERE no >= ? "
+					+ "limit 1";
+		try {
+			for(int i = 0; i < 6; i++) {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, no + i);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					int next_no = rs.getInt("next_no");
+					if(next_no == 0) {
+						no = 1 - i;
+						i--;
+					} else {
+						noList.add(next_no);
+					}
+				}
+				
+				rs.close();
+				pstmt.close();
+				conn.close();
+			}
+		} catch(Exception e) {
+			System.out.println("getNextJobOpening Error : " + e.getMessage());
+		}
+		return noList;
 	}
 	
 	// 모집분야 정보
@@ -419,6 +477,9 @@ public class CorporationDao {
 			pstmt = conn.prepareStatement(query);
 			
 			if(pstmt.executeUpdate() == 1) result = true;
+			
+			pstmt.close();
+			conn.close();
 		} catch(Exception e) {
 			System.out.println("deleteJobOpening Error : " + e.getMessage());
 		}
@@ -435,6 +496,9 @@ public class CorporationDao {
 			pstmt = conn.prepareStatement(query);
 			
 			if(pstmt.executeUpdate() >= 1) result = true;
+
+			pstmt.close();
+			conn.close();
 		} catch(Exception e) {
 			System.out.println("deleteField Error : " + e.getMessage());
 		}
@@ -450,6 +514,9 @@ public class CorporationDao {
 			pstmt = conn.prepareStatement(query);
 			
 			if(pstmt.executeUpdate() >= 1) result = true;
+
+			pstmt.close();
+			conn.close();
 		} catch(Exception e) {
 			System.out.println("deleteField Error : " + e.getMessage());
 		}
@@ -583,7 +650,7 @@ public class CorporationDao {
 	// index 공고
 	public ArrayList<Announcement> indexContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo, J.no, J.count "
 				+ "FROM jobOpening J "
 				+ "JOIN field F ON J.no = F.jobOpening_no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -601,10 +668,11 @@ public class CorporationDao {
 				String stack = rs.getString("stack");
 				String career = rs.getString("career");
 				String pay = rs.getString("pay");
+				String logo = rs.getString("logo");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo, no, count);
 				list.add(announcement);
 			}
 			rs.close();
@@ -620,7 +688,7 @@ public class CorporationDao {
 	// newcomer 공고
 	public ArrayList<Announcement> newcomerContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo, J.no, J.count "
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -637,10 +705,11 @@ public class CorporationDao {
 				String stack = rs.getString("stack");
 				String career = rs.getString("career");
 				String pay = rs.getString("pay");
+				String logo = rs.getString("logo");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo, no, count);
 				list.add(announcement);
 			}
 			rs.close();
@@ -656,7 +725,7 @@ public class CorporationDao {
 	// career 공고
 	public ArrayList<Announcement> careerContents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo, J.no, J.count "
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -673,10 +742,11 @@ public class CorporationDao {
 				String stack = rs.getString("stack");
 				String career = rs.getString("career");
 				String pay = rs.getString("pay");
+				String logo = rs.getString("logo");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo, no, count);
 				list.add(announcement);
 			}
 			rs.close();
@@ -692,7 +762,7 @@ public class CorporationDao {
 	// Top100 공고
 	public ArrayList<Announcement> top100Contents() {
 		ArrayList<Announcement> list = new ArrayList<Announcement>();
-		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+		String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo, J.no, J.count "
 				+ "FROM field F "
 				+ "JOIN jobopening J ON F.jobopening_no = J.no "
 				+ "JOIN corporation C ON J.corporation_id = C.id "
@@ -710,10 +780,11 @@ public class CorporationDao {
 				String stack = rs.getString("stack");
 				String career = rs.getString("career");
 				String pay = rs.getString("pay");
+				String logo = rs.getString("logo");
 				int no = rs.getInt("no");
 				int count = rs.getInt("count");
 				
-				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, no, count);
+				Announcement announcement = new Announcement(corporateName, title, stack, career, pay, logo, no, count);
 				list.add(announcement);
 			}
 			rs.close();
@@ -728,7 +799,7 @@ public class CorporationDao {
 	// 공고 검색 (pay == null)
     public ArrayList<Announcement> searchJobOpening(String search, String area, String field, String pay) {
        ArrayList<Announcement> list = new ArrayList<Announcement>();
-       String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+       String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo, J.no, J.count "
              + "FROM jobOpening J "
              + "JOIN field F ON F.jobOpening_no = J.no "
              + "JOIN corporation C ON J.corporation_id = C.id "
@@ -751,10 +822,11 @@ public class CorporationDao {
              String stack = rs.getString("stack");
              String career_ = rs.getString("career");
              String pay_ = rs.getString("pay");
+             String logo = rs.getString("logo");
              int no = rs.getInt("no");
              int count = rs.getInt("count");
              
-             Announcement announcement = new Announcement(corporateName, title, stack, career_, pay_, no, count);
+             Announcement announcement = new Announcement(corporateName, title, stack, career_, pay_, logo, no, count);
              list.add(announcement);
           }
           rs.close();
@@ -769,7 +841,7 @@ public class CorporationDao {
     // 공고 검색 (pay != '면접 후 결정')
     public ArrayList<Announcement> searchJobOpening(String search, String area, String field, int pay) {
         ArrayList<Announcement> list = new ArrayList<Announcement>();
-        String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, J.no, J.count "
+        String query = "SELECT C.corporateName, J.title, F.stack, F.career, F.pay, C.logo, J.no, J.count "
               + "FROM jobOpening J "
               + "JOIN field F ON F.jobOpening_no = J.no "
               + "JOIN corporation C ON J.corporation_id = C.id "
@@ -790,12 +862,13 @@ public class CorporationDao {
               String corporateName = rs.getString("corporateName");
               String title = rs.getString("title");
               String stack = rs.getString("stack");
-              String career_ = rs.getString("career");
+              String career = rs.getString("career");
               String pay_ = rs.getString("pay");
+              String logo = rs.getString("logo");
               int no = rs.getInt("no");
               int count = rs.getInt("count");
               
-              Announcement announcement = new Announcement(corporateName, title, stack, career_, pay_, no, count);
+              Announcement announcement = new Announcement(corporateName, title, stack, career, pay_, logo, no, count);
               list.add(announcement);
            }
            rs.close();

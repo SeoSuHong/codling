@@ -2,6 +2,7 @@ package codling.controller.corporation;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -59,9 +60,33 @@ public class JobOpeningServlet extends HttpServlet {
 		String id = jobOpening.getCorporation_id();
 		Corporation corporation = dao.getCorporation(id);
 		
+		List<Integer> next_noList = dao.getNextJobOpening(no);
+		List<Corporation> nextCorporations = new ArrayList<Corporation>();
+		List<JobOpening> nextJobOpenings = new ArrayList<JobOpening>();
+		List<Field> nextFields = new ArrayList<Field>();
+		
+		for(int i = 0; i < next_noList.size(); i++) {
+			int next_no = next_noList.get(i);
+			
+			String nextId = dao.getCorporationId(next_no);
+			Corporation nextCorporation = dao.getCorporation(nextId);
+			nextCorporations.add(nextCorporation);
+			
+			JobOpening nextJobOpening = dao.getJobOpening(next_no);
+			nextJobOpenings.add(nextJobOpening);
+			
+			List<Field> nextField = dao.getAllField(next_no);
+			for(int j = 0; j < nextField.size(); j++) {
+				nextFields.add(nextField.get(j));
+			}
+		}
+		
 		request.setAttribute("corporation", corporation);
 		request.setAttribute("jobOpening", jobOpening);
 		request.setAttribute("fields", fields);
+		request.setAttribute("nextCorporations", nextCorporations);
+		request.setAttribute("nextJobOpenings", nextJobOpenings);
+		request.setAttribute("nextFields", nextFields);
 		request.setAttribute("replaceChar", "\n"); // 줄바꿈 <br>처리를 위해
 		
 		request.getRequestDispatcher("/WEB-INF/corporation/jobOpening.jsp").forward(request, response);

@@ -251,6 +251,12 @@
                             </div>
                             <div class="row align-items-center mt-4">
                                 <div class="col">
+                                    <p class="fw-bold">기업로고 이미지</p>
+                                        <input class="form-control" type="file" id="formFile" name="logo"  required>
+                                </div>
+                            </div>
+                            <div class="row align-items-center mt-4">
+                                <div class="col">
                                     <p class="fw-bold">이메일</p>
                                         <input name="cEmail" id="email" class="form-control" placeholder="example@codling.com"  onKeyUp="inputDataCheck(this.id)" required>
                                             <div class="invalid-feedback">

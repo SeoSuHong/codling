@@ -214,11 +214,11 @@
 					<div class="advertisement">
 					
 						<c:forEach var="rank" items="${ranks}">
-							<div class="item">
+							<div class="item" style="cursor: pointer;" onclick="location.href = 'jobOpening?no=${rank.jobOpening_no}'">
 								<div class="rank">
 									<div class="rankTop">
 										<div class="imgWrap">
-											<img alt="" src="img/logo.png">
+											<img src="/corporation_logo/${rank.logo}">
 										</div>
 										<div>
 											<p class="rankCorp">
@@ -284,7 +284,7 @@
 			<c:forEach var="anno" items="${announcement}">
 				<div class="col">
 					<div class="card" onmouseover="showCount(${anno.no})" onmouseout="hideCount(${anno.no})" onclick="location='jobOpening?no=${anno.no}'">
-						<img src="img/logo.png" class="card-img-top" alt="...">
+						<img src="/corporation_logo/${anno.logo}" class="card-img-top" alt="...">
 						<div class="card-body">
 							<p id="corporname">${anno.corporateName}<span id="${anno.no}" class="count"><img src="img/eyes.png">&nbsp; ${anno.count}</span></p>
 							<h5 class="card-title">${anno.title}</h5>

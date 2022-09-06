@@ -78,5 +78,6 @@ section{width: 1220px; margin: 0 auto; margin-top: 150px;}
 #btn-sel{width: 200px; height: 60px; border-radius: 15px; color: white; font-size: 1.3rem;
     background-color: #A5E374; border: none; font-weight: bold;}
 #btn-sel:hover {background-color: #8bdf4b;}
+
 /*footer*/
 footer{width: auto; height: 240px;}

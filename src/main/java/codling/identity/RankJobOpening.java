@@ -2,12 +2,12 @@ package codling.identity;
 
 public class RankJobOpening {
 	private int jobOpening_no;
-	private String corporateName, title, fieldName, stack, career, position, workDay, region, date;
+	private String corporateName, title, fieldName, stack, career, position, workDay, region, date, logo;
 	
 	public RankJobOpening() {}
 	
 	public RankJobOpening(int jobOpening_no, String corporateName, String title, String fieldName, String stack,
-			String career, String position, String workDay, String region, String date) {
+			String career, String position, String workDay, String region, String date, String logo) {
 		super();
 		this.jobOpening_no = jobOpening_no;
 		this.corporateName = corporateName;
@@ -19,6 +19,7 @@ public class RankJobOpening {
 		this.workDay = workDay;
 		this.region = region;
 		this.date = date;
+		this.logo = logo;
 	}
 	
 	public int getJobOpening_no() {
@@ -99,5 +100,13 @@ public class RankJobOpening {
 	
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	public String getLogo() {
+		return logo;
+	}
+	
+	public void setLogo(String logo) {
+		this.logo = logo;
 	}
 }
