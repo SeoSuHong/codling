@@ -106,7 +106,8 @@ if("9999".equals(resultJsonStr)){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Codling : 결제 취소</title>
+    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="css/cancelResult.css" type="text/css">
     <script src="jQuery/jquery-3.6.0.min.js"></script>
     <script src="jQuery/jquery-ui.min.js"></script>
