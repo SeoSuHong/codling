@@ -231,8 +231,12 @@
         <div class="jobs">
         	<c:forEach var="nextJobOpening" items="${nextJobOpenings}">
 	            <dl style="cursor: pointer;" onclick="location.href='jobOpening?no=${nextJobOpening.no}'">
-	                <dt><img src="img/logo.png"></dt>
-	                <dd class="nextTitle">${nextJobOpening.title}</dd>
+	                <c:forEach var="nextCorporation" items="${nextCorporations}">
+						<c:if test="${nextCorporation.id == nextJobOpening.corporation_id}">
+	                		<dt><img src="/corporation_logo/${nextCorporation.logo}"></dt>
+                		</c:if>
+	                </c:forEach>
+                	<dd class="nextTitle">${nextJobOpening.title}</dd>
 	                <dd>
 						<c:forEach var="nextCorporation" items="${nextCorporations}">
 							<c:if test="${nextCorporation.id == nextJobOpening.corporation_id}">
