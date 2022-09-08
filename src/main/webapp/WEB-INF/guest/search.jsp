@@ -234,44 +234,54 @@
     <section id="default">
 
       	<!-- 일반광고 -->
-		<div class="row row-cols-1 row-cols-md-4 g-4">
-			<c:forEach var="anno" items="${announcement}">
-				<div class="col">
-					<div class="card" onmouseover="showCount(${anno.no})" onmouseout="hideCount(${anno.no})" onclick="location='jobOpening?no=${anno.no}'">
-						<img src="/corporation_logo/${anno.logo}" class="card-img-top" alt="...">
-						<div class="card-body">
-							<p id="corporname">${anno.corporateName}<span id="${anno.no}" class="count"><img src="img/eyes.png">&nbsp; ${anno.count}</span></p>
-							<h5 class="card-title">${anno.title}</h5>
-							<div class="card-text">
-								<p class="contents">
-									<!-- forTokens -->
-									<c:forTokens var="stack" items="${anno.stack}" delims=" / "  varStatus="st">
-										<c:if test="${!st.last}">${stack} · </c:if>
-										<c:if test="${st.last}">${stack} </c:if>
-									</c:forTokens>
-             					</p>
-             					<p class="contents">
-             						<span>경력 | </span>
-									<c:forTokens var="career" items="${anno.career}" delims=" / " varStatus="st">
-										<c:if test="${fn:length(anno.career) <= 3}">
-											<c:if test="${career == '신입'}">${career}&emsp;&emsp;</c:if>
-											<c:if test="${career != '신입'}">${career}년↑&emsp;&emsp;</c:if>
-										</c:if>
-										<c:if test="${fn:length(anno.career) > 3}">
-											<c:if test="${career == '신입'}">${career} or</c:if>
-											<c:if test="${career != '신입'}">${career}년↑&emsp;&emsp;</c:if>
-										</c:if>
-									</c:forTokens>
-									<span>급여 | </span>
-									<c:if test="${anno.pay == '면접 후 결정'}">${anno.pay}</c:if>
-					              	<c:if test="${anno.pay != '면접 후 결정'}">${anno.pay}만원</c:if>
-             					</p>
-             				</div>
-            			</div>
-          			</div>
-        		</div>
-        	</c:forEach>
-      	</div>
+      	<c:if test="${not empty announcement}">
+			<div class="row row-cols-1 row-cols-md-4 g-4">
+				<c:forEach var="anno" items="${announcement}">
+					<div class="col">
+						<div class="card" onmouseover="showCount(${anno.no})" onmouseout="hideCount(${anno.no})" onclick="location='jobOpening?no=${anno.no}'">
+							<img src="/corporation_logo/${anno.logo}" class="card-img-top" alt="...">
+							<div class="card-body">
+								<p id="corporname">${anno.corporateName}<span id="${anno.no}" class="count"><img src="img/eyes.png">&nbsp; ${anno.count}</span></p>
+								<h5 class="card-title">${anno.title}</h5>
+								<div class="card-text">
+									<p class="contents">
+										<!-- forTokens -->
+										<c:forTokens var="stack" items="${anno.stack}" delims=" / "  varStatus="st">
+											<c:if test="${!st.last}">${stack} · </c:if>
+											<c:if test="${st.last}">${stack} </c:if>
+										</c:forTokens>
+	             					</p>
+	             					<p class="contents">
+	             						<span>경력 | </span>
+										<c:forTokens var="career" items="${anno.career}" delims=" / " varStatus="st">
+											<c:if test="${fn:length(anno.career) <= 3}">
+												<c:if test="${career == '신입'}">${career}&emsp;&emsp;</c:if>
+												<c:if test="${career != '신입'}">${career}년↑&emsp;&emsp;</c:if>
+											</c:if>
+											<c:if test="${fn:length(anno.career) > 3}">
+												<c:if test="${career == '신입'}">${career} or</c:if>
+												<c:if test="${career != '신입'}">${career}년↑&emsp;&emsp;</c:if>
+											</c:if>
+										</c:forTokens>
+										<span>급여 | </span>
+										<c:if test="${anno.pay == '면접 후 결정'}">${anno.pay}</c:if>
+						              	<c:if test="${anno.pay != '면접 후 결정'}">${anno.pay}만원</c:if>
+	             					</p>
+	             				</div>
+	            			</div>
+	          			</div>
+	        		</div>
+	        	</c:forEach>
+	      	</div>
+		</c:if>
+		<c:if test="${empty announcement}">
+			<div id="not_contents">
+				<div>
+					<h2>&nbsp;검색하신 공고가 존재하지 않습니다.</h2>
+					<img alt="준비중 이미지" src="img/readyContent.png">
+				</div>
+			</div>
+		</c:if>  
     </section>
 
     <footer>

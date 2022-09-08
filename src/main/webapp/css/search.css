@@ -121,6 +121,8 @@ section{width: 1220px; margin: 0 auto;}
 .count{float: right; display: none;}
 .count>img{width: 20px; height: 20px;}
 
+#not_contents{ color: #373F57; display: flex; justify-content: center; margin-top: 200px; margin-bottom: 300px;}
+
 /*footer*/
 footer{ display: flex; height: 80px; background-color: #F0F0F0; border-top: #dddddd solid 0.1rem;
     color: #BEBEBE; margin-top: 200px; font-size: 0.8rem; justify-content: center; align-items: center;}
