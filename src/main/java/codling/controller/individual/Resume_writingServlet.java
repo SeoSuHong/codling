@@ -92,9 +92,11 @@ public class Resume_writingServlet extends HttpServlet {
 		
 		boolean careerResult = true;
 		for(int i = 0; i < prev_companies.length - 1; i++) {
-			Career career = new Career(0, id, prev_companies[i], tenureStartDates[i] + "-00", tenureEndDates[i] + "-00", positions[i], career_departments[i], work_contents[i]);
-			boolean result = indiDao.insertCareer(career);
-			if(!result) careerResult = false;
+			if(prev_companies[i] != null && !prev_companies[i].equals("")) {
+				Career career = new Career(0, id, prev_companies[i], tenureStartDates[i] + "-00", tenureEndDates[i] + "-00", positions[i], career_departments[i], work_contents[i]);
+				boolean result = indiDao.insertCareer(career);
+				if(!result) careerResult = false;
+			}
 		}
 		
 		// 자격증
@@ -105,9 +107,11 @@ public class Resume_writingServlet extends HttpServlet {
 		
 		boolean licenseResult = true;
 		for(int i = 0; i < names.length - 1; i++) {
-			License license = new License(0, id, names[i], agencies[i], passes[i], acquireDates[i]);
-			boolean result = indiDao.insertLicense(license);
-			if(!result) licenseResult = false;
+			if(names[i] != null && !names[i].equals("")) {
+				License license = new License(0, id, names[i], agencies[i], passes[i], acquireDates[i]);
+				boolean result = indiDao.insertLicense(license);
+				if(!result) licenseResult = false;
+			}
 		}
 		
 		// 포트폴리오
@@ -175,14 +179,16 @@ public class Resume_writingServlet extends HttpServlet {
 			String fileName = "";
 			String fileSize = "";
 			for(int j = 0; j < fileCount[i]; j++) {
-				if(j < fileCount[i] - 1) {
-					fileName += builderNames.get(fileIdx) + "/";
-					fileSize += builderSizes.get(fileIdx) + "/";
-				} else {
-					fileName += builderNames.get(fileIdx);
-					fileSize += builderSizes.get(fileIdx);
+				if(!builderNames.get(fileIdx).equals("")) {
+					if(j < fileCount[i] - 1) {
+						fileName += builderNames.get(fileIdx) + "/";
+						fileSize += builderSizes.get(fileIdx) + "/";
+					} else {
+						fileName += builderNames.get(fileIdx);
+						fileSize += builderSizes.get(fileIdx);
+					}
+					fileIdx++;
 				}
-				fileIdx++;
 			}
 
 			Portfolio portfolio = new Portfolio(0, id, portfolioNames[i], details[i], url, fileName, fileSize);

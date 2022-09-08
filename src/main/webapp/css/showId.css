@@ -14,7 +14,7 @@ header #logIn {width: 80px; height: 33.19px; border: 3px solid #A5E374; border-r
 #logIn:hover {background-color: #A5E374; color: white;}
 
 /* section */
-section {width: 1000px; height: 66.4vh; display: flex; margin: auto;}
+section {width: 1000px; height: 73.7vh; display: flex; margin: auto;}
 article {width: 100%; margin: 30px auto;}
 .title {font-size:30px; margin: 0 0 20px 20px; color: #373F57;}
 h2 {text-align: center; margin-top: 50px; color: #373F57;}
