@@ -40,7 +40,7 @@ String hashString 		= sha256Enc.encrypt(ediDate + merchantID + price + merchantK
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Codling : 결제</title>
-    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
+    <link href="img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="css/payRequest.css">
     <script src="jQuery/jquery-3.6.0.min.js"></script>
     <script src="jQuery/jquery-ui.min.js"></script>

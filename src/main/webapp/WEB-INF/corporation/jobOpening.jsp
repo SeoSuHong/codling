@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Codling : 공고</title>
-    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
+    <link href="img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="css/jobOpening.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=370fa568d4acbeb9115655e735792c45&libraries=services"></script>
 </head>
@@ -206,7 +206,7 @@
                 <div class="comLogo">
                 	<c:forEach var="JobOpenings" items="${allJobOpenings }" varStatus="">
 	                	<c:if test="${no == JobOpenings.no}">
-	                		<img src="/upload/${JobOpenings.logo_fileName }" alt="회사로고">
+	                		<img src="upload/${JobOpenings.logo_fileName }" alt="회사로고">
 	                	</c:if>
                 	</c:forEach>
                 </div>
@@ -238,7 +238,7 @@
 	        	<c:set var="job_length" value="${fn:length(allJobOpenings) }"/>
 	        	<c:forEach var="JobOpenings" items="${allJobOpenings }" begin="${no }" end="${no+5}" varStatus="st">
 		            <dl onclick="location='jobOpening?no=${JobOpenings.no}'" style="cursor: pointer;">
-		                <dt><img src="/upload/${JobOpenings.logo_fileName }"></dt>
+		                <dt><img src="upload/${JobOpenings.logo_fileName }"></dt>
 		                <dd>${JobOpenings.title}</dd>
 		                <dd>${JobOpenings.corporateName}</dd>
 		                <dd>${JobOpenings.stack}</dd>
@@ -280,7 +280,7 @@
 	            <c:if test="${no > job_length-6}">
 	            	<c:forEach var="JobOpeningtwo" items="${allJobOpeningtwo }" begin="0" end="${job_index }">
 		            	<dl onclick="location='jobOpening?no=${JobOpeningtwo.no}'" style="cursor: pointer;">
-		                <dt><img src="/upload/${JobOpeningtwo.logo_fileName }"></dt>
+		                <dt><img src="upload/${JobOpeningtwo.logo_fileName }"></dt>
 		                <dd>${JobOpeningtwo.title}</dd>
 		                <dd>${JobOpeningtwo.corporateName}</dd>
 		                <dd>${JobOpeningtwo.stack}</dd>

@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Codling : 이력서</title>
-    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
+    <link href="img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="css/resume_preview.css">
     <script src="jQuery/jquery-3.6.0.min.js"></script>
@@ -302,7 +302,7 @@
 	                        <c:forTokens var="filedetail" items="${fileupload.filedetail }" begin="${st.index }" end="${st.index }" delims="/">
 	                        <c:forTokens var="fileSize" items="${fileupload.fileSize }" begin="${st.index }" end="${st.index }" delims="/">
 	                        	<p id="file">${title }</p>
-	                        	<p><a download href="/upload/${fileName }">${fileName }</a>&nbsp;&nbsp;<span></span></p>
+	                        	<p><a download href="upload/${fileName }">${fileName }</a>&nbsp;&nbsp;<span></span></p>
 	                        	<c:set var="fi" value="${filedetail }"/>
 		                        <c:set var="re_filedetail" value="${fn:replace(fi, escape, '<br>') }"/>
 	                        	<p>${re_filedetail }</p>

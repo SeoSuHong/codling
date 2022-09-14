@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Codling : 아이디 찾기</title>
-    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
+    <link href="img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <script src="jQuery/jquery-3.6.0.min.js"></script>
     <script src="jQuery/jquery-ui.min.js"></script>
     <script src="js/corp_findId.js"></script>

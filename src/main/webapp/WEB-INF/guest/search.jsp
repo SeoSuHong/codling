@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Codling</title>
-<link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
+<link href="img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/search.js"></script>
@@ -93,8 +93,8 @@
 					<span>직무</span>&nbsp;<span id="task_in"><c:forEach var="task" items="${task }" varStatus="st">&nbsp;${task }</c:forEach></span>
 				</div>
 				<input id="submit_box" form="search_submit" type="button" onclick="searchValue()" value="적용">
-				<button id="down_button"><img alt="화살표 이미지" src="../../img/down.png"/></button>
-				<button id="up_button"><img alt="화살표 이미지" src="../../img/up.png"/></button>
+				<button id="down_button"><img alt="화살표 이미지" src="img/down.png"/></button>
+				<button id="up_button"><img alt="화살표 이미지" src="img/up.png"/></button>
 			</div>
 			<form action="search" id="search_submit" name="search_Fmr">
 				<div id="scroll_check">
@@ -154,7 +154,7 @@
 			<c:forEach var="anno" items="${announcement}">
 				<div class="col">
 					<div class="card" onmouseover="showCount(${anno.no})" onmouseout="hideCount(${anno.no})" onclick="location='jobOpening?no=${anno.no}'">
-						<div id="company_logo"><img src="/upload/${anno.logo_fileName }" class="card-img-top" alt="..."></div>
+						<div id="company_logo"><img src="upload/${anno.logo_fileName }" class="card-img-top" alt="..."></div>
 						<div class="card-body">
 							<p id="corporname">
 								${anno.corporateName}<span id="${anno.no}" class="count"><img src="img/eyes.png">&nbsp;${anno.count}</span>

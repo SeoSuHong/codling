@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Codling : 내 정보 수정</title>
-    <link href="../../img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
+    <link href="img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="css/corporation_modify.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/footers/">
@@ -119,7 +119,7 @@
 												<span>현재 회사로고</span>
 											</div>
 											<div id="logo_img">
-												<img alt="회사 로고 이미지" src="/upload/${corporation.logo_fileName }" />
+												<img alt="회사 로고 이미지" src="upload/${corporation.logo_fileName }" />
 											</div>
 										</div>
 									</c:if>
