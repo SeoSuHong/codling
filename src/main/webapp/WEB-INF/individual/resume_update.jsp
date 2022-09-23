@@ -629,7 +629,7 @@
 					    </table>
 					    <table>
 			                <tr>
-			                    <th><c:if test="${empty portfolios[0].fileName}">첨부파일</c:if><c:if test="${not empty portfolios[0].fileName}">파일추가</c:if></th>
+			                    <th><c:if test="${empty portfolios[0].fileName || portfolios[0].fileName == ''}">첨부파일</c:if><c:if test="${not empty portfolios[0].fileName || portfolios[0].fileName != ''}">파일추가</c:if></th>
 			                    <td>
 			                    	<input type="file" name="file" class="fileBtn" multiple>
 			                    	<input type="hidden" name="fileCount">
@@ -738,7 +738,7 @@
 					            </c:if>
 					            <table>
 						            <tr><td class="emptyWrap"></td></tr>
-						            <c:if test="${not empty portfolio.fileName}">
+						            <c:if test="${not empty portfolio.fileName || portfolio.fileName != ''}">
 						                <c:forTokens var="fileName" items="${portfolio.fileName}" delims="/" varStatus="st">
 						                	<tr class="projectFile">
 						                		<th><c:if test="${st.first}">프로젝트 파일</c:if></th>
@@ -754,7 +754,7 @@
 							    </table>
 							    <table>
 					                <tr>
-					                    <th><c:if test="${empty portfolio.fileName}">첨부파일</c:if><c:if test="${not empty portfolios[0].fileName}">파일추가</c:if></th>
+					                    <th><c:if test="${empty portfolio.fileName || portfolio.fileName == ''}">첨부파일</c:if><c:if test="${not empty portfolio.fileName || portfolio.fileName != ''}">파일추가</c:if></th>
 					                    <td>
 					                    	<input type="file" name="file" class="fileBtn" multiple>
 					                    	<input type="hidden" name="fileCount">
