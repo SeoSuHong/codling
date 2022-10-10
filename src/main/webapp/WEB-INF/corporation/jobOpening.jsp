@@ -11,7 +11,7 @@
     <title>Codling : 공고</title>
     <link href="img/headlogo.PNG" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="css/jobOpening.css">
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=370fa568d4acbeb9115655e735792c45&libraries=services"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae5d85c783b16c86d5af97ea8a94aba2&libraries=services"></script>
 </head>
 <body>
 	<div id="main">
